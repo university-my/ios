@@ -12,7 +12,7 @@
 		C2B5CDFB1EEF0E750066DB30 /* Schedule.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C2B5CDF91EEF0E750066DB30 /* Schedule.xcdatamodeld */; };
 		C2B5CDFD1EEF0E750066DB30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2B5CDFC1EEF0E750066DB30 /* Assets.xcassets */; };
 		C2B5CE001EEF0E750066DB30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2B5CDFE1EEF0E750066DB30 /* LaunchScreen.storyboard */; };
-		C2B5CE281EEF15910066DB30 /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B5CE271EEF15910066DB30 /* GroupsTableViewController.swift */; };
+		C2B5CE281EEF15910066DB30 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B5CE271EEF15910066DB30 /* MainTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +23,7 @@
 		C2B5CDFC1EEF0E750066DB30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C2B5CDFF1EEF0E750066DB30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C2B5CE011EEF0E750066DB30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C2B5CE271EEF15910066DB30 /* GroupsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
+		C2B5CE271EEF15910066DB30 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +94,7 @@
 		C2B5CE2C1EF06E4E0066DB30 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C2B5CE271EEF15910066DB30 /* GroupsTableViewController.swift */,
+				C2B5CE271EEF15910066DB30 /* MainTableViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -175,7 +175,7 @@
 			files = (
 				C2B5CDFB1EEF0E750066DB30 /* Schedule.xcdatamodeld in Sources */,
 				C2B5CDF31EEF0E750066DB30 /* AppDelegate.swift in Sources */,
-				C2B5CE281EEF15910066DB30 /* GroupsTableViewController.swift in Sources */,
+				C2B5CE281EEF15910066DB30 /* MainTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

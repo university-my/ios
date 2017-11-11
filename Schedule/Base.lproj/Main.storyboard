@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hUl-nh-Dxt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kDr-Od-RsA">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Groups-->
+        <!--Main Table View Controller-->
         <scene sceneID="rri-BK-OuF">
             <objects>
-                <tableViewController id="UbS-ZJ-tQT" sceneMemberID="viewController">
+                <tableViewController id="UbS-ZJ-tQT" customClass="MainTableViewController" customModule="Schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Of0-S0-ueO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -32,28 +32,30 @@
                             <outlet property="delegate" destination="UbS-ZJ-tQT" id="MNr-Kk-2D3"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Groups" id="bpt-xu-0ho"/>
+                    <navigationItem key="navigationItem" id="F0z-JD-anE"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6lR-GW-8fk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1308" y="231"/>
+            <point key="canvasLocation" x="1424.8" y="227.13643178410797"/>
         </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="blo-NP-clY">
+        <!--Groups-->
+        <scene sceneID="EbB-bJ-bo9">
             <objects>
-                <tabBarController id="hUl-nh-Dxt" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="qnS-YO-5Yi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kDr-Od-RsA" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Groups" id="bpt-xu-0ho"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="g7x-0H-sbF">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="UbS-ZJ-tQT" kind="relationship" relationship="viewControllers" id="AcO-Wz-gvJ"/>
+                        <segue destination="UbS-ZJ-tQT" kind="relationship" relationship="rootViewController" id="VGw-Ag-dtc"/>
                     </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="b9C-6A-N3d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bS7-gV-jXv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="365" y="231"/>
+            <point key="canvasLocation" x="607" y="227"/>
         </scene>
     </scenes>
 </document>

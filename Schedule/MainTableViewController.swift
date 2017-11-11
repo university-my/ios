@@ -1,5 +1,5 @@
 //
-//  GroupsTableViewController.swift
+//  MainTableViewController.swift
 //  Schedule
 //
 //  Created by Yura Voevodin on 12.06.17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GroupsTableViewController: UITableViewController {
+class MainTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
