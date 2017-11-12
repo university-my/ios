@@ -10,8 +10,22 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
 
+    var queue: OperationQueue!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let viewContext = appDelegate.persistentContainer.viewContext
+        
+        queue = OperationQueue()
+        
+        guard let getGroups = GetGroupsOperation(context: viewContext, completionHandler: {
+            print("🎉")
+        }) else {
+            return
+        }
+        queue.addOperation(getGroups)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
