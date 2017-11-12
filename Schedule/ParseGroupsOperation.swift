@@ -51,11 +51,42 @@ class ParseGroupsOperation: AsyncOperation {
             stream.close()
         }
         do {
-            let json = try JSONSerialization.jsonObject(with: stream, options: []) as? [Any]
-            print(json ?? "Empty JSON")
-            finish()
+            let json = try JSONSerialization.jsonObject(with: stream, options: []) as? [String: Any]
+            if let groups = json?["groups"] as? [[String: Any]] {
+                parse(groups)
+            } else {
+                finish()
+            }
         } catch {
             print(error)
         }
+    }
+    
+    private func parse(_ json: [[String: Any]]) {
+        let parsedGroups = json.flatMap { GroupStruct($0) }
+        context.perform {
+            for group in parsedGroups {
+                self.insert(group)
+            }
+            _ = self.saveContext()
+            self.finish()
+        }
+    }
+    
+    private func insert(_ parsedGroup: GroupStruct) {
+        let groupEntitu = GroupEntity(context: context)
+        groupEntitu.id = parsedGroup.id
+        groupEntitu.name = parsedGroup.name
+    }
+    
+    private func saveContext() -> Error? {
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch  {
+                return error
+            }
+        }
+        return nil
     }
 }
