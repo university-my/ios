@@ -112,13 +112,13 @@
 		C2B5CDF11EEF0E750066DB30 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
-				C2C0E9AE1FB8CD870012FA9C /* Structures */,
 				C237771D1FB73B8300F7E65F /* App Operations */,
 				C2B5CDF21EEF0E750066DB30 /* AppDelegate.swift */,
 				C2A66A5F1FB7907B001A17E6 /* Convenience Extensions */,
 				C2B5CE2B1EF06E3A0066DB30 /* Core Data */,
 				C23777201FB73E6A00F7E65F /* Operations */,
 				C2B5CE291EF06DFC0066DB30 /* Storyboards */,
+				C2C0E9AE1FB8CD870012FA9C /* Structures */,
 				C2B5CE2A1EF06E0E0066DB30 /* Supporting Files */,
 				C2B5CE2C1EF06E4E0066DB30 /* View Controllers */,
 			);

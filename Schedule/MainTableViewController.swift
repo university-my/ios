@@ -6,56 +6,98 @@
 //  Copyright © 2017 Yura Voevodin. All rights reserved.
 //
 
+import CoreData
 import UIKit
 
 class MainTableViewController: UITableViewController {
-
-    var queue: OperationQueue!
+    
+    // MARK: - Properties
+    
+    private lazy var fetchedResultsController: NSFetchedResultsController<GroupEntity>? = {
+        let request: NSFetchRequest<GroupEntity> = GroupEntity.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        request.fetchBatchSize = 20
+        
+        if let context = viewContext {
+            let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+            return controller
+        } else {
+            return nil
+        }
+    }()
+    
+    private lazy var viewContext: NSManagedObjectContext? = {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        return appDelegate?.persistentContainer.viewContext
+    }()
+    
+    let queue = OperationQueue()
+    
+    // MARK: - Lifecycle
+    
+    // TODO: Handle errors from Operations
+    // TODO: Check without Interner connection
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let viewContext = appDelegate.persistentContainer.viewContext
+        guard let context = viewContext else { return }
         
-        queue = OperationQueue()
-        
-        guard let getGroups = GetGroupsOperation(context: viewContext, completionHandler: {
-            print("🎉")
-        }) else {
-            return
+        performFetch()
+        let fetchedObjects = fetchedResultsController?.fetchedObjects ?? []
+        if  fetchedObjects.isEmpty {
+            
+            if let getGroups = GetGroupsOperation(context: context, completionHandler: {
+                DispatchQueue.main.async {
+                    self.updateUI()
+                }
+            }) {
+                queue.addOperation(getGroups)
+            }
+        } else {
+            tableView.reloadData()
         }
-        queue.addOperation(getGroups)
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        let section = fetchedResultsController?.sections?[section]
+        return section?.numberOfObjects ?? 0
     }
-
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
+        
+        if let group = fetchedResultsController?.object(at: indexPath) {
+            cell.textLabel?.text = group.name
+        }
+        
         return cell
     }
-    */
+}
+
+// MARK: - Helpers
+
+extension MainTableViewController {
+    
+    private func performFetch() {
+        do {
+            try fetchedResultsController?.performFetch()
+        }
+        catch {
+            print("Error in the fetched results controller: \(error).")
+        }
+    }
+    
+    private func updateUI() {
+        performFetch()
+        tableView.reloadData()
+    }
 }

@@ -18,6 +18,6 @@ extension GroupEntity {
     }
 
     @NSManaged public var id: Int64
-    @NSManaged public var name: String?
+    @NSManaged public var name: String
 
 }

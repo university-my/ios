@@ -6,7 +6,7 @@
 //  Copyright © 2017 Yura Voevodin. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CoreData
 
 class ParseGroupsOperation: AsyncOperation {
@@ -21,12 +21,6 @@ class ParseGroupsOperation: AsyncOperation {
     init(cacheFile: URL, context: NSManagedObjectContext) {
         let importContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         importContext.persistentStoreCoordinator = context.persistentStoreCoordinator
-        
-        /*
-         Use the overwrite merge policy, because we want any updated objects
-         to replace the ones in the store.
-         */
-        importContext.mergePolicy = NSOverwriteMergePolicy
         
         self.cacheFile = cacheFile
         self.context = context
@@ -59,16 +53,27 @@ class ParseGroupsOperation: AsyncOperation {
             }
         } catch {
             print(error)
+            finish()
         }
     }
     
     private func parse(_ json: [[String: Any]]) {
         let parsedGroups = json.flatMap { GroupStruct($0) }
+        
         context.perform {
+            /*
+             Use the overwrite merge policy, because we want any updated objects
+             to replace the ones in the store.
+             */
+            self.context.mergePolicy = NSMergePolicy.overwrite
+            
             for group in parsedGroups {
                 self.insert(group)
             }
-            _ = self.saveContext()
+            let saveError = self.saveContext()
+            if let error = saveError {
+                print(error)
+            }
             self.finish()
         }
     }

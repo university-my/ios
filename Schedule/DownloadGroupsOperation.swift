@@ -54,7 +54,6 @@ class DownloadGroupsOperation: GroupOperation {
             
             do {
                 try FileManager.default.moveItem(at: localURL, to: cacheFile)
-                print("File moved!")
             } catch {
                 print(error)
             }
