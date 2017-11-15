@@ -16,8 +16,8 @@ extension GroupEntity {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<GroupEntity> {
         return NSFetchRequest<GroupEntity>(entityName: "GroupEntity")
     }
-
+    
+    @NSManaged public var firstSymbol: String
     @NSManaged public var id: Int64
     @NSManaged public var name: String
-
 }

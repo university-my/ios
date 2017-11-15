@@ -80,6 +80,12 @@ class ParseGroupsOperation: AsyncOperation {
     
     private func insert(_ parsedGroup: GroupStruct) {
         let groupEntitu = GroupEntity(context: context)
+        
+        if let firstCharacter = parsedGroup.name.first {
+            groupEntitu.firstSymbol = String(firstCharacter)
+        } else {
+            groupEntitu.firstSymbol = ""
+        }
         groupEntitu.id = parsedGroup.id
         groupEntitu.name = parsedGroup.name
     }

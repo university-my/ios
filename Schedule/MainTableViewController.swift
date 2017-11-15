@@ -15,11 +15,14 @@ class MainTableViewController: UITableViewController {
     
     private lazy var fetchedResultsController: NSFetchedResultsController<GroupEntity>? = {
         let request: NSFetchRequest<GroupEntity> = GroupEntity.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        request.sortDescriptors = [
+            NSSortDescriptor(key: "firstSymbol", ascending: true),
+            NSSortDescriptor(key: "name", ascending: true)
+        ]
         request.fetchBatchSize = 20
         
         if let context = viewContext {
-            let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+            let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: "firstSymbol", cacheName: nil)
             return controller
         } else {
             return nil
@@ -69,6 +72,10 @@ class MainTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return fetchedResultsController?.sections?.count ?? 0
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let section = fetchedResultsController?.sections?[section]
         return section?.numberOfObjects ?? 0
@@ -82,6 +89,10 @@ class MainTableViewController: UITableViewController {
         }
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return fetchedResultsController?.sections?[section].name
     }
 }
 
