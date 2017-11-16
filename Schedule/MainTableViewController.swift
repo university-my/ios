@@ -36,6 +36,14 @@ class MainTableViewController: UITableViewController {
     
     let queue = OperationQueue()
     
+    // MARK: Search
+    
+    /// Search controller to help us with filtering.
+    var searchController: UISearchController!
+    
+    /// Secondary search results table view.
+    var resultsTableController: SearchResultsTableViewController!
+    
     // MARK: - Lifecycle
     
     // TODO: Handle errors from Operations
@@ -44,10 +52,47 @@ class MainTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        
+        // Do nothing without CoreData.
         guard let context = viewContext else { return }
         
+        // Large titles (works only when enabled from code).
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        /*
+         Configure search controllers
+         */
+        resultsTableController = SearchResultsTableViewController()
+        
+        // We want ourselves to be the delegate for this filtered table so didSelectRowAtIndexPath(_:) is called for both tables.
+        resultsTableController.tableView.delegate = self
+        
+        // Setup the Search Controller
+        searchController = UISearchController(searchResultsController: resultsTableController)
+        searchController.searchResultsUpdater = self
+
+        // Add Search Controller to the navigation item (iOS 11)
+        navigationItem.searchController = searchController
+        
+        searchController.delegate = self
+        searchController.dimsBackgroundDuringPresentation = false // default is YES
+        
+        // Setup the Search Bar
+        searchController.searchBar.placeholder = "Знайти групу"
+        searchController.searchBar.delegate = self    // so we can monitor text changes + others7
+        
+        /*
+         Search is now just presenting a view controller. As such, normal view controller
+         presentation semantics apply. Namely that presentation will walk up the view controller
+         hierarchy until it finds the root view controller or one that defines a presentation context.
+         */
+        definesPresentationContext = true
+        
+        searchController.isActive = true
+        searchController.searchBar.becomeFirstResponder()
+        
+        /*
+         Fetch or import data
+         */
         performFetch()
         let fetchedObjects = fetchedResultsController?.fetchedObjects ?? []
         if  fetchedObjects.isEmpty {
@@ -62,6 +107,18 @@ class MainTableViewController: UITableViewController {
         } else {
             tableView.reloadData()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        navigationItem.hidesSearchBarWhenScrolling = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -93,6 +150,27 @@ class MainTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return fetchedResultsController?.sections?[section].name
+    }
+}
+
+// MARK: - UISearchBarDelegate
+
+extension MainTableViewController: UISearchBarDelegate {
+    
+}
+
+// MARK: - UISearchControllerDelegate
+
+extension MainTableViewController: UISearchControllerDelegate {
+    
+}
+
+// MARK: - UISearchResultsUpdating
+
+extension MainTableViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
     }
 }
 
