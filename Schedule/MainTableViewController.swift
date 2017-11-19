@@ -11,11 +11,6 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
     
-    // MARK: - IBOutlets
-    
-    /// View with label "Loading data..."
-    @IBOutlet var tableBackgroundView: UIView!
-    
     // MARK: - Lifecycle
     
     // TODO: Handle errors from Operations
@@ -27,15 +22,12 @@ class MainTableViewController: UITableViewController {
         // Large titles (works only when enabled from code).
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        // With label "Loading data..."
-        tableView.backgroundView = tableBackgroundView
-        
         // Sear Bar and Search Results Controller
         configureSearchControllers()
         
         // Import on pull to refresh
         refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(importGroups), for: .valueChanged)
+        refreshControl?.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
         
         // Fetch or import data
         performFetch()
@@ -63,18 +55,7 @@ class MainTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        var numberOfSections = 0
-        let sections = fetchedResultsController?.sections ?? []
-        if sections.isEmpty {
-            // Table background view
-            numberOfSections = 0
-            tableView.separatorStyle = .none
-        } else {
-            // Content
-            tableView.separatorStyle = .singleLine
-            numberOfSections = sections.count
-        }
-        return numberOfSections
+        return fetchedResultsController?.sections?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -173,7 +154,7 @@ class MainTableViewController: UITableViewController {
     
     private let queue = OperationQueue()
     
-    @objc func importGroups() {
+    private func importGroups() {
         // Do nothing without CoreData.
         guard let context = viewContext else { return }
         
@@ -210,8 +191,6 @@ class MainTableViewController: UITableViewController {
         // Add Search Controller to the navigation item (iOS 11).
         navigationItem.searchController = searchController
         
-        searchController.dimsBackgroundDuringPresentation = false // default is true
-        
         // Setup the Search Bar
         searchController.searchBar.setValue("Скасувати", forKey:"_cancelButtonText")
         searchController.searchBar.placeholder = "Пошук"
@@ -225,6 +204,14 @@ class MainTableViewController: UITableViewController {
         
         searchController.isActive = true
         searchController.searchBar.becomeFirstResponder()
+    }
+    
+    @objc func refreshContent() {
+        guard !searchController.isActive else {
+            refreshControl?.endRefreshing()
+            return
+        }
+        importGroups()
     }
     
     private func updateUI() {

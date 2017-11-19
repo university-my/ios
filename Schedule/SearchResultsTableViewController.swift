@@ -43,4 +43,12 @@ class SearchResultsTableViewController: UITableViewController {
         
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 && !filteredGroups.isEmpty {
+            return "Результати пошуку"
+        } else {
+            return nil
+        }
+    }
 }
