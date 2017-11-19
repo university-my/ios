@@ -11,6 +11,10 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
     
+    // MARK: - IBOutlets
+    
+    @IBOutlet var noResultsView: UIView!
+    
     // MARK: - Properties
     
     private lazy var fetchedResultsController: NSFetchedResultsController<GroupEntity>? = {
@@ -58,10 +62,12 @@ class MainTableViewController: UITableViewController {
         // Large titles (works only when enabled from code).
         navigationController?.navigationBar.prefersLargeTitles = true
         
+        tableView.backgroundView = noResultsView
+        
         /*
          Configure search controllers
          */
-        resultsTableController = SearchResultsTableViewController()
+        resultsTableController = storyboard!.instantiateViewController(withIdentifier: "searchResultsTableViewController") as! SearchResultsTableViewController
         
         // We want ourselves to be the delegate for this filtered table so didSelectRowAtIndexPath(_:) is called for both tables.
         resultsTableController.tableView.delegate = self
@@ -76,7 +82,9 @@ class MainTableViewController: UITableViewController {
         searchController.dimsBackgroundDuringPresentation = false // default is true
         
         // Setup the Search Bar
-        searchController.searchBar.placeholder = "Знайти групу"
+        searchController.searchBar.setValue("Скасувати", forKey:"_cancelButtonText")
+        searchController.searchBar.placeholder = "Пошук"
+        searchController.searchBar.delegate = self
         
         /*
          Search is now just presenting a view controller. As such, normal view controller
@@ -114,13 +122,6 @@ class MainTableViewController: UITableViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        // Display the search bar by default.
-        navigationItem.hidesSearchBarWhenScrolling = true
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
@@ -130,7 +131,16 @@ class MainTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return fetchedResultsController?.sections?.count ?? 0
+        var numberOfSections = 0
+        let sections = fetchedResultsController?.sections ?? []
+        if sections.isEmpty {
+            numberOfSections = 0
+            tableView.separatorStyle = .none
+        } else {
+            tableView.separatorStyle = .singleLine
+            numberOfSections = sections.count
+        }
+        return numberOfSections
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -151,6 +161,15 @@ class MainTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return fetchedResultsController?.sections?[section].name
+    }
+}
+
+// MARK: - UISearchBarDelegate
+
+extension MainTableViewController: UISearchBarDelegate {
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        resultsTableController.tableView.backgroundView = nil
     }
 }
 

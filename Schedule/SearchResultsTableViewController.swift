@@ -18,8 +18,6 @@ class SearchResultsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.register(SearchResultsTableViewCell.self, forCellReuseIdentifier: SearchResultsTableViewCell.reuseIdentifier)
     }
     
     override func didReceiveMemoryWarning() {
@@ -38,7 +36,7 @@ class SearchResultsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultsTableViewCell.reuseIdentifier, for: indexPath) as! SearchResultsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "searchResultsTableCell", for: indexPath)
         
         let group = filteredGroups[indexPath.row]
         cell.textLabel?.text = group.name
