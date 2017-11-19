@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C22D7F721FC1A499007D44BC /* SearchResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22D7F711FC1A499007D44BC /* SearchResultsTableViewCell.swift */; };
 		C237771F1FB73C5600F7E65F /* DownloadGroupsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C237771E1FB73C5600F7E65F /* DownloadGroupsOperation.swift */; };
 		C23777221FB73E8000F7E65F /* GroupOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23777211FB73E8000F7E65F /* GroupOperation.swift */; };
 		C250C1831FBCD1CA00C90B53 /* AboutUsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C250C1821FBCD1CA00C90B53 /* AboutUsTableViewController.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C22D7F711FC1A499007D44BC /* SearchResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewCell.swift; sourceTree = "<group>"; };
 		C237771E1FB73C5600F7E65F /* DownloadGroupsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadGroupsOperation.swift; sourceTree = "<group>"; };
 		C23777211FB73E8000F7E65F /* GroupOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupOperation.swift; sourceTree = "<group>"; };
 		C250C1821FBCD1CA00C90B53 /* AboutUsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsTableViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +63,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C22D7F731FC1A58F007D44BC /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				C22D7F711FC1A499007D44BC /* SearchResultsTableViewCell.swift */,
+				C293559D1FBE246000071719 /* SearchResultsTableViewController.swift */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
 		C237771D1FB73B8300F7E65F /* App Operations */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,7 +173,7 @@
 			children = (
 				C250C1821FBCD1CA00C90B53 /* AboutUsTableViewController.swift */,
 				C2B5CE271EEF15910066DB30 /* MainTableViewController.swift */,
-				C293559D1FBE246000071719 /* SearchResultsTableViewController.swift */,
+				C22D7F731FC1A58F007D44BC /* Search */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -261,6 +272,7 @@
 				C2A66A651FB89A82001A17E6 /* URLSessionTaskOperation.swift in Sources */,
 				C2C0E9B01FB8CDA00012FA9C /* GroupStruct.swift in Sources */,
 				C280894B1FB8D54A002B5676 /* GroupEntity+CoreDataClass.swift in Sources */,
+				C22D7F721FC1A499007D44BC /* SearchResultsTableViewCell.swift in Sources */,
 				C2A66A5A1FB751CF001A17E6 /* AsyncOperation.swift in Sources */,
 				C2A66A611FB7908E001A17E6 /* NSLock+Operations.swift in Sources */,
 				C23777221FB73E8000F7E65F /* GroupOperation.swift in Sources */,

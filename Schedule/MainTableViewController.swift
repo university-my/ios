@@ -69,16 +69,14 @@ class MainTableViewController: UITableViewController {
         // Setup the Search Controller
         searchController = UISearchController(searchResultsController: resultsTableController)
         searchController.searchResultsUpdater = self
-
+        
         // Add Search Controller to the navigation item (iOS 11)
         navigationItem.searchController = searchController
         
-        searchController.delegate = self
-        searchController.dimsBackgroundDuringPresentation = false // default is YES
+        searchController.dimsBackgroundDuringPresentation = false // default is true
         
         // Setup the Search Bar
         searchController.searchBar.placeholder = "Знайти групу"
-        searchController.searchBar.delegate = self    // so we can monitor text changes + others7
         
         /*
          Search is now just presenting a view controller. As such, normal view controller
@@ -112,12 +110,14 @@ class MainTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Display the search bar by default.
         navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        // Display the search bar by default.
         navigationItem.hidesSearchBarWhenScrolling = true
     }
     
@@ -141,6 +141,7 @@ class MainTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
         
+        // Configure cell
         if let group = fetchedResultsController?.object(at: indexPath) {
             cell.textLabel?.text = group.name
         }
@@ -153,24 +154,31 @@ class MainTableViewController: UITableViewController {
     }
 }
 
-// MARK: - UISearchBarDelegate
-
-extension MainTableViewController: UISearchBarDelegate {
-    
-}
-
-// MARK: - UISearchControllerDelegate
-
-extension MainTableViewController: UISearchControllerDelegate {
-    
-}
-
 // MARK: - UISearchResultsUpdating
 
 extension MainTableViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
+        // Strip out all the leading and trailing spaces.
+        guard let text = searchController.searchBar.text else { return }
+        let searchString = text.trimmingCharacters(in: .whitespaces)
         
+        // Update the filtered array based on the search text.
+        guard let searchResults = fetchedResultsController?.fetchedObjects else { return }
+        
+        // Name field matching.
+        let nameExpression = NSExpression(forKeyPath: "name")
+        let searchStringExpression = NSExpression(forConstantValue: searchString)
+        
+        let nameSearchComparisonPredicate = NSComparisonPredicate(leftExpression: nameExpression, rightExpression: searchStringExpression, modifier: .direct, type: .contains, options: .caseInsensitive)
+        
+        let filteredResults = searchResults.filter { nameSearchComparisonPredicate.evaluate(with: $0) }
+        
+        // Hand over the filtered results to our search results table.
+        if let resultsController = searchController.searchResultsController as? SearchResultsTableViewController {
+            resultsController.filteredGroups = filteredResults
+            resultsController.tableView.reloadData()
+        }
     }
 }
 
