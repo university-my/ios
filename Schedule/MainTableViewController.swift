@@ -162,6 +162,27 @@ class MainTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return fetchedResultsController?.sections?[section].name
     }
+    
+    // MARK: - Table view delegate
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showDetailed", sender: nil)
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetailed", let detailTableViewController = segue.destination as? DetailTableViewController {
+            var selectedGroup: GroupEntity?
+            
+            if tableView == self.tableView, let indexPath = tableView.indexPathForSelectedRow {
+                selectedGroup = fetchedResultsController?.object(at: indexPath)
+            } else if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
+                selectedGroup = resultsTableController.filteredGroups[indexPath.row]
+            }
+            detailTableViewController.group = selectedGroup
+        }
+    }
 }
 
 // MARK: - UISearchBarDelegate

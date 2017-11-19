@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C22D7F771FC1DAAC007D44BC /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22D7F761FC1DAAC007D44BC /* DetailTableViewController.swift */; };
 		C237771F1FB73C5600F7E65F /* DownloadGroupsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C237771E1FB73C5600F7E65F /* DownloadGroupsOperation.swift */; };
 		C23777221FB73E8000F7E65F /* GroupOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23777211FB73E8000F7E65F /* GroupOperation.swift */; };
 		C250C1831FBCD1CA00C90B53 /* AboutUsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C250C1821FBCD1CA00C90B53 /* AboutUsTableViewController.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C22D7F761FC1DAAC007D44BC /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
 		C237771E1FB73C5600F7E65F /* DownloadGroupsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadGroupsOperation.swift; sourceTree = "<group>"; };
 		C23777211FB73E8000F7E65F /* GroupOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupOperation.swift; sourceTree = "<group>"; };
 		C250C1821FBCD1CA00C90B53 /* AboutUsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsTableViewController.swift; sourceTree = "<group>"; };
@@ -61,14 +63,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C22D7F731FC1A58F007D44BC /* Search */ = {
-			isa = PBXGroup;
-			children = (
-				C293559D1FBE246000071719 /* SearchResultsTableViewController.swift */,
-			);
-			name = Search;
-			sourceTree = "<group>";
-		};
 		C237771D1FB73B8300F7E65F /* App Operations */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,8 +163,9 @@
 			isa = PBXGroup;
 			children = (
 				C250C1821FBCD1CA00C90B53 /* AboutUsTableViewController.swift */,
+				C22D7F761FC1DAAC007D44BC /* DetailTableViewController.swift */,
 				C2B5CE271EEF15910066DB30 /* MainTableViewController.swift */,
-				C22D7F731FC1A58F007D44BC /* Search */,
+				C293559D1FBE246000071719 /* SearchResultsTableViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -261,6 +256,7 @@
 				C2B5CDFB1EEF0E750066DB30 /* Schedule.xcdatamodeld in Sources */,
 				C293559E1FBE246000071719 /* SearchResultsTableViewController.swift in Sources */,
 				C250C1831FBCD1CA00C90B53 /* AboutUsTableViewController.swift in Sources */,
+				C22D7F771FC1DAAC007D44BC /* DetailTableViewController.swift in Sources */,
 				C237771F1FB73C5600F7E65F /* DownloadGroupsOperation.swift in Sources */,
 				C280894C1FB8D54A002B5676 /* GroupEntity+CoreDataProperties.swift in Sources */,
 				C2A66A671FB8AF79001A17E6 /* ParseGroupsOperation.swift in Sources */,
