@@ -20,8 +20,8 @@ class MainTableViewController: UITableViewController {
     private lazy var fetchedResultsController: NSFetchedResultsController<GroupEntity>? = {
         let request: NSFetchRequest<GroupEntity> = GroupEntity.fetchRequest()
         request.sortDescriptors = [
-            NSSortDescriptor(key: "firstSymbol", ascending: true),
-            NSSortDescriptor(key: "name", ascending: true)
+            NSSortDescriptor(key: "firstSymbol", ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:))),
+            NSSortDescriptor(key: "name", ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
         ]
         request.fetchBatchSize = 20
         
@@ -39,6 +39,8 @@ class MainTableViewController: UITableViewController {
     }()
     
     let queue = OperationQueue()
+    
+    private var namesOfSections: [String] = []
     
     // MARK: Search
     
@@ -100,6 +102,8 @@ class MainTableViewController: UITableViewController {
          Fetch or import data
          */
         performFetch()
+        collectNamesOfSections()
+        
         let fetchedObjects = fetchedResultsController?.fetchedObjects ?? []
         if  fetchedObjects.isEmpty {
             
@@ -167,6 +171,10 @@ class MainTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showDetailed", sender: nil)
+    }
+    
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return namesOfSections
     }
     
     // MARK: - Navigation
@@ -237,6 +245,17 @@ extension MainTableViewController {
     
     private func updateUI() {
         performFetch()
+        collectNamesOfSections()
         tableView.reloadData()
+    }
+    
+    private func collectNamesOfSections() {
+        var names: [String] = []
+        if let sections = fetchedResultsController?.sections {
+            for section in sections {
+                names.append(section.name)
+            }
+        }
+        namesOfSections = names
     }
 }
