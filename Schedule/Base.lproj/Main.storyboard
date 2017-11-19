@@ -60,7 +60,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="noResultsView" destination="Pps-fB-MOh" id="qxe-oW-fu7"/>
+                        <outlet property="tableBackgroundView" destination="Pps-fB-MOh" id="mk1-Wz-4HX"/>
                         <segue destination="lci-e7-UWA" kind="show" identifier="showDetailed" id="hII-aW-IyF"/>
                     </connections>
                 </tableViewController>

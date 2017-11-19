@@ -13,42 +13,8 @@ class MainTableViewController: UITableViewController {
     
     // MARK: - IBOutlets
     
-    @IBOutlet var noResultsView: UIView!
-    
-    // MARK: - Properties
-    
-    private lazy var fetchedResultsController: NSFetchedResultsController<GroupEntity>? = {
-        let request: NSFetchRequest<GroupEntity> = GroupEntity.fetchRequest()
-        request.sortDescriptors = [
-            NSSortDescriptor(key: "firstSymbol", ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:))),
-            NSSortDescriptor(key: "name", ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
-        ]
-        request.fetchBatchSize = 20
-        
-        if let context = viewContext {
-            let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: "firstSymbol", cacheName: nil)
-            return controller
-        } else {
-            return nil
-        }
-    }()
-    
-    private lazy var viewContext: NSManagedObjectContext? = {
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        return appDelegate?.persistentContainer.viewContext
-    }()
-    
-    let queue = OperationQueue()
-    
-    private var namesOfSections: [String] = []
-    
-    // MARK: Search
-    
-    /// Search controller to help us with filtering.
-    var searchController: UISearchController!
-    
-    /// Secondary search results table view.
-    var resultsTableController: SearchResultsTableViewController!
+    /// View with label "Loading data..."
+    @IBOutlet var tableBackgroundView: UIView!
     
     // MARK: - Lifecycle
     
@@ -58,71 +24,33 @@ class MainTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do nothing without CoreData.
-        guard let context = viewContext else { return }
-        
         // Large titles (works only when enabled from code).
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        tableView.backgroundView = noResultsView
+        // With label "Loading data..."
+        tableView.backgroundView = tableBackgroundView
         
-        /*
-         Configure search controllers
-         */
-        resultsTableController = storyboard!.instantiateViewController(withIdentifier: "searchResultsTableViewController") as! SearchResultsTableViewController
+        // Sear Bar and Search Results Controller
+        configureSearchControllers()
         
-        // We want ourselves to be the delegate for this filtered table so didSelectRowAtIndexPath(_:) is called for both tables.
-        resultsTableController.tableView.delegate = self
+        // Import on pull to refresh
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(importGroups), for: .valueChanged)
         
-        // Setup the Search Controller
-        searchController = UISearchController(searchResultsController: resultsTableController)
-        searchController.searchResultsUpdater = self
-        
-        // Add Search Controller to the navigation item (iOS 11)
-        navigationItem.searchController = searchController
-        
-        searchController.dimsBackgroundDuringPresentation = false // default is true
-        
-        // Setup the Search Bar
-        searchController.searchBar.setValue("Скасувати", forKey:"_cancelButtonText")
-        searchController.searchBar.placeholder = "Пошук"
-        searchController.searchBar.delegate = self
-        
-        /*
-         Search is now just presenting a view controller. As such, normal view controller
-         presentation semantics apply. Namely that presentation will walk up the view controller
-         hierarchy until it finds the root view controller or one that defines a presentation context.
-         */
-        definesPresentationContext = true
-        
-        searchController.isActive = true
-        searchController.searchBar.becomeFirstResponder()
-        
-        /*
-         Fetch or import data
-         */
+        // Fetch or import data
         performFetch()
-        collectNamesOfSections()
-        
         let fetchedObjects = fetchedResultsController?.fetchedObjects ?? []
         if  fetchedObjects.isEmpty {
-            
-            if let getGroups = GetGroupsOperation(context: context, completionHandler: {
-                DispatchQueue.main.async {
-                    self.updateUI()
-                }
-            }) {
-                queue.addOperation(getGroups)
-            }
+            importGroups()
         } else {
-            tableView.reloadData()
+            updateUI()
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Display the search bar by default.
+        // Always display Search Bar.
         navigationItem.hidesSearchBarWhenScrolling = false
     }
     
@@ -138,9 +66,11 @@ class MainTableViewController: UITableViewController {
         var numberOfSections = 0
         let sections = fetchedResultsController?.sections ?? []
         if sections.isEmpty {
+            // Table background view
             numberOfSections = 0
             tableView.separatorStyle = .none
         } else {
+            // Content
             tableView.separatorStyle = .singleLine
             numberOfSections = sections.count
         }
@@ -184,21 +114,122 @@ class MainTableViewController: UITableViewController {
             var selectedGroup: GroupEntity?
             
             if tableView == self.tableView, let indexPath = tableView.indexPathForSelectedRow {
+                // From main table view
                 selectedGroup = fetchedResultsController?.object(at: indexPath)
             } else if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
+                // From search results controller
                 selectedGroup = resultsTableController.filteredGroups[indexPath.row]
             }
             detailTableViewController.group = selectedGroup
         }
     }
-}
-
-// MARK: - UISearchBarDelegate
-
-extension MainTableViewController: UISearchBarDelegate {
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        resultsTableController.tableView.backgroundView = nil
+    // MARK: - NSFetchedResultsController
+    
+    private lazy var fetchedResultsController: NSFetchedResultsController<GroupEntity>? = {
+        let request: NSFetchRequest<GroupEntity> = GroupEntity.fetchRequest()
+        request.sortDescriptors = [
+            NSSortDescriptor(key: "firstSymbol", ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:))),
+            NSSortDescriptor(key: "name", ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
+        ]
+        request.fetchBatchSize = 20
+        
+        if let context = viewContext {
+            let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: "firstSymbol", cacheName: nil)
+            return controller
+        } else {
+            return nil
+        }
+    }()
+    
+    private lazy var viewContext: NSManagedObjectContext? = {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        return appDelegate?.persistentContainer.viewContext
+    }()
+    
+    private func performFetch() {
+        do {
+            try fetchedResultsController?.performFetch()
+            collectNamesOfSections()
+        }
+        catch {
+            print("Error in the fetched results controller: \(error).")
+        }
+    }
+    
+    private var namesOfSections: [String] = []
+    
+    private func collectNamesOfSections() {
+        var names: [String] = []
+        if let sections = fetchedResultsController?.sections {
+            for section in sections {
+                names.append(section.name)
+            }
+        }
+        namesOfSections = names
+    }
+    
+    // MARK: - Operation Queue
+    
+    private let queue = OperationQueue()
+    
+    @objc func importGroups() {
+        // Do nothing without CoreData.
+        guard let context = viewContext else { return }
+        
+        let getGroupsOperation = GetGroupsOperation(context: context) {
+            DispatchQueue.main.async {
+                self.performFetch()
+                self.updateUI()
+            }
+        }
+        if let getGroups = getGroupsOperation {
+            queue.addOperation(getGroups)
+        }
+    }
+    
+    // MARK: - Search
+    
+    /// Search controller to help us with filtering.
+    var searchController: UISearchController!
+    
+    /// Secondary search results table view.
+    var resultsTableController: SearchResultsTableViewController!
+    
+    private func configureSearchControllers() {
+        
+        resultsTableController = storyboard!.instantiateViewController(withIdentifier: "searchResultsTableViewController") as! SearchResultsTableViewController
+        
+        // We want ourselves to be the delegate for this filtered table so didSelectRowAtIndexPath(_:) is called for both tables.
+        resultsTableController.tableView.delegate = self
+        
+        // Setup the Search Controller.
+        searchController = UISearchController(searchResultsController: resultsTableController)
+        searchController.searchResultsUpdater = self
+        
+        // Add Search Controller to the navigation item (iOS 11).
+        navigationItem.searchController = searchController
+        
+        searchController.dimsBackgroundDuringPresentation = false // default is true
+        
+        // Setup the Search Bar
+        searchController.searchBar.setValue("Скасувати", forKey:"_cancelButtonText")
+        searchController.searchBar.placeholder = "Пошук"
+        
+        /*
+         Search is now just presenting a view controller. As such, normal view controller
+         presentation semantics apply. Namely that presentation will walk up the view controller
+         hierarchy until it finds the root view controller or one that defines a presentation context.
+         */
+        definesPresentationContext = true
+        
+        searchController.isActive = true
+        searchController.searchBar.becomeFirstResponder()
+    }
+    
+    private func updateUI() {
+        tableView.reloadData()
+        refreshControl?.endRefreshing()
     }
 }
 
@@ -227,35 +258,5 @@ extension MainTableViewController: UISearchResultsUpdating {
             resultsController.filteredGroups = filteredResults
             resultsController.tableView.reloadData()
         }
-    }
-}
-
-// MARK: - Helpers
-
-extension MainTableViewController {
-    
-    private func performFetch() {
-        do {
-            try fetchedResultsController?.performFetch()
-        }
-        catch {
-            print("Error in the fetched results controller: \(error).")
-        }
-    }
-    
-    private func updateUI() {
-        performFetch()
-        collectNamesOfSections()
-        tableView.reloadData()
-    }
-    
-    private func collectNamesOfSections() {
-        var names: [String] = []
-        if let sections = fetchedResultsController?.sections {
-            for section in sections {
-                names.append(section.name)
-            }
-        }
-        namesOfSections = names
     }
 }

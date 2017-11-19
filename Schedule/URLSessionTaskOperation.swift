@@ -6,53 +6,13 @@
 //  Copyright © 2017 Yura Voevodin. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-class URLSessionTaskOperation: Operation {
+class URLSessionTaskOperation: AsyncOperation {
     
     // MARK: - Properties
     
     let task: URLSessionTask
-    
-    /// A lock to guard reads and writes to the `internalState` property
-    private let stateLock = NSLock()
-    
-    /// Internal state of the operation
-    private var internalState: State = .ready
-    
-    /// Public state
-    var state: State {
-        get {
-            return stateLock.withCriticalScope {
-                internalState
-            }
-        }
-        set(newState) {
-            willChangeValue(forKey: newState.keyPath)
-            willChangeValue(forKey: state.keyPath)
-            stateLock.withCriticalScope {
-                internalState = newState
-            }
-            didChangeValue(forKey: state.keyPath)
-            didChangeValue(forKey: newState.keyPath)
-        }
-    }
-    
-    override var isReady: Bool {
-        return super.isReady && state == .ready
-    }
-    
-    override var isExecuting: Bool {
-        return state == .executing
-    }
-    
-    override var isFinished: Bool {
-        return state == .finished
-    }
-    
-    override var isAsynchronous: Bool {
-        return true
-    }
     
     // MARK: - Initialization
     
@@ -62,36 +22,37 @@ class URLSessionTaskOperation: Operation {
     }
     
     override func start() {
-        state = .executing
+        super.start()
         
+        DispatchQueue.main.async {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        }
         task.addObserver(self, forKeyPath: "state", options: [], context: nil)
         task.resume()
     }
     
     override func cancel() {
+        DispatchQueue.main.async {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        }
         task.removeObserver(self, forKeyPath: "state")
-        state = .finished
         task.cancel()
         super.cancel()
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if let taskObject = object as? URLSessionTask, taskObject == task, task.state == .completed {
-            task.removeObserver(self, forKeyPath: "state")
-            state = .finished
-        }
-    }
-}
-
-// MARK: - State
-
-extension URLSessionTaskOperation {
-    
-    enum State: String {
-        case ready, executing, finished
-        
-        fileprivate var keyPath: String {
-            return "is" + rawValue.capitalized
+        if let taskObject = object as? URLSessionTask, taskObject == task {
+            
+            switch task.state {
+            case .completed, .canceling:
+                task.removeObserver(self, forKeyPath: "state")
+                state = .finished
+                DispatchQueue.main.async {
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+            default:
+                break
+            }
         }
     }
 }
