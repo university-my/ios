@@ -13,7 +13,16 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
+    <entity name="RecordEntity" representedClassName="RecordEntity" syncable="YES">
+        <attribute name="dateString" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pairName" attributeType="String" syncable="YES"/>
+        <attribute name="reason" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="time" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="GroupEntity" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="RecordEntity" positionX="-63" positionY="9" width="128" height="135"/>
     </elements>
 </model>
