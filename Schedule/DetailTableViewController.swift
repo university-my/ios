@@ -35,7 +35,7 @@ class DetailTableViewController: UITableViewController {
             // Do nothing without CoreData.
             guard let context = viewContext else { return }
             
-            let getGroupsOperation = GetGroupRecordsOperation(groupID: Int(group.id), context: context) {
+            let getGroupsOperation = GetGroupRecordsOperation(group: group, context: context) {
                 DispatchQueue.main.async {
                     self.performFetch()
                     self.tableView.reloadData()
@@ -88,6 +88,9 @@ class DetailTableViewController: UITableViewController {
             NSSortDescriptor(key: "dateString", ascending: true),
             NSSortDescriptor(key: "time", ascending: true)
         ]
+        if let group = group {
+            request.predicate = NSPredicate(format: "group == %@", group)
+        }
         request.fetchBatchSize = 20
         
         if let context = viewContext {

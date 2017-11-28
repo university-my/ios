@@ -13,12 +13,12 @@ class DownloadGroupRecordsOperation: GroupOperation {
     // MARK: - Properties
     
     let cacheFile: URL
-    let groupID: Int
+    let group: GroupEntity
     
     // MARK: - Initialization
     
-    init(groupID: Int, cacheFile: URL) {
-        self.groupID = groupID
+    init(group: GroupEntity, cacheFile: URL) {
+        self.group = group
         self.cacheFile = cacheFile
         super.init(operations: [])
         name = "Download Group Records"
@@ -29,7 +29,7 @@ class DownloadGroupRecordsOperation: GroupOperation {
     override func start() {
         super.start()
         
-        guard let url = URL(string: "https://sumdubot.voevodin-yura.com/groups/\(groupID)") else {
+        guard let url = URL(string: "https://sumdubot.voevodin-yura.com/groups/\(group.id)") else {
             finish()
             return
         }
@@ -44,15 +44,16 @@ class DownloadGroupRecordsOperation: GroupOperation {
         defer {
             finish()
         }
+        do {
+            /*
+             If we already have a file at this location, just delete it.
+             Also, swallow the error, because we don't really care about it.
+             */
+            try FileManager.default.removeItem(at: cacheFile)
+        }
+        catch { }
+        
         if let localURL = url {
-            do {
-                /*
-                 If we already have a file at this location, just delete it.
-                 Also, swallow the error, because we don't really care about it.
-                 */
-                try FileManager.default.removeItem(at: cacheFile)
-            }
-            catch { }
             do {
                 try FileManager.default.moveItem(at: localURL, to: cacheFile)
             } catch {

@@ -46,7 +46,7 @@ class URLSessionTaskOperation: AsyncOperation {
             switch task.state {
             case .completed, .canceling:
                 task.removeObserver(self, forKeyPath: "state")
-                state = .finished
+                finish()
                 DispatchQueue.main.async {
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }

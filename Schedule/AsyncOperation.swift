@@ -66,7 +66,7 @@ class AsyncOperation: Operation {
         state = .finished
     }
     
-    final func finish() {
+    final func finish(errors: [Error] = []) {
         state = .finished
     }
 }

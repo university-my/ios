@@ -4,6 +4,7 @@
         <attribute name="firstSymbol" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="records" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RecordEntity" inverseName="group" inverseEntity="RecordEntity" syncable="YES"/>
         <fetchIndex name="compoundIndex">
             <fetchIndexElement property="name" type="Binary" order="ascending"/>
         </fetchIndex>
@@ -20,9 +21,10 @@
         <attribute name="reason" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="time" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GroupEntity" inverseName="records" inverseEntity="GroupEntity" syncable="YES"/>
     </entity>
     <elements>
-        <element name="GroupEntity" positionX="-63" positionY="-18" width="128" height="90"/>
-        <element name="RecordEntity" positionX="-63" positionY="9" width="128" height="135"/>
+        <element name="GroupEntity" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="RecordEntity" positionX="-63" positionY="9" width="128" height="150"/>
     </elements>
 </model>

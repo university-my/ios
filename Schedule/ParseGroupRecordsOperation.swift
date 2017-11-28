@@ -15,15 +15,17 @@ class ParseGroupRecordsOperation: AsyncOperation {
     
     let cacheFile: URL
     let context: NSManagedObjectContext
+    let group: GroupEntity
     
     // MARK: - Initialization
     
-    init(cacheFile: URL, context: NSManagedObjectContext) {
+    init(cacheFile: URL, context: NSManagedObjectContext, group: GroupEntity) {
         let importContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         importContext.persistentStoreCoordinator = context.persistentStoreCoordinator
         
         self.cacheFile = cacheFile
         self.context = context
+        self.group = group
         
         super.init()
         
@@ -49,9 +51,30 @@ class ParseGroupRecordsOperation: AsyncOperation {
             let json = try JSONSerialization.jsonObject(with: stream, options: []) as? [String: Any]
             if let group = json?["group"] as? [String: Any],
                 let records = group["records"] as? [[String: Any]] {
+                
+                // Delete old records first.
+                batchDelete()
+                
                 parse(records)
             } else {
                 finish()
+            }
+        } catch {
+            print(error)
+            finish()
+        }
+    }
+    
+    private func batchDelete() {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = RecordEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "group == %@", group)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        deleteRequest.resultType = .resultTypeObjectIDs
+        do {
+            let result = try context.execute(deleteRequest) as? NSBatchDeleteResult
+            if let objectIDArray = result?.result as? [NSManagedObjectID] {
+                let changes = [NSDeletedObjectsKey: objectIDArray]
+                NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [context])
             }
         } catch {
             print(error)
@@ -84,6 +107,7 @@ class ParseGroupRecordsOperation: AsyncOperation {
         let recordEntity = RecordEntity(context: context)
         
         recordEntity.dateString = parsedRecord.dateString
+        recordEntity.group = group
         recordEntity.pairName = parsedRecord.pairName
         recordEntity.reason = parsedRecord.reason
         recordEntity.time = parsedRecord.time
