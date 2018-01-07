@@ -18,6 +18,13 @@ class RecordsImportManager {
     private let context: NSManagedObjectContext
     private let group: GroupEntity
     
+    private var dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        return dateFormatter
+    }()
+    
     // MARK: - Initialization
     
     init?(context: NSManagedObjectContext, group: GroupEntity) {
@@ -91,9 +98,15 @@ class RecordsImportManager {
     }
     
     private func parseRecords(_ json: [[String: Any]]) {
-        let parsedRecords = json.flatMap { RecordStruct($0) }
+        let parsedRecords = json.flatMap { RecordStruct($0, dateFormatter: dateFormatter) }
         
         context.perform {
+            /*
+             Use the overwrite merge policy, because we want any updated objects
+             to replace the ones in the store.
+             */
+            self.context.mergePolicy = NSMergePolicy.overwrite
+            
             for record in parsedRecords {
                 self.insert(record)
             }
@@ -113,9 +126,11 @@ class RecordsImportManager {
     private func insert(_ parsedRecord: RecordStruct) {
         let recordEntity = RecordEntity(context: context)
         
+        recordEntity.date = parsedRecord.date
         recordEntity.dateString = parsedRecord.dateString
         recordEntity.group = group
         recordEntity.pairName = parsedRecord.pairName
+        recordEntity.name = parsedRecord.name
         recordEntity.reason = parsedRecord.reason
         recordEntity.time = parsedRecord.time
         recordEntity.type = parsedRecord.type

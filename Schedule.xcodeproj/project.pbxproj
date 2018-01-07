@@ -26,6 +26,7 @@
 		C2C76A2E2002440E00BFF3D4 /* GroupsImportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C76A2D2002440E00BFF3D4 /* GroupsImportManager.swift */; };
 		C2C76A3020027EE200BFF3D4 /* RecordsImportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C76A2F20027EE200BFF3D4 /* RecordsImportManager.swift */; };
 		C2C76A3220027F4F00BFF3D4 /* RecordsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C76A3120027F4F00BFF3D4 /* RecordsAPIClient.swift */; };
+		C2C76A3620029FB800BFF3D4 /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C76A3520029FB800BFF3D4 /* RecordTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		C2C76A2D2002440E00BFF3D4 /* GroupsImportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsImportManager.swift; sourceTree = "<group>"; };
 		C2C76A2F20027EE200BFF3D4 /* RecordsImportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsImportManager.swift; sourceTree = "<group>"; };
 		C2C76A3120027F4F00BFF3D4 /* RecordsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsAPIClient.swift; sourceTree = "<group>"; };
+		C2C76A3520029FB800BFF3D4 /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		C2B5CDF11EEF0E750066DB30 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
+				C2C76A3320029F8900BFF3D4 /* UI Subclasses */,
 				C2B5CDF21EEF0E750066DB30 /* AppDelegate.swift */,
 				C2B5CE2B1EF06E3A0066DB30 /* Core Data */,
 				C2C76A2C200243BD00BFF3D4 /* Import */,
@@ -168,6 +171,22 @@
 				C2C76A2F20027EE200BFF3D4 /* RecordsImportManager.swift */,
 			);
 			name = Import;
+			sourceTree = "<group>";
+		};
+		C2C76A3320029F8900BFF3D4 /* UI Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				C2C76A3420029F9F00BFF3D4 /* Table View Cells */,
+			);
+			name = "UI Subclasses";
+			sourceTree = "<group>";
+		};
+		C2C76A3420029F9F00BFF3D4 /* Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C2C76A3520029FB800BFF3D4 /* RecordTableViewCell.swift */,
+			);
+			name = "Table View Cells";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,6 +266,7 @@
 				C22A2E551FC7644600587463 /* RecordStruct.swift in Sources */,
 				C2B5CDFB1EEF0E750066DB30 /* Schedule.xcdatamodeld in Sources */,
 				C293559E1FBE246000071719 /* SearchResultsTableViewController.swift in Sources */,
+				C2C76A3620029FB800BFF3D4 /* RecordTableViewCell.swift in Sources */,
 				C250C1831FBCD1CA00C90B53 /* AboutUsTableViewController.swift in Sources */,
 				C2C76A3220027F4F00BFF3D4 /* RecordsAPIClient.swift in Sources */,
 				C22D7F771FC1DAAC007D44BC /* DetailTableViewController.swift in Sources */,

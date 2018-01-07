@@ -11,8 +11,6 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
     
-    // TODO: Check without Interner connection
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -157,12 +155,20 @@ class MainTableViewController: UITableViewController {
         DispatchQueue.global().async {
             self.groupsImportManager?.importGroups { (error) in
                 
-                // TODO: Show error
-                
-                // Update UI.
-                DispatchQueue.main.async {
-                    self.performFetch()
-                    self.updateUI()
+                if let error = error {
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: {
+                            self.refreshControl?.endRefreshing()
+                        })
+                    }
+                } else {
+                    // Update UI.
+                    DispatchQueue.main.async {
+                        self.performFetch()
+                        self.updateUI()
+                    }
                 }
             }
         }

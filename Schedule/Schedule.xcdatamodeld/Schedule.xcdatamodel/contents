@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="17B48" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17C88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="GroupEntity" representedClassName="GroupEntity" syncable="YES">
         <attribute name="firstSymbol" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
@@ -15,6 +15,7 @@
         </uniquenessConstraints>
     </entity>
     <entity name="RecordEntity" representedClassName="RecordEntity" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="dateString" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pairName" attributeType="String" syncable="YES"/>
@@ -25,6 +26,6 @@
     </entity>
     <elements>
         <element name="GroupEntity" positionX="-63" positionY="-18" width="128" height="105"/>
-        <element name="RecordEntity" positionX="-63" positionY="9" width="128" height="150"/>
+        <element name="RecordEntity" positionX="-63" positionY="9" width="128" height="165"/>
     </elements>
 </model>

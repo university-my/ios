@@ -17,6 +17,7 @@ extension RecordEntity {
         return NSFetchRequest<RecordEntity>(entityName: "RecordEntity")
     }
 
+    @NSManaged public var date: Date?
     @NSManaged public var dateString: String?
     @NSManaged public var name: String?
     @NSManaged public var pairName: String

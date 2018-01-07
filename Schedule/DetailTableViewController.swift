@@ -13,19 +13,20 @@ class DetailTableViewController: UITableViewController {
     
     // MARK: - Properties
     
-    var group: GroupEntity?
-    
-    private let queue = OperationQueue()
-    
-    private lazy var viewContext: NSManagedObjectContext? = {
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        return appDelegate?.persistentContainer.viewContext
+    private var dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .full
+        return dateFormatter
     }()
+    
+    private var sectionsTitles: [String] = []
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         // Name of the Group.
         title = group?.name
@@ -35,6 +36,8 @@ class DetailTableViewController: UITableViewController {
     }
     
     // MARK: - Import Records
+    
+    var group: GroupEntity?
     
     private var recordsImportManager: RecordsImportManager?
     
@@ -48,9 +51,12 @@ class DetailTableViewController: UITableViewController {
         DispatchQueue.global().async {
             self.recordsImportManager?.importRecords({ (error) in
                 
-                // TODO: Show error
-                
                 DispatchQueue.main.async {
+                    if let error = error {
+                        let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true)
+                    }
                     self.performFetch()
                     self.tableView.reloadData()
                 }
@@ -75,18 +81,37 @@ class DetailTableViewController: UITableViewController {
         
         // Configure the cell
         if let record = fetchedResultsController?.object(at: indexPath) {
-            cell.textLabel?.text = record.pairName + " " + (record.type ?? "")
-            cell.detailTextLabel?.text = record.time + " " + (record.reason ?? "")
+            // Title
+            var title = ""
+            if let name = record.name {
+                title = name
+            }
+            if let type = record.type {
+                title += "\n" + type
+            }
+            // Detail
+            let detailed = record.pairName + " (\(record.time))"
+            
+            cell.textLabel?.text = title
+            cell.detailTextLabel?.text = detailed
         }
-        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return fetchedResultsController?.sections?[section].name
+        if sectionsTitles.indices.contains(section) {
+            return sectionsTitles[section]
+        } else {
+            return fetchedResultsController?.sections?[section].name
+        }
     }
     
     // MARK: - NSFetchedResultsController
+    
+    private lazy var viewContext: NSManagedObjectContext? = {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        return appDelegate?.persistentContainer.viewContext
+    }()
     
     private lazy var fetchedResultsController: NSFetchedResultsController<RecordEntity>? = {
         let request: NSFetchRequest<RecordEntity> = RecordEntity.fetchRequest()
@@ -110,6 +135,20 @@ class DetailTableViewController: UITableViewController {
     private func performFetch() {
         do {
             try fetchedResultsController?.performFetch()
+            
+            // Generate title for sections
+            if let controller = fetchedResultsController, let sections = controller.sections {
+                var newSectionsTitles: [String] = []
+                for section in sections {
+                    if let firstObjectInSection = section.objects?.first as? RecordEntity {
+                        if let date = firstObjectInSection.date {
+                            let dateString = dateFormatter.string(from: date)
+                            newSectionsTitles.append(dateString)
+                        }
+                    }
+                }
+                sectionsTitles = newSectionsTitles
+            }
         }
         catch {
             print("Error in the fetched results controller: \(error).")
