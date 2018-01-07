@@ -11,10 +11,9 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
     
-    // MARK: - Lifecycle
-    
-    // TODO: Handle errors from Operations
     // TODO: Check without Interner connection
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,12 +43,6 @@ class MainTableViewController: UITableViewController {
         
         // Always display Search Bar.
         navigationItem.hidesSearchBarWhenScrolling = false
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-        // Dispose of any resources that can be recreated.
     }
     
     // MARK: - Table view data source
@@ -150,22 +143,26 @@ class MainTableViewController: UITableViewController {
         namesOfSections = names
     }
     
-    // MARK: - Operation Queue
+    // MARK: - Import Groups
     
-    private let queue = OperationQueue()
+    var groupsImportManager: GroupsImportManager?
     
+    /// Import Groups from backend
     private func importGroups() {
         // Do nothing without CoreData.
         guard let context = viewContext else { return }
         
-        let getGroupsOperation = GetGroupsOperation(context: context) {
-            DispatchQueue.main.async {
-                self.performFetch()
-                self.updateUI()
+        // Download Groups from backend and save to database.
+        groupsImportManager = GroupsImportManager(context: context)
+        DispatchQueue.global().async {
+            self.groupsImportManager?.importGroups { (error) in
+                
+                // Update UI.
+                DispatchQueue.main.async {
+                    self.performFetch()
+                    self.updateUI()
+                }
             }
-        }
-        if let getGroups = getGroupsOperation {
-            queue.addOperation(getGroups)
         }
     }
     
