@@ -157,6 +157,8 @@ class MainTableViewController: UITableViewController {
         DispatchQueue.global().async {
             self.groupsImportManager?.importGroups { (error) in
                 
+                // TODO: Show error
+                
                 // Update UI.
                 DispatchQueue.main.async {
                     self.performFetch()

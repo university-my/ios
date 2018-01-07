@@ -7,21 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C22A2E511FC7630D00587463 /* GetGroupRecordsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A2E501FC7630D00587463 /* GetGroupRecordsOperation.swift */; };
-		C22A2E531FC7633700587463 /* ParseGroupRecordsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A2E521FC7633700587463 /* ParseGroupRecordsOperation.swift */; };
 		C22A2E551FC7644600587463 /* RecordStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A2E541FC7644600587463 /* RecordStruct.swift */; };
 		C22A2E581FC7664000587463 /* RecordEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A2E561FC7664000587463 /* RecordEntity+CoreDataClass.swift */; };
 		C22A2E591FC7664000587463 /* RecordEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A2E571FC7664000587463 /* RecordEntity+CoreDataProperties.swift */; };
 		C22D7F771FC1DAAC007D44BC /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22D7F761FC1DAAC007D44BC /* DetailTableViewController.swift */; };
-		C23777221FB73E8000F7E65F /* GroupOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23777211FB73E8000F7E65F /* GroupOperation.swift */; };
-		C249DA771FC7615800BEE9D9 /* DownloadGroupRecordsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249DA761FC7615800BEE9D9 /* DownloadGroupRecordsOperation.swift */; };
 		C250C1831FBCD1CA00C90B53 /* AboutUsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C250C1821FBCD1CA00C90B53 /* AboutUsTableViewController.swift */; };
 		C280894B1FB8D54A002B5676 /* GroupEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28089491FB8D54A002B5676 /* GroupEntity+CoreDataClass.swift */; };
 		C280894C1FB8D54A002B5676 /* GroupEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C280894A1FB8D54A002B5676 /* GroupEntity+CoreDataProperties.swift */; };
 		C293559E1FBE246000071719 /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C293559D1FBE246000071719 /* SearchResultsTableViewController.swift */; };
-		C2A66A5A1FB751CF001A17E6 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A66A591FB751CF001A17E6 /* AsyncOperation.swift */; };
-		C2A66A611FB7908E001A17E6 /* NSLock+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A66A601FB7908E001A17E6 /* NSLock+Operations.swift */; };
-		C2A66A651FB89A82001A17E6 /* URLSessionTaskOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A66A641FB89A82001A17E6 /* URLSessionTaskOperation.swift */; };
 		C2B5CDF31EEF0E750066DB30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B5CDF21EEF0E750066DB30 /* AppDelegate.swift */; };
 		C2B5CDF81EEF0E750066DB30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2B5CDF61EEF0E750066DB30 /* Main.storyboard */; };
 		C2B5CDFB1EEF0E750066DB30 /* Schedule.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C2B5CDF91EEF0E750066DB30 /* Schedule.xcdatamodeld */; };
@@ -31,24 +24,19 @@
 		C2C0E9B01FB8CDA00012FA9C /* GroupStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C0E9AF1FB8CDA00012FA9C /* GroupStruct.swift */; };
 		C2C76A2920023E3700BFF3D4 /* GroupsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C76A2820023E3700BFF3D4 /* GroupsAPIClient.swift */; };
 		C2C76A2E2002440E00BFF3D4 /* GroupsImportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C76A2D2002440E00BFF3D4 /* GroupsImportManager.swift */; };
+		C2C76A3020027EE200BFF3D4 /* RecordsImportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C76A2F20027EE200BFF3D4 /* RecordsImportManager.swift */; };
+		C2C76A3220027F4F00BFF3D4 /* RecordsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C76A3120027F4F00BFF3D4 /* RecordsAPIClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C22A2E501FC7630D00587463 /* GetGroupRecordsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroupRecordsOperation.swift; sourceTree = "<group>"; };
-		C22A2E521FC7633700587463 /* ParseGroupRecordsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseGroupRecordsOperation.swift; sourceTree = "<group>"; };
 		C22A2E541FC7644600587463 /* RecordStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordStruct.swift; sourceTree = "<group>"; };
 		C22A2E561FC7664000587463 /* RecordEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C22A2E571FC7664000587463 /* RecordEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C22D7F761FC1DAAC007D44BC /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
-		C23777211FB73E8000F7E65F /* GroupOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupOperation.swift; sourceTree = "<group>"; };
-		C249DA761FC7615800BEE9D9 /* DownloadGroupRecordsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadGroupRecordsOperation.swift; sourceTree = "<group>"; };
 		C250C1821FBCD1CA00C90B53 /* AboutUsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsTableViewController.swift; sourceTree = "<group>"; };
 		C28089491FB8D54A002B5676 /* GroupEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GroupEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C280894A1FB8D54A002B5676 /* GroupEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GroupEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C293559D1FBE246000071719 /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewController.swift; sourceTree = "<group>"; };
-		C2A66A591FB751CF001A17E6 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
-		C2A66A601FB7908E001A17E6 /* NSLock+Operations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLock+Operations.swift"; sourceTree = "<group>"; };
-		C2A66A641FB89A82001A17E6 /* URLSessionTaskOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionTaskOperation.swift; sourceTree = "<group>"; };
 		C2B5CDEF1EEF0E750066DB30 /* Schedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Schedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2B5CDF21EEF0E750066DB30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2B5CDF71EEF0E750066DB30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,6 +48,8 @@
 		C2C0E9AF1FB8CDA00012FA9C /* GroupStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupStruct.swift; sourceTree = "<group>"; };
 		C2C76A2820023E3700BFF3D4 /* GroupsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsAPIClient.swift; sourceTree = "<group>"; };
 		C2C76A2D2002440E00BFF3D4 /* GroupsImportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsImportManager.swift; sourceTree = "<group>"; };
+		C2C76A2F20027EE200BFF3D4 /* RecordsImportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsImportManager.swift; sourceTree = "<group>"; };
+		C2C76A3120027F4F00BFF3D4 /* RecordsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsAPIClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,34 +63,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C237771D1FB73B8300F7E65F /* App Operations */ = {
-			isa = PBXGroup;
-			children = (
-				C249DA751FC7614200BEE9D9 /* Records */,
-			);
-			name = "App Operations";
-			sourceTree = "<group>";
-		};
-		C23777201FB73E6A00F7E65F /* Operations */ = {
-			isa = PBXGroup;
-			children = (
-				C2A66A591FB751CF001A17E6 /* AsyncOperation.swift */,
-				C23777211FB73E8000F7E65F /* GroupOperation.swift */,
-				C2A66A641FB89A82001A17E6 /* URLSessionTaskOperation.swift */,
-			);
-			name = Operations;
-			sourceTree = "<group>";
-		};
-		C249DA751FC7614200BEE9D9 /* Records */ = {
-			isa = PBXGroup;
-			children = (
-				C249DA761FC7615800BEE9D9 /* DownloadGroupRecordsOperation.swift */,
-				C22A2E521FC7633700587463 /* ParseGroupRecordsOperation.swift */,
-				C22A2E501FC7630D00587463 /* GetGroupRecordsOperation.swift */,
-			);
-			name = Records;
-			sourceTree = "<group>";
-		};
 		C29FF4CE2002382500B50299 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,17 +74,10 @@
 		C29FF4CF2002384D00B50299 /* API Clients */ = {
 			isa = PBXGroup;
 			children = (
+				C2C76A3120027F4F00BFF3D4 /* RecordsAPIClient.swift */,
 				C2C76A2820023E3700BFF3D4 /* GroupsAPIClient.swift */,
 			);
 			name = "API Clients";
-			sourceTree = "<group>";
-		};
-		C2A66A5F1FB7907B001A17E6 /* Convenience Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				C2A66A601FB7908E001A17E6 /* NSLock+Operations.swift */,
-			);
-			name = "Convenience Extensions";
 			sourceTree = "<group>";
 		};
 		C2B5CDE61EEF0E750066DB30 = {
@@ -144,13 +99,10 @@
 		C2B5CDF11EEF0E750066DB30 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
-				C2C76A2C200243BD00BFF3D4 /* Import */,
-				C237771D1FB73B8300F7E65F /* App Operations */,
 				C2B5CDF21EEF0E750066DB30 /* AppDelegate.swift */,
-				C2A66A5F1FB7907B001A17E6 /* Convenience Extensions */,
 				C2B5CE2B1EF06E3A0066DB30 /* Core Data */,
+				C2C76A2C200243BD00BFF3D4 /* Import */,
 				C29FF4CE2002382500B50299 /* Networking */,
-				C23777201FB73E6A00F7E65F /* Operations */,
 				C2B5CE291EF06DFC0066DB30 /* Storyboards */,
 				C2C0E9AE1FB8CD870012FA9C /* Structures */,
 				C2B5CE2A1EF06E0E0066DB30 /* Supporting Files */,
@@ -213,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				C2C76A2D2002440E00BFF3D4 /* GroupsImportManager.swift */,
+				C2C76A2F20027EE200BFF3D4 /* RecordsImportManager.swift */,
 			);
 			name = Import;
 			sourceTree = "<group>";
@@ -295,22 +248,17 @@
 				C2B5CDFB1EEF0E750066DB30 /* Schedule.xcdatamodeld in Sources */,
 				C293559E1FBE246000071719 /* SearchResultsTableViewController.swift in Sources */,
 				C250C1831FBCD1CA00C90B53 /* AboutUsTableViewController.swift in Sources */,
+				C2C76A3220027F4F00BFF3D4 /* RecordsAPIClient.swift in Sources */,
 				C22D7F771FC1DAAC007D44BC /* DetailTableViewController.swift in Sources */,
 				C280894C1FB8D54A002B5676 /* GroupEntity+CoreDataProperties.swift in Sources */,
-				C22A2E511FC7630D00587463 /* GetGroupRecordsOperation.swift in Sources */,
+				C2C76A3020027EE200BFF3D4 /* RecordsImportManager.swift in Sources */,
 				C2C76A2920023E3700BFF3D4 /* GroupsAPIClient.swift in Sources */,
-				C249DA771FC7615800BEE9D9 /* DownloadGroupRecordsOperation.swift in Sources */,
-				C22A2E531FC7633700587463 /* ParseGroupRecordsOperation.swift in Sources */,
 				C2B5CDF31EEF0E750066DB30 /* AppDelegate.swift in Sources */,
 				C2B5CE281EEF15910066DB30 /* MainTableViewController.swift in Sources */,
-				C2A66A651FB89A82001A17E6 /* URLSessionTaskOperation.swift in Sources */,
 				C2C0E9B01FB8CDA00012FA9C /* GroupStruct.swift in Sources */,
 				C280894B1FB8D54A002B5676 /* GroupEntity+CoreDataClass.swift in Sources */,
 				C2C76A2E2002440E00BFF3D4 /* GroupsImportManager.swift in Sources */,
-				C2A66A5A1FB751CF001A17E6 /* AsyncOperation.swift in Sources */,
-				C2A66A611FB7908E001A17E6 /* NSLock+Operations.swift in Sources */,
 				C22A2E581FC7664000587463 /* RecordEntity+CoreDataClass.swift in Sources */,
-				C23777221FB73E8000F7E65F /* GroupOperation.swift in Sources */,
 				C22A2E591FC7664000587463 /* RecordEntity+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

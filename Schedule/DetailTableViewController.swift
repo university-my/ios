@@ -31,25 +31,31 @@ class DetailTableViewController: UITableViewController {
         title = group?.name
         
         // Import records
-        if let group = group {
-            // Do nothing without CoreData.
-            guard let context = viewContext else { return }
-            
-            let getGroupsOperation = GetGroupRecordsOperation(group: group, context: context) {
+        importRecords()
+    }
+    
+    // MARK: - Import Records
+    
+    private var recordsImportManager: RecordsImportManager?
+    
+    private func importRecords() {
+        // Do nothing without CoreData.
+        guard let context = viewContext else { return }
+        guard let forGroup = group else { return }
+        
+        // Download records for Group from backend and save to database.
+        recordsImportManager = RecordsImportManager(context: context, group: forGroup)
+        DispatchQueue.global().async {
+            self.recordsImportManager?.importRecords({ (error) in
+                
+                // TODO: Show error
+                
                 DispatchQueue.main.async {
                     self.performFetch()
                     self.tableView.reloadData()
                 }
-            }
-            if let getGroups = getGroupsOperation {
-                queue.addOperation(getGroups)
-            }
+            })
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // MARK: - Table view data source

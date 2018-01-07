@@ -1,45 +1,55 @@
 //
-//  ParseGroupRecordsOperation.swift
+//  RecordsImportManager.swift
 //  Schedule
 //
-//  Created by Yura Voevodin on 23.11.17.
-//  Copyright © 2017 Yura Voevodin. All rights reserved.
+//  Created by Yura Voevodin on 07.01.18.
+//  Copyright © 2018 Yura Voevodin. All rights reserved.
 //
 
-import UIKit
 import CoreData
 
-class ParseGroupRecordsOperation: AsyncOperation {
+class RecordsImportManager {
     
     // MARK: - Properties
     
-    let cacheFile: URL
-    let context: NSManagedObjectContext
-    let group: GroupEntity
+    private let cacheFile: URL
+    private let recordsAPIClient: RecordsAPIClient
+    private var completionHandler: ((_ error: Error?) -> ())?
+    private let context: NSManagedObjectContext
+    private let group: GroupEntity
     
     // MARK: - Initialization
     
-    init(cacheFile: URL, context: NSManagedObjectContext, group: GroupEntity) {
-        let importContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-        importContext.persistentStoreCoordinator = context.persistentStoreCoordinator
-        
+    init?(context: NSManagedObjectContext, group: GroupEntity) {
+        // Cache file
+        let cachesFolder = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        guard let cacheFile = cachesFolder?.appendingPathComponent("group_records.json") else { return nil }
         self.cacheFile = cacheFile
+        
         self.context = context
+        
+        // API client
         self.group = group
-        
-        super.init()
-        
-        name = "Parse Group Records"
+        recordsAPIClient = RecordsAPIClient(cacheFile: self.cacheFile, group: self.group)
     }
     
-    // MARK: - Methods
+    // MARK: - Import Group records
     
-    
-    override func start() {
-        super.start()
+    func importRecords(_ completion: @escaping ((_ error: Error?) -> ())) {
+        completionHandler = completion
         
+        recordsAPIClient.downloadRecords { (error) in
+            if let error = error {
+                self.completionHandler?(error)
+            } else {
+                self.serializeJSON()
+            }
+        }
+    }
+    
+    private func serializeJSON() {
         guard let stream = InputStream(url: cacheFile) else {
-            finish()
+            completionHandler?(nil)
             return
         }
         stream.open()
@@ -53,19 +63,18 @@ class ParseGroupRecordsOperation: AsyncOperation {
                 let records = group["records"] as? [[String: Any]] {
                 
                 // Delete old records first.
-                batchDelete()
+                batchDeleteGroupRecords()
                 
-                parse(records)
+                parseRecords(records)
             } else {
-                finish()
+                completionHandler?(nil)
             }
         } catch {
-            print(error)
-            finish()
+            completionHandler?(error)
         }
     }
     
-    private func batchDelete() {
+    private func batchDeleteGroupRecords() {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = RecordEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "group == %@", group)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
@@ -77,29 +86,27 @@ class ParseGroupRecordsOperation: AsyncOperation {
                 NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [context])
             }
         } catch {
-            print(error)
-            finish()
+            completionHandler?(error)
         }
     }
     
-    private func parse(_ json: [[String: Any]]) {
+    private func parseRecords(_ json: [[String: Any]]) {
         let parsedRecords = json.flatMap { RecordStruct($0) }
         
         context.perform {
-            /*
-             Use the overwrite merge policy, because we want any updated objects
-             to replace the ones in the store.
-             */
-            self.context.mergePolicy = NSMergePolicy.overwrite
+            for record in parsedRecords {
+                self.insert(record)
+            }
             
-            for group in parsedRecords {
-                self.insert(group)
+            // Finishing import. Save context.
+            if self.context.hasChanges {
+                do {
+                    try self.context.save()
+                    self.completionHandler?(nil)
+                } catch  {
+                    self.completionHandler?(error)
+                }
             }
-            let saveError = self.saveContext()
-            if let error = saveError {
-                print(error)
-            }
-            self.finish()
         }
     }
     
@@ -113,15 +120,5 @@ class ParseGroupRecordsOperation: AsyncOperation {
         recordEntity.time = parsedRecord.time
         recordEntity.type = parsedRecord.type
     }
-    
-    private func saveContext() -> Error? {
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch  {
-                return error
-            }
-        }
-        return nil
-    }
 }
+

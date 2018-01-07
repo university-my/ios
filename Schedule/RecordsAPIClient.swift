@@ -1,5 +1,5 @@
 //
-//  GroupsAPIClient.swift
+//  RecordsAPIClient.swift
 //  Schedule
 //
 //  Created by Yura Voevodin on 07.01.18.
@@ -8,25 +8,27 @@
 
 import UIKit
 
-class GroupsAPIClient {
+class RecordsAPIClient {
     
     // MARK: - Properties
     
     let cacheFile: URL
+    let group: GroupEntity
     var completionHandler: ((_ error: Error?) -> ())?
     
     // MARK: - Initialization
     
-    init(cacheFile: URL) {
+    init(cacheFile: URL, group: GroupEntity) {
         self.cacheFile = cacheFile
+        self.group = group
     }
     
-    // MARK: - Download Groups
+    // MARK: - Download Records
     
-    func downloadGroups(_ completion: @escaping ((_ error: Error?) -> ())) {
+    func downloadRecords(_ completion: @escaping ((_ error: Error?) -> ())) {
         completionHandler = completion
         
-        guard let url = URL(string: "https://sumdubot.voevodin-yura.com/groups") else {
+        guard let url = URL(string: "https://sumdubot.voevodin-yura.com/groups/\(group.id)") else {
             completionHandler?(nil)
             return
         }
