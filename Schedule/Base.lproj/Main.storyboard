@@ -48,17 +48,7 @@
                             <outlet property="delegate" destination="UbS-ZJ-tQT" id="MNr-Kk-2D3"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Всі групи" id="F0z-JD-anE">
-                        <barButtonItem key="rightBarButtonItem" id="u9B-3q-lIT">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="phF-E3-FnC">
-                                <rect key="frame" x="337" y="11" width="22" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <segue destination="97K-nC-ehv" kind="show" id="rbD-bw-ftz"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Всі групи" id="F0z-JD-anE"/>
                     <connections>
                         <segue destination="lci-e7-UWA" kind="show" identifier="showDetailed" id="hII-aW-IyF"/>
                     </connections>
@@ -67,16 +57,16 @@
             </objects>
             <point key="canvasLocation" x="1424.8" y="227.13643178410797"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Історія-->
         <scene sceneID="1aj-Ww-tcD">
             <objects>
-                <tableViewController id="eYv-52-NeV" sceneMemberID="viewController">
+                <tableViewController id="eYv-52-NeV" customClass="HistoryTableViewController" customModule="Schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="pXo-7F-QVc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="dsb-E6-cuz">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="historyTableCell" id="dsb-E6-cuz">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dsb-E6-cuz" id="Hk3-dq-ydh">
@@ -90,11 +80,24 @@
                             <outlet property="delegate" destination="eYv-52-NeV" id="pob-1b-Fxk"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="weu-X2-vfy"/>
+                    <navigationItem key="navigationItem" title="Історія" id="weu-X2-vfy">
+                        <barButtonItem key="rightBarButtonItem" id="u9B-3q-lIT">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="phF-E3-FnC">
+                                <rect key="frame" x="337" y="11" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <segue destination="97K-nC-ehv" kind="show" id="dAN-ev-iIc"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="lci-e7-UWA" kind="show" identifier="showRecords" id="LfJ-TO-z57"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uK1-z3-fG9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1122" y="1805"/>
+            <point key="canvasLocation" x="-2100" y="1727"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="OxG-9R-brE">
@@ -123,7 +126,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZeT-4C-vlK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1197" y="1769"/>
+            <point key="canvasLocation" x="2377" y="2315"/>
         </scene>
         <!--Викладачі-->
         <scene sceneID="NXl-eo-eWv">
@@ -140,13 +143,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bDE-j8-b4m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2149" y="1769"/>
+            <point key="canvasLocation" x="1425" y="2315"/>
         </scene>
-        <!--Обрані-->
+        <!--Історія-->
         <scene sceneID="bQ4-8F-TaY">
             <objects>
                 <navigationController id="Jf2-Am-oov" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Обрані" image="Star Regular" landscapeImage="Star Compact" id="cNm-uW-1gV"/>
+                    <tabBarItem key="tabBarItem" title="Історія" image="History Regular" landscapeImage="History Compact" id="cNm-uW-1gV"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="agb-6v-1Td">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -157,7 +160,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ifp-ZS-qKV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="170" y="1805"/>
+            <point key="canvasLocation" x="-3052" y="1727"/>
         </scene>
         <!--Search Results Table View Controller-->
         <scene sceneID="k9h-fi-UoD">
@@ -194,7 +197,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lXS-hW-sH9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1425" y="960"/>
+            <point key="canvasLocation" x="2335" y="227"/>
         </scene>
         <!--Detail Table View Controller-->
         <scene sceneID="roI-g8-9r5">
@@ -241,7 +244,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tA6-LM-gbf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2209" y="959"/>
+            <point key="canvasLocation" x="1425" y="1013"/>
         </scene>
         <!--Про нас-->
         <scene sceneID="k6x-wc-wgc">
@@ -329,7 +332,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7OJ-h9-4vF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2210" y="226"/>
+            <point key="canvasLocation" x="-2100" y="2550"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="qC1-0h-9jI">
@@ -376,9 +379,12 @@
         <image name="Crowd Compact" width="17" height="17"/>
         <image name="Crowd Regular" width="23" height="23"/>
         <image name="FB-f-Logo__blue_29" width="29" height="29"/>
+        <image name="History Compact" width="17" height="17"/>
+        <image name="History Regular" width="23" height="23"/>
         <image name="Messenger_Icon_29" width="29" height="29"/>
-        <image name="Star Compact" width="17" height="17"/>
-        <image name="Star Regular" width="23" height="23"/>
         <image name="Telegram Logo_29" width="29" height="29"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="LfJ-TO-z57"/>
+    </inferredMetricsTieBreakers>
 </document>

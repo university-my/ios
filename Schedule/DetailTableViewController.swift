@@ -31,7 +31,15 @@ class DetailTableViewController: UITableViewController {
         // Name of the Group.
         title = group?.name
         
-        // Import records
+        // Refresh control.
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
+        
+        // Fetch old records first.
+        performFetch()
+        tableView.reloadData()
+        
+        // Import records.
         importRecords()
     }
     
@@ -59,9 +67,14 @@ class DetailTableViewController: UITableViewController {
                     }
                     self.performFetch()
                     self.tableView.reloadData()
+                    self.refreshControl?.endRefreshing()
                 }
             })
         }
+    }
+    
+    @objc func refreshContent() {
+        importRecords()
     }
     
     // MARK: - Table view data source

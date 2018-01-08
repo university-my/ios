@@ -100,6 +100,12 @@ class RecordsImportManager {
     private func parseRecords(_ json: [[String: Any]]) {
         let parsedRecords = json.flatMap { RecordStruct($0, dateFormatter: dateFormatter) }
         
+        // Finish if no records in JSON.
+        if parsedRecords.isEmpty {
+            completionHandler?(nil)
+            return
+        }
+        
         context.perform {
             /*
              Use the overwrite merge policy, because we want any updated objects

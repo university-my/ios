@@ -21,6 +21,7 @@
 		C2B5CDFD1EEF0E750066DB30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2B5CDFC1EEF0E750066DB30 /* Assets.xcassets */; };
 		C2B5CE001EEF0E750066DB30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2B5CDFE1EEF0E750066DB30 /* LaunchScreen.storyboard */; };
 		C2B5CE281EEF15910066DB30 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B5CE271EEF15910066DB30 /* MainTableViewController.swift */; };
+		C2B922C32003DB6E001A8E1D /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B922C22003DB6D001A8E1D /* HistoryTableViewController.swift */; };
 		C2C0E9B01FB8CDA00012FA9C /* GroupStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C0E9AF1FB8CDA00012FA9C /* GroupStruct.swift */; };
 		C2C76A2920023E3700BFF3D4 /* GroupsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C76A2820023E3700BFF3D4 /* GroupsAPIClient.swift */; };
 		C2C76A2E2002440E00BFF3D4 /* GroupsImportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C76A2D2002440E00BFF3D4 /* GroupsImportManager.swift */; };
@@ -46,6 +47,7 @@
 		C2B5CDFF1EEF0E750066DB30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C2B5CE011EEF0E750066DB30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2B5CE271EEF15910066DB30 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		C2B922C22003DB6D001A8E1D /* HistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
 		C2C0E9AF1FB8CDA00012FA9C /* GroupStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupStruct.swift; sourceTree = "<group>"; };
 		C2C76A2820023E3700BFF3D4 /* GroupsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsAPIClient.swift; sourceTree = "<group>"; };
 		C2C76A2D2002440E00BFF3D4 /* GroupsImportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsImportManager.swift; sourceTree = "<group>"; };
@@ -101,7 +103,6 @@
 		C2B5CDF11EEF0E750066DB30 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
-				C2C76A3320029F8900BFF3D4 /* UI Subclasses */,
 				C2B5CDF21EEF0E750066DB30 /* AppDelegate.swift */,
 				C2B5CE2B1EF06E3A0066DB30 /* Core Data */,
 				C2C76A2C200243BD00BFF3D4 /* Import */,
@@ -109,6 +110,7 @@
 				C2B5CE291EF06DFC0066DB30 /* Storyboards */,
 				C2C0E9AE1FB8CD870012FA9C /* Structures */,
 				C2B5CE2A1EF06E0E0066DB30 /* Supporting Files */,
+				C2C76A3320029F8900BFF3D4 /* UI Subclasses */,
 				C2B5CE2C1EF06E4E0066DB30 /* View Controllers */,
 			);
 			path = Schedule;
@@ -151,6 +153,7 @@
 				C22D7F761FC1DAAC007D44BC /* DetailTableViewController.swift */,
 				C2B5CE271EEF15910066DB30 /* MainTableViewController.swift */,
 				C293559D1FBE246000071719 /* SearchResultsTableViewController.swift */,
+				C2B922C22003DB6D001A8E1D /* HistoryTableViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2B922C32003DB6E001A8E1D /* HistoryTableViewController.swift in Sources */,
 				C22A2E551FC7644600587463 /* RecordStruct.swift in Sources */,
 				C2B5CDFB1EEF0E750066DB30 /* Schedule.xcdatamodeld in Sources */,
 				C293559E1FBE246000071719 /* SearchResultsTableViewController.swift in Sources */,
