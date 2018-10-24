@@ -98,7 +98,7 @@ class RecordsImportManager {
     }
     
     private func parseRecords(_ json: [[String: Any]]) {
-        let parsedRecords = json.flatMap { RecordStruct($0, dateFormatter: dateFormatter) }
+        let parsedRecords = json.compactMap { RecordStruct($0, dateFormatter: dateFormatter) }
         
         // Finish if no records in JSON.
         if parsedRecords.isEmpty {

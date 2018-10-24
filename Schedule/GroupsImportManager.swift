@@ -68,7 +68,7 @@ class GroupsImportManager {
     }
     
     private func parseGroups(_ json: [[String: Any]]) {
-        let parsedGroups = json.flatMap { GroupStruct($0) }
+        let parsedGroups = json.compactMap { GroupStruct($0) }
         
         context.perform {
             /*

@@ -41,6 +41,7 @@ class HistoryTableViewController: UITableViewController {
 
         // Configure cell
         if let group = fetchedResultsController?.object(at: indexPath) {
+            cell.textLabel?.textColor = UIColor.white
             cell.textLabel?.text = group.name
         }
 
@@ -55,6 +56,21 @@ class HistoryTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showRecords", sender: nil)
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1)
+            headerView.backgroundView = backgroundView
+            headerView.textLabel?.textColor = UIColor.lightText
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = #colorLiteral(red: 0.2605174184, green: 0.2605243921, blue: 0.260520637, alpha: 1)
+        cell.selectedBackgroundView = bgColorView
     }
     
     // MARK: - Navigation

@@ -79,6 +79,15 @@ class MainTableViewController: UITableViewController {
         return namesOfSections
     }
     
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.1294117647, blue: 0.1411764706, alpha: 1)
+            headerView.backgroundView = backgroundView
+            headerView.textLabel?.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        }
+    }
+    
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -184,7 +193,7 @@ class MainTableViewController: UITableViewController {
     
     private func configureSearchControllers() {
         
-        resultsTableController = storyboard!.instantiateViewController(withIdentifier: "searchResultsTableViewController") as! SearchResultsTableViewController
+        resultsTableController = storyboard!.instantiateViewController(withIdentifier: "searchResultsTableViewController") as? SearchResultsTableViewController
         
         // We want ourselves to be the delegate for this filtered table so didSelectRowAtIndexPath(_:) is called for both tables.
         resultsTableController.tableView.delegate = self
