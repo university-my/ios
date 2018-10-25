@@ -14,6 +14,10 @@ class SearchResultsTableViewController: UITableViewController {
     
     var filteredGroups: [GroupEntity] = []
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {

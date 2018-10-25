@@ -122,15 +122,15 @@ class DetailTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let headerView = view as? UITableViewHeaderFooterView {
             let backgroundView = UIView()
-            backgroundView.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.1294117647, blue: 0.1411764706, alpha: 1)
+            backgroundView.backgroundColor = .sectionBackgroundColor
             headerView.backgroundView = backgroundView
-            headerView.textLabel?.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+            headerView.textLabel?.textColor = UIColor.lightText
         }
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let bgColorView = UIView()
-        bgColorView.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.1294117647, blue: 0.1411764706, alpha: 1)
+        bgColorView.backgroundColor = .cellSelectionColor
         cell.selectedBackgroundView = bgColorView
     }
 

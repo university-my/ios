@@ -12,7 +12,7 @@ class AboutUsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let bgColorView = UIView()
-        bgColorView.backgroundColor = #colorLiteral(red: 0.2039215686, green: 0.2078431373, blue: 0.2117647059, alpha: 1)
+        bgColorView.backgroundColor = .cellSelectionColor
         cell.selectedBackgroundView = bgColorView
     }
     

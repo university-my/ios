@@ -61,7 +61,7 @@ class HistoryTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let headerView = view as? UITableViewHeaderFooterView {
             let backgroundView = UIView()
-            backgroundView.backgroundColor = #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1)
+            backgroundView.backgroundColor = .sectionBackgroundColor
             headerView.backgroundView = backgroundView
             headerView.textLabel?.textColor = UIColor.lightText
         }
@@ -69,7 +69,7 @@ class HistoryTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let bgColorView = UIView()
-        bgColorView.backgroundColor = #colorLiteral(red: 0.2605174184, green: 0.2605243921, blue: 0.260520637, alpha: 1)
+        bgColorView.backgroundColor = .cellSelectionColor
         cell.selectedBackgroundView = bgColorView
     }
     

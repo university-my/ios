@@ -28,6 +28,8 @@
 		C2C76A3020027EE200BFF3D4 /* RecordsImportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C76A2F20027EE200BFF3D4 /* RecordsImportManager.swift */; };
 		C2C76A3220027F4F00BFF3D4 /* RecordsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C76A3120027F4F00BFF3D4 /* RecordsAPIClient.swift */; };
 		C2C76A3620029FB800BFF3D4 /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C76A3520029FB800BFF3D4 /* RecordTableViewCell.swift */; };
+		DE3B565D21823912008A77D1 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE3B565C21823912008A77D1 /* Colors.xcassets */; };
+		DE3B566021823A97008A77D1 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3B565F21823A97008A77D1 /* UIColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		C2C76A2F20027EE200BFF3D4 /* RecordsImportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsImportManager.swift; sourceTree = "<group>"; };
 		C2C76A3120027F4F00BFF3D4 /* RecordsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsAPIClient.swift; sourceTree = "<group>"; };
 		C2C76A3520029FB800BFF3D4 /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
+		DE3B565C21823912008A77D1 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		DE3B565F21823A97008A77D1 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +109,7 @@
 			children = (
 				C2B5CDF21EEF0E750066DB30 /* AppDelegate.swift */,
 				C2B5CE2B1EF06E3A0066DB30 /* Core Data */,
+				DE3B565E21823A7F008A77D1 /* Extensions */,
 				C2C76A2C200243BD00BFF3D4 /* Import */,
 				C29FF4CE2002382500B50299 /* Networking */,
 				C2B5CE291EF06DFC0066DB30 /* Storyboards */,
@@ -129,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				C2B5CDFC1EEF0E750066DB30 /* Assets.xcassets */,
+				DE3B565C21823912008A77D1 /* Colors.xcassets */,
 				C2B5CE011EEF0E750066DB30 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -190,6 +196,14 @@
 				C2C76A3520029FB800BFF3D4 /* RecordTableViewCell.swift */,
 			);
 			name = "Table View Cells";
+			sourceTree = "<group>";
+		};
+		DE3B565E21823A7F008A77D1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DE3B565F21823A97008A77D1 /* UIColor.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2B5CE001EEF0E750066DB30 /* LaunchScreen.storyboard in Resources */,
+				DE3B565D21823912008A77D1 /* Colors.xcassets in Resources */,
 				C2B5CDFD1EEF0E750066DB30 /* Assets.xcassets in Resources */,
 				C2B5CDF81EEF0E750066DB30 /* Main.storyboard in Resources */,
 			);
@@ -274,6 +289,7 @@
 				C250C1831FBCD1CA00C90B53 /* AboutUsTableViewController.swift in Sources */,
 				C2C76A3220027F4F00BFF3D4 /* RecordsAPIClient.swift in Sources */,
 				C22D7F771FC1DAAC007D44BC /* DetailTableViewController.swift in Sources */,
+				DE3B566021823A97008A77D1 /* UIColor.swift in Sources */,
 				C280894C1FB8D54A002B5676 /* GroupEntity+CoreDataProperties.swift in Sources */,
 				C2C76A3020027EE200BFF3D4 /* RecordsImportManager.swift in Sources */,
 				C2C76A2920023E3700BFF3D4 /* GroupsAPIClient.swift in Sources */,
