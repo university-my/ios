@@ -21,7 +21,12 @@ class HistoryTableViewController: UITableViewController {
         
         // Fetch from database
         performFetch()
-        tableView.reloadData()
+        
+        if fetchedResultsController?.fetchedObjects?.isEmpty ?? false {
+            tabBarController?.selectedIndex = 1
+        } else {
+            tableView.reloadData()
+        }
     }
 
     // MARK: - Table view data source

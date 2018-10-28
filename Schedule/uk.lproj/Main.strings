@@ -1,0 +1,39 @@
+/* Class = "UILabel"; text = "Detail"; ObjectID = "byv-DE-jgc"; */
+"byv-DE-jgc.text" = "Detail";
+
+/* Class = "UITabBarItem"; title = "History"; ObjectID = "cNm-uW-1gV"; */
+"cNm-uW-1gV.title" = "Історія";
+
+/* Class = "UINavigationItem"; title = "All groups"; ObjectID = "F0z-JD-anE"; */
+"F0z-JD-anE.title" = "Всі групи";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "hmx-c1-Cyp"; */
+"hmx-c1-Cyp.text" = "Title";
+
+/* Class = "UILabel"; text = "\"Schedule\" for Telegram"; ObjectID = "Ivk-o2-uZv"; */
+"Ivk-o2-uZv.text" = "\"Розклад\" для Telegram";
+
+/* Class = "UITabBarItem"; title = "Groups"; ObjectID = "NdO-qa-j8C"; */
+"NdO-qa-j8C.title" = "Групи";
+
+/* Class = "UILabel"; text = "\"Schedule\" for Messenger"; ObjectID = "pUi-is-FYE"; */
+"pUi-is-FYE.text" = "\"Розклад\" для Messenger";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "SMk-YH-hHH"; */
+"SMk-YH-hHH.text" = "Title";
+
+/* Class = "UINavigationItem"; title = "About us"; ObjectID = "SNc-pP-tXm"; */
+"SNc-pP-tXm.title" = "Про нас";
+
+/* Class = "UILabel"; text = "Facebook page"; ObjectID = "T37-xz-dk7"; */
+"T37-xz-dk7.text" = "Facebook сторінка";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "u9B-3q-lIT"; */
+"u9B-3q-lIT.title" = "Item";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "uWT-0r-H6j"; */
+"uWT-0r-H6j.text" = "Title";
+
+/* Class = "UINavigationItem"; title = "History"; ObjectID = "weu-X2-vfy"; */
+"weu-X2-vfy.title" = "Історія";
+

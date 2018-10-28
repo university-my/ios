@@ -214,8 +214,8 @@ class MainTableViewController: UITableViewController {
         navigationItem.searchController = searchController
         
         // Setup the Search Bar
-        searchController.searchBar.setValue("Скасувати", forKey:"_cancelButtonText")
-        searchController.searchBar.placeholder = "Пошук"
+        searchController.searchBar.setValue(NSLocalizedString("Cancel", comment: "Cancel search"), forKey:"_cancelButtonText")
+        searchController.searchBar.placeholder = NSLocalizedString("Search", comment: "Placeholder in search controller")
         
         /*
          Search is now just presenting a view controller. As such, normal view controller
