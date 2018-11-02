@@ -30,7 +30,6 @@
 		C2C76A3620029FB800BFF3D4 /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C76A3520029FB800BFF3D4 /* RecordTableViewCell.swift */; };
 		DE3B565D21823912008A77D1 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE3B565C21823912008A77D1 /* Colors.xcassets */; };
 		DE3B566021823A97008A77D1 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3B565F21823A97008A77D1 /* UIColor.swift */; };
-		DE617FDB218AD2B300D53CFF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE617FDA218AD2B300D53CFF /* Default-568h@2x.png */; };
 		DEDA50EA21862091006C7B27 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50E821862090006C7B27 /* InfoPlist.strings */; };
 		DEDA50ED218620E0006C7B27 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50EB218620E0006C7B27 /* Localizable.strings */; };
 /* End PBXBuildFile section */
@@ -63,7 +62,6 @@
 		DE066B252185003A0054DC03 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Main.strings; sourceTree = "<group>"; };
 		DE3B565C21823912008A77D1 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		DE3B565F21823A97008A77D1 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
-		DE617FDA218AD2B300D53CFF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		DEDA50E921862090006C7B27 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DEDA50EC218620E0006C7B27 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -99,7 +97,6 @@
 		C2B5CDE61EEF0E750066DB30 = {
 			isa = PBXGroup;
 			children = (
-				DE617FDA218AD2B300D53CFF /* Default-568h@2x.png */,
 				C2B5CDF11EEF0E750066DB30 /* My University */,
 				C2B5CDF01EEF0E750066DB30 /* Products */,
 			);
@@ -284,7 +281,6 @@
 				DE3B565D21823912008A77D1 /* Colors.xcassets in Resources */,
 				C2B5CDFD1EEF0E750066DB30 /* Assets.xcassets in Resources */,
 				C2B5CDF81EEF0E750066DB30 /* Main.storyboard in Resources */,
-				DE617FDB218AD2B300D53CFF /* Default-568h@2x.png in Resources */,
 				DEDA50EA21862091006C7B27 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
