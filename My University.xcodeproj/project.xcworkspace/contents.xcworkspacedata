@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Schedule.xcodeproj">
+      location = "self:/Users/yura/Developer/ios-schedule/My University.xcodeproj">
    </FileRef>
 </Workspace>

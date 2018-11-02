@@ -36,7 +36,12 @@ class AboutUsTableViewController: UITableViewController {
             default:
                 break
             }
-        } else if indexPath.section == 1 {
+            
+        } else if indexPath.section == 1, indexPath.row == 0 {
+            if let appURL = URL(string: "https://itunes.apple.com/ua/app/university-schedule/id1440425058") {
+                UIApplication.shared.open(appURL)
+            }
+        } else if indexPath.section == 2 {
             switch indexPath.row {
             case 0:
                 if let privacyPolicyURL = URL(string: "https://voevodin-yura.com/privacy-policy") {
