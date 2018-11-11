@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18B75" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AuditoriumEntity" representedClassName="AuditoriumEntity" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="records" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RecordEntity" inverseName="auditorium" inverseEntity="RecordEntity" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
     <entity name="GroupEntity" representedClassName="GroupEntity" syncable="YES">
         <attribute name="firstSymbol" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
@@ -23,6 +33,7 @@
         <attribute name="reason" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="time" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="auditorium" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AuditoriumEntity" inverseName="records" inverseEntity="AuditoriumEntity" syncable="YES"/>
         <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GroupEntity" inverseName="records" inverseEntity="GroupEntity" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
@@ -31,7 +42,8 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="GroupEntity" positionX="-63" positionY="-18" width="128" height="105"/>
-        <element name="RecordEntity" positionX="-63" positionY="9" width="128" height="180"/>
+        <element name="GroupEntity" positionX="35.59375" positionY="398.10546875" width="128" height="105"/>
+        <element name="RecordEntity" positionX="-387.71484375" positionY="184.6875" width="128" height="195"/>
+        <element name="AuditoriumEntity" positionX="31.9921875" positionY="107.68359375" width="128" height="88"/>
     </elements>
 </model>

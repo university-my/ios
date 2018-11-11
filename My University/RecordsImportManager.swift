@@ -98,7 +98,7 @@ class RecordsImportManager {
     }
     
     private func parseRecords(_ json: [[String: Any]]) {
-        let parsedRecords = json.compactMap { RecordStruct($0, dateFormatter: dateFormatter) }
+        let parsedRecords = json.compactMap { Record($0, dateFormatter: dateFormatter) }
         
         // Finish if no records in JSON.
         if parsedRecords.isEmpty {
@@ -129,7 +129,7 @@ class RecordsImportManager {
         }
     }
     
-    private func insert(_ parsedRecord: RecordStruct) {
+    private func insert(_ parsedRecord: Record) {
         let recordEntity = RecordEntity(context: context)
         
         recordEntity.id = NSNumber(value: parsedRecord.id).int64Value

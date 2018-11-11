@@ -87,7 +87,7 @@ class GroupsImportManager {
     }
     
     private func parseGroups(_ json: [[String: Any]]) {
-        let parsedGroups = json.compactMap { GroupStruct($0) }
+        let parsedGroups = json.compactMap { Group($0) }
         
         context.perform {
             /*
@@ -112,15 +112,15 @@ class GroupsImportManager {
         }
     }
     
-    private func insert(_ parsedGroup: GroupStruct) {
-        let groupEntitu = GroupEntity(context: context)
+    private func insert(_ parsedGroup: Group) {
+        let groupEntity = GroupEntity(context: context)
         
         if let firstCharacter = parsedGroup.name.first {
-            groupEntitu.firstSymbol = String(firstCharacter)
+            groupEntity.firstSymbol = String(firstCharacter)
         } else {
-            groupEntitu.firstSymbol = ""
+            groupEntity.firstSymbol = ""
         }
-        groupEntitu.id = parsedGroup.id
-        groupEntitu.name = parsedGroup.name
+        groupEntity.id = parsedGroup.id
+        groupEntity.name = parsedGroup.name
     }
 }

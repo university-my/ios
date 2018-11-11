@@ -26,5 +26,6 @@ extension RecordEntity {
     @NSManaged public var time: String?
     @NSManaged public var type: String?
     @NSManaged public var group: GroupEntity?
+    @NSManaged public var auditorium: AuditoriumEntity?
 
 }

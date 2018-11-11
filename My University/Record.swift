@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct RecordStruct {
+struct Record {
     
     // MARK: - Properties
     
