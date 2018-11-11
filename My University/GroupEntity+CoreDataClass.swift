@@ -13,4 +13,16 @@ import CoreData
 @objc(GroupEntity)
 public class GroupEntity: NSManagedObject {
 
+    class func fetch(id: Int64, context: NSManagedObjectContext) -> GroupEntity? {
+        let request: NSFetchRequest<GroupEntity> = fetchRequest()
+        request.predicate = NSPredicate(format: "id = %@", String(id))
+        
+        do {
+            let result = try context.fetch(request)
+            return result.first
+        } catch {
+            print(error)
+            return nil
+        }
+    }
 }

@@ -37,7 +37,7 @@ class RecordsImportManager {
         
         // API client
         self.group = group
-        recordsAPIClient = RecordsAPIClient(cacheFile: self.cacheFile, group: self.group)
+        recordsAPIClient = RecordsAPIClient(cacheFile: self.cacheFile, groupID: group.id)
     }
     
     // MARK: - Import Group records
@@ -132,6 +132,7 @@ class RecordsImportManager {
     private func insert(_ parsedRecord: RecordStruct) {
         let recordEntity = RecordEntity(context: context)
         
+        recordEntity.id = NSNumber(value: parsedRecord.id).int64Value
         recordEntity.date = parsedRecord.date
         recordEntity.dateString = parsedRecord.dateString
         recordEntity.group = group

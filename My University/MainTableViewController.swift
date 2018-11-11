@@ -199,7 +199,7 @@ class MainTableViewController: UITableViewController {
     
     private func configureSearchControllers() {
         
-        resultsTableController = storyboard!.instantiateViewController(withIdentifier: "searchResultsTableViewController") as? SearchResultsTableViewController
+        resultsTableController = storyboard!.instantiateViewController(withIdentifier: "SearchResultsTableViewController") as? SearchResultsTableViewController
         
         // We want ourselves to be the delegate for this filtered table so didSelectRowAtIndexPath(_:) is called for both tables.
         resultsTableController.tableView.delegate = self

@@ -13,14 +13,14 @@ class RecordsAPIClient {
     // MARK: - Properties
     
     let cacheFile: URL
-    let group: GroupEntity
+    let groupID: Int64
     var completionHandler: ((_ error: Error?) -> ())?
     
     // MARK: - Initialization
     
-    init(cacheFile: URL, group: GroupEntity) {
+    init(cacheFile: URL, groupID: Int64) {
         self.cacheFile = cacheFile
-        self.group = group
+        self.groupID = groupID
     }
     
     // MARK: - Download Records
@@ -28,7 +28,7 @@ class RecordsAPIClient {
     func downloadRecords(_ completion: @escaping ((_ error: Error?) -> ())) {
         completionHandler = completion
         
-        guard let url = URL(string: "https://sumdubot.voevodin-yura.com/groups/\(group.id)") else {
+        guard let url = URL(string: "https://sumdubot.voevodin-yura.com/groups/\(groupID)") else {
             completionHandler?(nil)
             return
         }

@@ -1,9 +1,9 @@
 //
 //  RecordEntity+CoreDataProperties.swift
-//  Schedule
+//  My University
 //
-//  Created by Yura Voevodin on 28.11.17.
-//  Copyright © 2017 Yura Voevodin. All rights reserved.
+//  Created by Yura Voevodin on 11/11/18.
+//  Copyright © 2018 Yura Voevodin. All rights reserved.
 //
 //
 
@@ -19,10 +19,11 @@ extension RecordEntity {
 
     @NSManaged public var date: Date?
     @NSManaged public var dateString: String?
+    @NSManaged public var id: Int64
     @NSManaged public var name: String?
-    @NSManaged public var pairName: String
+    @NSManaged public var pairName: String?
     @NSManaged public var reason: String?
-    @NSManaged public var time: String
+    @NSManaged public var time: String?
     @NSManaged public var type: String?
     @NSManaged public var group: GroupEntity?
 

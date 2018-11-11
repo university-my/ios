@@ -58,9 +58,28 @@ class GroupsImportManager {
         do {
             let json = try JSONSerialization.jsonObject(with: stream, options: []) as? [String: Any]
             if let groups = json?["groups"] as? [[String: Any]] {
+                
+                // Delete old records first.
+                batchDeleteGroups()
+                
                 parseGroups(groups)
             } else {
                 completionHandler?(nil)
+            }
+        } catch {
+            completionHandler?(error)
+        }
+    }
+    
+    private func batchDeleteGroups() {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = GroupEntity.fetchRequest()
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        deleteRequest.resultType = .resultTypeObjectIDs
+        do {
+            let result = try context.execute(deleteRequest) as? NSBatchDeleteResult
+            if let objectIDArray = result?.result as? [NSManagedObjectID] {
+                let changes = [NSDeletedObjectsKey: objectIDArray]
+                NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [context])
             }
         } catch {
             completionHandler?(error)

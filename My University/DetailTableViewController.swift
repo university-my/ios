@@ -28,24 +28,30 @@ class DetailTableViewController: UITableViewController {
         
         tableView.rowHeight = UITableView.automaticDimension
         
-        // Name of the Group.
-        title = group?.name
-        
         // Refresh control.
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        // Fetch old records first.
-        performFetch()
-        tableView.reloadData()
-        
-        // Import records.
-        importRecords()
+        if let group = group {
+            // Name of the Group.
+            title = group.name
+            
+            // Fetch old records first.
+            performFetch()
+            
+            // Import records.
+            importRecords()
+        }
     }
     
     // MARK: - Import Records
     
     var group: GroupEntity?
+    var groupID: Int64?
     
     private var recordsImportManager: RecordsImportManager?
     
@@ -65,8 +71,6 @@ class DetailTableViewController: UITableViewController {
                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                         self.present(alert, animated: true)
                     }
-                    self.performFetch()
-                    self.tableView.reloadData()
                     self.refreshControl?.endRefreshing()
                 }
             })
@@ -102,11 +106,17 @@ class DetailTableViewController: UITableViewController {
             if let type = record.type {
                 title += "\n" + type
             }
-            // Detail
-            let detailed = record.pairName + " (\(record.time))"
-            
             cell.textLabel?.text = title
-            cell.detailTextLabel?.text = detailed
+            
+            // Detail
+            if let pairName = record.pairName, let time = record.time {
+                let detailed = pairName + " (\(time))"
+                cell.detailTextLabel?.text = detailed
+            } else if let time = record.time {
+                cell.detailTextLabel?.text = "(\(time))"
+            } else {
+                cell.detailTextLabel?.text = nil
+            }
         }
         return cell
     }
@@ -143,14 +153,13 @@ class DetailTableViewController: UITableViewController {
     }()
     
     private lazy var fetchedResultsController: NSFetchedResultsController<RecordEntity>? = {
+        guard let group = group else { return nil }
         let request: NSFetchRequest<RecordEntity> = RecordEntity.fetchRequest()
         request.sortDescriptors = [
             NSSortDescriptor(key: "dateString", ascending: true),
             NSSortDescriptor(key: "time", ascending: true)
         ]
-        if let group = group {
-            request.predicate = NSPredicate(format: "group == %@", group)
-        }
+        request.predicate = NSPredicate(format: "group == %@", group)
         request.fetchBatchSize = 20
         
         if let context = viewContext {
@@ -163,6 +172,7 @@ class DetailTableViewController: UITableViewController {
     
     private func performFetch() {
         do {
+            fetchedResultsController?.delegate = self
             try fetchedResultsController?.performFetch()
             
             // Generate title for sections
@@ -181,6 +191,41 @@ class DetailTableViewController: UITableViewController {
         }
         catch {
             print("Error in the fetched results controller: \(error).")
+        }
+    }
+}
+
+// MARK: - NSFetchedResultsControllerDelegate
+
+extension DetailTableViewController: NSFetchedResultsControllerDelegate {
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.reloadData()
+    }
+}
+
+// MARK: - UIStateRestoring
+
+extension DetailTableViewController {
+    
+    override func encodeRestorableState(with coder: NSCoder) {
+        if let group = group {
+            coder.encode(group.id, forKey: "groupID")
+        }
+        super.encodeRestorableState(with: coder)
+    }
+
+    override func decodeRestorableState(with coder: NSCoder) {
+        groupID = coder.decodeInt64(forKey: "groupID")
+
+        super.decodeRestorableState(with: coder)
+    }
+
+    override func applicationFinishedRestoringState() {
+        if let id = groupID, let context = viewContext {
+            if let group = GroupEntity.fetch(id: id, context: context) {
+                self.group = group
+            }
         }
     }
 }

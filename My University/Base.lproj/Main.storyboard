@@ -13,7 +13,7 @@
         <!--All groups-->
         <scene sceneID="rri-BK-OuF">
             <objects>
-                <tableViewController id="UbS-ZJ-tQT" customClass="MainTableViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MainTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UbS-ZJ-tQT" customClass="MainTableViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Of0-S0-ueO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -64,7 +64,7 @@
         <!--History-->
         <scene sceneID="1aj-Ww-tcD">
             <objects>
-                <tableViewController id="eYv-52-NeV" customClass="HistoryTableViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="HistoryTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eYv-52-NeV" customClass="HistoryTableViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="pXo-7F-QVc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -110,7 +110,7 @@
         <!--History-->
         <scene sceneID="bQ4-8F-TaY">
             <objects>
-                <navigationController id="Jf2-Am-oov" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HistoryNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jf2-Am-oov" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="History" image="History Regular" landscapeImage="History Compact" id="cNm-uW-1gV"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="agb-6v-1Td">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -128,7 +128,7 @@
         <!--Search Results Table View Controller-->
         <scene sceneID="k9h-fi-UoD">
             <objects>
-                <tableViewController storyboardIdentifier="searchResultsTableViewController" id="ouT-hR-A96" customClass="SearchResultsTableViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SearchResultsTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ouT-hR-A96" customClass="SearchResultsTableViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="COD-IR-WQn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -168,7 +168,7 @@
         <!--Detail Table View Controller-->
         <scene sceneID="roI-g8-9r5">
             <objects>
-                <tableViewController id="lci-e7-UWA" customClass="DetailTableViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="DetailTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lci-e7-UWA" customClass="DetailTableViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="GT3-OW-hXG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -215,7 +215,7 @@
         <!--About us-->
         <scene sceneID="k6x-wc-wgc">
             <objects>
-                <tableViewController id="97K-nC-ehv" customClass="AboutUsTableViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AboutUsTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="97K-nC-ehv" customClass="AboutUsTableViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="cy1-j5-AYC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -380,7 +380,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="qC1-0h-9jI">
             <objects>
-                <tabBarController id="syD-LT-PpB" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="syD-LT-PpB" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="S2z-9r-uEJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -400,7 +400,7 @@
         <!--Groups-->
         <scene sceneID="EbB-bJ-bo9">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kDr-Od-RsA" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="GroupsNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kDr-Od-RsA" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Groups" image="Crowd Regular" landscapeImage="Crowd Compact" id="NdO-qa-j8C"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="g7x-0H-sbF">
@@ -438,6 +438,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="LfJ-TO-z57"/>
+        <segue reference="hII-aW-IyF"/>
     </inferredMetricsTieBreakers>
 </document>

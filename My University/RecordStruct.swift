@@ -12,6 +12,7 @@ struct RecordStruct {
     
     // MARK: - Properties
     
+    let id: Int
     let time: String
     let dateString: String
     let date: Date?
@@ -23,6 +24,7 @@ struct RecordStruct {
     // MARK: - Initialization
     
     init?(_ json: [String: Any], dateFormatter: DateFormatter) {
+        guard let id = json["id"] as? Int else { return nil }
         guard let time = json["time"] as? String else { return nil }
         guard let dateString = json["date_string"] as? String else { return nil }
         let type = json["type"] as? String
@@ -30,6 +32,7 @@ struct RecordStruct {
         guard let pairName = json["pair_name"] as? String else { return nil }
         let reason = json["reason"] as? String
         
+        self.id = id
         self.time = time
         self.dateString = dateString
         self.type = type
