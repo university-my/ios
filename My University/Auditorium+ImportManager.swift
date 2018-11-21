@@ -118,6 +118,11 @@ extension Auditorium {
             let auditoriumEntity = AuditoriumEntity(context: context)
             auditoriumEntity.id = parsedAuditorium.id
             auditoriumEntity.name = parsedAuditorium.name
+            if let firstCharacter = parsedAuditorium.name.first {
+                auditoriumEntity.firstSymbol = String(firstCharacter)
+            } else {
+                auditoriumEntity.firstSymbol = ""
+            }
         }
     }
     
