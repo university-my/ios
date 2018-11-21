@@ -42,7 +42,7 @@ extension Auditorium {
                 if let error = error {
                     self.completionHandler?(error)
                 } else {
-                    
+                    self.serializeJSON()
                 }
             }
         }

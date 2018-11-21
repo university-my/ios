@@ -11,71 +11,118 @@ import UIKit
 
 class SearchTableViewController: UITableViewController {
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Sear Bar and Search Results Controller
+        configureSearchControllers()
 
         // Auditoriums
         loadAuditoriums()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Always display Search Bar.
+        navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
+    // MARK: - Search
+    
+    /// Search controller to help us with filtering.
+    var searchController: UISearchController!
+    
+    /// Secondary search results table view.
+    var resultsTableController: SearchResultsTableViewController!
+    
+    private func configureSearchControllers() {
+        
+        resultsTableController = storyboard!.instantiateViewController(withIdentifier: "SearchResultsTableViewController") as? SearchResultsTableViewController
+        
+        // We want ourselves to be the delegate for this filtered table so didSelectRowAtIndexPath(_:) is called for both tables.
+        resultsTableController.tableView.delegate = self
+        
+        // Setup the Search Controller.
+        searchController = UISearchController(searchResultsController: resultsTableController)
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.tintColor = .orange
+        searchController.searchBar.keyboardAppearance = .dark
+        
+        // Add Search Controller to the navigation item (iOS 11).
+        navigationItem.searchController = searchController
+        
+        // Setup the Search Bar
+        searchController.searchBar.setValue(NSLocalizedString("Cancel", comment: "Cancel search"), forKey:"_cancelButtonText")
+        searchController.searchBar.placeholder = NSLocalizedString("Search", comment: "Placeholder in search controller")
+        
+        /*
+         Search is now just presenting a view controller. As such, normal view controller
+         presentation semantics apply. Namely that presentation will walk up the view controller
+         hierarchy until it finds the root view controller or one that defines a presentation context.
+         */
+        definesPresentationContext = true
+        
+        searchController.isActive = true
+        searchController.searchBar.becomeFirstResponder()
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return auditoriumsResultsController?.sections?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        let section = auditoriumsResultsController?.sections?[section]
+        return section?.numberOfObjects ?? 0
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "searchResultsCell", for: indexPath)
+        
+        // Configure cell
+        if let group = auditoriumsResultsController?.object(at: indexPath) {
+            cell.textLabel?.text = group.name
+        }
+        
         return cell
     }
-    */
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return auditoriumsResultsController?.sections?[section].name
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    // MARK: - Table view delegate
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return namesOfSections
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = .sectionBackgroundColor
+            headerView.backgroundView = backgroundView
+            headerView.textLabel?.textColor = UIColor.lightText
+        }
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = .cellSelectionColor
+        cell.selectedBackgroundView = bgColorView
+    }
 
     /*
     // MARK: - Navigation
@@ -151,10 +198,23 @@ class SearchTableViewController: UITableViewController {
         do {
             auditoriumsResultsController?.delegate = self
             try auditoriumsResultsController?.performFetch()
+            collectNamesOfSections()
         }
         catch {
             print("Error in the fetched results controller: \(error).")
         }
+    }
+    
+    private var namesOfSections: [String] = []
+    
+    private func collectNamesOfSections() {
+        var names: [String] = []
+        if let sections = auditoriumsResultsController?.sections {
+            for section in sections {
+                names.append(section.name)
+            }
+        }
+        namesOfSections = names
     }
 }
 
@@ -163,7 +223,15 @@ class SearchTableViewController: UITableViewController {
 extension SearchTableViewController: NSFetchedResultsControllerDelegate {
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        print(#function)
-        print(controller)
+        tableView.reloadData()
+    }
+}
+
+// MARK: - UISearchResultsUpdating
+
+extension SearchTableViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
     }
 }
