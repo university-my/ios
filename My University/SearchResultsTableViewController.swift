@@ -12,7 +12,10 @@ class SearchResultsTableViewController: UITableViewController {
     
     // MARK: - Properties
     
+    var dataSourceType: DataSourceType = .auditoriums
+    
     var filteredGroups: [GroupEntity] = []
+    var filteredAuditoriums: [AuditoriumEntity] = []
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -36,14 +39,27 @@ class SearchResultsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredGroups.count
+        switch dataSourceType {
+        case .auditoriums:
+            return filteredAuditoriums.count
+        case .groups:
+            return filteredGroups.count
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchResultsTableCell", for: indexPath)
         
-        let group = filteredGroups[indexPath.row]
-        cell.textLabel?.text = group.name
+        switch dataSourceType {
+            
+        case .auditoriums:
+            let auditoriun = filteredAuditoriums[indexPath.row]
+            cell.textLabel?.text = auditoriun.name
+            
+        case .groups:
+            let group = filteredGroups[indexPath.row]
+            cell.textLabel?.text = group.name
+        }
         
         return cell
     }

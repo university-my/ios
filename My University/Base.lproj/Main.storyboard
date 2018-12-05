@@ -10,57 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--All groups-->
-        <scene sceneID="rri-BK-OuF">
-            <objects>
-                <tableViewController storyboardIdentifier="MainTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UbS-ZJ-tQT" customClass="MainTableViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Of0-S0-ueO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" name="Background Color"/>
-                        <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
-                        <color key="separatorColor" name="Separator Color"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableCell" textLabel="uWT-0r-H6j" detailTextLabel="4dg-RY-D7O" style="IBUITableViewCellStyleValue1" id="Wg5-Vr-ufP">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wg5-Vr-ufP" id="lL1-CG-5pr">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uWT-0r-H6j">
-                                            <rect key="frame" x="16" y="12" width="33.5" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4dg-RY-D7O">
-                                            <rect key="frame" x="315" y="12" width="44" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" name="Background Color"/>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="UbS-ZJ-tQT" id="kKU-mN-24y"/>
-                            <outlet property="delegate" destination="UbS-ZJ-tQT" id="MNr-Kk-2D3"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="All groups" id="F0z-JD-anE"/>
-                    <connections>
-                        <segue destination="lci-e7-UWA" kind="show" identifier="showDetailed" id="hII-aW-IyF"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6lR-GW-8fk" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1424.8" y="227.13643178410797"/>
-        </scene>
         <!--History-->
         <scene sceneID="1aj-Ww-tcD">
             <objects>
@@ -107,7 +56,7 @@
             </objects>
             <point key="canvasLocation" x="-2100" y="1727"/>
         </scene>
-        <!--Search Table View Controller-->
+        <!--Search-->
         <scene sceneID="6tq-mc-hAd">
             <objects>
                 <tableViewController storyboardIdentifier="SearchTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qa9-ST-Dpk" customClass="SearchTableViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
@@ -115,6 +64,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="Background Color"/>
+                        <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
                         <color key="separatorColor" name="Separator Color"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResultsCell" textLabel="mJY-jC-A0P" style="IBUITableViewCellStyleDefault" id="pxi-C2-2cl">
@@ -141,8 +91,7 @@
                             <outlet property="delegate" destination="qa9-ST-Dpk" id="Kjj-q2-MXC"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="7N0-mc-ebX">
-                        <nil key="title"/>
+                    <navigationItem key="navigationItem" title="Search" id="7N0-mc-ebX">
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="hAI-I2-CNE">
                             <rect key="frame" x="100" y="7" width="175" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -150,18 +99,25 @@
                                 <segment title="Groups"/>
                                 <segment title="Auditoriums"/>
                             </segments>
+                            <connections>
+                                <action selector="typeChanged:" destination="qa9-ST-Dpk" eventType="valueChanged" id="JXs-MX-ywQ"/>
+                            </connections>
                         </segmentedControl>
                     </navigationItem>
+                    <connections>
+                        <outlet property="segmentedControl" destination="hAI-I2-CNE" id="nvq-fA-VZL"/>
+                        <segue destination="lci-e7-UWA" kind="show" identifier="showDetailed" id="Qyy-kV-8ui"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q6K-CH-VUo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1119.2" y="2028.9355322338831"/>
         </scene>
-        <!--History-->
+        <!--Navigation Controller-->
         <scene sceneID="bQ4-8F-TaY">
             <objects>
                 <navigationController storyboardIdentifier="HistoryNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jf2-Am-oov" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="History" image="History Regular" landscapeImage="History Compact" id="cNm-uW-1gV"/>
+                    <tabBarItem key="tabBarItem" systemItem="history" id="cNm-uW-1gV"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="agb-6v-1Td">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -213,7 +169,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lXS-hW-sH9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2335" y="227"/>
+            <point key="canvasLocation" x="2004" y="2029"/>
         </scene>
         <!--Detail Table View Controller-->
         <scene sceneID="roI-g8-9r5">
@@ -260,7 +216,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tA6-LM-gbf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1425" y="1013"/>
+            <point key="canvasLocation" x="180" y="2964"/>
         </scene>
         <!--About us-->
         <scene sceneID="k6x-wc-wgc">
@@ -447,26 +403,6 @@
             </objects>
             <point key="canvasLocation" x="-1777" y="581"/>
         </scene>
-        <!--Groups-->
-        <scene sceneID="EbB-bJ-bo9">
-            <objects>
-                <navigationController storyboardIdentifier="GroupsNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kDr-Od-RsA" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Groups" image="Crowd Regular" landscapeImage="Crowd Compact" id="NdO-qa-j8C"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="g7x-0H-sbF">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="UbS-ZJ-tQT" kind="relationship" relationship="rootViewController" id="VGw-Ag-dtc"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bS7-gV-jXv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="607" y="227"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="hO1-LE-mUz">
             <objects>
@@ -489,12 +425,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Crowd Compact" width="13.600000381469727" height="13.600000381469727"/>
-        <image name="Crowd Regular" width="18.399999618530273" height="18.399999618530273"/>
         <image name="FB-f-Logo__blue_29" width="58" height="58"/>
         <image name="Hear Image" width="54" height="54"/>
-        <image name="History Compact" width="13.600000381469727" height="13.600000381469727"/>
-        <image name="History Regular" width="18.399999618530273" height="18.399999618530273"/>
         <image name="Messenger_Icon_29" width="58" height="58"/>
         <image name="Telegram Logo_29" width="58" height="58"/>
         <namedColor name="Background Color">
@@ -508,6 +440,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hII-aW-IyF"/>
+        <segue reference="Qyy-kV-8ui"/>
     </inferredMetricsTieBreakers>
 </document>

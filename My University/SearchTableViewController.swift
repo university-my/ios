@@ -9,6 +9,10 @@
 import CoreData
 import UIKit
 
+enum DataSourceType: Int {
+    case groups = 0, auditoriums
+}
+
 class SearchTableViewController: UITableViewController {
     
     // MARK: - Properties
@@ -37,8 +41,8 @@ class SearchTableViewController: UITableViewController {
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
 
-        // Auditoriums
-        loadAuditoriums()
+        // Loading...
+        loadCurrentDataSource()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -90,17 +94,17 @@ class SearchTableViewController: UITableViewController {
     // MARK: - Pull to refresh
     
     @objc func refreshContent() {
-//        guard !searchController.isActive else {
-//            refreshControl?.endRefreshing()
-//            return
-//        }
-//        importGroups()
+        guard !searchController.isActive else {
+            refreshControl?.endRefreshing()
+            return
+        }
+        loadCurrentDataSource()
     }
     
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        performSegue(withIdentifier: "showDetailed", sender: nil)
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -118,15 +122,32 @@ class SearchTableViewController: UITableViewController {
         cell.selectedBackgroundView = bgColorView
     }
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showDetailed", let detailTableViewController = segue.destination as? DetailTableViewController {
+            
+            switch dataSourceType {
+                
+            case .groups:
+                var selectedGroup: GroupEntity?
+                if tableView == self.tableView, let indexPath = tableView.indexPathForSelectedRow {
+                    // From main table view
+                    selectedGroup = groupDataSource.fetchedResultsController?.object(at: indexPath)
+                    
+                } else if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
+                    // From search results controller
+                    selectedGroup = resultsTableController.filteredGroups[indexPath.row]
+                }
+                detailTableViewController.group = selectedGroup
+                
+            case .auditoriums:
+                // TODO: inject auditoriun
+                break
+            }
+        }
     }
-    */
     
     // MARK: - Auditoriums
     
@@ -146,6 +167,7 @@ class SearchTableViewController: UITableViewController {
             }
         } else {
             tableView.reloadData()
+            refreshControl?.endRefreshing()
         }
     }
     
@@ -167,6 +189,34 @@ class SearchTableViewController: UITableViewController {
             }
         } else {
             tableView.reloadData()
+            refreshControl?.endRefreshing()
+        }
+    }
+    
+    // MARK: - UISegmentedControl
+    
+    var dataSourceType: DataSourceType {
+        get {
+            if let type = DataSourceType(rawValue: segmentedControl.selectedSegmentIndex) {
+                return type
+            } else {
+                return .groups
+            }
+        }
+    }
+    
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
+    @IBAction func typeChanged(_ sender: Any) {
+        loadCurrentDataSource()
+    }
+    
+    private func loadCurrentDataSource() {
+        switch dataSourceType {
+        case .auditoriums:
+            loadAuditoriums()
+        case .groups:
+            loadGroups()
         }
     }
 }
@@ -185,6 +235,41 @@ extension SearchTableViewController: NSFetchedResultsControllerDelegate {
 extension SearchTableViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
+        // Strip out all the leading and trailing spaces.
+        guard let text = searchController.searchBar.text else { return }
+        let searchString = text.trimmingCharacters(in: .whitespaces)
         
+        // Name field matching.
+        let nameExpression = NSExpression(forKeyPath: "name")
+        let searchStringExpression = NSExpression(forConstantValue: searchString)
+        
+        let nameSearchComparisonPredicate = NSComparisonPredicate(leftExpression: nameExpression, rightExpression: searchStringExpression, modifier: .direct, type: .contains, options: .caseInsensitive)
+        
+        switch dataSourceType {
+            
+        case .auditoriums:
+            // Update the filtered array based on the search text.
+            guard let searchResults = auditoriumDataSource.fetchedResultsController?.fetchedObjects else { return }
+            
+            let filteredResults = searchResults.filter { nameSearchComparisonPredicate.evaluate(with: $0) }
+            
+            // Hand over the filtered results to our search results table.
+            if let resultsController = searchController.searchResultsController as? SearchResultsTableViewController {
+                resultsController.filteredAuditoriums = filteredResults
+                resultsController.tableView.reloadData()
+            }
+            
+        case .groups:
+            // Update the filtered array based on the search text.
+            guard let searchResults = groupDataSource.fetchedResultsController?.fetchedObjects else { return }
+            
+            let filteredResults = searchResults.filter { nameSearchComparisonPredicate.evaluate(with: $0) }
+            
+            // Hand over the filtered results to our search results table.
+            if let resultsController = searchController.searchResultsController as? SearchResultsTableViewController {
+                resultsController.filteredGroups = filteredResults
+                resultsController.tableView.reloadData()
+            }
+        }
     }
 }
