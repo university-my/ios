@@ -1,15 +1,17 @@
 //
-//  DetailTableViewController.swift
-//  Schedule
+//  AuditoriumScheduleTableViewController.swift
+//  My University
 //
-//  Created by Yura Voevodin on 19.11.17.
-//  Copyright © 2017 Yura Voevodin. All rights reserved.
+//  Created by Yura Voevodin on 12/8/18.
+//  Copyright © 2018 Yura Voevodin. All rights reserved.
 //
 
 import CoreData
 import UIKit
 
-class DetailTableViewController: UITableViewController {
+class AuditoriumScheduleTableViewController: UITableViewController {
+
+    typealias Importer = Record.Importer.Auditorium
     
     // MARK: - Properties
     
@@ -36,12 +38,16 @@ class DetailTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let group = group {
-            // Name of the Group.
-            title = group.name
+        if let auditorium = auditorium {
+            // Title
+            title = auditorium.name
             
             // Fetch old records first.
             performFetch()
+            
+            // TODO: Import records only if:
+            // 1. Records not found
+            // 2. Date of last record less than current date
             
             // Import records.
             importRecords()
@@ -50,20 +56,20 @@ class DetailTableViewController: UITableViewController {
     
     // MARK: - Import Records
     
-    var group: GroupEntity?
-    var groupID: Int64?
+    var auditorium: AuditoriumEntity?
+    var auditoriumID: Int64?
     
-    private var recordsImportManager: RecordsImportManager?
+    private var recordsImporter: Importer?
     
     private func importRecords() {
         // Do nothing without CoreData.
         guard let context = viewContext else { return }
-        guard let forGroup = group else { return }
+        guard let auditorium = auditorium else { return }
         
         // Download records for Group from backend and save to database.
-        recordsImportManager = RecordsImportManager(context: context, group: forGroup)
+        recordsImporter = Importer(context: context, auditorium: auditorium)
         DispatchQueue.global().async {
-            self.recordsImportManager?.importRecords({ (error) in
+            self.recordsImporter?.importRecords({ (error) in
                 
                 DispatchQueue.main.async {
                     if let error = error {
@@ -131,6 +137,9 @@ class DetailTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let headerView = view as? UITableViewHeaderFooterView {
+            
+            // TODO: Try use appearance
+            
             let backgroundView = UIView()
             backgroundView.backgroundColor = .sectionBackgroundColor
             headerView.backgroundView = backgroundView
@@ -139,11 +148,13 @@ class DetailTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        // TODO: Try use appearance
+        
         let bgColorView = UIView()
         bgColorView.backgroundColor = .cellSelectionColor
         cell.selectedBackgroundView = bgColorView
     }
-
     
     // MARK: - NSFetchedResultsController
     
@@ -153,13 +164,13 @@ class DetailTableViewController: UITableViewController {
     }()
     
     private lazy var fetchedResultsController: NSFetchedResultsController<RecordEntity>? = {
-        guard let group = group else { return nil }
+        guard let auditorium = auditorium else { return nil }
         let request: NSFetchRequest<RecordEntity> = RecordEntity.fetchRequest()
         request.sortDescriptors = [
             NSSortDescriptor(key: "dateString", ascending: true),
             NSSortDescriptor(key: "time", ascending: true)
         ]
-        request.predicate = NSPredicate(format: "group == %@", group)
+        request.predicate = NSPredicate(format: "auditorium == %@", auditorium)
         request.fetchBatchSize = 20
         
         if let context = viewContext {
@@ -188,8 +199,7 @@ class DetailTableViewController: UITableViewController {
                 }
                 sectionsTitles = newSectionsTitles
             }
-        }
-        catch {
+        } catch {
             print("Error in the fetched results controller: \(error).")
         }
     }
@@ -197,35 +207,9 @@ class DetailTableViewController: UITableViewController {
 
 // MARK: - NSFetchedResultsControllerDelegate
 
-extension DetailTableViewController: NSFetchedResultsControllerDelegate {
+extension AuditoriumScheduleTableViewController: NSFetchedResultsControllerDelegate {
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.reloadData()
-    }
-}
-
-// MARK: - UIStateRestoring
-
-extension DetailTableViewController {
-    
-    override func encodeRestorableState(with coder: NSCoder) {
-        if let group = group {
-            coder.encode(group.id, forKey: "groupID")
-        }
-        super.encodeRestorableState(with: coder)
-    }
-
-    override func decodeRestorableState(with coder: NSCoder) {
-        groupID = coder.decodeInt64(forKey: "groupID")
-
-        super.decodeRestorableState(with: coder)
-    }
-
-    override func applicationFinishedRestoringState() {
-        if let id = groupID, let context = viewContext {
-            if let group = GroupEntity.fetch(id: id, context: context) {
-                self.group = group
-            }
-        }
     }
 }

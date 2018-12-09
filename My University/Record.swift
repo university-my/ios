@@ -43,4 +43,9 @@ struct Record {
         // Date
         self.date = dateFormatter.date(from: dateString)
     }
+    
+    /// Generic struct for impoters of Record
+    struct Importer {
+        
+    }
 }

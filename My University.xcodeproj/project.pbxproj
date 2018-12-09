@@ -10,7 +10,6 @@
 		C22A2E551FC7644600587463 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A2E541FC7644600587463 /* Record.swift */; };
 		C22A2E581FC7664000587463 /* RecordEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A2E561FC7664000587463 /* RecordEntity+CoreDataClass.swift */; };
 		C22A2E591FC7664000587463 /* RecordEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A2E571FC7664000587463 /* RecordEntity+CoreDataProperties.swift */; };
-		C22D7F771FC1DAAC007D44BC /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22D7F761FC1DAAC007D44BC /* DetailTableViewController.swift */; };
 		C250C1831FBCD1CA00C90B53 /* AboutUsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C250C1821FBCD1CA00C90B53 /* AboutUsTableViewController.swift */; };
 		C280894B1FB8D54A002B5676 /* GroupEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28089491FB8D54A002B5676 /* GroupEntity+CoreDataClass.swift */; };
 		C280894C1FB8D54A002B5676 /* GroupEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C280894A1FB8D54A002B5676 /* GroupEntity+CoreDataProperties.swift */; };
@@ -24,9 +23,12 @@
 		C2C0E9B01FB8CDA00012FA9C /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C0E9AF1FB8CDA00012FA9C /* Group.swift */; };
 		C2C76A2920023E3700BFF3D4 /* GroupsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C76A2820023E3700BFF3D4 /* GroupsAPIClient.swift */; };
 		C2C76A2E2002440E00BFF3D4 /* GroupsImportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C76A2D2002440E00BFF3D4 /* GroupsImportManager.swift */; };
-		C2C76A3020027EE200BFF3D4 /* RecordsImportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C76A2F20027EE200BFF3D4 /* RecordsImportManager.swift */; };
-		C2C76A3220027F4F00BFF3D4 /* RecordsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C76A3120027F4F00BFF3D4 /* RecordsAPIClient.swift */; };
 		DE162A8821988CEB000ED4B3 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE162A8721988CEB000ED4B3 /* SearchTableViewController.swift */; };
+		DE18941421BC316A00C7F9DB /* Record+Importer+Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941321BC316900C7F9DB /* Record+Importer+Group.swift */; };
+		DE18941621BC333B00C7F9DB /* Record+Importer+Auditorium.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941521BC333B00C7F9DB /* Record+Importer+Auditorium.swift */; };
+		DE18941921BC349400C7F9DB /* Record+NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941821BC349400C7F9DB /* Record+NetworkClient.swift */; };
+		DE18941C21BC3A3900C7F9DB /* GroupScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941B21BC3A3900C7F9DB /* GroupScheduleTableViewController.swift */; };
+		DE18941E21BC3AD100C7F9DB /* AuditoriumScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941D21BC3AD100C7F9DB /* AuditoriumScheduleTableViewController.swift */; };
 		DE3B565D21823912008A77D1 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE3B565C21823912008A77D1 /* Colors.xcassets */; };
 		DE3B566021823A97008A77D1 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3B565F21823A97008A77D1 /* UIColor.swift */; };
 		DE4AA07121A5DF0500E06FEA /* AuditoriumDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AA07021A5DF0500E06FEA /* AuditoriumDataSource.swift */; };
@@ -45,7 +47,6 @@
 		C22A2E541FC7644600587463 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		C22A2E561FC7664000587463 /* RecordEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C22A2E571FC7664000587463 /* RecordEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		C22D7F761FC1DAAC007D44BC /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
 		C250C1821FBCD1CA00C90B53 /* AboutUsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsTableViewController.swift; sourceTree = "<group>"; };
 		C28089491FB8D54A002B5676 /* GroupEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GroupEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C280894A1FB8D54A002B5676 /* GroupEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GroupEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -61,11 +62,14 @@
 		C2C0E9AF1FB8CDA00012FA9C /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		C2C76A2820023E3700BFF3D4 /* GroupsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsAPIClient.swift; sourceTree = "<group>"; };
 		C2C76A2D2002440E00BFF3D4 /* GroupsImportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsImportManager.swift; sourceTree = "<group>"; };
-		C2C76A2F20027EE200BFF3D4 /* RecordsImportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsImportManager.swift; sourceTree = "<group>"; };
-		C2C76A3120027F4F00BFF3D4 /* RecordsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsAPIClient.swift; sourceTree = "<group>"; };
 		DE066B242185003A0054DC03 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		DE066B252185003A0054DC03 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Main.strings; sourceTree = "<group>"; };
 		DE162A8721988CEB000ED4B3 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
+		DE18941321BC316900C7F9DB /* Record+Importer+Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record+Importer+Group.swift"; sourceTree = "<group>"; };
+		DE18941521BC333B00C7F9DB /* Record+Importer+Auditorium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record+Importer+Auditorium.swift"; sourceTree = "<group>"; };
+		DE18941821BC349400C7F9DB /* Record+NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record+NetworkClient.swift"; sourceTree = "<group>"; };
+		DE18941B21BC3A3900C7F9DB /* GroupScheduleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupScheduleTableViewController.swift; sourceTree = "<group>"; };
+		DE18941D21BC3AD100C7F9DB /* AuditoriumScheduleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditoriumScheduleTableViewController.swift; sourceTree = "<group>"; };
 		DE3B565C21823912008A77D1 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		DE3B565F21823A97008A77D1 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		DE4AA07021A5DF0500E06FEA /* AuditoriumDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditoriumDataSource.swift; sourceTree = "<group>"; };
@@ -96,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				C29FF4CF2002384D00B50299 /* API Clients */,
+				DE18941821BC349400C7F9DB /* Record+NetworkClient.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -103,7 +108,6 @@
 		C29FF4CF2002384D00B50299 /* API Clients */ = {
 			isa = PBXGroup;
 			children = (
-				C2C76A3120027F4F00BFF3D4 /* RecordsAPIClient.swift */,
 				C2C76A2820023E3700BFF3D4 /* GroupsAPIClient.swift */,
 				DE584C592198660A0099415E /* Auditorium+APIClient.swift */,
 			);
@@ -137,7 +141,7 @@
 				DE472C7221B842A2003AE86D /* History */,
 				DE4AA06F21A5DEDC00E06FEA /* Search */,
 				DE472C7321B84313003AE86D /* About Us */,
-				DE472C7421B84328003AE86D /* Detailed */,
+				DE472C7421B84328003AE86D /* Schedule */,
 				C2B5CE291EF06DFC0066DB30 /* Storyboards */,
 				C2C0E9AE1FB8CD870012FA9C /* Structures */,
 				C2B5CE2A1EF06E0E0066DB30 /* Supporting Files */,
@@ -195,10 +199,19 @@
 			isa = PBXGroup;
 			children = (
 				C2C76A2D2002440E00BFF3D4 /* GroupsImportManager.swift */,
-				C2C76A2F20027EE200BFF3D4 /* RecordsImportManager.swift */,
 				DE584C5B219869990099415E /* Auditorium+ImportManager.swift */,
+				DE18941721BC336700C7F9DB /* Records */,
 			);
 			name = Import;
+			sourceTree = "<group>";
+		};
+		DE18941721BC336700C7F9DB /* Records */ = {
+			isa = PBXGroup;
+			children = (
+				DE18941521BC333B00C7F9DB /* Record+Importer+Auditorium.swift */,
+				DE18941321BC316900C7F9DB /* Record+Importer+Group.swift */,
+			);
+			name = Records;
 			sourceTree = "<group>";
 		};
 		DE3B565E21823A7F008A77D1 /* Extensions */ = {
@@ -225,12 +238,13 @@
 			name = "About Us";
 			sourceTree = "<group>";
 		};
-		DE472C7421B84328003AE86D /* Detailed */ = {
+		DE472C7421B84328003AE86D /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
-				C22D7F761FC1DAAC007D44BC /* DetailTableViewController.swift */,
+				DE18941D21BC3AD100C7F9DB /* AuditoriumScheduleTableViewController.swift */,
+				DE18941B21BC3A3900C7F9DB /* GroupScheduleTableViewController.swift */,
 			);
-			name = Detailed;
+			name = Schedule;
 			sourceTree = "<group>";
 		};
 		DE4AA06F21A5DEDC00E06FEA /* Search */ = {
@@ -322,19 +336,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE18941621BC333B00C7F9DB /* Record+Importer+Auditorium.swift in Sources */,
 				DE584C5A2198660A0099415E /* Auditorium+APIClient.swift in Sources */,
 				C2B922C32003DB6E001A8E1D /* HistoryTableViewController.swift in Sources */,
+				DE18941421BC316A00C7F9DB /* Record+Importer+Group.swift in Sources */,
+				DE18941921BC349400C7F9DB /* Record+NetworkClient.swift in Sources */,
 				C22A2E551FC7644600587463 /* Record.swift in Sources */,
 				C2B5CDFB1EEF0E750066DB30 /* Schedule.xcdatamodeld in Sources */,
 				C293559E1FBE246000071719 /* SearchResultsTableViewController.swift in Sources */,
 				C250C1831FBCD1CA00C90B53 /* AboutUsTableViewController.swift in Sources */,
-				C2C76A3220027F4F00BFF3D4 /* RecordsAPIClient.swift in Sources */,
-				C22D7F771FC1DAAC007D44BC /* DetailTableViewController.swift in Sources */,
 				DE3B566021823A97008A77D1 /* UIColor.swift in Sources */,
 				DE584C54219860E80099415E /* Auditorium.swift in Sources */,
 				DE584C5F21986E740099415E /* AuditoriumEntity+CoreDataClass.swift in Sources */,
 				C280894C1FB8D54A002B5676 /* GroupEntity+CoreDataProperties.swift in Sources */,
-				C2C76A3020027EE200BFF3D4 /* RecordsImportManager.swift in Sources */,
+				DE18941E21BC3AD100C7F9DB /* AuditoriumScheduleTableViewController.swift in Sources */,
 				DE584C5C219869990099415E /* Auditorium+ImportManager.swift in Sources */,
 				DE4AA07121A5DF0500E06FEA /* AuditoriumDataSource.swift in Sources */,
 				DE4AA07321A5E31900E06FEA /* GroupDataSource.swift in Sources */,
@@ -347,6 +362,7 @@
 				DE584C6021986E740099415E /* AuditoriumEntity+CoreDataProperties.swift in Sources */,
 				DE162A8821988CEB000ED4B3 /* SearchTableViewController.swift in Sources */,
 				C22A2E581FC7664000587463 /* RecordEntity+CoreDataClass.swift in Sources */,
+				DE18941C21BC3A3900C7F9DB /* GroupScheduleTableViewController.swift in Sources */,
 				C22A2E591FC7664000587463 /* RecordEntity+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

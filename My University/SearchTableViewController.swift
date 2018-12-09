@@ -104,7 +104,12 @@ class SearchTableViewController: UITableViewController {
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "showDetailed", sender: nil)
+        switch dataSourceType {
+        case .auditoriums:
+            performSegue(withIdentifier: "showAuditoriumSchedule", sender: nil)
+        case .groups:
+            performSegue(withIdentifier: "showGroupSchedule", sender: nil)
+        }
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -126,26 +131,32 @@ class SearchTableViewController: UITableViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetailed", let detailTableViewController = segue.destination as? DetailTableViewController {
+        
+        if segue.identifier == "showGroupSchedule", let destination = segue.destination as? GroupScheduleTableViewController {
             
-            switch dataSourceType {
+            var selectedGroup: GroupEntity?
+            if tableView == self.tableView, let indexPath = tableView.indexPathForSelectedRow {
+                // From main table view
+                selectedGroup = groupDataSource.fetchedResultsController?.object(at: indexPath)
                 
-            case .groups:
-                var selectedGroup: GroupEntity?
-                if tableView == self.tableView, let indexPath = tableView.indexPathForSelectedRow {
-                    // From main table view
-                    selectedGroup = groupDataSource.fetchedResultsController?.object(at: indexPath)
-                    
-                } else if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
-                    // From search results controller
-                    selectedGroup = resultsTableController.filteredGroups[indexPath.row]
-                }
-                detailTableViewController.group = selectedGroup
-                
-            case .auditoriums:
-                // TODO: inject auditoriun
-                break
+            } else if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
+                // From search results controller
+                selectedGroup = resultsTableController.filteredGroups[indexPath.row]
             }
+            destination.group = selectedGroup
+            
+        } else if segue.identifier == "showAuditoriumSchedule", let destination = segue.destination as? AuditoriumScheduleTableViewController {
+            
+            var selectedAuditorium: AuditoriumEntity?
+            if tableView == self.tableView, let indexPath = tableView.indexPathForSelectedRow {
+                // From main table view
+                selectedAuditorium = auditoriumDataSource.fetchedResultsController?.object(at: indexPath)
+                
+            } else if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
+                // From search results controller
+                selectedAuditorium = resultsTableController.filteredAuditoriums[indexPath.row]
+            }
+            destination.auditorium = selectedAuditorium
         }
     }
     

@@ -81,7 +81,7 @@ class HistoryTableViewController: UITableViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showRecords", let detailTableViewController = segue.destination as? DetailTableViewController {
+        if segue.identifier == "showRecords", let detailTableViewController = segue.destination as? GroupScheduleTableViewController {
             if tableView == self.tableView, let indexPath = tableView.indexPathForSelectedRow {
                 let selectedGroup = fetchedResultsController?.object(at: indexPath)
                 detailTableViewController.group = selectedGroup
