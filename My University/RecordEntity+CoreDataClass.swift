@@ -13,4 +13,35 @@ import CoreData
 @objc(RecordEntity)
 public class RecordEntity: NSManagedObject {
 
+    var title: String {
+        var title = ""
+        // Name
+        if let name = name {
+            title = name
+        }
+        // Type
+        if let type = type, type.isEmpty == false {
+            if title.isEmpty {
+                title = type
+            } else {
+                title += "\n" + type
+            }
+        }
+        return title
+    }
+    
+    var detail: String {
+        var detail = ""
+        // Name and time
+        if let pairName = pairName, let time = time {
+            detail = pairName + " (\(time))"
+        } else if let time = time {
+            detail = "(\(time))"
+        }
+        // Auditorium
+        if let auditorium = auditorium, let name = auditorium.name {
+            detail += "\n" + name
+        }
+        return detail
+    }
 }

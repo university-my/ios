@@ -11,8 +11,6 @@ import UIKit
 
 class GroupScheduleTableViewController: UITableViewController {
     
-    typealias Importer = Record.Importer.Group
-    
     // MARK: - Properties
     
     private var dateFormatter: DateFormatter = {
@@ -46,7 +44,7 @@ class GroupScheduleTableViewController: UITableViewController {
             performFetch()
             
             // Import records.
-            importRecords()
+//            importRecords()
         }
     }
     
@@ -55,17 +53,19 @@ class GroupScheduleTableViewController: UITableViewController {
     var group: GroupEntity?
     var groupID: Int64?
     
-    private var recordsImporter: Importer?
+    private var importForGroup: Record.ImportForGroup?
     
     private func importRecords() {
         // Do nothing without CoreData.
-        guard let context = viewContext else { return }
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        guard let persistentContainer = appDelegate?.persistentContainer else { return }
+        
         guard let forGroup = group else { return }
         
         // Download records for Group from backend and save to database.
-        recordsImporter = Importer(context: context, group: forGroup)
+        importForGroup = Record.ImportForGroup(persistentContainer: persistentContainer, group: forGroup)
         DispatchQueue.global().async {
-            self.recordsImporter?.importRecords({ (error) in
+            self.importForGroup?.importRecords({ (error) in
                 
                 DispatchQueue.main.async {
                     if let error = error {
@@ -73,13 +73,26 @@ class GroupScheduleTableViewController: UITableViewController {
                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                         self.present(alert, animated: true)
                     }
+                    
+                    self.performFetch()
+                    self.tableView.reloadData()
                     self.refreshControl?.endRefreshing()
+                    self.updateButton.isEnabled = true
                 }
             })
         }
     }
     
     @objc func refreshContent() {
+        importRecords()
+    }
+    
+    // MARK: - Update
+    
+    @IBOutlet weak var updateButton: UIBarButtonItem!
+    
+    @IBAction func updateContent(_ sender: Any) {
+        updateButton.isEnabled = false
         importRecords()
     }
     
@@ -101,24 +114,10 @@ class GroupScheduleTableViewController: UITableViewController {
         // Configure the cell
         if let record = fetchedResultsController?.object(at: indexPath) {
             // Title
-            var title = ""
-            if let name = record.name {
-                title = name
-            }
-            if let type = record.type {
-                title += "\n" + type
-            }
-            cell.textLabel?.text = title
+            cell.textLabel?.text = record.title
             
             // Detail
-            if let pairName = record.pairName, let time = record.time {
-                let detailed = pairName + " (\(time))"
-                cell.detailTextLabel?.text = detailed
-            } else if let time = record.time {
-                cell.detailTextLabel?.text = "(\(time))"
-            } else {
-                cell.detailTextLabel?.text = nil
-            }
+            cell.detailTextLabel?.text = record.detail
         }
         return cell
     }
@@ -173,7 +172,6 @@ class GroupScheduleTableViewController: UITableViewController {
     
     private func performFetch() {
         do {
-            fetchedResultsController?.delegate = self
             try fetchedResultsController?.performFetch()
             
             // Generate title for sections
@@ -193,15 +191,6 @@ class GroupScheduleTableViewController: UITableViewController {
         catch {
             print("Error in the fetched results controller: \(error).")
         }
-    }
-}
-
-// MARK: - NSFetchedResultsControllerDelegate
-
-extension GroupScheduleTableViewController: NSFetchedResultsControllerDelegate {
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.reloadData()
     }
 }
 

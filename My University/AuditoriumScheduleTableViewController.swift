@@ -10,8 +10,6 @@ import CoreData
 import UIKit
 
 class AuditoriumScheduleTableViewController: UITableViewController {
-
-    typealias Importer = Record.Importer.Auditorium
     
     // MARK: - Properties
     
@@ -59,7 +57,7 @@ class AuditoriumScheduleTableViewController: UITableViewController {
     var auditorium: AuditoriumEntity?
     var auditoriumID: Int64?
     
-    private var recordsImporter: Importer?
+    private var importForAuditorium: Record.ImportForAuditorium?
     
     private func importRecords() {
         // Do nothing without CoreData.
@@ -67,9 +65,9 @@ class AuditoriumScheduleTableViewController: UITableViewController {
         guard let auditorium = auditorium else { return }
         
         // Download records for Group from backend and save to database.
-        recordsImporter = Importer(context: context, auditorium: auditorium)
+        importForAuditorium = Record.ImportForAuditorium(context: context, auditorium: auditorium)
         DispatchQueue.global().async {
-            self.recordsImporter?.importRecords({ (error) in
+            self.importForAuditorium?.importRecords({ (error) in
                 
                 DispatchQueue.main.async {
                     if let error = error {

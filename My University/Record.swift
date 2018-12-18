@@ -20,6 +20,7 @@ struct Record {
     let name: String?
     let pairName: String
     let reason: String?
+    let auditorium: Auditorium?
     
     // MARK: - Initialization
     
@@ -40,12 +41,14 @@ struct Record {
         self.pairName = pairName
         self.reason = reason
         
+        // Auditorium
+        if let auditoriumObject = json["auditorium"] as? [String: Any] {
+            self.auditorium = Auditorium(auditoriumObject)
+        } else {
+            self.auditorium = nil
+        }
+        
         // Date
         self.date = dateFormatter.date(from: dateString)
-    }
-    
-    /// Generic struct for impoters of Record
-    struct Importer {
-        
     }
 }

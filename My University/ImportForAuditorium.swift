@@ -1,16 +1,18 @@
 //
-//  Record+Importer+Group.swift
+//  ImportForAuditorium.swift
 //  My University
 //
-//  Created by Yura Voevodin on 12/8/18.
+//  Created by Yura Voevodin on 12/9/18.
 //  Copyright © 2018 Yura Voevodin. All rights reserved.
 //
 
 import CoreData
 
-extension Record.Importer {
+extension Record {
     
-    class Group {
+    class ImportForAuditorium {
+        
+        // TODO: Refactor this class
         
         typealias NetworkClient = Record.NetworkClient
         
@@ -20,7 +22,7 @@ extension Record.Importer {
         private let networkClient: NetworkClient
         private var completionHandler: ((_ error: Error?) -> ())?
         private let context: NSManagedObjectContext
-        private let group: GroupEntity
+        private let auditorium: AuditoriumEntity
         
         private var dateFormatter: DateFormatter = {
             let dateFormatter = DateFormatter()
@@ -31,16 +33,15 @@ extension Record.Importer {
         
         // MARK: - Initialization
         
-        init?(context: NSManagedObjectContext, group: GroupEntity) {
+        init?(context: NSManagedObjectContext, auditorium: AuditoriumEntity) {
             // Cache file
             let cachesFolder = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-            guard let cacheFile = cachesFolder?.appendingPathComponent("group_records.json") else { return nil }
+            guard let cacheFile = cachesFolder?.appendingPathComponent("auditorium_records.json") else { return nil }
             self.cacheFile = cacheFile
             
             self.context = context
             
-            // API client
-            self.group = group
+            self.auditorium = auditorium
             networkClient = NetworkClient(cacheFile: self.cacheFile)
         }
         
@@ -49,7 +50,7 @@ extension Record.Importer {
         func importRecords(_ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            networkClient.downloadRecords(groupID: group.id) { (error) in
+            networkClient.downloadRecords(auditoriumID: auditorium.id) { (error) in
                 if let error = error {
                     self.completionHandler?(error)
                 } else {
@@ -70,8 +71,8 @@ extension Record.Importer {
             }
             do {
                 let json = try JSONSerialization.jsonObject(with: stream, options: []) as? [String: Any]
-                if let group = json?["group"] as? [String: Any],
-                    let records = group["records"] as? [[String: Any]] {
+                if let auditorium = json?["auditorium"] as? [String: Any],
+                    let records = auditorium["records"] as? [[String: Any]] {
                     
                     // Finish if no records in JSON.
                     if records.isEmpty {
@@ -95,7 +96,7 @@ extension Record.Importer {
         
         private func batchDeleteRecords() {
             let fetchRequest: NSFetchRequest<NSFetchRequestResult> = RecordEntity.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "group == %@", group)
+            fetchRequest.predicate = NSPredicate(format: "auditorium == %@", auditorium)
             let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
             deleteRequest.resultType = .resultTypeObjectIDs
             do {
@@ -147,14 +148,12 @@ extension Record.Importer {
             recordEntity.id = NSNumber(value: parsedRecord.id).int64Value
             recordEntity.date = parsedRecord.date
             recordEntity.dateString = parsedRecord.dateString
-            recordEntity.group = group
+            recordEntity.auditorium = auditorium
             recordEntity.pairName = parsedRecord.pairName
             recordEntity.name = parsedRecord.name
             recordEntity.reason = parsedRecord.reason
             recordEntity.time = parsedRecord.time
             recordEntity.type = parsedRecord.type
         }
-        
-        
     }
 }
