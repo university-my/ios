@@ -61,14 +61,15 @@ class AuditoriumDataSource: NSObject {
     
     // MARK: - Import Auditoriums
     
-    private var auditoriumsImportManager: Auditorium.ImportManager?
+    private var auditoriumsImportManager: Auditorium.Import?
     
     /// Import Auditoriums from backend
     func importAuditoriums(_ completion: @escaping ((_ error: Error?) -> ())) {
         // Do nothing without CoreData.
-        guard let context = viewContext else { return }
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        guard let persistentContainer = appDelegate?.persistentContainer else { return }
         
-        auditoriumsImportManager = Auditorium.ImportManager(context: context)
+        auditoriumsImportManager = Auditorium.Import(persistentContainer: persistentContainer)
         DispatchQueue.global().async { [weak self] in
             
             self?.auditoriumsImportManager?.importAuditoriums({ (error) in

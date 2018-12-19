@@ -1,16 +1,16 @@
 //
-//  Auditorium+APIClient.swift
+//  Group+NetworkClient.swift
 //  My University
 //
-//  Created by Yura Voevodin on 11/11/18.
+//  Created by Yura Voevodin on 12/19/18.
 //  Copyright © 2018 Yura Voevodin. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-extension Auditorium {
+extension Group {
     
-    class APIClient {
+    class NetworkClient {
         
         // MARK: - Properties
         
@@ -23,25 +23,17 @@ extension Auditorium {
             self.cacheFile = cacheFile
         }
         
-        // MARK: - Download Auditoriums
+        // MARK: - Download Groups
         
-        func downloadAuditoriums(_ completion: @escaping ((_ error: Error?) -> ())) {
+        func downloadGroups(_ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            guard let url = URL(string: "https://sumdubot.voevodin-yura.com/auditoriums") else {
+            guard let url = URL(string: "https://sumdubot.voevodin-yura.com/groups") else {
                 completionHandler?(nil)
                 return
             }
             
-            DispatchQueue.main.async {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = true
-            }
-            
             let task = URLSession.shared.downloadTask(with: url) { (url, response, error) in
-                
-                DispatchQueue.main.async {
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                }
                 
                 if let error = error {
                     self.completionHandler?(error)

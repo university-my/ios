@@ -61,11 +61,13 @@ class AuditoriumScheduleTableViewController: UITableViewController {
     
     private func importRecords() {
         // Do nothing without CoreData.
-        guard let context = viewContext else { return }
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        guard let persistentContainer = appDelegate?.persistentContainer else { return }
+        
         guard let auditorium = auditorium else { return }
         
         // Download records for Group from backend and save to database.
-        importForAuditorium = Record.ImportForAuditorium(context: context, auditorium: auditorium)
+        importForAuditorium = Record.ImportForAuditorium(persistentContainer: persistentContainer, auditorium: auditorium)
         DispatchQueue.global().async {
             self.importForAuditorium?.importRecords({ (error) in
                 

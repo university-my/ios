@@ -7,7 +7,6 @@
 //
 
 import CoreData
-import UIKit
 
 extension Record {
     
@@ -144,23 +143,13 @@ extension Record {
                     } catch {
                         self.completionHandler?(error)
                     }
-                    taskContext.reset() // Reset the context to clean up the cache and low the memory footprint.
                 }
+                
+                // Reset the context to clean up the cache and low the memory footprint.
+                taskContext.reset()
+                
                 // Finish.
                 self.completionHandler?(nil)
-            }
-        }
-        
-        /// Fetch auditorium for set relation with record
-        private func fetchAuditorium(object: Auditorium, context: NSManagedObjectContext) -> AuditoriumEntity? {
-            let fetchRequest: NSFetchRequest<AuditoriumEntity> = AuditoriumEntity.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "id = %@", String(object.id))
-            do {
-                let result = try context.fetch(fetchRequest)
-                let auditorium = result.first
-                return auditorium
-            } catch  {
-                return nil
             }
         }
         
@@ -180,6 +169,19 @@ extension Record {
             
             if let object = parsedRecord.auditorium {
                 recordEntity.auditorium = fetchAuditorium(object: object, context: context)
+            }
+        }
+        
+        /// Fetch auditorium for set relation with record
+        private func fetchAuditorium(object: Auditorium, context: NSManagedObjectContext) -> AuditoriumEntity? {
+            let fetchRequest: NSFetchRequest<AuditoriumEntity> = AuditoriumEntity.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "id = %@", String(object.id))
+            do {
+                let result = try context.fetch(fetchRequest)
+                let auditorium = result.first
+                return auditorium
+            } catch  {
+                return nil
             }
         }
     }

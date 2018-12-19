@@ -21,6 +21,7 @@ struct Record {
     let pairName: String
     let reason: String?
     let auditorium: Auditorium?
+    let group: Group?
     
     // MARK: - Initialization
     
@@ -46,6 +47,13 @@ struct Record {
             self.auditorium = Auditorium(auditoriumObject)
         } else {
             self.auditorium = nil
+        }
+        
+        // Group
+        if let groupObject = json["group"] as? [String: Any] {
+            self.group = Group(groupObject)
+        } else {
+            self.group = nil
         }
         
         // Date

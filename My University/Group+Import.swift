@@ -1,18 +1,18 @@
 //
-//  AuditoriumsImportManager.swift
+//  Group+Import.swift
 //  My University
 //
-//  Created by Yura Voevodin on 11/11/18.
+//  Created by Yura Voevodin on 12/19/18.
 //  Copyright © 2018 Yura Voevodin. All rights reserved.
 //
 
 import CoreData
 
-extension Auditorium {
+extension Group {
     
     class Import {
         
-        typealias NetworkClient = Auditorium.NetworkClient
+        typealias NetworkClient = Group.NetworkClient
         
         // MARK: - Properties
         
@@ -26,7 +26,7 @@ extension Auditorium {
         init?(persistentContainer: NSPersistentContainer) {
             // Cache file
             let cachesFolder = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-            guard let cacheFile = cachesFolder?.appendingPathComponent("auditoriums.json") else { return nil }
+            guard let cacheFile = cachesFolder?.appendingPathComponent("groups.json") else { return nil }
             
             self.cacheFile = cacheFile
             self.persistentContainer = persistentContainer
@@ -35,10 +35,10 @@ extension Auditorium {
         
         // MARK: - Methods
         
-        func importAuditoriums(_ completion: @escaping ((_ error: Error?) -> ())) {
+        func importGroups(_ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            networkClient.downloadAuditoriums { (error) in
+            networkClient.downloadGroups { (error) in
                 if let error = error {
                     self.completionHandler?(error)
                 } else {
@@ -59,14 +59,14 @@ extension Auditorium {
             }
             do {
                 let json = try JSONSerialization.jsonObject(with: stream, options: []) as? [String: Any]
-                if let auditoriums = json?["auditoriums"] as? [[String: Any]] {
+                if let groups = json?["groups"] as? [[String: Any]] {
                     
                     // New context for sync.
                     let taskContext = self.persistentContainer.newBackgroundContext()
                     taskContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
                     taskContext.undoManager = nil
                     
-                    syncAuditoriums(auditoriums, taskContext: taskContext)
+                    syncGroups(groups, taskContext: taskContext)
                     
                 } else {
                     completionHandler?(nil)
@@ -77,13 +77,13 @@ extension Auditorium {
         }
         
         /// Delete previous groups and insert new
-        private func syncAuditoriums(_ json: [[String: Any]], taskContext: NSManagedObjectContext) {
+        private func syncGroups(_ json: [[String: Any]], taskContext: NSManagedObjectContext) {
             
             taskContext.performAndWait {
                 
                 // Execute the request to batch delete and merge the changes to viewContext.
                 
-                let fetchRequest: NSFetchRequest<NSFetchRequestResult> = AuditoriumEntity.fetchRequest()
+                let fetchRequest: NSFetchRequest<NSFetchRequestResult> = GroupEntity.fetchRequest()
                 let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
                 deleteRequest.resultType = .resultTypeObjectIDs
                 do {
@@ -98,10 +98,10 @@ extension Auditorium {
                 
                 // Create new records.
                 
-                let parsedAuditoriums = json.compactMap { Auditorium($0) }
+                let parsedGroups = json.compactMap { Group($0) }
                 
-                for auditorium in parsedAuditoriums {
-                    self.insert(auditorium, context: taskContext)
+                for group in parsedGroups {
+                    self.insert(group, context: taskContext)
                 }
                 
                 // Finishing import. Save context.
@@ -121,16 +121,16 @@ extension Auditorium {
             }
         }
         
-        private func insert(_ parsedAuditorium: Auditorium, context: NSManagedObjectContext) {
-            let auditoriumEntity = AuditoriumEntity(context: context)
-            auditoriumEntity.id = parsedAuditorium.id
-            auditoriumEntity.name = parsedAuditorium.name
-            if let firstCharacter = parsedAuditorium.name.first {
-                auditoriumEntity.firstSymbol = String(firstCharacter)
+        private func insert(_ parsedGroup: Group, context: NSManagedObjectContext) {
+            let groupEntity = GroupEntity(context: context)
+            
+            if let firstCharacter = parsedGroup.name.first {
+                groupEntity.firstSymbol = String(firstCharacter)
             } else {
-                auditoriumEntity.firstSymbol = ""
+                groupEntity.firstSymbol = ""
             }
+            groupEntity.id = parsedGroup.id
+            groupEntity.name = parsedGroup.name
         }
     }
 }
-

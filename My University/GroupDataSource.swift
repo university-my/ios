@@ -61,15 +61,16 @@ class GroupDataSource: NSObject {
     
     // MARK: - Import Groups
     
-    var groupsImportManager: GroupsImportManager?
+    var groupsImportManager: Group.Import?
     
     /// Import Groups from backend
     func importGroups(_ completion: @escaping ((_ error: Error?) -> ())) {
         // Do nothing without CoreData.
-        guard let context = viewContext else { return }
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        guard let persistentContainer = appDelegate?.persistentContainer else { return }
         
         // Download Groups from backend and save to database.
-        groupsImportManager = GroupsImportManager(context: context)
+        groupsImportManager = Group.Import(persistentContainer: persistentContainer)
         DispatchQueue.global().async { [weak self] in
             
             self?.groupsImportManager?.importGroups { (error) in

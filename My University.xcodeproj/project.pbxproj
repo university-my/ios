@@ -21,8 +21,6 @@
 		C2B5CE001EEF0E750066DB30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2B5CDFE1EEF0E750066DB30 /* LaunchScreen.storyboard */; };
 		C2B922C32003DB6E001A8E1D /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B922C22003DB6D001A8E1D /* HistoryTableViewController.swift */; };
 		C2C0E9B01FB8CDA00012FA9C /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C0E9AF1FB8CDA00012FA9C /* Group.swift */; };
-		C2C76A2920023E3700BFF3D4 /* GroupsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C76A2820023E3700BFF3D4 /* GroupsAPIClient.swift */; };
-		C2C76A2E2002440E00BFF3D4 /* GroupsImportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C76A2D2002440E00BFF3D4 /* GroupsImportManager.swift */; };
 		DE162A8821988CEB000ED4B3 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE162A8721988CEB000ED4B3 /* SearchTableViewController.swift */; };
 		DE18941921BC349400C7F9DB /* Record+NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941821BC349400C7F9DB /* Record+NetworkClient.swift */; };
 		DE18941C21BC3A3900C7F9DB /* GroupScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941B21BC3A3900C7F9DB /* GroupScheduleTableViewController.swift */; };
@@ -35,10 +33,12 @@
 		DE4AA07321A5E31900E06FEA /* GroupDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AA07221A5E31900E06FEA /* GroupDataSource.swift */; };
 		DE584C54219860E80099415E /* Auditorium.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE584C53219860E80099415E /* Auditorium.swift */; };
 		DE584C562198615F0099415E /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE584C552198615F0099415E /* Teacher.swift */; };
-		DE584C5A2198660A0099415E /* Auditorium+APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE584C592198660A0099415E /* Auditorium+APIClient.swift */; };
 		DE584C5C219869990099415E /* Auditorium+ImportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE584C5B219869990099415E /* Auditorium+ImportManager.swift */; };
 		DE584C5F21986E740099415E /* AuditoriumEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE584C5D21986E740099415E /* AuditoriumEntity+CoreDataClass.swift */; };
 		DE584C6021986E740099415E /* AuditoriumEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE584C5E21986E740099415E /* AuditoriumEntity+CoreDataProperties.swift */; };
+		DE8B668121CAC91C00C43F81 /* Group+Import.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B668021CAC91C00C43F81 /* Group+Import.swift */; };
+		DE8B668321CACDF800C43F81 /* Auditorium+NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B668221CACDF800C43F81 /* Auditorium+NetworkClient.swift */; };
+		DE8B668521CACE5600C43F81 /* Group+NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B668421CACE5600C43F81 /* Group+NetworkClient.swift */; };
 		DEDA50EA21862091006C7B27 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50E821862090006C7B27 /* InfoPlist.strings */; };
 		DEDA50ED218620E0006C7B27 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50EB218620E0006C7B27 /* Localizable.strings */; };
 /* End PBXBuildFile section */
@@ -60,8 +60,6 @@
 		C2B5CE011EEF0E750066DB30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2B922C22003DB6D001A8E1D /* HistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
 		C2C0E9AF1FB8CDA00012FA9C /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
-		C2C76A2820023E3700BFF3D4 /* GroupsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsAPIClient.swift; sourceTree = "<group>"; };
-		C2C76A2D2002440E00BFF3D4 /* GroupsImportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsImportManager.swift; sourceTree = "<group>"; };
 		DE066B242185003A0054DC03 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		DE066B252185003A0054DC03 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Main.strings; sourceTree = "<group>"; };
 		DE162A8721988CEB000ED4B3 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
@@ -77,10 +75,12 @@
 		DE584C52219852430099415E /* Schedule 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Schedule 2.xcdatamodel"; sourceTree = "<group>"; };
 		DE584C53219860E80099415E /* Auditorium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auditorium.swift; sourceTree = "<group>"; };
 		DE584C552198615F0099415E /* Teacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
-		DE584C592198660A0099415E /* Auditorium+APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auditorium+APIClient.swift"; sourceTree = "<group>"; };
 		DE584C5B219869990099415E /* Auditorium+ImportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auditorium+ImportManager.swift"; sourceTree = "<group>"; };
 		DE584C5D21986E740099415E /* AuditoriumEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuditoriumEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		DE584C5E21986E740099415E /* AuditoriumEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuditoriumEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		DE8B668021CAC91C00C43F81 /* Group+Import.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+Import.swift"; sourceTree = "<group>"; };
+		DE8B668221CACDF800C43F81 /* Auditorium+NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auditorium+NetworkClient.swift"; sourceTree = "<group>"; };
+		DE8B668421CACE5600C43F81 /* Group+NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+NetworkClient.swift"; sourceTree = "<group>"; };
 		DEDA50E921862090006C7B27 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DEDA50EC218620E0006C7B27 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -99,19 +99,11 @@
 		C29FF4CE2002382500B50299 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				C29FF4CF2002384D00B50299 /* API Clients */,
+				DE8B668221CACDF800C43F81 /* Auditorium+NetworkClient.swift */,
+				DE8B668421CACE5600C43F81 /* Group+NetworkClient.swift */,
 				DE18941821BC349400C7F9DB /* Record+NetworkClient.swift */,
 			);
 			name = Networking;
-			sourceTree = "<group>";
-		};
-		C29FF4CF2002384D00B50299 /* API Clients */ = {
-			isa = PBXGroup;
-			children = (
-				C2C76A2820023E3700BFF3D4 /* GroupsAPIClient.swift */,
-				DE584C592198660A0099415E /* Auditorium+APIClient.swift */,
-			);
-			name = "API Clients";
 			sourceTree = "<group>";
 		};
 		C2B5CDE61EEF0E750066DB30 = {
@@ -198,20 +190,20 @@
 		C2C76A2C200243BD00BFF3D4 /* Import */ = {
 			isa = PBXGroup;
 			children = (
-				C2C76A2D2002440E00BFF3D4 /* GroupsImportManager.swift */,
 				DE584C5B219869990099415E /* Auditorium+ImportManager.swift */,
-				DE18941721BC336700C7F9DB /* Records */,
+				DE8B668021CAC91C00C43F81 /* Group+Import.swift */,
+				DE18941721BC336700C7F9DB /* Record */,
 			);
 			name = Import;
 			sourceTree = "<group>";
 		};
-		DE18941721BC336700C7F9DB /* Records */ = {
+		DE18941721BC336700C7F9DB /* Record */ = {
 			isa = PBXGroup;
 			children = (
 				DE18942121BD45E600C7F9DB /* ImportForAuditorium.swift */,
 				DE18941F21BD457F00C7F9DB /* ImportForGroup.swift */,
 			);
-			name = Records;
+			name = Record;
 			sourceTree = "<group>";
 		};
 		DE3B565E21823A7F008A77D1 /* Extensions */ = {
@@ -337,28 +329,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE18942221BD45E600C7F9DB /* ImportForAuditorium.swift in Sources */,
-				DE584C5A2198660A0099415E /* Auditorium+APIClient.swift in Sources */,
 				C2B922C32003DB6E001A8E1D /* HistoryTableViewController.swift in Sources */,
 				DE18941921BC349400C7F9DB /* Record+NetworkClient.swift in Sources */,
 				C22A2E551FC7644600587463 /* Record.swift in Sources */,
 				C2B5CDFB1EEF0E750066DB30 /* Schedule.xcdatamodeld in Sources */,
 				C293559E1FBE246000071719 /* SearchResultsTableViewController.swift in Sources */,
+				DE8B668121CAC91C00C43F81 /* Group+Import.swift in Sources */,
 				C250C1831FBCD1CA00C90B53 /* AboutUsTableViewController.swift in Sources */,
 				DE3B566021823A97008A77D1 /* UIColor.swift in Sources */,
 				DE584C54219860E80099415E /* Auditorium.swift in Sources */,
 				DE584C5F21986E740099415E /* AuditoriumEntity+CoreDataClass.swift in Sources */,
 				C280894C1FB8D54A002B5676 /* GroupEntity+CoreDataProperties.swift in Sources */,
+				DE8B668521CACE5600C43F81 /* Group+NetworkClient.swift in Sources */,
 				DE18941E21BC3AD100C7F9DB /* AuditoriumScheduleTableViewController.swift in Sources */,
 				DE18942021BD457F00C7F9DB /* ImportForGroup.swift in Sources */,
 				DE584C5C219869990099415E /* Auditorium+ImportManager.swift in Sources */,
 				DE4AA07121A5DF0500E06FEA /* AuditoriumDataSource.swift in Sources */,
 				DE4AA07321A5E31900E06FEA /* GroupDataSource.swift in Sources */,
 				DE584C562198615F0099415E /* Teacher.swift in Sources */,
-				C2C76A2920023E3700BFF3D4 /* GroupsAPIClient.swift in Sources */,
 				C2B5CDF31EEF0E750066DB30 /* AppDelegate.swift in Sources */,
 				C2C0E9B01FB8CDA00012FA9C /* Group.swift in Sources */,
+				DE8B668321CACDF800C43F81 /* Auditorium+NetworkClient.swift in Sources */,
 				C280894B1FB8D54A002B5676 /* GroupEntity+CoreDataClass.swift in Sources */,
-				C2C76A2E2002440E00BFF3D4 /* GroupsImportManager.swift in Sources */,
 				DE584C6021986E740099415E /* AuditoriumEntity+CoreDataProperties.swift in Sources */,
 				DE162A8821988CEB000ED4B3 /* SearchTableViewController.swift in Sources */,
 				C22A2E581FC7664000587463 /* RecordEntity+CoreDataClass.swift in Sources */,
