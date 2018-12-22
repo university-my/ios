@@ -2,7 +2,7 @@
 //  AuditoriumEntity+CoreDataProperties.swift
 //  My University
 //
-//  Created by Yura Voevodin on 11/21/18.
+//  Created by Yura Voevodin on 12/22/18.
 //  Copyright © 2018 Yura Voevodin. All rights reserved.
 //
 //
@@ -17,9 +17,26 @@ extension AuditoriumEntity {
         return NSFetchRequest<AuditoriumEntity>(entityName: "AuditoriumEntity")
     }
 
+    @NSManaged public var firstSymbol: String?
     @NSManaged public var id: Int64
     @NSManaged public var name: String?
-    @NSManaged public var firstSymbol: String?
-    @NSManaged public var records: RecordEntity?
+    @NSManaged public var records: NSSet?
+
+}
+
+// MARK: Generated accessors for records
+extension AuditoriumEntity {
+
+    @objc(addRecordsObject:)
+    @NSManaged public func addToRecords(_ value: RecordEntity)
+
+    @objc(removeRecordsObject:)
+    @NSManaged public func removeFromRecords(_ value: RecordEntity)
+
+    @objc(addRecords:)
+    @NSManaged public func addToRecords(_ values: NSSet)
+
+    @objc(removeRecords:)
+    @NSManaged public func removeFromRecords(_ values: NSSet)
 
 }

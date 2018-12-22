@@ -1,5 +1,5 @@
 //
-//  AuditoriumsImportManager.swift
+//  Auditorium+Import.swift
 //  My University
 //
 //  Created by Yura Voevodin on 11/11/18.

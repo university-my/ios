@@ -44,7 +44,7 @@ class GroupScheduleTableViewController: UITableViewController {
             performFetch()
             
             // Import records.
-//            importRecords()
+            importRecords()
         }
     }
     
@@ -64,35 +64,22 @@ class GroupScheduleTableViewController: UITableViewController {
         
         // Download records for Group from backend and save to database.
         importForGroup = Record.ImportForGroup(persistentContainer: persistentContainer, group: forGroup)
-        DispatchQueue.global().async {
-            self.importForGroup?.importRecords({ (error) in
-                
-                DispatchQueue.main.async {
-                    if let error = error {
-                        let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                        self.present(alert, animated: true)
-                    }
-                    
-                    self.performFetch()
-                    self.tableView.reloadData()
-                    self.refreshControl?.endRefreshing()
-                    self.updateButton.isEnabled = true
+        self.importForGroup?.importRecords({ (error) in
+            
+            DispatchQueue.main.async {
+                if let error = error {
+                    let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true)
                 }
-            })
-        }
+                self.performFetch()
+                self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
+            }
+        })
     }
     
     @objc func refreshContent() {
-        importRecords()
-    }
-    
-    // MARK: - Update
-    
-    @IBOutlet weak var updateButton: UIBarButtonItem!
-    
-    @IBAction func updateContent(_ sender: Any) {
-        updateButton.isEnabled = false
         importRecords()
     }
     
@@ -187,8 +174,7 @@ class GroupScheduleTableViewController: UITableViewController {
                 }
                 sectionsTitles = newSectionsTitles
             }
-        }
-        catch {
+        } catch {
             print("Error in the fetched results controller: \(error).")
         }
     }

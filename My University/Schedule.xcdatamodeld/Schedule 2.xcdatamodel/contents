@@ -4,7 +4,7 @@
         <attribute name="firstSymbol" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="records" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RecordEntity" inverseName="auditorium" inverseEntity="RecordEntity" syncable="YES"/>
+        <relationship name="records" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RecordEntity" inverseName="auditorium" inverseEntity="RecordEntity" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>

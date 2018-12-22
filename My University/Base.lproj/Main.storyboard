@@ -213,16 +213,6 @@
                             <outlet property="delegate" destination="lci-e7-UWA" id="fjL-vw-5Do"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="XzA-Pq-EJT">
-                        <barButtonItem key="rightBarButtonItem" title="Update" id="i7h-EC-xUY">
-                            <connections>
-                                <action selector="updateContent:" destination="lci-e7-UWA" id="PCw-DC-cFG"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="updateButton" destination="i7h-EC-xUY" id="Br6-RE-Eva"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tA6-LM-gbf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -497,6 +487,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Qyy-kV-8ui"/>
+        <segue reference="LfJ-TO-z57"/>
     </inferredMetricsTieBreakers>
 </document>

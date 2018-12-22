@@ -32,15 +32,15 @@ public class RecordEntity: NSManagedObject {
     
     var detail: String {
         var detail = ""
-        // Name and time
-        if let pairName = pairName, let time = time {
-            detail = pairName + " (\(time))"
-        } else if let time = time {
-            detail = "(\(time))"
-        }
         // Auditorium
         if let auditorium = auditorium, let name = auditorium.name {
-            detail += "\n" + name
+            detail = name + "\n"
+        }
+        // Name and time
+        if let pairName = pairName, let time = time {
+            detail += pairName + " (\(time))"
+        } else if let time = time {
+            detail += "(\(time))"
         }
         return detail
     }
