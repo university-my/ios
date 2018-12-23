@@ -17,8 +17,11 @@ class AboutUsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            switch indexPath.row {
+        let section = indexPath.section
+        let row = indexPath.row
+        
+        if section == 0 {
+            switch row {
             case 0:
                 if let facebookURL = URL(string: "fb://profile/120391101921477"), UIApplication.shared.canOpenURL(facebookURL) {
                     UIApplication.shared.open(facebookURL)
@@ -37,12 +40,13 @@ class AboutUsTableViewController: UITableViewController {
                 break
             }
             
-        } else if indexPath.section == 1, indexPath.row == 0 {
+        } else if section == 1, row == 0 {
             if let appURL = URL(string: "https://itunes.apple.com/ua/app/university-schedule/id1440425058") {
                 UIApplication.shared.open(appURL)
             }
-        } else if indexPath.section == 2 {
-            switch indexPath.row {
+            
+        } else if section == 2 {
+            switch row {
             case 0:
                 if let privacyPolicyURL = URL(string: "https://voevodin-yura.com/privacy-policy") {
                     UIApplication.shared.open(privacyPolicyURL)
@@ -54,7 +58,23 @@ class AboutUsTableViewController: UITableViewController {
             default:
                 break
             }
+            
+        } else if section == 3 {
+            if row == 0 {
+                // Clear History
+                let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                guard let persistentContainer = appDelegate?.persistentContainer else { return }
+                let cell = tableView.cellForRow(at: indexPath)
+
+                RecordEntity.clearHistory(persistentContainer: persistentContainer) { error in
+                    if let error = error {
+                        let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true)
+                    }
+                    cell?.isSelected = false
+                }
+            }
         }
-        
     }
 }

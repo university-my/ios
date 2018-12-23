@@ -44,4 +44,26 @@ public class RecordEntity: NSManagedObject {
         }
         return detail
     }
+    
+    static func clearHistory(persistentContainer: NSPersistentContainer, _ completion: @escaping ((_ error: Error?) -> ())) {
+        let context = persistentContainer.newBackgroundContext()
+        context.undoManager = nil
+        context.performAndWait {
+            let fetchRequest: NSFetchRequest<NSFetchRequestResult> = RecordEntity.fetchRequest()
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+            deleteRequest.resultType = .resultTypeObjectIDs
+            do {
+                let result = try context.execute(deleteRequest) as? NSBatchDeleteResult
+                if let objectIDArray = result?.result as? [NSManagedObjectID] {
+                    let changes = [NSDeletedObjectsKey: objectIDArray]
+                    NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [context, persistentContainer.viewContext])
+                }
+            } catch {
+                completion(error)
+            }
+            context.reset()
+            persistentContainer.viewContext.refreshAllObjects()
+            completion(nil)
+        }
+    }
 }

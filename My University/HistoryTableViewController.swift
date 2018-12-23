@@ -21,12 +21,7 @@ class HistoryTableViewController: UITableViewController {
         
         // Fetch from database
         performFetch()
-        
-        if fetchedResultsController?.fetchedObjects?.isEmpty ?? false {
-            tabBarController?.selectedIndex = 1
-        } else {
-            tableView.reloadData()
-        }
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -39,7 +34,6 @@ class HistoryTableViewController: UITableViewController {
         let section = fetchedResultsController?.sections?[section]
         return section?.numberOfObjects ?? 0
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "historyTableCell", for: indexPath)
@@ -118,8 +112,7 @@ class HistoryTableViewController: UITableViewController {
     private func performFetch() {
         do {
             try fetchedResultsController?.performFetch()
-        }
-        catch {
+        } catch {
             print("Error in the fetched results controller: \(error).")
         }
     }

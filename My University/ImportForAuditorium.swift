@@ -114,7 +114,7 @@ extension Record {
                     let result = try taskContext.execute(deleteRequest) as? NSBatchDeleteResult
                     if let objectIDArray = result?.result as? [NSManagedObjectID] {
                         let changes = [NSDeletedObjectsKey: objectIDArray]
-                        NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [self.viewContext])
+                        NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [taskContext, self.viewContext])
                     }
                 } catch {
                     completionHandler?(error)
@@ -139,6 +139,7 @@ extension Record {
                 
                 // Reset the context to clean up the cache and low the memory footprint.
                 taskContext.reset()
+                self.viewContext.refreshAllObjects()
                 
                 // Finish.
                 self.completionHandler?(nil)
