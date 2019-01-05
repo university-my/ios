@@ -34,6 +34,9 @@ class SearchTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Large titles (works only when enabled from code).
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
         // Sear Bar and Search Results Controller
         configureSearchControllers()
         
@@ -164,7 +167,6 @@ class SearchTableViewController: UITableViewController {
     
     private func loadAuditoriums()  {
         tableView.dataSource = auditoriumDataSource
-        auditoriumDataSource.fetchedResultsController?.delegate = self
         auditoriumDataSource.fetchAuditoriums()
         
         let auditoriums = auditoriumDataSource.fetchedResultsController?.fetchedObjects ?? []
@@ -175,6 +177,9 @@ class SearchTableViewController: UITableViewController {
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     self.present(alert, animated: true)
                 }
+                self.auditoriumDataSource.fetchAuditoriums()
+                self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
             }
         } else {
             tableView.reloadData()
@@ -186,7 +191,6 @@ class SearchTableViewController: UITableViewController {
     
     private func loadGroups() {
         tableView.dataSource = groupDataSource
-        groupDataSource.fetchedResultsController?.delegate = self
         groupDataSource.performFetch()
         
         let groups = groupDataSource.fetchedResultsController?.fetchedObjects ?? []
@@ -197,6 +201,9 @@ class SearchTableViewController: UITableViewController {
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     self.present(alert, animated: true)
                 }
+                self.groupDataSource.performFetch()
+                self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
             }
         } else {
             tableView.reloadData()
@@ -229,15 +236,6 @@ class SearchTableViewController: UITableViewController {
         case .groups:
             loadGroups()
         }
-    }
-}
-
-// MARK: - NSFetchedResultsControllerDelegate
-
-extension SearchTableViewController: NSFetchedResultsControllerDelegate {
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.reloadData()
     }
 }
 

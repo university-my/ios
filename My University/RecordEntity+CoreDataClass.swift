@@ -56,7 +56,7 @@ public class RecordEntity: NSManagedObject {
                 let result = try context.execute(deleteRequest) as? NSBatchDeleteResult
                 if let objectIDArray = result?.result as? [NSManagedObjectID] {
                     let changes = [NSDeletedObjectsKey: objectIDArray]
-                    NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [context, persistentContainer.viewContext])
+                    NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [persistentContainer.viewContext])
                 }
             } catch {
                 completion(error)

@@ -18,6 +18,10 @@ class HistoryTableViewController: UITableViewController {
 
         // Large titles (works only when enabled from code).
         navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         // Fetch from database
         performFetch()
@@ -97,7 +101,6 @@ class HistoryTableViewController: UITableViewController {
         
         if let context = viewContext {
             let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: "firstSymbol", cacheName: nil)
-            controller.delegate = self
             return controller
         } else {
             return nil
@@ -115,14 +118,5 @@ class HistoryTableViewController: UITableViewController {
         } catch {
             print("Error in the fetched results controller: \(error).")
         }
-    }
-}
-
-// MARK: - NSFetchedResultsControllerDelegate
-
-extension HistoryTableViewController: NSFetchedResultsControllerDelegate {
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.reloadData()
     }
 }

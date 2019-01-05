@@ -90,7 +90,7 @@ extension Auditorium {
                     let result = try taskContext.execute(deleteRequest) as? NSBatchDeleteResult
                     if let objectIDArray = result?.result as? [NSManagedObjectID] {
                         let changes = [NSDeletedObjectsKey: objectIDArray]
-                        NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [taskContext, self.persistentContainer.viewContext])
+                        NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [self.persistentContainer.viewContext])
                     }
                 } catch {
                     completionHandler?(error)

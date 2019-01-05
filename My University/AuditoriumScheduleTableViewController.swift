@@ -77,6 +77,8 @@ class AuditoriumScheduleTableViewController: UITableViewController {
                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                         self.present(alert, animated: true)
                     }
+                    self.performFetch()
+                    self.tableView.reloadData()
                     self.refreshControl?.endRefreshing()
                 }
             })
@@ -105,24 +107,10 @@ class AuditoriumScheduleTableViewController: UITableViewController {
         // Configure the cell
         if let record = fetchedResultsController?.object(at: indexPath) {
             // Title
-            var title = ""
-            if let name = record.name {
-                title = name
-            }
-            if let type = record.type {
-                title += "\n" + type
-            }
-            cell.textLabel?.text = title
+            cell.textLabel?.text = record.title
             
             // Detail
-            if let pairName = record.pairName, let time = record.time {
-                let detailed = pairName + " (\(time))"
-                cell.detailTextLabel?.text = detailed
-            } else if let time = record.time {
-                cell.detailTextLabel?.text = "(\(time))"
-            } else {
-                cell.detailTextLabel?.text = nil
-            }
+            cell.detailTextLabel?.text = record.detail
         }
         return cell
     }
@@ -183,7 +171,6 @@ class AuditoriumScheduleTableViewController: UITableViewController {
     
     private func performFetch() {
         do {
-            fetchedResultsController?.delegate = self
             try fetchedResultsController?.performFetch()
             
             // Generate title for sections
@@ -202,14 +189,5 @@ class AuditoriumScheduleTableViewController: UITableViewController {
         } catch {
             print("Error in the fetched results controller: \(error).")
         }
-    }
-}
-
-// MARK: - NSFetchedResultsControllerDelegate
-
-extension AuditoriumScheduleTableViewController: NSFetchedResultsControllerDelegate {
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.reloadData()
     }
 }
