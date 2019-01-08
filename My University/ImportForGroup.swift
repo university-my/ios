@@ -27,10 +27,8 @@ extension Record {
             return persistentContainer.viewContext
         }
         
-        private var dateFormatter: DateFormatter = {
-            let dateFormatter = DateFormatter()
-            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-            dateFormatter.dateFormat = "dd.MM.yyyy"
+        private var dateFormatter: ISO8601DateFormatter = {
+            let dateFormatter = ISO8601DateFormatter()
             return dateFormatter
         }()
         
@@ -74,16 +72,18 @@ extension Record {
                 stream.close()
             }
             do {
-                let json = try JSONSerialization.jsonObject(with: stream, options: []) as? [String: Any]
-                if let group = json?["group"] as? [String: Any],
-                    let records = group["records"] as? [[String: Any]] {
+                let object = try JSONSerialization.jsonObject(with: stream, options: []) as? [String: Any]
+                let records = object?.first { key, _ in
+                    return key == "records"
+                }
+                if let records = records?.value as? [[String: Any]] {
                     
                     // Finish if no records in JSON.
                     if records.isEmpty {
                         completionHandler?(nil)
                         return
                     }
-                    
+
                     // New context for sync.
                     let taskContext = self.persistentContainer.newBackgroundContext()
                     taskContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy

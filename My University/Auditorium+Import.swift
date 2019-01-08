@@ -58,15 +58,14 @@ extension Auditorium {
                 stream.close()
             }
             do {
-                let json = try JSONSerialization.jsonObject(with: stream, options: []) as? [String: Any]
-                if let auditoriums = json?["auditoriums"] as? [[String: Any]] {
-                    
+                let object = try JSONSerialization.jsonObject(with: stream, options: []) as? [Any]
+                if let json = object as? [[String: Any]] {
                     // New context for sync.
                     let taskContext = self.persistentContainer.newBackgroundContext()
                     taskContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
                     taskContext.undoManager = nil
                     
-                    syncAuditoriums(auditoriums, taskContext: taskContext)
+                    syncAuditoriums(from: json, taskContext: taskContext)
                     
                 } else {
                     completionHandler?(nil)
@@ -77,7 +76,7 @@ extension Auditorium {
         }
         
         /// Delete previous groups and insert new
-        private func syncAuditoriums(_ json: [[String: Any]], taskContext: NSManagedObjectContext) {
+        private func syncAuditoriums(from json: [[String: Any]], taskContext: NSManagedObjectContext) {
             
             taskContext.performAndWait {
                 

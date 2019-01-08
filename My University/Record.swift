@@ -25,10 +25,10 @@ struct Record {
     
     // MARK: - Initialization
     
-    init?(_ json: [String: Any], dateFormatter: DateFormatter) {
+    init?(_ json: [String: Any], dateFormatter: ISO8601DateFormatter) {
         guard let id = json["id"] as? Int else { return nil }
         guard let time = json["time"] as? String else { return nil }
-        guard let dateString = json["date_string"] as? String else { return nil }
+        guard let dateString = json["start_date"] as? String else { return nil }
         let type = json["type"] as? String
         let name = json["name"] as? String
         guard let pairName = json["pair_name"] as? String else { return nil }

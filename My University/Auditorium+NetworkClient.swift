@@ -28,7 +28,7 @@ extension Auditorium {
         func downloadAuditoriums(_ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            guard let url = URL(string: "https://sumdubot.voevodin-yura.com/auditoriums") else {
+            guard let url = URL(string: "http://localhost:3000/universities/sumdu/auditoriums.json") else {
                 completionHandler?(nil)
                 return
             }

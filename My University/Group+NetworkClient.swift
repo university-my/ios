@@ -28,7 +28,7 @@ extension Group {
         func downloadGroups(_ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            guard let url = URL(string: "https://sumdubot.voevodin-yura.com/groups") else {
+            guard let url = URL(string: "http://localhost:3000/universities/sumdu/groups.json") else {
                 completionHandler?(nil)
                 return
             }
