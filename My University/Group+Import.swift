@@ -126,7 +126,7 @@ extension Group {
             let groupEntity = GroupEntity(context: context)
             
             if let firstCharacter = parsedGroup.name.first {
-                groupEntity.firstSymbol = String(firstCharacter)
+                groupEntity.firstSymbol = String(firstCharacter).uppercased()
             } else {
                 groupEntity.firstSymbol = ""
             }

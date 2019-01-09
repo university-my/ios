@@ -91,16 +91,17 @@ class HistoryTableViewController: UITableViewController {
     
     private lazy var fetchedResultsController: NSFetchedResultsController<GroupEntity>? = {
         let request: NSFetchRequest<GroupEntity> = GroupEntity.fetchRequest()
-        request.sortDescriptors = [
-            NSSortDescriptor(key: "firstSymbol", ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:))),
-            NSSortDescriptor(key: "name", ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
-        ]
+        
+        let firstSymbol = NSSortDescriptor(key: #keyPath(GroupEntity.firstSymbol), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
+        let name = NSSortDescriptor(key: #keyPath(GroupEntity.name), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
+        
+        request.sortDescriptors = [firstSymbol, name]
         request.fetchBatchSize = 20
         
         request.predicate = NSPredicate(format: "records.@count > 0")
         
         if let context = viewContext {
-            let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: "firstSymbol", cacheName: nil)
+            let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: #keyPath(GroupEntity.firstSymbol), cacheName: nil)
             return controller
         } else {
             return nil

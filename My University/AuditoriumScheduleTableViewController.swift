@@ -154,15 +154,16 @@ class AuditoriumScheduleTableViewController: UITableViewController {
     private lazy var fetchedResultsController: NSFetchedResultsController<RecordEntity>? = {
         guard let auditorium = auditorium else { return nil }
         let request: NSFetchRequest<RecordEntity> = RecordEntity.fetchRequest()
-        request.sortDescriptors = [
-            NSSortDescriptor(key: "dateString", ascending: true),
-            NSSortDescriptor(key: "time", ascending: true)
-        ]
+        
+        let dateString = NSSortDescriptor(key: #keyPath(RecordEntity.dateString), ascending: true)
+        let time = NSSortDescriptor(key: #keyPath(RecordEntity.time), ascending: true)
+        
+        request.sortDescriptors = [dateString, time]
         request.predicate = NSPredicate(format: "auditorium == %@", auditorium)
         request.fetchBatchSize = 20
         
         if let context = viewContext {
-            let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: "dateString", cacheName: nil)
+            let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: #keyPath(RecordEntity.dateString), cacheName: nil)
             return controller
         } else {
             return nil

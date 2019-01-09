@@ -126,7 +126,7 @@ extension Auditorium {
             auditoriumEntity.id = parsedAuditorium.id
             auditoriumEntity.name = parsedAuditorium.name
             if let firstCharacter = parsedAuditorium.name.first {
-                auditoriumEntity.firstSymbol = String(firstCharacter)
+                auditoriumEntity.firstSymbol = String(firstCharacter).uppercased()
             } else {
                 auditoriumEntity.firstSymbol = ""
             }
