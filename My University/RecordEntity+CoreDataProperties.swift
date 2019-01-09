@@ -2,8 +2,8 @@
 //  RecordEntity+CoreDataProperties.swift
 //  My University
 //
-//  Created by Yura Voevodin on 11/11/18.
-//  Copyright © 2018 Yura Voevodin. All rights reserved.
+//  Created by Yura Voevodin on 1/9/19.
+//  Copyright © 2019 Yura Voevodin. All rights reserved.
 //
 //
 
@@ -25,7 +25,24 @@ extension RecordEntity {
     @NSManaged public var reason: String?
     @NSManaged public var time: String?
     @NSManaged public var type: String?
-    @NSManaged public var group: GroupEntity?
     @NSManaged public var auditorium: AuditoriumEntity?
+    @NSManaged public var groups: NSSet?
+
+}
+
+// MARK: Generated accessors for groups
+extension RecordEntity {
+
+    @objc(addGroupsObject:)
+    @NSManaged public func addToGroups(_ value: GroupEntity)
+
+    @objc(removeGroupsObject:)
+    @NSManaged public func removeFromGroups(_ value: GroupEntity)
+
+    @objc(addGroups:)
+    @NSManaged public func addToGroups(_ values: NSSet)
+
+    @objc(removeGroups:)
+    @NSManaged public func removeFromGroups(_ values: NSSet)
 
 }

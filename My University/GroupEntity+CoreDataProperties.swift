@@ -1,9 +1,9 @@
 //
 //  GroupEntity+CoreDataProperties.swift
-//  Schedule
+//  My University
 //
-//  Created by Yura Voevodin on 28.11.17.
-//  Copyright © 2017 Yura Voevodin. All rights reserved.
+//  Created by Yura Voevodin on 1/9/19.
+//  Copyright © 2019 Yura Voevodin. All rights reserved.
 //
 //
 

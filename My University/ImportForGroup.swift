@@ -110,7 +110,8 @@ extension Record {
                 // Execute the request to batch delete and merge the changes to viewContext.
                 
                 let fetchRequest: NSFetchRequest<NSFetchRequestResult> = RecordEntity.fetchRequest()
-                fetchRequest.predicate = NSPredicate(format: "group == %@", groupInContext)
+                
+                fetchRequest.predicate = NSPredicate(format: "ANY groups = %@", groupInContext)
                 let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
                 deleteRequest.resultType = .resultTypeObjectIDs
                 do {
@@ -162,7 +163,6 @@ extension Record {
             recordEntity.id = NSNumber(value: parsedRecord.id).int64Value
             recordEntity.date = parsedRecord.date
             recordEntity.dateString = parsedRecord.dateString
-            recordEntity.group = group as? GroupEntity
             recordEntity.pairName = parsedRecord.pairName
             recordEntity.name = parsedRecord.name
             recordEntity.reason = parsedRecord.reason
@@ -172,6 +172,11 @@ extension Record {
             if let object = parsedRecord.auditorium {
                 recordEntity.auditorium = fetchAuditorium(object: object, context: context)
             }
+            
+            // Groups
+            let groups = GroupEntity.fetch(parsedRecord.groups, context: context)
+            let set = NSSet(array: groups)
+            recordEntity.addToGroups(set)
         }
         
         /// Fetch auditorium for set relation with record

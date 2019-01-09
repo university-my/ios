@@ -21,7 +21,7 @@ struct Record {
     let pairName: String
     let reason: String?
     let auditorium: Auditorium?
-    let group: Group?
+    let groups: [Group]
     
     // MARK: - Initialization
     
@@ -49,12 +49,18 @@ struct Record {
             self.auditorium = nil
         }
         
-        // Group
-        if let groupObject = json["group"] as? [String: Any] {
-            self.group = Group(groupObject)
-        } else {
-            self.group = nil
+        // Groups
+        var groups: [Group] = []
+        if let groupsObject = json["groups"] as? [Any] {
+            for item in groupsObject {
+                if let groupObject = item as? [String: Any] {
+                    if let group = Group(groupObject) {
+                        groups.append(group)
+                    }
+                }
+            }
         }
+        self.groups = groups
         
         // Date
         self.date = dateFormatter.date(from: dateString)

@@ -43,6 +43,8 @@ class GroupScheduleTableViewController: UITableViewController {
             // Fetch old records first.
             performFetch()
             
+            // TODO: Dont import records all the time
+            
             // Import records.
             importRecords()
         }
@@ -147,7 +149,7 @@ class GroupScheduleTableViewController: UITableViewController {
         let time = NSSortDescriptor(key: #keyPath(RecordEntity.time), ascending: true)
         
         request.sortDescriptors = [dateString, time]
-        request.predicate = NSPredicate(format: "group == %@", group)
+        request.predicate = NSPredicate(format: "ANY groups == %@", group)
         request.fetchBatchSize = 20
         
         if let context = viewContext {

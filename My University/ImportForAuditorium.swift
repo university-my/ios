@@ -160,22 +160,10 @@ extension Record {
             recordEntity.time = parsedRecord.time
             recordEntity.type = parsedRecord.type
             
-            if let object = parsedRecord.group {
-                recordEntity.group = fetchGroup(object: object, context: context)
-            }
-        }
-        
-        /// Fetch group for set relation with record
-        private func fetchGroup(object: Group, context: NSManagedObjectContext) -> GroupEntity? {
-            let fetchRequest: NSFetchRequest<GroupEntity> = GroupEntity.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "id = %@", String(object.id))
-            do {
-                let result = try context.fetch(fetchRequest)
-                let group = result.first
-                return group
-            } catch  {
-                return nil
-            }
+            // Groups
+            let groups = GroupEntity.fetch(parsedRecord.groups, context: context)
+            let set = NSSet(array: groups)
+            recordEntity.addToGroups(set)
         }
     }
 }
