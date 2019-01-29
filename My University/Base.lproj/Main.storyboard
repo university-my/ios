@@ -37,6 +37,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="History" id="weu-X2-vfy">
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="pC9-4Q-Zkn">
+                            <rect key="frame" x="100" y="7.5" width="175" height="29"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Groups"/>
+                                <segment title="Auditoriums"/>
+                            </segments>
+                            <connections>
+                                <action selector="typeChanged:" destination="qa9-ST-Dpk" eventType="valueChanged" id="Tkb-8w-9Vj"/>
+                                <action selector="typeChanged:" destination="eYv-52-NeV" eventType="valueChanged" id="nXn-6B-gE8"/>
+                            </connections>
+                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" id="u9B-3q-lIT">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" lineBreakMode="middleTruncation" id="phF-E3-FnC">
                                 <rect key="frame" x="337" y="11" width="22" height="22"/>
@@ -49,6 +61,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="segmentedControl" destination="pC9-4Q-Zkn" id="CSS-3C-RmM"/>
                         <segue destination="lci-e7-UWA" kind="show" identifier="showRecords" id="LfJ-TO-z57"/>
                     </connections>
                 </tableViewController>

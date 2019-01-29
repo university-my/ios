@@ -11,6 +11,16 @@ import UIKit
 
 class HistoryTableViewController: UITableViewController {
     
+    // MARK: - Properties
+    
+    private lazy var auditoriumDataSource: AuditoriumHistoryDataSource = {
+        return AuditoriumHistoryDataSource()
+    }()
+    
+    private lazy var groupDataSource: GroupHistoryDataSource = {
+        return GroupHistoryDataSource()
+    }()
+    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -23,42 +33,30 @@ class HistoryTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Fetch from database
-        performFetch()
-        tableView.reloadData()
-    }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return fetchedResultsController?.sections?.count ?? 0
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let section = fetchedResultsController?.sections?[section]
-        return section?.numberOfObjects ?? 0
+        // Loading...
+        loadCurrentDataSource()
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "historyTableCell", for: indexPath)
-
-        // Configure cell
-        if let group = fetchedResultsController?.object(at: indexPath) {
-            cell.textLabel?.textColor = UIColor.white
-            cell.textLabel?.text = group.name
-        }
-
-        return cell
+    // MARK: - Auditoriums
+    
+    private func fetchAuditoriums()  {
+        tableView.dataSource = auditoriumDataSource
+        auditoriumDataSource.performFetch()
+        tableView.reloadData()
     }
-
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return fetchedResultsController?.sections?[section].name
+    
+    // MARK: - Groups
+    
+    private func fetchGroups()  {
+        tableView.dataSource = groupDataSource
+        groupDataSource.performFetch()
+        tableView.reloadData()
     }
     
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "showRecords", sender: nil)
+//        performSegue(withIdentifier: "showRecords", sender: nil)
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -79,45 +77,38 @@ class HistoryTableViewController: UITableViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showRecords", let detailTableViewController = segue.destination as? GroupScheduleTableViewController {
-            if tableView == self.tableView, let indexPath = tableView.indexPathForSelectedRow {
-                let selectedGroup = fetchedResultsController?.object(at: indexPath)
-                detailTableViewController.group = selectedGroup
+//        if segue.identifier == "showRecords", let detailTableViewController = segue.destination as? GroupScheduleTableViewController {
+//            if tableView == self.tableView, let indexPath = tableView.indexPathForSelectedRow {
+//                let selectedGroup = fetchedResultsController?.object(at: indexPath)
+//                detailTableViewController.group = selectedGroup
+//            }
+//        }
+    }
+    
+    // MARK: - UISegmentedControl
+    
+    var dataSourceType: DataSourceType {
+        get {
+            if let type = DataSourceType(rawValue: segmentedControl.selectedSegmentIndex) {
+                return type
+            } else {
+                return .groups
             }
         }
     }
-
-    // MARK: - NSFetchedResultsController
     
-    private lazy var fetchedResultsController: NSFetchedResultsController<GroupEntity>? = {
-        let request: NSFetchRequest<GroupEntity> = GroupEntity.fetchRequest()
-        
-        let firstSymbol = NSSortDescriptor(key: #keyPath(GroupEntity.firstSymbol), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
-        let name = NSSortDescriptor(key: #keyPath(GroupEntity.name), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
-        
-        request.sortDescriptors = [firstSymbol, name]
-        request.fetchBatchSize = 20
-        
-        request.predicate = NSPredicate(format: "\(#keyPath(GroupEntity.isVisited)) == YES")
-        
-        if let context = viewContext {
-            let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: #keyPath(GroupEntity.firstSymbol), cacheName: nil)
-            return controller
-        } else {
-            return nil
-        }
-    }()
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    private lazy var viewContext: NSManagedObjectContext? = {
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        return appDelegate?.persistentContainer.viewContext
-    }()
+    @IBAction func typeChanged(_ sender: Any) {
+        loadCurrentDataSource()
+    }
     
-    private func performFetch() {
-        do {
-            try fetchedResultsController?.performFetch()
-        } catch {
-            print("Error in the fetched results controller: \(error).")
+    private func loadCurrentDataSource() {
+        switch dataSourceType {
+        case .auditoriums:
+            fetchAuditoriums()
+        case .groups:
+            fetchGroups()
         }
     }
 }

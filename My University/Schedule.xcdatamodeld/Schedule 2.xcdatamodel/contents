@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18C54" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18D42" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AuditoriumEntity" representedClassName="AuditoriumEntity" syncable="YES">
         <attribute name="firstSymbol" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isVisited" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="records" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RecordEntity" inverseName="auditorium" inverseEntity="RecordEntity" syncable="YES"/>
         <uniquenessConstraints>
@@ -44,7 +45,7 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="AuditoriumEntity" positionX="31.9921875" positionY="107.68359375" width="128" height="105"/>
+        <element name="AuditoriumEntity" positionX="31.9921875" positionY="107.68359375" width="128" height="120"/>
         <element name="GroupEntity" positionX="35.59375" positionY="398.10546875" width="128" height="120"/>
         <element name="RecordEntity" positionX="-387.71484375" positionY="184.6875" width="128" height="195"/>
     </elements>

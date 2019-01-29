@@ -31,6 +31,9 @@ class AuditoriumScheduleTableViewController: UITableViewController {
         // Refresh control.
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
+        
+        // Mark auditorium as visited
+        markAuditoriumAsVisited()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -189,6 +192,18 @@ class AuditoriumScheduleTableViewController: UITableViewController {
             }
         } catch {
             print("Error in the fetched results controller: \(error).")
+        }
+    }
+    
+    // MARK: - Is visited
+    
+    private func markAuditoriumAsVisited() {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        viewContext?.perform {
+            if let auditorium = self.auditorium {
+                auditorium.isVisited = true
+                appDelegate?.saveContext()
+            }
         }
     }
 }

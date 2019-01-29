@@ -2,8 +2,8 @@
 //  AuditoriumEntity+CoreDataProperties.swift
 //  My University
 //
-//  Created by Yura Voevodin on 12/22/18.
-//  Copyright © 2018 Yura Voevodin. All rights reserved.
+//  Created by Yura Voevodin on 1/29/19.
+//  Copyright © 2019 Yura Voevodin. All rights reserved.
 //
 //
 
@@ -20,6 +20,7 @@ extension AuditoriumEntity {
     @NSManaged public var firstSymbol: String?
     @NSManaged public var id: Int64
     @NSManaged public var name: String?
+    @NSManaged public var isVisited: Bool
     @NSManaged public var records: NSSet?
 
 }
