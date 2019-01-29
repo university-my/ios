@@ -62,7 +62,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="segmentedControl" destination="pC9-4Q-Zkn" id="CSS-3C-RmM"/>
-                        <segue destination="lci-e7-UWA" kind="show" identifier="showRecords" id="LfJ-TO-z57"/>
+                        <segue destination="lci-e7-UWA" kind="show" identifier="showGroupRecords" id="LfJ-TO-z57"/>
+                        <segue destination="Lkp-9x-4aU" kind="show" identifier="showAuditoriumRecords" id="Lha-vI-W8m"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uK1-z3-fG9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -229,7 +230,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tA6-LM-gbf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="180" y="2964"/>
+            <point key="canvasLocation" x="180" y="3261"/>
         </scene>
         <!--About us-->
         <scene sceneID="k6x-wc-wgc">
@@ -523,6 +524,7 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Lha-vI-W8m"/>
         <segue reference="LfJ-TO-z57"/>
     </inferredMetricsTieBreakers>
 </document>

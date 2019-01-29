@@ -56,7 +56,12 @@ class HistoryTableViewController: UITableViewController {
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        performSegue(withIdentifier: "showRecords", sender: nil)
+        switch dataSourceType {
+        case .auditoriums:
+            performSegue(withIdentifier: "showAuditoriumRecords", sender: nil)
+        case .groups:
+            performSegue(withIdentifier: "showGroupRecords", sender: nil)
+        }
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -77,12 +82,28 @@ class HistoryTableViewController: UITableViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "showRecords", let detailTableViewController = segue.destination as? GroupScheduleTableViewController {
-//            if tableView == self.tableView, let indexPath = tableView.indexPathForSelectedRow {
-//                let selectedGroup = fetchedResultsController?.object(at: indexPath)
-//                detailTableViewController.group = selectedGroup
-//            }
-//        }
+        
+        switch segue.identifier {
+            
+        case "showAuditoriumRecords":
+            if let detailTableViewController = segue.destination as? AuditoriumScheduleTableViewController {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    let selectedAuditorium = auditoriumDataSource.fetchedResultsController?.object(at: indexPath)
+                    detailTableViewController.auditorium = selectedAuditorium
+                }
+            }
+            
+        case "showGroupRecords":
+            if let detailTableViewController = segue.destination as? GroupScheduleTableViewController {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    let selectedGroup = groupDataSource.fetchedResultsController?.object(at: indexPath)
+                    detailTableViewController.group = selectedGroup
+                }
+            }
+            
+        default:
+            break
+        }
     }
     
     // MARK: - UISegmentedControl
