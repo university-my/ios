@@ -31,6 +31,9 @@ class GroupScheduleTableViewController: UITableViewController {
         // Refresh control.
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
+        
+        // Mark group as visited
+        markGroupAsVisited()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -179,6 +182,18 @@ class GroupScheduleTableViewController: UITableViewController {
             }
         } catch {
             print("Error in the fetched results controller: \(error).")
+        }
+    }
+    
+    // MARK: - Is visited
+    
+    private func markGroupAsVisited() {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        viewContext?.perform {
+            if let group = self.group {
+                group.isVisited = true
+                appDelegate?.saveContext()
+            }
         }
     }
 }

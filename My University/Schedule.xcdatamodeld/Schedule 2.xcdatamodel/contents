@@ -14,6 +14,7 @@
     <entity name="GroupEntity" representedClassName="GroupEntity" syncable="YES">
         <attribute name="firstSymbol" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isVisited" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="records" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RecordEntity" inverseName="groups" inverseEntity="RecordEntity" syncable="YES"/>
         <fetchIndex name="compoundIndex">
@@ -44,7 +45,7 @@
     </entity>
     <elements>
         <element name="AuditoriumEntity" positionX="31.9921875" positionY="107.68359375" width="128" height="105"/>
-        <element name="GroupEntity" positionX="35.59375" positionY="398.10546875" width="128" height="105"/>
+        <element name="GroupEntity" positionX="35.59375" positionY="398.10546875" width="128" height="120"/>
         <element name="RecordEntity" positionX="-387.71484375" positionY="184.6875" width="128" height="195"/>
     </elements>
 </model>

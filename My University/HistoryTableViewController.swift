@@ -98,7 +98,7 @@ class HistoryTableViewController: UITableViewController {
         request.sortDescriptors = [firstSymbol, name]
         request.fetchBatchSize = 20
         
-        request.predicate = NSPredicate(format: "records.@count > 0")
+        request.predicate = NSPredicate(format: "\(#keyPath(GroupEntity.isVisited)) == YES")
         
         if let context = viewContext {
             let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: #keyPath(GroupEntity.firstSymbol), cacheName: nil)

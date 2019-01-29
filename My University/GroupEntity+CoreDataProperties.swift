@@ -20,6 +20,7 @@ extension GroupEntity {
     @NSManaged public var firstSymbol: String?
     @NSManaged public var id: Int64
     @NSManaged public var name: String?
+    @NSManaged public var isVisited: Bool
     @NSManaged public var records: NSSet?
 
 }
