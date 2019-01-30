@@ -57,7 +57,7 @@ extension AuditoriumHistoryDataSource: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let section = fetchedResultsController?.sections?[section]
+        let section = fetchedResultsController?.sections?[safe: section]
         return section?.numberOfObjects ?? 0
     }
     
@@ -74,6 +74,6 @@ extension AuditoriumHistoryDataSource: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return fetchedResultsController?.sections?[section].name
+        return fetchedResultsController?.sections?[safe: section]?.name
     }
 }

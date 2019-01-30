@@ -99,7 +99,7 @@ class AuditoriumScheduleTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let section = fetchedResultsController?.sections?[section]
+        let section = fetchedResultsController?.sections?[safe: section]
         return section?.numberOfObjects ?? 0
     }
     
@@ -122,7 +122,7 @@ class AuditoriumScheduleTableViewController: UITableViewController {
         if sectionsTitles.indices.contains(section) {
             return sectionsTitles[section]
         } else {
-            return fetchedResultsController?.sections?[section].name
+            return fetchedResultsController?.sections?[safe: section]?.name
         }
     }
     

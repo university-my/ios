@@ -65,15 +65,14 @@ class AboutUsTableViewController: UITableViewController {
                 let appDelegate = UIApplication.shared.delegate as? AppDelegate
                 guard let persistentContainer = appDelegate?.persistentContainer else { return }
                 let cell = tableView.cellForRow(at: indexPath)
-
-                RecordEntity.clearHistory(persistentContainer: persistentContainer) { error in
-                    if let error = error {
-                        let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                        self.present(alert, animated: true)
-                    }
-                    cell?.isSelected = false
-                }
+                
+                let context = persistentContainer.viewContext
+                AuditoriumEntity.clearHistory(on: context)
+                GroupEntity.clearHistory(on: context)
+                
+                persistentContainer.viewContext.refreshAllObjects()
+                
+                cell?.isSelected = false
             }
         }
     }
