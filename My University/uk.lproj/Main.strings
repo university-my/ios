@@ -1,17 +1,26 @@
+/* Class = "UINavigationItem"; title = "Search"; ObjectID = "7N0-mc-ebX"; */
+"7N0-mc-ebX.title" = "Пошук";
+
 /* Class = "UILabel"; text = "Detail"; ObjectID = "byv-DE-jgc"; */
 "byv-DE-jgc.text" = "Подробиці";
-
-/* Class = "UITabBarItem"; title = "History"; ObjectID = "cNm-uW-1gV"; */
-"cNm-uW-1gV.title" = "Історія";
 
 /* Class = "UILabel"; text = "Terms of Service"; ObjectID = "DIr-pP-HDA"; */
 "DIr-pP-HDA.text" = "Умови обслуговування";
 
-/* Class = "UINavigationItem"; title = "All groups"; ObjectID = "F0z-JD-anE"; */
-"F0z-JD-anE.title" = "Всі групи";
+/* Class = "UILabel"; text = "Title"; ObjectID = "DYn-Mi-2yJ"; */
+"DYn-Mi-2yJ.text" = "Заголовок";
 
 /* Class = "UILabel"; text = "Privacy Policy"; ObjectID = "ger-UO-x8Y"; */
 "ger-UO-x8Y.text" = "Політика конфіденційності";
+
+/* Class = "UILabel"; text = "Clear History"; ObjectID = "gLB-Ma-lPu"; */
+"gLB-Ma-lPu.text" = "Очистити Історію";
+
+/* Class = "UISegmentedControl"; hAI-I2-CNE.segmentTitles[0] = "Groups"; ObjectID = "hAI-I2-CNE"; */
+"hAI-I2-CNE.segmentTitles[0]" = "Групи";
+
+/* Class = "UISegmentedControl"; hAI-I2-CNE.segmentTitles[1] = "Auditoriums"; ObjectID = "hAI-I2-CNE"; */
+"hAI-I2-CNE.segmentTitles[1]" = "Аудиторії";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "hmx-c1-Cyp"; */
 "hmx-c1-Cyp.text" = "Заголовок";
@@ -19,11 +28,20 @@
 /* Class = "UILabel"; text = "Telegram bot"; ObjectID = "Ivk-o2-uZv"; */
 "Ivk-o2-uZv.text" = "Telegram бот";
 
-/* Class = "UITabBarItem"; title = "Groups"; ObjectID = "NdO-qa-j8C"; */
-"NdO-qa-j8C.title" = "Групи";
+/* Class = "UILabel"; text = "Title"; ObjectID = "mJY-jC-A0P"; */
+"mJY-jC-A0P.text" = "Заголовок";
+
+/* Class = "UISegmentedControl"; pC9-4Q-Zkn.segmentTitles[0] = "Groups"; ObjectID = "pC9-4Q-Zkn"; */
+"pC9-4Q-Zkn.segmentTitles[0]" = "Групи";
+
+/* Class = "UISegmentedControl"; pC9-4Q-Zkn.segmentTitles[1] = "Auditoriums"; ObjectID = "pC9-4Q-Zkn"; */
+"pC9-4Q-Zkn.segmentTitles[1]" = "Аудиторії";
 
 /* Class = "UILabel"; text = "Messenger bot"; ObjectID = "pUi-is-FYE"; */
 "pUi-is-FYE.text" = "Messenger бот";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "qln-L3-fWH"; */
+"qln-L3-fWH.text" = "Детально";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "SMk-YH-hHH"; */
 "SMk-YH-hHH.text" = "Заголовок";
@@ -33,9 +51,6 @@
 
 /* Class = "UILabel"; text = "Facebook page"; ObjectID = "T37-xz-dk7"; */
 "T37-xz-dk7.text" = "Facebook сторінка";
-
-/* Class = "UILabel"; text = "Title"; ObjectID = "uWT-0r-H6j"; */
-"uWT-0r-H6j.text" = "Заголовок";
 
 /* Class = "UILabel"; text = "Rate this app"; ObjectID = "vdF-B8-vrj"; */
 "vdF-B8-vrj.text" = "Оцініть цей додаток";
