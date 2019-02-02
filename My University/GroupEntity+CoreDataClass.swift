@@ -28,7 +28,7 @@ public class GroupEntity: NSManagedObject {
     /// Fetch groups
     class func fetch(_ groups: [Group], context: NSManagedObjectContext) -> [GroupEntity] {
         let ids = groups.map { group in
-            return String(group.id)
+            return group.id
         }
         let fetchRequest: NSFetchRequest<GroupEntity> = GroupEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id IN %@", ids)

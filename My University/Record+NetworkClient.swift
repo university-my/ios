@@ -76,7 +76,9 @@ extension Record {
                      */
                     try FileManager.default.removeItem(at: cacheFile)
                 }
-                catch { }
+                catch {
+                  print(error)
+              }
                 
                 do {
                     try FileManager.default.moveItem(at: localURL, to: cacheFile)

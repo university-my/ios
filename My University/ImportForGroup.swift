@@ -168,6 +168,8 @@ extension Record {
             recordEntity.reason = parsedRecord.reason
             recordEntity.time = parsedRecord.time
             recordEntity.type = parsedRecord.type
+          
+          // TODO: Check auditoriun next!
             
             if let object = parsedRecord.auditorium {
                 recordEntity.auditorium = fetchAuditorium(object: object, context: context)
