@@ -44,6 +44,7 @@
 		DE8B668521CACE5600C43F81 /* Group+NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B668421CACE5600C43F81 /* Group+NetworkClient.swift */; };
 		DEDA50EA21862091006C7B27 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50E821862090006C7B27 /* InfoPlist.strings */; };
 		DEDA50ED218620E0006C7B27 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50EB218620E0006C7B27 /* Localizable.strings */; };
+		DEEEEBE02205BC2C0072A19A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEEEBDF2205BC2C0072A19A /* Settings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +90,7 @@
 		DE8B668421CACE5600C43F81 /* Group+NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+NetworkClient.swift"; sourceTree = "<group>"; };
 		DEDA50E921862090006C7B27 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DEDA50EC218620E0006C7B27 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DEEEEBDF2205BC2C0072A19A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +191,7 @@
 				C2C0E9AF1FB8CDA00012FA9C /* Group.swift */,
 				DE584C552198615F0099415E /* Teacher.swift */,
 				C22A2E541FC7644600587463 /* Record.swift */,
+				DEEEEBDF2205BC2C0072A19A /* Settings.swift */,
 			);
 			name = Structures;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				DE3A66362200CA9200E64D6C /* AuditoriumHistoryDataSource.swift in Sources */,
 				DE8B668321CACDF800C43F81 /* Auditorium+NetworkClient.swift in Sources */,
 				C280894B1FB8D54A002B5676 /* GroupEntity+CoreDataClass.swift in Sources */,
+				DEEEEBE02205BC2C0072A19A /* Settings.swift in Sources */,
 				DE584C6021986E740099415E /* AuditoriumEntity+CoreDataProperties.swift in Sources */,
 				DE162A8821988CEB000ED4B3 /* SearchTableViewController.swift in Sources */,
 				C22A2E581FC7664000587463 /* RecordEntity+CoreDataClass.swift in Sources */,
@@ -535,6 +539,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.voevodin-yura.Schedule";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SERVER_BASE_URL = "http://localhost:3000";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
@@ -551,6 +556,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.voevodin-yura.Schedule";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SERVER_BASE_URL = "https://my-university.com.ua";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;

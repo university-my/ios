@@ -28,7 +28,7 @@ extension Record {
         func downloadRecords(groupID: Int64, _ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            guard let url = URL(string: "http://localhost:3000/universities/sumdu/groups/\(groupID).json") else {
+            guard let url = URL(string: Settings.shared.baseURL + "/universities/sumdu/groups/\(groupID).json") else {
                 completionHandler?(nil)
                 return
             }
@@ -49,7 +49,7 @@ extension Record {
         func downloadRecords(auditoriumID: Int64, _ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            guard let url = URL(string: "http://localhost:3000/universities/sumdu/auditoriums/\(auditoriumID).json") else {
+            guard let url = URL(string: Settings.shared.baseURL + "/universities/sumdu/auditoriums/\(auditoriumID).json") else {
                 completionHandler?(nil)
                 return
             }
