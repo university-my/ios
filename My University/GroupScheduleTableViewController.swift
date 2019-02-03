@@ -28,12 +28,10 @@ class GroupScheduleTableViewController: UITableViewController {
         
         tableView.rowHeight = UITableView.automaticDimension
         
-        // Refresh control.
-        refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
-        
         // Mark group as visited
         markGroupAsVisited()
+      
+        showUpdateButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,15 +41,51 @@ class GroupScheduleTableViewController: UITableViewController {
             // Name of the Group.
             title = group.name
             
-            // Fetch old records first.
             performFetch()
-            
-            // TODO: Dont import records all the time
-            
-            // Import records.
-            importRecords()
+          
+            setTitleForUpdateButton()
         }
     }
+  
+  // MARK: - Update button
+  
+  private var updateButton: UIBarButtonItem?
+  
+  @objc func update(_ sender: Any) {
+    importRecords()
+  }
+  
+  private func setTitleForUpdateButton() {
+    if fetchedResultsController?.fetchedObjects?.isEmpty == true {
+      updateButton?.title = NSLocalizedString("Download", comment: "Title for button on the Group screen")
+    } else {
+      updateButton?.title = NSLocalizedString("Update", comment: "Title for button on the Group screen")
+    }
+  }
+  
+  private func showUpdateButton() {
+    activiyIndicatior?.removeFromSuperview()
+    activiyIndicatior = nil
+    
+    updateButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(update(_:)))
+    navigationItem.rightBarButtonItem = updateButton
+  }
+  
+  // MARK: - Activity indicatior
+  
+  private var activiyIndicatior: UIActivityIndicatorView?
+  
+  private func showActiviyIndicatior() {
+    updateButton = nil
+    
+    let activiyIndicatior = UIActivityIndicatorView(style: .white)
+    activiyIndicatior.color = .orange
+    activiyIndicatior.hidesWhenStopped = true
+    activiyIndicatior.startAnimating()
+    navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activiyIndicatior)
+    navigationItem.rightBarButtonItem?.tintColor = .orange
+    self.activiyIndicatior = activiyIndicatior
+  }
     
     // MARK: - Import Records
     
@@ -66,6 +100,8 @@ class GroupScheduleTableViewController: UITableViewController {
         guard let persistentContainer = appDelegate?.persistentContainer else { return }
         
         guard let forGroup = group else { return }
+      
+        showActiviyIndicatior()
         
         // Download records for Group from backend and save to database.
         importForGroup = Record.ImportForGroup(persistentContainer: persistentContainer, group: forGroup)
@@ -80,12 +116,10 @@ class GroupScheduleTableViewController: UITableViewController {
                 self.performFetch()
                 self.tableView.reloadData()
                 self.refreshControl?.endRefreshing()
+                self.showUpdateButton()
+                self.setTitleForUpdateButton()
             }
         })
-    }
-    
-    @objc func refreshContent() {
-        importRecords()
     }
     
     // MARK: - Table view data source

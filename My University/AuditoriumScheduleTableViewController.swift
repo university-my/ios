@@ -28,12 +28,10 @@ class AuditoriumScheduleTableViewController: UITableViewController {
         
         tableView.rowHeight = UITableView.automaticDimension
         
-        // Refresh control.
-        refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
-        
         // Mark auditorium as visited
         markAuditoriumAsVisited()
+      
+        showUpdateButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,20 +40,54 @@ class AuditoriumScheduleTableViewController: UITableViewController {
         if let auditorium = auditorium {
             // Title
             title = auditorium.name
-            
-            // Fetch old records first.
+          
             performFetch()
-            
-            // TODO: Import records only if:
-            // 1. Records not found
-            // 2. Date of last record less than current date
-            
-            // Import records.
-            importRecords()
+          
+            setTitleForUpdateButton()
         }
     }
+  
+  // MARK: - Update button
+  
+  private var updateButton: UIBarButtonItem?
+  
+  @objc func update(_ sender: Any) {
+    importRecords()
+  }
+  
+  private func setTitleForUpdateButton() {
+    if fetchedResultsController?.fetchedObjects?.isEmpty == true {
+      updateButton?.title = NSLocalizedString("Download", comment: "Title for button on the Auditorium screen")
+    } else {
+      updateButton?.title = NSLocalizedString("Update", comment: "Title for button on the Auditorium screen")
+    }
+  }
+  
+  private func showUpdateButton() {
+    activiyIndicatior?.removeFromSuperview()
+    activiyIndicatior = nil
     
-    // MARK: - Import Records
+    updateButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(update(_:)))
+    navigationItem.rightBarButtonItem = updateButton
+  }
+  
+  // MARK: - Activity indicatior
+  
+  private var activiyIndicatior: UIActivityIndicatorView?
+  
+  private func showActiviyIndicatior() {
+    updateButton = nil
+
+    let activiyIndicatior = UIActivityIndicatorView(style: .white)
+    activiyIndicatior.color = .orange
+    activiyIndicatior.hidesWhenStopped = true
+    activiyIndicatior.startAnimating()
+    navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activiyIndicatior)
+    navigationItem.rightBarButtonItem?.tintColor = .orange
+    self.activiyIndicatior = activiyIndicatior
+  }
+  
+  // MARK: - Import Records
     
     var auditorium: AuditoriumEntity?
     var auditoriumID: Int64?
@@ -68,6 +100,8 @@ class AuditoriumScheduleTableViewController: UITableViewController {
         guard let persistentContainer = appDelegate?.persistentContainer else { return }
         
         guard let auditorium = auditorium else { return }
+      
+        showActiviyIndicatior()
         
         // Download records for Group from backend and save to database.
         importForAuditorium = Record.ImportForAuditorium(persistentContainer: persistentContainer, auditorium: auditorium)
@@ -83,13 +117,11 @@ class AuditoriumScheduleTableViewController: UITableViewController {
                     self.performFetch()
                     self.tableView.reloadData()
                     self.refreshControl?.endRefreshing()
+                    self.showUpdateButton()
+                    self.setTitleForUpdateButton()
                 }
             })
         }
-    }
-    
-    @objc func refreshContent() {
-        importRecords()
     }
     
     // MARK: - Table view data source
@@ -128,9 +160,6 @@ class AuditoriumScheduleTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let headerView = view as? UITableViewHeaderFooterView {
-            
-            // TODO: Try use appearance
-            
             let backgroundView = UIView()
             backgroundView.backgroundColor = .sectionBackgroundColor
             headerView.backgroundView = backgroundView
@@ -139,9 +168,6 @@ class AuditoriumScheduleTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        // TODO: Try use appearance
-        
         let bgColorView = UIView()
         bgColorView.backgroundColor = .cellSelectionColor
         cell.selectedBackgroundView = bgColorView
