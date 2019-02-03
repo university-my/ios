@@ -265,6 +265,7 @@ extension SearchTableViewController: UISearchResultsUpdating {
             // Hand over the filtered results to our search results table.
             if let resultsController = searchController.searchResultsController as? SearchResultsTableViewController {
                 resultsController.filteredAuditoriums = filteredResults
+                resultsController.dataSourceType = .auditoriums
                 resultsController.tableView.reloadData()
             }
             
@@ -277,6 +278,7 @@ extension SearchTableViewController: UISearchResultsUpdating {
             // Hand over the filtered results to our search results table.
             if let resultsController = searchController.searchResultsController as? SearchResultsTableViewController {
                 resultsController.filteredGroups = filteredResults
+                resultsController.dataSourceType = .groups
                 resultsController.tableView.reloadData()
             }
         }
