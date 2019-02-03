@@ -23,16 +23,12 @@ class AboutUsTableViewController: UITableViewController {
         if section == 0 {
             switch row {
             case 0:
-                if let facebookURL = URL(string: "fb://profile/120391101921477"), UIApplication.shared.canOpenURL(facebookURL) {
+                if let facebookURL = URL(string: "fb://profile/592137607893036"), UIApplication.shared.canOpenURL(facebookURL) {
                     UIApplication.shared.open(facebookURL)
-                } else if let facebookPageURL = URL(string: "https://www.facebook.com/botschedule") {
+                } else if let facebookPageURL = URL(string: "https://www.facebook.com/Мій-Університет-592137607893036") {
                     UIApplication.shared.open(facebookPageURL)
                 }
             case 1:
-                if let messengerBotURL = URL(string: "https://m.me/botschedule") {
-                    UIApplication.shared.open(messengerBotURL)
-                }
-            case 2:
                 if let telegramBotURL = URL(string: "https://telegram.me/sumdu_bot") {
                     UIApplication.shared.open(telegramBotURL)
                 }
