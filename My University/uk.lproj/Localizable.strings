@@ -1,6 +1,14 @@
 /* Cancel search */
 "Cancel" = "Скасувати";
 
+/* Title for button on the Auditorium screen
+   Title for button on the Group screen */
+"Download" = "Завантажити";
+
 /* Placeholder in search controller */
 "Search" = "Пошук";
+
+/* Title for button on the Auditorium screen
+   Title for button on the Group screen */
+"Update" = "Оновити";
 
