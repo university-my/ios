@@ -15,7 +15,7 @@ public class GroupEntity: NSManagedObject {
 
     class func fetch(id: Int64, context: NSManagedObjectContext) -> GroupEntity? {
         let request: NSFetchRequest<GroupEntity> = fetchRequest()
-        request.predicate = NSPredicate(format: "id = %@", String(id))
+        request.predicate = NSPredicate(format: "id == %d", id)
         
         do {
             let result = try context.fetch(request)

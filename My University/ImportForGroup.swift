@@ -168,8 +168,6 @@ extension Record {
             recordEntity.reason = parsedRecord.reason
             recordEntity.time = parsedRecord.time
             recordEntity.type = parsedRecord.type
-          
-          // TODO: Check auditoriun next!
             
             if let object = parsedRecord.auditorium {
                 recordEntity.auditorium = fetchAuditorium(object: object, context: context)
@@ -184,7 +182,7 @@ extension Record {
         /// Fetch auditorium for set relation with record
         private func fetchAuditorium(object: Auditorium, context: NSManagedObjectContext) -> AuditoriumEntity? {
             let fetchRequest: NSFetchRequest<AuditoriumEntity> = AuditoriumEntity.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "id = %@", String(object.id))
+            fetchRequest.predicate = NSPredicate(format: "id == %d", object.id)
             do {
                 let result = try context.fetch(fetchRequest)
                 let auditorium = result.first
