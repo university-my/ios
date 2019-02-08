@@ -35,7 +35,7 @@ struct Record {
     guard let dateString = json["start_date"] as? String else {
       return nil
     }
-    let type = json["type"] as? String
+    let type = json["kind"] as? String
     let name = json["name"] as? String
     
     guard let pairName = json["pair_name"] as? String else {
