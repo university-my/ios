@@ -10,7 +10,7 @@ import CoreData
 import UIKit
 
 enum DataSourceType: Int {
-    case groups = 0, auditoriums
+    case groups = 0, auditoriums, teachers
 }
 
 class SearchTableViewController: UITableViewController {
@@ -25,12 +25,16 @@ class SearchTableViewController: UITableViewController {
         return GroupDataSource()
     }()
     
+    private lazy var teacherDataSource: TeacherDataSource = {
+        return TeacherDataSource()
+    }()
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
     // MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,7 +47,7 @@ class SearchTableViewController: UITableViewController {
         // Import on pull to refresh
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
-
+        
         // Loading...
         loadCurrentDataSource()
     }
@@ -112,6 +116,8 @@ class SearchTableViewController: UITableViewController {
             performSegue(withIdentifier: "showAuditoriumSchedule", sender: nil)
         case .groups:
             performSegue(withIdentifier: "showGroupSchedule", sender: nil)
+        case .teachers:
+            performSegue(withIdentifier: "showTeacherSchedule", sender: nil)
         }
     }
     
@@ -129,10 +135,10 @@ class SearchTableViewController: UITableViewController {
         bgColorView.backgroundColor = .cellSelectionColor
         cell.selectedBackgroundView = bgColorView
     }
-
+    
     
     // MARK: - Navigation
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "showGroupSchedule", let destination = segue.destination as? GroupScheduleTableViewController {
@@ -160,6 +166,19 @@ class SearchTableViewController: UITableViewController {
                 selectedAuditorium = resultsTableController.filteredAuditoriums[indexPath.row]
             }
             destination.auditorium = selectedAuditorium
+            
+        } else if segue.identifier == "showTeacherSchedule", let destination = segue.destination as? TeacherScheduleTableViewController {
+            
+            var selectedTeacher: TeacherEntity?
+            if tableView == self.tableView, let indexPath = tableView.indexPathForSelectedRow {
+                // From main table view
+                selectedTeacher = teacherDataSource.fetchedResultsController?.object(at: indexPath)
+                
+            } else if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
+                // From search results controller
+                selectedTeacher = resultsTableController.filteredTeachers[indexPath.row]
+            }
+            destination.teacher = selectedTeacher
         }
     }
     
@@ -210,6 +229,30 @@ class SearchTableViewController: UITableViewController {
             refreshControl?.endRefreshing()
         }
     }
+    // MARK: - Teachers
+    
+    private func loadTeachers() {
+        tableView.dataSource = teacherDataSource
+        teacherDataSource.fetchTeachers()
+        
+        let teachers = teacherDataSource.fetchedResultsController?.fetchedObjects ?? []
+        if teachers.isEmpty {
+            teacherDataSource.importTeachers { (error) in
+                if let error = error {
+                    let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                }
+                self.teacherDataSource.fetchTeachers()
+                self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
+            }
+            
+        } else {
+            tableView.reloadData()
+            refreshControl?.endRefreshing()
+        }
+    }
     
     // MARK: - UISegmentedControl
     
@@ -235,6 +278,8 @@ class SearchTableViewController: UITableViewController {
             loadAuditoriums()
         case .groups:
             loadGroups()
+        case .teachers:
+            loadTeachers()
         }
     }
 }
@@ -279,6 +324,19 @@ extension SearchTableViewController: UISearchResultsUpdating {
             if let resultsController = searchController.searchResultsController as? SearchResultsTableViewController {
                 resultsController.filteredGroups = filteredResults
                 resultsController.dataSourceType = .groups
+                resultsController.tableView.reloadData()
+            }
+            
+        case .teachers:
+            // Update the filtered array based on the search text.
+            guard let searchResults = teacherDataSource.fetchedResultsController?.fetchedObjects else { return }
+            
+            let filteredResults = searchResults.filter { nameSearchComparisonPredicate.evaluate(with: $0) }
+            
+            // Hand over the filtered results to our search results table.
+            if let resultsController = searchController.searchResultsController as? SearchResultsTableViewController {
+                resultsController.filteredTeachers = filteredResults
+                resultsController.dataSourceType = .teachers
                 resultsController.tableView.reloadData()
             }
         }

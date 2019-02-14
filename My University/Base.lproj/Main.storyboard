@@ -38,11 +38,12 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="History" id="weu-X2-vfy">
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="pC9-4Q-Zkn">
-                            <rect key="frame" x="100" y="7.5" width="175" height="29"/>
+                            <rect key="frame" x="56" y="7" width="263" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Groups"/>
                                 <segment title="Auditoriums"/>
+                                <segment title="Teachers"/>
                             </segments>
                             <connections>
                                 <action selector="typeChanged:" destination="qa9-ST-Dpk" eventType="valueChanged" id="Tkb-8w-9Vj"/>
@@ -64,6 +65,7 @@
                         <outlet property="segmentedControl" destination="pC9-4Q-Zkn" id="CSS-3C-RmM"/>
                         <segue destination="lci-e7-UWA" kind="show" identifier="showGroupRecords" id="LfJ-TO-z57"/>
                         <segue destination="Lkp-9x-4aU" kind="show" identifier="showAuditoriumRecords" id="Lha-vI-W8m"/>
+                        <segue destination="ffg-er-baH" kind="show" identifier="showTeacherRecords" id="rfa-8v-y9z"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uK1-z3-fG9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -107,11 +109,12 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Search" id="7N0-mc-ebX">
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="hAI-I2-CNE">
-                            <rect key="frame" x="100" y="7" width="175" height="30"/>
+                            <rect key="frame" x="56" y="7" width="263" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Groups"/>
                                 <segment title="Auditoriums"/>
+                                <segment title="Teachers"/>
                             </segments>
                             <connections>
                                 <action selector="typeChanged:" destination="qa9-ST-Dpk" eventType="valueChanged" id="JXs-MX-ywQ"/>
@@ -122,6 +125,7 @@
                         <outlet property="segmentedControl" destination="hAI-I2-CNE" id="nvq-fA-VZL"/>
                         <segue destination="lci-e7-UWA" kind="show" identifier="showGroupSchedule" id="Qyy-kV-8ui"/>
                         <segue destination="Lkp-9x-4aU" kind="show" identifier="showAuditoriumSchedule" id="ZcE-LS-DXW"/>
+                        <segue destination="ffg-er-baH" kind="show" identifier="showTeacherSchedule" id="qvs-wr-JcP"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q6K-CH-VUo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -230,7 +234,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tA6-LM-gbf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="180" y="3261"/>
+            <point key="canvasLocation" x="-444" y="3190"/>
         </scene>
         <!--About us-->
         <scene sceneID="k6x-wc-wgc">
@@ -482,7 +486,53 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iFK-Oz-9sY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1119" y="2964"/>
+            <point key="canvasLocation" x="359" y="3189"/>
+        </scene>
+        <!--Teacher Schedule Table View Controller-->
+        <scene sceneID="baQ-kx-861">
+            <objects>
+                <tableViewController storyboardIdentifier="TeacherScheduleTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ffg-er-baH" customClass="TeacherScheduleTableViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VS4-vj-ukL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" name="Background Color"/>
+                        <color key="separatorColor" name="Separator Color"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailTableCell" textLabel="uoF-7f-DPe" detailTextLabel="1Jv-zg-4j2" style="IBUITableViewCellStyleSubtitle" id="J0b-tV-XbP">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="J0b-tV-XbP" id="Ab8-7A-RcA">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="uoF-7f-DPe">
+                                            <rect key="frame" x="16" y="5" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Jv-zg-4j2">
+                                            <rect key="frame" x="16" y="25.5" width="33" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" name="Background Color"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ffg-er-baH" id="4mJ-J6-C2o"/>
+                            <outlet property="delegate" destination="ffg-er-baH" id="aS5-1n-1pW"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Lh-nc-1Ip" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1271" y="3188"/>
         </scene>
     </scenes>
     <resources>
@@ -500,7 +550,8 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Lha-vI-W8m"/>
-        <segue reference="LfJ-TO-z57"/>
+        <segue reference="qvs-wr-JcP"/>
+        <segue reference="ZcE-LS-DXW"/>
+        <segue reference="Qyy-kV-8ui"/>
     </inferredMetricsTieBreakers>
 </document>

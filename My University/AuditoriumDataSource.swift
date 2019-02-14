@@ -100,8 +100,8 @@ extension AuditoriumDataSource: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchResultsCell", for: indexPath)
         
         // Configure cell
-        if let group = fetchedResultsController?.object(at: indexPath) {
-            cell.textLabel?.text = group.name
+        if let auditorium = fetchedResultsController?.object(at: indexPath) {
+            cell.textLabel?.text = auditorium.name
         }
         
         return cell

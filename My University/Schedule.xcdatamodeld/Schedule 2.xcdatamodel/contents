@@ -38,6 +38,19 @@
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="auditorium" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AuditoriumEntity" inverseName="records" inverseEntity="AuditoriumEntity" syncable="YES"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GroupEntity" inverseName="records" inverseEntity="GroupEntity" syncable="YES"/>
+        <relationship name="teacher" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TeacherEntity" inverseName="records" inverseEntity="TeacherEntity" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="TeacherEntity" representedClassName="TeacherEntity" syncable="YES">
+        <attribute name="firstSymbol" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isVisited" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="records" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RecordEntity" inverseName="teacher" inverseEntity="RecordEntity" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
@@ -47,6 +60,7 @@
     <elements>
         <element name="AuditoriumEntity" positionX="31.9921875" positionY="107.68359375" width="128" height="120"/>
         <element name="GroupEntity" positionX="35.59375" positionY="398.10546875" width="128" height="120"/>
-        <element name="RecordEntity" positionX="-387.71484375" positionY="184.6875" width="128" height="195"/>
+        <element name="RecordEntity" positionX="-387.71484375" positionY="184.6875" width="128" height="210"/>
+        <element name="TeacherEntity" positionX="-180" positionY="261" width="128" height="120"/>
     </elements>
 </model>

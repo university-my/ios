@@ -1,15 +1,15 @@
 //
-//  AuditoriumScheduleTableViewController.swift
+//  TeacherScheduleTableViewController.swift
 //  My University
 //
-//  Created by Yura Voevodin on 12/8/18.
-//  Copyright © 2018 Yura Voevodin. All rights reserved.
+//  Created by Yura Voevodin on 2/14/19.
+//  Copyright © 2019 Yura Voevodin. All rights reserved.
 //
 
 import CoreData
 import UIKit
 
-class AuditoriumScheduleTableViewController: UITableViewController {
+class TeacherScheduleTableViewController: UITableViewController {
     
     // MARK: - Properties
     
@@ -22,14 +22,14 @@ class AuditoriumScheduleTableViewController: UITableViewController {
     private var sectionsTitles: [String] = []
     
     // MARK: - Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tableView.rowHeight = UITableView.automaticDimension
         
-        // Mark auditorium as visited
-        markAuditoriumAsVisited()
+        // Mark teacher as visited
+        markTeacherAsVisited()
         
         showUpdateButton()
     }
@@ -37,9 +37,9 @@ class AuditoriumScheduleTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let auditorium = auditorium {
+        if let teacher = teacher {
             // Title
-            title = auditorium.name
+            title = teacher.name
             
             performFetch()
             
@@ -89,24 +89,24 @@ class AuditoriumScheduleTableViewController: UITableViewController {
     
     // MARK: - Import Records
     
-    var auditorium: AuditoriumEntity?
-    var auditoriumID: Int64?
+    var teacher: TeacherEntity?
+    var teacherID: Int64?
     
-    private var importForAuditorium: Record.ImportForAuditorium?
+    private var importForTeacher: Record.ImportForTeacher?
     
     private func importRecords() {
         // Do nothing without CoreData.
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         guard let persistentContainer = appDelegate?.persistentContainer else { return }
         
-        guard let auditorium = auditorium else { return }
+        guard let teacher = teacher else { return }
         
         showActiviyIndicatior()
         
-        // Download records for Auditorium from backend and save to database.
-        importForAuditorium = Record.ImportForAuditorium(persistentContainer: persistentContainer, auditorium: auditorium)
+        // Download records for Teacher from backend and save to database.
+        importForTeacher = Record.ImportForTeacher(persistentContainer: persistentContainer, teacher: teacher)
         DispatchQueue.global().async {
-            self.importForAuditorium?.importRecords({ (error) in
+            self.importForTeacher?.importRecords({ (error) in
                 
                 DispatchQueue.main.async {
                     if let error = error {
@@ -123,18 +123,17 @@ class AuditoriumScheduleTableViewController: UITableViewController {
             })
         }
     }
-    
+
     // MARK: - Table view data source
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedResultsController?.sections?.count ?? 0
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let section = fetchedResultsController?.sections?[safe: section]
         return section?.numberOfObjects ?? 0
     }
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "detailTableCell", for: indexPath)
@@ -181,14 +180,14 @@ class AuditoriumScheduleTableViewController: UITableViewController {
     }()
     
     private lazy var fetchedResultsController: NSFetchedResultsController<RecordEntity>? = {
-        guard let auditorium = auditorium else { return nil }
+        guard let teacher = teacher else { return nil }
         let request: NSFetchRequest<RecordEntity> = RecordEntity.fetchRequest()
         
         let dateString = NSSortDescriptor(key: #keyPath(RecordEntity.dateString), ascending: true)
         let time = NSSortDescriptor(key: #keyPath(RecordEntity.time), ascending: true)
         
         request.sortDescriptors = [dateString, time]
-        request.predicate = NSPredicate(format: "auditorium == %@", auditorium)
+        request.predicate = NSPredicate(format: "teacher == %@", teacher)
         request.fetchBatchSize = 20
         
         if let context = viewContext {
@@ -223,11 +222,11 @@ class AuditoriumScheduleTableViewController: UITableViewController {
     
     // MARK: - Is visited
     
-    private func markAuditoriumAsVisited() {
+    private func markTeacherAsVisited() {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         viewContext?.perform {
-            if let auditorium = self.auditorium {
-                auditorium.isVisited = true
+            if let teacher = self.teacher {
+                teacher.isVisited = true
                 appDelegate?.saveContext()
             }
         }

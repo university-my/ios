@@ -31,4 +31,17 @@ public class AuditoriumEntity: NSManagedObject {
         } catch {
         }
     }
+    
+    /// Fetch auditorium entity
+    static func fetchAuditorium(id: Int64, context: NSManagedObjectContext) -> AuditoriumEntity? {
+        let fetchRequest: NSFetchRequest<AuditoriumEntity> = AuditoriumEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %d", id)
+        do {
+            let result = try context.fetch(fetchRequest)
+            let auditorium = result.first
+            return auditorium
+        } catch  {
+            return nil
+        }
+    }
 }

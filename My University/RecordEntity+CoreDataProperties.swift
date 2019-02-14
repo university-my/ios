@@ -2,7 +2,7 @@
 //  RecordEntity+CoreDataProperties.swift
 //  My University
 //
-//  Created by Yura Voevodin on 1/9/19.
+//  Created by Yura Voevodin on 2/14/19.
 //  Copyright © 2019 Yura Voevodin. All rights reserved.
 //
 //
@@ -27,6 +27,7 @@ extension RecordEntity {
     @NSManaged public var type: String?
     @NSManaged public var auditorium: AuditoriumEntity?
     @NSManaged public var groups: NSSet?
+    @NSManaged public var teacher: TeacherEntity?
 
 }
 

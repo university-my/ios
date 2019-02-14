@@ -65,6 +65,27 @@ extension Record {
             task.resume()
         }
         
+        // MARK: - Download Records with Teacher ID
+        
+        func downloadRecords(teacherID: Int64, _ completion: @escaping ((_ error: Error?) -> ())) {
+            completionHandler = completion
+            
+            guard let url = URL(string: Settings.shared.baseURL + "/universities/sumdu/teachers/\(teacherID).json") else {
+                completionHandler?(nil)
+                return
+            }
+            
+            let task = URLSession.shared.downloadTask(with: url) { (url, response, error) in
+                
+                if let error = error {
+                    self.completionHandler?(error)
+                } else {
+                    self.downloadFinished(url: url, response: response)
+                }
+            }
+            task.resume()
+        }
+        
         // MARK: - Helpers
         
         private func downloadFinished(url: URL?, response: URLResponse?) {

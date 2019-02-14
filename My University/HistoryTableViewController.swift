@@ -21,6 +21,10 @@ class HistoryTableViewController: UITableViewController {
         return GroupHistoryDataSource()
     }()
     
+    private lazy var teacherDataSource: TeacherHistoryDataSource = {
+        return TeacherHistoryDataSource()
+    }()
+    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -53,6 +57,14 @@ class HistoryTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    // MARK: - Teachers
+    
+    private func fetchTeachers()  {
+        tableView.dataSource = teacherDataSource
+        teacherDataSource.performFetch()
+        tableView.reloadData()
+    }
+    
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -61,6 +73,8 @@ class HistoryTableViewController: UITableViewController {
             performSegue(withIdentifier: "showAuditoriumRecords", sender: nil)
         case .groups:
             performSegue(withIdentifier: "showGroupRecords", sender: nil)
+        case .teachers:
+            performSegue(withIdentifier: "showTeacherRecords", sender: nil)
         }
     }
     
@@ -101,6 +115,14 @@ class HistoryTableViewController: UITableViewController {
                 }
             }
             
+        case "showTeacherRecords":
+            if let detailTableViewController = segue.destination as? TeacherScheduleTableViewController {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    let selectedTeacher = teacherDataSource.fetchedResultsController?.object(at: indexPath)
+                    detailTableViewController.teacher = selectedTeacher
+                }
+            }
+            
         default:
             break
         }
@@ -130,6 +152,8 @@ class HistoryTableViewController: UITableViewController {
             fetchAuditoriums()
         case .groups:
             fetchGroups()
+        case .teachers:
+            fetchTeachers()
         }
     }
 }

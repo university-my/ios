@@ -16,6 +16,7 @@ class SearchResultsTableViewController: UITableViewController {
     
     var filteredGroups: [GroupEntity] = []
     var filteredAuditoriums: [AuditoriumEntity] = []
+    var filteredTeachers: [TeacherEntity] = []
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -44,6 +45,8 @@ class SearchResultsTableViewController: UITableViewController {
             return filteredAuditoriums.count
         case .groups:
             return filteredGroups.count
+        case .teachers:
+            return filteredTeachers.count
         }
     }
     
@@ -58,6 +61,10 @@ class SearchResultsTableViewController: UITableViewController {
             
         case .groups:
             let group = filteredGroups[indexPath.row]
+            cell.textLabel?.text = group.name
+            
+        case .teachers:
+            let group = filteredTeachers[indexPath.row]
             cell.textLabel?.text = group.name
         }
         

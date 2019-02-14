@@ -1,15 +1,15 @@
 //
-//  AuditoriumHistoryDataSource.swift
+//  TeacherHistoryDataSource.swift
 //  My University
 //
-//  Created by Yura Voevodin on 1/29/19.
+//  Created by Yura Voevodin on 2/14/19.
 //  Copyright © 2019 Yura Voevodin. All rights reserved.
 //
 
 import CoreData
 import UIKit
 
-class AuditoriumHistoryDataSource: NSObject {
+class TeacherHistoryDataSource: NSObject {
     
     // MARK: - NSManagedObjectContext
     
@@ -20,19 +20,19 @@ class AuditoriumHistoryDataSource: NSObject {
     
     // MARK: - NSFetchedResultsController
     
-    lazy var fetchedResultsController: NSFetchedResultsController<AuditoriumEntity>? = {
-        let request: NSFetchRequest<AuditoriumEntity> = AuditoriumEntity.fetchRequest()
+    lazy var fetchedResultsController: NSFetchedResultsController<TeacherEntity>? = {
+        let request: NSFetchRequest<TeacherEntity> = TeacherEntity.fetchRequest()
         
-        let firstSymbol = NSSortDescriptor(key: #keyPath(AuditoriumEntity.firstSymbol), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
-        let name = NSSortDescriptor(key: #keyPath(AuditoriumEntity.name), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
+        let firstSymbol = NSSortDescriptor(key: #keyPath(TeacherEntity.firstSymbol), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
+        let name = NSSortDescriptor(key: #keyPath(TeacherEntity.name), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
         
         request.sortDescriptors = [firstSymbol, name]
         request.fetchBatchSize = 20
         
-        request.predicate = NSPredicate(format: "\(#keyPath(AuditoriumEntity.isVisited)) == YES")
+        request.predicate = NSPredicate(format: "\(#keyPath(TeacherEntity.isVisited)) == YES")
         
         if let context = viewContext {
-            let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: #keyPath(AuditoriumEntity.firstSymbol), cacheName: nil)
+            let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: #keyPath(TeacherEntity.firstSymbol), cacheName: nil)
             return controller
         } else {
             return nil
@@ -50,7 +50,7 @@ class AuditoriumHistoryDataSource: NSObject {
 
 // MARK: - Table view data source
 
-extension AuditoriumHistoryDataSource: UITableViewDataSource {
+extension TeacherHistoryDataSource: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedResultsController?.sections?.count ?? 0
@@ -65,9 +65,9 @@ extension AuditoriumHistoryDataSource: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "historyTableCell", for: indexPath)
         
         // Configure cell
-        if let auditorium = fetchedResultsController?.object(at: indexPath) {
+        if let teacher = fetchedResultsController?.object(at: indexPath) {
             cell.textLabel?.textColor = UIColor.white
-            cell.textLabel?.text = auditorium.name
+            cell.textLabel?.text = teacher.name
         }
         
         return cell

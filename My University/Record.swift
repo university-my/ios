@@ -22,6 +22,7 @@ struct Record {
   let reason: String?
   let auditorium: Auditorium?
   let groups: [Group]
+  let teacher: Teacher?
   
   // MARK: - Initialization
   
@@ -70,6 +71,13 @@ struct Record {
       }
     }
     self.groups = groups
+    
+    // Teacher
+    if let teacherObject = json["teacher"] as? [String: Any] {
+      self.teacher = Teacher(teacherObject)
+    } else {
+      self.teacher = nil
+    }
     
     // Date
     self.date = dateFormatter.date(from: dateString)

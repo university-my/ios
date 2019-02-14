@@ -34,6 +34,14 @@
 		DE3B566021823A97008A77D1 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3B565F21823A97008A77D1 /* UIColor.swift */; };
 		DE4AA07121A5DF0500E06FEA /* AuditoriumDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AA07021A5DF0500E06FEA /* AuditoriumDataSource.swift */; };
 		DE4AA07321A5E31900E06FEA /* GroupDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AA07221A5E31900E06FEA /* GroupDataSource.swift */; };
+		DE540EBD2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE540EBB2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift */; };
+		DE540EBE2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE540EBC2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift */; };
+		DE540EC02215CD840092FC81 /* Teacher+Import.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE540EBF2215CD840092FC81 /* Teacher+Import.swift */; };
+		DE540EC22215CDCD0092FC81 /* Teacher+NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE540EC12215CDCD0092FC81 /* Teacher+NetworkClient.swift */; };
+		DE540EC42215CF9F0092FC81 /* TeacherDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE540EC32215CF9F0092FC81 /* TeacherDataSource.swift */; };
+		DE540EC62215D7600092FC81 /* TeacherHistoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE540EC52215D7600092FC81 /* TeacherHistoryDataSource.swift */; };
+		DE540EC82215DDB40092FC81 /* TeacherScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE540EC72215DDB40092FC81 /* TeacherScheduleTableViewController.swift */; };
+		DE540ECA2215DEC40092FC81 /* ImportForTeacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE540EC92215DEC40092FC81 /* ImportForTeacher.swift */; };
 		DE584C54219860E80099415E /* Auditorium.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE584C53219860E80099415E /* Auditorium.swift */; };
 		DE584C562198615F0099415E /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE584C552198615F0099415E /* Teacher.swift */; };
 		DE584C5C219869990099415E /* Auditorium+Import.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE584C5B219869990099415E /* Auditorium+Import.swift */; };
@@ -79,6 +87,14 @@
 		DE3B565F21823A97008A77D1 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		DE4AA07021A5DF0500E06FEA /* AuditoriumDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditoriumDataSource.swift; sourceTree = "<group>"; };
 		DE4AA07221A5E31900E06FEA /* GroupDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDataSource.swift; sourceTree = "<group>"; };
+		DE540EBB2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TeacherEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		DE540EBC2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TeacherEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		DE540EBF2215CD840092FC81 /* Teacher+Import.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Teacher+Import.swift"; sourceTree = "<group>"; };
+		DE540EC12215CDCD0092FC81 /* Teacher+NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Teacher+NetworkClient.swift"; sourceTree = "<group>"; };
+		DE540EC32215CF9F0092FC81 /* TeacherDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherDataSource.swift; sourceTree = "<group>"; };
+		DE540EC52215D7600092FC81 /* TeacherHistoryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherHistoryDataSource.swift; sourceTree = "<group>"; };
+		DE540EC72215DDB40092FC81 /* TeacherScheduleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherScheduleTableViewController.swift; sourceTree = "<group>"; };
+		DE540EC92215DEC40092FC81 /* ImportForTeacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportForTeacher.swift; sourceTree = "<group>"; };
 		DE584C52219852430099415E /* Schedule 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Schedule 2.xcdatamodel"; sourceTree = "<group>"; };
 		DE584C53219860E80099415E /* Auditorium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auditorium.swift; sourceTree = "<group>"; };
 		DE584C552198615F0099415E /* Teacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
@@ -110,6 +126,7 @@
 				DE8B668221CACDF800C43F81 /* Auditorium+NetworkClient.swift */,
 				DE8B668421CACE5600C43F81 /* Group+NetworkClient.swift */,
 				DE18941821BC349400C7F9DB /* Record+NetworkClient.swift */,
+				DE540EC12215CDCD0092FC81 /* Teacher+NetworkClient.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -175,10 +192,12 @@
 			children = (
 				DE584C5D21986E740099415E /* AuditoriumEntity+CoreDataClass.swift */,
 				DE584C5E21986E740099415E /* AuditoriumEntity+CoreDataProperties.swift */,
-				C22A2E561FC7664000587463 /* RecordEntity+CoreDataClass.swift */,
-				C22A2E571FC7664000587463 /* RecordEntity+CoreDataProperties.swift */,
 				C28089491FB8D54A002B5676 /* GroupEntity+CoreDataClass.swift */,
 				C280894A1FB8D54A002B5676 /* GroupEntity+CoreDataProperties.swift */,
+				C22A2E561FC7664000587463 /* RecordEntity+CoreDataClass.swift */,
+				C22A2E571FC7664000587463 /* RecordEntity+CoreDataProperties.swift */,
+				DE540EBB2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift */,
+				DE540EBC2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift */,
 				C2B5CDF91EEF0E750066DB30 /* Schedule.xcdatamodeld */,
 			);
 			name = "Core Data";
@@ -201,6 +220,7 @@
 			children = (
 				DE584C5B219869990099415E /* Auditorium+Import.swift */,
 				DE8B668021CAC91C00C43F81 /* Group+Import.swift */,
+				DE540EBF2215CD840092FC81 /* Teacher+Import.swift */,
 				DE18941721BC336700C7F9DB /* Record */,
 			);
 			name = Import;
@@ -211,6 +231,7 @@
 			children = (
 				DE18942121BD45E600C7F9DB /* ImportForAuditorium.swift */,
 				DE18941F21BD457F00C7F9DB /* ImportForGroup.swift */,
+				DE540EC92215DEC40092FC81 /* ImportForTeacher.swift */,
 			);
 			name = Record;
 			sourceTree = "<group>";
@@ -227,9 +248,10 @@
 		DE472C7221B842A2003AE86D /* History */ = {
 			isa = PBXGroup;
 			children = (
-				C2B922C22003DB6D001A8E1D /* HistoryTableViewController.swift */,
-				DE3A66332200C94A00E64D6C /* GroupHistoryDataSource.swift */,
 				DE3A66352200CA9200E64D6C /* AuditoriumHistoryDataSource.swift */,
+				DE3A66332200C94A00E64D6C /* GroupHistoryDataSource.swift */,
+				C2B922C22003DB6D001A8E1D /* HistoryTableViewController.swift */,
+				DE540EC52215D7600092FC81 /* TeacherHistoryDataSource.swift */,
 			);
 			name = History;
 			sourceTree = "<group>";
@@ -247,6 +269,7 @@
 			children = (
 				DE18941D21BC3AD100C7F9DB /* AuditoriumScheduleTableViewController.swift */,
 				DE18941B21BC3A3900C7F9DB /* GroupScheduleTableViewController.swift */,
+				DE540EC72215DDB40092FC81 /* TeacherScheduleTableViewController.swift */,
 			);
 			name = Schedule;
 			sourceTree = "<group>";
@@ -258,6 +281,7 @@
 				DE4AA07221A5E31900E06FEA /* GroupDataSource.swift */,
 				C293559D1FBE246000071719 /* SearchResultsTableViewController.swift */,
 				DE162A8721988CEB000ED4B3 /* SearchTableViewController.swift */,
+				DE540EC32215CF9F0092FC81 /* TeacherDataSource.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -343,20 +367,28 @@
 				DE18942221BD45E600C7F9DB /* ImportForAuditorium.swift in Sources */,
 				C2B922C32003DB6E001A8E1D /* HistoryTableViewController.swift in Sources */,
 				DE18941921BC349400C7F9DB /* Record+NetworkClient.swift in Sources */,
+				DE540EC02215CD840092FC81 /* Teacher+Import.swift in Sources */,
+				DE540EBE2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift in Sources */,
 				C22A2E551FC7644600587463 /* Record.swift in Sources */,
 				C2B5CDFB1EEF0E750066DB30 /* Schedule.xcdatamodeld in Sources */,
 				C293559E1FBE246000071719 /* SearchResultsTableViewController.swift in Sources */,
 				DE8B668121CAC91C00C43F81 /* Group+Import.swift in Sources */,
 				C250C1831FBCD1CA00C90B53 /* AboutUsTableViewController.swift in Sources */,
+				DE540EC82215DDB40092FC81 /* TeacherScheduleTableViewController.swift in Sources */,
 				DE3B566021823A97008A77D1 /* UIColor.swift in Sources */,
 				DE3A6638220230D800E64D6C /* Collection.swift in Sources */,
+				DE540EBD2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift in Sources */,
 				DE584C54219860E80099415E /* Auditorium.swift in Sources */,
+				DE540ECA2215DEC40092FC81 /* ImportForTeacher.swift in Sources */,
 				DE584C5F21986E740099415E /* AuditoriumEntity+CoreDataClass.swift in Sources */,
 				C280894C1FB8D54A002B5676 /* GroupEntity+CoreDataProperties.swift in Sources */,
 				DE8B668521CACE5600C43F81 /* Group+NetworkClient.swift in Sources */,
 				DE18941E21BC3AD100C7F9DB /* AuditoriumScheduleTableViewController.swift in Sources */,
+				DE540EC22215CDCD0092FC81 /* Teacher+NetworkClient.swift in Sources */,
+				DE540EC42215CF9F0092FC81 /* TeacherDataSource.swift in Sources */,
 				DE18942021BD457F00C7F9DB /* ImportForGroup.swift in Sources */,
 				DE584C5C219869990099415E /* Auditorium+Import.swift in Sources */,
+				DE540EC62215D7600092FC81 /* TeacherHistoryDataSource.swift in Sources */,
 				DE3A66342200C94A00E64D6C /* GroupHistoryDataSource.swift in Sources */,
 				DE4AA07121A5DF0500E06FEA /* AuditoriumDataSource.swift in Sources */,
 				DE4AA07321A5E31900E06FEA /* GroupDataSource.swift in Sources */,

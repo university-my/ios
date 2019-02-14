@@ -135,7 +135,7 @@ extension Record {
                 }
                 
                 for record in parsedRecords {
-                    self.insert(record, group: groupInContext, context: taskContext)
+                    self.insert(record, context: taskContext)
                 }
                 
                 // Finishing import. Save context.
@@ -157,7 +157,7 @@ extension Record {
         }
         
         /// Insert new record with related group
-        private func insert(_ parsedRecord: Record, group: NSManagedObject, context: NSManagedObjectContext) {
+        private func insert(_ parsedRecord: Record, context: NSManagedObjectContext) {
             let recordEntity = RecordEntity(context: context)
             
             recordEntity.id = NSNumber(value: parsedRecord.id).int64Value
@@ -169,26 +169,19 @@ extension Record {
             recordEntity.time = parsedRecord.time
             recordEntity.type = parsedRecord.type
             
+            // Fetch auditorium entity for set relation with record
             if let object = parsedRecord.auditorium {
-                recordEntity.auditorium = fetchAuditorium(object: object, context: context)
+                recordEntity.auditorium = AuditoriumEntity.fetchAuditorium(id: object.id, context: context)
             }
             
             // Groups
             let groups = GroupEntity.fetch(parsedRecord.groups, context: context)
             let set = NSSet(array: groups)
             recordEntity.addToGroups(set)
-        }
-        
-        /// Fetch auditorium for set relation with record
-        private func fetchAuditorium(object: Auditorium, context: NSManagedObjectContext) -> AuditoriumEntity? {
-            let fetchRequest: NSFetchRequest<AuditoriumEntity> = AuditoriumEntity.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "id == %d", object.id)
-            do {
-                let result = try context.fetch(fetchRequest)
-                let auditorium = result.first
-                return auditorium
-            } catch  {
-                return nil
+            
+            // Fetch teacher entity for set relation with record
+            if let object = parsedRecord.teacher {
+                recordEntity.teacher = TeacherEntity.fetchTeacher(id: object.id, context: context)
             }
         }
     }

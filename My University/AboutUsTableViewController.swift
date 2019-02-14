@@ -65,6 +65,7 @@ class AboutUsTableViewController: UITableViewController {
                 let context = persistentContainer.viewContext
                 AuditoriumEntity.clearHistory(on: context)
                 GroupEntity.clearHistory(on: context)
+                TeacherEntity.clearHistory(on: context)
                 
                 persistentContainer.viewContext.refreshAllObjects()
                 

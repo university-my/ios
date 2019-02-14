@@ -1,16 +1,16 @@
 //
-//  ImportForAuditorium.swift
+//  ImportForTeacher.swift
 //  My University
 //
-//  Created by Yura Voevodin on 12/9/18.
-//  Copyright © 2018 Yura Voevodin. All rights reserved.
+//  Created by Yura Voevodin on 2/14/19.
+//  Copyright © 2019 Yura Voevodin. All rights reserved.
 //
 
 import CoreData
 
 extension Record {
     
-    class ImportForAuditorium {
+    class ImportForTeacher {
         
         typealias NetworkClient = Record.NetworkClient
         
@@ -19,7 +19,7 @@ extension Record {
         private let cacheFile: URL
         private let networkClient: NetworkClient
         private var completionHandler: ((_ error: Error?) -> ())?
-        private let auditorium: AuditoriumEntity
+        private let teacher: TeacherEntity
         
         private let persistentContainer: NSPersistentContainer
         
@@ -33,15 +33,15 @@ extension Record {
             return dateFormatter
         }()
         
-        // MARK: - Initialization
+        // MARK: - Init
         
-        init?(persistentContainer: NSPersistentContainer, auditorium: AuditoriumEntity) {
+        init?(persistentContainer: NSPersistentContainer, teacher: TeacherEntity) {
             // Cache file
             let cachesFolder = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-            guard let cacheFile = cachesFolder?.appendingPathComponent("auditorium_records.json") else { return nil }
+            guard let cacheFile = cachesFolder?.appendingPathComponent("teacher_records.json") else { return nil }
             
             self.cacheFile = cacheFile
-            self.auditorium = auditorium
+            self.teacher = teacher
             self.persistentContainer = persistentContainer
             networkClient = NetworkClient(cacheFile: self.cacheFile)
         }
@@ -51,7 +51,7 @@ extension Record {
         func importRecords(_ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            networkClient.downloadRecords(auditoriumID: auditorium.id) { (error) in
+            networkClient.downloadRecords(teacherID: teacher.id) { (error) in
                 if let error = error {
                     self.completionHandler?(error)
                 } else {
@@ -101,14 +101,14 @@ extension Record {
         /// Delete previous records and insert new records
         private func syncRecords(_ json: [[String: Any]], taskContext: NSManagedObjectContext) {
             
-            let auditoriumInContext = taskContext.object(with: auditorium.objectID)
+            let teacherInContext = taskContext.object(with: teacher.objectID)
             
             taskContext.performAndWait {
                 
                 // Execute the request to batch delete and merge the changes to viewContext.
                 
                 let fetchRequest: NSFetchRequest<NSFetchRequestResult> = RecordEntity.fetchRequest()
-                fetchRequest.predicate = NSPredicate(format: "auditorium == %@", auditoriumInContext)
+                fetchRequest.predicate = NSPredicate(format: "teacher == %@", teacherInContext)
                 let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
                 deleteRequest.resultType = .resultTypeObjectIDs
                 do {
@@ -126,7 +126,7 @@ extension Record {
                 let parsedRecords = json.compactMap { Record($0, dateFormatter: dateFormatter) }
                 
                 for record in parsedRecords {
-                    self.insert(record, auditorium: auditoriumInContext, context: taskContext)
+                    self.insert(record, teacher: teacherInContext, context: taskContext)
                 }
                 
                 // Finishing import. Save context.
@@ -147,7 +147,7 @@ extension Record {
             }
         }
         
-        private func insert(_ parsedRecord: Record, auditorium: NSManagedObject, context: NSManagedObjectContext) {
+        private func insert(_ parsedRecord: Record, teacher: NSManagedObject, context: NSManagedObjectContext) {
             let recordEntity = RecordEntity(context: context)
             
             recordEntity.id = NSNumber(value: parsedRecord.id).int64Value
@@ -159,18 +159,18 @@ extension Record {
             recordEntity.time = parsedRecord.time
             recordEntity.type = parsedRecord.type
             
-            // Auditorium
-            recordEntity.auditorium = auditorium as? AuditoriumEntity
+            // Fetch auditorium entity for set relation with record
+            if let object = parsedRecord.auditorium {
+                recordEntity.auditorium = AuditoriumEntity.fetchAuditorium(id: object.id, context: context)
+            }
             
             // Groups
             let groups = GroupEntity.fetch(parsedRecord.groups, context: context)
             let set = NSSet(array: groups)
             recordEntity.addToGroups(set)
             
-            // Fetch teacher entity for set relation with record
-            if let object = parsedRecord.teacher {
-                recordEntity.teacher = TeacherEntity.fetchTeacher(id: object.id, context: context)
-            }
+            // Teacher
+            recordEntity.teacher = teacher as? TeacherEntity
         }
     }
 }
