@@ -1,12 +1,33 @@
+/* No comment provided by engineer. */
+"AUDITORIUM" = "АУДИТОРІЯ";
+
 /* Cancel search */
 "Cancel" = "Скасувати";
+
+/* No comment provided by engineer. */
+"DATE" = "ДАТА";
+
+/* No comment provided by engineer. */
+"DESCRIPTION" = "КОМЕНТАР";
 
 /* Title for button on the Auditorium screen
    Title for button on the Group screen */
 "Download" = "Завантажити";
 
+/* No comment provided by engineer. */
+"GROUP" = "ГРУПА";
+
+/* No comment provided by engineer. */
+"GROUPS" = "ГРУПИ";
+
+/* No comment provided by engineer. */
+"NAME" = "НАЗВА";
+
 /* Placeholder in search controller */
 "Search" = "Пошук";
+
+/* No comment provided by engineer. */
+"TEACHER" = "ВИКЛАДАЧ";
 
 /* Title for button on the Auditorium screen
    Title for button on the Group screen */

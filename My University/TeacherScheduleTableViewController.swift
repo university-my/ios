@@ -172,6 +172,29 @@ class TeacherScheduleTableViewController: UITableViewController {
         cell.selectedBackgroundView = bgColorView
     }
     
+    // MARK: - Table view delegate
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let record = fetchedResultsController?.object(at: indexPath)
+        performSegue(withIdentifier: "recordDetailed", sender: record)
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        switch segue.identifier {
+            
+        case "recordDetailed":
+            if let destination = segue.destination as? RecordDetailedTableViewController {
+                destination.record = sender as? RecordEntity
+            }
+            
+        default:
+            break
+        }
+    }
+    
     // MARK: - NSFetchedResultsController
     
     private lazy var viewContext: NSManagedObjectContext? = {

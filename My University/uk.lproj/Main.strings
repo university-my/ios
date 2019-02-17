@@ -1,3 +1,6 @@
+/* Class = "UILabel"; text = "Detail"; ObjectID = "1Jv-zg-4j2"; */
+"1Jv-zg-4j2.text" = "Детально";
+
 /* Class = "UINavigationItem"; title = "Search"; ObjectID = "7N0-mc-ebX"; */
 "7N0-mc-ebX.title" = "Пошук";
 
@@ -22,11 +25,17 @@
 /* Class = "UISegmentedControl"; hAI-I2-CNE.segmentTitles[1] = "Auditoriums"; ObjectID = "hAI-I2-CNE"; */
 "hAI-I2-CNE.segmentTitles[1]" = "Аудиторії";
 
+/* Class = "UISegmentedControl"; hAI-I2-CNE.segmentTitles[2] = "Teachers"; ObjectID = "hAI-I2-CNE"; */
+"hAI-I2-CNE.segmentTitles[2]" = "Викладачі";
+
 /* Class = "UILabel"; text = "Title"; ObjectID = "hmx-c1-Cyp"; */
 "hmx-c1-Cyp.text" = "Заголовок";
 
 /* Class = "UILabel"; text = "Telegram bot"; ObjectID = "Ivk-o2-uZv"; */
 "Ivk-o2-uZv.text" = "Telegram бот";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "jyT-bn-vqG"; */
+"jyT-bn-vqG.text" = "Детально";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "mJY-jC-A0P"; */
 "mJY-jC-A0P.text" = "Заголовок";
@@ -37,8 +46,8 @@
 /* Class = "UISegmentedControl"; pC9-4Q-Zkn.segmentTitles[1] = "Auditoriums"; ObjectID = "pC9-4Q-Zkn"; */
 "pC9-4Q-Zkn.segmentTitles[1]" = "Аудиторії";
 
-/* Class = "UILabel"; text = "Messenger bot"; ObjectID = "pUi-is-FYE"; */
-"pUi-is-FYE.text" = "Messenger бот";
+/* Class = "UISegmentedControl"; pC9-4Q-Zkn.segmentTitles[2] = "Teachers"; ObjectID = "pC9-4Q-Zkn"; */
+"pC9-4Q-Zkn.segmentTitles[2]" = "Викладачі";
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "qln-L3-fWH"; */
 "qln-L3-fWH.text" = "Детально";
