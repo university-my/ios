@@ -31,7 +31,7 @@ class AuditoriumScheduleTableViewController: UITableViewController {
         // Mark auditorium as visited
         markAuditoriumAsVisited()
         
-        showUpdateButton()
+        configureButtons()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,19 +43,30 @@ class AuditoriumScheduleTableViewController: UITableViewController {
             
             performFetch()
             
-            setTitleForUpdateButton()
+            setTitleForButtons()
         }
     }
     
-    // MARK: - Update button
+    // MARK: - UIBarButtonItem's
     
     private var updateButton: UIBarButtonItem?
+    private var shareButton: UIBarButtonItem?
     
     @objc func update(_ sender: Any) {
         importRecords()
     }
+  
+    @objc func share(_ sender: Any) {
+      guard let auditorium = auditorium else { return }
+        var sharedItems = Array<Any>()
+        if let text = auditorium.name, let siteURL = NSURL(string: "https://my-university.com.ua/universities/sumdu/auditoriums/\(auditorium.id)") {
+            sharedItems = [siteURL]
+        }
+        let activityViewController = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
+        self.present(activityViewController, animated: true, completion: nil)
+    }
     
-    private func setTitleForUpdateButton() {
+    private func setTitleForButtons() {
         if fetchedResultsController?.fetchedObjects?.isEmpty == true {
             updateButton?.title = NSLocalizedString("Download", comment: "Title for button on the Auditorium screen")
         } else {
@@ -63,12 +74,18 @@ class AuditoriumScheduleTableViewController: UITableViewController {
         }
     }
     
-    private func showUpdateButton() {
+    private func configureButtons() {
         activiyIndicatior?.removeFromSuperview()
         activiyIndicatior = nil
         
-        updateButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(update(_:)))
-        navigationItem.rightBarButtonItem = updateButton
+      updateButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(update(_:)))
+      shareButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.action, target: self, action: #selector(share(_:)))
+      
+        if fetchedResultsController?.fetchedObjects?.isEmpty == true {
+          navigationItem.setRightBarButtonItems([updateButton!], animated: true)
+        } else {
+          navigationItem.setRightBarButtonItems([shareButton!, updateButton!], animated: true)
+        }
     }
     
     // MARK: - Activity indicatior
@@ -90,7 +107,6 @@ class AuditoriumScheduleTableViewController: UITableViewController {
     // MARK: - Import Records
     
     var auditorium: AuditoriumEntity?
-    var auditoriumID: Int64?
     
     private var importForAuditorium: Record.ImportForAuditorium?
     
@@ -117,8 +133,8 @@ class AuditoriumScheduleTableViewController: UITableViewController {
                     self.performFetch()
                     self.tableView.reloadData()
                     self.refreshControl?.endRefreshing()
-                    self.showUpdateButton()
-                    self.setTitleForUpdateButton()
+                    self.configureButtons()
+                    self.setTitleForButtons()
                 }
             })
         }
