@@ -43,7 +43,7 @@ class AuditoriumScheduleTableViewController: UITableViewController {
             
             performFetch()
             
-            setTitleForButtons()
+            setTitleForUpdateButton()
         }
     }
     
@@ -55,18 +55,19 @@ class AuditoriumScheduleTableViewController: UITableViewController {
     @objc func update(_ sender: Any) {
         importRecords()
     }
-  
+
     @objc func share(_ sender: Any) {
-      guard let auditorium = auditorium else { return }
-        var sharedItems = Array<Any>()
-        if let text = auditorium.name, let siteURL = NSURL(string: "https://my-university.com.ua/universities/sumdu/auditoriums/\(auditorium.id)") {
+        guard let auditorium = auditorium else { return }
+        var sharedItems: [Any] = []
+        let url = "https://my-university.com.ua/universities/sumdu/auditoriums/\(auditorium.id)"
+        if let siteURL = URL(string: url) {
             sharedItems = [siteURL]
         }
         let activityViewController = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
         self.present(activityViewController, animated: true, completion: nil)
     }
     
-    private func setTitleForButtons() {
+    private func setTitleForUpdateButton() {
         if fetchedResultsController?.fetchedObjects?.isEmpty == true {
             updateButton?.title = NSLocalizedString("Download", comment: "Title for button on the Auditorium screen")
         } else {
@@ -78,14 +79,9 @@ class AuditoriumScheduleTableViewController: UITableViewController {
         activiyIndicatior?.removeFromSuperview()
         activiyIndicatior = nil
         
-      updateButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(update(_:)))
-      shareButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.action, target: self, action: #selector(share(_:)))
-      
-        if fetchedResultsController?.fetchedObjects?.isEmpty == true {
-          navigationItem.setRightBarButtonItems([updateButton!], animated: true)
-        } else {
-          navigationItem.setRightBarButtonItems([shareButton!, updateButton!], animated: true)
-        }
+        updateButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(update(_:)))
+        shareButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.action, target: self, action: #selector(share(_:)))
+        navigationItem.setRightBarButtonItems([shareButton!, updateButton!], animated: true)
     }
     
     // MARK: - Activity indicatior
@@ -93,7 +89,9 @@ class AuditoriumScheduleTableViewController: UITableViewController {
     private var activiyIndicatior: UIActivityIndicatorView?
     
     private func showActiviyIndicatior() {
+        navigationItem.rightBarButtonItems = []
         updateButton = nil
+        shareButton = nil
         
         let activiyIndicatior = UIActivityIndicatorView(style: .white)
         activiyIndicatior.color = .orange
@@ -134,7 +132,7 @@ class AuditoriumScheduleTableViewController: UITableViewController {
                     self.tableView.reloadData()
                     self.refreshControl?.endRefreshing()
                     self.configureButtons()
-                    self.setTitleForButtons()
+                    self.setTitleForUpdateButton()
                 }
             })
         }

@@ -30,8 +30,8 @@ class GroupScheduleTableViewController: UITableViewController {
         
         // Mark group as visited
         markGroupAsVisited()
-      
-        showUpdateButton()
+        
+        configureButtons()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,50 +42,65 @@ class GroupScheduleTableViewController: UITableViewController {
             title = group.name
             
             performFetch()
-          
+            
             setTitleForUpdateButton()
         }
     }
-  
-  // MARK: - Update button
-  
-  private var updateButton: UIBarButtonItem?
-  
-  @objc func update(_ sender: Any) {
-    importRecords()
-  }
-  
-  private func setTitleForUpdateButton() {
-    if fetchedResultsController?.fetchedObjects?.isEmpty == true {
-      updateButton?.title = NSLocalizedString("Download", comment: "Title for button on the Group screen")
-    } else {
-      updateButton?.title = NSLocalizedString("Update", comment: "Title for button on the Group screen")
+    
+    // MARK: - UIBarButtonItem's
+    
+    private var updateButton: UIBarButtonItem?
+    private var shareButton: UIBarButtonItem?
+    
+    @objc func update(_ sender: Any) {
+        importRecords()
     }
-  }
-  
-  private func showUpdateButton() {
-    activiyIndicatior?.removeFromSuperview()
-    activiyIndicatior = nil
     
-    updateButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(update(_:)))
-    navigationItem.rightBarButtonItem = updateButton
-  }
-  
-  // MARK: - Activity indicatior
-  
-  private var activiyIndicatior: UIActivityIndicatorView?
-  
-  private func showActiviyIndicatior() {
-    updateButton = nil
+    @objc func share(_ sender: Any) {
+        guard let group = group else { return }
+        var sharedItems: [Any] = []
+        let url = "https://my-university.com.ua/universities/sumdu/groups/\(group.id)"
+        if let siteURL = URL(string: url) {
+            sharedItems = [siteURL]
+        }
+        let activityViewController = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
+        self.present(activityViewController, animated: true, completion: nil)
+    }
     
-    let activiyIndicatior = UIActivityIndicatorView(style: .white)
-    activiyIndicatior.color = .orange
-    activiyIndicatior.hidesWhenStopped = true
-    activiyIndicatior.startAnimating()
-    navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activiyIndicatior)
-    navigationItem.rightBarButtonItem?.tintColor = .orange
-    self.activiyIndicatior = activiyIndicatior
-  }
+    private func setTitleForUpdateButton() {
+        if fetchedResultsController?.fetchedObjects?.isEmpty == true {
+            updateButton?.title = NSLocalizedString("Download", comment: "Title for button on the Group screen")
+        } else {
+            updateButton?.title = NSLocalizedString("Update", comment: "Title for button on the Group screen")
+        }
+    }
+    
+    private func configureButtons() {
+        activiyIndicatior?.removeFromSuperview()
+        activiyIndicatior = nil
+        
+        updateButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(update(_:)))
+        shareButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.action, target: self, action: #selector(share(_:)))
+        navigationItem.setRightBarButtonItems([shareButton!, updateButton!], animated: true)
+    }
+    
+    // MARK: - Activity indicatior
+    
+    private var activiyIndicatior: UIActivityIndicatorView?
+    
+    private func showActiviyIndicatior() {
+        navigationItem.rightBarButtonItems = []
+        updateButton = nil
+        shareButton = nil
+        
+        let activiyIndicatior = UIActivityIndicatorView(style: .white)
+        activiyIndicatior.color = .orange
+        activiyIndicatior.hidesWhenStopped = true
+        activiyIndicatior.startAnimating()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activiyIndicatior)
+        navigationItem.rightBarButtonItem?.tintColor = .orange
+        self.activiyIndicatior = activiyIndicatior
+    }
     
     // MARK: - Import Records
     
@@ -100,7 +115,7 @@ class GroupScheduleTableViewController: UITableViewController {
         guard let persistentContainer = appDelegate?.persistentContainer else { return }
         
         guard let forGroup = group else { return }
-      
+        
         showActiviyIndicatior()
         
         // Download records for Group from backend and save to database.
@@ -116,7 +131,7 @@ class GroupScheduleTableViewController: UITableViewController {
                 self.performFetch()
                 self.tableView.reloadData()
                 self.refreshControl?.endRefreshing()
-                self.showUpdateButton()
+                self.configureButtons()
                 self.setTitleForUpdateButton()
             }
         })
@@ -265,13 +280,13 @@ extension GroupScheduleTableViewController {
         }
         super.encodeRestorableState(with: coder)
     }
-
+    
     override func decodeRestorableState(with coder: NSCoder) {
         groupID = coder.decodeInt64(forKey: "groupID")
-
+        
         super.decodeRestorableState(with: coder)
     }
-
+    
     override func applicationFinishedRestoringState() {
         if let id = groupID, let context = viewContext {
             if let group = GroupEntity.fetch(id: id, context: context) {

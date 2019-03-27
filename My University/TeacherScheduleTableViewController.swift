@@ -31,7 +31,7 @@ class TeacherScheduleTableViewController: UITableViewController {
         // Mark teacher as visited
         markTeacherAsVisited()
         
-        showUpdateButton()
+        configureButtons()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,12 +47,24 @@ class TeacherScheduleTableViewController: UITableViewController {
         }
     }
     
-    // MARK: - Update button
+    // MARK: - UIBarButtonItem's
     
     private var updateButton: UIBarButtonItem?
+    private var shareButton: UIBarButtonItem?
     
     @objc func update(_ sender: Any) {
         importRecords()
+    }
+
+    @objc func share(_ sender: Any) {
+        guard let teacher = teacher else { return }
+        var sharedItems: [Any] = []
+        let url = "https://my-university.com.ua/universities/sumdu/teachers/\(teacher.id)"
+        if let siteURL = URL(string: url) {
+            sharedItems = [siteURL]
+        }
+        let activityViewController = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
+        self.present(activityViewController, animated: true, completion: nil)
     }
     
     private func setTitleForUpdateButton() {
@@ -63,12 +75,13 @@ class TeacherScheduleTableViewController: UITableViewController {
         }
     }
     
-    private func showUpdateButton() {
+    private func configureButtons() {
         activiyIndicatior?.removeFromSuperview()
         activiyIndicatior = nil
-        
+
         updateButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(update(_:)))
-        navigationItem.rightBarButtonItem = updateButton
+        shareButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.action, target: self, action: #selector(share(_:)))
+        navigationItem.setRightBarButtonItems([shareButton!, updateButton!], animated: true)
     }
     
     // MARK: - Activity indicatior
@@ -76,7 +89,9 @@ class TeacherScheduleTableViewController: UITableViewController {
     private var activiyIndicatior: UIActivityIndicatorView?
     
     private func showActiviyIndicatior() {
+        navigationItem.rightBarButtonItems = []
         updateButton = nil
+        shareButton = nil
         
         let activiyIndicatior = UIActivityIndicatorView(style: .white)
         activiyIndicatior.color = .orange
@@ -117,7 +132,7 @@ class TeacherScheduleTableViewController: UITableViewController {
                     self.performFetch()
                     self.tableView.reloadData()
                     self.refreshControl?.endRefreshing()
-                    self.showUpdateButton()
+                    self.configureButtons()
                     self.setTitleForUpdateButton()
                 }
             })
