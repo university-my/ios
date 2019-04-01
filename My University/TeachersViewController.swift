@@ -12,7 +12,7 @@ class TeachersViewController: GenericTableDelegateViewController {
 
     // MARK: - Properties
 
-    private lazy var teacherDataSource: TeacherDataSource = {
+    lazy var teacherDataSource: TeacherDataSource = {
         return TeacherDataSource()
     }()
 

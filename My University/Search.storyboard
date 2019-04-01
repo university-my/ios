@@ -25,19 +25,19 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uuA-pd-v5p">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <connections>
-                                    <segue destination="WwW-q4-Ty7" kind="embed" id="Kji-KE-zGq"/>
+                                    <segue destination="WwW-q4-Ty7" kind="embed" identifier="auditoriums" id="Kji-KE-zGq"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y1V-ia-SnE">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <connections>
-                                    <segue destination="EPP-ao-iNV" kind="embed" id="C2g-k7-CuR"/>
+                                    <segue destination="EPP-ao-iNV" kind="embed" identifier="groups" id="C2g-k7-CuR"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DLI-ER-g6h">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <connections>
-                                    <segue destination="ica-6N-Yt4" kind="embed" id="vvl-hT-cnh"/>
+                                    <segue destination="ica-6N-Yt4" kind="embed" identifier="teachers" id="vvl-hT-cnh"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -77,11 +77,22 @@
                         <outlet property="groupsContainer" destination="y1V-ia-SnE" id="G2J-oT-Ni2"/>
                         <outlet property="segmentedControl" destination="bRB-iE-NQZ" id="GYh-PC-yHK"/>
                         <outlet property="teachersContainer" destination="DLI-ER-g6h" id="MMq-5y-HhS"/>
+                        <segue destination="wNa-cO-gXn" kind="show" identifier="showAuditoriumSchedule" id="t8M-ES-IqU"/>
+                        <segue destination="Hbl-Qt-yTI" kind="show" identifier="showGroupSchedule" id="Kzj-VS-YmJ"/>
+                        <segue destination="sJy-gZ-ahm" kind="show" identifier="showTeacherSchedule" id="hSG-Z7-Y42"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rP5-dF-c9E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1940" y="821"/>
+        </scene>
+        <!--AuditoriumScheduleTableViewController-->
+        <scene sceneID="mSx-3Q-8L5">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="AuditoriumScheduleTableViewController" id="wNa-cO-gXn" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z3I-ub-E4a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2682" y="759"/>
         </scene>
         <!--Search Results Table View Controller-->
         <scene sceneID="k9h-fi-UoD">
@@ -121,7 +132,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lXS-hW-sH9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2945" y="821"/>
+            <point key="canvasLocation" x="3345" y="821"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hO1-LE-mUz">
@@ -328,6 +339,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ar3-56-alf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2945" y="1581"/>
+        </scene>
+        <!--GroupScheduleTableViewController-->
+        <scene sceneID="XdC-Yr-KeU">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="GroupScheduleTableViewController" id="Hbl-Qt-yTI" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="neZ-Jd-VeY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2672" y="821"/>
+        </scene>
+        <!--TeacherScheduleTableViewController-->
+        <scene sceneID="bIm-XG-xnN">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="TeacherScheduleTableViewController" id="sJy-gZ-ahm" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a4s-yJ-oyZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2682" y="883"/>
         </scene>
     </scenes>
     <resources>

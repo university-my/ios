@@ -12,7 +12,7 @@ class GroupsViewController: GenericTableDelegateViewController {
 
     // MARK: - Properties
 
-    private lazy var groupDataSource: GroupDataSource = {
+    lazy var groupDataSource: GroupDataSource = {
         return GroupDataSource()
     }()
 

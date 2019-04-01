@@ -531,10 +531,10 @@
             </objects>
             <point key="canvasLocation" x="1271" y="3188"/>
         </scene>
-        <!--UINavigationController-Ao8-UC-FnL-->
+        <!--Search-->
         <scene sceneID="Dms-du-tWt">
             <objects>
-                <viewControllerPlaceholder storyboardName="Search" referencedIdentifier="UINavigationController-Ao8-UC-FnL" id="bnQ-RG-Auv" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Search" id="bnQ-RG-Auv" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="fxW-9J-GbX"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iVR-6v-Goc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -558,7 +558,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qvs-wr-JcP"/>
-        <segue reference="SbH-dQ-m57"/>
+        <segue reference="cVP-cW-tLt"/>
         <segue reference="ZcE-LS-DXW"/>
         <segue reference="Qyy-kV-8ui"/>
     </inferredMetricsTieBreakers>

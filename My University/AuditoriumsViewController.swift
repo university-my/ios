@@ -12,7 +12,7 @@ class AuditoriumsViewController: GenericTableDelegateViewController {
     
     // MARK: - Properties
     
-    private lazy var auditoriumDataSource: AuditoriumDataSource = {
+    lazy var auditoriumDataSource: AuditoriumDataSource = {
         return AuditoriumDataSource()
     }()
     
