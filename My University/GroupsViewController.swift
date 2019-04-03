@@ -70,4 +70,31 @@ class GroupsViewController: GenericTableDelegateViewController {
             tableView.reloadData()
         }
     }
+
+  // MARK: - Navigation
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard let identifier = segue.identifier else { return }
+
+    switch identifier {
+
+    case "showGroupSchedule":
+      if let destination = segue.destination as? GroupScheduleTableViewController {
+        if let indexPath = tableView.indexPathForSelectedRow {
+          let selectedGroup = groupDataSource.fetchedResultsController?.object(at: indexPath)
+          destination.group = selectedGroup
+        }
+      }
+
+    default:
+      break
+    }
+  }
+}
+
+extension GroupsViewController {
+
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    performSegue(withIdentifier: "showGroupSchedule", sender: nil)
+  }
 }

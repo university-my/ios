@@ -23,15 +23,21 @@ class AboutUsTableViewController: UITableViewController {
         if section == 0 {
             switch row {
             case 0:
-                if let facebookURL = URL(string: "fb://profile/592137607893036"), UIApplication.shared.canOpenURL(facebookURL) {
-                    UIApplication.shared.open(facebookURL)
-                } else if let facebookPageURL = URL(string: "https://www.facebook.com/Мій-Університет-592137607893036") {
-                    UIApplication.shared.open(facebookPageURL)
-                }
+              if let websiteURL = URL(string: "https://my-university.com.ua") {
+                UIApplication.shared.open(websiteURL)
+              }
             case 1:
-                if let telegramBotURL = URL(string: "https://telegram.me/sumdu_bot") {
-                    UIApplication.shared.open(telegramBotURL)
+              if let facebookPageURL = URL(string: "https://www.facebook.com/myuniversityservice") {
+                UIApplication.shared.open(facebookPageURL)
+              }
+            case 2:
+                if let twitterURL = URL(string: "https://twitter.com/myuniversity_su") {
+                    UIApplication.shared.open(twitterURL)
                 }
+            case 3:
+              if let instagramURL = URL(string: "https://www.instagram.com/university.my/") {
+                UIApplication.shared.open(instagramURL)
+              }
             default:
                 break
             }
@@ -44,13 +50,11 @@ class AboutUsTableViewController: UITableViewController {
         } else if section == 2 {
             switch row {
             case 0:
-                if let privacyPolicyURL = URL(string: "https://voevodin-yura.com/privacy-policy") {
-                    UIApplication.shared.open(privacyPolicyURL)
-                }
+              performSegue(withIdentifier: "showWebView", sender: "https://my-university.com.ua/privacy-policy")
+
             case 1:
-                if let termsOfServiceURL = URL(string: "https://voevodin-yura.com/terms-of-service") {
-                    UIApplication.shared.open(termsOfServiceURL)
-                }
+              performSegue(withIdentifier: "showWebView", sender: "https://my-university.com.ua/terms-of-service")
+
             default:
                 break
             }
@@ -70,7 +74,23 @@ class AboutUsTableViewController: UITableViewController {
                 persistentContainer.viewContext.refreshAllObjects()
                 
                 cell?.isSelected = false
-            }
+            } 
         }
     }
+
+  // MARK: - Navigation
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard let identifier = segue.identifier else { return }
+
+    switch identifier {
+
+    case "showWebView":
+      let vc = segue.destination as? WebViewController
+      vc?.urlString = (sender as? String) ?? ""
+
+    default:
+      break
+    }
+  }
 }

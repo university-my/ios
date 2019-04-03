@@ -68,4 +68,31 @@ class TeachersViewController: GenericTableDelegateViewController {
             tableView.reloadData()
         }
     }
+
+  // MARK: - Navigation
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard let identifier = segue.identifier else { return }
+
+    switch identifier {
+
+    case "showTeacherSchedule":
+      if let destination = segue.destination as? TeacherScheduleTableViewController {
+        if let indexPath = tableView.indexPathForSelectedRow {
+          let selectedTeacher = teacherDataSource.fetchedResultsController?.object(at: indexPath)
+          destination.teacher = selectedTeacher
+        }
+      }
+
+    default:
+      break
+    }
+  }
+}
+
+extension TeachersViewController {
+
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    performSegue(withIdentifier: "showTeacherSchedule", sender: nil)
+  }
 }

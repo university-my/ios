@@ -70,4 +70,33 @@ class AuditoriumsViewController: GenericTableDelegateViewController {
             tableView.reloadData()
         }
     }
+
+  // MARK: - Navigation
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard let identifier = segue.identifier else { return }
+
+    switch identifier {
+
+    case "showAuditoriumSchedule":
+      if let destination = segue.destination as? AuditoriumScheduleTableViewController {
+        if let indexPath = tableView.indexPathForSelectedRow {
+          let selectedAuditorium = auditoriumDataSource.fetchedResultsController?.object(at: indexPath)
+          destination.auditorium = selectedAuditorium
+        }
+      }
+
+    default:
+      break
+    }
+  }
+}
+
+// MARK: - UITableViewDelegate
+
+extension AuditoriumsViewController {
+
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    performSegue(withIdentifier: "showAuditoriumSchedule", sender: nil)
+  }
 }

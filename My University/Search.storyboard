@@ -210,6 +210,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="czg-fV-N3y" id="5gN-0D-cCO"/>
                         <outlet property="tableView" destination="ZyA-i9-U6a" id="EiR-7p-JXI"/>
+                        <segue destination="PuK-V9-NHp" kind="show" identifier="showAuditoriumSchedule" id="N9o-4A-iGZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ukb-tg-hyM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -272,6 +273,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="jcP-x9-kVh" id="7ZH-mJ-IoP"/>
                         <outlet property="tableView" destination="1Cx-P5-wWT" id="685-yQ-KAI"/>
+                        <segue destination="gRY-ed-fQF" kind="show" identifier="showGroupSchedule" id="Scj-gZ-GD4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fOu-Bd-sYO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -334,6 +336,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="1td-55-91j" id="zWD-uM-Gyz"/>
                         <outlet property="tableView" destination="nq6-el-Rr0" id="YpL-ZI-cjx"/>
+                        <segue destination="aH1-bZ-5AO" kind="show" identifier="showTeacherSchedule" id="aYC-Nc-WR9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ar3-56-alf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -355,6 +358,30 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a4s-yJ-oyZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2682" y="883"/>
+        </scene>
+        <!--AuditoriumScheduleTableViewController-->
+        <scene sceneID="KbM-wl-6Ka">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="AuditoriumScheduleTableViewController" id="PuK-V9-NHp" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TEd-hq-9dl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="890" y="2013"/>
+        </scene>
+        <!--GroupScheduleTableViewController-->
+        <scene sceneID="P4F-MM-2Os">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="GroupScheduleTableViewController" id="gRY-ed-fQF" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hb1-XZ-Ds6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1939" y="2013"/>
+        </scene>
+        <!--TeacherScheduleTableViewController-->
+        <scene sceneID="mw9-qU-ltJ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="TeacherScheduleTableViewController" id="aH1-bZ-5AO" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="urK-XD-kEB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2945" y="2013"/>
         </scene>
     </scenes>
     <resources>

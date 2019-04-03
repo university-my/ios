@@ -29,9 +29,6 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Large titles (works only when enabled from code).
-        navigationController?.navigationBar.prefersLargeTitles = true
-
         // Sear Bar and Search Results Controller
         configureSearchControllers()
 

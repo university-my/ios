@@ -54,6 +54,7 @@
 		DE584C5F21986E740099415E /* AuditoriumEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE584C5D21986E740099415E /* AuditoriumEntity+CoreDataClass.swift */; };
 		DE584C6021986E740099415E /* AuditoriumEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE584C5E21986E740099415E /* AuditoriumEntity+CoreDataProperties.swift */; };
 		DE5A7E932219CCBF00CA9A79 /* RecordDetailedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A7E922219CCBF00CA9A79 /* RecordDetailedTableViewController.swift */; };
+		DE7AF21D22550B9D0043E927 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AF21C22550B9D0043E927 /* WebViewController.swift */; };
 		DE8B668121CAC91C00C43F81 /* Group+Import.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B668021CAC91C00C43F81 /* Group+Import.swift */; };
 		DE8B668321CACDF800C43F81 /* Auditorium+NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B668221CACDF800C43F81 /* Auditorium+NetworkClient.swift */; };
 		DE8B668521CACE5600C43F81 /* Group+NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B668421CACE5600C43F81 /* Group+NetworkClient.swift */; };
@@ -115,6 +116,7 @@
 		DE584C5D21986E740099415E /* AuditoriumEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuditoriumEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		DE584C5E21986E740099415E /* AuditoriumEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuditoriumEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DE5A7E922219CCBF00CA9A79 /* RecordDetailedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailedTableViewController.swift; sourceTree = "<group>"; };
+		DE7AF21C22550B9D0043E927 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		DE8B668021CAC91C00C43F81 /* Group+Import.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+Import.swift"; sourceTree = "<group>"; };
 		DE8B668221CACDF800C43F81 /* Auditorium+NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auditorium+NetworkClient.swift"; sourceTree = "<group>"; };
 		DE8B668421CACE5600C43F81 /* Group+NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+NetworkClient.swift"; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				C250C1821FBCD1CA00C90B53 /* AboutUsTableViewController.swift */,
+				DE7AF21C22550B9D0043E927 /* WebViewController.swift */,
 			);
 			name = "About Us";
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				DE18941E21BC3AD100C7F9DB /* AuditoriumScheduleTableViewController.swift in Sources */,
 				DE540EC22215CDCD0092FC81 /* Teacher+NetworkClient.swift in Sources */,
 				DE540EC42215CF9F0092FC81 /* TeacherDataSource.swift in Sources */,
+				DE7AF21D22550B9D0043E927 /* WebViewController.swift in Sources */,
 				DE18942021BD457F00C7F9DB /* ImportForGroup.swift in Sources */,
 				DE5A7E932219CCBF00CA9A79 /* RecordDetailedTableViewController.swift in Sources */,
 				DE584C5C219869990099415E /* Auditorium+Import.swift in Sources */,
