@@ -1,0 +1,24 @@
+
+/* Class = "UINavigationItem"; title = "Search"; ObjectID = "P7C-sM-ZZj"; */
+"P7C-sM-ZZj.title" = "Search";
+
+/* Class = "UISegmentedControl"; bRB-iE-NQZ.segmentTitles[0] = "Groups"; ObjectID = "bRB-iE-NQZ"; */
+"bRB-iE-NQZ.segmentTitles[0]" = "Groups";
+
+/* Class = "UISegmentedControl"; bRB-iE-NQZ.segmentTitles[1] = "Auditoriums"; ObjectID = "bRB-iE-NQZ"; */
+"bRB-iE-NQZ.segmentTitles[1]" = "Auditoriums";
+
+/* Class = "UISegmentedControl"; bRB-iE-NQZ.segmentTitles[2] = "Teachers"; ObjectID = "bRB-iE-NQZ"; */
+"bRB-iE-NQZ.segmentTitles[2]" = "Teachers";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "hmx-c1-Cyp"; */
+"hmx-c1-Cyp.text" = "Title";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "iHY-tn-gHN"; */
+"iHY-tn-gHN.text" = "Title";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "jOx-eS-c4z"; */
+"jOx-eS-c4z.text" = "Title";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "qS0-eU-2LR"; */
+"qS0-eU-2LR.text" = "Title";
