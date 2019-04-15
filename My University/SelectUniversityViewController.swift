@@ -83,4 +83,29 @@ class SelectUniversityViewController: GenericTableDelegateViewController {
     @objc func refreshContent() {
         loadUniversities()
     }
+
+    // MARK: - Show University
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showUniversity", sender: nil)
+    }
+
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier else { return }
+
+        switch identifier {
+
+        case "showUniversity":
+            let destination = segue.destination as? UniversityViewController
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let selectedUniversity = dataSource.fetchedResultsController?.object(at: indexPath)
+                destination?.university = selectedUniversity
+            }
+
+        default:
+            break
+        }
+    }
 }
