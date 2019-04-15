@@ -28,8 +28,6 @@ class WebViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    navigationController?.navigationBar.prefersLargeTitles = false
-
     let myURL = URL(string: urlString)
     let myRequest = URLRequest(url: myURL!)
     webView.load(myRequest)

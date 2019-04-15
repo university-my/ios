@@ -23,21 +23,21 @@ class AboutUsTableViewController: UITableViewController {
         if section == 0 {
             switch row {
             case 0:
-              if let websiteURL = URL(string: "https://my-university.com.ua") {
-                UIApplication.shared.open(websiteURL)
-              }
+                if let websiteURL = URL(string: "https://my-university.com.ua") {
+                    UIApplication.shared.open(websiteURL)
+                }
             case 1:
-              if let facebookPageURL = URL(string: "https://www.facebook.com/myuniversityservice") {
-                UIApplication.shared.open(facebookPageURL)
-              }
+                if let facebookPageURL = URL(string: "https://www.facebook.com/myuniversityservice") {
+                    UIApplication.shared.open(facebookPageURL)
+                }
             case 2:
                 if let twitterURL = URL(string: "https://twitter.com/myuniversity_su") {
                     UIApplication.shared.open(twitterURL)
                 }
             case 3:
-              if let instagramURL = URL(string: "https://www.instagram.com/university.my/") {
-                UIApplication.shared.open(instagramURL)
-              }
+                if let instagramURL = URL(string: "https://www.instagram.com/university.my/") {
+                    UIApplication.shared.open(instagramURL)
+                }
             default:
                 break
             }
@@ -50,10 +50,10 @@ class AboutUsTableViewController: UITableViewController {
         } else if section == 2 {
             switch row {
             case 0:
-              performSegue(withIdentifier: "showWebView", sender: "https://my-university.com.ua/privacy-policy")
+                performSegue(withIdentifier: "showWebView", sender: (title: "Privacy Policy", url: "https://my-university.com.ua/privacy-policy"))
 
             case 1:
-              performSegue(withIdentifier: "showWebView", sender: "https://my-university.com.ua/terms-of-service")
+                performSegue(withIdentifier: "showWebView", sender: (title: "Terms of Service", url: "https://my-university.com.ua/terms-of-service"))
 
             default:
                 break
@@ -78,19 +78,22 @@ class AboutUsTableViewController: UITableViewController {
         }
     }
 
-  // MARK: - Navigation
+    // MARK: - Navigation
 
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    guard let identifier = segue.identifier else { return }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier else { return }
 
-    switch identifier {
+        switch identifier {
 
-    case "showWebView":
-      let vc = segue.destination as? WebViewController
-      vc?.urlString = (sender as? String) ?? ""
+        case "showWebView":
+            let vc = segue.destination as? WebViewController
+            if let (title, url) = (sender as? (String, String)) {
+                vc?.urlString = url
+                vc?.title = title
+            }
 
-    default:
-      break
+        default:
+            break
+        }
     }
-  }
 }
