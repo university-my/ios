@@ -13,4 +13,24 @@ import CoreData
 @objc(UniversityEntity)
 public class UniversityEntity: NSManagedObject {
 
+    static func fetch(_ ids: [Int64], context: NSManagedObjectContext) -> [UniversityEntity] {
+        let request: NSFetchRequest<UniversityEntity> = UniversityEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id IN %@", ids)
+        do {
+            let result = try context.fetch(request)
+            return result
+        } catch  {
+            return []
+        }
+    }
+    
+    static func fetchAll(context: NSManagedObjectContext) -> [UniversityEntity] {
+        let request: NSFetchRequest<UniversityEntity> = UniversityEntity.fetchRequest()
+        do {
+            let result = try context.fetch(request)
+            return result
+        } catch  {
+            return []
+        }
+    }
 }

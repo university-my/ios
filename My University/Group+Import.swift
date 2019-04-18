@@ -20,10 +20,11 @@ extension Group {
         private let networkClient: NetworkClient
         private var completionHandler: ((_ error: Error?) -> ())?
         private let persistentContainer: NSPersistentContainer
+        private let university: UniversityEntity
         
         // MARK: - Initialization
         
-        init?(persistentContainer: NSPersistentContainer) {
+        init?(persistentContainer: NSPersistentContainer, university: UniversityEntity) {
             // Cache file
             let cachesFolder = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             guard let cacheFile = cachesFolder?.appendingPathComponent("groups.json") else { return nil }
@@ -31,6 +32,7 @@ extension Group {
             self.cacheFile = cacheFile
             self.persistentContainer = persistentContainer
             networkClient = NetworkClient(cacheFile: self.cacheFile)
+            self.university = university
         }
         
         // MARK: - Methods
@@ -38,7 +40,7 @@ extension Group {
         func importGroups(_ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            networkClient.downloadGroups { (error) in
+            networkClient.downloadGroups(universityURL: university.url) { (error) in
                 if let error = error {
                     self.completionHandler?(error)
                 } else {
@@ -83,7 +85,13 @@ extension Group {
                 
                 // Execute the request to batch delete and merge the changes to viewContext.
                 
+                // TODO: Don't delete all groups
+                
                 let fetchRequest: NSFetchRequest<NSFetchRequestResult> = GroupEntity.fetchRequest()
+                
+                let predicate = NSPredicate(format: "university == %@", university)
+                fetchRequest.predicate = predicate
+                
                 let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
                 deleteRequest.resultType = .resultTypeObjectIDs
                 do {
@@ -132,6 +140,10 @@ extension Group {
             }
             groupEntity.id = parsedGroup.id
             groupEntity.name = parsedGroup.name
+            
+            if let universityInContext = context.object(with: university.objectID) as? UniversityEntity {
+                groupEntity.university = universityInContext
+            }
         }
     }
 }

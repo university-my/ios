@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SelectUniversityViewController: GenericTableDelegateViewController {
+class SelectUniversityViewController: UITableViewController {
 
     // MARK: - Properties
 
@@ -20,77 +20,84 @@ class SelectUniversityViewController: GenericTableDelegateViewController {
         return .lightContent
     }
 
-    private var refreshControl: UIRefreshControl?
-
-    // MARK: - IBOutlets
-
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Import on pull to refresh
-        refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
-
+        
+        addStatusLabel()
+        
         // Configure table
-        tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
-        tableView.refreshControl = refreshControl
 
         // Loading...
+        tableView.dataSource = dataSource
         loadUniversities()
     }
+    
+    // MARK: - Universities
 
     private func loadUniversities() {
-        tableView.dataSource = dataSource
         dataSource.fetchUniversities()
-
+        
         let universities = dataSource.fetchedResultsController?.fetchedObjects ?? []
-
         if universities.isEmpty {
-
-            tableView.isHidden = true
-            activityIndicator.startAnimating()
-
-            dataSource.importUniversities { (error) in
-                if let error = error {
-                    let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true)
-                }
-
-                self.activityIndicator.stopAnimating()
-                self.tableView.isHidden = false
+            
+            importUniversities()
+        } else {
+            tableView.reloadData()
+        }
+    }
+    
+    private func importUniversities() {
+        let text = NSLocalizedString("Loading universities ...", comment: "")
+        updateStatus(text: text)
+        
+        dataSource.importUniversities { (error) in
+            if let error = error {
+                self.refreshControl?.endRefreshing()
+                self.updateStatus(text: error.localizedDescription)
+            } else {
                 self.dataSource.fetchUniversities()
                 self.tableView.reloadData()
                 self.refreshControl?.endRefreshing()
+                self.updateStatus(text: nil)
             }
-
-        } else {
-            tableView.isHidden = false
-            tableView.reloadData()
-            self.refreshControl?.endRefreshing()
         }
     }
 
     // MARK: - Pull to refresh
-
-    @objc func refreshContent() {
-        loadUniversities()
+    
+    @IBAction func refresh(_ sender: Any) {
+        importUniversities()
     }
-
-    // MARK: - Show University
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "showUniversity", sender: nil)
+    
+    // MARK: - Notificaion
+    
+    @IBOutlet weak var statusButton: UIBarButtonItem!
+    private var statusLabel = UILabel(frame: CGRect.zero)
+    
+    func addStatusLabel() {
+        statusLabel.sizeToFit()
+        statusLabel.backgroundColor = .clear
+        statusLabel.textAlignment = .center
+        statusLabel.textColor = .lightGray
+        statusLabel.adjustsFontSizeToFitWidth = true
+        statusLabel.minimumScaleFactor = 0.5
+        statusButton.customView = statusLabel
+    }
+    
+    func updateStatus(text: String?) {
+        statusLabel.text = text
+        statusLabel.sizeToFit()
     }
 
     // MARK: - Navigation
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showUniversity", sender: nil)
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier else { return }
@@ -107,5 +114,13 @@ class SelectUniversityViewController: GenericTableDelegateViewController {
         default:
             break
         }
+    }
+    
+    // MARK: - Styling
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = .cellSelectionColor
+        cell.selectedBackgroundView = bgColorView
     }
 }

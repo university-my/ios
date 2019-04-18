@@ -12,9 +12,9 @@ class GroupsViewController: GenericTableDelegateViewController {
 
     // MARK: - Properties
 
-    lazy var groupDataSource: GroupDataSource = {
-        return GroupDataSource()
-    }()
+//    lazy var groupDataSource: GroupDataSource = {
+//        return GroupDataSource()
+//    }()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -36,40 +36,40 @@ class GroupsViewController: GenericTableDelegateViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
 
         // Loading...
-        loadGroups()
+//        loadGroups()
     }
 
     // MARK: - Groups
 
-    private func loadGroups() {
-        tableView.dataSource = groupDataSource
-        groupDataSource.performFetch()
-
-        let groups = groupDataSource.fetchedResultsController?.fetchedObjects ?? []
-
-        if groups.isEmpty {
-
-            tableView.isHidden = true
-            activityIndicator.startAnimating()
-
-            groupDataSource.importGroups { (error) in
-
-                if let error = error {
-                    let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true)
-                }
-                
-                self.activityIndicator.stopAnimating()
-                self.tableView.isHidden = false
-                self.groupDataSource.performFetch()
-                self.tableView.reloadData()
-            }
-        } else {
-            tableView.isHidden = false
-            tableView.reloadData()
-        }
-    }
+//    private func loadGroups() {
+//        tableView.dataSource = groupDataSource
+//        groupDataSource.performFetch()
+//
+//        let groups = groupDataSource.fetchedResultsController?.fetchedObjects ?? []
+//
+//        if groups.isEmpty {
+//
+//            tableView.isHidden = true
+//            activityIndicator.startAnimating()
+//
+//            groupDataSource.importGroups { (error) in
+//
+//                if let error = error {
+//                    let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
+//                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//                    self.present(alert, animated: true)
+//                }
+//
+//                self.activityIndicator.stopAnimating()
+//                self.tableView.isHidden = false
+//                self.groupDataSource.performFetch()
+//                self.tableView.reloadData()
+//            }
+//        } else {
+//            tableView.isHidden = false
+//            tableView.reloadData()
+//        }
+//    }
 
   // MARK: - Navigation
 
@@ -78,13 +78,13 @@ class GroupsViewController: GenericTableDelegateViewController {
 
     switch identifier {
 
-    case "showGroupSchedule":
-      if let destination = segue.destination as? GroupScheduleTableViewController {
-        if let indexPath = tableView.indexPathForSelectedRow {
-          let selectedGroup = groupDataSource.fetchedResultsController?.object(at: indexPath)
-          destination.group = selectedGroup
-        }
-      }
+//    case "showGroupSchedule":
+//      if let destination = segue.destination as? GroupScheduleTableViewController {
+//        if let indexPath = tableView.indexPathForSelectedRow {
+//          let selectedGroup = groupDataSource.fetchedResultsController?.object(at: indexPath)
+//          destination.group = selectedGroup
+//        }
+//      }
 
     default:
       break

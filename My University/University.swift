@@ -9,22 +9,25 @@
 import Foundation
 
 struct University {
-
-  // MARK: - Properties
-
-  let fullName: String
-  let shortName: String
-  let url: String
-
-  // MARK: - Init
-
-  init?(_ json: [String: Any]) {
-    guard let fullName = json["full_name"] as? String else { return nil }
-    guard let shortName = json["short_name"] as? String else { return nil }
-    guard let url = json["url"] as? String else { return nil }
-
-    self.fullName = fullName
-    self.shortName = shortName
-    self.url = url
-  }
+    
+    // MARK: - Properties
+    
+    let serverID: Int64
+    let fullName: String
+    let shortName: String
+    let url: String
+    
+    // MARK: - Init
+    
+    init?(_ json: [String: Any]) {
+        guard let serverID = json["id"] as? Int64 else { return nil }
+        guard let fullName = json["full_name"] as? String else { return nil }
+        guard let shortName = json["short_name"] as? String else { return nil }
+        guard let url = json["url"] as? String else { return nil }
+        
+        self.serverID = serverID
+        self.fullName = fullName
+        self.shortName = shortName
+        self.url = url
+    }
 }

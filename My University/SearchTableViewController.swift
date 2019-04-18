@@ -18,9 +18,9 @@ class SearchTableViewController: UITableViewController {
         return AuditoriumDataSource()
     }()
     
-    private lazy var groupDataSource: GroupDataSource = {
-        return GroupDataSource()
-    }()
+//    private lazy var groupDataSource: GroupDataSource = {
+//        return GroupDataSource()
+//    }()
     
     private lazy var teacherDataSource: TeacherDataSource = {
         return TeacherDataSource()
@@ -143,7 +143,7 @@ class SearchTableViewController: UITableViewController {
             var selectedGroup: GroupEntity?
             if tableView == self.tableView, let indexPath = tableView.indexPathForSelectedRow {
                 // From main table view
-                selectedGroup = groupDataSource.fetchedResultsController?.object(at: indexPath)
+//                selectedGroup = groupDataSource.fetchedResultsController?.object(at: indexPath)
                 
             } else if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
                 // From search results controller
@@ -205,27 +205,28 @@ class SearchTableViewController: UITableViewController {
     
     // MARK: - Groups
     
-    private func loadGroups() {
-        tableView.dataSource = groupDataSource
-        groupDataSource.performFetch()
-        
-        let groups = groupDataSource.fetchedResultsController?.fetchedObjects ?? []
-        if groups.isEmpty {
-            groupDataSource.importGroups { (error) in
-                if let error = error {
-                    let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true)
-                }
-                self.groupDataSource.performFetch()
-                self.tableView.reloadData()
-                self.refreshControl?.endRefreshing()
-            }
-        } else {
-            tableView.reloadData()
-            refreshControl?.endRefreshing()
-        }
-    }
+//    private func loadGroups() {
+//        tableView.dataSource = groupDataSource
+//        groupDataSource.performFetch()
+//
+//        let groups = groupDataSource.fetchedResultsController?.fetchedObjects ?? []
+//        if groups.isEmpty {
+//            groupDataSource.importGroups { (error) in
+//                if let error = error {
+//                    let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
+//                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//                    self.present(alert, animated: true)
+//                }
+//                self.groupDataSource.performFetch()
+//                self.tableView.reloadData()
+//                self.refreshControl?.endRefreshing()
+//            }
+//        } else {
+//            tableView.reloadData()
+//            refreshControl?.endRefreshing()
+//        }
+//    }
+    
     // MARK: - Teachers
     
     private func loadTeachers() {
@@ -274,7 +275,8 @@ class SearchTableViewController: UITableViewController {
         case .auditoriums:
             loadAuditoriums()
         case .groups:
-            loadGroups()
+            break
+//            loadGroups()
         case .teachers:
             loadTeachers()
         }
@@ -312,17 +314,18 @@ extension SearchTableViewController: UISearchResultsUpdating {
             }
             
         case .groups:
+            break
             // Update the filtered array based on the search text.
-            guard let searchResults = groupDataSource.fetchedResultsController?.fetchedObjects else { return }
+//            guard let searchResults = groupDataSource.fetchedResultsController?.fetchedObjects else { return }
             
-            let filteredResults = searchResults.filter { nameSearchComparisonPredicate.evaluate(with: $0) }
+//            let filteredResults = searchResults.filter { nameSearchComparisonPredicate.evaluate(with: $0) }
             
             // Hand over the filtered results to our search results table.
-            if let resultsController = searchController.searchResultsController as? SearchResultsTableViewController {
-                resultsController.filteredGroups = filteredResults
-                resultsController.dataSourceType = .groups
-                resultsController.tableView.reloadData()
-            }
+//            if let resultsController = searchController.searchResultsController as? SearchResultsTableViewController {
+//                resultsController.filteredGroups = filteredResults
+//                resultsController.dataSourceType = .groups
+//                resultsController.tableView.reloadData()
+//            }
             
         case .teachers:
             // Update the filtered array based on the search text.

@@ -88,8 +88,9 @@ class SearchViewController: UIViewController {
         switch segue.identifier {
             
         case "groups":
-            let vc = segue.destination as? GroupsViewController
-            groupDataSource = vc?.groupDataSource
+            break
+//            let vc = segue.destination as? GroupsViewController
+//            groupDataSource = vc?.groupDataSource
             
         case "auditoriums":
             let vc = segue.destination as? AuditoriumsViewController

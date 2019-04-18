@@ -79,27 +79,52 @@ extension University {
 
       taskContext.performAndWait {
 
-        // Execute the request to batch delete and merge the changes to viewContext.
-
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = UniversityEntity.fetchRequest()
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        deleteRequest.resultType = .resultTypeObjectIDs
-        do {
-          let result = try taskContext.execute(deleteRequest) as? NSBatchDeleteResult
-          if let objectIDArray = result?.result as? [NSManagedObjectID] {
-            let changes = [NSDeletedObjectsKey: objectIDArray]
-            NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [self.persistentContainer.viewContext])
-          }
-        } catch {
-          completionHandler?(error)
-        }
-
-        // Create new records.
-
+        // Parse universities.
         let parsedUniversities = json.compactMap { University($0) }
-
-        for university in parsedUniversities {
-          self.insert(university, context: taskContext)
+        
+        // IDs to fetch
+        let ids = parsedUniversities.map({ university in
+            return university.serverID
+        })
+        
+        // Universities to update
+        let toUpdate = UniversityEntity.fetch(ids, context: taskContext)
+        
+        // IDs to update
+        let idsToUpdate = toUpdate.map({ university in
+            return university.id
+        })
+        
+        // Find universities to insert
+        let toInsert = parsedUniversities.filter({ university in
+            return (idsToUpdate.contains(university.serverID) == false)
+        })
+        
+        // Now find universities to delete
+        let allUniversities = UniversityEntity.fetchAll(context: taskContext)
+        let toDelete = allUniversities.filter({ university in
+            return (ids.contains(university.id) == false)
+        })
+        
+        // 1. Delete
+        for university in toDelete {
+            taskContext.delete(university)
+        }
+        
+        // 2. Update
+        for university in toUpdate {
+            if let universityFromServer = parsedUniversities.first(where: { (parsedUniversity) -> Bool in
+                return university.id == parsedUniversity.serverID
+            }) {
+                university.fullName = universityFromServer.fullName
+                university.shortName = universityFromServer.shortName
+                university.url = universityFromServer.url
+            }
+        }
+        
+        // 3. Insert
+        for university in toInsert {
+            self.insert(university, context: taskContext)
         }
 
         // Finishing import. Save context.

@@ -11,6 +11,14 @@ import UIKit
 
 class GroupDataSource: NSObject {
     
+    // MARK: - Init
+    
+    private var university: UniversityEntity?
+    
+    init(university: UniversityEntity) {
+        self.university = university
+    }
+    
     // MARK: - NSManagedObjectContext
     
     private lazy var viewContext: NSManagedObjectContext? = {
@@ -23,14 +31,21 @@ class GroupDataSource: NSObject {
     lazy var fetchedResultsController: NSFetchedResultsController<GroupEntity>? = {
         let request: NSFetchRequest<GroupEntity> = GroupEntity.fetchRequest()
         
-        let firstSymbol = NSSortDescriptor(key: #keyPath(AuditoriumEntity.firstSymbol), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
-        let name = NSSortDescriptor(key: #keyPath(AuditoriumEntity.name), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
+        // Groups for university
+        guard let university = university else {
+            return nil
+        }
+        let predicate = NSPredicate(format: "university == %@", university)
+        request.predicate = predicate
+        
+        let firstSymbol = NSSortDescriptor(key: #keyPath(GroupEntity.firstSymbol), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
+        let name = NSSortDescriptor(key: #keyPath(GroupEntity.name), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
         
         request.sortDescriptors = [firstSymbol, name]
         request.fetchBatchSize = 20
         
         if let context = viewContext {
-            let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: #keyPath(AuditoriumEntity.firstSymbol), cacheName: nil)
+            let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: #keyPath(GroupEntity.firstSymbol), cacheName: nil)
             return controller
         } else {
             return nil
@@ -70,8 +85,10 @@ class GroupDataSource: NSObject {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         guard let persistentContainer = appDelegate?.persistentContainer else { return }
         
+        guard let university = university else { return }
+        
         // Download Groups from backend and save to database.
-        groupsImportManager = Group.Import(persistentContainer: persistentContainer)
+        groupsImportManager = Group.Import(persistentContainer: persistentContainer, university: university)
         DispatchQueue.global().async { [weak self] in
             
             self?.groupsImportManager?.importGroups { (error) in
@@ -98,7 +115,7 @@ extension GroupDataSource: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "searchResultsCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "groupCell", for: indexPath)
         
         // Configure cell
         if let group = fetchedResultsController?.object(at: indexPath) {

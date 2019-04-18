@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.98" systemVersion="18E226" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18E226" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AuditoriumEntity" representedClassName="AuditoriumEntity" syncable="YES">
         <attribute name="firstSymbol" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isVisited" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="records" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RecordEntity" inverseName="auditorium" inverseEntity="RecordEntity" syncable="YES"/>
+        <relationship name="university" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UniversityEntity" inverseName="auditoriums" inverseEntity="UniversityEntity" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
@@ -18,6 +19,7 @@
         <attribute name="isVisited" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="records" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RecordEntity" inverseName="groups" inverseEntity="RecordEntity" syncable="YES"/>
+        <relationship name="university" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UniversityEntity" inverseName="groups" inverseEntity="UniversityEntity" syncable="YES"/>
         <fetchIndex name="compoundIndex">
             <fetchIndexElement property="name" type="Binary" order="ascending"/>
         </fetchIndex>
@@ -51,6 +53,7 @@
         <attribute name="isVisited" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="records" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RecordEntity" inverseName="teacher" inverseEntity="RecordEntity" syncable="YES"/>
+        <relationship name="university" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UniversityEntity" inverseName="teachers" inverseEntity="UniversityEntity" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
@@ -59,8 +62,12 @@
     </entity>
     <entity name="UniversityEntity" representedClassName="UniversityEntity" syncable="YES">
         <attribute name="fullName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="shortName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="auditoriums" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AuditoriumEntity" inverseName="university" inverseEntity="AuditoriumEntity" syncable="YES"/>
+        <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GroupEntity" inverseName="university" inverseEntity="GroupEntity" syncable="YES"/>
+        <relationship name="teachers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TeacherEntity" inverseName="university" inverseEntity="TeacherEntity" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="url"/>
@@ -68,10 +75,10 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="AuditoriumEntity" positionX="31.9921875" positionY="107.68359375" width="128" height="120"/>
-        <element name="GroupEntity" positionX="35.59375" positionY="398.10546875" width="128" height="120"/>
+        <element name="AuditoriumEntity" positionX="31.9921875" positionY="107.68359375" width="128" height="135"/>
+        <element name="GroupEntity" positionX="35.59375" positionY="398.10546875" width="128" height="135"/>
         <element name="RecordEntity" positionX="-387.71484375" positionY="184.6875" width="128" height="210"/>
-        <element name="TeacherEntity" positionX="-180" positionY="261" width="128" height="120"/>
-        <element name="UniversityEntity" positionX="-180" positionY="261" width="128" height="90"/>
+        <element name="TeacherEntity" positionX="-180" positionY="261" width="128" height="135"/>
+        <element name="UniversityEntity" positionX="-180" positionY="261" width="128" height="150"/>
     </elements>
 </model>
