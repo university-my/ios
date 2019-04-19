@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SelectUniversityViewController: UITableViewController {
+class SelectUniversityViewController: GenericTableViewController {
 
     // MARK: - Properties
 
@@ -16,16 +16,14 @@ class SelectUniversityViewController: UITableViewController {
         return UniversityDataSource()
     }()
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addStatusLabel()
+        // For notifications
+        configurenNotificationLabel()
+        statusButton.customView = notificationLabel
         
         // Configure table
         tableView.rowHeight = UITableView.automaticDimension
@@ -34,6 +32,12 @@ class SelectUniversityViewController: UITableViewController {
         // Loading...
         tableView.dataSource = dataSource
         loadUniversities()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        hideNotification()
     }
     
     // MARK: - Universities
@@ -52,17 +56,17 @@ class SelectUniversityViewController: UITableViewController {
     
     private func importUniversities() {
         let text = NSLocalizedString("Loading universities ...", comment: "")
-        updateStatus(text: text)
+        showNotification(text: text)
         
         dataSource.importUniversities { (error) in
             if let error = error {
                 self.refreshControl?.endRefreshing()
-                self.updateStatus(text: error.localizedDescription)
+                self.showNotification(text: error.localizedDescription)
             } else {
                 self.dataSource.fetchUniversities()
                 self.tableView.reloadData()
                 self.refreshControl?.endRefreshing()
-                self.updateStatus(text: nil)
+                self.hideNotification()
             }
         }
     }
@@ -76,22 +80,6 @@ class SelectUniversityViewController: UITableViewController {
     // MARK: - Notificaion
     
     @IBOutlet weak var statusButton: UIBarButtonItem!
-    private var statusLabel = UILabel(frame: CGRect.zero)
-    
-    func addStatusLabel() {
-        statusLabel.sizeToFit()
-        statusLabel.backgroundColor = .clear
-        statusLabel.textAlignment = .center
-        statusLabel.textColor = .lightGray
-        statusLabel.adjustsFontSizeToFitWidth = true
-        statusLabel.minimumScaleFactor = 0.5
-        statusButton.customView = statusLabel
-    }
-    
-    func updateStatus(text: String?) {
-        statusLabel.text = text
-        statusLabel.sizeToFit()
-    }
 
     // MARK: - Navigation
 
@@ -114,13 +102,5 @@ class SelectUniversityViewController: UITableViewController {
         default:
             break
         }
-    }
-    
-    // MARK: - Styling
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let bgColorView = UIView()
-        bgColorView.backgroundColor = .cellSelectionColor
-        cell.selectedBackgroundView = bgColorView
     }
 }

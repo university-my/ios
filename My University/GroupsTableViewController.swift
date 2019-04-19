@@ -8,21 +8,21 @@
 
 import UIKit
 
-class GroupsTableViewController: UITableViewController {
+class GroupsTableViewController: GenericTableViewController {
     
     // MARK: - Properties
     
     var university: UniversityEntity?
     private var groupsDataSource: GroupDataSource?
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // For notifications
+        configurenNotificationLabel()
+        statusButton.customView = notificationLabel
         
         // Configure table
         tableView.rowHeight = UITableView.automaticDimension
@@ -39,13 +39,6 @@ class GroupsTableViewController: UITableViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Always display Search Bar.
-        navigationItem.hidesSearchBarWhenScrolling = false
-    }
-    
     // MARK: - Groups
     
     private func loadGroups() {
@@ -58,24 +51,38 @@ class GroupsTableViewController: UITableViewController {
         } else {
             tableView.reloadData()
             refreshControl?.endRefreshing()
+            showGroupsCount()
         }
     }
     
     func importGroups() {
         guard let dataSource = groupsDataSource else { return }
+        
+        let text = NSLocalizedString("Loading groups ...", comment: "")
+        showNotification(text: text)
+        
         dataSource.importGroups { (error) in
             if let error = error {
                 self.showNotification(text: error.localizedDescription)
+            } else {
+                self.hideNotification()
             }
             dataSource.performFetch()
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
+            self.showGroupsCount()
         }
+    }
+    
+    func showGroupsCount() {
+        let groups = groupsDataSource?.fetchedResultsController?.fetchedObjects ?? []
+        let text = NSLocalizedString("groups", comment: "Count of groups")
+        showNotification(text: "\(groups.count) " + text)
     }
     
     // MARK: - Pull to refresh
     
-    @objc func refreshContent() {
+    @IBAction func refresh(_ sender: Any) {
         guard !searchController.isActive else {
             refreshControl?.endRefreshing()
             return
@@ -124,12 +131,6 @@ class GroupsTableViewController: UITableViewController {
     
     // MARK - Table delegate
     
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let bgColorView = UIView()
-        bgColorView.backgroundColor = .cellSelectionColor
-        cell.selectedBackgroundView = bgColorView
-    }
-    
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let headerView = view as? UITableViewHeaderFooterView {
             let backgroundView = UIView()
@@ -139,15 +140,32 @@ class GroupsTableViewController: UITableViewController {
         }
     }
     
-    // MARK: - Notification
-    
-    @IBOutlet var notificationView: UIView!
-    @IBOutlet weak var notificationLabel: UILabel!
-    
-    func showNotification(text: String) {
-        notificationLabel.text = text
-        tableView.tableHeaderView = notificationView
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "groupDetailed", sender: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier else { return }
+        
+        switch identifier {
+            
+        case "groupDetailed":
+            if let detailTableViewController = segue.destination as? GroupScheduleTableViewController {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    let selectedGroup = groupsDataSource?.fetchedResultsController?.object(at: indexPath)
+                    detailTableViewController.group = selectedGroup
+                    detailTableViewController.groupID = selectedGroup?.id
+                }
+            }
+            
+        default:
+            break
+        }
+    }
+    
+    // MARK: - Notificaion
+    
+    @IBOutlet weak var statusButton: UIBarButtonItem!
 }
 
 // MARK: - UISearchResultsUpdating

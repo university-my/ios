@@ -162,10 +162,12 @@ extension Record {
             // Auditorium
             recordEntity.auditorium = auditorium as? AuditoriumEntity
             
+            // TODO: Add reference to university
+            
             // Groups
-            let groups = GroupEntity.fetch(parsedRecord.groups, context: context)
-            let set = NSSet(array: groups)
-            recordEntity.addToGroups(set)
+//            let groups = GroupEntity.fetch(parsedRecord.groups, context: context)
+//            let set = NSSet(array: groups)
+//            recordEntity.addToGroups(set)
             
             // Fetch teacher entity for set relation with record
             if let object = parsedRecord.teacher {

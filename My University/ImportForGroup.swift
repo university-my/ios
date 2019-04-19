@@ -103,9 +103,11 @@ extension Record {
         /// Delete previous records and insert new records
         private func syncRecords(_ json: [[String: Any]], taskContext: NSManagedObjectContext) {
             
-            let groupInContext = taskContext.object(with: group.objectID)
+            guard let groupInContext = taskContext.object(with: group.objectID) as? GroupEntity else { return }
             
             taskContext.performAndWait {
+                
+                // TODO: Don't delete records
                 
                 // Execute the request to batch delete and merge the changes to viewContext.
                 
@@ -135,7 +137,7 @@ extension Record {
                 }
                 
                 for record in parsedRecords {
-                    self.insert(record, context: taskContext)
+                    self.insert(record, group: groupInContext, context: taskContext)
                 }
                 
                 // Finishing import. Save context.
@@ -157,7 +159,7 @@ extension Record {
         }
         
         /// Insert new record with related group
-        private func insert(_ parsedRecord: Record, context: NSManagedObjectContext) {
+        private func insert(_ parsedRecord: Record, group: GroupEntity, context: NSManagedObjectContext) {
             let recordEntity = RecordEntity(context: context)
             
             recordEntity.id = NSNumber(value: parsedRecord.id).int64Value
@@ -175,7 +177,7 @@ extension Record {
             }
             
             // Groups
-            let groups = GroupEntity.fetch(parsedRecord.groups, context: context)
+            let groups = GroupEntity.fetch(parsedRecord.groups, university: group.university, context: context)
             let set = NSSet(array: groups)
             recordEntity.addToGroups(set)
             

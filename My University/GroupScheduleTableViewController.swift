@@ -9,7 +9,7 @@
 import CoreData
 import UIKit
 
-class GroupScheduleTableViewController: UITableViewController {
+class GroupScheduleTableViewController: GenericTableViewController {
     
     // MARK: - Properties
     
@@ -26,12 +26,14 @@ class GroupScheduleTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // For notifications
+        configurenNotificationLabel()
+        statusButton.customView = notificationLabel
+        
         tableView.rowHeight = UITableView.automaticDimension
         
         // Mark group as visited
         markGroupAsVisited()
-        
-        configureButtons()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,64 +44,33 @@ class GroupScheduleTableViewController: UITableViewController {
             title = group.name
             
             performFetch()
-            
-            setTitleForUpdateButton()
         }
     }
     
-    // MARK: - UIBarButtonItem's
+    // MARK: - Notificaion
     
-    private var updateButton: UIBarButtonItem?
-    private var shareButton: UIBarButtonItem?
+    @IBOutlet weak var statusButton: UIBarButtonItem!
     
-    @objc func update(_ sender: Any) {
+    // MARK: - Pull to refresh
+    
+    @IBOutlet weak var refreshButton: UIBarButtonItem!
+    
+    @IBAction func refresh(_ sender: Any) {
+        refreshButton.isEnabled = false
         importRecords()
     }
     
-    @objc func share(_ sender: Any) {
+    // MARK: - Share
+    
+    @IBAction func share(_ sender: Any) {
         guard let group = group else { return }
-        var sharedItems: [Any] = []
-        let url = "https://my-university.com.ua/universities/sumdu/groups/\(group.id)"
+        guard let universityURL = group.university?.url else { return }
+        let url = Settings.shared.baseURL + "/universities/\(universityURL)/groups/\(group.id)"
         if let siteURL = URL(string: url) {
-            sharedItems = [siteURL]
+            let sharedItems = [siteURL]
+            let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
+            present(vc, animated: true)
         }
-        let activityViewController = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
-        self.present(activityViewController, animated: true, completion: nil)
-    }
-    
-    private func setTitleForUpdateButton() {
-        if fetchedResultsController?.fetchedObjects?.isEmpty == true {
-            updateButton?.title = NSLocalizedString("Download", comment: "Title for button on the Group screen")
-        } else {
-            updateButton?.title = NSLocalizedString("Update", comment: "Title for button on the Group screen")
-        }
-    }
-    
-    private func configureButtons() {
-        activiyIndicatior?.removeFromSuperview()
-        activiyIndicatior = nil
-        
-        updateButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(update(_:)))
-        shareButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.action, target: self, action: #selector(share(_:)))
-        navigationItem.setRightBarButtonItems([shareButton!, updateButton!], animated: true)
-    }
-    
-    // MARK: - Activity indicatior
-    
-    private var activiyIndicatior: UIActivityIndicatorView?
-    
-    private func showActiviyIndicatior() {
-        navigationItem.rightBarButtonItems = []
-        updateButton = nil
-        shareButton = nil
-        
-        let activiyIndicatior = UIActivityIndicatorView(style: .white)
-        activiyIndicatior.color = .orange
-        activiyIndicatior.hidesWhenStopped = true
-        activiyIndicatior.startAnimating()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activiyIndicatior)
-        navigationItem.rightBarButtonItem?.tintColor = .orange
-        self.activiyIndicatior = activiyIndicatior
     }
     
     // MARK: - Import Records
@@ -116,7 +87,9 @@ class GroupScheduleTableViewController: UITableViewController {
         
         guard let forGroup = group else { return }
         
-        showActiviyIndicatior()
+        refreshButton.isEnabled = false
+        let text = NSLocalizedString("Loading records ...", comment: "")
+        showNotification(text: text)
         
         // Download records for Group from backend and save to database.
         importForGroup = Record.ImportForGroup(persistentContainer: persistentContainer, group: forGroup)
@@ -124,15 +97,14 @@ class GroupScheduleTableViewController: UITableViewController {
             
             DispatchQueue.main.async {
                 if let error = error {
-                    let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true)
+                    self.showNotification(text: error.localizedDescription)
+                } else {
+                    self.hideNotification()
                 }
                 self.performFetch()
                 self.tableView.reloadData()
                 self.refreshControl?.endRefreshing()
-                self.configureButtons()
-                self.setTitleForUpdateButton()
+                self.refreshButton.isEnabled = true
             }
         })
     }
@@ -178,12 +150,6 @@ class GroupScheduleTableViewController: UITableViewController {
             headerView.backgroundView = backgroundView
             headerView.textLabel?.textColor = UIColor.lightText
         }
-    }
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let bgColorView = UIView()
-        bgColorView.backgroundColor = .cellSelectionColor
-        cell.selectedBackgroundView = bgColorView
     }
     
     // MARK: - Table view delegate

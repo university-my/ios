@@ -83,32 +83,81 @@ extension Group {
             
             taskContext.performAndWait {
                 
-                // Execute the request to batch delete and merge the changes to viewContext.
-                
-                // TODO: Don't delete all groups
-                
-                let fetchRequest: NSFetchRequest<NSFetchRequestResult> = GroupEntity.fetchRequest()
-                
-                let predicate = NSPredicate(format: "university == %@", university)
-                fetchRequest.predicate = predicate
-                
-                let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-                deleteRequest.resultType = .resultTypeObjectIDs
-                do {
-                    let result = try taskContext.execute(deleteRequest) as? NSBatchDeleteResult
-                    if let objectIDArray = result?.result as? [NSManagedObjectID] {
-                        let changes = [NSDeletedObjectsKey: objectIDArray]
-                        NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [self.persistentContainer.viewContext])
-                    }
-                } catch {
-                    completionHandler?(error)
+                // University in current context
+                guard let universityInContext = taskContext.object(with: university.objectID) as? UniversityEntity else {
+                    return
                 }
                 
-                // Create new records.
-                
+                // Parse groups.
                 let parsedGroups = json.compactMap { Group($0) }
                 
-                for group in parsedGroups {
+                // Groups to update
+                let toUpdate = GroupEntity.fetch(parsedGroups, university: universityInContext, context: taskContext)
+                
+                // IDs to update
+                let idsToUpdate = toUpdate.map({ group in
+                    return group.id
+                })
+                
+                // Find groups to insert
+                let toInsert = parsedGroups.filter({ group in
+                    return (idsToUpdate.contains(group.id) == false)
+                })
+                
+                // IDs
+                let ids = parsedGroups.map({ group in
+                    return group.id
+                })
+                
+                // Now find groups to delete
+                let allGroups = GroupEntity.fetchAll(university: universityInContext, context: taskContext)
+                let toDelete = allGroups.filter({ university in
+                    return (ids.contains(university.id) == false)
+                })
+                
+                // 1. Delete
+                for group in toDelete {
+                    taskContext.delete(group)
+                }
+                
+                // 2. Update
+                for group in toUpdate {
+                    if let groupFromServer = parsedGroups.first(where: { (parsedGroup) -> Bool in
+                        return parsedGroup.id == group.id
+                    }) {
+                        // Update name if changed
+                        if groupFromServer.name != group.name {
+                            group.name = groupFromServer.name
+                            if let firstCharacter = groupFromServer.name.first {
+                                group.firstSymbol = String(firstCharacter).uppercased()
+                            } else {
+                                group.firstSymbol = ""
+                            }
+                        }
+                        
+                        if (group.records?.count ?? 0) > 0 {
+                            // Delete all related records
+                            // Because Group can be changed to another one.
+                            let fetchRequest: NSFetchRequest<NSFetchRequestResult> = RecordEntity.fetchRequest()
+                            
+                            fetchRequest.predicate = NSPredicate(format: "ANY groups = %@", group)
+                            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+                            deleteRequest.resultType = .resultTypeObjectIDs
+                            do {
+                                let result = try taskContext.execute(deleteRequest) as? NSBatchDeleteResult
+                                if let objectIDArray = result?.result as? [NSManagedObjectID] {
+                                    let changes = [NSDeletedObjectsKey: objectIDArray]
+                                    NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [self.persistentContainer.viewContext])
+                                }
+                            } catch {
+                                completionHandler?(error)
+                            }
+                        }
+                    }
+                }
+                
+                // 3. Insert
+                for group in toInsert {
                     self.insert(group, context: taskContext)
                 }
                 

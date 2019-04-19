@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UniversityViewController: UITableViewController {
+class UniversityViewController: GenericTableViewController {
 
     // MARK: - Properties
     
@@ -19,6 +19,10 @@ class UniversityViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // For notifications
+        configurenNotificationLabel()
+        statusButton.customView = notificationLabel
 
         title = university?.shortName
         
@@ -30,12 +34,6 @@ class UniversityViewController: UITableViewController {
     }
     
     // MARK: - Table
-
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let bgColorView = UIView()
-        bgColorView.backgroundColor = .cellSelectionColor
-        cell.selectedBackgroundView = bgColorView
-    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
@@ -71,48 +69,25 @@ class UniversityViewController: UITableViewController {
     // MARK: - Groups
     
     private func loadGroups() {
-        groupDataSource?.performFetch()
-        let groups = groupDataSource?.fetchedResultsController?.fetchedObjects ?? []
+        guard let dataSource = groupDataSource else { return }
+        dataSource.performFetch()
+        let groups = dataSource.fetchedResultsController?.fetchedObjects ?? []
         
         if groups.isEmpty {
-            tableView.isUserInteractionEnabled = false
+            let text = NSLocalizedString("Loading groups ...", comment: "")
+            showNotification(text: text)
             
-            // Show notification
-            let text = NSLocalizedString("Loading groups, please wait ...", comment: "")
-            showNotification(text: text, showAcivityIndicator: true)
-            
-            groupDataSource?.importGroups { (error) in
+            dataSource.importGroups { (error) in
                 if let error = error {
                     self.showNotification(text: error.localizedDescription)
                 } else {
-//                    self.hideNotification()
+                    self.hideNotification()
                 }
-//                self.tableView.reloadData()
-                self.tableView.isUserInteractionEnabled = true
-                self.hideNotification()
             }
         }
     }
     
-    // MARK: - Notification
+    // MARK: - Notificaion
     
-    @IBOutlet weak var notificationView: UIView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var notificationLabel: UILabel!
-    
-    private func showNotification(text: String, showAcivityIndicator: Bool = false) {
-        notificationLabel.text = text
-        if showAcivityIndicator {
-            activityIndicator.startAnimating()
-        } else {
-            activityIndicator.stopAnimating()
-        }
-        tableView.tableHeaderView = notificationView
-    }
-    
-    private func hideNotification() {
-        tableView.beginUpdates()
-        tableView.tableHeaderView = nil
-        tableView.endUpdates()
-    }
+    @IBOutlet weak var statusButton: UIBarButtonItem!
 }
