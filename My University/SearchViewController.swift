@@ -21,7 +21,7 @@ class SearchViewController: UIViewController {
     }
     
     private weak var auditoriumDataSource: AuditoriumDataSource?
-    private weak var groupDataSource: GroupDataSource?
+    private weak var groupDataSource: GroupsDataSource?
     private weak var teacherDataSource: TeacherDataSource?
 
     // MARK: - Lifecycle
@@ -97,8 +97,10 @@ class SearchViewController: UIViewController {
             auditoriumDataSource = vc?.auditoriumDataSource
             
         case "teachers":
-            let vc = segue.destination as? TeachersViewController
-            teacherDataSource = vc?.teacherDataSource
+            break
+            
+//            let vc = segue.destination as? TeachersViewController
+//            teacherDataSource = vc?.teacherDataSource
             
         case "showGroupSchedule":
             if let destination = segue.destination as? GroupScheduleTableViewController {

@@ -21,13 +21,15 @@ class GroupScheduleTableViewController: GenericTableViewController {
     
     private var sectionsTitles: [String] = []
     
+    @IBOutlet weak var statusButton: UIBarButtonItem!
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // For notifications
-        configurenNotificationLabel()
+        configureNotificationLabel()
         statusButton.customView = notificationLabel
         
         tableView.rowHeight = UITableView.automaticDimension
@@ -46,10 +48,6 @@ class GroupScheduleTableViewController: GenericTableViewController {
             performFetch()
         }
     }
-    
-    // MARK: - Notificaion
-    
-    @IBOutlet weak var statusButton: UIBarButtonItem!
     
     // MARK: - Pull to refresh
     
@@ -78,22 +76,23 @@ class GroupScheduleTableViewController: GenericTableViewController {
     var group: GroupEntity?
     var groupID: Int64?
     
-    private var importForGroup: Record.ImportForGroup?
+    private var importManager: Record.ImportForGroup?
     
     private func importRecords() {
         // Do nothing without CoreData.
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         guard let persistentContainer = appDelegate?.persistentContainer else { return }
         
-        guard let forGroup = group else { return }
+        guard let group = group else { return }
+        guard let university = group.university else { return }
         
         refreshButton.isEnabled = false
         let text = NSLocalizedString("Loading records ...", comment: "")
         showNotification(text: text)
         
         // Download records for Group from backend and save to database.
-        importForGroup = Record.ImportForGroup(persistentContainer: persistentContainer, group: forGroup)
-        self.importForGroup?.importRecords({ (error) in
+        importManager = Record.ImportForGroup(persistentContainer: persistentContainer, group: group, university: university)
+        self.importManager?.importRecords({ (error) in
             
             DispatchQueue.main.async {
                 if let error = error {

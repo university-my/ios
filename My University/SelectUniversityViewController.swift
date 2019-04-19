@@ -22,7 +22,7 @@ class SelectUniversityViewController: GenericTableViewController {
         super.viewDidLoad()
         
         // For notifications
-        configurenNotificationLabel()
+        configureNotificationLabel()
         statusButton.customView = notificationLabel
         
         // Configure table

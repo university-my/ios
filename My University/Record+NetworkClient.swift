@@ -25,16 +25,13 @@ extension Record {
         
         // MARK: - Download Records with Group ID
         
-        func downloadRecords(groupID: Int64, _ completion: @escaping ((_ error: Error?) -> ())) {
+        func downloadRecords(groupID: Int64, unversityURL: String, _ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            // TODO: User university URL
-            
-            guard let url = URL(string: Settings.shared.baseURL + "/universities/sumdu/groups/\(groupID)/records.json") else {
+            guard let url = URL(string: Settings.shared.baseURL + "/universities/\(unversityURL)/groups/\(groupID)/records.json") else {
                 completionHandler?(nil)
                 return
             }
-            
             let task = URLSession.shared.downloadTask(with: url) { (url, response, error) in
                 
                 if let error = error {
@@ -48,16 +45,13 @@ extension Record {
         
         // MARK: - Download Records with Auditorium ID
         
-        func downloadRecords(auditoriumID: Int64, _ completion: @escaping ((_ error: Error?) -> ())) {
+        func downloadRecords(auditoriumID: Int64, unversityURL: String, _ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            // TODO: User university URL
-            
-            guard let url = URL(string: Settings.shared.baseURL + "/universities/sumdu/auditoriums/\(auditoriumID)/records.json") else {
+            guard let url = URL(string: Settings.shared.baseURL + "/universities/\(unversityURL)/auditoriums/\(auditoriumID)/records.json") else {
                 completionHandler?(nil)
                 return
             }
-            
             let task = URLSession.shared.downloadTask(with: url) { (url, response, error) in
                 
                 if let error = error {
@@ -71,16 +65,13 @@ extension Record {
         
         // MARK: - Download Records with Teacher ID
         
-        func downloadRecords(teacherID: Int64, _ completion: @escaping ((_ error: Error?) -> ())) {
+        func downloadRecords(teacherID: Int64, unversityURL: String, _ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            // TODO: User university URL
-            
-            guard let url = URL(string: Settings.shared.baseURL + "/universities/sumdu/teachers/\(teacherID)/records.json") else {
+            guard let url = URL(string: Settings.shared.baseURL + "/universities/\(unversityURL)/teachers/\(teacherID)/records.json") else {
                 completionHandler?(nil)
                 return
             }
-            
             let task = URLSession.shared.downloadTask(with: url) { (url, response, error) in
                 
                 if let error = error {
@@ -102,11 +93,9 @@ extension Record {
                      Also, swallow the error, because we don't really care about it.
                      */
                     try FileManager.default.removeItem(at: cacheFile)
+                } catch {
+                    print(error)
                 }
-                catch {
-                  print(error)
-              }
-                
                 do {
                     try FileManager.default.moveItem(at: localURL, to: cacheFile)
                     completionHandler?(nil)

@@ -21,6 +21,7 @@
 		C2B922C32003DB6E001A8E1D /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B922C22003DB6D001A8E1D /* HistoryTableViewController.swift */; };
 		C2C0E9B01FB8CDA00012FA9C /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C0E9AF1FB8CDA00012FA9C /* Group.swift */; };
 		DE0D64082264E1330001FCCF /* UniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0D64072264E1330001FCCF /* UniversityViewController.swift */; };
+		DE13AF7F226A30D4009DF581 /* TeachersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE13AF7E226A30D4009DF581 /* TeachersTableViewController.swift */; };
 		DE162A8821988CEB000ED4B3 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE162A8721988CEB000ED4B3 /* SearchTableViewController.swift */; };
 		DE18941921BC349400C7F9DB /* Record+NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941821BC349400C7F9DB /* Record+NetworkClient.swift */; };
 		DE18941C21BC3A3900C7F9DB /* GroupScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941B21BC3A3900C7F9DB /* GroupScheduleTableViewController.swift */; };
@@ -38,7 +39,7 @@
 		DE45CD15224BE5D600B54A60 /* GenericTableDelegateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE45CD14224BE5D600B54A60 /* GenericTableDelegateViewController.swift */; };
 		DE45CD17224BE62100B54A60 /* TeachersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE45CD16224BE62100B54A60 /* TeachersViewController.swift */; };
 		DE4AA07121A5DF0500E06FEA /* AuditoriumDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AA07021A5DF0500E06FEA /* AuditoriumDataSource.swift */; };
-		DE4AA07321A5E31900E06FEA /* GroupDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AA07221A5E31900E06FEA /* GroupDataSource.swift */; };
+		DE4AA07321A5E31900E06FEA /* GroupsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AA07221A5E31900E06FEA /* GroupsDataSource.swift */; };
 		DE540EBD2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE540EBB2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift */; };
 		DE540EBE2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE540EBC2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift */; };
 		DE540EC02215CD840092FC81 /* Teacher+Import.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE540EBF2215CD840092FC81 /* Teacher+Import.swift */; };
@@ -92,6 +93,7 @@
 		C2C0E9AF1FB8CDA00012FA9C /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		DE066B252185003A0054DC03 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Main.strings; sourceTree = "<group>"; };
 		DE0D64072264E1330001FCCF /* UniversityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityViewController.swift; sourceTree = "<group>"; };
+		DE13AF7E226A30D4009DF581 /* TeachersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersTableViewController.swift; sourceTree = "<group>"; };
 		DE162A8721988CEB000ED4B3 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		DE18941821BC349400C7F9DB /* Record+NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record+NetworkClient.swift"; sourceTree = "<group>"; };
 		DE18941B21BC3A3900C7F9DB /* GroupScheduleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupScheduleTableViewController.swift; sourceTree = "<group>"; };
@@ -109,7 +111,7 @@
 		DE45CD14224BE5D600B54A60 /* GenericTableDelegateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableDelegateViewController.swift; sourceTree = "<group>"; };
 		DE45CD16224BE62100B54A60 /* TeachersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersViewController.swift; sourceTree = "<group>"; };
 		DE4AA07021A5DF0500E06FEA /* AuditoriumDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditoriumDataSource.swift; sourceTree = "<group>"; };
-		DE4AA07221A5E31900E06FEA /* GroupDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDataSource.swift; sourceTree = "<group>"; };
+		DE4AA07221A5E31900E06FEA /* GroupsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsDataSource.swift; sourceTree = "<group>"; };
 		DE540EBB2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TeacherEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		DE540EBC2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TeacherEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DE540EBF2215CD840092FC81 /* Teacher+Import.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Teacher+Import.swift"; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				DE4AA06F21A5DEDC00E06FEA /* Search */,
 				C2B5CE291EF06DFC0066DB30 /* Storyboards */,
 				C2B5CE2A1EF06E0E0066DB30 /* Supporting Files */,
+				DE13AF7D226A115E009DF581 /* Teachers */,
 				DE5FAE072263B36A00333121 /* University */,
 			);
 			path = "My University";
@@ -214,6 +217,7 @@
 			children = (
 				DE5FAE122263BA2A00333121 /* Launch Screen.storyboard */,
 				C2B5CDF61EEF0E750066DB30 /* Main.storyboard */,
+				DE5FAE0F2263BA2000333121 /* University.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -273,6 +277,15 @@
 			name = Import;
 			sourceTree = "<group>";
 		};
+		DE13AF7D226A115E009DF581 /* Teachers */ = {
+			isa = PBXGroup;
+			children = (
+				DE540EC32215CF9F0092FC81 /* TeacherDataSource.swift */,
+				DE13AF7E226A30D4009DF581 /* TeachersTableViewController.swift */,
+			);
+			name = Teachers;
+			sourceTree = "<group>";
+		};
 		DE18941721BC336700C7F9DB /* Record */ = {
 			isa = PBXGroup;
 			children = (
@@ -312,7 +325,6 @@
 		DE45CD13224BE54000B54A60 /* Teachers */ = {
 			isa = PBXGroup;
 			children = (
-				DE540EC32215CF9F0092FC81 /* TeacherDataSource.swift */,
 				DE45CD16224BE62100B54A60 /* TeachersViewController.swift */,
 			);
 			name = Teachers;
@@ -378,7 +390,6 @@
 				DE945ACF2264D6F100143303 /* SelectUniversityViewController.swift */,
 				DE945AD12264D71B00143303 /* UniversityDataSource.swift */,
 				DE0D64072264E1330001FCCF /* UniversityViewController.swift */,
-				DE5FAE0F2263BA2000333121 /* University.storyboard */,
 				DE7B1D9E2269BCA5003E3028 /* GenericTableViewController.swift */,
 			);
 			name = University;
@@ -387,7 +398,7 @@
 		DE6794332268975F0068087A /* Groups */ = {
 			isa = PBXGroup;
 			children = (
-				DE4AA07221A5E31900E06FEA /* GroupDataSource.swift */,
+				DE4AA07221A5E31900E06FEA /* GroupsDataSource.swift */,
 				DE6794342268976E0068087A /* GroupsTableViewController.swift */,
 			);
 			name = Groups;
@@ -513,7 +524,8 @@
 				DE7B1D9F2269BCA5003E3028 /* GenericTableViewController.swift in Sources */,
 				DE45CD11224BE4C000B54A60 /* AuditoriumsViewController.swift in Sources */,
 				DE4AA07121A5DF0500E06FEA /* AuditoriumDataSource.swift in Sources */,
-				DE4AA07321A5E31900E06FEA /* GroupDataSource.swift in Sources */,
+				DE13AF7F226A30D4009DF581 /* TeachersTableViewController.swift in Sources */,
+				DE4AA07321A5E31900E06FEA /* GroupsDataSource.swift in Sources */,
 				DE584C562198615F0099415E /* Teacher.swift in Sources */,
 				C2B5CDF31EEF0E750066DB30 /* AppDelegate.swift in Sources */,
 				C2C0E9B01FB8CDA00012FA9C /* Group.swift in Sources */,

@@ -45,6 +45,7 @@ public class GroupEntity: NSManagedObject {
             return []
         }
     }
+    
     static func fetchAll(university: UniversityEntity, context: NSManagedObjectContext) -> [GroupEntity] {
         let request: NSFetchRequest<GroupEntity> = GroupEntity.fetchRequest()
         request.predicate = NSPredicate(format: "university == %@", university)

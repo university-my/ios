@@ -20,6 +20,7 @@ extension Record {
         private let networkClient: NetworkClient
         private var completionHandler: ((_ error: Error?) -> ())?
         private let group: GroupEntity
+        private let university: UniversityEntity
         
         private let persistentContainer: NSPersistentContainer
         
@@ -35,7 +36,7 @@ extension Record {
         
         // MARK: - Initialization
         
-        init?(persistentContainer: NSPersistentContainer, group: GroupEntity) {
+        init?(persistentContainer: NSPersistentContainer, group: GroupEntity, university: UniversityEntity) {
             // Cache file
             let cachesFolder = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             guard let cacheFile = cachesFolder?.appendingPathComponent("group_records.json") else { return nil }
@@ -43,6 +44,7 @@ extension Record {
             self.cacheFile = cacheFile
             self.persistentContainer = persistentContainer
             self.group = group
+            self.university = university
             networkClient = NetworkClient(cacheFile: self.cacheFile)
         }
         
@@ -52,7 +54,7 @@ extension Record {
         func importRecords(_ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            networkClient.downloadRecords(groupID: group.id) { (error) in
+            networkClient.downloadRecords(groupID: group.id, unversityURL: university.url ?? "") { (error) in
                 if let error = error {
                     self.completionHandler?(error)
                 } else {

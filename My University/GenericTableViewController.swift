@@ -28,7 +28,7 @@ class GenericTableViewController: UITableViewController {
     
     var notificationLabel = UILabel(frame: CGRect.zero)
     
-    func configurenNotificationLabel() {
+    func configureNotificationLabel() {
         notificationLabel.sizeToFit()
         notificationLabel.backgroundColor = .clear
         notificationLabel.textAlignment = .center

@@ -22,9 +22,9 @@ class SearchTableViewController: UITableViewController {
 //        return GroupDataSource()
 //    }()
     
-    private lazy var teacherDataSource: TeacherDataSource = {
-        return TeacherDataSource()
-    }()
+//    private lazy var teacherDataSource: TeacherDataSource = {
+//        return TeacherDataSource()
+//    }()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -169,7 +169,7 @@ class SearchTableViewController: UITableViewController {
             var selectedTeacher: TeacherEntity?
             if tableView == self.tableView, let indexPath = tableView.indexPathForSelectedRow {
                 // From main table view
-                selectedTeacher = teacherDataSource.fetchedResultsController?.object(at: indexPath)
+//                selectedTeacher = teacherDataSource.fetchedResultsController?.object(at: indexPath)
                 
             } else if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
                 // From search results controller
@@ -229,28 +229,28 @@ class SearchTableViewController: UITableViewController {
     
     // MARK: - Teachers
     
-    private func loadTeachers() {
-        tableView.dataSource = teacherDataSource
-        teacherDataSource.fetchTeachers()
-        
-        let teachers = teacherDataSource.fetchedResultsController?.fetchedObjects ?? []
-        if teachers.isEmpty {
-            teacherDataSource.importTeachers { (error) in
-                if let error = error {
-                    let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true)
-                }
-                self.teacherDataSource.fetchTeachers()
-                self.tableView.reloadData()
-                self.refreshControl?.endRefreshing()
-            }
-            
-        } else {
-            tableView.reloadData()
-            refreshControl?.endRefreshing()
-        }
-    }
+//    private func loadTeachers() {
+//        tableView.dataSource = teacherDataSource
+//        teacherDataSource.fetchTeachers()
+//
+//        let teachers = teacherDataSource.fetchedResultsController?.fetchedObjects ?? []
+//        if teachers.isEmpty {
+//            teacherDataSource.importTeachers { (error) in
+//                if let error = error {
+//                    let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
+//                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//                    self.present(alert, animated: true)
+//                }
+//                self.teacherDataSource.fetchTeachers()
+//                self.tableView.reloadData()
+//                self.refreshControl?.endRefreshing()
+//            }
+//
+//        } else {
+//            tableView.reloadData()
+//            refreshControl?.endRefreshing()
+//        }
+//    }
     
     // MARK: - UISegmentedControl
     
@@ -278,7 +278,8 @@ class SearchTableViewController: UITableViewController {
             break
 //            loadGroups()
         case .teachers:
-            loadTeachers()
+            break
+//            loadTeachers()
         }
     }
 }
@@ -328,17 +329,19 @@ extension SearchTableViewController: UISearchResultsUpdating {
 //            }
             
         case .teachers:
+            break
+            
             // Update the filtered array based on the search text.
-            guard let searchResults = teacherDataSource.fetchedResultsController?.fetchedObjects else { return }
-            
-            let filteredResults = searchResults.filter { nameSearchComparisonPredicate.evaluate(with: $0) }
-            
-            // Hand over the filtered results to our search results table.
-            if let resultsController = searchController.searchResultsController as? SearchResultsTableViewController {
-                resultsController.filteredTeachers = filteredResults
-                resultsController.dataSourceType = .teachers
-                resultsController.tableView.reloadData()
-            }
+//            guard let searchResults = teacherDataSource.fetchedResultsController?.fetchedObjects else { return }
+//
+//            let filteredResults = searchResults.filter { nameSearchComparisonPredicate.evaluate(with: $0) }
+//
+//            // Hand over the filtered results to our search results table.
+//            if let resultsController = searchController.searchResultsController as? SearchResultsTableViewController {
+//                resultsController.filteredTeachers = filteredResults
+//                resultsController.dataSourceType = .teachers
+//                resultsController.tableView.reloadData()
+//            }
         }
     }
 }

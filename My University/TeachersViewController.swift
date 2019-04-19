@@ -11,10 +11,10 @@ import UIKit
 class TeachersViewController: GenericTableDelegateViewController {
 
     // MARK: - Properties
-
-    lazy var teacherDataSource: TeacherDataSource = {
-        return TeacherDataSource()
-    }()
+//
+//    lazy var teacherDataSource: TeacherDataSource = {
+//        return TeacherDataSource()
+//    }()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -36,58 +36,58 @@ class TeachersViewController: GenericTableDelegateViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
 
         // Loading...
-        loadTeachers()
+//        loadTeachers()
     }
 
-    private func loadTeachers() {
-        tableView.dataSource = teacherDataSource
-        teacherDataSource.fetchTeachers()
-
-        let teachers = teacherDataSource.fetchedResultsController?.fetchedObjects ?? []
-
-        if teachers.isEmpty {
-
-            tableView.isHidden = true
-            activityIndicator.startAnimating()
-
-            teacherDataSource.importTeachers { (error) in
-                if let error = error {
-                    let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true)
-                }
-
-                self.activityIndicator.stopAnimating()
-                self.tableView.isHidden = false
-                self.teacherDataSource.fetchTeachers()
-                self.tableView.reloadData()
-            }
-
-        } else {
-            tableView.isHidden = false
-            tableView.reloadData()
-        }
-    }
+//    private func loadTeachers() {
+//        tableView.dataSource = teacherDataSource
+//        teacherDataSource.fetchTeachers()
+//
+//        let teachers = teacherDataSource.fetchedResultsController?.fetchedObjects ?? []
+//
+//        if teachers.isEmpty {
+//
+//            tableView.isHidden = true
+//            activityIndicator.startAnimating()
+//
+//            teacherDataSource.importTeachers { (error) in
+//                if let error = error {
+//                    let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
+//                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//                    self.present(alert, animated: true)
+//                }
+//
+//                self.activityIndicator.stopAnimating()
+//                self.tableView.isHidden = false
+//                self.teacherDataSource.fetchTeachers()
+//                self.tableView.reloadData()
+//            }
+//
+//        } else {
+//            tableView.isHidden = false
+//            tableView.reloadData()
+//        }
+//    }
 
   // MARK: - Navigation
 
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    guard let identifier = segue.identifier else { return }
-
-    switch identifier {
-
-    case "showTeacherSchedule":
-      if let destination = segue.destination as? TeacherScheduleTableViewController {
-        if let indexPath = tableView.indexPathForSelectedRow {
-          let selectedTeacher = teacherDataSource.fetchedResultsController?.object(at: indexPath)
-          destination.teacher = selectedTeacher
-        }
-      }
-
-    default:
-      break
-    }
-  }
+//  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//    guard let identifier = segue.identifier else { return }
+//
+//    switch identifier {
+//
+//    case "showTeacherSchedule":
+//      if let destination = segue.destination as? TeacherScheduleTableViewController {
+//        if let indexPath = tableView.indexPathForSelectedRow {
+//          let selectedTeacher = teacherDataSource.fetchedResultsController?.object(at: indexPath)
+//          destination.teacher = selectedTeacher
+//        }
+//      }
+//
+//    default:
+//      break
+//    }
+//  }
 }
 
 extension TeachersViewController {

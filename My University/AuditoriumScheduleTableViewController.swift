@@ -118,24 +118,24 @@ class AuditoriumScheduleTableViewController: UITableViewController {
         showActiviyIndicatior()
         
         // Download records for Auditorium from backend and save to database.
-        importForAuditorium = Record.ImportForAuditorium(persistentContainer: persistentContainer, auditorium: auditorium)
-        DispatchQueue.global().async {
-            self.importForAuditorium?.importRecords({ (error) in
-                
-                DispatchQueue.main.async {
-                    if let error = error {
-                        let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                        self.present(alert, animated: true)
-                    }
-                    self.performFetch()
-                    self.tableView.reloadData()
-                    self.refreshControl?.endRefreshing()
-                    self.configureButtons()
-                    self.setTitleForUpdateButton()
-                }
-            })
-        }
+//        importForAuditorium = Record.ImportForAuditorium(persistentContainer: persistentContainer, auditorium: auditorium)
+//        DispatchQueue.global().async {
+//            self.importForAuditorium?.importRecords({ (error) in
+//                
+//                DispatchQueue.main.async {
+//                    if let error = error {
+//                        let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
+//                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//                        self.present(alert, animated: true)
+//                    }
+//                    self.performFetch()
+//                    self.tableView.reloadData()
+//                    self.refreshControl?.endRefreshing()
+//                    self.configureButtons()
+//                    self.setTitleForUpdateButton()
+//                }
+//            })
+//        }
     }
     
     // MARK: - Table view data source

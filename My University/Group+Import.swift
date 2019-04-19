@@ -158,7 +158,7 @@ extension Group {
                 
                 // 3. Insert
                 for group in toInsert {
-                    self.insert(group, context: taskContext)
+                    self.insert(group, university: universityInContext, context: taskContext)
                 }
                 
                 // Finishing import. Save context.
@@ -179,7 +179,7 @@ extension Group {
             }
         }
         
-        private func insert(_ parsedGroup: Group, context: NSManagedObjectContext) {
+        private func insert(_ parsedGroup: Group, university: UniversityEntity, context: NSManagedObjectContext) {
             let groupEntity = GroupEntity(context: context)
             
             if let firstCharacter = parsedGroup.name.first {
@@ -189,10 +189,7 @@ extension Group {
             }
             groupEntity.id = parsedGroup.id
             groupEntity.name = parsedGroup.name
-            
-            if let universityInContext = context.object(with: university.objectID) as? UniversityEntity {
-                groupEntity.university = universityInContext
-            }
+            groupEntity.university = university
         }
     }
 }

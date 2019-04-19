@@ -1,19 +1,19 @@
 //
-//  GroupsTableViewController.swift
+//  TeachersTableViewController.swift
 //  My University
 //
-//  Created by Yura Voevodin on 4/18/19.
+//  Created by Yura Voevodin on 4/19/19.
 //  Copyright © 2019 Yura Voevodin. All rights reserved.
 //
 
 import UIKit
 
-class GroupsTableViewController: GenericTableViewController {
+class TeachersTableViewController: GenericTableViewController {
     
     // MARK: - Properties
     
     var university: UniversityEntity?
-    private var dataSource: GroupsDataSource?
+    private var dataSource: TeacherDataSource?
     
     // MARK: - Notificaion
     
@@ -36,52 +36,52 @@ class GroupsTableViewController: GenericTableViewController {
         configureSearchControllers()
         
         if let university = university {
-            // Loading groups
-            dataSource = GroupsDataSource(university: university)
+            // Loading teachers
+            dataSource = TeacherDataSource(university: university)
             tableView.dataSource = dataSource
-            loadGroups()
+            loadTeachers()
         }
     }
     
     // MARK: - Groups
     
-    private func loadGroups() {
+    func loadTeachers() {
         guard let dataSource = dataSource else { return }
-        dataSource.performFetch()
+        dataSource.fetchTeachers()
         
-        let groups = dataSource.fetchedResultsController?.fetchedObjects ?? []
-        if groups.isEmpty {
-            importGroups()
+        let teachers = dataSource.fetchedResultsController?.fetchedObjects ?? []
+        if teachers.isEmpty {
+            importTeachers()
         } else {
             tableView.reloadData()
             refreshControl?.endRefreshing()
-            showGroupsCount()
+            showTeachersCount()
         }
     }
     
-    func importGroups() {
+    func importTeachers() {
         guard let dataSource = dataSource else { return }
         
-        let text = NSLocalizedString("Loading groups ...", comment: "")
+        let text = NSLocalizedString("Loading teachers ...", comment: "")
         showNotification(text: text)
         
-        dataSource.importGroups { (error) in
+        dataSource.importTeachers { (error) in
             if let error = error {
                 self.showNotification(text: error.localizedDescription)
             } else {
                 self.hideNotification()
             }
-            dataSource.performFetch()
+            dataSource.fetchTeachers()
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
-            self.showGroupsCount()
+            self.showTeachersCount()
         }
     }
     
-    func showGroupsCount() {
-        let groups = dataSource?.fetchedResultsController?.fetchedObjects ?? []
-        let text = NSLocalizedString("groups", comment: "Count of groups")
-        showNotification(text: "\(groups.count) " + text)
+    func showTeachersCount() {
+        let teachers = dataSource?.fetchedResultsController?.fetchedObjects ?? []
+        let text = NSLocalizedString("teachers", comment: "Count of teachers")
+        showNotification(text: "\(teachers.count) " + text)
     }
     
     // MARK: - Pull to refresh
@@ -91,7 +91,7 @@ class GroupsTableViewController: GenericTableViewController {
             refreshControl?.endRefreshing()
             return
         }
-        importGroups()
+        importTeachers()
     }
     
     // MARK: - Search
@@ -145,7 +145,7 @@ class GroupsTableViewController: GenericTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "groupDetailed", sender: nil)
+        performSegue(withIdentifier: "teacherDetailed", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -153,12 +153,12 @@ class GroupsTableViewController: GenericTableViewController {
         
         switch identifier {
             
-        case "groupDetailed":
-            if let detailTableViewController = segue.destination as? GroupScheduleTableViewController {
+        case "teacherDetailed":
+            if let detailTableViewController = segue.destination as? TeacherScheduleTableViewController {
                 if let indexPath = tableView.indexPathForSelectedRow {
-                    let selectedGroup = dataSource?.fetchedResultsController?.object(at: indexPath)
-                    detailTableViewController.group = selectedGroup
-                    detailTableViewController.groupID = selectedGroup?.id
+                    let selectedTeacher = dataSource?.fetchedResultsController?.object(at: indexPath)
+                    detailTableViewController.teacher = selectedTeacher
+                    detailTableViewController.teacherID = selectedTeacher?.id
                 }
             }
             
@@ -170,7 +170,7 @@ class GroupsTableViewController: GenericTableViewController {
 
 // MARK: - UISearchResultsUpdating
 
-extension GroupsTableViewController: UISearchResultsUpdating {
+extension TeachersTableViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         // Strip out all the leading and trailing spaces.
@@ -190,8 +190,8 @@ extension GroupsTableViewController: UISearchResultsUpdating {
         
         // Hand over the filtered results to our search results table.
         if let resultsController = searchController.searchResultsController as? SearchResultsTableViewController {
-            resultsController.filteredGroups = filteredResults
-            resultsController.dataSourceType = .groups
+            resultsController.filteredTeachers = filteredResults
+            resultsController.dataSourceType = .teachers
             resultsController.tableView.reloadData()
         }
     }

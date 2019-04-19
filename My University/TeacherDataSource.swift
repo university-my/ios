@@ -10,6 +10,14 @@ import CoreData
 import UIKit
 
 class TeacherDataSource: NSObject {
+    
+    // MARK: - Init
+    
+    private var university: UniversityEntity?
+    
+    init(university: UniversityEntity) {
+        self.university = university
+    }
 
     // MARK: - NSManagedObjectContext
 
@@ -25,7 +33,13 @@ class TeacherDataSource: NSObject {
     // MARK: - NSFetchedResultsController
 
     lazy var fetchedResultsController: NSFetchedResultsController<TeacherEntity>? = {
+        // Teachers for university
+        guard let university = university else {
+            return nil
+        }
         let request: NSFetchRequest<TeacherEntity> = TeacherEntity.fetchRequest()
+        let predicate = NSPredicate(format: "university == %@", university)
+        request.predicate = predicate
 
         let firstSymbol = NSSortDescriptor(key: #keyPath(TeacherEntity.firstSymbol), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
         let name = NSSortDescriptor(key: #keyPath(TeacherEntity.name), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
@@ -64,19 +78,20 @@ class TeacherDataSource: NSObject {
         namesOfSections = names
     }
 
-    // MARK: - Import Auditoriums
+    // MARK: - Import
 
-    private var teachersImportManager: Teacher.Import?
+    private var importManager: Teacher.Import?
 
     /// Import Teachers from backend
     func importTeachers(_ completion: @escaping ((_ error: Error?) -> ())) {
-        // Do nothing without CoreData.
+        
+        guard let university = university else { return }
         guard let persistentContainer = persistentContainer else { return }
 
-        teachersImportManager = Teacher.Import(persistentContainer: persistentContainer)
+        importManager = Teacher.Import(persistentContainer: persistentContainer, university: university)
         DispatchQueue.global().async { [weak self] in
 
-            self?.teachersImportManager?.importTeachers({ (error) in
+            self?.importManager?.importTeachers({ (error) in
 
                 DispatchQueue.main.async {
                     completion(error)
@@ -100,7 +115,7 @@ extension TeacherDataSource: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "searchResultsCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "teacherCell", for: indexPath)
 
         // Configure cell
         if let teacher = fetchedResultsController?.object(at: indexPath) {

@@ -9,7 +9,7 @@
 import CoreData
 import UIKit
 
-class TeacherScheduleTableViewController: UITableViewController {
+class TeacherScheduleTableViewController: GenericTableViewController {
     
     // MARK: - Properties
     
@@ -21,17 +21,21 @@ class TeacherScheduleTableViewController: UITableViewController {
     
     private var sectionsTitles: [String] = []
     
+    @IBOutlet weak var statusButton: UIBarButtonItem!
+    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // For notifications
+        configureNotificationLabel()
+        statusButton.customView = notificationLabel
 
         tableView.rowHeight = UITableView.automaticDimension
         
         // Mark teacher as visited
         markTeacherAsVisited()
-        
-        configureButtons()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,64 +46,29 @@ class TeacherScheduleTableViewController: UITableViewController {
             title = teacher.name
             
             performFetch()
-            
-            setTitleForUpdateButton()
         }
     }
     
-    // MARK: - UIBarButtonItem's
+    // MARK: - Pull to refresh
     
-    private var updateButton: UIBarButtonItem?
-    private var shareButton: UIBarButtonItem?
+    @IBOutlet weak var refreshButton: UIBarButtonItem!
     
-    @objc func update(_ sender: Any) {
+    @IBAction func refresh(_ sender: Any) {
+        refreshButton.isEnabled = false
         importRecords()
     }
-
-    @objc func share(_ sender: Any) {
+    
+    // MARK: - Share
+    
+    @IBAction func share(_ sender: Any) {
         guard let teacher = teacher else { return }
-        var sharedItems: [Any] = []
-        let url = "https://my-university.com.ua/universities/sumdu/teachers/\(teacher.id)"
+        guard let universityURL = teacher.university?.url else { return }
+        let url = Settings.shared.baseURL + "/universities/\(universityURL)/teachers/\(teacher.id)"
         if let siteURL = URL(string: url) {
-            sharedItems = [siteURL]
+            let sharedItems = [siteURL]
+            let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
+            present(vc, animated: true)
         }
-        let activityViewController = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
-        self.present(activityViewController, animated: true, completion: nil)
-    }
-    
-    private func setTitleForUpdateButton() {
-        if fetchedResultsController?.fetchedObjects?.isEmpty == true {
-            updateButton?.title = NSLocalizedString("Download", comment: "Title for button on the Auditorium screen")
-        } else {
-            updateButton?.title = NSLocalizedString("Update", comment: "Title for button on the Auditorium screen")
-        }
-    }
-    
-    private func configureButtons() {
-        activiyIndicatior?.removeFromSuperview()
-        activiyIndicatior = nil
-
-        updateButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(update(_:)))
-        shareButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.action, target: self, action: #selector(share(_:)))
-        navigationItem.setRightBarButtonItems([shareButton!, updateButton!], animated: true)
-    }
-    
-    // MARK: - Activity indicatior
-    
-    private var activiyIndicatior: UIActivityIndicatorView?
-    
-    private func showActiviyIndicatior() {
-        navigationItem.rightBarButtonItems = []
-        updateButton = nil
-        shareButton = nil
-        
-        let activiyIndicatior = UIActivityIndicatorView(style: .white)
-        activiyIndicatior.color = .orange
-        activiyIndicatior.hidesWhenStopped = true
-        activiyIndicatior.startAnimating()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activiyIndicatior)
-        navigationItem.rightBarButtonItem?.tintColor = .orange
-        self.activiyIndicatior = activiyIndicatior
     }
     
     // MARK: - Import Records
@@ -107,7 +76,7 @@ class TeacherScheduleTableViewController: UITableViewController {
     var teacher: TeacherEntity?
     var teacherID: Int64?
     
-    private var importForTeacher: Record.ImportForTeacher?
+    private var importManager: Record.ImportForTeacher?
     
     private func importRecords() {
         // Do nothing without CoreData.
@@ -115,25 +84,27 @@ class TeacherScheduleTableViewController: UITableViewController {
         guard let persistentContainer = appDelegate?.persistentContainer else { return }
         
         guard let teacher = teacher else { return }
+        guard let university = teacher.university else { return }
         
-        showActiviyIndicatior()
+        refreshButton.isEnabled = false
+        let text = NSLocalizedString("Loading records ...", comment: "")
+        showNotification(text: text)
         
         // Download records for Teacher from backend and save to database.
-        importForTeacher = Record.ImportForTeacher(persistentContainer: persistentContainer, teacher: teacher)
+        importManager = Record.ImportForTeacher(persistentContainer: persistentContainer, teacher: teacher, university: university)
         DispatchQueue.global().async {
-            self.importForTeacher?.importRecords({ (error) in
+            self.importManager?.importRecords({ (error) in
                 
                 DispatchQueue.main.async {
                     if let error = error {
-                        let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                        self.present(alert, animated: true)
+                        self.showNotification(text: error.localizedDescription)
+                    } else {
+                        self.hideNotification()
                     }
                     self.performFetch()
                     self.tableView.reloadData()
                     self.refreshControl?.endRefreshing()
-                    self.configureButtons()
-                    self.setTitleForUpdateButton()
+                    self.refreshButton.isEnabled = true
                 }
             })
         }
@@ -270,3 +241,5 @@ class TeacherScheduleTableViewController: UITableViewController {
         }
     }
 }
+
+// TODO: Add State restoration

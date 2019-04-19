@@ -55,8 +55,20 @@ class RecordDetailedTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = record?.name
+        title = nameAndTime()
         sections = generateSections()
+    }
+    
+    /// Name and time
+    private func nameAndTime() -> String? {
+        guard let record = record else { return nil }
+        var detail = ""
+        if let pairName = record.pairName, let time = record.time {
+            detail += pairName + " (\(time))"
+        } else if let time = record.time {
+            detail += "(\(time))"
+        }
+        return detail
     }
     
     // MARK: - Sections
@@ -67,15 +79,15 @@ class RecordDetailedTableViewController: UITableViewController {
         guard let record = record else { return [] }
         var sections: [SectionType] = []
         
+        // Name and type
+        if record.name != nil || record.type != nil {
+            sections.append(.pairName(name: record.name, type: record.type))
+        }
+        
         // Date
         if let date = record.date {
             let dateString = dateFormatter.string(from: date)
             sections.append(.date(dateString: dateString))
-        }
-        
-        // Name and type
-        if record.name != nil || record.type != nil {
-            sections.append(.pairName(name: record.name, type: record.type))
         }
         
         // Description
@@ -128,13 +140,7 @@ class RecordDetailedTableViewController: UITableViewController {
             cell.textLabel?.text = dateString
             
             // Name and time
-            var detail = ""
-            if let pairName = record?.pairName, let time = record?.time {
-                detail += pairName + " (\(time))"
-            } else if let time = record?.time {
-                detail += "(\(time))"
-            }
-            cell.detailTextLabel?.text = detail
+            cell.detailTextLabel?.text = nameAndTime()
             
         case .pairName(let name, let type):
             if let name = name {

@@ -20,6 +20,7 @@ extension Record {
         private let networkClient: NetworkClient
         private var completionHandler: ((_ error: Error?) -> ())?
         private let teacher: TeacherEntity
+        private let university: UniversityEntity
         
         private let persistentContainer: NSPersistentContainer
         
@@ -35,13 +36,14 @@ extension Record {
         
         // MARK: - Init
         
-        init?(persistentContainer: NSPersistentContainer, teacher: TeacherEntity) {
+        init?(persistentContainer: NSPersistentContainer, teacher: TeacherEntity, university: UniversityEntity) {
             // Cache file
             let cachesFolder = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             guard let cacheFile = cachesFolder?.appendingPathComponent("teacher_records.json") else { return nil }
             
             self.cacheFile = cacheFile
             self.teacher = teacher
+            self.university = university
             self.persistentContainer = persistentContainer
             networkClient = NetworkClient(cacheFile: self.cacheFile)
         }
@@ -51,7 +53,7 @@ extension Record {
         func importRecords(_ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            networkClient.downloadRecords(teacherID: teacher.id) { (error) in
+            networkClient.downloadRecords(teacherID: teacher.id, unversityURL: university.url ?? "") { (error) in
                 if let error = error {
                     self.completionHandler?(error)
                 } else {
@@ -101,7 +103,7 @@ extension Record {
         /// Delete previous records and insert new records
         private func syncRecords(_ json: [[String: Any]], taskContext: NSManagedObjectContext) {
             
-            let teacherInContext = taskContext.object(with: teacher.objectID)
+            guard let teacherInContext = taskContext.object(with: teacher.objectID) as? TeacherEntity else { return }
             
             taskContext.performAndWait {
                 
@@ -147,7 +149,7 @@ extension Record {
             }
         }
         
-        private func insert(_ parsedRecord: Record, teacher: NSManagedObject, context: NSManagedObjectContext) {
+        private func insert(_ parsedRecord: Record, teacher: TeacherEntity, context: NSManagedObjectContext) {
             let recordEntity = RecordEntity(context: context)
             
             recordEntity.id = NSNumber(value: parsedRecord.id).int64Value
@@ -164,15 +166,13 @@ extension Record {
                 recordEntity.auditorium = AuditoriumEntity.fetchAuditorium(id: object.id, context: context)
             }
             
-            // TODO: Add reference to university
-            
             // Groups
-//            let groups = GroupEntity.fetch(parsedRecord.groups, context: context)
-//            let set = NSSet(array: groups)
-//            recordEntity.addToGroups(set)
+            let groups = GroupEntity.fetch(parsedRecord.groups, university: teacher.university, context: context)
+            let set = NSSet(array: groups)
+            recordEntity.addToGroups(set)
             
             // Teacher
-            recordEntity.teacher = teacher as? TeacherEntity
+            recordEntity.teacher = teacher
         }
     }
 }

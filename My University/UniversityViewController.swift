@@ -9,26 +9,32 @@
 import UIKit
 
 class UniversityViewController: GenericTableViewController {
-
+    
     // MARK: - Properties
     
     var university: UniversityEntity?
-    private var groupDataSource: GroupDataSource?
-
+    private var groupsDataSource: GroupsDataSource?
+    private var teachersDataSource: TeacherDataSource?
+    
     // MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // For notifications
-        configurenNotificationLabel()
-        statusButton.customView = notificationLabel
-
+        // Title
         title = university?.shortName
         
+        // For notifications
+        configureNotificationLabel()
+        statusButton.customView = notificationLabel
+        
         if let university = university {
-            // Loading groups
-            groupDataSource = GroupDataSource(university: university)
+            // Init all data sources
+            groupsDataSource = GroupsDataSource(university: university)
+            teachersDataSource = TeacherDataSource(university: university)
+            
+            // Start from groups,
+            // And import auditoriums and teachers
             loadGroups()
         }
     }
@@ -37,6 +43,9 @@ class UniversityViewController: GenericTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
+            
+        case 1:
+            performSegue(withIdentifier: "showTeachers", sender: nil)
             
         case 2:
             performSegue(withIdentifier: "showGroups", sender: nil)
@@ -61,6 +70,10 @@ class UniversityViewController: GenericTableViewController {
             let vc = segue.destination as? GroupsTableViewController
             vc?.university = university
             
+        case "showTeachers":
+            let vc = segue.destination as? TeachersTableViewController
+            vc?.university = university
+            
         default:
             break
         }
@@ -69,7 +82,7 @@ class UniversityViewController: GenericTableViewController {
     // MARK: - Groups
     
     private func loadGroups() {
-        guard let dataSource = groupDataSource else { return }
+        guard let dataSource = groupsDataSource else { return }
         dataSource.performFetch()
         let groups = dataSource.fetchedResultsController?.fetchedObjects ?? []
         
@@ -78,6 +91,27 @@ class UniversityViewController: GenericTableViewController {
             showNotification(text: text)
             
             dataSource.importGroups { (error) in
+                if let error = error {
+                    self.showNotification(text: error.localizedDescription)
+                } else {
+                    self.hideNotification()
+                }
+            }
+        }
+    }
+    
+    // MARK: - Teachers
+    
+    private func loadTeachers() {
+        guard let dataSource = teachersDataSource else { return }
+        dataSource.fetchTeachers()
+        
+        let teachers = dataSource.fetchedResultsController?.fetchedObjects ?? []
+        if teachers.isEmpty {
+            let text = NSLocalizedString("Loading teachers ...", comment: "")
+            showNotification(text: text)
+            
+            dataSource.importTeachers { (error) in
                 if let error = error {
                     self.showNotification(text: error.localizedDescription)
                 } else {

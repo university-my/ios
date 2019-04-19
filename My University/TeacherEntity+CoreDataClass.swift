@@ -26,6 +26,37 @@ public class TeacherEntity: NSManagedObject {
         }
     }
     
+    static func fetch(_ teachers: [Teacher], university: UniversityEntity?, context: NSManagedObjectContext) -> [TeacherEntity] {
+        // University should not be nil
+        guard let university = university else { return [] }
+        
+        let ids = teachers.map { group in
+            return group.id
+        }
+        let fetchRequest: NSFetchRequest<TeacherEntity> = TeacherEntity.fetchRequest()
+        let isdPredicate = NSPredicate(format: "id IN %@", ids)
+        let universityPredicate = NSPredicate(format: "university == %@", university)
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [universityPredicate, isdPredicate])
+        fetchRequest.predicate = predicate
+        do {
+            let result = try context.fetch(fetchRequest)
+            return result
+        } catch  {
+            return []
+        }
+    }
+    
+    static func fetchAll(university: UniversityEntity, context: NSManagedObjectContext) -> [TeacherEntity] {
+        let request: NSFetchRequest<TeacherEntity> = TeacherEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "university == %@", university)
+        do {
+            let result = try context.fetch(request)
+            return result
+        } catch  {
+            return []
+        }
+    }
+    
     static func clearHistory(on context: NSManagedObjectContext) {
         let request = NSBatchUpdateRequest(entityName: "TeacherEntity")
         

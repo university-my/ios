@@ -9,7 +9,7 @@
 import CoreData
 import UIKit
 
-class GroupDataSource: NSObject {
+class GroupsDataSource: NSObject {
     
     // MARK: - Init
     
@@ -21,20 +21,23 @@ class GroupDataSource: NSObject {
     
     // MARK: - NSManagedObjectContext
     
-    private lazy var viewContext: NSManagedObjectContext? = {
+    private lazy var persistentContainer: NSPersistentContainer? = {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        return appDelegate?.persistentContainer.viewContext
+        return appDelegate?.persistentContainer
+    }()
+    
+    private lazy var viewContext: NSManagedObjectContext? = {
+        return persistentContainer?.viewContext
     }()
     
     // MARK: - NSFetchedResultsController
     
     lazy var fetchedResultsController: NSFetchedResultsController<GroupEntity>? = {
-        let request: NSFetchRequest<GroupEntity> = GroupEntity.fetchRequest()
-        
         // Groups for university
         guard let university = university else {
             return nil
         }
+        let request: NSFetchRequest<GroupEntity> = GroupEntity.fetchRequest()
         let predicate = NSPredicate(format: "university == %@", university)
         request.predicate = predicate
         
@@ -75,23 +78,21 @@ class GroupDataSource: NSObject {
         namesOfSections = names
     }
     
-    // MARK: - Import Groups
+    // MARK: - Import
     
-    var groupsImportManager: Group.Import?
+    var importManager: Group.Import?
     
     /// Import Groups from backend
     func importGroups(_ completion: @escaping ((_ error: Error?) -> ())) {
-        // Do nothing without CoreData.
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        guard let persistentContainer = appDelegate?.persistentContainer else { return }
         
         guard let university = university else { return }
+        guard let persistentContainer = persistentContainer else { return }
         
         // Download Groups from backend and save to database.
-        groupsImportManager = Group.Import(persistentContainer: persistentContainer, university: university)
+        importManager = Group.Import(persistentContainer: persistentContainer, university: university)
         DispatchQueue.global().async { [weak self] in
             
-            self?.groupsImportManager?.importGroups { (error) in
+            self?.importManager?.importGroups { (error) in
                 
                 DispatchQueue.main.async {
                     completion(error)
@@ -103,7 +104,7 @@ class GroupDataSource: NSObject {
 
 // MARK: - UITableViewDataSource
 
-extension GroupDataSource: UITableViewDataSource {
+extension GroupsDataSource: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedResultsController?.sections?.count ?? 0
