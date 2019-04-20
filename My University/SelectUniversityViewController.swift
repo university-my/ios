@@ -46,8 +46,8 @@ class SelectUniversityViewController: GenericTableViewController {
         dataSource.fetchUniversities()
         
         let universities = dataSource.fetchedResultsController?.fetchedObjects ?? []
+        
         if universities.isEmpty {
-            
             importUniversities()
         } else {
             tableView.reloadData()

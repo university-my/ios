@@ -93,8 +93,10 @@ class SearchViewController: UIViewController {
 //            groupDataSource = vc?.groupDataSource
             
         case "auditoriums":
-            let vc = segue.destination as? AuditoriumsViewController
-            auditoriumDataSource = vc?.auditoriumDataSource
+            break
+            
+//            let vc = segue.destination as? AuditoriumsViewController
+//            auditoriumDataSource = vc?.auditoriumDataSource
             
         case "teachers":
             break

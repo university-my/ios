@@ -31,8 +31,8 @@ extension Group {
             
             self.cacheFile = cacheFile
             self.persistentContainer = persistentContainer
-            networkClient = NetworkClient(cacheFile: self.cacheFile)
             self.university = university
+            networkClient = NetworkClient(cacheFile: self.cacheFile)
         }
         
         // MARK: - Methods
@@ -111,8 +111,8 @@ extension Group {
                 
                 // Now find groups to delete
                 let allGroups = GroupEntity.fetchAll(university: universityInContext, context: taskContext)
-                let toDelete = allGroups.filter({ university in
-                    return (ids.contains(university.id) == false)
+                let toDelete = allGroups.filter({ group in
+                    return (ids.contains(group.id) == false)
                 })
                 
                 // 1. Delete

@@ -20,16 +20,18 @@ extension Auditorium {
         private let networkClient: NetworkClient
         private var completionHandler: ((_ error: Error?) -> ())?
         private let persistentContainer: NSPersistentContainer
+        private let university: UniversityEntity
         
         // MARK: - Initialization
         
-        init?(persistentContainer: NSPersistentContainer) {
+        init?(persistentContainer: NSPersistentContainer, university: UniversityEntity) {
             // Cache file
             let cachesFolder = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             guard let cacheFile = cachesFolder?.appendingPathComponent("auditoriums.json") else { return nil }
             
             self.cacheFile = cacheFile
             self.persistentContainer = persistentContainer
+            self.university = university
             networkClient = NetworkClient(cacheFile: self.cacheFile)
         }
         
@@ -38,7 +40,7 @@ extension Auditorium {
         func importAuditoriums(_ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            networkClient.downloadAuditoriums { (error) in
+            networkClient.downloadAuditoriums(universityURL: university.url) { (error) in
                 if let error = error {
                     self.completionHandler?(error)
                 } else {
@@ -80,27 +82,83 @@ extension Auditorium {
             
             taskContext.performAndWait {
                 
-                // Execute the request to batch delete and merge the changes to viewContext.
-                
-                let fetchRequest: NSFetchRequest<NSFetchRequestResult> = AuditoriumEntity.fetchRequest()
-                let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-                deleteRequest.resultType = .resultTypeObjectIDs
-                do {
-                    let result = try taskContext.execute(deleteRequest) as? NSBatchDeleteResult
-                    if let objectIDArray = result?.result as? [NSManagedObjectID] {
-                        let changes = [NSDeletedObjectsKey: objectIDArray]
-                        NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [self.persistentContainer.viewContext])
-                    }
-                } catch {
-                    completionHandler?(error)
+                // University in current context
+                guard let universityInContext = taskContext.object(with: university.objectID) as? UniversityEntity else {
+                    return
                 }
                 
-                // Create new records.
-                
+                // Parse auditoriums.
                 let parsedAuditoriums = json.compactMap { Auditorium($0) }
                 
+                // Auditoriums to update
+                let toUpdate = AuditoriumEntity.fetch(parsedAuditoriums, university: universityInContext, context: taskContext)
+                
+                // IDs to update
+                let idsToUpdate = toUpdate.map({ auditorium in
+                    return auditorium.id
+                })
+                
+                // Find auditoriums to insert
+                let toInsert = parsedAuditoriums.filter({ auditorium in
+                    return (idsToUpdate.contains(auditorium.id) == false)
+                })
+                
+                // IDs
+                let ids = parsedAuditoriums.map({ auditorium in
+                    return auditorium.id
+                })
+                
+                // Now find auditoriums to delete
+                let allAuditoriums = AuditoriumEntity.fetchAll(university: universityInContext, context: taskContext)
+                let toDelete = allAuditoriums.filter({ auditorium in
+                    return (ids.contains(auditorium.id) == false)
+                })
+                
+                // 1. Delete
+                for auditorium in toDelete {
+                    taskContext.delete(auditorium)
+                }
+                
+                // 2. Update
+                for auditorium in toUpdate {
+                    if let auditoriumFromServer = parsedAuditoriums.first(where: { (parsedAuditorium) -> Bool in
+                        return parsedAuditorium.id == auditorium.id
+                    }) {
+                        // Update name if changed
+                        if auditoriumFromServer.name != auditorium.name {
+                            auditorium.name = auditoriumFromServer.name
+                            if let firstCharacter = auditoriumFromServer.name.first {
+                                auditorium.firstSymbol = String(firstCharacter).uppercased()
+                            } else {
+                                auditorium.firstSymbol = ""
+                            }
+                        }
+                        
+                        if (auditorium.records?.count ?? 0) > 0 {
+                            // Delete all related records
+                            // Because Auditorium can be changed to another one.
+                            let fetchRequest: NSFetchRequest<NSFetchRequestResult> = RecordEntity.fetchRequest()
+                            
+                            fetchRequest.predicate = NSPredicate(format: "auditorium == %@", auditorium)
+                            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+                            deleteRequest.resultType = .resultTypeObjectIDs
+                            
+                            do {
+                                let result = try taskContext.execute(deleteRequest) as? NSBatchDeleteResult
+                                if let objectIDArray = result?.result as? [NSManagedObjectID] {
+                                    let changes = [NSDeletedObjectsKey: objectIDArray]
+                                    NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [self.persistentContainer.viewContext])
+                                }
+                            } catch {
+                                completionHandler?(error)
+                            }
+                        }
+                    }
+                }
+                
+                // 3. Insert
                 for auditorium in parsedAuditoriums {
-                    self.insert(auditorium, context: taskContext)
+                    self.insert(auditorium, university: universityInContext, context: taskContext)
                 }
                 
                 // Finishing import. Save context.
@@ -121,7 +179,7 @@ extension Auditorium {
             }
         }
         
-        private func insert(_ parsedAuditorium: Auditorium, context: NSManagedObjectContext) {
+        private func insert(_ parsedAuditorium: Auditorium, university: UniversityEntity, context: NSManagedObjectContext) {
             let auditoriumEntity = AuditoriumEntity(context: context)
             auditoriumEntity.id = parsedAuditorium.id
             auditoriumEntity.name = parsedAuditorium.name
@@ -130,6 +188,7 @@ extension Auditorium {
             } else {
                 auditoriumEntity.firstSymbol = ""
             }
+            auditoriumEntity.university = university
         }
     }
 }

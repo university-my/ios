@@ -13,7 +13,7 @@ class TeacherDataSource: NSObject {
     
     // MARK: - Init
     
-    private var university: UniversityEntity?
+    private var university: UniversityEntity
     
     init(university: UniversityEntity) {
         self.university = university
@@ -33,10 +33,6 @@ class TeacherDataSource: NSObject {
     // MARK: - NSFetchedResultsController
 
     lazy var fetchedResultsController: NSFetchedResultsController<TeacherEntity>? = {
-        // Teachers for university
-        guard let university = university else {
-            return nil
-        }
         let request: NSFetchRequest<TeacherEntity> = TeacherEntity.fetchRequest()
         let predicate = NSPredicate(format: "university == %@", university)
         request.predicate = predicate
@@ -84,8 +80,6 @@ class TeacherDataSource: NSObject {
 
     /// Import Teachers from backend
     func importTeachers(_ completion: @escaping ((_ error: Error?) -> ())) {
-        
-        guard let university = university else { return }
         guard let persistentContainer = persistentContainer else { return }
 
         importManager = Teacher.Import(persistentContainer: persistentContainer, university: university)

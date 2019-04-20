@@ -42,9 +42,7 @@ class TeacherScheduleTableViewController: GenericTableViewController {
         super.viewWillAppear(animated)
         
         if let teacher = teacher {
-            // Title
             title = teacher.name
-            
             performFetch()
         }
     }

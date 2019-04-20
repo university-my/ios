@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TeachersTableViewController: GenericTableViewController {
+class TeachersTableViewController: SearchableTableViewController {
     
     // MARK: - Properties
     
@@ -34,6 +34,7 @@ class TeachersTableViewController: GenericTableViewController {
         
         // Sear Bar and Search Results Controller
         configureSearchControllers()
+        searchController.searchResultsUpdater = self
         
         if let university = university {
             // Loading teachers
@@ -69,7 +70,7 @@ class TeachersTableViewController: GenericTableViewController {
             if let error = error {
                 self.showNotification(text: error.localizedDescription)
             } else {
-                self.hideNotification()
+                self.showTeachersCount()
             }
             dataSource.fetchTeachers()
             self.tableView.reloadData()
@@ -94,55 +95,7 @@ class TeachersTableViewController: GenericTableViewController {
         importTeachers()
     }
     
-    // MARK: - Search
-    
-    /// Search controller to help us with filtering.
-    var searchController: UISearchController!
-    
-    /// Secondary search results table view.
-    var resultsTableController: SearchResultsTableViewController!
-    
-    private func configureSearchControllers() {
-        
-        resultsTableController = storyboard!.instantiateViewController(withIdentifier: "SearchResultsTableViewController") as? SearchResultsTableViewController
-        
-        // We want ourselves to be the delegate for this filtered table so didSelectRowAtIndexPath(_:) is called for both tables.
-        resultsTableController.tableView.delegate = self
-        
-        // Setup the Search Controller.
-        searchController = UISearchController(searchResultsController: resultsTableController)
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.tintColor = .orange
-        searchController.searchBar.keyboardAppearance = .dark
-        
-        // Add Search Controller to the navigation item (iOS 11).
-        navigationItem.searchController = searchController
-        
-        // Setup the Search Bar
-        searchController.searchBar.setValue(NSLocalizedString("Cancel", comment: "Cancel search"), forKey:"_cancelButtonText")
-        searchController.searchBar.placeholder = NSLocalizedString("Search", comment: "Placeholder in search controller")
-        
-        /*
-         Search is now just presenting a view controller. As such, normal view controller
-         presentation semantics apply. Namely that presentation will walk up the view controller
-         hierarchy until it finds the root view controller or one that defines a presentation context.
-         */
-        definesPresentationContext = true
-        
-        searchController.isActive = true
-        searchController.searchBar.becomeFirstResponder()
-    }
-    
-    // MARK - Table delegate
-    
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        if let headerView = view as? UITableViewHeaderFooterView {
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = .sectionBackgroundColor
-            headerView.backgroundView = backgroundView
-            headerView.textLabel?.textColor = UIColor.lightText
-        }
-    }
+    // MARK - Navigation
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "teacherDetailed", sender: nil)

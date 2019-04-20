@@ -1,19 +1,19 @@
 //
-//  GroupsTableViewController.swift
+//  AuditoriumsTableViewController.swift
 //  My University
 //
-//  Created by Yura Voevodin on 4/18/19.
+//  Created by Yura Voevodin on 4/20/19.
 //  Copyright © 2019 Yura Voevodin. All rights reserved.
 //
 
 import UIKit
 
-class GroupsTableViewController: SearchableTableViewController {
+class AuditoriumsTableViewController: SearchableTableViewController {
     
     // MARK: - Properties
     
     var university: UniversityEntity?
-    private var dataSource: GroupsDataSource?
+    private var dataSource: AuditoriumDataSource?
     
     // MARK: - Notificaion
     
@@ -37,52 +37,51 @@ class GroupsTableViewController: SearchableTableViewController {
         searchController.searchResultsUpdater = self
         
         if let university = university {
-            // Loading groups
-            dataSource = GroupsDataSource(university: university)
+            // Loading teachers
+            dataSource = AuditoriumDataSource(university: university)
             tableView.dataSource = dataSource
-            loadGroups()
+            loadAuditoroums()
         }
     }
     
-    // MARK: - Groups
+    // MARK: - Auditoriums
     
-    private func loadGroups() {
+    func loadAuditoroums() {
         guard let dataSource = dataSource else { return }
-        dataSource.performFetch()
+        dataSource.fetchAuditoriums()
         
-        let groups = dataSource.fetchedResultsController?.fetchedObjects ?? []
-        if groups.isEmpty {
-            importGroups()
+        let auditoriums = dataSource.fetchedResultsController?.fetchedObjects ?? []
+        if auditoriums.isEmpty {
+            importAuditoriums()
         } else {
             tableView.reloadData()
             refreshControl?.endRefreshing()
-            showGroupsCount()
+            showAuditoriumsCount()
         }
     }
     
-    func importGroups() {
+    func importAuditoriums() {
         guard let dataSource = dataSource else { return }
         
-        let text = NSLocalizedString("Loading groups ...", comment: "")
+        let text = NSLocalizedString("Loading auditoriums ...", comment: "")
         showNotification(text: text)
         
-        dataSource.importGroups { (error) in
+        dataSource.importAuditoriums { (error) in
             if let error = error {
                 self.showNotification(text: error.localizedDescription)
             } else {
-                self.hideNotification()
+                self.showAuditoriumsCount()
             }
-            dataSource.performFetch()
+            dataSource.fetchAuditoriums()
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
-            self.showGroupsCount()
         }
     }
     
-    func showGroupsCount() {
-        let groups = dataSource?.fetchedResultsController?.fetchedObjects ?? []
-        let text = NSLocalizedString("groups", comment: "Count of groups")
-        showNotification(text: "\(groups.count) " + text)
+    func showAuditoriumsCount() {
+        let auditoriums = dataSource?.fetchedResultsController?.fetchedObjects ?? []
+        let text = NSLocalizedString("auditoriums", comment: "Count of auditoriums")
+        showNotification(text: "\(auditoriums.count) " + text)
     }
     
     // MARK: - Pull to refresh
@@ -92,22 +91,13 @@ class GroupsTableViewController: SearchableTableViewController {
             refreshControl?.endRefreshing()
             return
         }
-        importGroups()
+        importAuditoriums()
     }
     
-    // MARK - Table delegate
-    
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        if let headerView = view as? UITableViewHeaderFooterView {
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = .sectionBackgroundColor
-            headerView.backgroundView = backgroundView
-            headerView.textLabel?.textColor = UIColor.lightText
-        }
-    }
+    // MARK - Navigation
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "groupDetailed", sender: nil)
+        performSegue(withIdentifier: "auditoriumDetailed", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -115,12 +105,12 @@ class GroupsTableViewController: SearchableTableViewController {
         
         switch identifier {
             
-        case "groupDetailed":
-            if let detailTableViewController = segue.destination as? GroupScheduleTableViewController {
+        case "auditoriumDetailed":
+            if let detailTableViewController = segue.destination as? AuditoriumScheduleTableViewController {
                 if let indexPath = tableView.indexPathForSelectedRow {
-                    let selectedGroup = dataSource?.fetchedResultsController?.object(at: indexPath)
-                    detailTableViewController.group = selectedGroup
-                    detailTableViewController.groupID = selectedGroup?.id
+                    let selectedAuditorium = dataSource?.fetchedResultsController?.object(at: indexPath)
+                    detailTableViewController.auditorium = selectedAuditorium
+                    detailTableViewController.auditoriumID = selectedAuditorium?.id
                 }
             }
             
@@ -132,7 +122,7 @@ class GroupsTableViewController: SearchableTableViewController {
 
 // MARK: - UISearchResultsUpdating
 
-extension GroupsTableViewController: UISearchResultsUpdating {
+extension AuditoriumsTableViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         // Strip out all the leading and trailing spaces.
@@ -152,8 +142,8 @@ extension GroupsTableViewController: UISearchResultsUpdating {
         
         // Hand over the filtered results to our search results table.
         if let resultsController = searchController.searchResultsController as? SearchResultsTableViewController {
-            resultsController.filteredGroups = filteredResults
-            resultsController.dataSourceType = .groups
+            resultsController.filteredAuditoriums = filteredResults
+            resultsController.dataSourceType = .auditoriums
             resultsController.tableView.reloadData()
         }
     }

@@ -13,7 +13,7 @@ class GroupsDataSource: NSObject {
     
     // MARK: - Init
     
-    private var university: UniversityEntity?
+    private var university: UniversityEntity
     
     init(university: UniversityEntity) {
         self.university = university
@@ -34,9 +34,6 @@ class GroupsDataSource: NSObject {
     
     lazy var fetchedResultsController: NSFetchedResultsController<GroupEntity>? = {
         // Groups for university
-        guard let university = university else {
-            return nil
-        }
         let request: NSFetchRequest<GroupEntity> = GroupEntity.fetchRequest()
         let predicate = NSPredicate(format: "university == %@", university)
         request.predicate = predicate
@@ -84,8 +81,6 @@ class GroupsDataSource: NSObject {
     
     /// Import Groups from backend
     func importGroups(_ completion: @escaping ((_ error: Error?) -> ())) {
-        
-        guard let university = university else { return }
         guard let persistentContainer = persistentContainer else { return }
         
         // Download Groups from backend and save to database.

@@ -12,9 +12,9 @@ class AuditoriumsViewController: GenericTableDelegateViewController {
     
     // MARK: - Properties
     
-    lazy var auditoriumDataSource: AuditoriumDataSource = {
-        return AuditoriumDataSource()
-    }()
+//    lazy var auditoriumDataSource: AuditoriumDataSource = {
+//        return AuditoriumDataSource()
+//    }()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -36,40 +36,40 @@ class AuditoriumsViewController: GenericTableDelegateViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         
         // Loading...
-        loadAuditoriums()
+//        loadAuditoriums()
     }
     
     // MARK: - Auditoriums
     
-    private func loadAuditoriums()  {
-        tableView.dataSource = auditoriumDataSource
-        auditoriumDataSource.fetchAuditoriums()
-        
-        let auditoriums = auditoriumDataSource.fetchedResultsController?.fetchedObjects ?? []
-        
-        if auditoriums.isEmpty {
-            
-            tableView.isHidden = true
-            activityIndicator.startAnimating()
-            
-            auditoriumDataSource.importAuditoriums { (error) in
-                
-                if let error = error {
-                    let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true)
-                }
-                
-                self.activityIndicator.stopAnimating()
-                self.tableView.isHidden = false
-                self.auditoriumDataSource.fetchAuditoriums()
-                self.tableView.reloadData()
-            }
-        } else {
-            tableView.isHidden = false
-            tableView.reloadData()
-        }
-    }
+//    private func loadAuditoriums()  {
+//        tableView.dataSource = auditoriumDataSource
+//        auditoriumDataSource.fetchAuditoriums()
+//
+//        let auditoriums = auditoriumDataSource.fetchedResultsController?.fetchedObjects ?? []
+//
+//        if auditoriums.isEmpty {
+//
+//            tableView.isHidden = true
+//            activityIndicator.startAnimating()
+//
+//            auditoriumDataSource.importAuditoriums { (error) in
+//
+//                if let error = error {
+//                    let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
+//                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//                    self.present(alert, animated: true)
+//                }
+//
+//                self.activityIndicator.stopAnimating()
+//                self.tableView.isHidden = false
+//                self.auditoriumDataSource.fetchAuditoriums()
+//                self.tableView.reloadData()
+//            }
+//        } else {
+//            tableView.isHidden = false
+//            tableView.reloadData()
+//        }
+//    }
 
   // MARK: - Navigation
 
@@ -79,12 +79,14 @@ class AuditoriumsViewController: GenericTableDelegateViewController {
     switch identifier {
 
     case "showAuditoriumSchedule":
-      if let destination = segue.destination as? AuditoriumScheduleTableViewController {
-        if let indexPath = tableView.indexPathForSelectedRow {
-          let selectedAuditorium = auditoriumDataSource.fetchedResultsController?.object(at: indexPath)
-          destination.auditorium = selectedAuditorium
-        }
-      }
+        break
+        
+//      if let destination = segue.destination as? AuditoriumScheduleTableViewController {
+//        if let indexPath = tableView.indexPathForSelectedRow {
+//          let selectedAuditorium = auditoriumDataSource.fetchedResultsController?.object(at: indexPath)
+//          destination.auditorium = selectedAuditorium
+//        }
+//      }
 
     default:
       break

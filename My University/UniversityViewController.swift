@@ -13,6 +13,7 @@ class UniversityViewController: GenericTableViewController {
     // MARK: - Properties
     
     var university: UniversityEntity?
+    private var auditoriumsDataSource: AuditoriumDataSource?
     private var groupsDataSource: GroupsDataSource?
     private var teachersDataSource: TeacherDataSource?
     
@@ -30,6 +31,7 @@ class UniversityViewController: GenericTableViewController {
         
         if let university = university {
             // Init all data sources
+            auditoriumsDataSource = AuditoriumDataSource(university: university)
             groupsDataSource = GroupsDataSource(university: university)
             teachersDataSource = TeacherDataSource(university: university)
             
@@ -43,6 +45,9 @@ class UniversityViewController: GenericTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
+            
+        case 0:
+            performSegue(withIdentifier: "showAuditoriums", sender: nil)
             
         case 1:
             performSegue(withIdentifier: "showTeachers", sender: nil)
@@ -65,6 +70,10 @@ class UniversityViewController: GenericTableViewController {
         guard let identifier = segue.identifier else { return }
         
         switch identifier {
+            
+        case "showAuditoriums":
+            let vc = segue.destination as? AuditoriumsTableViewController
+            vc?.university = university
             
         case "showGroups":
             let vc = segue.destination as? GroupsTableViewController
@@ -94,9 +103,11 @@ class UniversityViewController: GenericTableViewController {
                 if let error = error {
                     self.showNotification(text: error.localizedDescription)
                 } else {
-                    self.hideNotification()
+                    self.loadTeachers()
                 }
             }
+        } else {
+            loadTeachers()
         }
     }
     
@@ -115,9 +126,51 @@ class UniversityViewController: GenericTableViewController {
                 if let error = error {
                     self.showNotification(text: error.localizedDescription)
                 } else {
+                    if self.shouldImportAuditoriums() {
+                        self.loadAuditoriums()
+                    } else {
+                        self.hideNotification()
+                    }
+                }
+            }
+        } else {
+            if shouldImportAuditoriums() {
+                loadAuditoriums()
+            } else {
+                hideNotification()
+            }
+        }
+    }
+    
+    // MARK: - Auditoriums
+    
+    private func shouldImportAuditoriums() -> Bool {
+        guard let university = university else { return false }
+        if university.url == "kpi" {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    private func loadAuditoriums() {
+        guard let dataSource = auditoriumsDataSource else { return }
+        dataSource.fetchAuditoriums()
+     
+        let auditoriums = dataSource.fetchedResultsController?.fetchedObjects ?? []
+        if auditoriums.isEmpty {
+            let text = NSLocalizedString("Loading auditoriums ...", comment: "")
+            showNotification(text: text)
+            
+            dataSource.importAuditoriums { (error) in
+                if let error = error {
+                    self.showNotification(text: error.localizedDescription)
+                } else {
                     self.hideNotification()
                 }
             }
+        } else {
+            self.hideNotification()
         }
     }
     

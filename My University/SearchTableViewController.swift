@@ -14,9 +14,9 @@ class SearchTableViewController: UITableViewController {
     
     // MARK: - Properties
     
-    private lazy var auditoriumDataSource: AuditoriumDataSource = {
-        return AuditoriumDataSource()
-    }()
+//    private lazy var auditoriumDataSource: AuditoriumDataSource = {
+//        return AuditoriumDataSource()
+//    }()
     
 //    private lazy var groupDataSource: GroupDataSource = {
 //        return GroupDataSource()
@@ -156,7 +156,7 @@ class SearchTableViewController: UITableViewController {
             var selectedAuditorium: AuditoriumEntity?
             if tableView == self.tableView, let indexPath = tableView.indexPathForSelectedRow {
                 // From main table view
-                selectedAuditorium = auditoriumDataSource.fetchedResultsController?.object(at: indexPath)
+//                selectedAuditorium = auditoriumDataSource.fetchedResultsController?.object(at: indexPath)
                 
             } else if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
                 // From search results controller
@@ -181,27 +181,27 @@ class SearchTableViewController: UITableViewController {
     
     // MARK: - Auditoriums
     
-    private func loadAuditoriums()  {
-        tableView.dataSource = auditoriumDataSource
-        auditoriumDataSource.fetchAuditoriums()
-        
-        let auditoriums = auditoriumDataSource.fetchedResultsController?.fetchedObjects ?? []
-        if auditoriums.isEmpty {
-            auditoriumDataSource.importAuditoriums { (error) in
-                if let error = error {
-                    let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true)
-                }
-                self.auditoriumDataSource.fetchAuditoriums()
-                self.tableView.reloadData()
-                self.refreshControl?.endRefreshing()
-            }
-        } else {
-            tableView.reloadData()
-            refreshControl?.endRefreshing()
-        }
-    }
+//    private func loadAuditoriums()  {
+//        tableView.dataSource = auditoriumDataSource
+//        auditoriumDataSource.fetchAuditoriums()
+//
+//        let auditoriums = auditoriumDataSource.fetchedResultsController?.fetchedObjects ?? []
+//        if auditoriums.isEmpty {
+//            auditoriumDataSource.importAuditoriums { (error) in
+//                if let error = error {
+//                    let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
+//                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//                    self.present(alert, animated: true)
+//                }
+//                self.auditoriumDataSource.fetchAuditoriums()
+//                self.tableView.reloadData()
+//                self.refreshControl?.endRefreshing()
+//            }
+//        } else {
+//            tableView.reloadData()
+//            refreshControl?.endRefreshing()
+//        }
+//    }
     
     // MARK: - Groups
     
@@ -273,7 +273,8 @@ class SearchTableViewController: UITableViewController {
     private func loadCurrentDataSource() {
         switch dataSourceType {
         case .auditoriums:
-            loadAuditoriums()
+            break
+//            loadAuditoriums()
         case .groups:
             break
 //            loadGroups()
@@ -302,17 +303,19 @@ extension SearchTableViewController: UISearchResultsUpdating {
         switch dataSourceType {
             
         case .auditoriums:
+            break
+            
             // Update the filtered array based on the search text.
-            guard let searchResults = auditoriumDataSource.fetchedResultsController?.fetchedObjects else { return }
-            
-            let filteredResults = searchResults.filter { nameSearchComparisonPredicate.evaluate(with: $0) }
-            
-            // Hand over the filtered results to our search results table.
-            if let resultsController = searchController.searchResultsController as? SearchResultsTableViewController {
-                resultsController.filteredAuditoriums = filteredResults
-                resultsController.dataSourceType = .auditoriums
-                resultsController.tableView.reloadData()
-            }
+//            guard let searchResults = auditoriumDataSource.fetchedResultsController?.fetchedObjects else { return }
+//
+//            let filteredResults = searchResults.filter { nameSearchComparisonPredicate.evaluate(with: $0) }
+//
+//            // Hand over the filtered results to our search results table.
+//            if let resultsController = searchController.searchResultsController as? SearchResultsTableViewController {
+//                resultsController.filteredAuditoriums = filteredResults
+//                resultsController.dataSourceType = .auditoriums
+//                resultsController.tableView.reloadData()
+//            }
             
         case .groups:
             break
