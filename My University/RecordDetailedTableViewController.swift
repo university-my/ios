@@ -8,7 +8,9 @@
 
 import UIKit
 
-class RecordDetailedTableViewController: UITableViewController {
+class RecordDetailedTableViewController: GenericTableViewController {
+    
+    // TODO: Add description witn name to the bottom
     
     // MARK: - Types
     
@@ -173,54 +175,5 @@ class RecordDetailedTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sections[section].name
-    }
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let bgColorView = UIView()
-        bgColorView.backgroundColor = .cellSelectionColor
-        cell.selectedBackgroundView = bgColorView
-    }
-    
-    // MARK: - Table view delegate
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let section = sections[indexPath.section]
-//
-//        switch section {
-//
-//        case .auditorium(let auditorium):
-//            performSegue(withIdentifier: "showAuditorium", sender: auditorium)
-//
-//        case .groups(let groups):
-////            performSegue(withIdentifier: "showGroup", sender: auditorium)
-//            break
-//
-//        case .teacher(let teacher):
-//            performSegue(withIdentifier: "showTeacher", sender: teacher)
-//
-//        default:
-//            break
-//        }
-    }
-    
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        switch segue.identifier {
-            
-        case "showAuditorium":
-            if let destination = segue.destination as? AuditoriumScheduleTableViewController {
-                destination.auditorium = sender as? AuditoriumEntity
-            }
-            
-        case "showTeacher":
-            if let destination = segue.destination as? TeacherScheduleTableViewController {
-                destination.teacher = sender as? TeacherEntity
-            }
-            
-        default:
-            break
-        }
     }
 }

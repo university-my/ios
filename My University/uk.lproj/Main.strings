@@ -1,63 +1,120 @@
-/* Class = "UILabel"; text = "Detail"; ObjectID = "1Jv-zg-4j2"; */
-"1Jv-zg-4j2.text" = "Детально";
 
-/* Class = "UINavigationItem"; title = "Search"; ObjectID = "7N0-mc-ebX"; */
-"7N0-mc-ebX.title" = "Пошук";
+/* Class = "UIBarButtonItem"; title = "Status text"; ObjectID = "4gW-d9-gnI"; */
+"4gW-d9-gnI.title" = "Status text";
 
-/* Class = "UILabel"; text = "Detail"; ObjectID = "byv-DE-jgc"; */
-"byv-DE-jgc.text" = "Подробиці";
+/* Class = "UILabel"; text = "Title"; ObjectID = "5mt-BJ-vX7"; */
+"5mt-BJ-vX7.text" = "Title";
 
-/* Class = "UILabel"; text = "Terms of Service"; ObjectID = "DIr-pP-HDA"; */
-"DIr-pP-HDA.text" = "Умови обслуговування";
+/* Class = "UINavigationItem"; title = "About us"; ObjectID = "85Z-ni-zCj"; */
+"85Z-ni-zCj.title" = "About us";
 
-/* Class = "UILabel"; text = "Title"; ObjectID = "DYn-Mi-2yJ"; */
-"DYn-Mi-2yJ.text" = "Заголовок";
+/* Class = "UILabel"; text = "Auditoriums"; ObjectID = "8ph-AF-sdi"; */
+"8ph-AF-sdi.text" = "Auditoriums";
 
-/* Class = "UILabel"; text = "Privacy Policy"; ObjectID = "ger-UO-x8Y"; */
-"ger-UO-x8Y.text" = "Політика конфіденційності";
+/* Class = "UINavigationItem"; title = "Groups"; ObjectID = "9cZ-5M-bkh"; */
+"9cZ-5M-bkh.title" = "Groups";
 
-/* Class = "UILabel"; text = "Clear History"; ObjectID = "gLB-Ma-lPu"; */
-"gLB-Ma-lPu.text" = "Очистити Історію";
+/* Class = "UILabel"; text = "Title"; ObjectID = "Cva-cM-NKm"; */
+"Cva-cM-NKm.text" = "Title";
 
-/* Class = "UISegmentedControl"; hAI-I2-CNE.segmentTitles[0] = "Groups"; ObjectID = "hAI-I2-CNE"; */
-"hAI-I2-CNE.segmentTitles[0]" = "Групи";
+/* Class = "UILabel"; text = "Title"; ObjectID = "DcX-QR-sm2"; */
+"DcX-QR-sm2.text" = "Title";
 
-/* Class = "UISegmentedControl"; hAI-I2-CNE.segmentTitles[1] = "Auditoriums"; ObjectID = "hAI-I2-CNE"; */
-"hAI-I2-CNE.segmentTitles[1]" = "Аудиторії";
+/* Class = "UILabel"; text = "Title"; ObjectID = "DwZ-sG-N1O"; */
+"DwZ-sG-N1O.text" = "Title";
 
-/* Class = "UISegmentedControl"; hAI-I2-CNE.segmentTitles[2] = "Teachers"; ObjectID = "hAI-I2-CNE"; */
-"hAI-I2-CNE.segmentTitles[2]" = "Викладачі";
+/* Class = "UILabel"; text = "Title"; ObjectID = "EAE-ch-JlZ"; */
+"EAE-ch-JlZ.text" = "Title";
 
-/* Class = "UILabel"; text = "Detail"; ObjectID = "jyT-bn-vqG"; */
-"jyT-bn-vqG.text" = "Детально";
+/* Class = "UINavigationItem"; title = "Select your university"; ObjectID = "Fi8-G5-eC2"; */
+"Fi8-G5-eC2.title" = "Select your university";
 
-/* Class = "UILabel"; text = "Title"; ObjectID = "mJY-jC-A0P"; */
-"mJY-jC-A0P.text" = "Заголовок";
+/* Class = "UINavigationItem"; title = "Teachers"; ObjectID = "Gd4-a1-lKp"; */
+"Gd4-a1-lKp.title" = "Teachers";
 
-/* Class = "UISegmentedControl"; pC9-4Q-Zkn.segmentTitles[0] = "Groups"; ObjectID = "pC9-4Q-Zkn"; */
-"pC9-4Q-Zkn.segmentTitles[0]" = "Групи";
+/* Class = "UILabel"; text = "Title"; ObjectID = "Hnt-60-noc"; */
+"Hnt-60-noc.text" = "Title";
 
-/* Class = "UISegmentedControl"; pC9-4Q-Zkn.segmentTitles[1] = "Auditoriums"; ObjectID = "pC9-4Q-Zkn"; */
-"pC9-4Q-Zkn.segmentTitles[1]" = "Аудиторії";
+/* Class = "UIBarButtonItem"; title = "Status text"; ObjectID = "LS2-pb-oGY"; */
+"LS2-pb-oGY.title" = "Status text";
 
-/* Class = "UISegmentedControl"; pC9-4Q-Zkn.segmentTitles[2] = "Teachers"; ObjectID = "pC9-4Q-Zkn"; */
-"pC9-4Q-Zkn.segmentTitles[2]" = "Викладачі";
+/* Class = "UILabel"; text = "Our website"; ObjectID = "M7b-Qk-mQH"; */
+"M7b-Qk-mQH.text" = "Our website";
 
-/* Class = "UILabel"; text = "Detail"; ObjectID = "qln-L3-fWH"; */
-"qln-L3-fWH.text" = "Детально";
+/* Class = "UINavigationItem"; title = "Auditoriums"; ObjectID = "NKD-iB-bR8"; */
+"NKD-iB-bR8.title" = "Auditoriums";
 
-/* Class = "UILabel"; text = "Title"; ObjectID = "SMk-YH-hHH"; */
-"SMk-YH-hHH.text" = "Заголовок";
+/* Class = "UILabel"; text = "Twitter @myuniversity_su"; ObjectID = "PLO-Lb-0bL"; */
+"PLO-Lb-0bL.text" = "Twitter @myuniversity_su";
 
-/* Class = "UINavigationItem"; title = "About us"; ObjectID = "SNc-pP-tXm"; */
-"SNc-pP-tXm.title" = "Про нас";
+/* Class = "UILabel"; text = "Terms of Service"; ObjectID = "PeZ-fu-tgp"; */
+"PeZ-fu-tgp.text" = "Terms of Service";
 
-/* Class = "UILabel"; text = "Our website"; ObjectID = "T37-xz-dk7"; */
-"T37-xz-dk7.text" = "Наш сайт";
+/* Class = "UIBarButtonItem"; title = "Status text"; ObjectID = "QsR-27-aNW"; */
+"QsR-27-aNW.title" = "Status text";
 
-/* Class = "UILabel"; text = "Rate this app"; ObjectID = "vdF-B8-vrj"; */
-"vdF-B8-vrj.text" = "Оцініть цей додаток";
+/* Class = "UILabel"; text = "Detail"; ObjectID = "XKc-Qd-LyC"; */
+"XKc-Qd-LyC.text" = "Detail";
 
-/* Class = "UINavigationItem"; title = "History"; ObjectID = "weu-X2-vfy"; */
-"weu-X2-vfy.title" = "Історія";
+/* Class = "UILabel"; text = "Privacy Policy"; ObjectID = "az0-li-16Z"; */
+"az0-li-16Z.text" = "Privacy Policy";
 
+/* Class = "UILabel"; text = "Facebook @myuniversityservice"; ObjectID = "cN9-cb-11O"; */
+"cN9-cb-11O.text" = "Facebook @myuniversityservice";
+
+/* Class = "UILabel"; text = "Rate this app"; ObjectID = "chB-FO-YPg"; */
+"chB-FO-YPg.text" = "Rate this app";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "dOV-Pd-g9o"; */
+"dOV-Pd-g9o.text" = "Title";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "elq-Yu-Mmt"; */
+"elq-Yu-Mmt.text" = "Detail";
+
+/* Class = "UILabel"; text = "Groups"; ObjectID = "gXn-G5-t2A"; */
+"gXn-G5-t2A.text" = "Groups";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "h4B-mM-33q"; */
+"h4B-mM-33q.text" = "Title";
+
+/* Class = "UILabel"; text = "Teachers"; ObjectID = "hAt-35-YQG"; */
+"hAt-35-YQG.text" = "Teachers";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "hDb-cU-4FX"; */
+"hDb-cU-4FX.text" = "Detail";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "iI3-BD-Mmr"; */
+"iI3-BD-Mmr.text" = "Title";
+
+/* Class = "UINavigationItem"; title = "Auditorium"; ObjectID = "iff-ln-ZeD"; */
+"iff-ln-ZeD.title" = "Auditorium";
+
+/* Class = "UIBarButtonItem"; title = "Status text"; ObjectID = "mdU-eV-C7w"; */
+"mdU-eV-C7w.title" = "Status text";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "o6l-jJ-3Mn"; */
+"o6l-jJ-3Mn.text" = "Detail";
+
+/* Class = "UIBarButtonItem"; title = "Status text"; ObjectID = "oBd-y6-Qf8"; */
+"oBd-y6-Qf8.title" = "Status text";
+
+/* Class = "UILabel"; text = "Instagram university.my"; ObjectID = "rVb-do-Zv6"; */
+"rVb-do-Zv6.text" = "Instagram university.my";
+
+/* Class = "UIBarButtonItem"; title = "Status text"; ObjectID = "tR4-7F-H5b"; */
+"tR4-7F-H5b.title" = "Status text";
+
+/* Class = "UINavigationItem"; title = "Group"; ObjectID = "wCI-ox-0ZG"; */
+"wCI-ox-0ZG.title" = "Group";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "wQT-mX-Gwz"; */
+"wQT-mX-Gwz.text" = "Subtitle";
+
+/* Class = "UIBarButtonItem"; title = "Status text"; ObjectID = "xfe-9L-WCg"; */
+"xfe-9L-WCg.title" = "Status text";
+
+/* Class = "UIBarButtonItem"; title = "Status text"; ObjectID = "yZL-hE-NWI"; */
+"yZL-hE-NWI.title" = "Status text";
+
+/* Class = "UINavigationItem"; title = "Teacher"; ObjectID = "zWn-2a-KNf"; */
+"zWn-2a-KNf.title" = "Teacher";

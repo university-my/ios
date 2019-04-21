@@ -9,6 +9,8 @@
 import CoreData
 import UIKit
 
+// TODO: Rename to "group"
+
 class GroupScheduleTableViewController: GenericTableViewController {
     
     // MARK: - Properties
@@ -46,6 +48,8 @@ class GroupScheduleTableViewController: GenericTableViewController {
             title = group.name
             
             performFetch()
+            
+            // TODO: Import records if empty
         }
     }
     

@@ -103,9 +103,11 @@ extension Record {
         /// Delete previous records and insert new records
         private func syncRecords(_ json: [[String: Any]], taskContext: NSManagedObjectContext) {
             
-            let auditoriumInContext = taskContext.object(with: auditorium.objectID)
+            guard let auditoriumInContext = taskContext.object(with: auditorium.objectID) as? AuditoriumEntity else { return }
             
             taskContext.performAndWait {
+                
+                // TODO: Don't delete records
                 
                 // Execute the request to batch delete and merge the changes to viewContext.
                 
@@ -149,7 +151,7 @@ extension Record {
             }
         }
         
-        private func insert(_ parsedRecord: Record, auditorium: NSManagedObject, context: NSManagedObjectContext) {
+        private func insert(_ parsedRecord: Record, auditorium: AuditoriumEntity, context: NSManagedObjectContext) {
             let recordEntity = RecordEntity(context: context)
             
             recordEntity.id = NSNumber(value: parsedRecord.id).int64Value
@@ -162,14 +164,12 @@ extension Record {
             recordEntity.type = parsedRecord.type
             
             // Auditorium
-            recordEntity.auditorium = auditorium as? AuditoriumEntity
-            
-            // TODO: Add reference to university
+            recordEntity.auditorium = auditorium
             
             // Groups
-//            let groups = GroupEntity.fetch(parsedRecord.groups, context: context)
-//            let set = NSSet(array: groups)
-//            recordEntity.addToGroups(set)
+            let groups = GroupEntity.fetch(parsedRecord.groups, university: auditorium.university, context: context)
+            let set = NSSet(array: groups)
+            recordEntity.addToGroups(set)
             
             // Fetch teacher entity for set relation with record
             if let object = parsedRecord.teacher {

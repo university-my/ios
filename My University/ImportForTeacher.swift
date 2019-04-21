@@ -107,6 +107,8 @@ extension Record {
             
             taskContext.performAndWait {
                 
+                // TODO: Don't delete records
+                
                 // Execute the request to batch delete and merge the changes to viewContext.
                 
                 let fetchRequest: NSFetchRequest<NSFetchRequestResult> = RecordEntity.fetchRequest()

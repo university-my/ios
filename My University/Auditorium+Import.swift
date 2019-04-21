@@ -157,7 +157,7 @@ extension Auditorium {
                 }
                 
                 // 3. Insert
-                for auditorium in parsedAuditoriums {
+                for auditorium in toInsert {
                     self.insert(auditorium, university: universityInContext, context: taskContext)
                 }
                 

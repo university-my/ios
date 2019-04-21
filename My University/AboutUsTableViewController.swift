@@ -51,47 +51,30 @@ class AboutUsTableViewController: UITableViewController {
             switch row {
             case 0:
                 performSegue(withIdentifier: "showWebView", sender: (title: "Privacy Policy", url: "https://my-university.com.ua/privacy-policy"))
-
+                
             case 1:
                 performSegue(withIdentifier: "showWebView", sender: (title: "Terms of Service", url: "https://my-university.com.ua/terms-of-service"))
-
+                
             default:
                 break
             }
-            
-        } else if section == 3 {
-            if row == 0 {
-                // Clear History
-                let appDelegate = UIApplication.shared.delegate as? AppDelegate
-                guard let persistentContainer = appDelegate?.persistentContainer else { return }
-                let cell = tableView.cellForRow(at: indexPath)
-                
-                let context = persistentContainer.viewContext
-                AuditoriumEntity.clearHistory(on: context)
-                GroupEntity.clearHistory(on: context)
-                TeacherEntity.clearHistory(on: context)
-                
-                persistentContainer.viewContext.refreshAllObjects()
-                
-                cell?.isSelected = false
-            } 
         }
     }
-
+    
     // MARK: - Navigation
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier else { return }
-
+        
         switch identifier {
-
+            
         case "showWebView":
             let vc = segue.destination as? WebViewController
             if let (title, url) = (sender as? (String, String)) {
                 vc?.urlString = url
                 vc?.title = title
             }
-
+            
         default:
             break
         }
