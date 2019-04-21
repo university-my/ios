@@ -24,14 +24,14 @@
                         <sections>
                             <tableViewSection id="dsZ-JP-mgh">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="8ph-AF-sdi" style="IBUITableViewCellStyleDefault" id="HtF-xZ-SWE">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="gXn-G5-t2A" style="IBUITableViewCellStyleDefault" id="gSd-6S-Lug">
                                         <rect key="frame" x="0.0" y="35" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HtF-xZ-SWE" id="utS-Tb-hzy">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gSd-6S-Lug" id="OCr-kp-fI1">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Auditoriums" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8ph-AF-sdi">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Groups" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gXn-G5-t2A">
                                                     <rect key="frame" x="16" y="0.0" width="324" height="43.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -60,14 +60,14 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="Static Section Color"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="gXn-G5-t2A" style="IBUITableViewCellStyleDefault" id="gSd-6S-Lug">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="8ph-AF-sdi" style="IBUITableViewCellStyleDefault" id="HtF-xZ-SWE">
                                         <rect key="frame" x="0.0" y="123" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gSd-6S-Lug" id="OCr-kp-fI1">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HtF-xZ-SWE" id="utS-Tb-hzy">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Groups" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gXn-G5-t2A">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Auditoriums" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8ph-AF-sdi">
                                                     <rect key="frame" x="16" y="0.0" width="324" height="43.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -95,7 +95,10 @@
                     </toolbarItems>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
                     <connections>
+                        <outlet property="auditoriumsCell" destination="HtF-xZ-SWE" id="yBj-Sk-sn3"/>
+                        <outlet property="groupsCell" destination="gSd-6S-Lug" id="Mzm-wv-cOy"/>
                         <outlet property="statusButton" destination="LS2-pb-oGY" id="3TN-Ak-J6p"/>
+                        <outlet property="teachersCell" destination="Kfv-xO-voe" id="c6i-Hl-W89"/>
                         <segue destination="5Xk-Va-4eS" kind="show" identifier="showGroups" id="G0B-aq-jyj"/>
                         <segue destination="MNV-Wm-DDm" kind="show" identifier="showTeachers" id="Vs2-eZ-oDS"/>
                         <segue destination="rcu-ZD-gZU" kind="show" identifier="showAuditoriums" id="1AW-LD-QjB"/>

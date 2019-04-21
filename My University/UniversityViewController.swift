@@ -10,17 +10,39 @@ import UIKit
 
 class UniversityViewController: GenericTableViewController {
     
+    struct Row {
+        
+        let kind: Kind
+        
+        enum Kind {
+            case auditoriums
+            case groups
+            case teachers
+        }
+    }
+    
     // MARK: - Properties
     
     var university: UniversityEntity?
+    
     private var auditoriumsDataSource: AuditoriumDataSource?
     private var groupsDataSource: GroupsDataSource?
     private var teachersDataSource: TeacherDataSource?
+    
+    var rows: [Row] = []
+    
+    // MARK: - Cells
+    
+    @IBOutlet weak var groupsCell: UITableViewCell!
+    @IBOutlet weak var teachersCell: UITableViewCell!
+    @IBOutlet weak var auditoriumsCell: UITableViewCell!
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureRows()
         
         // Title
         title = university?.shortName
@@ -43,20 +65,31 @@ class UniversityViewController: GenericTableViewController {
     
     // MARK: - Table
     
+    private func configureRows() {
+        guard let university = university else { return }
+        
+        if university.isKPI {
+            let grops = Row(kind: .groups)
+            let teachers = Row(kind: .teachers)
+            rows = [grops, teachers]
+        } else {
+            let grops = Row(kind: .groups)
+            let teachers = Row(kind: .teachers)
+            let auditoriums = Row(kind: .auditoriums)
+            rows = [grops, teachers, auditoriums]
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.row {
-            
-        case 0:
+        let row = rows[indexPath.row]
+        
+        switch row.kind {
+        case .auditoriums:
             performSegue(withIdentifier: "showAuditoriums", sender: nil)
-            
-        case 1:
-            performSegue(withIdentifier: "showTeachers", sender: nil)
-            
-        case 2:
+        case .groups:
             performSegue(withIdentifier: "showGroups", sender: nil)
-            
-        default:
-            break
+        case .teachers:
+            performSegue(withIdentifier: "showTeachers", sender: nil)
         }
     }
     
@@ -85,6 +118,25 @@ class UniversityViewController: GenericTableViewController {
             
         default:
             break
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return rows.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let row = rows[indexPath.row]
+        switch row.kind {
+            
+        case .groups:
+            return groupsCell
+            
+        case .teachers:
+            return teachersCell
+            
+        case .auditoriums:
+            return auditoriumsCell
         }
     }
     
@@ -146,7 +198,7 @@ class UniversityViewController: GenericTableViewController {
     
     private func shouldImportAuditoriums() -> Bool {
         guard let university = university else { return false }
-        if university.url == "kpi" {
+        if university.isKPI {
             return false
         } else {
             return true

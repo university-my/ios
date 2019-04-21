@@ -12,6 +12,18 @@ import CoreData
 
 @objc(UniversityEntity)
 public class UniversityEntity: NSManagedObject {
+    
+    // MARK: - Properties
+    
+    var isKPI: Bool {
+        if url == "kpi" {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    // MARK: - Methods
 
     static func fetch(_ ids: [Int64], context: NSManagedObjectContext) -> [UniversityEntity] {
         let request: NSFetchRequest<UniversityEntity> = UniversityEntity.fetchRequest()
