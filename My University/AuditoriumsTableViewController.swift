@@ -106,7 +106,7 @@ class AuditoriumsTableViewController: SearchableTableViewController {
         switch identifier {
             
         case "auditoriumDetailed":
-            if let detailTableViewController = segue.destination as? AuditoriumScheduleTableViewController {
+            if let detailTableViewController = segue.destination as? AuditoriumTableViewController {
                 if let indexPath = tableView.indexPathForSelectedRow {
                     let selectedAuditorium = dataSource?.fetchedResultsController?.object(at: indexPath)
                     detailTableViewController.auditorium = selectedAuditorium

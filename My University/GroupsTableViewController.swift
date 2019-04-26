@@ -116,7 +116,7 @@ class GroupsTableViewController: SearchableTableViewController {
         switch identifier {
             
         case "groupDetailed":
-            if let detailTableViewController = segue.destination as? GroupScheduleTableViewController {
+            if let detailTableViewController = segue.destination as? GroupTableViewController {
                 if let indexPath = tableView.indexPathForSelectedRow {
                     let selectedGroup = dataSource?.fetchedResultsController?.object(at: indexPath)
                     detailTableViewController.group = selectedGroup

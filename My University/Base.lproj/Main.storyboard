@@ -511,7 +511,7 @@
         <!--Group-->
         <scene sceneID="qdV-fq-iVk">
             <objects>
-                <tableViewController storyboardIdentifier="GroupScheduleTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kjp-pL-LDS" customClass="GroupScheduleTableViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="GroupScheduleTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kjp-pL-LDS" customClass="GroupTableViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="iIO-G2-xlt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -550,18 +550,18 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
+                        <barButtonItem id="iLU-gx-Yjg"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="geK-bv-4Bs"/>
+                        <barButtonItem title="Status text" id="mdU-eV-C7w">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="JwO-hz-qje"/>
                         <barButtonItem systemItem="refresh" id="xXf-6C-2Ni">
                             <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
                             <connections>
                                 <action selector="refresh:" destination="kjp-pL-LDS" id="cd8-jD-p7K"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="geK-bv-4Bs"/>
-                        <barButtonItem title="Status text" id="mdU-eV-C7w">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="JwO-hz-qje"/>
-                        <barButtonItem id="iLU-gx-Yjg"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Group" id="wCI-ox-0ZG">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="C8w-vY-YiV">
@@ -701,7 +701,7 @@
         <!--Teacher-->
         <scene sceneID="07m-HT-bhX">
             <objects>
-                <tableViewController storyboardIdentifier="TeacherScheduleTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xEv-Se-Sjg" customClass="TeacherScheduleTableViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TeacherScheduleTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xEv-Se-Sjg" customClass="TeacherTableViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="6Hg-Cb-AK9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -740,18 +740,18 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
+                        <barButtonItem id="pXh-gZ-cr9"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="f8t-eU-nSu"/>
+                        <barButtonItem title="Status text" id="yZL-hE-NWI">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Oc9-Ne-LoN"/>
                         <barButtonItem systemItem="refresh" id="DWA-Ui-Kg2">
                             <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
                             <connections>
                                 <action selector="refresh:" destination="xEv-Se-Sjg" id="c3e-WG-ICc"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="f8t-eU-nSu"/>
-                        <barButtonItem title="Status text" id="yZL-hE-NWI">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Oc9-Ne-LoN"/>
-                        <barButtonItem id="pXh-gZ-cr9"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Teacher" id="zWn-2a-KNf">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="VHM-Tg-f5d">
@@ -843,7 +843,7 @@
         <!--Auditorium-->
         <scene sceneID="KBe-rf-Vf8">
             <objects>
-                <tableViewController storyboardIdentifier="AuditoriumScheduleTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ds8-eS-Cn9" customClass="AuditoriumScheduleTableViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AuditoriumScheduleTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ds8-eS-Cn9" customClass="AuditoriumTableViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="g53-0i-sFe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -882,18 +882,18 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
+                        <barButtonItem id="YMM-TR-6Ib"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="qv5-tK-bth"/>
+                        <barButtonItem title="Status text" id="QsR-27-aNW">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Kdo-jM-8eX"/>
                         <barButtonItem systemItem="refresh" id="mRr-qL-UHb">
                             <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
                             <connections>
                                 <action selector="refresh:" destination="ds8-eS-Cn9" id="Zhn-jA-Ees"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="qv5-tK-bth"/>
-                        <barButtonItem title="Status text" id="QsR-27-aNW">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Kdo-jM-8eX"/>
-                        <barButtonItem id="YMM-TR-6Ib"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Auditorium" id="iff-ln-ZeD">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="QZK-Gm-bvA">

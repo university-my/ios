@@ -1,5 +1,5 @@
 //
-//  AuditoriumScheduleTableViewController.swift
+//  AuditoriumTableViewController.swift
 //  My University
 //
 //  Created by Yura Voevodin on 12/8/18.
@@ -9,9 +9,7 @@
 import CoreData
 import UIKit
 
-// TODO: Rename to "auditorium"
-
-class AuditoriumScheduleTableViewController: GenericTableViewController {
+class AuditoriumTableViewController: GenericTableViewController {
     
     // MARK: - Properties
     
@@ -46,8 +44,13 @@ class AuditoriumScheduleTableViewController: GenericTableViewController {
         if let auditorium = auditorium {
             title = auditorium.name
             performFetch()
-            
-            // TODO: Import records if empty
+
+            let records = fetchedResultsController?.fetchedObjects ?? []
+            if records.isEmpty {
+                // Import records if empty
+                refreshButton.isEnabled = false
+                importRecords()
+            }
         }
     }
     

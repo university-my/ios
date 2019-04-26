@@ -1,17 +1,15 @@
 //
-//  GroupScheduleTableViewController.swift
-//  Schedule
+//  TeacherTableViewController.swift
+//  My University
 //
-//  Created by Yura Voevodin on 19.11.17.
-//  Copyright © 2017 Yura Voevodin. All rights reserved.
+//  Created by Yura Voevodin on 2/14/19.
+//  Copyright © 2019 Yura Voevodin. All rights reserved.
 //
 
 import CoreData
 import UIKit
 
-// TODO: Rename to "group"
-
-class GroupScheduleTableViewController: GenericTableViewController {
+class TeacherTableViewController: GenericTableViewController {
     
     // MARK: - Properties
     
@@ -26,30 +24,33 @@ class GroupScheduleTableViewController: GenericTableViewController {
     @IBOutlet weak var statusButton: UIBarButtonItem!
     
     // MARK: - Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // For notifications
         configureNotificationLabel()
         statusButton.customView = notificationLabel
-        
+
         tableView.rowHeight = UITableView.automaticDimension
         
-        // Mark group as visited
-        markGroupAsVisited()
+        // Mark teacher as visited
+        markTeacherAsVisited()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let group = group {
-            // Name of the Group.
-            title = group.name
-            
+        if let teacher = teacher {
+            title = teacher.name
             performFetch()
-            
-            // TODO: Import records if empty
+
+            let records = fetchedResultsController?.fetchedObjects ?? []
+            if records.isEmpty {
+                // Import records if empty
+                refreshButton.isEnabled = false
+                importRecords()
+            }
         }
     }
     
@@ -65,9 +66,9 @@ class GroupScheduleTableViewController: GenericTableViewController {
     // MARK: - Share
     
     @IBAction func share(_ sender: Any) {
-        guard let group = group else { return }
-        guard let universityURL = group.university?.url else { return }
-        let url = Settings.shared.baseURL + "/universities/\(universityURL)/groups/\(group.id)"
+        guard let teacher = teacher else { return }
+        guard let universityURL = teacher.university?.url else { return }
+        let url = Settings.shared.baseURL + "/universities/\(universityURL)/teachers/\(teacher.id)"
         if let siteURL = URL(string: url) {
             let sharedItems = [siteURL]
             let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
@@ -77,52 +78,53 @@ class GroupScheduleTableViewController: GenericTableViewController {
     
     // MARK: - Import Records
     
-    var group: GroupEntity?
-    var groupID: Int64?
+    var teacher: TeacherEntity?
+    var teacherID: Int64?
     
-    private var importManager: Record.ImportForGroup?
+    private var importManager: Record.ImportForTeacher?
     
     private func importRecords() {
         // Do nothing without CoreData.
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         guard let persistentContainer = appDelegate?.persistentContainer else { return }
         
-        guard let group = group else { return }
-        guard let university = group.university else { return }
+        guard let teacher = teacher else { return }
+        guard let university = teacher.university else { return }
         
         refreshButton.isEnabled = false
         let text = NSLocalizedString("Loading records ...", comment: "")
         showNotification(text: text)
         
-        // Download records for Group from backend and save to database.
-        importManager = Record.ImportForGroup(persistentContainer: persistentContainer, group: group, university: university)
-        self.importManager?.importRecords({ (error) in
-            
-            DispatchQueue.main.async {
-                if let error = error {
-                    self.showNotification(text: error.localizedDescription)
-                } else {
-                    self.hideNotification()
+        // Download records for Teacher from backend and save to database.
+        importManager = Record.ImportForTeacher(persistentContainer: persistentContainer, teacher: teacher, university: university)
+        DispatchQueue.global().async {
+            self.importManager?.importRecords({ (error) in
+                
+                DispatchQueue.main.async {
+                    if let error = error {
+                        self.showNotification(text: error.localizedDescription)
+                    } else {
+                        self.hideNotification()
+                    }
+                    self.performFetch()
+                    self.tableView.reloadData()
+                    self.refreshControl?.endRefreshing()
+                    self.refreshButton.isEnabled = true
                 }
-                self.performFetch()
-                self.tableView.reloadData()
-                self.refreshControl?.endRefreshing()
-                self.refreshButton.isEnabled = true
-            }
-        })
+            })
+        }
     }
-    
+
     // MARK: - Table view data source
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedResultsController?.sections?.count ?? 0
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let section = fetchedResultsController?.sections?[safe: section]
         return section?.numberOfObjects ?? 0
     }
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "detailTableCell", for: indexPath)
@@ -153,6 +155,12 @@ class GroupScheduleTableViewController: GenericTableViewController {
             headerView.backgroundView = backgroundView
             headerView.textLabel?.textColor = UIColor.lightText
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = .cellSelectionColor
+        cell.selectedBackgroundView = bgColorView
     }
     
     // MARK: - Table view delegate
@@ -186,14 +194,14 @@ class GroupScheduleTableViewController: GenericTableViewController {
     }()
     
     private lazy var fetchedResultsController: NSFetchedResultsController<RecordEntity>? = {
-        guard let group = group else { return nil }
+        guard let teacher = teacher else { return nil }
         let request: NSFetchRequest<RecordEntity> = RecordEntity.fetchRequest()
         
         let dateString = NSSortDescriptor(key: #keyPath(RecordEntity.dateString), ascending: true)
         let time = NSSortDescriptor(key: #keyPath(RecordEntity.time), ascending: true)
         
         request.sortDescriptors = [dateString, time]
-        request.predicate = NSPredicate(format: "ANY groups == %@", group)
+        request.predicate = NSPredicate(format: "teacher == %@", teacher)
         request.fetchBatchSize = 20
         
         if let context = viewContext {
@@ -228,39 +236,15 @@ class GroupScheduleTableViewController: GenericTableViewController {
     
     // MARK: - Is visited
     
-    private func markGroupAsVisited() {
+    private func markTeacherAsVisited() {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         viewContext?.perform {
-            if let group = self.group {
-                group.isVisited = true
+            if let teacher = self.teacher {
+                teacher.isVisited = true
                 appDelegate?.saveContext()
             }
         }
     }
 }
 
-// MARK: - UIStateRestoring
-
-extension GroupScheduleTableViewController {
-    
-    override func encodeRestorableState(with coder: NSCoder) {
-        if let group = group {
-            coder.encode(group.id, forKey: "groupID")
-        }
-        super.encodeRestorableState(with: coder)
-    }
-    
-    override func decodeRestorableState(with coder: NSCoder) {
-        groupID = coder.decodeInt64(forKey: "groupID")
-        
-        super.decodeRestorableState(with: coder)
-    }
-    
-    override func applicationFinishedRestoringState() {
-        if let id = groupID, let context = viewContext {
-            if let group = GroupEntity.fetch(id: id, context: context) {
-                self.group = group
-            }
-        }
-    }
-}
+// TODO: Add State restoration

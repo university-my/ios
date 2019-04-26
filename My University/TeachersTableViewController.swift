@@ -107,7 +107,7 @@ class TeachersTableViewController: SearchableTableViewController {
         switch identifier {
             
         case "teacherDetailed":
-            if let detailTableViewController = segue.destination as? TeacherScheduleTableViewController {
+            if let detailTableViewController = segue.destination as? TeacherTableViewController {
                 if let indexPath = tableView.indexPathForSelectedRow {
                     let selectedTeacher = dataSource?.fetchedResultsController?.object(at: indexPath)
                     detailTableViewController.teacher = selectedTeacher
