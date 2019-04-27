@@ -107,10 +107,18 @@ class AuditoriumsTableViewController: SearchableTableViewController {
             
         case "auditoriumDetailed":
             if let detailTableViewController = segue.destination as? AuditoriumTableViewController {
-                if let indexPath = tableView.indexPathForSelectedRow {
-                    let selectedAuditorium = dataSource?.fetchedResultsController?.object(at: indexPath)
-                    detailTableViewController.auditorium = selectedAuditorium
-                    detailTableViewController.auditoriumID = selectedAuditorium?.id
+                if searchController.isActive {
+                    if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
+                        let selectedAuditorium = resultsTableController.filteredAuditoriums[safe: indexPath.row]
+                        detailTableViewController.auditorium = selectedAuditorium
+                        detailTableViewController.auditoriumID = selectedAuditorium?.id
+                    }
+                } else {
+                    if let indexPath = tableView.indexPathForSelectedRow {
+                        let selectedAuditorium = dataSource?.fetchedResultsController?.object(at: indexPath)
+                        detailTableViewController.auditorium = selectedAuditorium
+                        detailTableViewController.auditoriumID = selectedAuditorium?.id
+                    }
                 }
             }
             

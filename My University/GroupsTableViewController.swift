@@ -117,10 +117,18 @@ class GroupsTableViewController: SearchableTableViewController {
             
         case "groupDetailed":
             if let detailTableViewController = segue.destination as? GroupTableViewController {
-                if let indexPath = tableView.indexPathForSelectedRow {
-                    let selectedGroup = dataSource?.fetchedResultsController?.object(at: indexPath)
-                    detailTableViewController.group = selectedGroup
-                    detailTableViewController.groupID = selectedGroup?.id
+                if searchController.isActive {
+                    if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
+                        let selectedGroup = resultsTableController.filteredGroups[safe: indexPath.row]
+                        detailTableViewController.group = selectedGroup
+                        detailTableViewController.groupID = selectedGroup?.id
+                    }
+                } else {
+                    if let indexPath = tableView.indexPathForSelectedRow {
+                        let selectedGroup = dataSource?.fetchedResultsController?.object(at: indexPath)
+                        detailTableViewController.group = selectedGroup
+                        detailTableViewController.groupID = selectedGroup?.id
+                    }
                 }
             }
             
