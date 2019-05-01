@@ -146,11 +146,12 @@ class RecordDetailedTableViewController: GenericTableViewController {
             cell.detailTextLabel?.text = nameAndTime()
             
         case .pairName(let name, let type):
-            if let name = name {
+            if let name = name, name.isEmpty == false {
                 cell.textLabel?.text = name
                 cell.detailTextLabel?.text = type
             } else if let type = type {
                 cell.textLabel?.text = type
+                cell.detailTextLabel?.text = nil
             }
             
         case .reason(let reason):
