@@ -82,7 +82,7 @@ class RecordDetailedTableViewController: GenericTableViewController {
         var sections: [SectionType] = []
         
         // Name and type
-        if record.name != nil || record.type != nil {
+        if (record.name != nil && record.name != "") || (record.type != nil && record.type != "") {
             sections.append(.pairName(name: record.name, type: record.type))
         }
         
