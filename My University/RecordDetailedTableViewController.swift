@@ -132,6 +132,7 @@ class RecordDetailedTableViewController: GenericTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "recordDetailed", for: indexPath)
+        cell.selectionStyle = .none
         
         let row = sections[indexPath.section]
         
