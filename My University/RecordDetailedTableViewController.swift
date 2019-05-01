@@ -154,6 +154,7 @@ class RecordDetailedTableViewController: GenericTableViewController {
             
         case .reason(let reason):
             cell.textLabel?.text = reason
+            cell.textLabel?.numberOfLines = 0
             cell.detailTextLabel?.text = nil
             
         case .auditorium(let auditorium):
