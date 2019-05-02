@@ -48,7 +48,6 @@ class AuditoriumTableViewController: GenericTableViewController {
             let records = fetchedResultsController?.fetchedObjects ?? []
             if records.isEmpty {
                 // Import records if empty
-                refreshButton.isEnabled = false
                 importRecords()
             }
         }
@@ -56,10 +55,7 @@ class AuditoriumTableViewController: GenericTableViewController {
     
     // MARK: - Pull to refresh
     
-    @IBOutlet weak var refreshButton: UIBarButtonItem!
-    
     @IBAction func refresh(_ sender: Any) {
-        refreshButton.isEnabled = false
         importRecords()
     }
     
@@ -91,7 +87,6 @@ class AuditoriumTableViewController: GenericTableViewController {
         guard let auditorium = auditorium else { return }
         guard let university = auditorium.university else { return }
         
-        refreshButton.isEnabled = false
         let text = NSLocalizedString("Loading records ...", comment: "")
         showNotification(text: text)
         
@@ -109,7 +104,6 @@ class AuditoriumTableViewController: GenericTableViewController {
                     self.performFetch()
                     self.tableView.reloadData()
                     self.refreshControl?.endRefreshing()
-                    self.refreshButton.isEnabled = true
                 }
             })
         }

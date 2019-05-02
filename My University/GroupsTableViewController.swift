@@ -136,6 +136,12 @@ class GroupsTableViewController: SearchableTableViewController {
             break
         }
     }
+    
+    // MARK: - Search
+    
+    @IBAction func search(_ sender: Any) {
+        searchController.searchBar.becomeFirstResponder()
+    }
 }
 
 // MARK: - UISearchResultsUpdating

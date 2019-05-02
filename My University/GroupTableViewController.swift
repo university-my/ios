@@ -48,7 +48,6 @@ class GroupTableViewController: GenericTableViewController {
             let records = fetchedResultsController?.fetchedObjects ?? []
             if records.isEmpty {
                 // Import records if empty
-                refreshButton.isEnabled = false
                 importRecords()
             }
         }
@@ -56,10 +55,7 @@ class GroupTableViewController: GenericTableViewController {
     
     // MARK: - Pull to refresh
     
-    @IBOutlet weak var refreshButton: UIBarButtonItem!
-    
     @IBAction func refresh(_ sender: Any) {
-        refreshButton.isEnabled = false
         importRecords()
     }
     
@@ -91,7 +87,6 @@ class GroupTableViewController: GenericTableViewController {
         guard let group = group else { return }
         guard let university = group.university else { return }
         
-        refreshButton.isEnabled = false
         let text = NSLocalizedString("Loading records ...", comment: "")
         showNotification(text: text)
         
@@ -108,7 +103,6 @@ class GroupTableViewController: GenericTableViewController {
                 self.performFetch()
                 self.tableView.reloadData()
                 self.refreshControl?.endRefreshing()
-                self.refreshButton.isEnabled = true
             }
         })
     }
