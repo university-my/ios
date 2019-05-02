@@ -25,10 +25,11 @@ extension Group {
         
         // MARK: - Download Groups
         
-        func downloadGroups(_ completion: @escaping ((_ error: Error?) -> ())) {
+        func downloadGroups(universityURL: String?, _ completion: @escaping ((_ error: Error?) -> ())) {
+            guard let universityURL = universityURL else { return }
             completionHandler = completion
             
-            guard let url = URL(string: Settings.shared.baseURL + "/universities/sumdu/groups.json") else {
+            guard let url = URL(string: Settings.shared.baseURL + "/universities/\(universityURL)/groups.json") else {
                 completionHandler?(nil)
                 return
             }

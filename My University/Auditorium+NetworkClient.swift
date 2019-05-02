@@ -25,9 +25,11 @@ extension Auditorium {
         
         // MARK: - Download Auditoriums
         
-        func downloadAuditoriums(_ completion: @escaping ((_ error: Error?) -> ())) {
+        func downloadAuditoriums(universityURL: String?, _ completion: @escaping ((_ error: Error?) -> ())) {
+            guard let universityURL = universityURL else { return }
             completionHandler = completion
-            guard let url = URL(string: Settings.shared.baseURL + "/universities/sumdu/auditoriums.json") else {
+            
+            guard let url = URL(string: Settings.shared.baseURL + "/universities/\(universityURL)/auditoriums.json") else {
                 completionHandler?(nil)
                 return
             }

@@ -2,7 +2,7 @@
 //  TeacherEntity+CoreDataProperties.swift
 //  My University
 //
-//  Created by Yura Voevodin on 2/14/19.
+//  Created by Yura Voevodin on 4/18/19.
 //  Copyright © 2019 Yura Voevodin. All rights reserved.
 //
 //
@@ -17,11 +17,12 @@ extension TeacherEntity {
         return NSFetchRequest<TeacherEntity>(entityName: "TeacherEntity")
     }
 
-    @NSManaged public var id: Int64
-    @NSManaged public var name: String?
     @NSManaged public var firstSymbol: String?
+    @NSManaged public var id: Int64
     @NSManaged public var isVisited: Bool
+    @NSManaged public var name: String?
     @NSManaged public var records: NSSet?
+    @NSManaged public var university: UniversityEntity?
 
 }
 

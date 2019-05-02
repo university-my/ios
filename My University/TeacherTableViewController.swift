@@ -1,15 +1,15 @@
 //
-//  GroupScheduleTableViewController.swift
-//  Schedule
+//  TeacherTableViewController.swift
+//  My University
 //
-//  Created by Yura Voevodin on 19.11.17.
-//  Copyright © 2017 Yura Voevodin. All rights reserved.
+//  Created by Yura Voevodin on 2/14/19.
+//  Copyright © 2019 Yura Voevodin. All rights reserved.
 //
 
 import CoreData
 import UIKit
 
-class GroupScheduleTableViewController: UITableViewController {
+class TeacherTableViewController: GenericTableViewController {
     
     // MARK: - Properties
     
@@ -21,133 +21,110 @@ class GroupScheduleTableViewController: UITableViewController {
     
     private var sectionsTitles: [String] = []
     
-    // MARK: - Lifecycle
+    @IBOutlet weak var statusButton: UIBarButtonItem!
     
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // For notifications
+        configureNotificationLabel()
+        statusButton.customView = notificationLabel
+
         tableView.rowHeight = UITableView.automaticDimension
         
-        // Mark group as visited
-        markGroupAsVisited()
-        
-        configureButtons()
+        // Mark teacher as visited
+        markTeacherAsVisited()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let group = group {
-            // Name of the Group.
-            title = group.name
-            
+        if let teacher = teacher {
+            title = teacher.name
             performFetch()
-            
-            setTitleForUpdateButton()
+
+            let records = fetchedResultsController?.fetchedObjects ?? []
+            if records.isEmpty {
+                // Import records if empty
+                refreshButton.isEnabled = false
+                importRecords()
+            }
         }
     }
     
-    // MARK: - UIBarButtonItem's
+    // MARK: - Pull to refresh
     
-    private var updateButton: UIBarButtonItem?
-    private var shareButton: UIBarButtonItem?
+    @IBOutlet weak var refreshButton: UIBarButtonItem!
     
-    @objc func update(_ sender: Any) {
+    @IBAction func refresh(_ sender: Any) {
+        refreshButton.isEnabled = false
         importRecords()
     }
     
-    @objc func share(_ sender: Any) {
-        guard let group = group else { return }
-        var sharedItems: [Any] = []
-        let url = "https://my-university.com.ua/universities/sumdu/groups/\(group.id)"
+    // MARK: - Share
+    
+    @IBAction func share(_ sender: Any) {
+        guard let teacher = teacher else { return }
+        guard let universityURL = teacher.university?.url else { return }
+        let url = Settings.shared.baseURL + "/universities/\(universityURL)/teachers/\(teacher.id)"
         if let siteURL = URL(string: url) {
-            sharedItems = [siteURL]
+            let sharedItems = [siteURL]
+            let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
+            present(vc, animated: true)
         }
-        let activityViewController = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
-        self.present(activityViewController, animated: true, completion: nil)
-    }
-    
-    private func setTitleForUpdateButton() {
-        if fetchedResultsController?.fetchedObjects?.isEmpty == true {
-            updateButton?.title = NSLocalizedString("Download", comment: "Title for button on the Group screen")
-        } else {
-            updateButton?.title = NSLocalizedString("Update", comment: "Title for button on the Group screen")
-        }
-    }
-    
-    private func configureButtons() {
-        activiyIndicatior?.removeFromSuperview()
-        activiyIndicatior = nil
-        
-        updateButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(update(_:)))
-        shareButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.action, target: self, action: #selector(share(_:)))
-        navigationItem.setRightBarButtonItems([shareButton!, updateButton!], animated: true)
-    }
-    
-    // MARK: - Activity indicatior
-    
-    private var activiyIndicatior: UIActivityIndicatorView?
-    
-    private func showActiviyIndicatior() {
-        navigationItem.rightBarButtonItems = []
-        updateButton = nil
-        shareButton = nil
-        
-        let activiyIndicatior = UIActivityIndicatorView(style: .white)
-        activiyIndicatior.color = .orange
-        activiyIndicatior.hidesWhenStopped = true
-        activiyIndicatior.startAnimating()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activiyIndicatior)
-        navigationItem.rightBarButtonItem?.tintColor = .orange
-        self.activiyIndicatior = activiyIndicatior
     }
     
     // MARK: - Import Records
     
-    var group: GroupEntity?
-    var groupID: Int64?
+    var teacher: TeacherEntity?
+    var teacherID: Int64?
     
-    private var importForGroup: Record.ImportForGroup?
+    private var importManager: Record.ImportForTeacher?
     
     private func importRecords() {
         // Do nothing without CoreData.
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         guard let persistentContainer = appDelegate?.persistentContainer else { return }
         
-        guard let forGroup = group else { return }
+        guard let teacher = teacher else { return }
+        guard let university = teacher.university else { return }
         
-        showActiviyIndicatior()
+        refreshButton.isEnabled = false
+        let text = NSLocalizedString("Loading records ...", comment: "")
+        showNotification(text: text)
         
-        // Download records for Group from backend and save to database.
-        importForGroup = Record.ImportForGroup(persistentContainer: persistentContainer, group: forGroup)
-        self.importForGroup?.importRecords({ (error) in
-            
-            DispatchQueue.main.async {
-                if let error = error {
-                    let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true)
+        // Download records for Teacher from backend and save to database.
+        importManager = Record.ImportForTeacher(persistentContainer: persistentContainer, teacher: teacher, university: university)
+        DispatchQueue.global().async {
+            self.importManager?.importRecords({ (error) in
+                
+                DispatchQueue.main.async {
+                    if let error = error {
+                        self.showNotification(text: error.localizedDescription)
+                    } else {
+                        self.hideNotification()
+                    }
+                    self.performFetch()
+                    self.tableView.reloadData()
+                    self.refreshControl?.endRefreshing()
+                    self.refreshButton.isEnabled = true
                 }
-                self.performFetch()
-                self.tableView.reloadData()
-                self.refreshControl?.endRefreshing()
-                self.configureButtons()
-                self.setTitleForUpdateButton()
-            }
-        })
+            })
+        }
     }
-    
+
     // MARK: - Table view data source
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedResultsController?.sections?.count ?? 0
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let section = fetchedResultsController?.sections?[safe: section]
         return section?.numberOfObjects ?? 0
     }
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "detailTableCell", for: indexPath)
@@ -217,14 +194,14 @@ class GroupScheduleTableViewController: UITableViewController {
     }()
     
     private lazy var fetchedResultsController: NSFetchedResultsController<RecordEntity>? = {
-        guard let group = group else { return nil }
+        guard let teacher = teacher else { return nil }
         let request: NSFetchRequest<RecordEntity> = RecordEntity.fetchRequest()
         
         let dateString = NSSortDescriptor(key: #keyPath(RecordEntity.dateString), ascending: true)
         let time = NSSortDescriptor(key: #keyPath(RecordEntity.time), ascending: true)
         
         request.sortDescriptors = [dateString, time]
-        request.predicate = NSPredicate(format: "ANY groups == %@", group)
+        request.predicate = NSPredicate(format: "teacher == %@", teacher)
         request.fetchBatchSize = 20
         
         if let context = viewContext {
@@ -259,39 +236,15 @@ class GroupScheduleTableViewController: UITableViewController {
     
     // MARK: - Is visited
     
-    private func markGroupAsVisited() {
+    private func markTeacherAsVisited() {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         viewContext?.perform {
-            if let group = self.group {
-                group.isVisited = true
+            if let teacher = self.teacher {
+                teacher.isVisited = true
                 appDelegate?.saveContext()
             }
         }
     }
 }
 
-// MARK: - UIStateRestoring
-
-extension GroupScheduleTableViewController {
-    
-    override func encodeRestorableState(with coder: NSCoder) {
-        if let group = group {
-            coder.encode(group.id, forKey: "groupID")
-        }
-        super.encodeRestorableState(with: coder)
-    }
-    
-    override func decodeRestorableState(with coder: NSCoder) {
-        groupID = coder.decodeInt64(forKey: "groupID")
-        
-        super.decodeRestorableState(with: coder)
-    }
-    
-    override func applicationFinishedRestoringState() {
-        if let id = groupID, let context = viewContext {
-            if let group = GroupEntity.fetch(id: id, context: context) {
-                self.group = group
-            }
-        }
-    }
-}
+// TODO: Add State restoration

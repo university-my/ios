@@ -20,6 +20,7 @@ extension Record {
         private let networkClient: NetworkClient
         private var completionHandler: ((_ error: Error?) -> ())?
         private let group: GroupEntity
+        private let university: UniversityEntity
         
         private let persistentContainer: NSPersistentContainer
         
@@ -35,7 +36,7 @@ extension Record {
         
         // MARK: - Initialization
         
-        init?(persistentContainer: NSPersistentContainer, group: GroupEntity) {
+        init?(persistentContainer: NSPersistentContainer, group: GroupEntity, university: UniversityEntity) {
             // Cache file
             let cachesFolder = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             guard let cacheFile = cachesFolder?.appendingPathComponent("group_records.json") else { return nil }
@@ -43,6 +44,7 @@ extension Record {
             self.cacheFile = cacheFile
             self.persistentContainer = persistentContainer
             self.group = group
+            self.university = university
             networkClient = NetworkClient(cacheFile: self.cacheFile)
         }
         
@@ -52,7 +54,7 @@ extension Record {
         func importRecords(_ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            networkClient.downloadRecords(groupID: group.id) { (error) in
+            networkClient.downloadRecords(groupID: group.id, unversityURL: university.url ?? "") { (error) in
                 if let error = error {
                     self.completionHandler?(error)
                 } else {
@@ -103,9 +105,11 @@ extension Record {
         /// Delete previous records and insert new records
         private func syncRecords(_ json: [[String: Any]], taskContext: NSManagedObjectContext) {
             
-            let groupInContext = taskContext.object(with: group.objectID)
+            guard let groupInContext = taskContext.object(with: group.objectID) as? GroupEntity else { return }
             
             taskContext.performAndWait {
+                
+                // TODO: Don't delete records
                 
                 // Execute the request to batch delete and merge the changes to viewContext.
                 
@@ -135,7 +139,7 @@ extension Record {
                 }
                 
                 for record in parsedRecords {
-                    self.insert(record, context: taskContext)
+                    self.insert(record, group: groupInContext, context: taskContext)
                 }
                 
                 // Finishing import. Save context.
@@ -157,7 +161,7 @@ extension Record {
         }
         
         /// Insert new record with related group
-        private func insert(_ parsedRecord: Record, context: NSManagedObjectContext) {
+        private func insert(_ parsedRecord: Record, group: GroupEntity, context: NSManagedObjectContext) {
             let recordEntity = RecordEntity(context: context)
             
             recordEntity.id = NSNumber(value: parsedRecord.id).int64Value
@@ -175,7 +179,7 @@ extension Record {
             }
             
             // Groups
-            let groups = GroupEntity.fetch(parsedRecord.groups, context: context)
+            let groups = GroupEntity.fetch(parsedRecord.groups, university: group.university, context: context)
             let set = NSSet(array: groups)
             recordEntity.addToGroups(set)
             

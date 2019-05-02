@@ -8,7 +8,9 @@
 
 import UIKit
 
-class RecordDetailedTableViewController: UITableViewController {
+class RecordDetailedTableViewController: GenericTableViewController {
+    
+    // TODO: Add description witn name to the bottom
     
     // MARK: - Types
     
@@ -55,8 +57,20 @@ class RecordDetailedTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = record?.name
+        title = nameAndTime()
         sections = generateSections()
+    }
+    
+    /// Name and time
+    private func nameAndTime() -> String? {
+        guard let record = record else { return nil }
+        var detail = ""
+        if let pairName = record.pairName, let time = record.time {
+            detail += pairName + " (\(time))"
+        } else if let time = record.time {
+            detail += "(\(time))"
+        }
+        return detail
     }
     
     // MARK: - Sections
@@ -67,15 +81,15 @@ class RecordDetailedTableViewController: UITableViewController {
         guard let record = record else { return [] }
         var sections: [SectionType] = []
         
+        // Name and type
+        if (record.name != nil && record.name != "") || (record.type != nil && record.type != "") {
+            sections.append(.pairName(name: record.name, type: record.type))
+        }
+        
         // Date
         if let date = record.date {
             let dateString = dateFormatter.string(from: date)
             sections.append(.date(dateString: dateString))
-        }
-        
-        // Name and type
-        if record.name != nil || record.type != nil {
-            sections.append(.pairName(name: record.name, type: record.type))
         }
         
         // Description
@@ -118,6 +132,7 @@ class RecordDetailedTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "recordDetailed", for: indexPath)
+        cell.selectionStyle = .none
         
         let row = sections[indexPath.section]
         
@@ -128,24 +143,20 @@ class RecordDetailedTableViewController: UITableViewController {
             cell.textLabel?.text = dateString
             
             // Name and time
-            var detail = ""
-            if let pairName = record?.pairName, let time = record?.time {
-                detail += pairName + " (\(time))"
-            } else if let time = record?.time {
-                detail += "(\(time))"
-            }
-            cell.detailTextLabel?.text = detail
+            cell.detailTextLabel?.text = nameAndTime()
             
         case .pairName(let name, let type):
-            if let name = name {
+            if let name = name, name.isEmpty == false {
                 cell.textLabel?.text = name
                 cell.detailTextLabel?.text = type
             } else if let type = type {
                 cell.textLabel?.text = type
+                cell.detailTextLabel?.text = nil
             }
             
         case .reason(let reason):
             cell.textLabel?.text = reason
+            cell.textLabel?.numberOfLines = 0
             cell.detailTextLabel?.text = nil
             
         case .auditorium(let auditorium):
@@ -167,54 +178,5 @@ class RecordDetailedTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sections[section].name
-    }
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let bgColorView = UIView()
-        bgColorView.backgroundColor = .cellSelectionColor
-        cell.selectedBackgroundView = bgColorView
-    }
-    
-    // MARK: - Table view delegate
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let section = sections[indexPath.section]
-//
-//        switch section {
-//
-//        case .auditorium(let auditorium):
-//            performSegue(withIdentifier: "showAuditorium", sender: auditorium)
-//
-//        case .groups(let groups):
-////            performSegue(withIdentifier: "showGroup", sender: auditorium)
-//            break
-//
-//        case .teacher(let teacher):
-//            performSegue(withIdentifier: "showTeacher", sender: teacher)
-//
-//        default:
-//            break
-//        }
-    }
-    
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        switch segue.identifier {
-            
-        case "showAuditorium":
-            if let destination = segue.destination as? AuditoriumScheduleTableViewController {
-                destination.auditorium = sender as? AuditoriumEntity
-            }
-            
-        case "showTeacher":
-            if let destination = segue.destination as? TeacherScheduleTableViewController {
-                destination.teacher = sender as? TeacherEntity
-            }
-            
-        default:
-            break
-        }
     }
 }

@@ -1,5 +1,5 @@
 //
-//  AuditoriumScheduleTableViewController.swift
+//  AuditoriumTableViewController.swift
 //  My University
 //
 //  Created by Yura Voevodin on 12/8/18.
@@ -9,7 +9,7 @@
 import CoreData
 import UIKit
 
-class AuditoriumScheduleTableViewController: UITableViewController {
+class AuditoriumTableViewController: GenericTableViewController {
     
     // MARK: - Properties
     
@@ -21,92 +21,67 @@ class AuditoriumScheduleTableViewController: UITableViewController {
     
     private var sectionsTitles: [String] = []
     
+    @IBOutlet weak var statusButton: UIBarButtonItem!
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // For notifications
+        configureNotificationLabel()
+        statusButton.customView = notificationLabel
+        
         tableView.rowHeight = UITableView.automaticDimension
         
         // Mark auditorium as visited
         markAuditoriumAsVisited()
-        
-        configureButtons()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if let auditorium = auditorium {
-            // Title
             title = auditorium.name
-            
             performFetch()
-            
-            setTitleForUpdateButton()
+
+            let records = fetchedResultsController?.fetchedObjects ?? []
+            if records.isEmpty {
+                // Import records if empty
+                refreshButton.isEnabled = false
+                importRecords()
+            }
         }
     }
     
-    // MARK: - UIBarButtonItem's
+    // MARK: - Pull to refresh
     
-    private var updateButton: UIBarButtonItem?
-    private var shareButton: UIBarButtonItem?
+    @IBOutlet weak var refreshButton: UIBarButtonItem!
     
-    @objc func update(_ sender: Any) {
+    @IBAction func refresh(_ sender: Any) {
+        refreshButton.isEnabled = false
         importRecords()
     }
-
-    @objc func share(_ sender: Any) {
+    
+    // MARK: - Share
+    
+    @IBAction func share(_ sender: Any) {
         guard let auditorium = auditorium else { return }
-        var sharedItems: [Any] = []
-        let url = "https://my-university.com.ua/universities/sumdu/auditoriums/\(auditorium.id)"
+        guard let universityURL = auditorium.university?.url else { return }
+        let url = Settings.shared.baseURL + "/universities/\(universityURL)/auditoriums/\(auditorium.id)"
         if let siteURL = URL(string: url) {
-            sharedItems = [siteURL]
+            let sharedItems = [siteURL]
+            let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
+            present(vc, animated: true)
         }
-        let activityViewController = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
-        self.present(activityViewController, animated: true, completion: nil)
-    }
-    
-    private func setTitleForUpdateButton() {
-        if fetchedResultsController?.fetchedObjects?.isEmpty == true {
-            updateButton?.title = NSLocalizedString("Download", comment: "Title for button on the Auditorium screen")
-        } else {
-            updateButton?.title = NSLocalizedString("Update", comment: "Title for button on the Auditorium screen")
-        }
-    }
-    
-    private func configureButtons() {
-        activiyIndicatior?.removeFromSuperview()
-        activiyIndicatior = nil
-        
-        updateButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(update(_:)))
-        shareButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.action, target: self, action: #selector(share(_:)))
-        navigationItem.setRightBarButtonItems([shareButton!, updateButton!], animated: true)
-    }
-    
-    // MARK: - Activity indicatior
-    
-    private var activiyIndicatior: UIActivityIndicatorView?
-    
-    private func showActiviyIndicatior() {
-        navigationItem.rightBarButtonItems = []
-        updateButton = nil
-        shareButton = nil
-        
-        let activiyIndicatior = UIActivityIndicatorView(style: .white)
-        activiyIndicatior.color = .orange
-        activiyIndicatior.hidesWhenStopped = true
-        activiyIndicatior.startAnimating()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activiyIndicatior)
-        navigationItem.rightBarButtonItem?.tintColor = .orange
-        self.activiyIndicatior = activiyIndicatior
     }
     
     // MARK: - Import Records
     
     var auditorium: AuditoriumEntity?
+    var auditoriumID: Int64?
     
-    private var importForAuditorium: Record.ImportForAuditorium?
+    private var importManager: Record.ImportForAuditorium?
     
     private func importRecords() {
         // Do nothing without CoreData.
@@ -114,25 +89,27 @@ class AuditoriumScheduleTableViewController: UITableViewController {
         guard let persistentContainer = appDelegate?.persistentContainer else { return }
         
         guard let auditorium = auditorium else { return }
+        guard let university = auditorium.university else { return }
         
-        showActiviyIndicatior()
+        refreshButton.isEnabled = false
+        let text = NSLocalizedString("Loading records ...", comment: "")
+        showNotification(text: text)
         
         // Download records for Auditorium from backend and save to database.
-        importForAuditorium = Record.ImportForAuditorium(persistentContainer: persistentContainer, auditorium: auditorium)
+        importManager = Record.ImportForAuditorium(persistentContainer: persistentContainer, auditorium: auditorium, university: university)
         DispatchQueue.global().async {
-            self.importForAuditorium?.importRecords({ (error) in
+            self.importManager?.importRecords({ (error) in
                 
                 DispatchQueue.main.async {
                     if let error = error {
-                        let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                        self.present(alert, animated: true)
+                        self.showNotification(text: error.localizedDescription)
+                    } else {
+                        self.hideNotification()
                     }
                     self.performFetch()
                     self.tableView.reloadData()
                     self.refreshControl?.endRefreshing()
-                    self.configureButtons()
-                    self.setTitleForUpdateButton()
+                    self.refreshButton.isEnabled = true
                 }
             })
         }
@@ -270,3 +247,5 @@ class AuditoriumScheduleTableViewController: UITableViewController {
         }
     }
 }
+
+// TODO: Add State restoration

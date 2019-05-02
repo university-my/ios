@@ -20,16 +20,18 @@ extension Group {
         private let networkClient: NetworkClient
         private var completionHandler: ((_ error: Error?) -> ())?
         private let persistentContainer: NSPersistentContainer
+        private let university: UniversityEntity
         
         // MARK: - Initialization
         
-        init?(persistentContainer: NSPersistentContainer) {
+        init?(persistentContainer: NSPersistentContainer, university: UniversityEntity) {
             // Cache file
             let cachesFolder = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             guard let cacheFile = cachesFolder?.appendingPathComponent("groups.json") else { return nil }
             
             self.cacheFile = cacheFile
             self.persistentContainer = persistentContainer
+            self.university = university
             networkClient = NetworkClient(cacheFile: self.cacheFile)
         }
         
@@ -38,7 +40,7 @@ extension Group {
         func importGroups(_ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            networkClient.downloadGroups { (error) in
+            networkClient.downloadGroups(universityURL: university.url) { (error) in
                 if let error = error {
                     self.completionHandler?(error)
                 } else {
@@ -81,27 +83,82 @@ extension Group {
             
             taskContext.performAndWait {
                 
-                // Execute the request to batch delete and merge the changes to viewContext.
-                
-                let fetchRequest: NSFetchRequest<NSFetchRequestResult> = GroupEntity.fetchRequest()
-                let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-                deleteRequest.resultType = .resultTypeObjectIDs
-                do {
-                    let result = try taskContext.execute(deleteRequest) as? NSBatchDeleteResult
-                    if let objectIDArray = result?.result as? [NSManagedObjectID] {
-                        let changes = [NSDeletedObjectsKey: objectIDArray]
-                        NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [self.persistentContainer.viewContext])
-                    }
-                } catch {
-                    completionHandler?(error)
+                // University in current context
+                guard let universityInContext = taskContext.object(with: university.objectID) as? UniversityEntity else {
+                    return
                 }
                 
-                // Create new records.
-                
+                // Parse groups.
                 let parsedGroups = json.compactMap { Group($0) }
                 
-                for group in parsedGroups {
-                    self.insert(group, context: taskContext)
+                // Groups to update
+                let toUpdate = GroupEntity.fetch(parsedGroups, university: universityInContext, context: taskContext)
+                
+                // IDs to update
+                let idsToUpdate = toUpdate.map({ group in
+                    return group.id
+                })
+                
+                // Find groups to insert
+                let toInsert = parsedGroups.filter({ group in
+                    return (idsToUpdate.contains(group.id) == false)
+                })
+                
+                // IDs
+                let ids = parsedGroups.map({ group in
+                    return group.id
+                })
+                
+                // Now find groups to delete
+                let allGroups = GroupEntity.fetchAll(university: universityInContext, context: taskContext)
+                let toDelete = allGroups.filter({ group in
+                    return (ids.contains(group.id) == false)
+                })
+                
+                // 1. Delete
+                for group in toDelete {
+                    taskContext.delete(group)
+                }
+                
+                // 2. Update
+                for group in toUpdate {
+                    if let groupFromServer = parsedGroups.first(where: { (parsedGroup) -> Bool in
+                        return parsedGroup.id == group.id
+                    }) {
+                        // Update name if changed
+                        if groupFromServer.name != group.name {
+                            group.name = groupFromServer.name
+                            if let firstCharacter = groupFromServer.name.first {
+                                group.firstSymbol = String(firstCharacter).uppercased()
+                            } else {
+                                group.firstSymbol = ""
+                            }
+                        }
+                        
+                        if (group.records?.count ?? 0) > 0 {
+                            // Delete all related records
+                            // Because Group can be changed to another one.
+                            let fetchRequest: NSFetchRequest<NSFetchRequestResult> = RecordEntity.fetchRequest()
+                            
+                            fetchRequest.predicate = NSPredicate(format: "ANY groups = %@", group)
+                            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+                            deleteRequest.resultType = .resultTypeObjectIDs
+                            do {
+                                let result = try taskContext.execute(deleteRequest) as? NSBatchDeleteResult
+                                if let objectIDArray = result?.result as? [NSManagedObjectID] {
+                                    let changes = [NSDeletedObjectsKey: objectIDArray]
+                                    NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [self.persistentContainer.viewContext])
+                                }
+                            } catch {
+                                completionHandler?(error)
+                            }
+                        }
+                    }
+                }
+                
+                // 3. Insert
+                for group in toInsert {
+                    self.insert(group, university: universityInContext, context: taskContext)
                 }
                 
                 // Finishing import. Save context.
@@ -122,7 +179,7 @@ extension Group {
             }
         }
         
-        private func insert(_ parsedGroup: Group, context: NSManagedObjectContext) {
+        private func insert(_ parsedGroup: Group, university: UniversityEntity, context: NSManagedObjectContext) {
             let groupEntity = GroupEntity(context: context)
             
             if let firstCharacter = parsedGroup.name.first {
@@ -132,6 +189,7 @@ extension Group {
             }
             groupEntity.id = parsedGroup.id
             groupEntity.name = parsedGroup.name
+            groupEntity.university = university
         }
     }
 }

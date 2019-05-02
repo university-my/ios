@@ -11,17 +11,31 @@ import UIKit
 
 class AuditoriumDataSource: NSObject {
     
+    // MARK: - Init
+    
+    private var university: UniversityEntity
+    
+    init(university: UniversityEntity) {
+        self.university = university
+    }
+    
     // MARK: - NSManagedObjectContext
     
-    private lazy var viewContext: NSManagedObjectContext? = {
+    private lazy var persistentContainer: NSPersistentContainer? = {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        return appDelegate?.persistentContainer.viewContext
+        return appDelegate?.persistentContainer
+    }()
+    
+    private lazy var viewContext: NSManagedObjectContext? = {
+        return persistentContainer?.viewContext
     }()
     
     // MARK: - NSFetchedResultsController
     
     lazy var fetchedResultsController: NSFetchedResultsController<AuditoriumEntity>? = {
         let request: NSFetchRequest<AuditoriumEntity> = AuditoriumEntity.fetchRequest()
+        let predicate = NSPredicate(format: "university == %@", university)
+        request.predicate = predicate
         
         let firstSymbol = NSSortDescriptor(key: #keyPath(AuditoriumEntity.firstSymbol), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
         let name = NSSortDescriptor(key: #keyPath(AuditoriumEntity.name), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
@@ -60,20 +74,18 @@ class AuditoriumDataSource: NSObject {
         namesOfSections = names
     }
     
-    // MARK: - Import Auditoriums
+    // MARK: - Import
     
-    private var auditoriumsImportManager: Auditorium.Import?
+    private var importManager: Auditorium.Import?
     
     /// Import Auditoriums from backend
     func importAuditoriums(_ completion: @escaping ((_ error: Error?) -> ())) {
-        // Do nothing without CoreData.
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        guard let persistentContainer = appDelegate?.persistentContainer else { return }
+        guard let persistentContainer = persistentContainer else { return }
         
-        auditoriumsImportManager = Auditorium.Import(persistentContainer: persistentContainer)
+        importManager = Auditorium.Import(persistentContainer: persistentContainer, university: university)
         DispatchQueue.global().async { [weak self] in
             
-            self?.auditoriumsImportManager?.importAuditoriums({ (error) in
+            self?.importManager?.importAuditoriums({ (error) in
                 
                 DispatchQueue.main.async {
                     completion(error)
@@ -97,7 +109,7 @@ extension AuditoriumDataSource: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "searchResultsCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "auditoriumCell", for: indexPath)
         
         // Configure cell
         if let auditorium = fetchedResultsController?.object(at: indexPath) {

@@ -8,6 +8,10 @@
 
 import UIKit
 
+enum DataSourceType: Int {
+    case groups = 0, auditoriums, teachers
+}
+
 class SearchResultsTableViewController: UITableViewController {
     
     // MARK: - Properties

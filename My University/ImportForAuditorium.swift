@@ -20,6 +20,7 @@ extension Record {
         private let networkClient: NetworkClient
         private var completionHandler: ((_ error: Error?) -> ())?
         private let auditorium: AuditoriumEntity
+        private let university: UniversityEntity
         
         private let persistentContainer: NSPersistentContainer
         
@@ -35,13 +36,14 @@ extension Record {
         
         // MARK: - Initialization
         
-        init?(persistentContainer: NSPersistentContainer, auditorium: AuditoriumEntity) {
+        init?(persistentContainer: NSPersistentContainer, auditorium: AuditoriumEntity, university: UniversityEntity) {
             // Cache file
             let cachesFolder = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             guard let cacheFile = cachesFolder?.appendingPathComponent("auditorium_records.json") else { return nil }
             
             self.cacheFile = cacheFile
             self.auditorium = auditorium
+            self.university = university
             self.persistentContainer = persistentContainer
             networkClient = NetworkClient(cacheFile: self.cacheFile)
         }
@@ -51,7 +53,7 @@ extension Record {
         func importRecords(_ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            networkClient.downloadRecords(auditoriumID: auditorium.id) { (error) in
+            networkClient.downloadRecords(auditoriumID: auditorium.id, unversityURL: university.url ?? "") { (error) in
                 if let error = error {
                     self.completionHandler?(error)
                 } else {
@@ -101,9 +103,11 @@ extension Record {
         /// Delete previous records and insert new records
         private func syncRecords(_ json: [[String: Any]], taskContext: NSManagedObjectContext) {
             
-            let auditoriumInContext = taskContext.object(with: auditorium.objectID)
+            guard let auditoriumInContext = taskContext.object(with: auditorium.objectID) as? AuditoriumEntity else { return }
             
             taskContext.performAndWait {
+                
+                // TODO: Don't delete records
                 
                 // Execute the request to batch delete and merge the changes to viewContext.
                 
@@ -147,7 +151,7 @@ extension Record {
             }
         }
         
-        private func insert(_ parsedRecord: Record, auditorium: NSManagedObject, context: NSManagedObjectContext) {
+        private func insert(_ parsedRecord: Record, auditorium: AuditoriumEntity, context: NSManagedObjectContext) {
             let recordEntity = RecordEntity(context: context)
             
             recordEntity.id = NSNumber(value: parsedRecord.id).int64Value
@@ -160,10 +164,10 @@ extension Record {
             recordEntity.type = parsedRecord.type
             
             // Auditorium
-            recordEntity.auditorium = auditorium as? AuditoriumEntity
+            recordEntity.auditorium = auditorium
             
             // Groups
-            let groups = GroupEntity.fetch(parsedRecord.groups, context: context)
+            let groups = GroupEntity.fetch(parsedRecord.groups, university: auditorium.university, context: context)
             let set = NSSet(array: groups)
             recordEntity.addToGroups(set)
             
