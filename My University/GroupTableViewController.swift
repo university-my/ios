@@ -33,6 +33,7 @@ class GroupTableViewController: GenericTableViewController {
         statusButton.customView = notificationLabel
         
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.tableFooterView = UIView()
         
         // Mark group as visited
         markGroupAsVisited()

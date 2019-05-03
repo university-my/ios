@@ -33,6 +33,7 @@ class TeacherTableViewController: GenericTableViewController {
         statusButton.customView = notificationLabel
 
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.tableFooterView = UIView()
         
         // Mark teacher as visited
         markTeacherAsVisited()

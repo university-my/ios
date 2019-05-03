@@ -33,6 +33,7 @@ class AuditoriumTableViewController: GenericTableViewController {
         statusButton.customView = notificationLabel
         
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.tableFooterView = UIView()
         
         // Mark auditorium as visited
         markAuditoriumAsVisited()
