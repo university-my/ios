@@ -45,4 +45,16 @@ public class UniversityEntity: NSManagedObject {
             return []
         }
     }
+
+    static func fetch(id: Int64, context: NSManagedObjectContext) -> UniversityEntity? {
+        let fetchRequest: NSFetchRequest<UniversityEntity> = UniversityEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %d", id)
+        do {
+            let result = try context.fetch(fetchRequest)
+            let auditorium = result.first
+            return auditorium
+        } catch  {
+            return nil
+        }
+    }
 }

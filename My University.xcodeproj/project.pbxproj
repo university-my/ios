@@ -57,7 +57,8 @@
 		DE945ACC2264D27B00143303 /* University+Import.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE945ACB2264D27B00143303 /* University+Import.swift */; };
 		DE945ACE2264D2AA00143303 /* Universoty+NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE945ACD2264D2AA00143303 /* Universoty+NetworkClient.swift */; };
 		DE945AD02264D6F100143303 /* SelectUniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE945ACF2264D6F100143303 /* SelectUniversityViewController.swift */; };
-		DE945AD22264D71B00143303 /* UniversityDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE945AD12264D71B00143303 /* UniversityDataSource.swift */; };
+		DE945AD22264D71B00143303 /* UniversitiesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE945AD12264D71B00143303 /* UniversitiesDataSource.swift */; };
+		DE999ABE227C54160018F725 /* UniversityDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE999ABD227C54160018F725 /* UniversityDataSource.swift */; };
 		DEDA50EA21862091006C7B27 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50E821862090006C7B27 /* InfoPlist.strings */; };
 		DEDA50ED218620E0006C7B27 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50EB218620E0006C7B27 /* Localizable.strings */; };
 		DEE576E4226B7B9E008F9EB6 /* SearchableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE576E3226B7B9E008F9EB6 /* SearchableTableViewController.swift */; };
@@ -120,7 +121,8 @@
 		DE945ACB2264D27B00143303 /* University+Import.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "University+Import.swift"; sourceTree = "<group>"; };
 		DE945ACD2264D2AA00143303 /* Universoty+NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Universoty+NetworkClient.swift"; sourceTree = "<group>"; };
 		DE945ACF2264D6F100143303 /* SelectUniversityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUniversityViewController.swift; sourceTree = "<group>"; };
-		DE945AD12264D71B00143303 /* UniversityDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityDataSource.swift; sourceTree = "<group>"; };
+		DE945AD12264D71B00143303 /* UniversitiesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversitiesDataSource.swift; sourceTree = "<group>"; };
+		DE999ABD227C54160018F725 /* UniversityDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityDataSource.swift; sourceTree = "<group>"; };
 		DEDA50E921862090006C7B27 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DEDA50EC218620E0006C7B27 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DEE576E3226B7B9E008F9EB6 /* SearchableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableTableViewController.swift; sourceTree = "<group>"; };
@@ -332,7 +334,8 @@
 		DEE576E0226B7875008F9EB6 /* Data Source */ = {
 			isa = PBXGroup;
 			children = (
-				DE945AD12264D71B00143303 /* UniversityDataSource.swift */,
+				DE945AD12264D71B00143303 /* UniversitiesDataSource.swift */,
+				DE999ABD227C54160018F725 /* UniversityDataSource.swift */,
 			);
 			name = "Data Source";
 			sourceTree = "<group>";
@@ -450,12 +453,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE945AD22264D71B00143303 /* UniversityDataSource.swift in Sources */,
+				DE945AD22264D71B00143303 /* UniversitiesDataSource.swift in Sources */,
 				DE945AC82264D11700143303 /* UniversityEntity+CoreDataProperties.swift in Sources */,
 				DE18942221BD45E600C7F9DB /* ImportForAuditorium.swift in Sources */,
 				DE0D64082264E1330001FCCF /* UniversityViewController.swift in Sources */,
 				DE18941921BC349400C7F9DB /* Record+NetworkClient.swift in Sources */,
 				DE945AD02264D6F100143303 /* SelectUniversityViewController.swift in Sources */,
+				DE999ABE227C54160018F725 /* UniversityDataSource.swift in Sources */,
 				DE540EC02215CD840092FC81 /* Teacher+Import.swift in Sources */,
 				DE540EBE2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift in Sources */,
 				C22A2E551FC7644600587463 /* Record.swift in Sources */,

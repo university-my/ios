@@ -22,13 +22,14 @@ class UniversityViewController: GenericTableViewController {
     }
     
     // MARK: - Properties
-    
-    var university: UniversityEntity?
-    
+
+    var universityID: Int64?
+    private var dataSource: UniversityDataSource?
+
     private var auditoriumsDataSource: AuditoriumDataSource?
     private var groupsDataSource: GroupsDataSource?
     private var teachersDataSource: TeacherDataSource?
-    
+
     var rows: [Row] = []
     
     // MARK: - Cells
@@ -41,17 +42,23 @@ class UniversityViewController: GenericTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Fetch university
+        dataSource = UniversityDataSource()
+        if let id = universityID {
+            dataSource?.fetch(id: id)
+        }
         
         configureRows()
-        
-        // Title
-        title = university?.shortName
         
         // For notifications
         configureNotificationLabel()
         statusButton.customView = notificationLabel
         
-        if let university = university {
+        if let university = dataSource?.university {
+            // Title
+            title = university.shortName
+
             // Init all data sources
             auditoriumsDataSource = AuditoriumDataSource(university: university)
             groupsDataSource = GroupsDataSource(university: university)
@@ -66,7 +73,7 @@ class UniversityViewController: GenericTableViewController {
     // MARK: - Table
     
     private func configureRows() {
-        guard let university = university else { return }
+        guard let university = dataSource?.university else { return }
         
         if university.isKPI {
             let grops = Row(kind: .groups)
@@ -94,7 +101,7 @@ class UniversityViewController: GenericTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return university?.fullName
+        return dataSource?.university?.fullName
     }
     
     // MARK: - Navigation
@@ -106,15 +113,15 @@ class UniversityViewController: GenericTableViewController {
             
         case "showAuditoriums":
             let vc = segue.destination as? AuditoriumsTableViewController
-            vc?.university = university
+            vc?.university = dataSource?.university
             
         case "showGroups":
             let vc = segue.destination as? GroupsTableViewController
-            vc?.university = university
+            vc?.university = dataSource?.university
             
         case "showTeachers":
             let vc = segue.destination as? TeachersTableViewController
-            vc?.university = university
+            vc?.university = dataSource?.university
             
         default:
             break
@@ -197,7 +204,7 @@ class UniversityViewController: GenericTableViewController {
     // MARK: - Auditoriums
     
     private func shouldImportAuditoriums() -> Bool {
-        guard let university = university else { return false }
+        guard let university = dataSource?.university else { return false }
         if university.isKPI {
             return false
         } else {
@@ -230,3 +237,6 @@ class UniversityViewController: GenericTableViewController {
     
     @IBOutlet weak var statusButton: UIBarButtonItem!
 }
+
+// TODO: Add state restoration
+// https://medium.com/swift-india/app-state-restoration-in-ios-1-bbc903f17a46
