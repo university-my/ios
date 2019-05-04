@@ -15,8 +15,15 @@ class GroupsDataSource: NSObject {
     
     private var university: UniversityEntity
     
-    init(university: UniversityEntity) {
-        self.university = university
+    init?(universityID id: Int64) {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        guard let context = appDelegate?.persistentContainer.viewContext else { return nil }
+        
+        if let university = UniversityEntity.fetch(id: id, context: context) {
+            self.university = university
+        } else {
+            return nil
+        }
     }
     
     // MARK: - NSManagedObjectContext
@@ -84,7 +91,7 @@ class GroupsDataSource: NSObject {
         guard let persistentContainer = persistentContainer else { return }
         
         // Download Groups from backend and save to database.
-        importManager = Group.Import(persistentContainer: persistentContainer, university: university)
+        importManager = Group.Import(persistentContainer: persistentContainer, universityID: university.id)
         DispatchQueue.global().async { [weak self] in
             
             self?.importManager?.importGroups { (error) in

@@ -12,7 +12,7 @@ class GroupsTableViewController: SearchableTableViewController {
     
     // MARK: - Properties
     
-    var university: UniversityEntity?
+    var universityID: Int64?
     private var dataSource: GroupsDataSource?
     
     // MARK: - Notificaion
@@ -36,9 +36,9 @@ class GroupsTableViewController: SearchableTableViewController {
         configureSearchControllers()
         searchController.searchResultsUpdater = self
         
-        if let university = university {
+        if let id = universityID {
             // Loading groups
-            dataSource = GroupsDataSource(university: university)
+            dataSource = GroupsDataSource(universityID: id)
             tableView.dataSource = dataSource
             loadGroups()
         }
@@ -120,13 +120,11 @@ class GroupsTableViewController: SearchableTableViewController {
                 if searchController.isActive {
                     if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
                         let selectedGroup = resultsTableController.filteredGroups[safe: indexPath.row]
-                        detailTableViewController.group = selectedGroup
                         detailTableViewController.groupID = selectedGroup?.id
                     }
                 } else {
                     if let indexPath = tableView.indexPathForSelectedRow {
                         let selectedGroup = dataSource?.fetchedResultsController?.object(at: indexPath)
-                        detailTableViewController.group = selectedGroup
                         detailTableViewController.groupID = selectedGroup?.id
                     }
                 }

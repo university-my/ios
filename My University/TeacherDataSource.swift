@@ -15,8 +15,15 @@ class TeacherDataSource: NSObject {
     
     private var university: UniversityEntity
     
-    init(university: UniversityEntity) {
-        self.university = university
+    init?(universityID id: Int64) {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        guard let context = appDelegate?.persistentContainer.viewContext else { return nil }
+        
+        if let university = UniversityEntity.fetch(id: id, context: context) {
+            self.university = university
+        } else {
+            return nil
+        }
     }
 
     // MARK: - NSManagedObjectContext
@@ -82,7 +89,7 @@ class TeacherDataSource: NSObject {
     func importTeachers(_ completion: @escaping ((_ error: Error?) -> ())) {
         guard let persistentContainer = persistentContainer else { return }
 
-        importManager = Teacher.Import(persistentContainer: persistentContainer, university: university)
+        importManager = Teacher.Import(persistentContainer: persistentContainer, universityID: university.id)
         DispatchQueue.global().async { [weak self] in
 
             self?.importManager?.importTeachers({ (error) in

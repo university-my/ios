@@ -19,19 +19,22 @@ extension Teacher {
         private let cacheFile: URL
         private let networkClient: NetworkClient
         private var completionHandler: ((_ error: Error?) -> ())?
-        private let persistentContainer: NSPersistentContainer
-        private let university: UniversityEntity
+        private var persistentContainer: NSPersistentContainer
+        private weak var university: UniversityEntity?
         
         // MARK: - Init
         
-        init?(persistentContainer: NSPersistentContainer, university: UniversityEntity) {
+        init?(persistentContainer: NSPersistentContainer, universityID: Int64) {
             // Cache file
             let cachesFolder = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             guard let cacheFile = cachesFolder?.appendingPathComponent("teachers.json") else { return nil }
             
             self.cacheFile = cacheFile
-            self.persistentContainer = persistentContainer
             networkClient = NetworkClient(cacheFile: self.cacheFile)
+            
+            self.persistentContainer = persistentContainer
+            
+            guard let university = UniversityEntity.fetch(id: universityID, context: persistentContainer.viewContext) else { return nil }
             self.university = university
         }
         
@@ -40,7 +43,7 @@ extension Teacher {
         func importTeachers(_ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            networkClient.downloadTeachers(universityURL: university.url) { (error) in
+            networkClient.downloadTeachers(universityURL: university?.url ?? "") { (error) in
                 if let error = error {
                     self.completionHandler?(error)
                 } else {
@@ -83,7 +86,12 @@ extension Teacher {
             taskContext.performAndWait {
                 
                 // University in current context
-                guard let universityInContext = taskContext.object(with: university.objectID) as? UniversityEntity else {
+                guard let universityObjectID = university?.objectID else {
+                    self.completionHandler?(nil)
+                    return
+                }
+                guard let universityInContext = taskContext.object(with: universityObjectID) as? UniversityEntity else {
+                    self.completionHandler?(nil)
                     return
                 }
                 

@@ -35,6 +35,10 @@ class TeacherTableViewController: GenericTableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
         
+        if let id = teacherID, let context = viewContext {
+            teacher = TeacherEntity.fetchTeacher(id: id, context: context)
+        }
+        
         // Mark teacher as visited
         markTeacherAsVisited()
     }
@@ -75,7 +79,7 @@ class TeacherTableViewController: GenericTableViewController {
     
     // MARK: - Import Records
     
-    var teacher: TeacherEntity?
+    private var teacher: TeacherEntity?
     var teacherID: Int64?
     
     private var importManager: Record.ImportForTeacher?
@@ -173,7 +177,7 @@ class TeacherTableViewController: GenericTableViewController {
             
         case "recordDetailed":
             if let destination = segue.destination as? RecordDetailedTableViewController {
-                destination.record = sender as? RecordEntity
+                destination.recordID = (sender as? RecordEntity)?.id
             }
             
         default:

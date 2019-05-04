@@ -19,8 +19,8 @@ extension Record {
         private let cacheFile: URL
         private let networkClient: NetworkClient
         private var completionHandler: ((_ error: Error?) -> ())?
-        private let auditorium: AuditoriumEntity
-        private let university: UniversityEntity
+        private let auditoriumID: Int64
+        private let universityURL: String
         
         private let persistentContainer: NSPersistentContainer
         
@@ -36,14 +36,14 @@ extension Record {
         
         // MARK: - Initialization
         
-        init?(persistentContainer: NSPersistentContainer, auditorium: AuditoriumEntity, university: UniversityEntity) {
+        init?(persistentContainer: NSPersistentContainer, auditoriumID: Int64, universityURL: String) {
             // Cache file
             let cachesFolder = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             guard let cacheFile = cachesFolder?.appendingPathComponent("auditorium_records.json") else { return nil }
             
             self.cacheFile = cacheFile
-            self.auditorium = auditorium
-            self.university = university
+            self.auditoriumID = auditoriumID
+            self.universityURL = universityURL
             self.persistentContainer = persistentContainer
             networkClient = NetworkClient(cacheFile: self.cacheFile)
         }
@@ -53,7 +53,7 @@ extension Record {
         func importRecords(_ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            networkClient.downloadRecords(auditoriumID: auditorium.id, unversityURL: university.url ?? "") { (error) in
+            networkClient.downloadRecords(auditoriumID: auditoriumID, unversityURL: universityURL) { (error) in
                 if let error = error {
                     self.completionHandler?(error)
                 } else {
@@ -103,7 +103,7 @@ extension Record {
         /// Delete previous records and insert new records
         private func syncRecords(_ json: [[String: Any]], taskContext: NSManagedObjectContext) {
             
-            guard let auditoriumInContext = taskContext.object(with: auditorium.objectID) as? AuditoriumEntity else { return }
+            guard let auditoriumInContext = AuditoriumEntity.fetch(id: auditoriumID, context: taskContext) else { return }
             
             taskContext.performAndWait {
                 

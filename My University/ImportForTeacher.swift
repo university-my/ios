@@ -165,7 +165,7 @@ extension Record {
             
             // Fetch auditorium entity for set relation with record
             if let object = parsedRecord.auditorium {
-                recordEntity.auditorium = AuditoriumEntity.fetchAuditorium(id: object.id, context: context)
+                recordEntity.auditorium = AuditoriumEntity.fetch(id: object.id, context: context)
             }
             
             // Groups

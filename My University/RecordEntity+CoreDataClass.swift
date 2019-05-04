@@ -44,4 +44,16 @@ public class RecordEntity: NSManagedObject {
         }
         return detail
     }
+    
+    static func fetch(id: Int64, context: NSManagedObjectContext) -> RecordEntity? {
+        let fetchRequest: NSFetchRequest<RecordEntity> = RecordEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %d", id)
+        do {
+            let result = try context.fetch(fetchRequest)
+            let entity = result.first
+            return entity
+        } catch  {
+            return nil
+        }
+    }
 }

@@ -60,9 +60,9 @@ class UniversityViewController: GenericTableViewController {
             title = university.shortName
 
             // Init all data sources
-            auditoriumsDataSource = AuditoriumDataSource(university: university)
-            groupsDataSource = GroupsDataSource(university: university)
-            teachersDataSource = TeacherDataSource(university: university)
+            auditoriumsDataSource = AuditoriumDataSource(universityID: university.id)
+            groupsDataSource = GroupsDataSource(universityID: university.id)
+            teachersDataSource = TeacherDataSource(universityID: university.id)
             
             // Start from groups,
             // And import auditoriums and teachers
@@ -113,15 +113,15 @@ class UniversityViewController: GenericTableViewController {
             
         case "showAuditoriums":
             let vc = segue.destination as? AuditoriumsTableViewController
-            vc?.university = dataSource?.university
+            vc?.universityID = dataSource?.university?.id
             
         case "showGroups":
             let vc = segue.destination as? GroupsTableViewController
-            vc?.university = dataSource?.university
+            vc?.universityID = dataSource?.university?.id
             
         case "showTeachers":
             let vc = segue.destination as? TeachersTableViewController
-            vc?.university = dataSource?.university
+            vc?.universityID = dataSource?.university?.id
             
         default:
             break

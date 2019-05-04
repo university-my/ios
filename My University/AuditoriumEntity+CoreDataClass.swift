@@ -65,7 +65,7 @@ public class AuditoriumEntity: NSManagedObject {
     }
     
     /// Fetch auditorium entity
-    static func fetchAuditorium(id: Int64, context: NSManagedObjectContext) -> AuditoriumEntity? {
+    static func fetch(id: Int64, context: NSManagedObjectContext) -> AuditoriumEntity? {
         let fetchRequest: NSFetchRequest<AuditoriumEntity> = AuditoriumEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == %d", id)
         do {

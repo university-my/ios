@@ -15,8 +15,15 @@ class AuditoriumDataSource: NSObject {
     
     private var university: UniversityEntity
     
-    init(university: UniversityEntity) {
-        self.university = university
+    init?(universityID id: Int64) {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        guard let context = appDelegate?.persistentContainer.viewContext else { return nil }
+        
+        if let university = UniversityEntity.fetch(id: id, context: context) {
+            self.university = university
+        } else {
+            return nil
+        }
     }
     
     // MARK: - NSManagedObjectContext
@@ -82,7 +89,7 @@ class AuditoriumDataSource: NSObject {
     func importAuditoriums(_ completion: @escaping ((_ error: Error?) -> ())) {
         guard let persistentContainer = persistentContainer else { return }
         
-        importManager = Auditorium.Import(persistentContainer: persistentContainer, university: university)
+        importManager = Auditorium.Import(persistentContainer: persistentContainer, universityID: university.id)
         DispatchQueue.global().async { [weak self] in
             
             self?.importManager?.importAuditoriums({ (error) in

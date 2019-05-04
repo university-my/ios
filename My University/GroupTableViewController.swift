@@ -35,6 +35,10 @@ class GroupTableViewController: GenericTableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
         
+        if let id = groupID, let context = viewContext {
+            group = GroupEntity.fetch(id: id, context: context)
+        }
+        
         // Mark group as visited
         markGroupAsVisited()
     }
@@ -75,7 +79,7 @@ class GroupTableViewController: GenericTableViewController {
     
     // MARK: - Import Records
     
-    var group: GroupEntity?
+    private var group: GroupEntity?
     var groupID: Int64?
     
     private var importManager: Record.ImportForGroup?
@@ -166,7 +170,7 @@ class GroupTableViewController: GenericTableViewController {
             
         case "recordDetailed":
             if let destination = segue.destination as? RecordDetailedTableViewController {
-                destination.record = sender as? RecordEntity
+                destination.recordID = (sender as? RecordEntity)?.id
             }
             
         default:

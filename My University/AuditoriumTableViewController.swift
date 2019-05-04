@@ -35,6 +35,10 @@ class AuditoriumTableViewController: GenericTableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
         
+        if let id = auditoriumID, let context = viewContext {
+            auditorium = AuditoriumEntity.fetch(id: id, context: context)
+        }
+        
         // Mark auditorium as visited
         markAuditoriumAsVisited()
     }
@@ -75,24 +79,24 @@ class AuditoriumTableViewController: GenericTableViewController {
     
     // MARK: - Import Records
     
-    var auditorium: AuditoriumEntity?
     var auditoriumID: Int64?
+    private var auditorium: AuditoriumEntity?
     
     private var importManager: Record.ImportForAuditorium?
     
     private func importRecords() {
-        // Do nothing without CoreData.
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         guard let persistentContainer = appDelegate?.persistentContainer else { return }
         
-        guard let auditorium = auditorium else { return }
-        guard let university = auditorium.university else { return }
+        guard let auditoriumID = auditorium?.id else { return }
+        guard let university = auditorium?.university else { return }
+        guard let universityURL = university.url else { return }
         
         let text = NSLocalizedString("Loading records ...", comment: "")
         showNotification(text: text)
         
         // Download records for Auditorium from backend and save to database.
-        importManager = Record.ImportForAuditorium(persistentContainer: persistentContainer, auditorium: auditorium, university: university)
+        importManager = Record.ImportForAuditorium(persistentContainer: persistentContainer, auditoriumID: auditoriumID, universityURL: universityURL)
         DispatchQueue.global().async {
             self.importManager?.importRecords({ (error) in
                 
@@ -174,7 +178,7 @@ class AuditoriumTableViewController: GenericTableViewController {
             
         case "recordDetailed":
             if let destination = segue.destination as? RecordDetailedTableViewController {
-                destination.record = sender as? RecordEntity
+                destination.recordID = (sender as? RecordEntity)?.id
             }
             
         default:

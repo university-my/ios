@@ -12,7 +12,7 @@ class TeachersTableViewController: SearchableTableViewController {
     
     // MARK: - Properties
     
-    var university: UniversityEntity?
+    var universityID: Int64?
     private var dataSource: TeacherDataSource?
     
     // MARK: - Notificaion
@@ -36,9 +36,9 @@ class TeachersTableViewController: SearchableTableViewController {
         configureSearchControllers()
         searchController.searchResultsUpdater = self
         
-        if let university = university {
+        if let id = universityID {
             // Loading teachers
-            dataSource = TeacherDataSource(university: university)
+            dataSource = TeacherDataSource(universityID: id)
             tableView.dataSource = dataSource
             loadTeachers()
         }
@@ -112,13 +112,11 @@ class TeachersTableViewController: SearchableTableViewController {
                 if searchController.isActive {
                     if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
                         let selectedTeacher = resultsTableController.filteredTeachers[safe: indexPath.row]
-                        detailTableViewController.teacher = selectedTeacher
                         detailTableViewController.teacherID = selectedTeacher?.id
                     }
                 } else {
                     if let indexPath = tableView.indexPathForSelectedRow {
                         let selectedTeacher = dataSource?.fetchedResultsController?.object(at: indexPath)
-                        detailTableViewController.teacher = selectedTeacher
                         detailTableViewController.teacherID = selectedTeacher?.id
                     }
                 }

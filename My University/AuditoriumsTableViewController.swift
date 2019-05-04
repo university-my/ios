@@ -12,7 +12,7 @@ class AuditoriumsTableViewController: SearchableTableViewController {
     
     // MARK: - Properties
     
-    var university: UniversityEntity?
+    var universityID: Int64?
     private var dataSource: AuditoriumDataSource?
     
     // MARK: - Notificaion
@@ -36,9 +36,8 @@ class AuditoriumsTableViewController: SearchableTableViewController {
         configureSearchControllers()
         searchController.searchResultsUpdater = self
         
-        if let university = university {
-            // Loading teachers
-            dataSource = AuditoriumDataSource(university: university)
+        if let id = universityID {
+            dataSource = AuditoriumDataSource(universityID: id)
             tableView.dataSource = dataSource
             loadAuditoroums()
         }
@@ -110,13 +109,11 @@ class AuditoriumsTableViewController: SearchableTableViewController {
                 if searchController.isActive {
                     if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
                         let selectedAuditorium = resultsTableController.filteredAuditoriums[safe: indexPath.row]
-                        detailTableViewController.auditorium = selectedAuditorium
                         detailTableViewController.auditoriumID = selectedAuditorium?.id
                     }
                 } else {
                     if let indexPath = tableView.indexPathForSelectedRow {
                         let selectedAuditorium = dataSource?.fetchedResultsController?.object(at: indexPath)
-                        detailTableViewController.auditorium = selectedAuditorium
                         detailTableViewController.auditoriumID = selectedAuditorium?.id
                     }
                 }
