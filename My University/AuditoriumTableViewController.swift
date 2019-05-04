@@ -28,16 +28,16 @@ class AuditoriumTableViewController: GenericTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let id = auditoriumID, let context = viewContext {
+            auditorium = AuditoriumEntity.fetch(id: id, context: context)
+        }
+        
         // For notifications
         configureNotificationLabel()
         statusButton.customView = notificationLabel
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
-        
-        if let id = auditoriumID, let context = viewContext {
-            auditorium = AuditoriumEntity.fetch(id: id, context: context)
-        }
         
         // Mark auditorium as visited
         markAuditoriumAsVisited()

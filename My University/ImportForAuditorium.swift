@@ -103,7 +103,10 @@ extension Record {
         /// Delete previous records and insert new records
         private func syncRecords(_ json: [[String: Any]], taskContext: NSManagedObjectContext) {
             
-            guard let auditoriumInContext = AuditoriumEntity.fetch(id: auditoriumID, context: taskContext) else { return }
+            guard let auditoriumInContext = AuditoriumEntity.fetch(id: auditoriumID, context: taskContext) else {
+                self.completionHandler?(nil)
+                return
+            }
             
             taskContext.performAndWait {
                 

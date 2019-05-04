@@ -28,16 +28,16 @@ class GroupTableViewController: GenericTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let id = groupID, let context = viewContext {
+            group = GroupEntity.fetch(id: id, context: context)
+        }
+        
         // For notifications
         configureNotificationLabel()
         statusButton.customView = notificationLabel
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
-        
-        if let id = groupID, let context = viewContext {
-            group = GroupEntity.fetch(id: id, context: context)
-        }
         
         // Mark group as visited
         markGroupAsVisited()

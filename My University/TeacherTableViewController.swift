@@ -28,16 +28,16 @@ class TeacherTableViewController: GenericTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let id = teacherID, let context = viewContext {
+            teacher = TeacherEntity.fetchTeacher(id: id, context: context)
+        }
+        
         // For notifications
         configureNotificationLabel()
         statusButton.customView = notificationLabel
 
         tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
-        
-        if let id = teacherID, let context = viewContext {
-            teacher = TeacherEntity.fetchTeacher(id: id, context: context)
-        }
         
         // Mark teacher as visited
         markTeacherAsVisited()
