@@ -244,25 +244,13 @@ class GroupTableViewController: GenericTableViewController {
 extension GroupTableViewController {
     
     override func encodeRestorableState(with coder: NSCoder) {
-        if let group = group {
-            coder.encode(group.id, forKey: "groupID")
+        if let id = groupID {
+            coder.encode(id, forKey: "groupID")
         }
         super.encodeRestorableState(with: coder)
     }
     
     override func decodeRestorableState(with coder: NSCoder) {
         groupID = coder.decodeInt64(forKey: "groupID")
-        
-        super.decodeRestorableState(with: coder)
-    }
-    
-    override func applicationFinishedRestoringState() {
-        if let id = groupID, let context = viewContext {
-            if let group = GroupEntity.fetch(id: id, context: context) {
-                self.group = group
-            }
-        }
     }
 }
-
-// TODO: Add State restoration

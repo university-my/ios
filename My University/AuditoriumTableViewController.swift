@@ -247,4 +247,18 @@ class AuditoriumTableViewController: GenericTableViewController {
     }
 }
 
-// TODO: Add State restoration
+// MARK: - UIStateRestoring
+
+extension AuditoriumTableViewController {
+
+  override func encodeRestorableState(with coder: NSCoder) {
+    if let id = auditoriumID {
+      coder.encode(id, forKey: "auditoriumID")
+    }
+    super.encodeRestorableState(with: coder)
+  }
+
+  override func decodeRestorableState(with coder: NSCoder) {
+    auditoriumID = coder.decodeInt64(forKey: "auditoriumID")
+  }
+}

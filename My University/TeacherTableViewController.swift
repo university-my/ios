@@ -246,4 +246,18 @@ class TeacherTableViewController: GenericTableViewController {
     }
 }
 
-// TODO: Add State restoration
+// MARK: - UIStateRestoring
+
+extension TeacherTableViewController {
+
+  override func encodeRestorableState(with coder: NSCoder) {
+    if let id = teacherID {
+      coder.encode(id, forKey: "teacherID")
+    }
+    super.encodeRestorableState(with: coder)
+  }
+
+  override func decodeRestorableState(with coder: NSCoder) {
+    teacherID = coder.decodeInt64(forKey: "teacherID")
+  }
+}

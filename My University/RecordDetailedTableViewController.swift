@@ -189,3 +189,19 @@ class RecordDetailedTableViewController: GenericTableViewController {
         return sections[section].name
     }
 }
+
+// MARK: - UIStateRestoring
+
+extension RecordDetailedTableViewController {
+
+  override func encodeRestorableState(with coder: NSCoder) {
+    if let id = recordID {
+      coder.encode(id, forKey: "recordID")
+    }
+    super.encodeRestorableState(with: coder)
+  }
+
+  override func decodeRestorableState(with coder: NSCoder) {
+    recordID = coder.decodeInt64(forKey: "recordID")
+  }
+}
