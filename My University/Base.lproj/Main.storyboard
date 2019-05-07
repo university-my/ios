@@ -394,7 +394,7 @@
             </objects>
             <point key="canvasLocation" x="932" y="1671"/>
         </scene>
-        <!--Select your university-->
+        <!--Universities-->
         <scene sceneID="4nz-6N-Hon">
             <objects>
                 <tableViewController storyboardIdentifier="SelectUniversityViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5MU-Zn-Z2L" customClass="SelectUniversityViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
@@ -443,7 +443,7 @@
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="10w-lP-VQS"/>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Select your university" id="Fi8-G5-eC2">
+                    <navigationItem key="navigationItem" title="Universities" id="Fi8-G5-eC2">
                         <barButtonItem key="rightBarButtonItem" id="PU0-Y3-B0z">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" lineBreakMode="middleTruncation" id="hR2-2C-bBe">
                                 <rect key="frame" x="337" y="11" width="22" height="22"/>

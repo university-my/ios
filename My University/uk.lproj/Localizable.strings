@@ -10,15 +10,26 @@
 /* No comment provided by engineer. */
 "DESCRIPTION" = "КОМЕНТАР";
 
-/* Title for button on the Auditorium screen
-   Title for button on the Group screen */
-"Download" = "Завантажити";
-
 /* No comment provided by engineer. */
 "GROUP" = "ГРУПА";
 
 /* No comment provided by engineer. */
 "GROUPS" = "ГРУПИ";
+
+/* No comment provided by engineer. */
+"Loading auditoriums ..." = "Завантаження аудиторій ...";
+
+/* No comment provided by engineer. */
+"Loading groups ..." = "Завантаження груп ...";
+
+/* No comment provided by engineer. */
+"Loading records ..." = "Завантаження розкладу ...";
+
+/* No comment provided by engineer. */
+"Loading teachers ..." = "Завантаження викладачів ...";
+
+/* No comment provided by engineer. */
+"Loading universities ..." = "Завантаження університетів ...";
 
 /* No comment provided by engineer. */
 "NAME" = "НАЗВА";
@@ -28,8 +39,4 @@
 
 /* No comment provided by engineer. */
 "TEACHER" = "ВИКЛАДАЧ";
-
-/* Title for button on the Auditorium screen
-   Title for button on the Group screen */
-"Update" = "Оновити";
 
