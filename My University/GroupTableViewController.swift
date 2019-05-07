@@ -28,31 +28,25 @@ class GroupTableViewController: GenericTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let id = groupID, let context = viewContext {
-            group = GroupEntity.fetch(id: id, context: context)
-        }
-        
         // For notifications
         configureNotificationLabel()
         statusButton.customView = notificationLabel
         
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.tableFooterView = UIView()
         
-        // Mark group as visited
-        markGroupAsVisited()
+        setup()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+    func setup() {
+        if let id = groupID, let context = viewContext {
+            group = GroupEntity.fetch(id: id, context: context)
+        }
         if let group = group {
             title = group.name
             performFetch()
             
             let records = fetchedResultsController?.fetchedObjects ?? []
             if records.isEmpty {
-                // Import records if empty
                 importRecords()
             }
         }
@@ -225,18 +219,6 @@ class GroupTableViewController: GenericTableViewController {
             print("Error in the fetched results controller: \(error).")
         }
     }
-    
-    // MARK: - Is visited
-    
-    private func markGroupAsVisited() {
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        viewContext?.perform {
-            if let group = self.group {
-                group.isVisited = true
-                appDelegate?.saveContext()
-            }
-        }
-    }
 }
 
 // MARK: - UIStateRestoring
@@ -252,5 +234,9 @@ extension GroupTableViewController {
     
     override func decodeRestorableState(with coder: NSCoder) {
         groupID = coder.decodeInt64(forKey: "groupID")
+    }
+    
+    override func applicationFinishedRestoringState() {
+        setup()
     }
 }

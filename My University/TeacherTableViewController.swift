@@ -28,28 +28,24 @@ class TeacherTableViewController: GenericTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // For notifications
+        configureNotificationLabel()
+        statusButton.customView = notificationLabel
+        
+        tableView.rowHeight = UITableView.automaticDimension
+        
+        setup()
+    }
+    
+    func setup() {
         if let id = teacherID, let context = viewContext {
             teacher = TeacherEntity.fetchTeacher(id: id, context: context)
         }
         
-        // For notifications
-        configureNotificationLabel()
-        statusButton.customView = notificationLabel
-
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.tableFooterView = UIView()
-        
-        // Mark teacher as visited
-        markTeacherAsVisited()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         if let teacher = teacher {
             title = teacher.name
             performFetch()
-
+            
             let records = fetchedResultsController?.fetchedObjects ?? []
             if records.isEmpty {
                 // Import records if empty
@@ -232,32 +228,24 @@ class TeacherTableViewController: GenericTableViewController {
             print("Error in the fetched results controller: \(error).")
         }
     }
-    
-    // MARK: - Is visited
-    
-    private func markTeacherAsVisited() {
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        viewContext?.perform {
-            if let teacher = self.teacher {
-                teacher.isVisited = true
-                appDelegate?.saveContext()
-            }
-        }
-    }
 }
 
 // MARK: - UIStateRestoring
 
 extension TeacherTableViewController {
-
-  override func encodeRestorableState(with coder: NSCoder) {
-    if let id = teacherID {
-      coder.encode(id, forKey: "teacherID")
+    
+    override func encodeRestorableState(with coder: NSCoder) {
+        if let id = teacherID {
+            coder.encode(id, forKey: "teacherID")
+        }
+        super.encodeRestorableState(with: coder)
     }
-    super.encodeRestorableState(with: coder)
-  }
-
-  override func decodeRestorableState(with coder: NSCoder) {
-    teacherID = coder.decodeInt64(forKey: "teacherID")
-  }
+    
+    override func decodeRestorableState(with coder: NSCoder) {
+        teacherID = coder.decodeInt64(forKey: "teacherID")
+    }
+    
+    override func applicationFinishedRestoringState() {
+        setup()
+    }
 }

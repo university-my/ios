@@ -30,12 +30,15 @@ class GroupsTableViewController: SearchableTableViewController {
         
         // Configure table
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.tableFooterView = UIView()
         
         // Sear Bar and Search Results Controller
         configureSearchControllers()
         searchController.searchResultsUpdater = self
         
+        setup()
+    }
+    
+    func setup() {
         if let id = universityID {
             // Loading groups
             dataSource = GroupsDataSource(universityID: id)
@@ -56,7 +59,6 @@ class GroupsTableViewController: SearchableTableViewController {
         } else {
             tableView.reloadData()
             refreshControl?.endRefreshing()
-            showGroupsCount()
         }
     }
     
@@ -75,14 +77,7 @@ class GroupsTableViewController: SearchableTableViewController {
             dataSource.performFetch()
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
-            self.showGroupsCount()
         }
-    }
-    
-    func showGroupsCount() {
-        let groups = dataSource?.fetchedResultsController?.fetchedObjects ?? []
-        let text = NSLocalizedString("groups", comment: "Count of groups")
-        showNotification(text: "\(groups.count) " + text)
     }
     
     // MARK: - Pull to refresh
@@ -185,4 +180,8 @@ extension GroupsTableViewController {
   override func decodeRestorableState(with coder: NSCoder) {
     universityID = coder.decodeInt64(forKey: "universityID")
   }
+    
+    override func applicationFinishedRestoringState() {
+        setup()
+    }
 }

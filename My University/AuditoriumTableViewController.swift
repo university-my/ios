@@ -28,31 +28,26 @@ class AuditoriumTableViewController: GenericTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let id = auditoriumID, let context = viewContext {
-            auditorium = AuditoriumEntity.fetch(id: id, context: context)
-        }
-        
         // For notifications
         configureNotificationLabel()
         statusButton.customView = notificationLabel
         
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.tableFooterView = UIView()
         
-        // Mark auditorium as visited
-        markAuditoriumAsVisited()
+        setup()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    func setup() {
+        if let id = auditoriumID, let context = viewContext {
+            auditorium = AuditoriumEntity.fetch(id: id, context: context)
+        }
         
         if let auditorium = auditorium {
             title = auditorium.name
             performFetch()
-
+            
             let records = fetchedResultsController?.fetchedObjects ?? []
             if records.isEmpty {
-                // Import records if empty
                 importRecords()
             }
         }
@@ -233,18 +228,6 @@ class AuditoriumTableViewController: GenericTableViewController {
             print("Error in the fetched results controller: \(error).")
         }
     }
-    
-    // MARK: - Is visited
-    
-    private func markAuditoriumAsVisited() {
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        viewContext?.perform {
-            if let auditorium = self.auditorium {
-                auditorium.isVisited = true
-                appDelegate?.saveContext()
-            }
-        }
-    }
 }
 
 // MARK: - UIStateRestoring
@@ -261,4 +244,8 @@ extension AuditoriumTableViewController {
   override func decodeRestorableState(with coder: NSCoder) {
     auditoriumID = coder.decodeInt64(forKey: "auditoriumID")
   }
+    
+    override func applicationFinishedRestoringState() {
+        setup()
+    }
 }

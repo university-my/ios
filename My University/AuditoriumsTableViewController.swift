@@ -30,12 +30,15 @@ class AuditoriumsTableViewController: SearchableTableViewController {
         
         // Configure table
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.tableFooterView = UIView()
         
         // Sear Bar and Search Results Controller
         configureSearchControllers()
         searchController.searchResultsUpdater = self
         
+        setup()
+    }
+    
+    func setup() {
         if let id = universityID {
             dataSource = AuditoriumDataSource(universityID: id)
             tableView.dataSource = dataSource
@@ -55,7 +58,7 @@ class AuditoriumsTableViewController: SearchableTableViewController {
         } else {
             tableView.reloadData()
             refreshControl?.endRefreshing()
-            showAuditoriumsCount()
+            hideNotification()
         }
     }
     
@@ -69,18 +72,12 @@ class AuditoriumsTableViewController: SearchableTableViewController {
             if let error = error {
                 self.showNotification(text: error.localizedDescription)
             } else {
-                self.showAuditoriumsCount()
+                self.hideNotification()
             }
             dataSource.fetchAuditoriums()
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
         }
-    }
-    
-    func showAuditoriumsCount() {
-        let auditoriums = dataSource?.fetchedResultsController?.fetchedObjects ?? []
-        let text = NSLocalizedString("auditoriums", comment: "Count of auditoriums")
-        showNotification(text: "\(auditoriums.count) " + text)
     }
     
     // MARK: - Pull to refresh
@@ -174,4 +171,8 @@ extension AuditoriumsTableViewController {
   override func decodeRestorableState(with coder: NSCoder) {
     universityID = coder.decodeInt64(forKey: "universityID")
   }
+    
+    override func applicationFinishedRestoringState() {
+        setup()
+    }
 }

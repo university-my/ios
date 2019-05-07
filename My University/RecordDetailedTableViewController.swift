@@ -62,12 +62,15 @@ class RecordDetailedTableViewController: GenericTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setup()
+    }
+    
+    func setup() {
         if let id = recordID, let context = viewContext {
             record = RecordEntity.fetch(id: id, context: context)
+            title = nameAndTime()
+            sections = generateSections()
         }
-        
-        title = nameAndTime()
-        sections = generateSections()
     }
     
     /// Name and time
@@ -204,4 +207,8 @@ extension RecordDetailedTableViewController {
   override func decodeRestorableState(with coder: NSCoder) {
     recordID = coder.decodeInt64(forKey: "recordID")
   }
+    
+    override func applicationFinishedRestoringState() {
+        setup()
+    }
 }
