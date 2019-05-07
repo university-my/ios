@@ -23,19 +23,23 @@ class TeachersTableViewController: SearchableTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // For notifications
         configureNotificationLabel()
         statusButton.customView = notificationLabel
-        
+
         // Configure table
         tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
-        
+
         // Sear Bar and Search Results Controller
         configureSearchControllers()
         searchController.searchResultsUpdater = self
         
+        setup()
+    }
+
+    func setup() {
         if let id = universityID {
             // Loading teachers
             dataSource = TeacherDataSource(universityID: id)
@@ -56,7 +60,6 @@ class TeachersTableViewController: SearchableTableViewController {
         } else {
             tableView.reloadData()
             refreshControl?.endRefreshing()
-            showTeachersCount()
         }
     }
     
@@ -70,19 +73,13 @@ class TeachersTableViewController: SearchableTableViewController {
             if let error = error {
                 self.showNotification(text: error.localizedDescription)
             } else {
-                self.showTeachersCount()
+                self.hideNotification()
             }
             dataSource.fetchTeachers()
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
-            self.showTeachersCount()
+            self.hideNotification()
         }
-    }
-    
-    func showTeachersCount() {
-        let teachers = dataSource?.fetchedResultsController?.fetchedObjects ?? []
-        let text = NSLocalizedString("teachers", comment: "Count of teachers")
-        showNotification(text: "\(teachers.count) " + text)
     }
     
     // MARK: - Pull to refresh
@@ -177,4 +174,8 @@ extension TeachersTableViewController {
   override func decodeRestorableState(with coder: NSCoder) {
     universityID = coder.decodeInt64(forKey: "universityID")
   }
+
+    override func applicationFinishedRestoringState() {
+        setup()
+    }
 }

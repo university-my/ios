@@ -43,18 +43,22 @@ class UniversityViewController: GenericTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Fetch university
-        dataSource = UniversityDataSource()
-        if let id = universityID {
-            dataSource?.fetch(id: id)
-        }
-        
-        configureRows()
-        
         // For notifications
         configureNotificationLabel()
         statusButton.customView = notificationLabel
-        
+
+        setup()
+    }
+
+    private func setup() {
+        // Fetch university
+        if let id = universityID {
+            dataSource = UniversityDataSource()
+            dataSource?.fetch(id: id)
+        }
+
+        configureRows()
+
         if let university = dataSource?.university {
             // Title
             title = university.shortName
@@ -63,7 +67,7 @@ class UniversityViewController: GenericTableViewController {
             auditoriumsDataSource = AuditoriumDataSource(universityID: university.id)
             groupsDataSource = GroupsDataSource(universityID: university.id)
             teachersDataSource = TeacherDataSource(universityID: university.id)
-            
+
             // Start from groups,
             // And import auditoriums and teachers
             loadGroups()
@@ -215,7 +219,7 @@ class UniversityViewController: GenericTableViewController {
     private func loadAuditoriums() {
         guard let dataSource = auditoriumsDataSource else { return }
         dataSource.fetchAuditoriums()
-     
+
         let auditoriums = dataSource.fetchedResultsController?.fetchedObjects ?? []
         if auditoriums.isEmpty {
             let text = NSLocalizedString("Loading auditoriums ...", comment: "")
@@ -242,14 +246,18 @@ class UniversityViewController: GenericTableViewController {
 
 extension UniversityViewController {
 
-  override func encodeRestorableState(with coder: NSCoder) {
-    if let id = universityID {
-      coder.encode(id, forKey: "universityID")
+    override func encodeRestorableState(with coder: NSCoder) {
+        if let id = universityID {
+            coder.encode(id, forKey: "universityID")
+        }
+        super.encodeRestorableState(with: coder)
     }
-    super.encodeRestorableState(with: coder)
-  }
 
-  override func decodeRestorableState(with coder: NSCoder) {
-    universityID = coder.decodeInt64(forKey: "universityID")
-  }
+    override func decodeRestorableState(with coder: NSCoder) {
+        universityID = coder.decodeInt64(forKey: "universityID")
+    }
+
+    override func applicationFinishedRestoringState() {
+        setup()
+    }
 }
