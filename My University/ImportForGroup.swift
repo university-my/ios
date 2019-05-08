@@ -105,43 +105,62 @@ extension Record {
         /// Delete previous records and insert new records
         private func syncRecords(_ json: [[String: Any]], taskContext: NSManagedObjectContext) {
             
-            guard let groupInContext = taskContext.object(with: group.objectID) as? GroupEntity else { return }
-            
             taskContext.performAndWait {
                 
-                // TODO: Don't delete records
+                guard let groupInContext = taskContext.object(with: group.objectID) as? GroupEntity else { return }
                 
-                // Execute the request to batch delete and merge the changes to viewContext.
-                
-                let fetchRequest: NSFetchRequest<NSFetchRequestResult> = RecordEntity.fetchRequest()
-                
-                fetchRequest.predicate = NSPredicate(format: "ANY groups = %@", groupInContext)
-                let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-                deleteRequest.resultType = .resultTypeObjectIDs
-                do {
-                    let result = try taskContext.execute(deleteRequest) as? NSBatchDeleteResult
-                    if let objectIDArray = result?.result as? [NSManagedObjectID] {
-                        let changes = [NSDeletedObjectsKey: objectIDArray]
-                        NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [self.viewContext])
-                    }
-                } catch {
-                    completionHandler?(error)
-                }
-                
-                // Create new records.
-                
+                // Parse records
                 let parsedRecords = json.compactMap { Record($0, dateFormatter: dateFormatter) }
                 
-                // Finish if no records in JSON.
-                if parsedRecords.isEmpty {
-                    completionHandler?(nil)
-                    return
+                // Records to update
+                let toUpdate = RecordEntity.fetch(parsedRecords, group: groupInContext, context: taskContext)
+                
+                // IDs to update
+                let idsToUpdate = toUpdate.map({ record in
+                    return record.id
+                })
+                
+                // Find records to insert
+                let toInsert = parsedRecords.filter({ record in
+                    return (idsToUpdate.contains(record.id) == false)
+                })
+                
+                // IDs
+                let ids = parsedRecords.map({ record in
+                    return record.id
+                })
+                
+                // Now find auditoriums to delete
+                let allRecords = RecordEntity.fetchAll(group: groupInContext, context: taskContext)
+                let toDelete = allRecords.filter({ record in
+                    return (ids.contains(record.id) == false)
+                })
+                
+                // 1. Delete
+                for record in toDelete {
+                    taskContext.delete(record)
                 }
                 
-                for record in parsedRecords {
+                // 2. Update
+                for record in toUpdate {
+                    if let recordFromServer = parsedRecords.first(where: { parsedRecord in
+                        return parsedRecord.id == record.id
+                    }) {
+                        record.date = recordFromServer.date
+                        record.dateString = recordFromServer.dateString
+                        record.pairName = recordFromServer.pairName
+                        record.name = recordFromServer.name
+                        record.reason = recordFromServer.reason
+                        record.time = recordFromServer.time
+                        record.type = recordFromServer.type
+                    }
+                }
+                
+                // 3. Intert
+                for record in toInsert {
                     self.insert(record, group: groupInContext, context: taskContext)
                 }
-                
+
                 // Finishing import. Save context.
                 if taskContext.hasChanges {
                     do {

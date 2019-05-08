@@ -12,7 +12,7 @@ struct Record {
   
   // MARK: - Properties
   
-  let id: Int
+  let id: Int64
   let time: String
   let dateString: String
   let date: Date?
@@ -27,7 +27,7 @@ struct Record {
   // MARK: - Initialization
   
   init?(_ json: [String: Any], dateFormatter: ISO8601DateFormatter) {
-    guard let id = json["id"] as? Int else {
+    guard let id = json["id"] as? Int64 else {
       return nil
     }
     guard let time = json["time"] as? String else {

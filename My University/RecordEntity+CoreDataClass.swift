@@ -56,4 +56,94 @@ public class RecordEntity: NSManagedObject {
             return nil
         }
     }
+    
+    static func fetch(_ records: [Record], auditorium: AuditoriumEntity?, context: NSManagedObjectContext) -> [RecordEntity] {
+        guard let auditorium = auditorium else { return [] }
+        
+        let ids = records.map { record in
+            return record.id
+        }
+        let fetchRequest: NSFetchRequest<RecordEntity> = RecordEntity.fetchRequest()
+        let isdPredicate = NSPredicate(format: "id IN %@", ids)
+        let auditoriumPredicate = NSPredicate(format: "auditorium == %@", auditorium)
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [auditoriumPredicate, isdPredicate])
+        fetchRequest.predicate = predicate
+        do {
+            let result = try context.fetch(fetchRequest)
+            return result
+        } catch  {
+            return []
+        }
+    }
+    
+    static func fetch(_ records: [Record], group: GroupEntity?, context: NSManagedObjectContext) -> [RecordEntity] {
+        guard let group = group else { return [] }
+        
+        let ids = records.map { record in
+            return record.id
+        }
+        let fetchRequest: NSFetchRequest<RecordEntity> = RecordEntity.fetchRequest()
+        let isdPredicate = NSPredicate(format: "id IN %@", ids)
+        let groupPredicate = NSPredicate(format: "ANY groups == %@", group)
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [groupPredicate, isdPredicate])
+        fetchRequest.predicate = predicate
+        do {
+            let result = try context.fetch(fetchRequest)
+            return result
+        } catch  {
+            return []
+        }
+    }
+    
+    static func fetch(_ records: [Record], teacher: TeacherEntity?, context: NSManagedObjectContext) -> [RecordEntity] {
+        guard let teacher = teacher else { return [] }
+        
+        let ids = records.map { record in
+            return record.id
+        }
+        let fetchRequest: NSFetchRequest<RecordEntity> = RecordEntity.fetchRequest()
+        let isdPredicate = NSPredicate(format: "id IN %@", ids)
+        let teacherPredicate = NSPredicate(format: "teacher == %@", teacher)
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [teacherPredicate, isdPredicate])
+        fetchRequest.predicate = predicate
+        do {
+            let result = try context.fetch(fetchRequest)
+            return result
+        } catch  {
+            return []
+        }
+    }
+    
+    static func fetchAll(auditorium: AuditoriumEntity, context: NSManagedObjectContext) -> [RecordEntity] {
+        let request: NSFetchRequest<RecordEntity> = RecordEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "auditorium == %@", auditorium)
+        do {
+            let result = try context.fetch(request)
+            return result
+        } catch  {
+            return []
+        }
+    }
+    
+    static func fetchAll(group: GroupEntity, context: NSManagedObjectContext) -> [RecordEntity] {
+        let request: NSFetchRequest<RecordEntity> = RecordEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "ANY groups == %@", group)
+        do {
+            let result = try context.fetch(request)
+            return result
+        } catch  {
+            return []
+        }
+    }
+    
+    static func fetchAll(teacher: TeacherEntity, context: NSManagedObjectContext) -> [RecordEntity] {
+        let request: NSFetchRequest<RecordEntity> = RecordEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "teacher == %@", teacher)
+        do {
+            let result = try context.fetch(request)
+            return result
+        } catch  {
+            return []
+        }
+    }
 }
