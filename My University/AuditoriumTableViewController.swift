@@ -33,22 +33,21 @@ class AuditoriumTableViewController: GenericTableViewController {
         statusButton.customView = notificationLabel
         
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.tableFooterView = UIView()
         
-        // Mark auditorium as visited
-        markAuditoriumAsVisited()
+        setup()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    func setup() {
+        if let id = auditoriumID, let context = viewContext {
+            auditorium = AuditoriumEntity.fetch(id: id, context: context)
+        }
         
         if let auditorium = auditorium {
             title = auditorium.name
             performFetch()
-
+            
             let records = fetchedResultsController?.fetchedObjects ?? []
             if records.isEmpty {
-                // Import records if empty
                 importRecords()
             }
         }
@@ -75,24 +74,24 @@ class AuditoriumTableViewController: GenericTableViewController {
     
     // MARK: - Import Records
     
-    var auditorium: AuditoriumEntity?
     var auditoriumID: Int64?
+    private var auditorium: AuditoriumEntity?
     
     private var importManager: Record.ImportForAuditorium?
     
     private func importRecords() {
-        // Do nothing without CoreData.
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         guard let persistentContainer = appDelegate?.persistentContainer else { return }
         
-        guard let auditorium = auditorium else { return }
-        guard let university = auditorium.university else { return }
+        guard let auditoriumID = auditorium?.id else { return }
+        guard let university = auditorium?.university else { return }
+        guard let universityURL = university.url else { return }
         
         let text = NSLocalizedString("Loading records ...", comment: "")
         showNotification(text: text)
         
         // Download records for Auditorium from backend and save to database.
-        importManager = Record.ImportForAuditorium(persistentContainer: persistentContainer, auditorium: auditorium, university: university)
+        importManager = Record.ImportForAuditorium(persistentContainer: persistentContainer, auditoriumID: auditoriumID, universityURL: universityURL)
         DispatchQueue.global().async {
             self.importManager?.importRecords({ (error) in
                 
@@ -174,7 +173,7 @@ class AuditoriumTableViewController: GenericTableViewController {
             
         case "recordDetailed":
             if let destination = segue.destination as? RecordDetailedTableViewController {
-                destination.record = sender as? RecordEntity
+                destination.recordID = (sender as? RecordEntity)?.id
             }
             
         default:
@@ -229,18 +228,24 @@ class AuditoriumTableViewController: GenericTableViewController {
             print("Error in the fetched results controller: \(error).")
         }
     }
-    
-    // MARK: - Is visited
-    
-    private func markAuditoriumAsVisited() {
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        viewContext?.perform {
-            if let auditorium = self.auditorium {
-                auditorium.isVisited = true
-                appDelegate?.saveContext()
-            }
-        }
-    }
 }
 
-// TODO: Add State restoration
+// MARK: - UIStateRestoring
+
+extension AuditoriumTableViewController {
+
+  override func encodeRestorableState(with coder: NSCoder) {
+    if let id = auditoriumID {
+      coder.encode(id, forKey: "auditoriumID")
+    }
+    super.encodeRestorableState(with: coder)
+  }
+
+  override func decodeRestorableState(with coder: NSCoder) {
+    auditoriumID = coder.decodeInt64(forKey: "auditoriumID")
+  }
+    
+    override func applicationFinishedRestoringState() {
+        setup()
+    }
+}

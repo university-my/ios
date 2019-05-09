@@ -6,11 +6,10 @@
 //  Copyright © 2019 Yura Voevodin. All rights reserved.
 //
 
+import CoreData
 import UIKit
 
 class RecordDetailedTableViewController: GenericTableViewController {
-    
-    // TODO: Add description witn name to the bottom
     
     // MARK: - Types
     
@@ -46,7 +45,8 @@ class RecordDetailedTableViewController: GenericTableViewController {
     
     // MARK: - Properties
     
-    weak var record: RecordEntity?
+    var recordID: Int64?
+    private weak var record: RecordEntity?
     
     private var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -54,11 +54,23 @@ class RecordDetailedTableViewController: GenericTableViewController {
         return dateFormatter
     }()
     
+    private lazy var viewContext: NSManagedObjectContext? = {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        return appDelegate?.persistentContainer.viewContext
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = nameAndTime()
-        sections = generateSections()
+        setup()
+    }
+    
+    func setup() {
+        if let id = recordID, let context = viewContext {
+            record = RecordEntity.fetch(id: id, context: context)
+            title = nameAndTime()
+            sections = generateSections()
+        }
     }
     
     /// Name and time
@@ -178,5 +190,25 @@ class RecordDetailedTableViewController: GenericTableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sections[section].name
+    }
+}
+
+// MARK: - UIStateRestoring
+
+extension RecordDetailedTableViewController {
+
+  override func encodeRestorableState(with coder: NSCoder) {
+    if let id = recordID {
+      coder.encode(id, forKey: "recordID")
+    }
+    super.encodeRestorableState(with: coder)
+  }
+
+  override func decodeRestorableState(with coder: NSCoder) {
+    recordID = coder.decodeInt64(forKey: "recordID")
+  }
+    
+    override func applicationFinishedRestoringState() {
+        setup()
     }
 }

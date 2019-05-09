@@ -12,7 +12,7 @@ class AuditoriumsTableViewController: SearchableTableViewController {
     
     // MARK: - Properties
     
-    var university: UniversityEntity?
+    var universityID: Int64?
     private var dataSource: AuditoriumDataSource?
     
     // MARK: - Notificaion
@@ -30,15 +30,17 @@ class AuditoriumsTableViewController: SearchableTableViewController {
         
         // Configure table
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.tableFooterView = UIView()
         
         // Sear Bar and Search Results Controller
         configureSearchControllers()
         searchController.searchResultsUpdater = self
         
-        if let university = university {
-            // Loading teachers
-            dataSource = AuditoriumDataSource(university: university)
+        setup()
+    }
+    
+    func setup() {
+        if let id = universityID {
+            dataSource = AuditoriumDataSource(universityID: id)
             tableView.dataSource = dataSource
             loadAuditoroums()
         }
@@ -56,7 +58,7 @@ class AuditoriumsTableViewController: SearchableTableViewController {
         } else {
             tableView.reloadData()
             refreshControl?.endRefreshing()
-            showAuditoriumsCount()
+            hideNotification()
         }
     }
     
@@ -70,18 +72,12 @@ class AuditoriumsTableViewController: SearchableTableViewController {
             if let error = error {
                 self.showNotification(text: error.localizedDescription)
             } else {
-                self.showAuditoriumsCount()
+                self.hideNotification()
             }
             dataSource.fetchAuditoriums()
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
         }
-    }
-    
-    func showAuditoriumsCount() {
-        let auditoriums = dataSource?.fetchedResultsController?.fetchedObjects ?? []
-        let text = NSLocalizedString("auditoriums", comment: "Count of auditoriums")
-        showNotification(text: "\(auditoriums.count) " + text)
     }
     
     // MARK: - Pull to refresh
@@ -110,13 +106,11 @@ class AuditoriumsTableViewController: SearchableTableViewController {
                 if searchController.isActive {
                     if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
                         let selectedAuditorium = resultsTableController.filteredAuditoriums[safe: indexPath.row]
-                        detailTableViewController.auditorium = selectedAuditorium
                         detailTableViewController.auditoriumID = selectedAuditorium?.id
                     }
                 } else {
                     if let indexPath = tableView.indexPathForSelectedRow {
                         let selectedAuditorium = dataSource?.fetchedResultsController?.object(at: indexPath)
-                        detailTableViewController.auditorium = selectedAuditorium
                         detailTableViewController.auditoriumID = selectedAuditorium?.id
                     }
                 }
@@ -160,5 +154,25 @@ extension AuditoriumsTableViewController: UISearchResultsUpdating {
             resultsController.dataSourceType = .auditoriums
             resultsController.tableView.reloadData()
         }
+    }
+}
+
+// MARK: - UIStateRestoring
+
+extension AuditoriumsTableViewController {
+
+  override func encodeRestorableState(with coder: NSCoder) {
+    if let id = universityID {
+      coder.encode(id, forKey: "universityID")
+    }
+    super.encodeRestorableState(with: coder)
+  }
+
+  override func decodeRestorableState(with coder: NSCoder) {
+    universityID = coder.decodeInt64(forKey: "universityID")
+  }
+    
+    override func applicationFinishedRestoringState() {
+        setup()
     }
 }

@@ -19,8 +19,8 @@ extension Record {
         private let cacheFile: URL
         private let networkClient: NetworkClient
         private var completionHandler: ((_ error: Error?) -> ())?
-        private let auditorium: AuditoriumEntity
-        private let university: UniversityEntity
+        private let auditoriumID: Int64
+        private let universityURL: String
         
         private let persistentContainer: NSPersistentContainer
         
@@ -36,14 +36,14 @@ extension Record {
         
         // MARK: - Initialization
         
-        init?(persistentContainer: NSPersistentContainer, auditorium: AuditoriumEntity, university: UniversityEntity) {
+        init?(persistentContainer: NSPersistentContainer, auditoriumID: Int64, universityURL: String) {
             // Cache file
             let cachesFolder = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             guard let cacheFile = cachesFolder?.appendingPathComponent("auditorium_records.json") else { return nil }
             
             self.cacheFile = cacheFile
-            self.auditorium = auditorium
-            self.university = university
+            self.auditoriumID = auditoriumID
+            self.universityURL = universityURL
             self.persistentContainer = persistentContainer
             networkClient = NetworkClient(cacheFile: self.cacheFile)
         }
@@ -53,7 +53,7 @@ extension Record {
         func importRecords(_ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            networkClient.downloadRecords(auditoriumID: auditorium.id, unversityURL: university.url ?? "") { (error) in
+            networkClient.downloadRecords(auditoriumID: auditoriumID, unversityURL: universityURL) { (error) in
                 if let error = error {
                     self.completionHandler?(error)
                 } else {
@@ -103,33 +103,62 @@ extension Record {
         /// Delete previous records and insert new records
         private func syncRecords(_ json: [[String: Any]], taskContext: NSManagedObjectContext) {
             
-            guard let auditoriumInContext = taskContext.object(with: auditorium.objectID) as? AuditoriumEntity else { return }
-            
             taskContext.performAndWait {
                 
-                // TODO: Don't delete records
-                
-                // Execute the request to batch delete and merge the changes to viewContext.
-                
-                let fetchRequest: NSFetchRequest<NSFetchRequestResult> = RecordEntity.fetchRequest()
-                fetchRequest.predicate = NSPredicate(format: "auditorium == %@", auditoriumInContext)
-                let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-                deleteRequest.resultType = .resultTypeObjectIDs
-                do {
-                    let result = try taskContext.execute(deleteRequest) as? NSBatchDeleteResult
-                    if let objectIDArray = result?.result as? [NSManagedObjectID] {
-                        let changes = [NSDeletedObjectsKey: objectIDArray]
-                        NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [self.viewContext])
-                    }
-                } catch {
-                    completionHandler?(error)
+                guard let auditoriumInContext = AuditoriumEntity.fetch(id: auditoriumID, context: taskContext) else {
+                    self.completionHandler?(nil)
+                    return
                 }
                 
-                // Create new records.
-                
+                // Parse records
                 let parsedRecords = json.compactMap { Record($0, dateFormatter: dateFormatter) }
                 
-                for record in parsedRecords {
+                // Records to update
+                let toUpdate = RecordEntity.fetch(parsedRecords, auditorium: auditoriumInContext, context: taskContext)
+                
+                // IDs to update
+                let idsToUpdate = toUpdate.map({ record in
+                    return record.id
+                })
+                
+                // Find records to insert
+                let toInsert = parsedRecords.filter({ record in
+                    return (idsToUpdate.contains(record.id) == false)
+                })
+                
+                // IDs
+                let ids = parsedRecords.map({ record in
+                    return record.id
+                })
+                
+                // Now find auditoriums to delete
+                let allRecords = RecordEntity.fetchAll(auditorium: auditoriumInContext, context: taskContext)
+                let toDelete = allRecords.filter({ record in
+                    return (ids.contains(record.id) == false)
+                })
+                
+                // 1. Delete
+                for record in toDelete {
+                    taskContext.delete(record)
+                }
+                
+                // 2. Update
+                for record in toUpdate {
+                    if let recordFromServer = parsedRecords.first(where: { parsedRecord in
+                        return parsedRecord.id == record.id
+                    }) {
+                        record.date = recordFromServer.date
+                        record.dateString = recordFromServer.dateString
+                        record.pairName = recordFromServer.pairName
+                        record.name = recordFromServer.name
+                        record.reason = recordFromServer.reason
+                        record.time = recordFromServer.time
+                        record.type = recordFromServer.type
+                    }
+                }
+                
+                // 3. Intert
+                for record in toInsert {
                     self.insert(record, auditorium: auditoriumInContext, context: taskContext)
                 }
                 

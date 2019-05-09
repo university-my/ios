@@ -12,7 +12,7 @@ class TeachersTableViewController: SearchableTableViewController {
     
     // MARK: - Properties
     
-    var university: UniversityEntity?
+    var universityID: Int64?
     private var dataSource: TeacherDataSource?
     
     // MARK: - Notificaion
@@ -23,22 +23,26 @@ class TeachersTableViewController: SearchableTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // For notifications
         configureNotificationLabel()
         statusButton.customView = notificationLabel
-        
+
         // Configure table
         tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
-        
+
         // Sear Bar and Search Results Controller
         configureSearchControllers()
         searchController.searchResultsUpdater = self
         
-        if let university = university {
+        setup()
+    }
+
+    func setup() {
+        if let id = universityID {
             // Loading teachers
-            dataSource = TeacherDataSource(university: university)
+            dataSource = TeacherDataSource(universityID: id)
             tableView.dataSource = dataSource
             loadTeachers()
         }
@@ -56,7 +60,6 @@ class TeachersTableViewController: SearchableTableViewController {
         } else {
             tableView.reloadData()
             refreshControl?.endRefreshing()
-            showTeachersCount()
         }
     }
     
@@ -70,19 +73,13 @@ class TeachersTableViewController: SearchableTableViewController {
             if let error = error {
                 self.showNotification(text: error.localizedDescription)
             } else {
-                self.showTeachersCount()
+                self.hideNotification()
             }
             dataSource.fetchTeachers()
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
-            self.showTeachersCount()
+            self.hideNotification()
         }
-    }
-    
-    func showTeachersCount() {
-        let teachers = dataSource?.fetchedResultsController?.fetchedObjects ?? []
-        let text = NSLocalizedString("teachers", comment: "Count of teachers")
-        showNotification(text: "\(teachers.count) " + text)
     }
     
     // MARK: - Pull to refresh
@@ -112,13 +109,11 @@ class TeachersTableViewController: SearchableTableViewController {
                 if searchController.isActive {
                     if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
                         let selectedTeacher = resultsTableController.filteredTeachers[safe: indexPath.row]
-                        detailTableViewController.teacher = selectedTeacher
                         detailTableViewController.teacherID = selectedTeacher?.id
                     }
                 } else {
                     if let indexPath = tableView.indexPathForSelectedRow {
                         let selectedTeacher = dataSource?.fetchedResultsController?.object(at: indexPath)
-                        detailTableViewController.teacher = selectedTeacher
                         detailTableViewController.teacherID = selectedTeacher?.id
                     }
                 }
@@ -162,5 +157,25 @@ extension TeachersTableViewController: UISearchResultsUpdating {
             resultsController.dataSourceType = .teachers
             resultsController.tableView.reloadData()
         }
+    }
+}
+
+// MARK: - UIStateRestoring
+
+extension TeachersTableViewController {
+
+  override func encodeRestorableState(with coder: NSCoder) {
+    if let id = universityID {
+      coder.encode(id, forKey: "universityID")
+    }
+    super.encodeRestorableState(with: coder)
+  }
+
+  override func decodeRestorableState(with coder: NSCoder) {
+    universityID = coder.decodeInt64(forKey: "universityID")
+  }
+
+    override func applicationFinishedRestoringState() {
+        setup()
     }
 }

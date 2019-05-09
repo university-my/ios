@@ -22,13 +22,14 @@ class UniversityViewController: GenericTableViewController {
     }
     
     // MARK: - Properties
-    
-    var university: UniversityEntity?
-    
+
+    var universityID: Int64?
+    private var dataSource: UniversityDataSource?
+
     private var auditoriumsDataSource: AuditoriumDataSource?
     private var groupsDataSource: GroupsDataSource?
     private var teachersDataSource: TeacherDataSource?
-    
+
     var rows: [Row] = []
     
     // MARK: - Cells
@@ -41,22 +42,32 @@ class UniversityViewController: GenericTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        configureRows()
-        
-        // Title
-        title = university?.shortName
-        
+
         // For notifications
         configureNotificationLabel()
         statusButton.customView = notificationLabel
-        
-        if let university = university {
+
+        setup()
+    }
+
+    private func setup() {
+        // Fetch university
+        if let id = universityID {
+            dataSource = UniversityDataSource()
+            dataSource?.fetch(id: id)
+        }
+
+        configureRows()
+
+        if let university = dataSource?.university {
+            // Title
+            title = university.shortName
+
             // Init all data sources
-            auditoriumsDataSource = AuditoriumDataSource(university: university)
-            groupsDataSource = GroupsDataSource(university: university)
-            teachersDataSource = TeacherDataSource(university: university)
-            
+            auditoriumsDataSource = AuditoriumDataSource(universityID: university.id)
+            groupsDataSource = GroupsDataSource(universityID: university.id)
+            teachersDataSource = TeacherDataSource(universityID: university.id)
+
             // Start from groups,
             // And import auditoriums and teachers
             loadGroups()
@@ -66,7 +77,7 @@ class UniversityViewController: GenericTableViewController {
     // MARK: - Table
     
     private func configureRows() {
-        guard let university = university else { return }
+        guard let university = dataSource?.university else { return }
         
         if university.isKPI {
             let grops = Row(kind: .groups)
@@ -94,7 +105,7 @@ class UniversityViewController: GenericTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return university?.fullName
+        return dataSource?.university?.fullName
     }
     
     // MARK: - Navigation
@@ -106,15 +117,15 @@ class UniversityViewController: GenericTableViewController {
             
         case "showAuditoriums":
             let vc = segue.destination as? AuditoriumsTableViewController
-            vc?.university = university
+            vc?.universityID = dataSource?.university?.id
             
         case "showGroups":
             let vc = segue.destination as? GroupsTableViewController
-            vc?.university = university
+            vc?.universityID = dataSource?.university?.id
             
         case "showTeachers":
             let vc = segue.destination as? TeachersTableViewController
-            vc?.university = university
+            vc?.universityID = dataSource?.university?.id
             
         default:
             break
@@ -197,7 +208,7 @@ class UniversityViewController: GenericTableViewController {
     // MARK: - Auditoriums
     
     private func shouldImportAuditoriums() -> Bool {
-        guard let university = university else { return false }
+        guard let university = dataSource?.university else { return false }
         if university.isKPI {
             return false
         } else {
@@ -208,7 +219,7 @@ class UniversityViewController: GenericTableViewController {
     private func loadAuditoriums() {
         guard let dataSource = auditoriumsDataSource else { return }
         dataSource.fetchAuditoriums()
-     
+
         let auditoriums = dataSource.fetchedResultsController?.fetchedObjects ?? []
         if auditoriums.isEmpty {
             let text = NSLocalizedString("Loading auditoriums ...", comment: "")
@@ -229,4 +240,24 @@ class UniversityViewController: GenericTableViewController {
     // MARK: - Notificaion
     
     @IBOutlet weak var statusButton: UIBarButtonItem!
+}
+
+// MARK: - UIStateRestoring
+
+extension UniversityViewController {
+
+    override func encodeRestorableState(with coder: NSCoder) {
+        if let id = universityID {
+            coder.encode(id, forKey: "universityID")
+        }
+        super.encodeRestorableState(with: coder)
+    }
+
+    override func decodeRestorableState(with coder: NSCoder) {
+        universityID = coder.decodeInt64(forKey: "universityID")
+    }
+
+    override func applicationFinishedRestoringState() {
+        setup()
+    }
 }

@@ -12,8 +12,8 @@ class SelectUniversityViewController: GenericTableViewController {
 
     // MARK: - Properties
 
-    lazy var dataSource: UniversityDataSource = {
-        return UniversityDataSource()
+    lazy var dataSource: UniversitiesDataSource = {
+        return UniversitiesDataSource()
     }()
 
     // MARK: - Lifecycle
@@ -96,7 +96,7 @@ class SelectUniversityViewController: GenericTableViewController {
             let destination = segue.destination as? UniversityViewController
             if let indexPath = tableView.indexPathForSelectedRow {
                 let selectedUniversity = dataSource.fetchedResultsController?.object(at: indexPath)
-                destination?.university = selectedUniversity
+                destination?.universityID = selectedUniversity?.id
             }
 
         default:

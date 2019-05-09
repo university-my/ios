@@ -12,7 +12,7 @@ class GroupsTableViewController: SearchableTableViewController {
     
     // MARK: - Properties
     
-    var university: UniversityEntity?
+    var universityID: Int64?
     private var dataSource: GroupsDataSource?
     
     // MARK: - Notificaion
@@ -30,15 +30,18 @@ class GroupsTableViewController: SearchableTableViewController {
         
         // Configure table
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.tableFooterView = UIView()
         
         // Sear Bar and Search Results Controller
         configureSearchControllers()
         searchController.searchResultsUpdater = self
         
-        if let university = university {
+        setup()
+    }
+    
+    func setup() {
+        if let id = universityID {
             // Loading groups
-            dataSource = GroupsDataSource(university: university)
+            dataSource = GroupsDataSource(universityID: id)
             tableView.dataSource = dataSource
             loadGroups()
         }
@@ -56,7 +59,6 @@ class GroupsTableViewController: SearchableTableViewController {
         } else {
             tableView.reloadData()
             refreshControl?.endRefreshing()
-            showGroupsCount()
         }
     }
     
@@ -75,14 +77,7 @@ class GroupsTableViewController: SearchableTableViewController {
             dataSource.performFetch()
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
-            self.showGroupsCount()
         }
-    }
-    
-    func showGroupsCount() {
-        let groups = dataSource?.fetchedResultsController?.fetchedObjects ?? []
-        let text = NSLocalizedString("groups", comment: "Count of groups")
-        showNotification(text: "\(groups.count) " + text)
     }
     
     // MARK: - Pull to refresh
@@ -120,13 +115,11 @@ class GroupsTableViewController: SearchableTableViewController {
                 if searchController.isActive {
                     if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
                         let selectedGroup = resultsTableController.filteredGroups[safe: indexPath.row]
-                        detailTableViewController.group = selectedGroup
                         detailTableViewController.groupID = selectedGroup?.id
                     }
                 } else {
                     if let indexPath = tableView.indexPathForSelectedRow {
                         let selectedGroup = dataSource?.fetchedResultsController?.object(at: indexPath)
-                        detailTableViewController.group = selectedGroup
                         detailTableViewController.groupID = selectedGroup?.id
                     }
                 }
@@ -170,5 +163,25 @@ extension GroupsTableViewController: UISearchResultsUpdating {
             resultsController.dataSourceType = .groups
             resultsController.tableView.reloadData()
         }
+    }
+}
+
+// MARK: - UIStateRestoring
+
+extension GroupsTableViewController {
+
+  override func encodeRestorableState(with coder: NSCoder) {
+    if let id = universityID {
+      coder.encode(id, forKey: "universityID")
+    }
+    super.encodeRestorableState(with: coder)
+  }
+
+  override func decodeRestorableState(with coder: NSCoder) {
+    universityID = coder.decodeInt64(forKey: "universityID")
+  }
+    
+    override func applicationFinishedRestoringState() {
+        setup()
     }
 }
