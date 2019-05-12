@@ -13,25 +13,6 @@ import CoreData
 @objc(AuditoriumEntity)
 public class AuditoriumEntity: NSManagedObject {
     
-    static func clearHistory(on context: NSManagedObjectContext) {
-        let request = NSBatchUpdateRequest(entityName: "AuditoriumEntity")
-        
-        let isVisited = #keyPath(AuditoriumEntity.isVisited)
-        
-        request.predicate = NSPredicate(format: isVisited + " == YES")
-        request.propertiesToUpdate = [isVisited: "NO"]
-        request.resultType = .updatedObjectIDsResultType
-        do {
-            let result = try context.execute(request) as? NSBatchUpdateResult
-            
-            if let objectIDArray = result?.result as? [NSManagedObjectID] {
-                let changes = [NSUpdatedObjectsKey: objectIDArray]
-                NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [context])
-            }
-        } catch {
-        }
-    }
-    
     /// Fetch groups
     class func fetch(_ auditoriums: [Auditorium], university: UniversityEntity?, context: NSManagedObjectContext) -> [AuditoriumEntity] {
         // University should not be nil

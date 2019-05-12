@@ -179,8 +179,7 @@ extension Teacher {
                 
                 // Reset the context to clean up the cache and low the memory footprint.
                 taskContext.reset()
-                self.persistentContainer.viewContext.refreshAllObjects()
-                
+
                 // Finish.
                 self.completionHandler?(nil)
             }

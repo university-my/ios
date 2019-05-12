@@ -19,7 +19,6 @@ extension AuditoriumEntity {
 
     @NSManaged public var firstSymbol: String?
     @NSManaged public var id: Int64
-    @NSManaged public var isVisited: Bool
     @NSManaged public var name: String?
     @NSManaged public var records: NSSet?
     @NSManaged public var university: UniversityEntity?
