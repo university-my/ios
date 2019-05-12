@@ -90,6 +90,8 @@ class TeacherTableViewController: GenericTableViewController {
         
         let text = NSLocalizedString("Loading records ...", comment: "")
         showNotification(text: text)
+
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         // Download records for Teacher from backend and save to database.
         importManager = Record.ImportForTeacher(persistentContainer: persistentContainer, teacher: teacher, university: university)
@@ -97,6 +99,9 @@ class TeacherTableViewController: GenericTableViewController {
             self.importManager?.importRecords({ (error) in
                 
                 DispatchQueue.main.async {
+
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+
                     if let error = error {
                         self.showNotification(text: error.localizedDescription)
                     } else {

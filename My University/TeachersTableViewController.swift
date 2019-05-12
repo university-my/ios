@@ -68,8 +68,13 @@ class TeachersTableViewController: SearchableTableViewController {
         
         let text = NSLocalizedString("Loading teachers ...", comment: "")
         showNotification(text: text)
+
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         dataSource.importTeachers { (error) in
+
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+
             if let error = error {
                 self.showNotification(text: error.localizedDescription)
             } else {

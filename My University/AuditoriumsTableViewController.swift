@@ -67,8 +67,13 @@ class AuditoriumsTableViewController: SearchableTableViewController {
         
         let text = NSLocalizedString("Loading auditoriums ...", comment: "")
         showNotification(text: text)
+
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         dataSource.importAuditoriums { (error) in
+
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+
             if let error = error {
                 self.showNotification(text: error.localizedDescription)
             } else {

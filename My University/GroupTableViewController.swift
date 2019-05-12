@@ -88,12 +88,17 @@ class GroupTableViewController: GenericTableViewController {
         
         let text = NSLocalizedString("Loading records ...", comment: "")
         showNotification(text: text)
+
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         // Download records for Group from backend and save to database.
         importManager = Record.ImportForGroup(persistentContainer: persistentContainer, group: group, university: university)
         self.importManager?.importRecords({ (error) in
             
             DispatchQueue.main.async {
+
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+
                 if let error = error {
                     self.showNotification(text: error.localizedDescription)
                 } else {

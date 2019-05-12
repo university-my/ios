@@ -89,6 +89,8 @@ class AuditoriumTableViewController: GenericTableViewController {
         
         let text = NSLocalizedString("Loading records ...", comment: "")
         showNotification(text: text)
+
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         // Download records for Auditorium from backend and save to database.
         importManager = Record.ImportForAuditorium(persistentContainer: persistentContainer, auditoriumID: auditoriumID, universityURL: universityURL)
@@ -96,6 +98,9 @@ class AuditoriumTableViewController: GenericTableViewController {
             self.importManager?.importRecords({ (error) in
                 
                 DispatchQueue.main.async {
+
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+
                     if let error = error {
                         self.showNotification(text: error.localizedDescription)
                     } else {

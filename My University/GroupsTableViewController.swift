@@ -67,8 +67,13 @@ class GroupsTableViewController: SearchableTableViewController {
         
         let text = NSLocalizedString("Loading groups ...", comment: "")
         showNotification(text: text)
+
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         dataSource.importGroups { (error) in
+
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+
             if let error = error {
                 self.showNotification(text: error.localizedDescription)
             } else {
