@@ -162,7 +162,6 @@
 			isa = PBXGroup;
 			children = (
 				C2B5CDF11EEF0E750066DB30 /* My University */,
-				E44C69EC2296FD0200A0102D /* UserData */,
 				C2B5CDF01EEF0E750066DB30 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -194,6 +193,7 @@
 				DE13AF7D226A115E009DF581 /* Teachers */,
 				DEE576E1226B7AD1008F9EB6 /* UI Subclasses */,
 				DE5FAE072263B36A00333121 /* University */,
+				E44C69EC2296FD0200A0102D /* UserData */,
 			);
 			path = "My University";
 			sourceTree = "<group>";
@@ -387,7 +387,6 @@
 				E44C69ED2296FD2C00A0102D /* Filters.swift */,
 			);
 			name = UserData;
-			path = "My University";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

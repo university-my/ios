@@ -8,13 +8,10 @@
 
 import Foundation
 
-enum Filters: Int {
+enum Filter: Int {
     case day = 0
     case week
     case month
-}
-
-struct FilterData {
     
     static var key: String {
         get {
@@ -25,7 +22,7 @@ struct FilterData {
         }
     }
     
-    static var process: Int {
+    static var currentType: Int {
         get {
             return UserDefaults.standard.integer(forKey: key)
         }
@@ -33,4 +30,5 @@ struct FilterData {
             UserDefaults.standard.set(newValue, forKey: key)
         }
     }
+    
 }
