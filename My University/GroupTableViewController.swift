@@ -110,6 +110,7 @@ class GroupTableViewController: GenericTableViewController {
     
     private func setDataForFilters(period: Filters) -> NSPredicate {
         var filterPredicate = NSPredicate()
+        let dateFormatter = DateFormatter()
         switch sortBy {
         case .week:
             if let group = group, let startWeek = Date().startOfWeek, let endWeek = Date().endOfWeek {
@@ -117,7 +118,6 @@ class GroupTableViewController: GenericTableViewController {
             }
             return filterPredicate
         case .month:
-            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "YYYY-MM"
             let currentMonth = dateFormatter.string(from: Date())
             if let group = group {
@@ -125,7 +125,6 @@ class GroupTableViewController: GenericTableViewController {
             }
             return filterPredicate
         default:
-            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "YYYY-MM-dd"
             let currentDate = dateFormatter.string(from: Date())
             if let group = group {

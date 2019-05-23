@@ -112,6 +112,7 @@ class TeacherTableViewController: GenericTableViewController {
     
     private func setDataForFilters(period: Filters) -> NSPredicate {
         var filterPredicate = NSPredicate()
+        let dateFormatter = DateFormatter()
         switch sortBy {
         case .week:
             if let teacher = teacher, let startWeek = Date().startOfWeek, let endWeek = Date().endOfWeek {
@@ -119,7 +120,6 @@ class TeacherTableViewController: GenericTableViewController {
             }
             return filterPredicate
         case .month:
-            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "YYYY-MM"
             let currentMonth = dateFormatter.string(from: Date())
             if let teacher = teacher {
@@ -127,7 +127,6 @@ class TeacherTableViewController: GenericTableViewController {
             }
             return filterPredicate
         default:
-            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "YYYY-MM-dd"
             let currentDate = dateFormatter.string(from: Date())
             if let teacher = teacher {
