@@ -19,9 +19,26 @@ class GroupTableViewController: GenericTableViewController {
         return dateFormatter
     }()
     
+    private var sortBy: Filters {
+        get {
+            switch FilterData.process {
+            case 1:
+                return .week
+            case 2:
+                return .month
+            default:
+                return .day
+            }
+        }
+        set {
+            FilterData.process = newValue.rawValue
+        }
+    }
+    
     private var sectionsTitles: [String] = []
     
     @IBOutlet weak var statusButton: UIBarButtonItem!
+    @IBOutlet weak var filterButton: UIBarButtonItem!
     
     // MARK: - Lifecycle
     
@@ -33,6 +50,9 @@ class GroupTableViewController: GenericTableViewController {
         statusButton.customView = notificationLabel
         
         tableView.rowHeight = UITableView.automaticDimension
+        
+        // Setup Filters
+        configureFilterButton(for: sortBy)
         
         setup()
     }
@@ -52,6 +72,10 @@ class GroupTableViewController: GenericTableViewController {
         }
     }
     
+    @IBAction func applyFilters(_ sender: Any) {
+        showFilters()
+    }
+    
     // MARK: - Pull to refresh
     
     @IBAction func refresh(_ sender: Any) {
@@ -69,6 +93,93 @@ class GroupTableViewController: GenericTableViewController {
             let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
             present(vc, animated: true)
         }
+    }
+    
+    // MARK: - Prepare filters
+    
+    private func configureFilterButton(for state: Filters) {
+        switch state {
+        case .week, .month:
+            filterButton.tintColor = UIColor.orange
+            filterButton.image = UIImage(named: "AppliedFilters")
+        default:
+            filterButton.tintColor = UIColor.white
+            filterButton.image = UIImage(named: "NoFilters")
+        }
+    }
+    
+    private func setDataForFilters(period: Filters) -> NSPredicate {
+        var filterPredicate = NSPredicate()
+        switch sortBy {
+        case .week:
+            if let group = group, let startWeek = Date().startOfWeek, let endWeek = Date().endOfWeek {
+                filterPredicate = NSPredicate(format: "ANY groups == %@ AND dateString >= %@ AND dateString <= %@", group, startWeek as NSDate, endWeek as NSDate)
+            }
+            return filterPredicate
+        case .month:
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "YYYY-MM"
+            let currentMonth = dateFormatter.string(from: Date())
+            if let group = group {
+                filterPredicate = NSPredicate(format: "ANY groups == %@ AND dateString CONTAINS %@", group, currentMonth)
+            }
+            return filterPredicate
+        default:
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "YYYY-MM-dd"
+            let currentDate = dateFormatter.string(from: Date())
+            if let group = group {
+                filterPredicate = NSPredicate(format: "ANY groups == %@ AND dateString CONTAINS %@", group, currentDate)
+            }
+            return filterPredicate
+        }
+    }
+    
+    private func showFilters() {
+        let alert = UIAlertController(title: NSLocalizedString("Filter", comment: ""), message: NSLocalizedString("Show schedule for:", comment: ""), preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Month", comment: ""), style: .default, handler: { (_) in
+            self.sortBy = .month
+            let filterPredicate = self.setDataForFilters(period: self.sortBy)
+            self.configureFilterButton(for: self.sortBy)
+            self.fetchedResultsController?.fetchRequest.predicate = filterPredicate
+            do {
+                try self.fetchedResultsController?.performFetch()
+            } catch {
+                print("Error in the fetched results controller: \(error).")
+            }
+            self.importRecords()
+        }))
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Week", comment: ""), style: .default, handler: { (_) in
+            self.sortBy = .week
+            let filterPredicate = self.setDataForFilters(period: self.sortBy)
+            self.configureFilterButton(for: self.sortBy)
+            self.fetchedResultsController?.fetchRequest.predicate = filterPredicate
+            do {
+                try self.fetchedResultsController?.performFetch()
+            } catch {
+                print("Error in the fetched results controller: \(error).")
+            }
+            self.importRecords()
+        }))
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Day",comment: ""), style: .default, handler: { (_) in
+            self.sortBy = .day
+            let filterPredicate = self.setDataForFilters(period: self.sortBy)
+            self.configureFilterButton(for: self.sortBy)
+            self.fetchedResultsController?.fetchRequest.predicate = filterPredicate
+            do {
+                try self.fetchedResultsController?.performFetch()
+            } catch {
+                print("Error in the fetched results controller: \(error).")
+            }
+            self.importRecords()
+        }))
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", comment: ""), style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     // MARK: - Import Records
@@ -191,8 +302,10 @@ class GroupTableViewController: GenericTableViewController {
         let dateString = NSSortDescriptor(key: #keyPath(RecordEntity.dateString), ascending: true)
         let time = NSSortDescriptor(key: #keyPath(RecordEntity.time), ascending: true)
         
+        let predicate = setDataForFilters(period: sortBy)
+        
         request.sortDescriptors = [dateString, time]
-        request.predicate = NSPredicate(format: "ANY groups == %@", group)
+        request.predicate = predicate
         request.fetchBatchSize = 20
         
         if let context = viewContext {
