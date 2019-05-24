@@ -8,27 +8,40 @@
 
 import Foundation
 
-enum Filter: Int {
-    case day = 0
+enum Period: Int {
+
+    case today = 0
     case week
-    case month
+
+    var title: String {
+        switch self {
+        case .today:
+            return NSLocalizedString("Today", comment: "")
+        case .week:
+            return NSLocalizedString("Week", comment: "")
+        }
+    }
     
     static var key: String {
         get {
             if let bundle = Bundle.main.bundleIdentifier {
-                return bundle + "filterData"
+                return bundle + ".period"
             }
-            return "filterData"
+            return "period"
         }
     }
-    
-    static var currentType: Int {
+
+    static var current: Period {
         get {
-            return UserDefaults.standard.integer(forKey: key)
+            let integer = UserDefaults.standard.integer(forKey: key)
+            if let currentPeriod = Period(rawValue: integer) {
+                return currentPeriod
+            } else {
+                return .week
+            }
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: key)
+            UserDefaults.standard.set(newValue.rawValue, forKey: key)
         }
     }
-    
 }

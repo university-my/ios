@@ -19,26 +19,6 @@ class GenericTableViewController: UITableViewController {
         return dateFormatter
     }()
     
-    var sectionsTitles: [String] = []
-    
-    var barButtonItem = UIBarButtonItem()
-    
-    var sortBy: Filter {
-        get {
-            switch Filter.currentType {
-            case 1:
-                return .week
-            case 2:
-                return .month
-            default:
-                return .day
-            }
-        }
-        set {
-            Filter.currentType = newValue.rawValue
-        }
-    }
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -72,22 +52,28 @@ class GenericTableViewController: UITableViewController {
     func hideNotification() {
         notificationLabel.text = nil
     }
-    
-    // MARK: - Prepare Filters
-    
-    func configureFilterButton(state: Filter) {
-        switch state {
-        case .week, .month:
-            barButtonItem.tintColor = UIColor.orange
-            barButtonItem.image = UIImage(named: "AppliedFilters")
-        default:
-            barButtonItem.tintColor = UIColor.white
-            barButtonItem.image = UIImage(named: "NoFilters")
+
+    // MARK: - Period button
+
+    var barButtonItem = UIBarButtonItem()
+
+    func configurePeriodButton() {
+        barButtonItem.title = currentPeriod.title
+    }
+
+    // MARK: - Period
+
+    var currentPeriod: Period {
+        get {
+            return Period.current
+        }
+        set {
+            Period.current = newValue
         }
     }
     
-    func setDataForFilters(period: Filter, entity: NSManagedObject) -> NSPredicate {
-        var filterPredicate = NSPredicate()
+    func predicate(for period: Period, entity: NSManagedObject) -> NSPredicate {
+        var predicate = NSPredicate()
         let dateFormatter = DateFormatter()
         var preparePredicateForEntity = String()
         
@@ -101,78 +87,45 @@ class GenericTableViewController: UITableViewController {
         default:
             preparePredicateForEntity = ""
         }
-        
-        switch sortBy {
-        case .week:
-            if let startWeek = Date().startOfWeek, let endWeek = Date().endOfWeek {
-                filterPredicate = NSPredicate(format: "\(preparePredicateForEntity) AND dateString >= %@ AND dateString <= %@", entity, startWeek as NSDate, endWeek as NSDate)
-            }
-            return filterPredicate
-        case .month:
-            dateFormatter.dateFormat = "YYYY-MM"
-            let currentMonth = dateFormatter.string(from: Date())
-            filterPredicate = NSPredicate(format: "\(preparePredicateForEntity) AND dateString CONTAINS %@", entity, currentMonth)
-            return filterPredicate
-        default:
+
+        switch currentPeriod {
+        case .today:
             dateFormatter.dateFormat = "YYYY-MM-dd"
             let currentDate = dateFormatter.string(from: Date())
-            filterPredicate = NSPredicate(format: "\(preparePredicateForEntity) AND dateString CONTAINS %@", entity, currentDate)
-            return filterPredicate
+            predicate = NSPredicate(format: "\(preparePredicateForEntity) AND dateString CONTAINS %@", entity, currentDate)
+            return predicate
+
+        case .week:
+            let startDate = Date()
+            let endDate = startDate.plusSevenDays()
+            predicate = NSPredicate(format: "\(preparePredicateForEntity) AND dateString >= %@ AND dateString <= %@", entity, startDate as NSDate, endDate as NSDate)
+            return predicate
         }
     }
     
-    func showFilters(controller: UIViewController, entity: NSManagedObject, fetchedResultsController: NSFetchedResultsController<RecordEntity>?) {
-        var filterPredicate = NSPredicate()
-        let alert = UIAlertController(title: NSLocalizedString("Filter", comment: ""), message: NSLocalizedString("Show schedule for:", comment: ""), preferredStyle: .actionSheet)
-        
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Month", comment: ""), style: .default, handler: { (_) in
-            self.sortBy = .month
-            filterPredicate = self.setDataForFilters(period: self.sortBy, entity: entity)
-            fetchedResultsController?.fetchRequest.predicate = filterPredicate
-            self.configureFilterButton(state: self.sortBy)
-            do {
-                try fetchedResultsController?.performFetch()
-            } catch {
-                print("Error in the fetched results controller: \(error).")
-            }
-            self.performFetch(fetchedResultsController: fetchedResultsController)
-            self.tableView.reloadData()
-        }))
-        
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Week", comment: ""), style: .default, handler: { (_) in
-            self.sortBy = .week
-filterPredicate = self.setDataForFilters(period: self.sortBy, entity: entity)
-            fetchedResultsController?.fetchRequest.predicate = filterPredicate
-            self.configureFilterButton(state: self.sortBy)
-            do {
-                try fetchedResultsController?.performFetch()
-            } catch {
-                print("Error in the fetched results controller: \(error).")
-            }
-            self.performFetch(fetchedResultsController: fetchedResultsController)
-            self.tableView.reloadData()
-        }))
-        
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Day",comment: ""), style: .default, handler: { (_) in
-            self.sortBy = .day
-            filterPredicate = self.setDataForFilters(period: self.sortBy, entity: entity)
-            fetchedResultsController?.fetchRequest.predicate = filterPredicate
-            self.configureFilterButton(state: self.sortBy)
-            do {
-                try fetchedResultsController?.performFetch()
-            } catch {
-                print("Error in the fetched results controller: \(error).")
-            }
-            self.performFetch(fetchedResultsController: fetchedResultsController)
-            self.tableView.reloadData()
-        }))
-        
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", comment: ""), style: .cancel, handler: nil))
+    func fetchDataForPeriod(entity: NSManagedObject, fetchedResultsController: NSFetchedResultsController<RecordEntity>?) {
+
+        switch currentPeriod {
+        case .today:
+            currentPeriod = .week
+        case .week:
+            currentPeriod = .today
+        }
+
+        configurePeriodButton()
+        fetchedResultsController?.fetchRequest.predicate = predicate(for: currentPeriod, entity: entity)
+        do {
+            try fetchedResultsController?.performFetch()
+        } catch {
+            print("Error in the fetched results controller: \(error).")
+        }
+        performFetch(fetchedResultsController: fetchedResultsController)
         tableView.reloadData()
-        controller.present(alert, animated: true, completion: nil)
     }
     
     // MARK: - Fetch results from CoreData
+
+    var sectionsTitles: [String] = []
     
     func performFetch(fetchedResultsController: NSFetchedResultsController<RecordEntity>?) {
         do {

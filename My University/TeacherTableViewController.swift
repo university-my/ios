@@ -29,7 +29,7 @@ class TeacherTableViewController: GenericTableViewController {
         
         // Setup Filters
         barButtonItem = filterButton
-        configureFilterButton(state: sortBy)
+        configurePeriodButton()
         
         setup()
     }
@@ -53,8 +53,7 @@ class TeacherTableViewController: GenericTableViewController {
     
     @IBAction func applyFilters(_ sender: Any) {
         if let teacher = teacher {
-            showFilters(controller: self, entity: teacher, fetchedResultsController: fetchedResultsController)
-            importRecords()
+            fetchDataForPeriod(entity: teacher, fetchedResultsController: fetchedResultsController)
         }
     }
     
@@ -203,11 +202,9 @@ class TeacherTableViewController: GenericTableViewController {
         
         let dateString = NSSortDescriptor(key: #keyPath(RecordEntity.dateString), ascending: true)
         let time = NSSortDescriptor(key: #keyPath(RecordEntity.time), ascending: true)
-        
-        let predicate = setDataForFilters(period: sortBy, entity: teacher)
-        
+
         request.sortDescriptors = [dateString, time]
-        request.predicate = predicate
+        request.predicate = predicate(for: currentPeriod, entity: teacher)
         request.fetchBatchSize = 20
         
         if let context = viewContext {

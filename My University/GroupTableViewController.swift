@@ -29,7 +29,7 @@ class GroupTableViewController: GenericTableViewController {
         
         // Setup Filters
         barButtonItem = filterButton
-        configureFilterButton(state: sortBy)
+        configurePeriodButton()
         
         setup()
     }
@@ -51,8 +51,7 @@ class GroupTableViewController: GenericTableViewController {
     
     @IBAction func applyFilters(_ sender: Any) {
         if let group = group {
-            showFilters(controller: self, entity: group, fetchedResultsController: fetchedResultsController)
-            importRecords()
+            fetchDataForPeriod(entity: group, fetchedResultsController: fetchedResultsController)
         }
     }
     
@@ -194,11 +193,9 @@ class GroupTableViewController: GenericTableViewController {
         
         let dateString = NSSortDescriptor(key: #keyPath(RecordEntity.dateString), ascending: true)
         let time = NSSortDescriptor(key: #keyPath(RecordEntity.time), ascending: true)
-        
-        let predicate = setDataForFilters(period: sortBy, entity: group)
-        
+
         request.sortDescriptors = [dateString, time]
-        request.predicate = predicate
+        request.predicate = predicate(for: currentPeriod, entity: group)
         request.fetchBatchSize = 20
         
         if let context = viewContext {

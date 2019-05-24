@@ -29,7 +29,7 @@ class AuditoriumTableViewController: GenericTableViewController {
         
         // Setup Filters
         barButtonItem = filterButton
-        configureFilterButton(state: sortBy)
+        configurePeriodButton()
         
         setup()
     }
@@ -52,7 +52,7 @@ class AuditoriumTableViewController: GenericTableViewController {
   
     @IBAction func applyFilters(_ sender: Any) {
         if let auditorium = auditorium {
-            showFilters(controller: self, entity: auditorium, fetchedResultsController: fetchedResultsController)
+            fetchDataForPeriod(entity: auditorium, fetchedResultsController: fetchedResultsController)
         }
     }
   
@@ -202,11 +202,9 @@ class AuditoriumTableViewController: GenericTableViewController {
         
         let dateString = NSSortDescriptor(key: #keyPath(RecordEntity.dateString), ascending: true)
         let time = NSSortDescriptor(key: #keyPath(RecordEntity.time), ascending: true)
-        
-        let predicate = setDataForFilters(period: sortBy, entity: auditorium)
-      
+
         request.sortDescriptors = [dateString, time]
-        request.predicate = predicate
+        request.predicate = predicate(for: currentPeriod, entity: auditorium)
         request.fetchBatchSize = 20
         
         if let context = viewContext {

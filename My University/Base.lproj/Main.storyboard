@@ -557,7 +557,8 @@
                     </tableView>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="fixedSpace" id="VjQ-KM-SjZ"/>
-                        <barButtonItem id="SmO-aW-PdA" userLabel="Filter Button">
+                        <barButtonItem title="Week" id="SmO-aW-PdA" userLabel="Filter Button">
+                            <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
                             <connections>
                                 <action selector="applyFilters:" destination="kjp-pL-LDS" id="K4T-G2-S8w"/>
                             </connections>
@@ -752,7 +753,8 @@
                     </tableView>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="fixedSpace" id="4AP-WX-Z31"/>
-                        <barButtonItem id="V61-R6-IcK" userLabel="Filter Button">
+                        <barButtonItem title="Week" id="V61-R6-IcK" userLabel="Filter Button">
+                            <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
                             <connections>
                                 <action selector="applyFilters:" destination="xEv-Se-Sjg" id="a5D-fY-F5R"/>
                             </connections>
@@ -899,8 +901,8 @@
                     </tableView>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="fixedSpace" id="u4E-e5-Fmu"/>
-                        <barButtonItem id="ICU-v0-NMs">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <barButtonItem title="Week" id="ICU-v0-NMs">
+                            <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
                             <connections>
                                 <action selector="applyFilters:" destination="ds8-eS-Cn9" id="yel-fx-Qrf"/>
                             </connections>
@@ -951,6 +953,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rwN-20-jVp"/>
+        <segue reference="iFT-Sz-Ze3"/>
     </inferredMetricsTieBreakers>
 </document>
