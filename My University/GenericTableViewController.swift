@@ -15,7 +15,7 @@ class GenericTableViewController: UITableViewController {
     
     var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .full
+        dateFormatter.dateFormat = "EEEE, d MMMM"
         return dateFormatter
     }()
     
