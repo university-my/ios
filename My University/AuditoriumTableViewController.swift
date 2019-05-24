@@ -13,16 +13,9 @@ class AuditoriumTableViewController: GenericTableViewController {
     
     // MARK: - Properties
     
-    private var dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .full
-        return dateFormatter
-    }()
-    
-    private var sectionsTitles: [String] = []
-    
     @IBOutlet weak var statusButton: UIBarButtonItem!
-    
+    @IBOutlet weak var filterButton: UIBarButtonItem!
+  
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -34,6 +27,10 @@ class AuditoriumTableViewController: GenericTableViewController {
         
         tableView.rowHeight = UITableView.automaticDimension
         
+        // Setup Filters
+        barButtonItem = filterButton
+        configurePeriodButton()
+        
         setup()
     }
     
@@ -44,7 +41,7 @@ class AuditoriumTableViewController: GenericTableViewController {
         
         if let auditorium = auditorium {
             title = auditorium.name
-            performFetch()
+            performFetch(fetchedResultsController: fetchedResultsController)
             
             let records = fetchedResultsController?.fetchedObjects ?? []
             if records.isEmpty {
@@ -52,7 +49,13 @@ class AuditoriumTableViewController: GenericTableViewController {
             }
         }
     }
-    
+  
+    @IBAction func applyFilters(_ sender: Any) {
+        if let auditorium = auditorium {
+            fetchDataForPeriod(entity: auditorium, fetchedResultsController: fetchedResultsController)
+        }
+    }
+  
     // MARK: - Pull to refresh
     
     @IBAction func refresh(_ sender: Any) {
@@ -106,7 +109,7 @@ class AuditoriumTableViewController: GenericTableViewController {
                     } else {
                         self.hideNotification()
                     }
-                    self.performFetch()
+                    self.performFetch(fetchedResultsController: self.fetchedResultsController)
                     self.tableView.reloadData()
                     self.refreshControl?.endRefreshing()
                 }
@@ -199,9 +202,9 @@ class AuditoriumTableViewController: GenericTableViewController {
         
         let dateString = NSSortDescriptor(key: #keyPath(RecordEntity.dateString), ascending: true)
         let time = NSSortDescriptor(key: #keyPath(RecordEntity.time), ascending: true)
-        
+
         request.sortDescriptors = [dateString, time]
-        request.predicate = NSPredicate(format: "auditorium == %@", auditorium)
+        request.predicate = predicate(for: currentPeriod, entity: auditorium)
         request.fetchBatchSize = 20
         
         if let context = viewContext {
@@ -211,28 +214,6 @@ class AuditoriumTableViewController: GenericTableViewController {
             return nil
         }
     }()
-    
-    private func performFetch() {
-        do {
-            try fetchedResultsController?.performFetch()
-            
-            // Generate title for sections
-            if let controller = fetchedResultsController, let sections = controller.sections {
-                var newSectionsTitles: [String] = []
-                for section in sections {
-                    if let firstObjectInSection = section.objects?.first as? RecordEntity {
-                        if let date = firstObjectInSection.date {
-                            let dateString = dateFormatter.string(from: date)
-                            newSectionsTitles.append(dateString)
-                        }
-                    }
-                }
-                sectionsTitles = newSectionsTitles
-            }
-        } catch {
-            print("Error in the fetched results controller: \(error).")
-        }
-    }
 }
 
 // MARK: - UIStateRestoring

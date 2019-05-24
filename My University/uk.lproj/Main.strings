@@ -61,6 +61,9 @@
 /* Class = "UILabel"; text = "Title"; ObjectID = "Hnt-60-noc"; */
 "Hnt-60-noc.text" = "Назва";
 
+/* Class = "UIBarButtonItem"; title = "Week"; ObjectID = "ICU-v0-NMs"; */
+"ICU-v0-NMs.title" = "Тиждень";
+
 /* Class = "UINavigationItem"; title = "Auditorium"; ObjectID = "iff-ln-ZeD"; */
 "iff-ln-ZeD.title" = "Аудиторія";
 
@@ -97,8 +100,14 @@
 /* Class = "UILabel"; text = "Instagram university.my"; ObjectID = "rVb-do-Zv6"; */
 "rVb-do-Zv6.text" = "Instagram university.my";
 
+/* Class = "UIBarButtonItem"; title = "Week"; ObjectID = "SmO-aW-PdA"; */
+"SmO-aW-PdA.title" = "Тиждень";
+
 /* Class = "UIBarButtonItem"; title = "Status text"; ObjectID = "tR4-7F-H5b"; */
 "tR4-7F-H5b.title" = "Текст статусу";
+
+/* Class = "UIBarButtonItem"; title = "Week"; ObjectID = "V61-R6-IcK"; */
+"V61-R6-IcK.title" = "Тиждень";
 
 /* Class = "UINavigationItem"; title = "Group"; ObjectID = "wCI-ox-0ZG"; */
 "wCI-ox-0ZG.title" = "Група";
