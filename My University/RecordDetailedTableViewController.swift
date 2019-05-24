@@ -48,12 +48,6 @@ class RecordDetailedTableViewController: GenericTableViewController {
     var recordID: Int64?
     private weak var record: RecordEntity?
     
-    private var dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .full
-        return dateFormatter
-    }()
-    
     private lazy var viewContext: NSManagedObjectContext? = {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         return appDelegate?.persistentContainer.viewContext

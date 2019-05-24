@@ -40,3 +40,20 @@
 /* No comment provided by engineer. */
 "TEACHER" = "ВИКЛАДАЧ";
 
+/* No comment provided by engineer. */
+"Day" = "День";
+
+/* No comment provided by engineer. */
+"Week" = "Тиждень";
+
+/* No comment provided by engineer. */
+"Month" = "Мiсяць";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Скасувати";
+
+/* No comment provided by engineer. */
+"Filter" = "Сортування";
+
+/* No comment provided by engineer. */
+"Show schedule for:" = "Вiдображати розклад за перiод:";

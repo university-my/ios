@@ -13,15 +13,8 @@ class GroupTableViewController: GenericTableViewController {
     
     // MARK: - Properties
     
-    private var dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .full
-        return dateFormatter
-    }()
-    
-    private var sectionsTitles: [String] = []
-    
     @IBOutlet weak var statusButton: UIBarButtonItem!
+    @IBOutlet weak var filterButton: UIBarButtonItem!
     
     // MARK: - Lifecycle
     
@@ -34,6 +27,10 @@ class GroupTableViewController: GenericTableViewController {
         
         tableView.rowHeight = UITableView.automaticDimension
         
+        // Setup Filters
+        barButtonItem = filterButton
+        configureFilterButton(state: sortBy)
+        
         setup()
     }
     
@@ -43,12 +40,19 @@ class GroupTableViewController: GenericTableViewController {
         }
         if let group = group {
             title = group.name
-            performFetch()
+            performFetch(fetchedResultsController: fetchedResultsController)
             
             let records = fetchedResultsController?.fetchedObjects ?? []
             if records.isEmpty {
                 importRecords()
             }
+        }
+    }
+    
+    @IBAction func applyFilters(_ sender: Any) {
+        if let group = group {
+            showFilters(controller: self, entity: group, fetchedResultsController: fetchedResultsController)
+            importRecords()
         }
     }
     
@@ -104,7 +108,7 @@ class GroupTableViewController: GenericTableViewController {
                 } else {
                     self.hideNotification()
                 }
-                self.performFetch()
+                self.performFetch(fetchedResultsController: self.fetchedResultsController)
                 self.tableView.reloadData()
                 self.refreshControl?.endRefreshing()
             }
@@ -191,8 +195,10 @@ class GroupTableViewController: GenericTableViewController {
         let dateString = NSSortDescriptor(key: #keyPath(RecordEntity.dateString), ascending: true)
         let time = NSSortDescriptor(key: #keyPath(RecordEntity.time), ascending: true)
         
+        let predicate = setDataForFilters(period: sortBy, entity: group)
+        
         request.sortDescriptors = [dateString, time]
-        request.predicate = NSPredicate(format: "ANY groups == %@", group)
+        request.predicate = predicate
         request.fetchBatchSize = 20
         
         if let context = viewContext {
@@ -202,28 +208,6 @@ class GroupTableViewController: GenericTableViewController {
             return nil
         }
     }()
-    
-    private func performFetch() {
-        do {
-            try fetchedResultsController?.performFetch()
-            
-            // Generate title for sections
-            if let controller = fetchedResultsController, let sections = controller.sections {
-                var newSectionsTitles: [String] = []
-                for section in sections {
-                    if let firstObjectInSection = section.objects?.first as? RecordEntity {
-                        if let date = firstObjectInSection.date {
-                            let dateString = dateFormatter.string(from: date)
-                            newSectionsTitles.append(dateString)
-                        }
-                    }
-                }
-                sectionsTitles = newSectionsTitles
-            }
-        } catch {
-            print("Error in the fetched results controller: \(error).")
-        }
-    }
 }
 
 // MARK: - UIStateRestoring
