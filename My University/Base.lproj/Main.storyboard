@@ -145,7 +145,7 @@
                     </tableView>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="fixedSpace" id="chr-fl-0xp"/>
-                        <barButtonItem id="r4m-EA-sK9" userLabel="Favorite">
+                        <barButtonItem image="Star Empty Image" id="r4m-EA-sK9" userLabel="Favorite">
                             <color key="tintColor" red="1" green="0.50196078430000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="showFavorites:" destination="5Xk-Va-4eS" id="xgm-s3-b16"/>
@@ -565,10 +565,10 @@
                     </tableView>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="fixedSpace" id="VjQ-KM-SjZ"/>
-                        <barButtonItem title="Week" id="SmO-aW-PdA" userLabel="Filter Button">
+                        <barButtonItem image="Star Empty Image" id="pRO-Jk-LXS" userLabel="Favorite">
                             <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
                             <connections>
-                                <action selector="applyFilters:" destination="kjp-pL-LDS" id="K4T-G2-S8w"/>
+                                <action selector="addToFavorites:" destination="kjp-pL-LDS" id="QhD-sx-pVm"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="geK-bv-4Bs"/>
@@ -576,9 +576,10 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="JwO-hz-qje"/>
-                        <barButtonItem title="Item" id="pRO-Jk-LXS" userLabel="Favorite">
+                        <barButtonItem title="Week" id="SmO-aW-PdA" userLabel="Filter Button">
+                            <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
                             <connections>
-                                <action selector="addToFavorites:" destination="kjp-pL-LDS" id="QhD-sx-pVm"/>
+                                <action selector="applyFilters:" destination="kjp-pL-LDS" id="K4T-G2-S8w"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="fixedSpace" id="sXo-e0-BnH"/>
@@ -695,7 +696,7 @@
                     </tableView>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="fixedSpace" id="7Qb-eh-jYO"/>
-                        <barButtonItem id="JAx-hG-Yma" userLabel="Favorite">
+                        <barButtonItem image="Star Empty Image" id="JAx-hG-Yma" userLabel="Favorite">
                             <color key="tintColor" red="1" green="0.50196078430000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="showFavorites:" destination="MNV-Wm-DDm" id="vvZ-4o-Ltx"/>
@@ -787,7 +788,8 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Oc9-Ne-LoN"/>
-                        <barButtonItem title="Item" id="9K7-P8-dKV" userLabel="Favorite">
+                        <barButtonItem image="Star Empty Image" id="9K7-P8-dKV" userLabel="Favorite">
+                            <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
                             <connections>
                                 <action selector="addToFavorites:" destination="xEv-Se-Sjg" id="Xej-pc-z2I"/>
                             </connections>
@@ -858,7 +860,7 @@
                     </tableView>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="fixedSpace" id="61e-U0-xWf"/>
-                        <barButtonItem id="8yZ-MD-Vi1" userLabel="Favorite">
+                        <barButtonItem image="Star Empty Image" id="8yZ-MD-Vi1" userLabel="Favorite">
                             <color key="tintColor" red="1" green="0.50196078430000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="showFavorites:" destination="rcu-ZD-gZU" id="aXf-i1-DtX"/>
@@ -949,13 +951,13 @@
                         <barButtonItem title="Status text" id="QsR-27-aNW">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Kdo-jM-8eX"/>
-                        <barButtonItem id="2OL-NB-eiT" userLabel="Favorite">
+                        <barButtonItem style="plain" systemItem="fixedSpace" id="mn8-iN-AIs"/>
+                        <barButtonItem image="Star Empty Image" id="2OL-NB-eiT" userLabel="Favorite">
+                            <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
                             <connections>
                                 <action selector="addToFavorites:" destination="ds8-eS-Cn9" id="dc0-14-UfN"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem style="plain" systemItem="fixedSpace" id="mn8-iN-AIs"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Auditorium" id="iff-ln-ZeD">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="QZK-Gm-bvA">
@@ -987,6 +989,7 @@
     </scenes>
     <resources>
         <image name="Hear Image" width="24" height="24"/>
+        <image name="Star Empty Image" width="42.666667938232422" height="42.666667938232422"/>
         <namedColor name="Background Color">
             <color red="0.086274509803921567" green="0.090196078431372548" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -998,6 +1001,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rwN-20-jVp"/>
+        <segue reference="ykC-F8-LFZ"/>
     </inferredMetricsTieBreakers>
 </document>
