@@ -17,6 +17,7 @@ extension TeacherEntity {
         return NSFetchRequest<TeacherEntity>(entityName: "TeacherEntity")
     }
 
+    @NSManaged public var favorite: Bool
     @NSManaged public var firstSymbol: String?
     @NSManaged public var id: Int64
     @NSManaged public var name: String?

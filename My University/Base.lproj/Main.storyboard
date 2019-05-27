@@ -144,6 +144,13 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
+                        <barButtonItem style="plain" systemItem="fixedSpace" id="chr-fl-0xp"/>
+                        <barButtonItem id="r4m-EA-sK9" userLabel="Favorite">
+                            <color key="tintColor" red="1" green="0.50196078430000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="showFavorites:" destination="5Xk-Va-4eS" id="xgm-s3-b16"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="b0I-HL-eXz"/>
                         <barButtonItem title="Status text" id="xfe-9L-WCg">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -167,6 +174,7 @@
                         </connections>
                     </refreshControl>
                     <connections>
+                        <outlet property="favoritesButton" destination="r4m-EA-sK9" id="W0Z-CD-Kvy"/>
                         <outlet property="statusButton" destination="xfe-9L-WCg" id="Ymp-GW-Y9I"/>
                         <segue destination="kjp-pL-LDS" kind="show" identifier="groupDetailed" id="JM9-YS-WCX"/>
                     </connections>
@@ -568,6 +576,12 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="JwO-hz-qje"/>
+                        <barButtonItem title="Item" id="pRO-Jk-LXS" userLabel="Favorite">
+                            <connections>
+                                <action selector="addToFavorites:" destination="kjp-pL-LDS" id="QhD-sx-pVm"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="fixedSpace" id="sXo-e0-BnH"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Group" id="wCI-ox-0ZG">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="C8w-vY-YiV">
@@ -586,6 +600,7 @@
                         </connections>
                     </refreshControl>
                     <connections>
+                        <outlet property="favoriteButton" destination="pRO-Jk-LXS" id="7rT-N0-o8F"/>
                         <outlet property="filterButton" destination="SmO-aW-PdA" id="cGW-1d-Ixh"/>
                         <outlet property="statusButton" destination="mdU-eV-C7w" id="tF0-mR-Fzf"/>
                         <segue destination="6a0-mN-k10" kind="show" identifier="recordDetailed" id="iFT-Sz-Ze3"/>
@@ -679,6 +694,13 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
+                        <barButtonItem style="plain" systemItem="fixedSpace" id="7Qb-eh-jYO"/>
+                        <barButtonItem id="JAx-hG-Yma" userLabel="Favorite">
+                            <color key="tintColor" red="1" green="0.50196078430000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="showFavorites:" destination="MNV-Wm-DDm" id="vvZ-4o-Ltx"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="E3y-Ym-cfg"/>
                         <barButtonItem title="Status text" id="4gW-d9-gnI">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -702,6 +724,7 @@
                         </connections>
                     </refreshControl>
                     <connections>
+                        <outlet property="favoritesButton" destination="JAx-hG-Yma" id="oFS-nH-QgN"/>
                         <outlet property="statusButton" destination="4gW-d9-gnI" id="Oq5-Yf-CRl"/>
                         <segue destination="xEv-Se-Sjg" kind="show" identifier="teacherDetailed" id="gEh-DL-Rpx"/>
                     </connections>
@@ -764,6 +787,12 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Oc9-Ne-LoN"/>
+                        <barButtonItem title="Item" id="9K7-P8-dKV" userLabel="Favorite">
+                            <connections>
+                                <action selector="addToFavorites:" destination="xEv-Se-Sjg" id="Xej-pc-z2I"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="fixedSpace" id="bSE-UV-cRc"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Teacher" largeTitleDisplayMode="never" id="zWn-2a-KNf">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="VHM-Tg-f5d">
@@ -782,6 +811,7 @@
                         </connections>
                     </refreshControl>
                     <connections>
+                        <outlet property="favoriteButton" destination="9K7-P8-dKV" id="CwB-a2-74N"/>
                         <outlet property="filterButton" destination="V61-R6-IcK" id="I4f-QB-Mpb"/>
                         <outlet property="statusButton" destination="yZL-hE-NWI" id="ELI-ZH-lWQ"/>
                         <segue destination="6a0-mN-k10" kind="show" identifier="recordDetailed" id="rwN-20-jVp"/>
@@ -827,6 +857,13 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
+                        <barButtonItem style="plain" systemItem="fixedSpace" id="61e-U0-xWf"/>
+                        <barButtonItem id="8yZ-MD-Vi1" userLabel="Favorite">
+                            <color key="tintColor" red="1" green="0.50196078430000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="showFavorites:" destination="rcu-ZD-gZU" id="aXf-i1-DtX"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Rgt-Kw-vkT"/>
                         <barButtonItem title="Status text" id="tR4-7F-H5b">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -850,6 +887,7 @@
                         </connections>
                     </refreshControl>
                     <connections>
+                        <outlet property="favoritesButton" destination="8yZ-MD-Vi1" id="nqR-VY-9Am"/>
                         <outlet property="statusButton" destination="tR4-7F-H5b" id="znT-0R-QDf"/>
                         <segue destination="ds8-eS-Cn9" kind="show" identifier="auditoriumDetailed" id="15p-7P-TtC"/>
                     </connections>
@@ -912,6 +950,12 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Kdo-jM-8eX"/>
+                        <barButtonItem id="2OL-NB-eiT" userLabel="Favorite">
+                            <connections>
+                                <action selector="addToFavorites:" destination="ds8-eS-Cn9" id="dc0-14-UfN"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="fixedSpace" id="mn8-iN-AIs"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Auditorium" id="iff-ln-ZeD">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="QZK-Gm-bvA">
@@ -930,6 +974,7 @@
                         </connections>
                     </refreshControl>
                     <connections>
+                        <outlet property="favoriteButton" destination="2OL-NB-eiT" id="hXv-nI-6St"/>
                         <outlet property="filterButton" destination="ICU-v0-NMs" id="6kh-aA-Dhi"/>
                         <outlet property="statusButton" destination="QsR-27-aNW" id="L9u-0J-oDa"/>
                         <segue destination="6a0-mN-k10" kind="show" identifier="recordDetailed" id="ykC-F8-LFZ"/>
@@ -953,6 +998,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="iFT-Sz-Ze3"/>
+        <segue reference="rwN-20-jVp"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -13,7 +13,8 @@ class AuditoriumDataSource: NSObject {
     
     // MARK: - Init
     
-    private var university: UniversityEntity
+    var university: UniversityEntity
+    lazy var predicate = NSPredicate(format: "university == %@", university)
     
     init?(universityID id: Int64) {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -41,7 +42,6 @@ class AuditoriumDataSource: NSObject {
     
     lazy var fetchedResultsController: NSFetchedResultsController<AuditoriumEntity>? = {
         let request: NSFetchRequest<AuditoriumEntity> = AuditoriumEntity.fetchRequest()
-        let predicate = NSPredicate(format: "university == %@", university)
         request.predicate = predicate
         
         let firstSymbol = NSSortDescriptor(key: #keyPath(AuditoriumEntity.firstSymbol), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))

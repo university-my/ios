@@ -15,6 +15,7 @@ class GroupTableViewController: GenericTableViewController {
     
     @IBOutlet weak var statusButton: UIBarButtonItem!
     @IBOutlet weak var filterButton: UIBarButtonItem!
+    @IBOutlet weak var favoriteButton: UIBarButtonItem!
     
     // MARK: - Lifecycle
     
@@ -30,6 +31,8 @@ class GroupTableViewController: GenericTableViewController {
         // Setup Filters
         barButtonItem = filterButton
         configurePeriodButton()
+        
+        setupFavoriteButton(favoriteButton, favorite: isFavorite)
         
         setup()
     }
@@ -72,6 +75,22 @@ class GroupTableViewController: GenericTableViewController {
             let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
             present(vc, animated: true)
         }
+    }
+    
+    // MARK: - Favorites
+    
+    var isFavorite: Bool = false
+    
+    @IBAction func addToFavorites(_ sender: Any) {
+        if isFavorite {
+            isFavorite = false
+        } else {
+            isFavorite = true
+        }
+        if let group = group {
+            markAsFavorite(for: group, mark: isFavorite)
+        }
+        setupFavoriteButton(favoriteButton, favorite: isFavorite)
     }
     
     // MARK: - Import Records

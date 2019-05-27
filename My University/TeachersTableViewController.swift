@@ -14,10 +14,12 @@ class TeachersTableViewController: SearchableTableViewController {
     
     var universityID: Int64?
     private var dataSource: TeacherDataSource?
+    var showFavorites: Bool = false
     
     // MARK: - Notificaion
     
     @IBOutlet weak var statusButton: UIBarButtonItem!
+    @IBOutlet weak var favoritesButton: UIBarButtonItem!
     
     // MARK: - Lifecycle
     
@@ -36,6 +38,8 @@ class TeachersTableViewController: SearchableTableViewController {
         configureSearchControllers()
         searchController.searchResultsUpdater = self
         
+        selectFavorites(favoritesButton, show: showFavorites)
+        
         setup()
     }
 
@@ -46,6 +50,29 @@ class TeachersTableViewController: SearchableTableViewController {
             tableView.dataSource = dataSource
             loadTeachers()
         }
+    }
+    
+    // MARK: - Favorites
+    
+    @IBAction func showFavorites(_ sender: Any) {
+        if let id = universityID {
+            // Loading teachers
+            dataSource = TeacherDataSource(universityID: id)
+            tableView.dataSource = dataSource
+        }
+        if showFavorites == false {
+            showFavorites = true
+            if let datasource = dataSource {
+                datasource.predicate = NSPredicate(format: "university == %@ AND favorite == YES", datasource.university)
+            }
+        } else {
+            showFavorites = false
+            if let datasource = dataSource {
+                datasource.predicate = NSPredicate(format: "university == %@", datasource.university)
+            }
+        }
+        selectFavorites(favoritesButton, show: showFavorites)
+        loadTeachers()
     }
     
     // MARK: - Groups
@@ -115,11 +142,13 @@ class TeachersTableViewController: SearchableTableViewController {
                     if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
                         let selectedTeacher = resultsTableController.filteredTeachers[safe: indexPath.row]
                         detailTableViewController.teacherID = selectedTeacher?.id
+                        detailTableViewController.isFavorite = selectedTeacher?.favorite ?? false
                     }
                 } else {
                     if let indexPath = tableView.indexPathForSelectedRow {
                         let selectedTeacher = dataSource?.fetchedResultsController?.object(at: indexPath)
                         detailTableViewController.teacherID = selectedTeacher?.id
+                        detailTableViewController.isFavorite = selectedTeacher?.favorite ?? false
                     }
                 }
             }

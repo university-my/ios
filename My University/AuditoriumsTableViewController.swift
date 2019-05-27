@@ -14,10 +14,12 @@ class AuditoriumsTableViewController: SearchableTableViewController {
     
     var universityID: Int64?
     private var dataSource: AuditoriumDataSource?
+    var showFavorites: Bool = false
     
     // MARK: - Notificaion
     
     @IBOutlet weak var statusButton: UIBarButtonItem!
+    @IBOutlet weak var favoritesButton: UIBarButtonItem!
     
     // MARK: - Lifecycle
     
@@ -35,6 +37,8 @@ class AuditoriumsTableViewController: SearchableTableViewController {
         configureSearchControllers()
         searchController.searchResultsUpdater = self
         
+        selectFavorites(favoritesButton, show: showFavorites)
+        
         setup()
     }
     
@@ -44,6 +48,28 @@ class AuditoriumsTableViewController: SearchableTableViewController {
             tableView.dataSource = dataSource
             loadAuditoroums()
         }
+    }
+    
+    // MARK: - Favorites
+    
+    @IBAction func showFavorites(_ sender: Any) {
+        if let id = universityID {
+            dataSource = AuditoriumDataSource(universityID: id)
+            tableView.dataSource = dataSource
+        }
+        if showFavorites == false {
+            showFavorites = true
+            if let datasource = dataSource {
+                datasource.predicate = NSPredicate(format: "university == %@ AND favorite == YES", datasource.university)
+            }
+        } else {
+            showFavorites = false
+            if let datasource = dataSource {
+                datasource.predicate = NSPredicate(format: "university == %@", datasource.university)
+            }
+        }
+        selectFavorites(favoritesButton, show: showFavorites)
+        loadAuditoroums()
     }
     
     // MARK: - Auditoriums
@@ -112,11 +138,13 @@ class AuditoriumsTableViewController: SearchableTableViewController {
                     if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
                         let selectedAuditorium = resultsTableController.filteredAuditoriums[safe: indexPath.row]
                         detailTableViewController.auditoriumID = selectedAuditorium?.id
+                        detailTableViewController.isFavorite = selectedAuditorium?.favorite ?? false
                     }
                 } else {
                     if let indexPath = tableView.indexPathForSelectedRow {
                         let selectedAuditorium = dataSource?.fetchedResultsController?.object(at: indexPath)
                         detailTableViewController.auditoriumID = selectedAuditorium?.id
+                        detailTableViewController.isFavorite = selectedAuditorium?.favorite ?? false
                     }
                 }
             }

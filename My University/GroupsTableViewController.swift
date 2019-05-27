@@ -14,10 +14,12 @@ class GroupsTableViewController: SearchableTableViewController {
     
     var universityID: Int64?
     private var dataSource: GroupsDataSource?
+    var showFavorites: Bool = false
     
     // MARK: - Notificaion
     
     @IBOutlet weak var statusButton: UIBarButtonItem!
+    @IBOutlet weak var favoritesButton: UIBarButtonItem!
     
     // MARK: - Lifecycle
     
@@ -35,6 +37,8 @@ class GroupsTableViewController: SearchableTableViewController {
         configureSearchControllers()
         searchController.searchResultsUpdater = self
         
+        selectFavorites(favoritesButton, show: showFavorites)
+        
         setup()
     }
     
@@ -45,6 +49,30 @@ class GroupsTableViewController: SearchableTableViewController {
             tableView.dataSource = dataSource
             loadGroups()
         }
+    }
+    
+    // MARK: - Favorites
+    
+    @IBAction func showFavorites(_ sender: Any) {
+        if let id = universityID {
+            // Loading groups
+            dataSource = GroupsDataSource(universityID: id)
+            tableView.dataSource = dataSource
+
+        }
+        if showFavorites == false {
+            showFavorites = true
+            if let datasource = dataSource {
+                datasource.predicate = NSPredicate(format: "university == %@ AND favorite == YES", datasource.university)
+            }
+        } else {
+            showFavorites = false
+            if let datasource = dataSource {
+                datasource.predicate = NSPredicate(format: "university == %@", datasource.university)
+            }
+        }
+        selectFavorites(favoritesButton, show: showFavorites)
+        loadGroups()
     }
     
     // MARK: - Groups
@@ -121,11 +149,13 @@ class GroupsTableViewController: SearchableTableViewController {
                     if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
                         let selectedGroup = resultsTableController.filteredGroups[safe: indexPath.row]
                         detailTableViewController.groupID = selectedGroup?.id
+                        detailTableViewController.isFavorite = selectedGroup?.favorite ?? false
                     }
                 } else {
                     if let indexPath = tableView.indexPathForSelectedRow {
                         let selectedGroup = dataSource?.fetchedResultsController?.object(at: indexPath)
                         detailTableViewController.groupID = selectedGroup?.id
+                        detailTableViewController.isFavorite = selectedGroup?.favorite ?? false
                     }
                 }
             }

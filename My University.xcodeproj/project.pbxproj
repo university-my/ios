@@ -133,6 +133,7 @@
 		DEEEEBDF2205BC2C0072A19A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		E44C69EA2296FCED00A0102D /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		E44C69ED2296FD2C00A0102D /* Filters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
+		E47DD960229B1F3700137850 /* Schedule 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Schedule 3.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -736,10 +737,11 @@
 		C2B5CDF91EEF0E750066DB30 /* Schedule.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				E47DD960229B1F3700137850 /* Schedule 3.xcdatamodel */,
 				DE584C52219852430099415E /* Schedule 2.xcdatamodel */,
 				C2B5CDFA1EEF0E750066DB30 /* Schedule.xcdatamodel */,
 			);
-			currentVersion = DE584C52219852430099415E /* Schedule 2.xcdatamodel */;
+			currentVersion = E47DD960229B1F3700137850 /* Schedule 3.xcdatamodel */;
 			path = Schedule.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

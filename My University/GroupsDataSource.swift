@@ -13,7 +13,8 @@ class GroupsDataSource: NSObject {
     
     // MARK: - Init
     
-    private var university: UniversityEntity
+    var university: UniversityEntity
+    lazy var predicate = NSPredicate(format: "university == %@", university)
     
     init?(universityID id: Int64) {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -42,7 +43,6 @@ class GroupsDataSource: NSObject {
     lazy var fetchedResultsController: NSFetchedResultsController<GroupEntity>? = {
         // Groups for university
         let request: NSFetchRequest<GroupEntity> = GroupEntity.fetchRequest()
-        let predicate = NSPredicate(format: "university == %@", university)
         request.predicate = predicate
         
         let firstSymbol = NSSortDescriptor(key: #keyPath(GroupEntity.firstSymbol), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))

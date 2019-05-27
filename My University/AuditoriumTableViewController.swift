@@ -15,7 +15,8 @@ class AuditoriumTableViewController: GenericTableViewController {
     
     @IBOutlet weak var statusButton: UIBarButtonItem!
     @IBOutlet weak var filterButton: UIBarButtonItem!
-  
+    @IBOutlet weak var favoriteButton: UIBarButtonItem!
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -30,6 +31,8 @@ class AuditoriumTableViewController: GenericTableViewController {
         // Setup Filters
         barButtonItem = filterButton
         configurePeriodButton()
+        
+        setupFavoriteButton(favoriteButton, favorite: isFavorite)
         
         setup()
     }
@@ -73,6 +76,22 @@ class AuditoriumTableViewController: GenericTableViewController {
             let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
             present(vc, animated: true)
         }
+    }
+    
+    // MARK: - Favorites
+    
+    var isFavorite: Bool = false
+    
+    @IBAction func addToFavorites(_ sender: Any) {
+        if isFavorite {
+            isFavorite = false
+        } else {
+            isFavorite = true
+        }
+        if let auditorium = auditorium {
+            markAsFavorite(for: auditorium, mark: isFavorite)
+        }
+        setupFavoriteButton(favoriteButton, favorite: isFavorite)
     }
     
     // MARK: - Import Records

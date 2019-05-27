@@ -48,7 +48,7 @@ class SearchableTableViewController: GenericTableViewController {
         searchController.searchBar.becomeFirstResponder()
     }
     
-    // MARK - Table delegate
+    // MARK: - Table delegate
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let headerView = view as? UITableViewHeaderFooterView {
@@ -56,6 +56,16 @@ class SearchableTableViewController: GenericTableViewController {
             backgroundView.backgroundColor = .sectionBackgroundColor
             headerView.backgroundView = backgroundView
             headerView.textLabel?.textColor = UIColor.lightText
+        }
+    }
+    
+    // MARK: - Setup Favorite button
+    
+    func selectFavorites(_ button: UIBarButtonItem, show: Bool) {
+        if show {
+            button.title = NSLocalizedString("Show all", comment: "")
+        } else {
+            button.title = NSLocalizedString("Favorites", comment: "")
         }
     }
 }

@@ -123,6 +123,65 @@ class GenericTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    // MARK: - Favorites
+    
+    func setupFavoriteButton(_ button: UIBarButtonItem, favorite: Bool) {
+        button.image = UIImage(named: "Favorite")
+        if favorite {
+            button.tintColor = UIColor.orange
+        } else {
+            button.tintColor = UIColor.white
+        }
+    }
+    
+    func markAsFavorite(for entity: NSManagedObject, mark: Bool) {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        guard let persistentContainer = appDelegate?.persistentContainer else { return }
+        
+        let taskContext = persistentContainer.viewContext
+        
+        switch entity {
+        case is AuditoriumEntity:
+            let auditorium = entity as? AuditoriumEntity
+            guard let auditoriumID = auditorium?.id else { return }
+            
+            let auditoriumEntity = AuditoriumEntity.fetch(id: auditoriumID, context: taskContext)
+            
+            do {
+                auditoriumEntity?.setValue(mark, forKey: "favorite")
+                try taskContext.save()
+            } catch {
+                print("Error in the fetched results controller: \(error).")
+            }
+        case is GroupEntity:
+            let group = entity as? GroupEntity
+            guard let groupID = group?.id else { return }
+            
+            let groupEntity = GroupEntity.fetch(id: groupID, context: taskContext)
+            
+            do {
+                groupEntity?.setValue(mark, forKey: "favorite")
+                try taskContext.save()
+            } catch {
+                print("Error in the fetched results controller: \(error).")
+            }
+        case is TeacherEntity:
+            let teacher = entity as? TeacherEntity
+            guard let teacherID = teacher?.id else { return }
+            
+            let teacherEntity = TeacherEntity.fetchTeacher(id: teacherID, context: taskContext)
+            
+            do {
+                teacherEntity?.setValue(mark, forKey: "favorite")
+                try taskContext.save()
+            } catch {
+                print("Error in the fetched results controller: \(error).")
+            }
+        default:
+            print ("there are no entities!")
+        }
+    }
+    
     // MARK: - Fetch results from CoreData
 
     var sectionsTitles: [String] = []
