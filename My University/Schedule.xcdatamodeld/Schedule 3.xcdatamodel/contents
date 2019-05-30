@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.98" systemVersion="18D109" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AuditoriumEntity" representedClassName="AuditoriumEntity" syncable="YES">
-        <attribute name="favorite" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="firstSymbol" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isFavorite" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="records" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RecordEntity" inverseName="auditorium" inverseEntity="RecordEntity" syncable="YES"/>
         <relationship name="university" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UniversityEntity" inverseName="auditoriums" inverseEntity="UniversityEntity" syncable="YES"/>
@@ -14,9 +14,9 @@
         </uniquenessConstraints>
     </entity>
     <entity name="GroupEntity" representedClassName="GroupEntity" syncable="YES">
-        <attribute name="favorite" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="firstSymbol" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isFavorite" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="records" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RecordEntity" inverseName="groups" inverseEntity="RecordEntity" syncable="YES"/>
         <relationship name="university" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UniversityEntity" inverseName="groups" inverseEntity="UniversityEntity" syncable="YES"/>
@@ -48,9 +48,9 @@
         </uniquenessConstraints>
     </entity>
     <entity name="TeacherEntity" representedClassName="TeacherEntity" syncable="YES">
-        <attribute name="favorite" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="firstSymbol" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isFavorite" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="records" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RecordEntity" inverseName="teacher" inverseEntity="RecordEntity" syncable="YES"/>
         <relationship name="university" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UniversityEntity" inverseName="teachers" inverseEntity="UniversityEntity" syncable="YES"/>

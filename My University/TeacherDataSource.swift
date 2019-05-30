@@ -14,7 +14,6 @@ class TeacherDataSource: NSObject {
     // MARK: - Init
     
     var university: UniversityEntity
-    lazy var predicate = NSPredicate(format: "university == %@", university)
     
     init?(universityID id: Int64) {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -35,6 +34,8 @@ class TeacherDataSource: NSObject {
     }()
 
     private lazy var viewContext: NSManagedObjectContext? = {
+        let mergePolicy = NSMergePolicy(merge: NSMergePolicyType.mergeByPropertyObjectTrumpMergePolicyType)
+        persistentContainer?.viewContext.mergePolicy = mergePolicy
         return persistentContainer?.viewContext
     }()
 
@@ -42,7 +43,7 @@ class TeacherDataSource: NSObject {
 
     lazy var fetchedResultsController: NSFetchedResultsController<TeacherEntity>? = {
         let request: NSFetchRequest<TeacherEntity> = TeacherEntity.fetchRequest()
-        request.predicate = predicate
+        request.predicate = NSPredicate(format: "university == %@", university)
 
         let firstSymbol = NSSortDescriptor(key: #keyPath(TeacherEntity.firstSymbol), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
         let name = NSSortDescriptor(key: #keyPath(TeacherEntity.name), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
@@ -58,7 +59,17 @@ class TeacherDataSource: NSObject {
         }
     }()
 
-    func fetchTeachers() {
+    func changePredicate(for favorites: Bool) -> NSPredicate {
+        var predicate = NSPredicate()
+        if favorites {
+            predicate = NSPredicate(format: "university == %@ AND isFavorite == YES", university)
+        } else {
+            predicate = NSPredicate(format: "university == %@", university)
+        }
+        return predicate
+    }
+    
+    func performFetch() {
         do {
             try fetchedResultsController?.performFetch()
             collectNamesOfSections()

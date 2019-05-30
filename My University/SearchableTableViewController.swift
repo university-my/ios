@@ -58,14 +58,4 @@ class SearchableTableViewController: GenericTableViewController {
             headerView.textLabel?.textColor = UIColor.lightText
         }
     }
-    
-    // MARK: - Setup Favorite button
-    
-    func selectFavorites(_ button: UIBarButtonItem, show: Bool) {
-        if show {
-            button.title = NSLocalizedString("Show all", comment: "")
-        } else {
-            button.title = NSLocalizedString("Favorites", comment: "")
-        }
-    }
 }

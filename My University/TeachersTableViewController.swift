@@ -38,11 +38,17 @@ class TeachersTableViewController: SearchableTableViewController {
         configureSearchControllers()
         searchController.searchResultsUpdater = self
         
-        selectFavorites(favoritesButton, show: showFavorites)
-        
         setup()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        // This is for reloading data when the favorites are changed
+        if let datasource = dataSource {
+            datasource.performFetch()
+            tableView.reloadData()
+        }
+    }
+    
     func setup() {
         if let id = universityID {
             // Loading teachers
@@ -55,31 +61,27 @@ class TeachersTableViewController: SearchableTableViewController {
     // MARK: - Favorites
     
     @IBAction func showFavorites(_ sender: Any) {
-        if let id = universityID {
-            // Loading teachers
-            dataSource = TeacherDataSource(universityID: id)
-            tableView.dataSource = dataSource
-        }
-        if showFavorites == false {
-            showFavorites = true
-            if let datasource = dataSource {
-                datasource.predicate = NSPredicate(format: "university == %@ AND favorite == YES", datasource.university)
+        if let datasource = dataSource {
+            if showFavorites == false {
+                showFavorites = true
+            } else {
+                showFavorites = false
             }
-        } else {
-            showFavorites = false
-            if let datasource = dataSource {
-                datasource.predicate = NSPredicate(format: "university == %@", datasource.university)
+            datasource.fetchedResultsController?.fetchRequest.predicate =                 datasource.changePredicate(for: showFavorites)
+            do {
+                try datasource.fetchedResultsController?.performFetch()
+            } catch {
+                print("Error in the fetched results controller: \(error).")
             }
         }
-        selectFavorites(favoritesButton, show: showFavorites)
-        loadTeachers()
+        tableView.reloadData()
     }
     
     // MARK: - Groups
     
     func loadTeachers() {
         guard let dataSource = dataSource else { return }
-        dataSource.fetchTeachers()
+        dataSource.performFetch()
         
         let teachers = dataSource.fetchedResultsController?.fetchedObjects ?? []
         if teachers.isEmpty {
@@ -107,7 +109,7 @@ class TeachersTableViewController: SearchableTableViewController {
             } else {
                 self.hideNotification()
             }
-            dataSource.fetchTeachers()
+            dataSource.performFetch()
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
             self.hideNotification()
@@ -142,13 +144,11 @@ class TeachersTableViewController: SearchableTableViewController {
                     if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
                         let selectedTeacher = resultsTableController.filteredTeachers[safe: indexPath.row]
                         detailTableViewController.teacherID = selectedTeacher?.id
-                        detailTableViewController.isFavorite = selectedTeacher?.favorite ?? false
                     }
                 } else {
                     if let indexPath = tableView.indexPathForSelectedRow {
                         let selectedTeacher = dataSource?.fetchedResultsController?.object(at: indexPath)
                         detailTableViewController.teacherID = selectedTeacher?.id
-                        detailTableViewController.isFavorite = selectedTeacher?.favorite ?? false
                     }
                 }
             }

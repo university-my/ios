@@ -37,9 +37,15 @@ class GroupsTableViewController: SearchableTableViewController {
         configureSearchControllers()
         searchController.searchResultsUpdater = self
         
-        selectFavorites(favoritesButton, show: showFavorites)
-        
         setup()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // This is for reloading data when the favorites are changed
+        if let datasource = dataSource {
+            datasource.performFetch()
+            tableView.reloadData()
+        }
     }
     
     func setup() {
@@ -54,25 +60,20 @@ class GroupsTableViewController: SearchableTableViewController {
     // MARK: - Favorites
     
     @IBAction func showFavorites(_ sender: Any) {
-        if let id = universityID {
-            // Loading groups
-            dataSource = GroupsDataSource(universityID: id)
-            tableView.dataSource = dataSource
-
-        }
-        if showFavorites == false {
-            showFavorites = true
-            if let datasource = dataSource {
-                datasource.predicate = NSPredicate(format: "university == %@ AND favorite == YES", datasource.university)
+        if let datasource = dataSource {
+            if showFavorites == false {
+                showFavorites = true
+            } else {
+                showFavorites = false
             }
-        } else {
-            showFavorites = false
-            if let datasource = dataSource {
-                datasource.predicate = NSPredicate(format: "university == %@", datasource.university)
+            datasource.fetchedResultsController?.fetchRequest.predicate =                 datasource.changePredicate(for: showFavorites)
+            do {
+                try datasource.fetchedResultsController?.performFetch()
+            } catch {
+                print("Error in the fetched results controller: \(error).")
             }
         }
-        selectFavorites(favoritesButton, show: showFavorites)
-        loadGroups()
+        tableView.reloadData()
     }
     
     // MARK: - Groups
@@ -149,13 +150,11 @@ class GroupsTableViewController: SearchableTableViewController {
                     if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
                         let selectedGroup = resultsTableController.filteredGroups[safe: indexPath.row]
                         detailTableViewController.groupID = selectedGroup?.id
-                        detailTableViewController.isFavorite = selectedGroup?.favorite ?? false
                     }
                 } else {
                     if let indexPath = tableView.indexPathForSelectedRow {
                         let selectedGroup = dataSource?.fetchedResultsController?.object(at: indexPath)
                         detailTableViewController.groupID = selectedGroup?.id
-                        detailTableViewController.isFavorite = selectedGroup?.favorite ?? false
                     }
                 }
             }

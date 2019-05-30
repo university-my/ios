@@ -37,46 +37,49 @@ class AuditoriumsTableViewController: SearchableTableViewController {
         configureSearchControllers()
         searchController.searchResultsUpdater = self
         
-        selectFavorites(favoritesButton, show: showFavorites)
-        
         setup()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // This is for reloading data when the favorites are changed
+        if let datasource = dataSource {
+            datasource.performFetch()
+            tableView.reloadData()
+        }
     }
     
     func setup() {
         if let id = universityID {
             dataSource = AuditoriumDataSource(universityID: id)
             tableView.dataSource = dataSource
-            loadAuditoroums()
+            loadAuditoriums()
         }
     }
     
     // MARK: - Favorites
     
     @IBAction func showFavorites(_ sender: Any) {
-        if let id = universityID {
-            dataSource = AuditoriumDataSource(universityID: id)
-            tableView.dataSource = dataSource
-        }
-        if showFavorites == false {
-            showFavorites = true
-            if let datasource = dataSource {
-                datasource.predicate = NSPredicate(format: "university == %@ AND favorite == YES", datasource.university)
+        if let datasource = dataSource {
+            if showFavorites == false {
+                showFavorites = true
+            } else {
+                showFavorites = false
             }
-        } else {
-            showFavorites = false
-            if let datasource = dataSource {
-                datasource.predicate = NSPredicate(format: "university == %@", datasource.university)
+            datasource.fetchedResultsController?.fetchRequest.predicate =                 datasource.changePredicate(for: showFavorites)
+            do {
+                try datasource.fetchedResultsController?.performFetch()
+            } catch {
+                print("Error in the fetched results controller: \(error).")
             }
         }
-        selectFavorites(favoritesButton, show: showFavorites)
-        loadAuditoroums()
+        tableView.reloadData()
     }
     
     // MARK: - Auditoriums
     
-    func loadAuditoroums() {
+    func loadAuditoriums() {
         guard let dataSource = dataSource else { return }
-        dataSource.fetchAuditoriums()
+        dataSource.performFetch()
         
         let auditoriums = dataSource.fetchedResultsController?.fetchedObjects ?? []
         if auditoriums.isEmpty {
@@ -105,7 +108,7 @@ class AuditoriumsTableViewController: SearchableTableViewController {
             } else {
                 self.hideNotification()
             }
-            dataSource.fetchAuditoriums()
+            dataSource.performFetch()
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
         }
@@ -138,13 +141,11 @@ class AuditoriumsTableViewController: SearchableTableViewController {
                     if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
                         let selectedAuditorium = resultsTableController.filteredAuditoriums[safe: indexPath.row]
                         detailTableViewController.auditoriumID = selectedAuditorium?.id
-                        detailTableViewController.isFavorite = selectedAuditorium?.favorite ?? false
                     }
                 } else {
                     if let indexPath = tableView.indexPathForSelectedRow {
                         let selectedAuditorium = dataSource?.fetchedResultsController?.object(at: indexPath)
                         detailTableViewController.auditoriumID = selectedAuditorium?.id
-                        detailTableViewController.isFavorite = selectedAuditorium?.favorite ?? false
                     }
                 }
             }

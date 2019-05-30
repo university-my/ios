@@ -32,14 +32,15 @@ class GroupTableViewController: GenericTableViewController {
         barButtonItem = filterButton
         configurePeriodButton()
         
-        setupFavoriteButton(favoriteButton, favorite: isFavorite)
-        
         setup()
+        
+        setupFavoriteButton(favoriteButton, favorite: isFavorite)
     }
     
     func setup() {
         if let id = groupID, let context = viewContext {
             group = GroupEntity.fetch(id: id, context: context)
+            isFavorite = GroupEntity.isFavorite(id: id, context: context)
         }
         if let group = group {
             title = group.name
@@ -79,16 +80,14 @@ class GroupTableViewController: GenericTableViewController {
     
     // MARK: - Favorites
     
-    var isFavorite: Bool = false
-    
-    @IBAction func addToFavorites(_ sender: Any) {
+    @IBAction func toggleFavorite(_ sender: Any) {
         if isFavorite {
             isFavorite = false
         } else {
             isFavorite = true
         }
-        if let group = group {
-            markAsFavorite(for: group, mark: isFavorite)
+        if let group = group, let context = viewContext {
+            markAsFavorite(for: group, mark: isFavorite, viewContext: context)
         }
         setupFavoriteButton(favoriteButton, favorite: isFavorite)
     }

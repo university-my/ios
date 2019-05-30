@@ -32,14 +32,15 @@ class TeacherTableViewController: GenericTableViewController {
         barButtonItem = filterButton
         configurePeriodButton()
         
-        setupFavoriteButton(favoriteButton, favorite: isFavorite)
-        
         setup()
+        
+        setupFavoriteButton(favoriteButton, favorite: isFavorite)
     }
     
     func setup() {
         if let id = teacherID, let context = viewContext {
             teacher = TeacherEntity.fetchTeacher(id: id, context: context)
+            isFavorite = TeacherEntity.isFavorite(id: id, context: context)
         }
         
         if let teacher = teacher {
@@ -81,16 +82,14 @@ class TeacherTableViewController: GenericTableViewController {
     
     // MARK: - Favorites
     
-    var isFavorite: Bool = false
-    
-    @IBAction func addToFavorites(_ sender: Any) {
+    @IBAction func toggleFavorite(_ sender: Any) {
         if isFavorite {
             isFavorite = false
         } else {
             isFavorite = true
         }
-        if let teacher = teacher {
-            markAsFavorite(for: teacher, mark: isFavorite)
+        if let teacher = teacher, let context = viewContext {
+            markAsFavorite(for: teacher, mark: isFavorite, viewContext: context)
         }
         setupFavoriteButton(favoriteButton, favorite: isFavorite)
     }

@@ -17,7 +17,7 @@ extension GroupEntity {
         return NSFetchRequest<GroupEntity>(entityName: "GroupEntity")
     }
 
-    @NSManaged public var favorite: Bool
+    @NSManaged public var isFavorite: Bool
     @NSManaged public var firstSymbol: String?
     @NSManaged public var id: Int64
     @NSManaged public var name: String?

@@ -32,14 +32,15 @@ class AuditoriumTableViewController: GenericTableViewController {
         barButtonItem = filterButton
         configurePeriodButton()
         
-        setupFavoriteButton(favoriteButton, favorite: isFavorite)
-        
         setup()
+        
+        setupFavoriteButton(favoriteButton, favorite: isFavorite)
     }
     
     func setup() {
         if let id = auditoriumID, let context = viewContext {
             auditorium = AuditoriumEntity.fetch(id: id, context: context)
+            isFavorite = AuditoriumEntity.isFavorite(id: id, context: context)
         }
         
         if let auditorium = auditorium {
@@ -80,16 +81,14 @@ class AuditoriumTableViewController: GenericTableViewController {
     
     // MARK: - Favorites
     
-    var isFavorite: Bool = false
-    
-    @IBAction func addToFavorites(_ sender: Any) {
+    @IBAction func toggleFavorite(_ sender: Any) {
         if isFavorite {
             isFavorite = false
         } else {
             isFavorite = true
         }
-        if let auditorium = auditorium {
-            markAsFavorite(for: auditorium, mark: isFavorite)
+        if let auditorium = auditorium, let context = viewContext {
+            markAsFavorite(for: auditorium, mark: isFavorite, viewContext: context)
         }
         setupFavoriteButton(favoriteButton, favorite: isFavorite)
     }

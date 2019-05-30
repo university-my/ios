@@ -565,10 +565,10 @@
                     </tableView>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="fixedSpace" id="VjQ-KM-SjZ"/>
-                        <barButtonItem image="Star Empty Image" id="pRO-Jk-LXS" userLabel="Favorite">
+                        <barButtonItem title="Week" id="SmO-aW-PdA" userLabel="Filter Button">
                             <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
                             <connections>
-                                <action selector="addToFavorites:" destination="kjp-pL-LDS" id="QhD-sx-pVm"/>
+                                <action selector="applyFilters:" destination="kjp-pL-LDS" id="K4T-G2-S8w"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="geK-bv-4Bs"/>
@@ -576,10 +576,10 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="JwO-hz-qje"/>
-                        <barButtonItem title="Week" id="SmO-aW-PdA" userLabel="Filter Button">
+                        <barButtonItem image="Star Empty Image" id="pRO-Jk-LXS" userLabel="Favorite">
                             <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
                             <connections>
-                                <action selector="applyFilters:" destination="kjp-pL-LDS" id="K4T-G2-S8w"/>
+                                <action selector="toggleFavorite:" destination="kjp-pL-LDS" id="CPK-Bm-Bdt"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="fixedSpace" id="sXo-e0-BnH"/>
@@ -791,7 +791,7 @@
                         <barButtonItem image="Star Empty Image" id="9K7-P8-dKV" userLabel="Favorite">
                             <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
                             <connections>
-                                <action selector="addToFavorites:" destination="xEv-Se-Sjg" id="Xej-pc-z2I"/>
+                                <action selector="toggleFavorite:" destination="xEv-Se-Sjg" id="PNk-7b-xzg"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="fixedSpace" id="bSE-UV-cRc"/>
@@ -955,7 +955,7 @@
                         <barButtonItem image="Star Empty Image" id="2OL-NB-eiT" userLabel="Favorite">
                             <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
                             <connections>
-                                <action selector="addToFavorites:" destination="ds8-eS-Cn9" id="dc0-14-UfN"/>
+                                <action selector="toggleFavorite:" destination="ds8-eS-Cn9" id="6Ky-by-Q0P"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -1001,6 +1001,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ykC-F8-LFZ"/>
+        <segue reference="rwN-20-jVp"/>
     </inferredMetricsTieBreakers>
 </document>

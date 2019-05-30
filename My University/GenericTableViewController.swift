@@ -125,61 +125,48 @@ class GenericTableViewController: UITableViewController {
     
     // MARK: - Favorites
     
+    var isFavorite: Bool = false
+    
     func setupFavoriteButton(_ button: UIBarButtonItem, favorite: Bool) {
-        button.image = UIImage(named: "Favorite")
         if favorite {
+            button.image = UIImage(named: "Star Filled Image")
             button.tintColor = UIColor.orange
         } else {
+            button.image = UIImage(named: "Star Empty Image")
             button.tintColor = UIColor.white
         }
     }
     
-    func markAsFavorite(for entity: NSManagedObject, mark: Bool) {
+    func markAsFavorite(for entity: NSManagedObject, mark: Bool, viewContext: NSManagedObjectContext?) {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        guard let persistentContainer = appDelegate?.persistentContainer else { return }
-        
-        let taskContext = persistentContainer.viewContext
+        guard let context = viewContext else { return }
         
         switch entity {
         case is AuditoriumEntity:
             let auditorium = entity as? AuditoriumEntity
             guard let auditoriumID = auditorium?.id else { return }
             
-            let auditoriumEntity = AuditoriumEntity.fetch(id: auditoriumID, context: taskContext)
-            
-            do {
-                auditoriumEntity?.setValue(mark, forKey: "favorite")
-                try taskContext.save()
-            } catch {
-                print("Error in the fetched results controller: \(error).")
+            if let auditoriumEntity = AuditoriumEntity.fetch(id: auditoriumID, context: context) {
+                auditoriumEntity.isFavorite = mark
             }
         case is GroupEntity:
             let group = entity as? GroupEntity
             guard let groupID = group?.id else { return }
             
-            let groupEntity = GroupEntity.fetch(id: groupID, context: taskContext)
-            
-            do {
-                groupEntity?.setValue(mark, forKey: "favorite")
-                try taskContext.save()
-            } catch {
-                print("Error in the fetched results controller: \(error).")
+            if let groupEntity = GroupEntity.fetch(id: groupID, context: context) {
+                groupEntity.isFavorite = mark
             }
         case is TeacherEntity:
             let teacher = entity as? TeacherEntity
             guard let teacherID = teacher?.id else { return }
             
-            let teacherEntity = TeacherEntity.fetchTeacher(id: teacherID, context: taskContext)
-            
-            do {
-                teacherEntity?.setValue(mark, forKey: "favorite")
-                try taskContext.save()
-            } catch {
-                print("Error in the fetched results controller: \(error).")
+            if let teacherEntity = TeacherEntity.fetchTeacher(id: teacherID, context: context) {
+                teacherEntity.isFavorite = mark
             }
         default:
             print ("there are no entities!")
         }
+        appDelegate?.saveContext()
     }
     
     // MARK: - Fetch results from CoreData

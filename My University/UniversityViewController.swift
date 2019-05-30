@@ -183,7 +183,7 @@ class UniversityViewController: GenericTableViewController {
     
     private func loadTeachers() {
         guard let dataSource = teachersDataSource else { return }
-        dataSource.fetchTeachers()
+        dataSource.performFetch()
         
         let teachers = dataSource.fetchedResultsController?.fetchedObjects ?? []
         if teachers.isEmpty {
@@ -228,7 +228,7 @@ class UniversityViewController: GenericTableViewController {
     
     private func loadAuditoriums() {
         guard let dataSource = auditoriumsDataSource else { return }
-        dataSource.fetchAuditoriums()
+        dataSource.performFetch()
 
         let auditoriums = dataSource.fetchedResultsController?.fetchedObjects ?? []
         if auditoriums.isEmpty {
