@@ -42,8 +42,6 @@ class TeacherDataSource: NSObject {
     }()
 
     private lazy var viewContext: NSManagedObjectContext? = {
-        let mergePolicy = NSMergePolicy(merge: NSMergePolicyType.mergeByPropertyObjectTrumpMergePolicyType)
-        persistentContainer?.viewContext.mergePolicy = mergePolicy
         return persistentContainer?.viewContext
     }()
 
