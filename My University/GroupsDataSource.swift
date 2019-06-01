@@ -10,6 +10,14 @@ import CoreData
 import UIKit
 
 class GroupsDataSource: NSObject {
+
+    // MARK: - Is Favories
+
+    private var favoritesImageView: UIImageView {
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "Star Filled Image"))
+        imageView.tintColor = .orange
+        return imageView
+    }
     
     // MARK: - Init
     
@@ -59,16 +67,6 @@ class GroupsDataSource: NSObject {
             return nil
         }
     }()
-    
-    func changePredicate(for favorites: Bool) -> NSPredicate {
-        var predicate = NSPredicate()
-        if favorites {
-            predicate = NSPredicate(format: "university == %@ AND isFavorite == YES", university)
-        } else {
-            predicate = NSPredicate(format: "university == %@", university)
-        }
-        return predicate
-    }
     
     func performFetch() {
         do {
@@ -134,6 +132,13 @@ extension GroupsDataSource: UITableViewDataSource {
         // Configure cell
         if let group = fetchedResultsController?.object(at: indexPath) {
             cell.textLabel?.text = group.name
+
+            // Is favorites
+            if group.isFavorite {
+                cell.accessoryView = favoritesImageView
+            } else {
+                cell.accessoryView = nil
+            }
         }
         
         return cell

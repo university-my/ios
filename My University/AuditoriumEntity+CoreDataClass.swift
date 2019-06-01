@@ -57,21 +57,4 @@ public class AuditoriumEntity: NSManagedObject {
             return nil
         }
     }
-    
-    /// Check If Auditorium is added to Favorite
-    static func isFavorite(id: Int64, context: NSManagedObjectContext) -> Bool {
-        let fetchRequest: NSFetchRequest<AuditoriumEntity> = AuditoriumEntity.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %d AND isFavorite == YES", id)
-        do {
-            let result = try context.fetch(fetchRequest)
-            if result.count == 1 {
-                return true
-            } else {
-                return false
-            }
-        } catch  {
-            print("Error in the fetched results controller: \(error).")
-            return false
-        }
-    }
 }

@@ -33,20 +33,22 @@ class AuditoriumTableViewController: GenericTableViewController {
         configurePeriodButton()
         
         setup()
-        
-        setupFavoriteButton(favoriteButton, favorite: isFavorite)
     }
     
     func setup() {
         if let id = auditoriumID, let context = viewContext {
             auditorium = AuditoriumEntity.fetch(id: id, context: context)
-            isFavorite = AuditoriumEntity.isFavorite(id: id, context: context)
         }
         
         if let auditorium = auditorium {
             title = auditorium.name
+
+            // Is Favorites
+            favoriteButton.markAs(isFavorites: auditorium.isFavorite)
+
+            // Records
             performFetch(fetchedResultsController: fetchedResultsController)
-            
+
             let records = fetchedResultsController?.fetchedObjects ?? []
             if records.isEmpty {
                 importRecords()
@@ -82,15 +84,12 @@ class AuditoriumTableViewController: GenericTableViewController {
     // MARK: - Favorites
     
     @IBAction func toggleFavorite(_ sender: Any) {
-        if isFavorite {
-            isFavorite = false
-        } else {
-            isFavorite = true
+        if let auditorium = auditorium {
+            let appDelegate = UIApplication.shared.delegate as? AppDelegate
+            auditorium.isFavorite.toggle()
+            appDelegate?.saveContext()
+            favoriteButton.markAs(isFavorites: auditorium.isFavorite)
         }
-        if let auditorium = auditorium, let context = viewContext {
-            markAsFavorite(for: auditorium, mark: isFavorite, viewContext: context)
-        }
-        setupFavoriteButton(favoriteButton, favorite: isFavorite)
     }
     
     // MARK: - Import Records
@@ -238,16 +237,16 @@ class AuditoriumTableViewController: GenericTableViewController {
 
 extension AuditoriumTableViewController {
 
-  override func encodeRestorableState(with coder: NSCoder) {
-    if let id = auditoriumID {
-      coder.encode(id, forKey: "auditoriumID")
+    override func encodeRestorableState(with coder: NSCoder) {
+        if let id = auditoriumID {
+            coder.encode(id, forKey: "auditoriumID")
+        }
+        super.encodeRestorableState(with: coder)
     }
-    super.encodeRestorableState(with: coder)
-  }
 
-  override func decodeRestorableState(with coder: NSCoder) {
-    auditoriumID = coder.decodeInt64(forKey: "auditoriumID")
-  }
+    override func decodeRestorableState(with coder: NSCoder) {
+        auditoriumID = coder.decodeInt64(forKey: "auditoriumID")
+    }
     
     override func applicationFinishedRestoringState() {
         setup()

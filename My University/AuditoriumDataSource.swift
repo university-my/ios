@@ -10,6 +10,14 @@ import CoreData
 import UIKit
 
 class AuditoriumDataSource: NSObject {
+
+    // MARK: - Favories
+
+    private var favoritesImageView: UIImageView {
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "Star Filled Image"))
+        imageView.tintColor = .orange
+        return imageView
+    }
     
     // MARK: - Init
     
@@ -58,16 +66,6 @@ class AuditoriumDataSource: NSObject {
             return nil
         }
     }()
-    
-    func changePredicate(for favorites: Bool) -> NSPredicate {
-        var predicate = NSPredicate()
-        if favorites {
-            predicate = NSPredicate(format: "university == %@ AND isFavorite == YES", university)
-        } else {
-            predicate = NSPredicate(format: "university == %@", university)
-        }
-        return predicate
-    }
     
     func performFetch() {
         do {
@@ -132,6 +130,13 @@ extension AuditoriumDataSource: UITableViewDataSource {
         // Configure cell
         if let auditorium = fetchedResultsController?.object(at: indexPath) {
             cell.textLabel?.text = auditorium.name
+
+            // Is favorites
+            if auditorium.isFavorite {
+                cell.accessoryView = favoritesImageView
+            } else {
+                cell.accessoryView = nil
+            }
         }
         
         return cell

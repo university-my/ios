@@ -123,52 +123,6 @@ class GenericTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    // MARK: - Favorites
-    
-    var isFavorite: Bool = false
-    
-    func setupFavoriteButton(_ button: UIBarButtonItem, favorite: Bool) {
-        if favorite {
-            button.image = UIImage(named: "Star Filled Image")
-            button.tintColor = UIColor.orange
-        } else {
-            button.image = UIImage(named: "Star Empty Image")
-            button.tintColor = UIColor.white
-        }
-    }
-    
-    func markAsFavorite(for entity: NSManagedObject, mark: Bool, viewContext: NSManagedObjectContext?) {
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        guard let context = viewContext else { return }
-        
-        switch entity {
-        case is AuditoriumEntity:
-            let auditorium = entity as? AuditoriumEntity
-            guard let auditoriumID = auditorium?.id else { return }
-            
-            if let auditoriumEntity = AuditoriumEntity.fetch(id: auditoriumID, context: context) {
-                auditoriumEntity.isFavorite = mark
-            }
-        case is GroupEntity:
-            let group = entity as? GroupEntity
-            guard let groupID = group?.id else { return }
-            
-            if let groupEntity = GroupEntity.fetch(id: groupID, context: context) {
-                groupEntity.isFavorite = mark
-            }
-        case is TeacherEntity:
-            let teacher = entity as? TeacherEntity
-            guard let teacherID = teacher?.id else { return }
-            
-            if let teacherEntity = TeacherEntity.fetchTeacher(id: teacherID, context: context) {
-                teacherEntity.isFavorite = mark
-            }
-        default:
-            print ("there are no entities!")
-        }
-        appDelegate?.saveContext()
-    }
-    
     // MARK: - Fetch results from CoreData
 
     var sectionsTitles: [String] = []

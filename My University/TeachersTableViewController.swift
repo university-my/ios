@@ -14,12 +14,10 @@ class TeachersTableViewController: SearchableTableViewController {
     
     var universityID: Int64?
     private var dataSource: TeacherDataSource?
-    var showFavorites: Bool = false
     
     // MARK: - Notificaion
     
     @IBOutlet weak var statusButton: UIBarButtonItem!
-    @IBOutlet weak var favoritesButton: UIBarButtonItem!
     
     // MARK: - Lifecycle
     
@@ -58,25 +56,6 @@ class TeachersTableViewController: SearchableTableViewController {
         }
     }
     
-    // MARK: - Favorites
-    
-    @IBAction func showFavorites(_ sender: Any) {
-        if let datasource = dataSource {
-            if showFavorites == false {
-                showFavorites = true
-            } else {
-                showFavorites = false
-            }
-            datasource.fetchedResultsController?.fetchRequest.predicate =                 datasource.changePredicate(for: showFavorites)
-            do {
-                try datasource.fetchedResultsController?.performFetch()
-            } catch {
-                print("Error in the fetched results controller: \(error).")
-            }
-        }
-        tableView.reloadData()
-    }
-    
     // MARK: - Groups
     
     func loadTeachers() {
@@ -89,6 +68,7 @@ class TeachersTableViewController: SearchableTableViewController {
         } else {
             tableView.reloadData()
             refreshControl?.endRefreshing()
+            hideNotification()
         }
     }
     
@@ -198,16 +178,16 @@ extension TeachersTableViewController: UISearchResultsUpdating {
 
 extension TeachersTableViewController {
 
-  override func encodeRestorableState(with coder: NSCoder) {
-    if let id = universityID {
-      coder.encode(id, forKey: "universityID")
+    override func encodeRestorableState(with coder: NSCoder) {
+        if let id = universityID {
+            coder.encode(id, forKey: "universityID")
+        }
+        super.encodeRestorableState(with: coder)
     }
-    super.encodeRestorableState(with: coder)
-  }
 
-  override func decodeRestorableState(with coder: NSCoder) {
-    universityID = coder.decodeInt64(forKey: "universityID")
-  }
+    override func decodeRestorableState(with coder: NSCoder) {
+        universityID = coder.decodeInt64(forKey: "universityID")
+    }
 
     override func applicationFinishedRestoringState() {
         setup()

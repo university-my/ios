@@ -33,23 +33,24 @@ class TeacherTableViewController: GenericTableViewController {
         configurePeriodButton()
         
         setup()
-        
-        setupFavoriteButton(favoriteButton, favorite: isFavorite)
     }
     
     func setup() {
         if let id = teacherID, let context = viewContext {
             teacher = TeacherEntity.fetchTeacher(id: id, context: context)
-            isFavorite = TeacherEntity.isFavorite(id: id, context: context)
         }
         
         if let teacher = teacher {
             title = teacher.name
+
+            // Is Favorites
+            favoriteButton.markAs(isFavorites: teacher.isFavorite)
+
+            // Records
             performFetch(fetchedResultsController: fetchedResultsController)
             
             let records = fetchedResultsController?.fetchedObjects ?? []
             if records.isEmpty {
-                // Import records if empty
                 importRecords()
             }
         }
@@ -83,15 +84,12 @@ class TeacherTableViewController: GenericTableViewController {
     // MARK: - Favorites
     
     @IBAction func toggleFavorite(_ sender: Any) {
-        if isFavorite {
-            isFavorite = false
-        } else {
-            isFavorite = true
+        if let teacher = teacher {
+            let appDelegate = UIApplication.shared.delegate as? AppDelegate
+            teacher.isFavorite.toggle()
+            appDelegate?.saveContext()
+            favoriteButton.markAs(isFavorites: teacher.isFavorite)
         }
-        if let teacher = teacher, let context = viewContext {
-            markAsFavorite(for: teacher, mark: isFavorite, viewContext: context)
-        }
-        setupFavoriteButton(favoriteButton, favorite: isFavorite)
     }
     
     // MARK: - Import Records

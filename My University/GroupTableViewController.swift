@@ -33,17 +33,19 @@ class GroupTableViewController: GenericTableViewController {
         configurePeriodButton()
         
         setup()
-        
-        setupFavoriteButton(favoriteButton, favorite: isFavorite)
     }
     
     func setup() {
         if let id = groupID, let context = viewContext {
             group = GroupEntity.fetch(id: id, context: context)
-            isFavorite = GroupEntity.isFavorite(id: id, context: context)
         }
         if let group = group {
             title = group.name
+
+            // Is Favorites
+            favoriteButton.markAs(isFavorites: group.isFavorite)
+
+            // Records
             performFetch(fetchedResultsController: fetchedResultsController)
             
             let records = fetchedResultsController?.fetchedObjects ?? []
@@ -81,15 +83,12 @@ class GroupTableViewController: GenericTableViewController {
     // MARK: - Favorites
     
     @IBAction func toggleFavorite(_ sender: Any) {
-        if isFavorite {
-            isFavorite = false
-        } else {
-            isFavorite = true
+        if let group = group {
+            let appDelegate = UIApplication.shared.delegate as? AppDelegate
+            group.isFavorite.toggle()
+            appDelegate?.saveContext()
+            favoriteButton.markAs(isFavorites: group.isFavorite)
         }
-        if let group = group, let context = viewContext {
-            markAsFavorite(for: group, mark: isFavorite, viewContext: context)
-        }
-        setupFavoriteButton(favoriteButton, favorite: isFavorite)
     }
     
     // MARK: - Import Records
