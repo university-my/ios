@@ -47,6 +47,12 @@ class RecordDetailedTableViewController: GenericTableViewController {
     
     var recordID: Int64?
     private weak var record: RecordEntity?
+
+    private var dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .full
+        return dateFormatter
+    }()
     
     private lazy var viewContext: NSManagedObjectContext? = {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -88,7 +94,10 @@ class RecordDetailedTableViewController: GenericTableViewController {
         var sections: [SectionType] = []
         
         // Name and type
-        if (record.name != nil && record.name != "") || (record.type != nil && record.type != "") {
+        if let name = record.name, name.isEmpty == false {
+            sections.append(.pairName(name: record.name, type: record.type))
+            
+        } else if let type = record.type, type.isEmpty == false {
             sections.append(.pairName(name: record.name, type: record.type))
         }
         

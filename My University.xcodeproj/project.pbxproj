@@ -68,7 +68,6 @@
 		DEE576E7226B8B98008F9EB6 /* AuditoriumsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE576E6226B8B98008F9EB6 /* AuditoriumsTableViewController.swift */; };
 		DEEEEBE02205BC2C0072A19A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEEEBDF2205BC2C0072A19A /* Settings.swift */; };
 		E44C69EB2296FCED00A0102D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44C69EA2296FCED00A0102D /* Date.swift */; };
-		E44C69EE2296FD2C00A0102D /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44C69ED2296FD2C00A0102D /* Filters.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,7 +137,6 @@
 		DEED86042263BA9300E5D710 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = "uk.lproj/Launch Screen.strings"; sourceTree = "<group>"; };
 		DEEEEBDF2205BC2C0072A19A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		E44C69EA2296FCED00A0102D /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
-		E44C69ED2296FD2C00A0102D /* Filters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
 		E47DD960229B1F3700137850 /* Schedule 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Schedule 3.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -201,7 +199,6 @@
 				DE13AF7D226A115E009DF581 /* Teachers */,
 				DEE576E1226B7AD1008F9EB6 /* UI Subclasses */,
 				DE5FAE072263B36A00333121 /* University */,
-				E44C69EC2296FD0200A0102D /* UserData */,
 			);
 			path = "My University";
 			sourceTree = "<group>";
@@ -399,14 +396,6 @@
 			name = Records;
 			sourceTree = "<group>";
 		};
-		E44C69EC2296FD0200A0102D /* UserData */ = {
-			isa = PBXGroup;
-			children = (
-				E44C69ED2296FD2C00A0102D /* Filters.swift */,
-			);
-			name = UserData;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -528,7 +517,6 @@
 				DE13AF7F226A30D4009DF581 /* TeachersTableViewController.swift in Sources */,
 				DE4AA07321A5E31900E06FEA /* GroupsDataSource.swift in Sources */,
 				DE584C562198615F0099415E /* Teacher.swift in Sources */,
-				E44C69EE2296FD2C00A0102D /* Filters.swift in Sources */,
 				C2B5CDF31EEF0E750066DB30 /* AppDelegate.swift in Sources */,
 				C2C0E9B01FB8CDA00012FA9C /* Group.swift in Sources */,
 				DE95523822A253D400D70DA4 /* UIBarButtonItem.swift in Sources */,

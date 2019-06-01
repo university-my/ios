@@ -584,13 +584,6 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem style="plain" systemItem="fixedSpace" id="VjQ-KM-SjZ"/>
-                        <barButtonItem title="Week" id="SmO-aW-PdA" userLabel="Filter Button">
-                            <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
-                            <connections>
-                                <action selector="applyFilters:" destination="kjp-pL-LDS" id="K4T-G2-S8w"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="geK-bv-4Bs"/>
                         <barButtonItem title="Status text" id="mdU-eV-C7w">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -622,7 +615,6 @@
                     </refreshControl>
                     <connections>
                         <outlet property="favoriteButton" destination="pRO-Jk-LXS" id="7rT-N0-o8F"/>
-                        <outlet property="filterButton" destination="SmO-aW-PdA" id="cGW-1d-Ixh"/>
                         <outlet property="statusButton" destination="mdU-eV-C7w" id="tF0-mR-Fzf"/>
                         <segue destination="6a0-mN-k10" kind="show" identifier="recordDetailed" id="iFT-Sz-Ze3"/>
                     </connections>
@@ -788,13 +780,6 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem style="plain" systemItem="fixedSpace" id="4AP-WX-Z31"/>
-                        <barButtonItem title="Week" id="V61-R6-IcK" userLabel="Filter Button">
-                            <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
-                            <connections>
-                                <action selector="applyFilters:" destination="xEv-Se-Sjg" id="a5D-fY-F5R"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="f8t-eU-nSu"/>
                         <barButtonItem title="Status text" id="yZL-hE-NWI">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -826,7 +811,6 @@
                     </refreshControl>
                     <connections>
                         <outlet property="favoriteButton" destination="9K7-P8-dKV" id="CwB-a2-74N"/>
-                        <outlet property="filterButton" destination="V61-R6-IcK" id="I4f-QB-Mpb"/>
                         <outlet property="statusButton" destination="yZL-hE-NWI" id="ELI-ZH-lWQ"/>
                         <segue destination="6a0-mN-k10" kind="show" identifier="recordDetailed" id="rwN-20-jVp"/>
                     </connections>
@@ -957,11 +941,11 @@
                         <color key="backgroundColor" name="Background Color"/>
                         <color key="separatorColor" name="Separator Color"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailTableCell" textLabel="DcX-QR-sm2" detailTextLabel="o6l-jJ-3Mn" style="IBUITableViewCellStyleSubtitle" id="HJ0-P0-vIF">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="detailTableCell" textLabel="DcX-QR-sm2" detailTextLabel="o6l-jJ-3Mn" style="IBUITableViewCellStyleSubtitle" id="HJ0-P0-vIF">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HJ0-P0-vIF" id="MpM-WG-37G">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="DcX-QR-sm2">
@@ -990,12 +974,6 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem title="Week" id="ICU-v0-NMs">
-                            <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
-                            <connections>
-                                <action selector="applyFilters:" destination="ds8-eS-Cn9" id="yel-fx-Qrf"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="qv5-tK-bth"/>
                         <barButtonItem title="Status text" id="QsR-27-aNW">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1026,7 +1004,6 @@
                     </refreshControl>
                     <connections>
                         <outlet property="favoriteButton" destination="2OL-NB-eiT" id="hXv-nI-6St"/>
-                        <outlet property="filterButton" destination="ICU-v0-NMs" id="6kh-aA-Dhi"/>
                         <outlet property="statusButton" destination="QsR-27-aNW" id="L9u-0J-oDa"/>
                         <segue destination="6a0-mN-k10" kind="show" identifier="recordDetailed" id="ykC-F8-LFZ"/>
                     </connections>
@@ -1053,7 +1030,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="FEL-RV-bA2"/>
         <segue reference="gEh-DL-Rpx"/>
-        <segue reference="rwN-20-jVp"/>
+        <segue reference="ykC-F8-LFZ"/>
         <segue reference="4su-oe-Ql4"/>
     </inferredMetricsTieBreakers>
 </document>
