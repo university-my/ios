@@ -12,9 +12,17 @@ import UIKit
 class TeacherTableViewController: GenericTableViewController {
     
     // MARK: - Properties
-    
+
+    private var dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .full
+        return dateFormatter
+    }()
+
+    private var sectionsTitles: [String] = []
+
     @IBOutlet weak var statusButton: UIBarButtonItem!
-    @IBOutlet weak var filterButton: UIBarButtonItem!
+    @IBOutlet weak var favoriteButton: UIBarButtonItem!
     
     // MARK: - Lifecycle
 
@@ -27,10 +35,6 @@ class TeacherTableViewController: GenericTableViewController {
         
         tableView.rowHeight = UITableView.automaticDimension
         
-        // Setup Filters
-        barButtonItem = filterButton
-        configurePeriodButton()
-        
         setup()
     }
     
@@ -41,19 +45,17 @@ class TeacherTableViewController: GenericTableViewController {
         
         if let teacher = teacher {
             title = teacher.name
-            performFetch(fetchedResultsController: fetchedResultsController)
+
+            // Is Favorites
+            favoriteButton.markAs(isFavorites: teacher.isFavorite)
+
+            // Records
+            performFetch()
             
             let records = fetchedResultsController?.fetchedObjects ?? []
             if records.isEmpty {
-                // Import records if empty
                 importRecords()
             }
-        }
-    }
-    
-    @IBAction func applyFilters(_ sender: Any) {
-        if let teacher = teacher {
-            fetchDataForPeriod(entity: teacher, fetchedResultsController: fetchedResultsController)
         }
     }
     
@@ -73,6 +75,17 @@ class TeacherTableViewController: GenericTableViewController {
             let sharedItems = [siteURL]
             let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
             present(vc, animated: true)
+        }
+    }
+    
+    // MARK: - Favorites
+    
+    @IBAction func toggleFavorite(_ sender: Any) {
+        if let teacher = teacher {
+            let appDelegate = UIApplication.shared.delegate as? AppDelegate
+            teacher.isFavorite.toggle()
+            appDelegate?.saveContext()
+            favoriteButton.markAs(isFavorites: teacher.isFavorite)
         }
     }
     
@@ -110,7 +123,7 @@ class TeacherTableViewController: GenericTableViewController {
                     } else {
                         self.hideNotification()
                     }
-                    self.performFetch(fetchedResultsController: self.fetchedResultsController)
+                    self.performFetch()
                     self.tableView.reloadData()
                     self.refreshControl?.endRefreshing()
                 }
@@ -204,7 +217,7 @@ class TeacherTableViewController: GenericTableViewController {
         let time = NSSortDescriptor(key: #keyPath(RecordEntity.time), ascending: true)
 
         request.sortDescriptors = [dateString, time]
-        request.predicate = predicate(for: currentPeriod, entity: teacher)
+        request.predicate = NSPredicate(format: "teacher == %@", teacher)
         request.fetchBatchSize = 20
         
         if let context = viewContext {
@@ -214,6 +227,28 @@ class TeacherTableViewController: GenericTableViewController {
             return nil
         }
     }()
+
+    private func performFetch() {
+        do {
+            try fetchedResultsController?.performFetch()
+
+            // Generate title for sections
+            if let controller = fetchedResultsController, let sections = controller.sections {
+                var newSectionsTitles: [String] = []
+                for section in sections {
+                    if let firstObjectInSection = section.objects?.first as? RecordEntity {
+                        if let date = firstObjectInSection.date {
+                            let dateString = dateFormatter.string(from: date)
+                            newSectionsTitles.append(dateString)
+                        }
+                    }
+                }
+                sectionsTitles = newSectionsTitles
+            }
+        } catch {
+            print("Error in the fetched results controller: \(error).")
+        }
+    }
 }
 
 // MARK: - UIStateRestoring

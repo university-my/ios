@@ -38,19 +38,27 @@ class AuditoriumsTableViewController: SearchableTableViewController {
         setup()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        // This is for reloading data when the favorites are changed
+        if let datasource = dataSource {
+            datasource.performFetch()
+            tableView.reloadData()
+        }
+    }
+    
     func setup() {
         if let id = universityID {
             dataSource = AuditoriumDataSource(universityID: id)
             tableView.dataSource = dataSource
-            loadAuditoroums()
+            loadAuditoriums()
         }
     }
     
     // MARK: - Auditoriums
     
-    func loadAuditoroums() {
+    func loadAuditoriums() {
         guard let dataSource = dataSource else { return }
-        dataSource.fetchAuditoriums()
+        dataSource.performFetch()
         
         let auditoriums = dataSource.fetchedResultsController?.fetchedObjects ?? []
         if auditoriums.isEmpty {
@@ -79,9 +87,10 @@ class AuditoriumsTableViewController: SearchableTableViewController {
             } else {
                 self.hideNotification()
             }
-            dataSource.fetchAuditoriums()
+            dataSource.performFetch()
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
+            self.hideNotification()
         }
     }
     
@@ -166,16 +175,16 @@ extension AuditoriumsTableViewController: UISearchResultsUpdating {
 
 extension AuditoriumsTableViewController {
 
-  override func encodeRestorableState(with coder: NSCoder) {
-    if let id = universityID {
-      coder.encode(id, forKey: "universityID")
+    override func encodeRestorableState(with coder: NSCoder) {
+        if let id = universityID {
+            coder.encode(id, forKey: "universityID")
+        }
+        super.encodeRestorableState(with: coder)
     }
-    super.encodeRestorableState(with: coder)
-  }
 
-  override func decodeRestorableState(with coder: NSCoder) {
-    universityID = coder.decodeInt64(forKey: "universityID")
-  }
+    override func decodeRestorableState(with coder: NSCoder) {
+        universityID = coder.decodeInt64(forKey: "universityID")
+    }
     
     override func applicationFinishedRestoringState() {
         setup()

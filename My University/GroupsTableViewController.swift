@@ -38,6 +38,14 @@ class GroupsTableViewController: SearchableTableViewController {
         setup()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        // This is for reloading data when the favorites are changed
+        if let datasource = dataSource {
+            datasource.performFetch()
+            tableView.reloadData()
+        }
+    }
+    
     func setup() {
         if let id = universityID {
             // Loading groups
@@ -59,6 +67,7 @@ class GroupsTableViewController: SearchableTableViewController {
         } else {
             tableView.reloadData()
             refreshControl?.endRefreshing()
+            hideNotification()
         }
     }
     
@@ -175,16 +184,16 @@ extension GroupsTableViewController: UISearchResultsUpdating {
 
 extension GroupsTableViewController {
 
-  override func encodeRestorableState(with coder: NSCoder) {
-    if let id = universityID {
-      coder.encode(id, forKey: "universityID")
+    override func encodeRestorableState(with coder: NSCoder) {
+        if let id = universityID {
+            coder.encode(id, forKey: "universityID")
+        }
+        super.encodeRestorableState(with: coder)
     }
-    super.encodeRestorableState(with: coder)
-  }
 
-  override func decodeRestorableState(with coder: NSCoder) {
-    universityID = coder.decodeInt64(forKey: "universityID")
-  }
+    override func decodeRestorableState(with coder: NSCoder) {
+        universityID = coder.decodeInt64(forKey: "universityID")
+    }
     
     override func applicationFinishedRestoringState() {
         setup()

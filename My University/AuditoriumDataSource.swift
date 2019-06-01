@@ -10,6 +10,14 @@ import CoreData
 import UIKit
 
 class AuditoriumDataSource: NSObject {
+
+    // MARK: - Favories
+
+    private var favoritesImageView: UIImageView {
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "Star Filled Image"))
+        imageView.tintColor = .orange
+        return imageView
+    }
     
     // MARK: - Init
     
@@ -41,8 +49,7 @@ class AuditoriumDataSource: NSObject {
     
     lazy var fetchedResultsController: NSFetchedResultsController<AuditoriumEntity>? = {
         let request: NSFetchRequest<AuditoriumEntity> = AuditoriumEntity.fetchRequest()
-        let predicate = NSPredicate(format: "university == %@", university)
-        request.predicate = predicate
+        request.predicate = NSPredicate(format: "university == %@", university)
         
         let firstSymbol = NSSortDescriptor(key: #keyPath(AuditoriumEntity.firstSymbol), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
         let name = NSSortDescriptor(key: #keyPath(AuditoriumEntity.name), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
@@ -58,7 +65,7 @@ class AuditoriumDataSource: NSObject {
         }
     }()
     
-    func fetchAuditoriums() {
+    func performFetch() {
         do {
             try fetchedResultsController?.performFetch()
             collectNamesOfSections()
@@ -121,6 +128,13 @@ extension AuditoriumDataSource: UITableViewDataSource {
         // Configure cell
         if let auditorium = fetchedResultsController?.object(at: indexPath) {
             cell.textLabel?.text = auditorium.name
+
+            // Is favorites
+            if auditorium.isFavorite {
+                cell.accessoryView = favoritesImageView
+            } else {
+                cell.accessoryView = nil
+            }
         }
         
         return cell

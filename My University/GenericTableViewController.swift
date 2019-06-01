@@ -13,12 +13,6 @@ class GenericTableViewController: UITableViewController {
 
     // MARK: - Properties
     
-    var dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE, d MMMM"
-        return dateFormatter
-    }()
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -51,101 +45,5 @@ class GenericTableViewController: UITableViewController {
     
     func hideNotification() {
         notificationLabel.text = nil
-    }
-
-    // MARK: - Period button
-
-    var barButtonItem = UIBarButtonItem()
-
-    func configurePeriodButton() {
-        barButtonItem.title = currentPeriod.title
-    }
-
-    // MARK: - Period
-
-    var currentPeriod: Period {
-        get {
-            return Period.current
-        }
-        set {
-            Period.current = newValue
-        }
-    }
-    
-    func predicate(for period: Period, entity: NSManagedObject) -> NSPredicate {
-        var predicate = NSPredicate()
-        let dateFormatter = DateFormatter()
-        var preparePredicateForEntity = String()
-        
-        switch entity {
-        case is AuditoriumEntity:
-            preparePredicateForEntity = "auditorium == %@"
-        case is GroupEntity:
-            preparePredicateForEntity = "ANY groups == %@"
-        case is TeacherEntity:
-            preparePredicateForEntity = "teacher == %@"
-        default:
-            preparePredicateForEntity = ""
-        }
-
-        switch currentPeriod {
-        case .today:
-            dateFormatter.dateFormat = "YYYY-MM-dd"
-            let currentDate = dateFormatter.string(from: Date())
-            predicate = NSPredicate(format: "\(preparePredicateForEntity) AND dateString CONTAINS %@", entity, currentDate)
-            return predicate
-
-        case .week:
-            let startDate = Date()
-            let endDate = startDate.plusSevenDays()
-            predicate = NSPredicate(format: "\(preparePredicateForEntity) AND dateString >= %@ AND dateString <= %@", entity, startDate as NSDate, endDate as NSDate)
-            return predicate
-        }
-    }
-    
-    func fetchDataForPeriod(entity: NSManagedObject, fetchedResultsController: NSFetchedResultsController<RecordEntity>?) {
-
-        switch currentPeriod {
-        case .today:
-            currentPeriod = .week
-        case .week:
-            currentPeriod = .today
-        }
-
-        configurePeriodButton()
-        fetchedResultsController?.fetchRequest.predicate = predicate(for: currentPeriod, entity: entity)
-        do {
-            try fetchedResultsController?.performFetch()
-        } catch {
-            print("Error in the fetched results controller: \(error).")
-        }
-        performFetch(fetchedResultsController: fetchedResultsController)
-        tableView.reloadData()
-    }
-    
-    // MARK: - Fetch results from CoreData
-
-    var sectionsTitles: [String] = []
-    
-    func performFetch(fetchedResultsController: NSFetchedResultsController<RecordEntity>?) {
-        do {
-            try fetchedResultsController?.performFetch()
-            
-            // Generate title for sections
-            if let controller = fetchedResultsController, let sections = controller.sections {
-                var newSectionsTitles: [String] = []
-                for section in sections {
-                    if let firstObjectInSection = section.objects?.first as? RecordEntity {
-                        if let date = firstObjectInSection.date {
-                            let dateString = dateFormatter.string(from: date)
-                            newSectionsTitles.append(dateString)
-                        }
-                    }
-                }
-                sectionsTitles = newSectionsTitles
-            }
-        } catch {
-            print("Error in the fetched results controller: \(error).")
-        }
     }
 }

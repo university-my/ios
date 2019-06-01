@@ -17,6 +17,7 @@ extension AuditoriumEntity {
         return NSFetchRequest<AuditoriumEntity>(entityName: "AuditoriumEntity")
     }
 
+    @NSManaged public var isFavorite: Bool
     @NSManaged public var firstSymbol: String?
     @NSManaged public var id: Int64
     @NSManaged public var name: String?

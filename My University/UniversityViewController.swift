@@ -9,18 +9,7 @@
 import UIKit
 
 class UniversityViewController: GenericTableViewController {
-    
-    struct Row {
-        
-        let kind: Kind
-        
-        enum Kind {
-            case auditoriums
-            case groups
-            case teachers
-        }
-    }
-    
+
     // MARK: - Properties
 
     var universityID: Int64?
@@ -29,15 +18,14 @@ class UniversityViewController: GenericTableViewController {
     private var auditoriumsDataSource: AuditoriumDataSource?
     private var groupsDataSource: GroupsDataSource?
     private var teachersDataSource: TeacherDataSource?
-
-    var rows: [Row] = []
     
     // MARK: - Cells
     
     @IBOutlet weak var groupsCell: UITableViewCell!
     @IBOutlet weak var teachersCell: UITableViewCell!
     @IBOutlet weak var auditoriumsCell: UITableViewCell!
-    
+    @IBOutlet weak var favoritesCell: UITableViewCell!
+
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -55,9 +43,8 @@ class UniversityViewController: GenericTableViewController {
         if let id = universityID {
             dataSource = UniversityDataSource()
             dataSource?.fetch(id: id)
+            dataSource?.configureSections()
         }
-
-        configureRows()
 
         if let university = dataSource?.university {
             // Title
@@ -75,37 +62,41 @@ class UniversityViewController: GenericTableViewController {
     }
     
     // MARK: - Table
-    
-    private func configureRows() {
-        guard let university = dataSource?.university else { return }
-        
-        if university.isKPI {
-            let grops = Row(kind: .groups)
-            let teachers = Row(kind: .teachers)
-            rows = [grops, teachers]
-        } else {
-            let grops = Row(kind: .groups)
-            let teachers = Row(kind: .teachers)
-            let auditoriums = Row(kind: .auditoriums)
-            rows = [grops, teachers, auditoriums]
-        }
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return dataSource?.sections.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let row = rows[indexPath.row]
-        
-        switch row.kind {
-        case .auditoriums:
-            performSegue(withIdentifier: "showAuditoriums", sender: nil)
-        case .groups:
-            performSegue(withIdentifier: "showGroups", sender: nil)
-        case .teachers:
-            performSegue(withIdentifier: "showTeachers", sender: nil)
+        let section = dataSource?.sections[safe: indexPath.section]
+        let row = section?.rows[safe: indexPath.row]
+
+        if let kind = row?.kind {
+            switch kind {
+            case .auditoriums:
+                performSegue(withIdentifier: "showAuditoriums", sender: nil)
+            case .groups:
+                performSegue(withIdentifier: "showGroups", sender: nil)
+            case .teachers:
+                performSegue(withIdentifier: "showTeachers", sender: nil)
+            case .favorites:
+                performSegue(withIdentifier: "showFavorites", sender: nil)
+            }
         }
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return dataSource?.university?.fullName
+        let section = dataSource?.sections[safe: section]
+        if let kind = section?.kind {
+            switch kind {
+            case .all:
+                return dataSource?.university?.fullName
+            case .favorites:
+                return nil
+            }
+        } else {
+            return nil
+        }
     }
     
     // MARK: - Navigation
@@ -126,6 +117,10 @@ class UniversityViewController: GenericTableViewController {
         case "showTeachers":
             let vc = segue.destination as? TeachersTableViewController
             vc?.universityID = dataSource?.university?.id
+
+        case "showFavorites":
+            let vc = segue.destination as? FavoritesViewController
+            vc?.universityID = dataSource?.university?.id
             
         default:
             break
@@ -133,12 +128,16 @@ class UniversityViewController: GenericTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rows.count
+        let section = dataSource?.sections[safe: section]
+        return section?.rows.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let row = rows[indexPath.row]
-        switch row.kind {
+        let section = dataSource?.sections[safe: indexPath.section]
+        let row = section?.rows[safe: indexPath.row]
+
+        let kind = row!.kind
+        switch kind {
             
         case .groups:
             return groupsCell
@@ -148,6 +147,9 @@ class UniversityViewController: GenericTableViewController {
             
         case .auditoriums:
             return auditoriumsCell
+
+        case .favorites:
+            return favoritesCell
         }
     }
     
@@ -183,7 +185,7 @@ class UniversityViewController: GenericTableViewController {
     
     private func loadTeachers() {
         guard let dataSource = teachersDataSource else { return }
-        dataSource.fetchTeachers()
+        dataSource.performFetch()
         
         let teachers = dataSource.fetchedResultsController?.fetchedObjects ?? []
         if teachers.isEmpty {
@@ -228,7 +230,7 @@ class UniversityViewController: GenericTableViewController {
     
     private func loadAuditoriums() {
         guard let dataSource = auditoriumsDataSource else { return }
-        dataSource.fetchAuditoriums()
+        dataSource.performFetch()
 
         let auditoriums = dataSource.fetchedResultsController?.fetchedObjects ?? []
         if auditoriums.isEmpty {

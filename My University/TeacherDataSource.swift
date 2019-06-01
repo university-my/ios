@@ -10,10 +10,18 @@ import CoreData
 import UIKit
 
 class TeacherDataSource: NSObject {
+
+    // MARK: - Favories
+
+    private var favoritesImageView: UIImageView {
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "Star Filled Image"))
+        imageView.tintColor = .orange
+        return imageView
+    }
     
     // MARK: - Init
     
-    private var university: UniversityEntity
+    var university: UniversityEntity
     
     init?(universityID id: Int64) {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -41,8 +49,7 @@ class TeacherDataSource: NSObject {
 
     lazy var fetchedResultsController: NSFetchedResultsController<TeacherEntity>? = {
         let request: NSFetchRequest<TeacherEntity> = TeacherEntity.fetchRequest()
-        let predicate = NSPredicate(format: "university == %@", university)
-        request.predicate = predicate
+        request.predicate = NSPredicate(format: "university == %@", university)
 
         let firstSymbol = NSSortDescriptor(key: #keyPath(TeacherEntity.firstSymbol), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
         let name = NSSortDescriptor(key: #keyPath(TeacherEntity.name), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
@@ -57,8 +64,8 @@ class TeacherDataSource: NSObject {
             return nil
         }
     }()
-
-    func fetchTeachers() {
+    
+    func performFetch() {
         do {
             try fetchedResultsController?.performFetch()
             collectNamesOfSections()
@@ -121,6 +128,13 @@ extension TeacherDataSource: UITableViewDataSource {
         // Configure cell
         if let teacher = fetchedResultsController?.object(at: indexPath) {
             cell.textLabel?.text = teacher.name
+
+            // Is favorites
+            if teacher.isFavorite {
+                cell.accessoryView = favoritesImageView
+            } else {
+                cell.accessoryView = nil
+            }
         }
 
         return cell

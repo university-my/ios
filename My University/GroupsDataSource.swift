@@ -10,10 +10,18 @@ import CoreData
 import UIKit
 
 class GroupsDataSource: NSObject {
+
+    // MARK: - Is Favories
+
+    private var favoritesImageView: UIImageView {
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "Star Filled Image"))
+        imageView.tintColor = .orange
+        return imageView
+    }
     
     // MARK: - Init
     
-    private var university: UniversityEntity
+    var university: UniversityEntity
     
     init?(universityID id: Int64) {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -42,8 +50,7 @@ class GroupsDataSource: NSObject {
     lazy var fetchedResultsController: NSFetchedResultsController<GroupEntity>? = {
         // Groups for university
         let request: NSFetchRequest<GroupEntity> = GroupEntity.fetchRequest()
-        let predicate = NSPredicate(format: "university == %@", university)
-        request.predicate = predicate
+        request.predicate = NSPredicate(format: "university == %@", university)
         
         let firstSymbol = NSSortDescriptor(key: #keyPath(GroupEntity.firstSymbol), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
         let name = NSSortDescriptor(key: #keyPath(GroupEntity.name), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
@@ -123,6 +130,13 @@ extension GroupsDataSource: UITableViewDataSource {
         // Configure cell
         if let group = fetchedResultsController?.object(at: indexPath) {
             cell.textLabel?.text = group.name
+
+            // Is favorites
+            if group.isFavorite {
+                cell.accessoryView = favoritesImageView
+            } else {
+                cell.accessoryView = nil
+            }
         }
         
         return cell

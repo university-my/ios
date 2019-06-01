@@ -80,6 +80,32 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="RzI-M3-fhc">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="u9X-Is-i2Y" imageView="fgf-ef-z9y" style="IBUITableViewCellStyleDefault" id="IvW-Fb-zFY">
+                                        <rect key="frame" x="0.0" y="203" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IvW-Fb-zFY" id="j38-gN-uo7">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Favorites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="u9X-Is-i2Y">
+                                                    <rect key="frame" x="74" y="0.0" width="266" height="43.666666666666664"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="Star Filled Image" id="fgf-ef-z9y">
+                                                    <rect key="frame" x="16" y="0.0" width="43" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="Static Section Color"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="ZoK-j2-rpa" id="Zm9-Bh-eS5"/>
@@ -96,12 +122,14 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
                     <connections>
                         <outlet property="auditoriumsCell" destination="HtF-xZ-SWE" id="yBj-Sk-sn3"/>
+                        <outlet property="favoritesCell" destination="IvW-Fb-zFY" id="fHT-XF-GU5"/>
                         <outlet property="groupsCell" destination="gSd-6S-Lug" id="Mzm-wv-cOy"/>
                         <outlet property="statusButton" destination="LS2-pb-oGY" id="3TN-Ak-J6p"/>
                         <outlet property="teachersCell" destination="Kfv-xO-voe" id="c6i-Hl-W89"/>
                         <segue destination="5Xk-Va-4eS" kind="show" identifier="showGroups" id="G0B-aq-jyj"/>
                         <segue destination="MNV-Wm-DDm" kind="show" identifier="showTeachers" id="Vs2-eZ-oDS"/>
                         <segue destination="rcu-ZD-gZU" kind="show" identifier="showAuditoriums" id="1AW-LD-QjB"/>
+                        <segue destination="ikp-ed-4tf" kind="show" identifier="showFavorites" id="4bg-e4-cVE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ynE-Mc-xA0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -556,18 +584,18 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem style="plain" systemItem="fixedSpace" id="VjQ-KM-SjZ"/>
-                        <barButtonItem title="Week" id="SmO-aW-PdA" userLabel="Filter Button">
-                            <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
-                            <connections>
-                                <action selector="applyFilters:" destination="kjp-pL-LDS" id="K4T-G2-S8w"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="geK-bv-4Bs"/>
                         <barButtonItem title="Status text" id="mdU-eV-C7w">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="JwO-hz-qje"/>
+                        <barButtonItem image="Star Empty Image" id="pRO-Jk-LXS" userLabel="Favorite">
+                            <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
+                            <connections>
+                                <action selector="toggleFavorite:" destination="kjp-pL-LDS" id="CPK-Bm-Bdt"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="fixedSpace" id="sXo-e0-BnH"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Group" id="wCI-ox-0ZG">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="C8w-vY-YiV">
@@ -586,7 +614,7 @@
                         </connections>
                     </refreshControl>
                     <connections>
-                        <outlet property="filterButton" destination="SmO-aW-PdA" id="cGW-1d-Ixh"/>
+                        <outlet property="favoriteButton" destination="pRO-Jk-LXS" id="7rT-N0-o8F"/>
                         <outlet property="statusButton" destination="mdU-eV-C7w" id="tF0-mR-Fzf"/>
                         <segue destination="6a0-mN-k10" kind="show" identifier="recordDetailed" id="iFT-Sz-Ze3"/>
                     </connections>
@@ -752,20 +780,20 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem style="plain" systemItem="fixedSpace" id="4AP-WX-Z31"/>
-                        <barButtonItem title="Week" id="V61-R6-IcK" userLabel="Filter Button">
-                            <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
-                            <connections>
-                                <action selector="applyFilters:" destination="xEv-Se-Sjg" id="a5D-fY-F5R"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="f8t-eU-nSu"/>
                         <barButtonItem title="Status text" id="yZL-hE-NWI">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Oc9-Ne-LoN"/>
+                        <barButtonItem image="Star Empty Image" id="9K7-P8-dKV" userLabel="Favorite">
+                            <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
+                            <connections>
+                                <action selector="toggleFavorite:" destination="xEv-Se-Sjg" id="PNk-7b-xzg"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="fixedSpace" id="bSE-UV-cRc"/>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Teacher" largeTitleDisplayMode="never" id="zWn-2a-KNf">
+                    <navigationItem key="navigationItem" title="Teacher" id="zWn-2a-KNf">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="VHM-Tg-f5d">
                             <connections>
                                 <action selector="share:" destination="xEv-Se-Sjg" id="fwY-YD-Nwz"/>
@@ -782,7 +810,7 @@
                         </connections>
                     </refreshControl>
                     <connections>
-                        <outlet property="filterButton" destination="V61-R6-IcK" id="I4f-QB-Mpb"/>
+                        <outlet property="favoriteButton" destination="9K7-P8-dKV" id="CwB-a2-74N"/>
                         <outlet property="statusButton" destination="yZL-hE-NWI" id="ELI-ZH-lWQ"/>
                         <segue destination="6a0-mN-k10" kind="show" identifier="recordDetailed" id="rwN-20-jVp"/>
                     </connections>
@@ -858,6 +886,51 @@
             </objects>
             <point key="canvasLocation" x="3012" y="913"/>
         </scene>
+        <!--Favorites-->
+        <scene sceneID="i8c-kc-AlZ">
+            <objects>
+                <tableViewController storyboardIdentifier="FavoritesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ikp-ed-4tf" customClass="FavoritesViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Z20-5m-6k8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" name="Background Color"/>
+                        <color key="separatorColor" name="Separator Color"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="favoritesCell" textLabel="ILB-wi-wO5" style="IBUITableViewCellStyleDefault" id="zNX-Ik-Wt0">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zNX-Ik-Wt0" id="woZ-PT-j2A">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ILB-wi-wO5">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" name="Background Color"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ikp-ed-4tf" id="kEo-Of-YMa"/>
+                            <outlet property="delegate" destination="ikp-ed-4tf" id="m0L-GF-Rl5"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Favorites" id="vZ8-v4-KwX"/>
+                    <connections>
+                        <segue destination="ds8-eS-Cn9" kind="show" identifier="showAuditorium" id="FEL-RV-bA2"/>
+                        <segue destination="xEv-Se-Sjg" kind="show" identifier="showTeacher" id="1FK-V5-IB3"/>
+                        <segue destination="kjp-pL-LDS" kind="show" identifier="showGroup" id="4su-oe-Ql4"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F6t-SZ-oMn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3012" y="1671"/>
+        </scene>
         <!--Auditorium-->
         <scene sceneID="KBe-rf-Vf8">
             <objects>
@@ -892,6 +965,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" name="Background Color"/>
+                                <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -900,18 +974,17 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem style="plain" systemItem="fixedSpace" id="u4E-e5-Fmu"/>
-                        <barButtonItem title="Week" id="ICU-v0-NMs">
-                            <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
-                            <connections>
-                                <action selector="applyFilters:" destination="ds8-eS-Cn9" id="yel-fx-Qrf"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="qv5-tK-bth"/>
                         <barButtonItem title="Status text" id="QsR-27-aNW">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Kdo-jM-8eX"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="MAv-Ot-BYG"/>
+                        <barButtonItem image="Star Empty Image" id="2OL-NB-eiT" userLabel="Favorite">
+                            <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
+                            <connections>
+                                <action selector="toggleFavorite:" destination="ds8-eS-Cn9" id="6Ky-by-Q0P"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Auditorium" id="iff-ln-ZeD">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="QZK-Gm-bvA">
@@ -930,7 +1003,7 @@
                         </connections>
                     </refreshControl>
                     <connections>
-                        <outlet property="filterButton" destination="ICU-v0-NMs" id="6kh-aA-Dhi"/>
+                        <outlet property="favoriteButton" destination="2OL-NB-eiT" id="hXv-nI-6St"/>
                         <outlet property="statusButton" destination="QsR-27-aNW" id="L9u-0J-oDa"/>
                         <segue destination="6a0-mN-k10" kind="show" identifier="recordDetailed" id="ykC-F8-LFZ"/>
                     </connections>
@@ -942,6 +1015,8 @@
     </scenes>
     <resources>
         <image name="Hear Image" width="24" height="24"/>
+        <image name="Star Empty Image" width="42.666667938232422" height="42.666667938232422"/>
+        <image name="Star Filled Image" width="42.666667938232422" height="42.666667938232422"/>
         <namedColor name="Background Color">
             <color red="0.086274509803921567" green="0.090196078431372548" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -953,6 +1028,9 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="iFT-Sz-Ze3"/>
+        <segue reference="FEL-RV-bA2"/>
+        <segue reference="1FK-V5-IB3"/>
+        <segue reference="ykC-F8-LFZ"/>
+        <segue reference="4su-oe-Ql4"/>
     </inferredMetricsTieBreakers>
 </document>

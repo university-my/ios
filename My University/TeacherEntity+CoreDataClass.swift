@@ -19,8 +19,8 @@ public class TeacherEntity: NSManagedObject {
         fetchRequest.predicate = NSPredicate(format: "id == %d", id)
         do {
             let result = try context.fetch(fetchRequest)
-            let auditorium = result.first
-            return auditorium
+            let teacher = result.first
+            return teacher
         } catch  {
             return nil
         }

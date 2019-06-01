@@ -48,7 +48,7 @@ class SearchableTableViewController: GenericTableViewController {
         searchController.searchBar.becomeFirstResponder()
     }
     
-    // MARK - Table delegate
+    // MARK: - Table delegate
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let headerView = view as? UITableViewHeaderFooterView {
