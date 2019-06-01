@@ -889,7 +889,7 @@
         <!--Favorites-->
         <scene sceneID="i8c-kc-AlZ">
             <objects>
-                <tableViewController id="ikp-ed-4tf" customClass="FavoritesViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FavoritesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ikp-ed-4tf" customClass="FavoritesViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Z20-5m-6k8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1029,7 +1029,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="FEL-RV-bA2"/>
-        <segue reference="gEh-DL-Rpx"/>
+        <segue reference="1FK-V5-IB3"/>
         <segue reference="ykC-F8-LFZ"/>
         <segue reference="4su-oe-Ql4"/>
     </inferredMetricsTieBreakers>

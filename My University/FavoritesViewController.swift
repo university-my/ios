@@ -21,10 +21,7 @@ class FavoritesViewController: GenericTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let id = universityID {
-            dataSource = FavoritesDataSource()
-            dataSource?.fetchUniversity(with: id)
-        }
+        setup()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -35,6 +32,13 @@ class FavoritesViewController: GenericTableViewController {
         dataSource?.fetchTeachers()
         dataSource?.configureSections()
         tableView.reloadData()
+    }
+
+    private func setup() {
+        if let id = universityID {
+            dataSource = FavoritesDataSource()
+            dataSource?.fetchUniversity(with: id)
+        }
     }
 
     // MARK: - Table view
@@ -140,5 +144,30 @@ class FavoritesViewController: GenericTableViewController {
         default:
             break
         }
+    }
+}
+
+// MARK: - UIStateRestoring
+
+extension FavoritesViewController {
+
+    override func encodeRestorableState(with coder: NSCoder) {
+        if let id = universityID {
+            coder.encode(id, forKey: "universityID")
+        }
+        super.encodeRestorableState(with: coder)
+    }
+
+    override func decodeRestorableState(with coder: NSCoder) {
+        universityID = coder.decodeInt64(forKey: "universityID")
+    }
+
+    override func applicationFinishedRestoringState() {
+        setup()
+        dataSource?.fetchAuditoriums()
+        dataSource?.fetchGroups()
+        dataSource?.fetchTeachers()
+        dataSource?.configureSections()
+        tableView.reloadData()
     }
 }
