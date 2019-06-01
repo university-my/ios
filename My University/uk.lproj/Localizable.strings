@@ -1,6 +1,9 @@
 /* No comment provided by engineer. */
 "AUDITORIUM" = "АУДИТОРІЯ";
 
+/* Favorites section name */
+"Auditoriums" = "Аудиторії";
+
 /* Cancel search */
 "Cancel" = "Скасувати";
 
@@ -12,6 +15,9 @@
 
 /* No comment provided by engineer. */
 "GROUP" = "ГРУПА";
+
+/* Favorites section name */
+"Groups" = "Групи";
 
 /* No comment provided by engineer. */
 "GROUPS" = "ГРУПИ";
@@ -40,14 +46,6 @@
 /* No comment provided by engineer. */
 "TEACHER" = "ВИКЛАДАЧ";
 
-/* No comment provided by engineer. */
-"Today" = "Сьогодні";
+/* Favorites section name */
+"Teachers" = "Викладачі";
 
-/* No comment provided by engineer. */
-"Week" = "Тиждень";
-
-/* No comment provided by engineer. */
-"Favorites" = "Улюбленi";
-
-/* No comment provided by engineer. */
-"Show all" = "Показати всi";
