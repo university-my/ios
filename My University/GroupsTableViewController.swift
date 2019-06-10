@@ -32,8 +32,8 @@ class GroupsTableViewController: SearchableTableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         
         // Sear Bar and Search Results Controller
-        configureSearchControllers()
-        searchController.searchResultsUpdater = self
+//        configureSearchControllers()
+//        searchController.searchResultsUpdater = self
         
         setup()
     }
@@ -97,23 +97,14 @@ class GroupsTableViewController: SearchableTableViewController {
     // MARK: - Pull to refresh
     
     @IBAction func refresh(_ sender: Any) {
-        guard !searchController.isActive else {
-            refreshControl?.endRefreshing()
-            return
-        }
+//        guard !searchController.isActive else {
+//            refreshControl?.endRefreshing()
+//            return
+//        }
         importGroups()
     }
     
     // MARK - Table delegate
-    
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        if let headerView = view as? UITableViewHeaderFooterView {
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = .sectionBackgroundColor
-            headerView.backgroundView = backgroundView
-            headerView.textLabel?.textColor = UIColor.lightText
-        }
-    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "groupDetailed", sender: nil)
@@ -126,17 +117,17 @@ class GroupsTableViewController: SearchableTableViewController {
             
         case "groupDetailed":
             if let detailTableViewController = segue.destination as? GroupTableViewController {
-                if searchController.isActive {
-                    if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
-                        let selectedGroup = resultsTableController.filteredGroups[safe: indexPath.row]
-                        detailTableViewController.groupID = selectedGroup?.id
-                    }
-                } else {
+//                if searchController.isActive {
+//                    if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
+//                        let selectedGroup = resultsTableController.filteredGroups[safe: indexPath.row]
+//                        detailTableViewController.groupID = selectedGroup?.id
+//                    }
+//                } else {
                     if let indexPath = tableView.indexPathForSelectedRow {
                         let selectedGroup = dataSource?.fetchedResultsController?.object(at: indexPath)
                         detailTableViewController.groupID = selectedGroup?.id
                     }
-                }
+//                }
             }
             
         default:
@@ -147,7 +138,7 @@ class GroupsTableViewController: SearchableTableViewController {
     // MARK: - Search
     
     @IBAction func search(_ sender: Any) {
-        searchController.searchBar.becomeFirstResponder()
+//        searchController.searchBar.becomeFirstResponder()
     }
 }
 

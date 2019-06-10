@@ -17,14 +17,6 @@ class GenericTableViewController: UITableViewController {
         return .lightContent
     }
     
-    // MARK: - Table delegate
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let bgColorView = UIView()
-        bgColorView.backgroundColor = .cellSelectionColor
-        cell.selectedBackgroundView = bgColorView
-    }
-    
     // MARK: - Notification
     
     var notificationLabel = UILabel(frame: CGRect.zero)

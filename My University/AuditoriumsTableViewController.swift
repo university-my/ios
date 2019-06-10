@@ -32,8 +32,8 @@ class AuditoriumsTableViewController: SearchableTableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         
         // Sear Bar and Search Results Controller
-        configureSearchControllers()
-        searchController.searchResultsUpdater = self
+//        configureSearchControllers()
+//        searchController.searchResultsUpdater = self
         
         setup()
     }
@@ -97,10 +97,10 @@ class AuditoriumsTableViewController: SearchableTableViewController {
     // MARK: - Pull to refresh
     
     @IBAction func refresh(_ sender: Any) {
-        guard !searchController.isActive else {
-            refreshControl?.endRefreshing()
-            return
-        }
+//        guard !searchController.isActive else {
+//            refreshControl?.endRefreshing()
+//            return
+//        }
         importAuditoriums()
     }
     
@@ -117,17 +117,17 @@ class AuditoriumsTableViewController: SearchableTableViewController {
             
         case "auditoriumDetailed":
             if let detailTableViewController = segue.destination as? AuditoriumTableViewController {
-                if searchController.isActive {
-                    if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
-                        let selectedAuditorium = resultsTableController.filteredAuditoriums[safe: indexPath.row]
-                        detailTableViewController.auditoriumID = selectedAuditorium?.id
-                    }
-                } else {
+//                if searchController.isActive {
+//                    if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
+//                        let selectedAuditorium = resultsTableController.filteredAuditoriums[safe: indexPath.row]
+//                        detailTableViewController.auditoriumID = selectedAuditorium?.id
+//                    }
+//                } else {
                     if let indexPath = tableView.indexPathForSelectedRow {
                         let selectedAuditorium = dataSource?.fetchedResultsController?.object(at: indexPath)
                         detailTableViewController.auditoriumID = selectedAuditorium?.id
                     }
-                }
+//                }
             }
             
         default:
@@ -138,7 +138,7 @@ class AuditoriumsTableViewController: SearchableTableViewController {
     // MARK: - Search
     
     @IBAction func search(_ sender: Any) {
-        searchController.searchBar.becomeFirstResponder()
+//        searchController.searchBar.becomeFirstResponder()
     }
 }
 
