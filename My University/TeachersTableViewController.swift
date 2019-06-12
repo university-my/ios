@@ -33,8 +33,8 @@ class TeachersTableViewController: SearchableTableViewController {
         tableView.tableFooterView = UIView()
 
         // Sear Bar and Search Results Controller
-//        configureSearchControllers()
-//        searchController.searchResultsUpdater = self
+        configureSearchControllers()
+        searchController.searchResultsUpdater = self
         
         setup()
     }
@@ -99,10 +99,10 @@ class TeachersTableViewController: SearchableTableViewController {
     // MARK: - Pull to refresh
     
     @IBAction func refresh(_ sender: Any) {
-//        guard !searchController.isActive else {
-//            refreshControl?.endRefreshing()
-//            return
-//        }
+        guard !searchController.isActive else {
+            refreshControl?.endRefreshing()
+            return
+        }
         importTeachers()
     }
     
@@ -120,17 +120,17 @@ class TeachersTableViewController: SearchableTableViewController {
         case "teacherDetailed":
             if let detailTableViewController = segue.destination as? TeacherTableViewController {
                 
-//                if searchController.isActive {
-//                    if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
-//                        let selectedTeacher = resultsTableController.filteredTeachers[safe: indexPath.row]
-//                        detailTableViewController.teacherID = selectedTeacher?.id
-//                    }
-//                } else {
+                if searchController.isActive {
+                    if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
+                        let selectedTeacher = resultsTableController.filteredTeachers[safe: indexPath.row]
+                        detailTableViewController.teacherID = selectedTeacher?.id
+                    }
+                } else {
                     if let indexPath = tableView.indexPathForSelectedRow {
                         let selectedTeacher = dataSource?.fetchedResultsController?.object(at: indexPath)
                         detailTableViewController.teacherID = selectedTeacher?.id
                     }
-//                }
+                }
             }
             
         default:
@@ -141,7 +141,7 @@ class TeachersTableViewController: SearchableTableViewController {
     // MARK: - Search
     
     @IBAction func search(_ sender: Any) {
-//        searchController.searchBar.becomeFirstResponder()
+        searchController.searchBar.becomeFirstResponder()
     }
 }
 

@@ -10,12 +10,6 @@ import UIKit
 import CoreData
 
 class GenericTableViewController: UITableViewController {
-
-    // MARK: - Properties
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
     
     // MARK: - Notification
     
