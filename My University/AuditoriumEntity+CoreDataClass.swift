@@ -18,11 +18,11 @@ public class AuditoriumEntity: NSManagedObject {
         // University should not be nil
         guard let university = university else { return [] }
         
-        let ids = auditoriums.map { auditorium in
-            return auditorium.id
+        let slugs = auditoriums.map { auditorium in
+            return auditorium.slug
         }
         let fetchRequest: NSFetchRequest<AuditoriumEntity> = AuditoriumEntity.fetchRequest()
-        let isdPredicate = NSPredicate(format: "id IN %@", ids)
+        let isdPredicate = NSPredicate(format: "slug IN %@", slugs)
         let universityPredicate = NSPredicate(format: "university == %@", university)
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [universityPredicate, isdPredicate])
         fetchRequest.predicate = predicate

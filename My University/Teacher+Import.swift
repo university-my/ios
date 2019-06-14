@@ -102,24 +102,28 @@ extension Teacher {
                 let toUpdate = TeacherEntity.fetch(parsedTeachers, university: universityInContext, context: taskContext)
                 
                 // IDs to update
-                let idsToUpdate = toUpdate.map({ teacher in
-                    return teacher.id
+                let idsToUpdate = toUpdate.compactMap({ teacher in
+                    return teacher.slug
                 })
                 
                 // Find teachers to insert
                 let toInsert = parsedTeachers.filter({ teachers in
-                    return (idsToUpdate.contains(teachers.id) == false)
+                    return (idsToUpdate.contains(teachers.slug) == false)
                 })
                 
                 // IDs
-                let ids = parsedTeachers.map({ teachers in
-                    return teachers.id
+                let slugs = parsedTeachers.map({ teachers in
+                    return teachers.slug
                 })
                 
                 // Now find teachers to delete
                 let allTeachers = TeacherEntity.fetchAll(university: universityInContext, context: taskContext)
-                let toDelete = allTeachers.filter({ university in
-                    return (ids.contains(university.id) == false)
+                let toDelete = allTeachers.filter({ teacher in
+                  if let slug = teacher.slug {
+                    return (slugs.contains(slug) == false)
+                  } else {
+                    return true
+                  }
                 })
                 
                 // 1. Delete
@@ -130,7 +134,7 @@ extension Teacher {
                 // 2. Update
                 for teacher in toUpdate {
                     if let teacherFromServer = parsedTeachers.first(where: { (parsedTeacher) -> Bool in
-                        return parsedTeacher.id == teacher.id
+                        return parsedTeacher.slug == teacher.slug
                     }) {
                         // Update name if changed
                         if teacherFromServer.name != teacher.name {
@@ -195,6 +199,7 @@ extension Teacher {
                 teacherEntity.firstSymbol = ""
             }
             teacherEntity.university = university
+            teacherEntity.slug = parsedTeacher.slug
         }
     }
 }

@@ -102,24 +102,28 @@ extension Auditorium {
                 let toUpdate = AuditoriumEntity.fetch(parsedAuditoriums, university: universityInContext, context: taskContext)
                 
                 // IDs to update
-                let idsToUpdate = toUpdate.map({ auditorium in
-                    return auditorium.id
+                let idsToUpdate = toUpdate.compactMap({ auditorium in
+                    return auditorium.slug
                 })
                 
                 // Find auditoriums to insert
                 let toInsert = parsedAuditoriums.filter({ auditorium in
-                    return (idsToUpdate.contains(auditorium.id) == false)
+                    return (idsToUpdate.contains(auditorium.slug) == false)
                 })
                 
                 // IDs
-                let ids = parsedAuditoriums.map({ auditorium in
-                    return auditorium.id
+                let slugs = parsedAuditoriums.map({ auditorium in
+                    return auditorium.slug
                 })
                 
                 // Now find auditoriums to delete
                 let allAuditoriums = AuditoriumEntity.fetchAll(university: universityInContext, context: taskContext)
                 let toDelete = allAuditoriums.filter({ auditorium in
-                    return (ids.contains(auditorium.id) == false)
+                  if let slug = auditorium.slug {
+                    return (slugs.contains(slug) == false)
+                  } else {
+                    return true
+                  }
                 })
                 
                 // 1. Delete
@@ -130,7 +134,7 @@ extension Auditorium {
                 // 2. Update
                 for auditorium in toUpdate {
                     if let auditoriumFromServer = parsedAuditoriums.first(where: { (parsedAuditorium) -> Bool in
-                        return parsedAuditorium.id == auditorium.id
+                        return parsedAuditorium.slug == auditorium.slug
                     }) {
                         // Update name if changed
                         if auditoriumFromServer.name != auditorium.name {
@@ -196,6 +200,7 @@ extension Auditorium {
                 auditoriumEntity.firstSymbol = ""
             }
             auditoriumEntity.university = university
+            auditoriumEntity.slug = parsedAuditorium.slug
         }
     }
 }

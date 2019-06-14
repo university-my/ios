@@ -30,11 +30,11 @@ public class GroupEntity: NSManagedObject {
         // University should not be nil
         guard let university = university else { return [] }
         
-        let ids = groups.map { group in
-            return group.id
+        let slugs = groups.map { group in
+            return group.slug
         }
         let fetchRequest: NSFetchRequest<GroupEntity> = GroupEntity.fetchRequest()
-        let isdPredicate = NSPredicate(format: "id IN %@", ids)
+        let isdPredicate = NSPredicate(format: "slug IN %@", slugs)
         let universityPredicate = NSPredicate(format: "university == %@", university)
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [universityPredicate, isdPredicate])
         fetchRequest.predicate = predicate
