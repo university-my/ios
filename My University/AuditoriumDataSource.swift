@@ -13,10 +13,9 @@ class AuditoriumDataSource: NSObject {
 
     // MARK: - Favories
 
-    private var favoritesImageView: UIImageView {
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "Star Filled Image"))
-        return imageView
-    }
+    private lazy var favoritesImage: UIImage = {
+        return #imageLiteral(resourceName: "Star Filled Image")
+    }()
     
     // MARK: - Init
     
@@ -130,9 +129,9 @@ extension AuditoriumDataSource: UITableViewDataSource {
 
             // Is favorites
             if auditorium.isFavorite {
-                cell.accessoryView = favoritesImageView
+                cell.imageView?.image = favoritesImage
             } else {
-                cell.accessoryView = nil
+                cell.imageView?.image = nil
             }
         }
         

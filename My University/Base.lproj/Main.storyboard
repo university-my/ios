@@ -138,21 +138,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="groupCell" textLabel="5mt-BJ-vX7" style="IBUITableViewCellStyleDefault" id="aPD-it-xVj">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="groupCell" id="aPD-it-xVj">
                                 <rect key="frame" x="0.0" y="28" width="375" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aPD-it-xVj" id="TQ4-Ij-T7e">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5mt-BJ-vX7">
-                                            <rect key="frame" x="16" y="0.0" width="343" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -610,7 +601,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="RecordDetailedTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6a0-mN-k10" customClass="RecordDetailedTableViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="eiD-2D-nJv">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="sectionIndexColor" cocoaTouchSystemColor="lightTextColor"/>
                         <prototypes>
@@ -645,10 +636,15 @@
                             <outlet property="delegate" destination="6a0-mN-k10" id="a0o-WO-wXp"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="xEv-Se-Sjg" kind="show" identifier="showTeacher" id="8RE-PV-Sh1"/>
+                        <segue destination="kjp-pL-LDS" kind="show" identifier="showGroup" id="xLB-MN-h7a"/>
+                        <segue destination="ds8-eS-Cn9" kind="show" identifier="showAuditorium" id="9Ak-Un-uFs"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Ap-Oh-zM4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5569" y="163"/>
+            <point key="canvasLocation" x="5862" y="137"/>
         </scene>
         <!--Teachers-->
         <scene sceneID="3X9-aP-VFP">
@@ -659,21 +655,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="teacherCell" textLabel="dOV-Pd-g9o" style="IBUITableViewCellStyleDefault" id="6C8-zF-f6f">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="teacherCell" id="6C8-zF-f6f">
                                 <rect key="frame" x="0.0" y="28" width="375" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6C8-zF-f6f" id="PK1-ki-GYS">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dOV-Pd-g9o">
-                                            <rect key="frame" x="16" y="0.0" width="343" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -904,7 +891,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="AuditoriumTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ds8-eS-Cn9" customClass="AuditoriumTableViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="g53-0i-sFe">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="detailTableCell" textLabel="DcX-QR-sm2" detailTextLabel="o6l-jJ-3Mn" style="IBUITableViewCellStyleSubtitle" id="HJ0-P0-vIF">
@@ -978,8 +965,8 @@
         <image name="heart" catalog="system" width="64" height="56"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="15p-7P-TtC"/>
-        <segue reference="1FK-V5-IB3"/>
+        <segue reference="9Ak-Un-uFs"/>
+        <segue reference="gEh-DL-Rpx"/>
         <segue reference="ykC-F8-LFZ"/>
         <segue reference="JM9-YS-WCX"/>
     </inferredMetricsTieBreakers>

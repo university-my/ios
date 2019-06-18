@@ -70,7 +70,8 @@ class AuditoriumTableViewController: GenericTableViewController {
     @IBAction func share(_ sender: Any) {
         guard let auditorium = auditorium else { return }
         guard let universityURL = auditorium.university?.url else { return }
-        let url = Settings.shared.baseURL + "/universities/\(universityURL)/auditoriums/\(auditorium.id)"
+        guard let slug = auditorium.slug else { return }
+        let url = Settings.shared.baseURL + "/universities/\(universityURL)/auditoriums/\(slug)"
         if let siteURL = URL(string: url) {
             let sharedItems = [siteURL]
             let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
@@ -181,6 +182,9 @@ class AuditoriumTableViewController: GenericTableViewController {
         case "recordDetailed":
             if let destination = segue.destination as? RecordDetailedTableViewController {
                 destination.recordID = (sender as? RecordEntity)?.id
+                destination.auditoriumID = auditoriumID
+                destination.teacherID = nil
+                destination.groupID = nil
             }
             
         default:

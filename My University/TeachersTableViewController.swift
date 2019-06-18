@@ -24,13 +24,12 @@ class TeachersTableViewController: SearchableTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // For notifications
+        // For notificationsm
         configureNotificationLabel()
         statusButton.customView = notificationLabel
 
         // Configure table
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.tableFooterView = UIView()
 
         // Sear Bar and Search Results Controller
         configureSearchControllers()

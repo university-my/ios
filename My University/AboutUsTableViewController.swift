@@ -15,33 +15,38 @@ class AboutUsTableViewController: UITableViewController {
         let row = indexPath.row
         
         if section == 0 {
+            if let websiteURL = URL(string: "https://my-university.com.ua") {
+                UIApplication.shared.open(websiteURL)
+            }
+            
+        } else if section == 1 {
             switch row {
             case 0:
-                if let websiteURL = URL(string: "https://my-university.com.ua") {
-                    UIApplication.shared.open(websiteURL)
-                }
-            case 1:
                 if let facebookPageURL = URL(string: "https://www.facebook.com/myuniversityservice") {
                     UIApplication.shared.open(facebookPageURL)
                 }
-            case 2:
+            case 1:
                 if let twitterURL = URL(string: "https://twitter.com/myuniversity_su") {
                     UIApplication.shared.open(twitterURL)
                 }
-            case 3:
+            case 2:
                 if let instagramURL = URL(string: "https://www.instagram.com/university.my/") {
                     UIApplication.shared.open(instagramURL)
+                }
+            case 3:
+                if let telegramURL = URL(string: "https://t.me/university_my") {
+                    UIApplication.shared.open(telegramURL)
                 }
             default:
                 break
             }
             
-        } else if section == 1, row == 0 {
+        } else if section == 2 {
             if let appURL = URL(string: "https://itunes.apple.com/ua/app/university-schedule/id1440425058") {
                 UIApplication.shared.open(appURL)
             }
             
-        } else if section == 2 {
+        } else if section == 3 {
             switch row {
             case 0:
                 performSegue(withIdentifier: "showWebView", sender: (title: "Privacy Policy", url: "https://my-university.com.ua/privacy-policy"))

@@ -70,7 +70,8 @@ class TeacherTableViewController: GenericTableViewController {
     @IBAction func share(_ sender: Any) {
         guard let teacher = teacher else { return }
         guard let universityURL = teacher.university?.url else { return }
-        let url = Settings.shared.baseURL + "/universities/\(universityURL)/teachers/\(teacher.id)"
+        guard let slug = teacher.slug else { return }
+        let url = Settings.shared.baseURL + "/universities/\(universityURL)/teachers/\(slug)"
         if let siteURL = URL(string: url) {
             let sharedItems = [siteURL]
             let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
@@ -180,6 +181,9 @@ class TeacherTableViewController: GenericTableViewController {
         case "recordDetailed":
             if let destination = segue.destination as? RecordDetailedTableViewController {
                 destination.recordID = (sender as? RecordEntity)?.id
+                destination.teacherID = teacherID
+                destination.auditoriumID = nil
+                destination.groupID = nil
             }
             
         default:
