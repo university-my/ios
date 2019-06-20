@@ -13,9 +13,10 @@ class GroupsDataSource: NSObject {
 
     // MARK: - Is Favories
 
-    private lazy var favoritesImage: UIImage = {
-        return #imageLiteral(resourceName: "Star Filled Image")
-    }()
+    private var favoritesImageView: UIImageView {
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "Star Filled Image"))
+        return imageView
+    }
     
     // MARK: - Init
     
@@ -131,9 +132,9 @@ extension GroupsDataSource: UITableViewDataSource {
 
             // Is favorites
             if group.isFavorite {
-                cell.imageView?.image = favoritesImage
+                cell.accessoryView = favoritesImageView
             } else {
-                cell.imageView?.image = nil
+                cell.accessoryView = nil
             }
         }
         
