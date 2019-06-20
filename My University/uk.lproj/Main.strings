@@ -1,8 +1,5 @@
-/* Class = "UIBarButtonItem"; title = "Status text"; ObjectID = "4gW-d9-gnI"; */
-"4gW-d9-gnI.title" = "Текст статусу";
-
-/* Class = "UILabel"; text = "Title"; ObjectID = "5mt-BJ-vX7"; */
-"5mt-BJ-vX7.text" = "Назва";
+/* Class = "UITableViewSection"; headerTitle = "Social Networks"; ObjectID = "2hV-ey-dHe"; */
+"2hV-ey-dHe.headerTitle" = "Соціальні мережі";
 
 /* Class = "UILabel"; text = "Auditoriums"; ObjectID = "8ph-AF-sdi"; */
 "8ph-AF-sdi.text" = "Аудиторії";
@@ -17,28 +14,13 @@
 "az0-li-16Z.text" = "Політика конфіденційності";
 
 /* Class = "UILabel"; text = "Rate this app"; ObjectID = "chB-FO-YPg"; */
-"chB-FO-YPg.text" = "Оцініть цей додаток";
+"chB-FO-YPg.text" = "Оцінити додаток";
 
-/* Class = "UILabel"; text = "Facebook @myuniversityservice"; ObjectID = "cN9-cb-11O"; */
-"cN9-cb-11O.text" = "Facebook @myuniversityservice";
+/* Class = "UILabel"; text = "Facebook page @myuniversityservice"; ObjectID = "cN9-cb-11O"; */
+"cN9-cb-11O.text" = "Facebook сторінка @myuniversityservice";
 
-/* Class = "UILabel"; text = "Title"; ObjectID = "Cva-cM-NKm"; */
-"Cva-cM-NKm.text" = "Назва";
-
-/* Class = "UILabel"; text = "Title"; ObjectID = "DcX-QR-sm2"; */
-"DcX-QR-sm2.text" = "Назва";
-
-/* Class = "UILabel"; text = "Title"; ObjectID = "dOV-Pd-g9o"; */
-"dOV-Pd-g9o.text" = "Назва";
-
-/* Class = "UILabel"; text = "Title"; ObjectID = "DwZ-sG-N1O"; */
-"DwZ-sG-N1O.text" = "Назва";
-
-/* Class = "UILabel"; text = "Title"; ObjectID = "EAE-ch-JlZ"; */
-"EAE-ch-JlZ.text" = "Назва";
-
-/* Class = "UILabel"; text = "Detail"; ObjectID = "elq-Yu-Mmt"; */
-"elq-Yu-Mmt.text" = "Докладно";
+/* Class = "UITableViewSection"; headerTitle = "Legal documents"; ObjectID = "fcI-hA-FTU"; */
+"fcI-hA-FTU.headerTitle" = "Правові документи";
 
 /* Class = "UINavigationItem"; title = "Universities"; ObjectID = "Fi8-G5-eC2"; */
 "Fi8-G5-eC2.title" = "Університети";
@@ -49,56 +31,32 @@
 /* Class = "UILabel"; text = "Groups"; ObjectID = "gXn-G5-t2A"; */
 "gXn-G5-t2A.text" = "Групи";
 
-/* Class = "UILabel"; text = "Title"; ObjectID = "h4B-mM-33q"; */
-"h4B-mM-33q.text" = "Назва";
-
 /* Class = "UILabel"; text = "Teachers"; ObjectID = "hAt-35-YQG"; */
 "hAt-35-YQG.text" = "Викладачі";
 
-/* Class = "UILabel"; text = "Detail"; ObjectID = "hDb-cU-4FX"; */
-"hDb-cU-4FX.text" = "Докладно";
-
-/* Class = "UILabel"; text = "Title"; ObjectID = "Hnt-60-noc"; */
-"Hnt-60-noc.text" = "Назва";
+/* Class = "UILabel"; text = "my-university.com.ua"; ObjectID = "hDR-UY-hnA"; */
+"hDR-UY-hnA.text" = "my-university.com.ua";
 
 /* Class = "UINavigationItem"; title = "Auditorium"; ObjectID = "iff-ln-ZeD"; */
 "iff-ln-ZeD.title" = "Аудиторія";
 
-/* Class = "UILabel"; text = "Title"; ObjectID = "iI3-BD-Mmr"; */
-"iI3-BD-Mmr.text" = "Назва";
-
-/* Class = "UIBarButtonItem"; title = "Status text"; ObjectID = "LS2-pb-oGY"; */
-"LS2-pb-oGY.title" = "Текст статусу";
-
-/* Class = "UILabel"; text = "Our website"; ObjectID = "M7b-Qk-mQH"; */
-"M7b-Qk-mQH.text" = "Наш сайт";
-
-/* Class = "UIBarButtonItem"; title = "Status text"; ObjectID = "mdU-eV-C7w"; */
-"mdU-eV-C7w.title" = "Текст статусу";
+/* Class = "UILabel"; text = "Telegram channel @university_my"; ObjectID = "M7b-Qk-mQH"; */
+"M7b-Qk-mQH.text" = "Telegram канал @university_my";
 
 /* Class = "UINavigationItem"; title = "Auditoriums"; ObjectID = "NKD-iB-bR8"; */
 "NKD-iB-bR8.title" = "Аудиторії";
 
-/* Class = "UILabel"; text = "Detail"; ObjectID = "o6l-jJ-3Mn"; */
-"o6l-jJ-3Mn.text" = "Докладно";
-
-/* Class = "UIBarButtonItem"; title = "Status text"; ObjectID = "oBd-y6-Qf8"; */
-"oBd-y6-Qf8.title" = "Текст статусу";
+/* Class = "UITableViewSection"; headerTitle = "Our website"; ObjectID = "oJW-gb-zbZ"; */
+"oJW-gb-zbZ.headerTitle" = "Наш сайт";
 
 /* Class = "UILabel"; text = "Terms of Service"; ObjectID = "PeZ-fu-tgp"; */
 "PeZ-fu-tgp.text" = "Умови обслуговування";
 
-/* Class = "UILabel"; text = "Twitter @myuniversity_su"; ObjectID = "PLO-Lb-0bL"; */
+/* Class = "UILabel"; text = "Follow @my_university_su on Twitter"; ObjectID = "PLO-Lb-0bL"; */
 "PLO-Lb-0bL.text" = "Twitter @myuniversity_su";
 
-/* Class = "UIBarButtonItem"; title = "Status text"; ObjectID = "QsR-27-aNW"; */
-"QsR-27-aNW.title" = "Текст статусу";
-
-/* Class = "UILabel"; text = "Instagram university.my"; ObjectID = "rVb-do-Zv6"; */
-"rVb-do-Zv6.text" = "Instagram university.my";
-
-/* Class = "UIBarButtonItem"; title = "Status text"; ObjectID = "tR4-7F-H5b"; */
-"tR4-7F-H5b.title" = "Текст статусу";
+/* Class = "UILabel"; text = "Instagram account university.my"; ObjectID = "rVb-do-Zv6"; */
+"rVb-do-Zv6.text" = "Instagram акаунт university.my";
 
 /* Class = "UILabel"; text = "Favorites"; ObjectID = "u9X-Is-i2Y"; */
 "u9X-Is-i2Y.text" = "Обрані";
@@ -109,17 +67,8 @@
 /* Class = "UINavigationItem"; title = "Group"; ObjectID = "wCI-ox-0ZG"; */
 "wCI-ox-0ZG.title" = "Група";
 
-/* Class = "UILabel"; text = "Subtitle"; ObjectID = "wQT-mX-Gwz"; */
-"wQT-mX-Gwz.text" = "Subtitle";
-
-/* Class = "UIBarButtonItem"; title = "Status text"; ObjectID = "xfe-9L-WCg"; */
-"xfe-9L-WCg.title" = "Текст статусу";
-
-/* Class = "UILabel"; text = "Detail"; ObjectID = "XKc-Qd-LyC"; */
-"XKc-Qd-LyC.text" = "Докладно";
-
-/* Class = "UIBarButtonItem"; title = "Status text"; ObjectID = "yZL-hE-NWI"; */
-"yZL-hE-NWI.title" = "Текст статусу";
+/* Class = "UITableViewSection"; headerTitle = "App Store"; ObjectID = "Wlt-dr-OL6"; */
+"Wlt-dr-OL6.headerTitle" = "App Store";
 
 /* Class = "UINavigationItem"; title = "Teacher"; ObjectID = "zWn-2a-KNf"; */
 "zWn-2a-KNf.title" = "Викладач";
