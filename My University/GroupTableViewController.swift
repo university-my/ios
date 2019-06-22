@@ -69,7 +69,8 @@ class GroupTableViewController: GenericTableViewController {
     @IBAction func share(_ sender: Any) {
         guard let group = group else { return }
         guard let universityURL = group.university?.url else { return }
-        let url = Settings.shared.baseURL + "/universities/\(universityURL)/groups/\(group.id)"
+        guard let slug = group.slug else { return }
+        let url = Settings.shared.baseURL + "/universities/\(universityURL)/groups/\(slug)"
         if let siteURL = URL(string: url) {
             let sharedItems = [siteURL]
             let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
@@ -162,15 +163,6 @@ class GroupTableViewController: GenericTableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        if let headerView = view as? UITableViewHeaderFooterView {
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = .sectionBackgroundColor
-            headerView.backgroundView = backgroundView
-            headerView.textLabel?.textColor = UIColor.lightText
-        }
-    }
-    
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -187,6 +179,9 @@ class GroupTableViewController: GenericTableViewController {
         case "recordDetailed":
             if let destination = segue.destination as? RecordDetailedTableViewController {
                 destination.recordID = (sender as? RecordEntity)?.id
+                destination.groupID = groupID
+                destination.teacherID = nil
+                destination.auditoriumID = nil
             }
             
         default:

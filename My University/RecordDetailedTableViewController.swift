@@ -45,6 +45,10 @@ class RecordDetailedTableViewController: GenericTableViewController {
     
     // MARK: - Properties
     
+    var auditoriumID: Int64?
+    var groupID: Int64?
+    var teacherID: Int64?
+    
     var recordID: Int64?
     private weak var record: RecordEntity?
 
@@ -154,6 +158,7 @@ class RecordDetailedTableViewController: GenericTableViewController {
         switch row {
             
         case .date(let dateString):
+            cell.accessoryType = .none
             // Date
             cell.textLabel?.text = dateString
             
@@ -161,6 +166,7 @@ class RecordDetailedTableViewController: GenericTableViewController {
             cell.detailTextLabel?.text = nameAndTime()
             
         case .pairName(let name, let type):
+            cell.accessoryType = .none
             if let name = name, name.isEmpty == false {
                 cell.textLabel?.text = name
                 cell.detailTextLabel?.text = type
@@ -170,15 +176,26 @@ class RecordDetailedTableViewController: GenericTableViewController {
             }
             
         case .reason(let reason):
+            cell.accessoryType = .none
             cell.textLabel?.text = reason
             cell.textLabel?.numberOfLines = 0
             cell.detailTextLabel?.text = nil
             
         case .auditorium(let auditorium):
+            if let id = auditoriumID, id == auditorium.id {
+                cell.accessoryType = .none
+            } else {
+                cell.accessoryType = .disclosureIndicator
+            }
             cell.textLabel?.text = auditorium.name
             cell.detailTextLabel?.text = nil
             
         case .teacher(let teacher):
+            if let id = teacherID, id == teacher.id {
+                cell.accessoryType = .none
+            } else {
+                cell.accessoryType = .disclosureIndicator
+            }
             cell.textLabel?.text = teacher.name
             cell.detailTextLabel?.text = nil
             
@@ -186,6 +203,11 @@ class RecordDetailedTableViewController: GenericTableViewController {
             let group = Array(groups)[indexPath.row] as? GroupEntity
             cell.textLabel?.text = group?.name
             cell.detailTextLabel?.text = nil
+            if group?.id == groupID {
+                cell.accessoryType = .none
+            } else {
+                cell.accessoryType = .disclosureIndicator
+            }
         }
         
         return cell
@@ -193,6 +215,78 @@ class RecordDetailedTableViewController: GenericTableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sections[section].name
+    }
+    
+    // MARK: - Table view delegate
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let section = sections[indexPath.section]
+        
+        switch section {
+        case .teacher(let teacher):
+            if teacherID != teacher.id {
+                performSegue(withIdentifier: "showTeacher", sender: nil)
+            }
+            
+        case .groups(let groups):
+            let group = Array(groups)[indexPath.row] as? GroupEntity
+            if group?.id != groupID {
+                performSegue(withIdentifier: "showGroup", sender: nil)
+            }
+            
+        case .auditorium(let auditorium):
+            if auditoriumID != auditorium.id {
+                performSegue(withIdentifier: "showAuditorium", sender: nil)
+            }
+            
+        default:
+            break
+        }
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier else { return }
+        
+        switch identifier {
+            
+        case "showTeacher":
+            if let detailTableViewController = segue.destination as? TeacherTableViewController {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    let section = sections[indexPath.section]
+                    if case SectionType.teacher(let teacher) = section {
+                        detailTableViewController.teacherID = teacher.id
+                    }
+                }
+            }
+            
+        case "showGroup":
+            if let detailTableViewController = segue.destination as? GroupTableViewController {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    let section = sections[indexPath.section]
+                    if case SectionType.groups(let groups) = section {
+                        if let group = Array(groups)[indexPath.row] as? GroupEntity {
+                            detailTableViewController.groupID = group.id
+                        }
+                    }
+                }
+            }
+            
+        case "showAuditorium":
+            if let detailTableViewController = segue.destination as? AuditoriumTableViewController {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    let section = sections[indexPath.section]
+                    if case SectionType.auditorium(let auditorium) = section {
+                        detailTableViewController.auditoriumID = auditorium.id
+                    }
+                }
+            }
+            
+        default:
+            break
+        }
     }
 }
 

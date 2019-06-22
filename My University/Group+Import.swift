@@ -103,24 +103,28 @@ extension Group {
                 let toUpdate = GroupEntity.fetch(parsedGroups, university: universityInContext, context: taskContext)
                 
                 // IDs to update
-                let idsToUpdate = toUpdate.map({ group in
-                    return group.id
+                let idsToUpdate = toUpdate.compactMap({ group in
+                    return group.slug
                 })
                 
                 // Find groups to insert
                 let toInsert = parsedGroups.filter({ group in
-                    return (idsToUpdate.contains(group.id) == false)
+                    return (idsToUpdate.contains(group.slug) == false)
                 })
                 
                 // IDs
-                let ids = parsedGroups.map({ group in
-                    return group.id
+                let slugs = parsedGroups.map({ group in
+                    return group.slug
                 })
                 
                 // Now find groups to delete
                 let allGroups = GroupEntity.fetchAll(university: universityInContext, context: taskContext)
                 let toDelete = allGroups.filter({ group in
-                    return (ids.contains(group.id) == false)
+                  if let slug = group.slug {
+                    return (slugs.contains(slug) == false)
+                  } else {
+                    return true
+                  }
                 })
                 
                 // 1. Delete
@@ -131,7 +135,7 @@ extension Group {
                 // 2. Update
                 for group in toUpdate {
                     if let groupFromServer = parsedGroups.first(where: { (parsedGroup) -> Bool in
-                        return parsedGroup.id == group.id
+                        return parsedGroup.slug == group.slug
                     }) {
                         // Update name if changed
                         if groupFromServer.name != group.name {
@@ -197,6 +201,7 @@ extension Group {
             groupEntity.id = parsedGroup.id
             groupEntity.name = parsedGroup.name
             groupEntity.university = university
+            groupEntity.slug = parsedGroup.slug
         }
     }
 }

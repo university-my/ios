@@ -70,7 +70,8 @@ class TeacherTableViewController: GenericTableViewController {
     @IBAction func share(_ sender: Any) {
         guard let teacher = teacher else { return }
         guard let universityURL = teacher.university?.url else { return }
-        let url = Settings.shared.baseURL + "/universities/\(universityURL)/teachers/\(teacher.id)"
+        guard let slug = teacher.slug else { return }
+        let url = Settings.shared.baseURL + "/universities/\(universityURL)/teachers/\(slug)"
         if let siteURL = URL(string: url) {
             let sharedItems = [siteURL]
             let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
@@ -164,21 +165,6 @@ class TeacherTableViewController: GenericTableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        if let headerView = view as? UITableViewHeaderFooterView {
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = .sectionBackgroundColor
-            headerView.backgroundView = backgroundView
-            headerView.textLabel?.textColor = UIColor.lightText
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let bgColorView = UIView()
-        bgColorView.backgroundColor = .cellSelectionColor
-        cell.selectedBackgroundView = bgColorView
-    }
-    
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -195,6 +181,9 @@ class TeacherTableViewController: GenericTableViewController {
         case "recordDetailed":
             if let destination = segue.destination as? RecordDetailedTableViewController {
                 destination.recordID = (sender as? RecordEntity)?.id
+                destination.teacherID = teacherID
+                destination.auditoriumID = nil
+                destination.groupID = nil
             }
             
         default:

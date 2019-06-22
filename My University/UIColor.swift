@@ -22,7 +22,7 @@ extension UIColor {
         return UIColor(named: "Section Backgroud Color")!
     }
     
-    @objc class var separatorColor: UIColor {
-        return UIColor(named: "Separator Color")!
-    }
+//    @objc class var separatorColor: UIColor {
+//        return UIColor(named: "Separator Color")!
+//    }
 }

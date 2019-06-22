@@ -15,7 +15,6 @@ class GroupsDataSource: NSObject {
 
     private var favoritesImageView: UIImageView {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "Star Filled Image"))
-        imageView.tintColor = .orange
         return imageView
     }
     

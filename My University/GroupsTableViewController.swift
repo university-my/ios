@@ -106,15 +106,6 @@ class GroupsTableViewController: SearchableTableViewController {
     
     // MARK - Table delegate
     
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        if let headerView = view as? UITableViewHeaderFooterView {
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = .sectionBackgroundColor
-            headerView.backgroundView = backgroundView
-            headerView.textLabel?.textColor = UIColor.lightText
-        }
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "groupDetailed", sender: nil)
     }

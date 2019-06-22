@@ -10,20 +10,6 @@ import UIKit
 import CoreData
 
 class GenericTableViewController: UITableViewController {
-
-    // MARK: - Properties
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
-    // MARK: - Table delegate
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let bgColorView = UIView()
-        bgColorView.backgroundColor = .cellSelectionColor
-        cell.selectedBackgroundView = bgColorView
-    }
     
     // MARK: - Notification
     

@@ -22,10 +22,6 @@ class SearchResultsTableViewController: UITableViewController {
     var filteredAuditoriums: [AuditoriumEntity] = []
     var filteredTeachers: [TeacherEntity] = []
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
