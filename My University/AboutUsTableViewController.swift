@@ -15,11 +15,6 @@ class AboutUsTableViewController: UITableViewController {
         let row = indexPath.row
         
         if section == 0 {
-            if let websiteURL = URL(string: "https://my-university.com.ua") {
-                UIApplication.shared.open(websiteURL)
-            }
-            
-        } else if section == 1 {
             switch row {
             case 0:
                 if let facebookPageURL = URL(string: "https://www.facebook.com/myuniversityservice") {
@@ -41,8 +36,13 @@ class AboutUsTableViewController: UITableViewController {
                 break
             }
             
+        } else if section == 1 {
+            if let websiteURL = URL(string: "https://my-university.com.ua") {
+                UIApplication.shared.open(websiteURL)
+            }
+            
         } else if section == 2 {
-            if let appURL = URL(string: "https://itunes.apple.com/ua/app/university-schedule/id1440425058") {
+            if let appURL = URL(string: "https://apps.apple.com/ua/app/university-schedule/id1440425058") {
                 UIApplication.shared.open(appURL)
             }
             
