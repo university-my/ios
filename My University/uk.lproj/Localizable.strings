@@ -37,6 +37,9 @@
 /* No comment provided by engineer. */
 "NAME" = "НАЗВА";
 
+/* Message */
+"No records" = "Пар немає";
+
 /* Placeholder in search controller */
 "Search" = "Пошук";
 

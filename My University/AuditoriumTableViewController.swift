@@ -119,16 +119,26 @@ class AuditoriumTableViewController: GenericTableViewController {
 
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
 
-                    if let error = error {
-                        self.showNotification(text: error.localizedDescription)
-                    } else {
-                        self.hideNotification()
-                    }
-                    self.performFetch()
-                    self.tableView.reloadData()
-                    self.refreshControl?.endRefreshing()
+                    self.processResultOfImport(error: error)
                 }
             })
+        }
+    }
+    
+    private func processResultOfImport(error: Error?) {
+        if let error = error {
+            showNotification(text: error.localizedDescription)
+        } else {
+            hideNotification()
+        }
+        performFetch()
+        refreshControl?.endRefreshing()
+        let records = fetchedResultsController?.fetchedObjects ?? []
+        if records.isEmpty {
+            show(message: noRecordsMessage)
+        } else {
+            hideMessage()
+            tableView.reloadData()
         }
     }
     

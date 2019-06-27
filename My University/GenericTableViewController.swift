@@ -11,7 +11,7 @@ import CoreData
 
 class GenericTableViewController: UITableViewController {
     
-    // MARK: - Notification
+    // MARK: - Notification (toolbar)
     
     var notificationLabel = UILabel(frame: CGRect.zero)
     
@@ -19,7 +19,7 @@ class GenericTableViewController: UITableViewController {
         notificationLabel.sizeToFit()
         notificationLabel.backgroundColor = .clear
         notificationLabel.textAlignment = .center
-        notificationLabel.textColor = .lightGray
+        notificationLabel.textColor = .darkText
         notificationLabel.adjustsFontSizeToFitWidth = true
         notificationLabel.minimumScaleFactor = 0.5
     }
@@ -31,5 +31,20 @@ class GenericTableViewController: UITableViewController {
     
     func hideNotification() {
         notificationLabel.text = nil
+    }
+    
+    // MARK: - Message (backgroud view)
+    
+    let noRecordsMessage = NSLocalizedString("No records", comment: "Message")
+    
+    func show(message: String) {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "TableMessageViewController") as? TableMessageViewController {
+            tableView.backgroundView = vc.view
+            vc.messageLabel.text = message
+        }
+    }
+    
+    func hideMessage() {
+        tableView.backgroundView = nil
     }
 }

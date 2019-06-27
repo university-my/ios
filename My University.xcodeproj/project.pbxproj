@@ -51,6 +51,7 @@
 		DE8B668121CAC91C00C43F81 /* Group+Import.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B668021CAC91C00C43F81 /* Group+Import.swift */; };
 		DE8B668321CACDF800C43F81 /* Auditorium+NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B668221CACDF800C43F81 /* Auditorium+NetworkClient.swift */; };
 		DE8B668521CACE5600C43F81 /* Group+NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B668421CACE5600C43F81 /* Group+NetworkClient.swift */; };
+		DE94500422C1345800550A1C /* TableMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE94500322C1345800550A1C /* TableMessageViewController.swift */; };
 		DE945AC72264D11700143303 /* UniversityEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE945AC52264D11700143303 /* UniversityEntity+CoreDataClass.swift */; };
 		DE945AC82264D11700143303 /* UniversityEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE945AC62264D11700143303 /* UniversityEntity+CoreDataProperties.swift */; };
 		DE945ACA2264D17C00143303 /* University.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE945AC92264D17C00143303 /* University.swift */; };
@@ -119,6 +120,7 @@
 		DE8B668021CAC91C00C43F81 /* Group+Import.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+Import.swift"; sourceTree = "<group>"; };
 		DE8B668221CACDF800C43F81 /* Auditorium+NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auditorium+NetworkClient.swift"; sourceTree = "<group>"; };
 		DE8B668421CACE5600C43F81 /* Group+NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+NetworkClient.swift"; sourceTree = "<group>"; };
+		DE94500322C1345800550A1C /* TableMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableMessageViewController.swift; sourceTree = "<group>"; };
 		DE945AC52264D11700143303 /* UniversityEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		DE945AC62264D11700143303 /* UniversityEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DE945AC92264D17C00143303 /* University.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = University.swift; sourceTree = "<group>"; };
@@ -182,8 +184,10 @@
 		C2B5CDF11EEF0E750066DB30 /* My University */ = {
 			isa = PBXGroup;
 			children = (
-				C2B5CDF21EEF0E750066DB30 /* AppDelegate.swift */,
+				DE94500222C1343800550A1C /* Table Message */,
 				DE472C7321B84313003AE86D /* About Us */,
+				DE94500122C132FE00550A1C /* App Delegate */,
+				DE94500022C132DA00550A1C /* Assets */,
 				DEE576E5226B7E37008F9EB6 /* Auditoriums */,
 				C2B5CE2B1EF06E3A0066DB30 /* Core Data */,
 				C2C0E9AE1FB8CD870012FA9C /* Data Models */,
@@ -215,8 +219,6 @@
 		C2B5CE2A1EF06E0E0066DB30 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C2B5CDFC1EEF0E750066DB30 /* Assets.xcassets */,
-				DE3B565C21823912008A77D1 /* Colors.xcassets */,
 				C2B5CE011EEF0E750066DB30 /* Info.plist */,
 				DEDA50EB218620E0006C7B27 /* Localizable.strings */,
 				DEDA50E821862090006C7B27 /* InfoPlist.strings */,
@@ -332,6 +334,31 @@
 				DE18941B21BC3A3900C7F9DB /* GroupTableViewController.swift */,
 			);
 			name = Groups;
+			sourceTree = "<group>";
+		};
+		DE94500022C132DA00550A1C /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				C2B5CDFC1EEF0E750066DB30 /* Assets.xcassets */,
+				DE3B565C21823912008A77D1 /* Colors.xcassets */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		DE94500122C132FE00550A1C /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				C2B5CDF21EEF0E750066DB30 /* AppDelegate.swift */,
+			);
+			name = "App Delegate";
+			sourceTree = "<group>";
+		};
+		DE94500222C1343800550A1C /* Table Message */ = {
+			isa = PBXGroup;
+			children = (
+				DE94500322C1345800550A1C /* TableMessageViewController.swift */,
+			);
+			name = "Table Message";
 			sourceTree = "<group>";
 		};
 		DE95523222A249B400D70DA4 /* Favorites */ = {
@@ -488,6 +515,7 @@
 				C2B5CDFB1EEF0E750066DB30 /* Schedule.xcdatamodeld in Sources */,
 				E44C69EB2296FCED00A0102D /* Date.swift in Sources */,
 				C293559E1FBE246000071719 /* SearchResultsTableViewController.swift in Sources */,
+				DE94500422C1345800550A1C /* TableMessageViewController.swift in Sources */,
 				DE8B668121CAC91C00C43F81 /* Group+Import.swift in Sources */,
 				C250C1831FBCD1CA00C90B53 /* AboutUsTableViewController.swift in Sources */,
 				DE540EC82215DDB40092FC81 /* TeacherTableViewController.swift in Sources */,

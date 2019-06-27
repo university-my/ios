@@ -577,6 +577,37 @@
             </objects>
             <point key="canvasLocation" x="4175" y="-553"/>
         </scene>
+        <!--Table Message View Controller-->
+        <scene sceneID="wOl-7K-O3G">
+            <objects>
+                <viewController storyboardIdentifier="TableMessageViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RE6-8z-a8g" customClass="TableMessageViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="51d-ac-Ft9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Abr-5s-x2P">
+                                <rect key="frame" x="20" y="406" width="335" height="0.0"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="w7i-UQ-oGF" firstAttribute="trailing" secondItem="Abr-5s-x2P" secondAttribute="trailing" constant="20" id="5zH-cZ-jii"/>
+                            <constraint firstItem="Abr-5s-x2P" firstAttribute="leading" secondItem="w7i-UQ-oGF" secondAttribute="leading" constant="20" id="SKY-Pg-2Fo"/>
+                            <constraint firstItem="Abr-5s-x2P" firstAttribute="centerY" secondItem="51d-ac-Ft9" secondAttribute="centerY" id="vyU-Ze-TUI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="w7i-UQ-oGF"/>
+                    </view>
+                    <connections>
+                        <outlet property="messageLabel" destination="Abr-5s-x2P" id="1AO-oO-c7A"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LN7-OY-oqf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5794" y="-732"/>
+        </scene>
         <!--Record Detailed Table View Controller-->
         <scene sceneID="IZj-VZ-Ddi">
             <objects>
@@ -942,7 +973,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="15p-7P-TtC"/>
         <segue reference="gEh-DL-Rpx"/>
-        <segue reference="ykC-F8-LFZ"/>
+        <segue reference="rwN-20-jVp"/>
         <segue reference="JM9-YS-WCX"/>
     </inferredMetricsTieBreakers>
 </document>
