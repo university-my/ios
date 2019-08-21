@@ -39,6 +39,8 @@ class TeacherTableViewController: GenericTableViewController {
     }
     
     func setup() {
+        configureTable()
+
         if let id = teacherID, let context = viewContext {
             teacher = TeacherEntity.fetchTeacher(id: id, context: context)
         }
@@ -58,6 +60,12 @@ class TeacherTableViewController: GenericTableViewController {
             }
         }
     }
+
+    // MARK: - Configure table
+
+  private func configureTable() {
+    tableView.register(DatePickerTableViewCell.self)
+  }
     
     // MARK: - Pull to refresh
     
@@ -145,7 +153,7 @@ class TeacherTableViewController: GenericTableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return fetchedResultsController?.sections?.count ?? 0
+        return numberOfSections()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -154,17 +162,24 @@ class TeacherTableViewController: GenericTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+//      if indexPath.section == 0 {
+//        let cell = tableView.dequeueReusableCell(for: indexPath) as DatePickerTableViewCell
+//        return cell
+//
+//      } else {
         let cell = tableView.dequeueReusableCell(withIdentifier: "detailTableCell", for: indexPath)
-        
+
         // Configure the cell
         if let record = fetchedResultsController?.object(at: indexPath) {
-            // Title
-            cell.textLabel?.text = record.title
-            
-            // Detail
-            cell.detailTextLabel?.text = record.detail
+          // Title
+          cell.textLabel?.text = record.title
+
+          // Detail
+          cell.detailTextLabel?.text = record.detail
         }
         return cell
+//      }
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -216,7 +231,9 @@ class TeacherTableViewController: GenericTableViewController {
         let time = NSSortDescriptor(key: #keyPath(RecordEntity.time), ascending: true)
 
         request.sortDescriptors = [dateString, time]
-        request.predicate = NSPredicate(format: "teacher == %@", teacher)
+        let teacherPredicate = NSPredicate(format: "teacher == %@", teacher)
+      let datePredicate = NSPredicate(format: "date == %@", Date() as NSDate)
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [teacherPredicate, datePredicate])
         request.fetchBatchSize = 20
         
         if let context = viewContext {
@@ -248,6 +265,14 @@ class TeacherTableViewController: GenericTableViewController {
             print("Error in the fetched results controller: \(error).")
         }
     }
+
+  // MARK: - Sections
+
+  // Number of sections in data source + first section with date picker
+  private func numberOfSections() -> Int {
+    let sectionsWithData = fetchedResultsController?.sections?.count ?? 0
+    return sectionsWithData + 1
+  }
 }
 
 // MARK: - UIStateRestoring

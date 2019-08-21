@@ -63,6 +63,11 @@
 		DE95523622A24A3600D70DA4 /* FavoritesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE95523522A24A3600D70DA4 /* FavoritesDataSource.swift */; };
 		DE95523822A253D400D70DA4 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE95523722A253D400D70DA4 /* UIBarButtonItem.swift */; };
 		DE999ABE227C54160018F725 /* UniversityDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE999ABD227C54160018F725 /* UniversityDataSource.swift */; };
+		DEAB1D41230D5432008FBFE3 /* DatePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB1D3F230D5432008FBFE3 /* DatePickerTableViewCell.swift */; };
+		DEAB1D42230D5432008FBFE3 /* DatePickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEAB1D40230D5432008FBFE3 /* DatePickerTableViewCell.xib */; };
+		DEAB1D45230D5471008FBFE3 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB1D44230D5471008FBFE3 /* ReusableView.swift */; };
+		DEAB1D47230D5487008FBFE3 /* NibLoadableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB1D46230D5487008FBFE3 /* NibLoadableView.swift */; };
+		DEAB1D49230D575B008FBFE3 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB1D48230D575B008FBFE3 /* UITableView.swift */; };
 		DEDA50EA21862091006C7B27 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50E821862090006C7B27 /* InfoPlist.strings */; };
 		DEDA50ED218620E0006C7B27 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50EB218620E0006C7B27 /* Localizable.strings */; };
 		DEE576E4226B7B9E008F9EB6 /* SearchableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE576E3226B7B9E008F9EB6 /* SearchableTableViewController.swift */; };
@@ -132,6 +137,11 @@
 		DE95523522A24A3600D70DA4 /* FavoritesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesDataSource.swift; sourceTree = "<group>"; };
 		DE95523722A253D400D70DA4 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		DE999ABD227C54160018F725 /* UniversityDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityDataSource.swift; sourceTree = "<group>"; };
+		DEAB1D3F230D5432008FBFE3 /* DatePickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTableViewCell.swift; sourceTree = "<group>"; };
+		DEAB1D40230D5432008FBFE3 /* DatePickerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickerTableViewCell.xib; sourceTree = "<group>"; };
+		DEAB1D44230D5471008FBFE3 /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
+		DEAB1D46230D5487008FBFE3 /* NibLoadableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadableView.swift; sourceTree = "<group>"; };
+		DEAB1D48230D575B008FBFE3 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		DEDA50E921862090006C7B27 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DEDA50EC218620E0006C7B27 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DEE576E3226B7B9E008F9EB6 /* SearchableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableTableViewController.swift; sourceTree = "<group>"; };
@@ -296,6 +306,7 @@
 				E44C69EA2296FCED00A0102D /* Date.swift */,
 				DE95523722A253D400D70DA4 /* UIBarButtonItem.swift */,
 				DE3B565F21823A97008A77D1 /* UIColor.swift */,
+				DEAB1D48230D575B008FBFE3 /* UITableView.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -370,6 +381,24 @@
 			name = Favorites;
 			sourceTree = "<group>";
 		};
+		DEAB1D3E230D5405008FBFE3 /* Table Cells */ = {
+			isa = PBXGroup;
+			children = (
+				DEAB1D3F230D5432008FBFE3 /* DatePickerTableViewCell.swift */,
+				DEAB1D40230D5432008FBFE3 /* DatePickerTableViewCell.xib */,
+			);
+			name = "Table Cells";
+			sourceTree = "<group>";
+		};
+		DEAB1D43230D5465008FBFE3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DEAB1D44230D5471008FBFE3 /* ReusableView.swift */,
+				DEAB1D46230D5487008FBFE3 /* NibLoadableView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		DEE576DF226B7861008F9EB6 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -391,6 +420,8 @@
 		DEE576E1226B7AD1008F9EB6 /* UI Subclasses */ = {
 			isa = PBXGroup;
 			children = (
+				DEAB1D43230D5465008FBFE3 /* Views */,
+				DEAB1D3E230D5405008FBFE3 /* Table Cells */,
 				DEE576E2226B7AE3008F9EB6 /* View Controllers */,
 			);
 			name = "UI Subclasses";
@@ -487,6 +518,7 @@
 			files = (
 				DEDA50ED218620E0006C7B27 /* Localizable.strings in Resources */,
 				DE3B565D21823912008A77D1 /* Colors.xcassets in Resources */,
+				DEAB1D42230D5432008FBFE3 /* DatePickerTableViewCell.xib in Resources */,
 				DE5FAE142263BA2A00333121 /* Launch Screen.storyboard in Resources */,
 				DE5E4984226C630500D6827D /* Main.storyboard in Resources */,
 				C2B5CDFD1EEF0E750066DB30 /* Assets.xcassets in Resources */,
@@ -518,6 +550,7 @@
 				DE94500422C1345800550A1C /* TableMessageViewController.swift in Sources */,
 				DE8B668121CAC91C00C43F81 /* Group+Import.swift in Sources */,
 				C250C1831FBCD1CA00C90B53 /* AboutUsTableViewController.swift in Sources */,
+				DEAB1D49230D575B008FBFE3 /* UITableView.swift in Sources */,
 				DE540EC82215DDB40092FC81 /* TeacherTableViewController.swift in Sources */,
 				DE3B566021823A97008A77D1 /* UIColor.swift in Sources */,
 				DE3A6638220230D800E64D6C /* Collection.swift in Sources */,
@@ -538,13 +571,16 @@
 				DE7AF21D22550B9D0043E927 /* WebViewController.swift in Sources */,
 				DE18942021BD457F00C7F9DB /* ImportForGroup.swift in Sources */,
 				DE5A7E932219CCBF00CA9A79 /* RecordDetailedTableViewController.swift in Sources */,
+				DEAB1D45230D5471008FBFE3 /* ReusableView.swift in Sources */,
 				DE584C5C219869990099415E /* Auditorium+Import.swift in Sources */,
 				DEE576E4226B7B9E008F9EB6 /* SearchableTableViewController.swift in Sources */,
 				DE7B1D9F2269BCA5003E3028 /* GenericTableViewController.swift in Sources */,
 				DE4AA07121A5DF0500E06FEA /* AuditoriumDataSource.swift in Sources */,
+				DEAB1D47230D5487008FBFE3 /* NibLoadableView.swift in Sources */,
 				DE13AF7F226A30D4009DF581 /* TeachersTableViewController.swift in Sources */,
 				DE4AA07321A5E31900E06FEA /* GroupsDataSource.swift in Sources */,
 				DE584C562198615F0099415E /* Teacher.swift in Sources */,
+				DEAB1D41230D5432008FBFE3 /* DatePickerTableViewCell.swift in Sources */,
 				C2B5CDF31EEF0E750066DB30 /* AppDelegate.swift in Sources */,
 				C2C0E9B01FB8CDA00012FA9C /* Group.swift in Sources */,
 				DE95523822A253D400D70DA4 /* UIBarButtonItem.swift in Sources */,
