@@ -161,7 +161,7 @@ class UniversityViewController: GenericTableViewController {
         let groups = dataSource.fetchedResultsController?.fetchedObjects ?? []
         
         if groups.isEmpty {
-            let text = NSLocalizedString("Loading groups ...", comment: "")
+            let text = NSLocalizedString("Loading groups...", comment: "")
             showNotification(text: text)
 
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -189,7 +189,7 @@ class UniversityViewController: GenericTableViewController {
         
         let teachers = dataSource.fetchedResultsController?.fetchedObjects ?? []
         if teachers.isEmpty {
-            let text = NSLocalizedString("Loading teachers ...", comment: "")
+            let text = NSLocalizedString("Loading teachers...", comment: "")
             showNotification(text: text)
 
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -234,7 +234,7 @@ class UniversityViewController: GenericTableViewController {
 
         let auditoriums = dataSource.fetchedResultsController?.fetchedObjects ?? []
         if auditoriums.isEmpty {
-            let text = NSLocalizedString("Loading auditoriums ...", comment: "")
+            let text = NSLocalizedString("Loading auditoriums...", comment: "")
             showNotification(text: text)
 
             UIApplication.shared.isNetworkActivityIndicatorVisible = true

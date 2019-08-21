@@ -105,7 +105,7 @@ class AuditoriumTableViewController: GenericTableViewController {
         guard let university = auditorium?.university else { return }
         guard let universityURL = university.url else { return }
         
-        let text = NSLocalizedString("Loading records ...", comment: "")
+        let text = NSLocalizedString("Loading records...", comment: "")
         showNotification(text: text)
 
         UIApplication.shared.isNetworkActivityIndicatorVisible = true

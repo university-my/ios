@@ -104,7 +104,7 @@ class GroupTableViewController: GenericTableViewController {
         guard let group = group else { return }
         guard let university = group.university else { return }
         
-        let text = NSLocalizedString("Loading records ...", comment: "")
+        let text = NSLocalizedString("Loading records...", comment: "")
         showNotification(text: text)
 
         UIApplication.shared.isNetworkActivityIndicatorVisible = true

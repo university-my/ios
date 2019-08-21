@@ -55,7 +55,7 @@ class SelectUniversityViewController: GenericTableViewController {
     }
     
     private func importUniversities() {
-        let text = NSLocalizedString("Loading universities ...", comment: "")
+        let text = NSLocalizedString("Loading universities...", comment: "")
         showNotification(text: text)
 
         UIApplication.shared.isNetworkActivityIndicatorVisible = true

@@ -105,7 +105,7 @@ class TeacherTableViewController: GenericTableViewController {
         guard let teacher = teacher else { return }
         guard let university = teacher.university else { return }
         
-        let text = NSLocalizedString("Loading records ...", comment: "")
+        let text = NSLocalizedString("Loading records...", comment: "")
         showNotification(text: text)
 
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
