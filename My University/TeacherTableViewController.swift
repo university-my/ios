@@ -30,8 +30,8 @@ class TeacherTableViewController: GenericTableViewController {
         super.viewDidLoad()
         
         // For notifications
-        configureNotificationLabel()
-        statusButton.customView = notificationLabel
+//        configureNotificationLabel()
+//        statusButton.customView = notificationLabel
         
         tableView.rowHeight = UITableView.automaticDimension
         

@@ -19,6 +19,7 @@
 		C2B5CDFD1EEF0E750066DB30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2B5CDFC1EEF0E750066DB30 /* Assets.xcassets */; };
 		C2C0E9B01FB8CDA00012FA9C /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C0E9AF1FB8CDA00012FA9C /* Group.swift */; };
 		DE0D64082264E1330001FCCF /* UniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0D64072264E1330001FCCF /* UniversityViewController.swift */; };
+		DE11A3B0230EA98B005131E8 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE11A3AF230EA98B005131E8 /* DatePickerViewController.swift */; };
 		DE13AF7F226A30D4009DF581 /* TeachersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE13AF7E226A30D4009DF581 /* TeachersTableViewController.swift */; };
 		DE18941921BC349400C7F9DB /* Record+NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941821BC349400C7F9DB /* Record+NetworkClient.swift */; };
 		DE18941C21BC3A3900C7F9DB /* GroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941B21BC3A3900C7F9DB /* GroupTableViewController.swift */; };
@@ -91,6 +92,7 @@
 		C2B5CE011EEF0E750066DB30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2C0E9AF1FB8CDA00012FA9C /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		DE0D64072264E1330001FCCF /* UniversityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityViewController.swift; sourceTree = "<group>"; };
+		DE11A3AF230EA98B005131E8 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		DE13AF7E226A30D4009DF581 /* TeachersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersTableViewController.swift; sourceTree = "<group>"; };
 		DE18941821BC349400C7F9DB /* Record+NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record+NetworkClient.swift"; sourceTree = "<group>"; };
 		DE18941B21BC3A3900C7F9DB /* GroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTableViewController.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 		C2B5CDF11EEF0E750066DB30 /* My University */ = {
 			isa = PBXGroup;
 			children = (
+				DE11A3AE230EA976005131E8 /* Date Picker */,
 				DE94500222C1343800550A1C /* Table Message */,
 				DE472C7321B84313003AE86D /* About Us */,
 				DE94500122C132FE00550A1C /* App Delegate */,
@@ -277,6 +280,14 @@
 				DE18941721BC336700C7F9DB /* Record */,
 			);
 			name = Import;
+			sourceTree = "<group>";
+		};
+		DE11A3AE230EA976005131E8 /* Date Picker */ = {
+			isa = PBXGroup;
+			children = (
+				DE11A3AF230EA98B005131E8 /* DatePickerViewController.swift */,
+			);
+			name = "Date Picker";
 			sourceTree = "<group>";
 		};
 		DE13AF7D226A115E009DF581 /* Teachers */ = {
@@ -586,6 +597,7 @@
 				DE95523822A253D400D70DA4 /* UIBarButtonItem.swift in Sources */,
 				DE945ACA2264D17C00143303 /* University.swift in Sources */,
 				DE8B668321CACDF800C43F81 /* Auditorium+NetworkClient.swift in Sources */,
+				DE11A3B0230EA98B005131E8 /* DatePickerViewController.swift in Sources */,
 				DE945ACC2264D27B00143303 /* University+Import.swift in Sources */,
 				C280894B1FB8D54A002B5676 /* GroupEntity+CoreDataClass.swift in Sources */,
 				DEEEEBE02205BC2C0072A19A /* Settings.swift in Sources */,

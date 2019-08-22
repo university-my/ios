@@ -21,17 +21,12 @@ class GroupTableViewController: GenericTableViewController {
 
     private var sectionsTitles: [String] = []
 
-    @IBOutlet weak var statusButton: UIBarButtonItem!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // For notifications
-        configureNotificationLabel()
-        statusButton.customView = notificationLabel
         
         tableView.rowHeight = UITableView.automaticDimension
         
@@ -57,6 +52,12 @@ class GroupTableViewController: GenericTableViewController {
             }
         }
     }
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+
+    updateDateButton()
+  }
     
     // MARK: - Pull to refresh
     
@@ -193,6 +194,11 @@ class GroupTableViewController: GenericTableViewController {
                 destination.teacherID = nil
                 destination.auditoriumID = nil
             }
+
+        case "presentDatePicker":
+          let navigationVC = segue.destination as? UINavigationController
+          let vc = navigationVC?.viewControllers.first as? DatePickerViewController
+          vc?.selectedDate = selectedDate
             
         default:
             break
@@ -246,6 +252,15 @@ class GroupTableViewController: GenericTableViewController {
             print("Error in the fetched results controller: \(error).")
         }
     }
+
+  // MARK: - Date
+
+  private var selectedDate: Date = Date()
+  @IBOutlet weak var dateButton: UIBarButtonItem!
+
+  private func updateDateButton() {
+    dateButton.title = dateFormatter.string(from: selectedDate)
+  }
 }
 
 // MARK: - UIStateRestoring
