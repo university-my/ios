@@ -78,4 +78,10 @@ class AboutUsTableViewController: UITableViewController {
             break
         }
     }
+
+  // MARK: - Done
+
+  @IBAction func done(_ sender: Any) {
+    dismiss(animated: true)
+  }
 }
