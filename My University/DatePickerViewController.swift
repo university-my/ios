@@ -9,37 +9,31 @@
 import UIKit
 
 class DatePickerViewController: UITableViewController {
-
-  // MARK: - Date
-
-  var selectedDate: Date = Date()
-  @IBOutlet weak var datePicker: UIDatePicker!
-
-  func update(with date: Date) {
-    datePicker.date = date
-  }
-
-  // MARK: - Lifecycle
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-
-    setup()
-  }
-
-  private func setup() {
-    update(with: selectedDate)
-  }
-
-  // MARK: - Cancel
-
-  @IBAction func cancel(_ sender: Any) {
-    dismiss(animated: true)
-  }
-
-  // MARK: - Done
-
-  @IBAction func done(_ sender: Any) {
-    dismiss(animated: true)
-  }
+    
+    // MARK: - Date
+    
+    var selectedDate: Date = Date()
+    var selectDate: ((_ date: Date) -> ())?
+    @IBOutlet weak var datePicker: UIDatePicker!
+    
+    // MARK: - Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        datePicker.date = selectedDate
+    }
+    
+    // MARK: - Cancel
+    
+    @IBAction func cancel(_ sender: Any) {
+        dismiss(animated: true)
+    }
+    
+    // MARK: - Done
+    
+    @IBAction func done(_ sender: Any) {
+        selectDate?(datePicker.date)
+        dismiss(animated: true)
+    }
 }

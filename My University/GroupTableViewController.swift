@@ -44,12 +44,7 @@ class GroupTableViewController: GenericTableViewController {
             favoriteButton.markAs(isFavorites: group.isFavorite)
 
             // Records
-            performFetch()
-            
-            let records = fetchedResultsController?.fetchedObjects ?? []
-            if records.isEmpty {
-                importRecords()
-            }
+            fetchOrImportRecordsForSelectedDate()
         }
     }
 
@@ -105,14 +100,18 @@ class GroupTableViewController: GenericTableViewController {
         guard let group = group else { return }
         guard let university = group.university else { return }
         
-        let text = NSLocalizedString("Loading records...", comment: "")
-        showNotification(text: text)
+        // Hide previous records or activity
+        hideActivity()
+        tableView.reloadData()
+        
+        // Show activity indicator
+        showActivity()
 
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         // Download records for Group from backend and save to database.
         importManager = Record.ImportForGroup(persistentContainer: persistentContainer, group: group, university: university)
-        self.importManager?.importRecords({ (error) in
+        importManager?.importRecords(for: selectedDate, { (error) in
             
             DispatchQueue.main.async {
 
@@ -125,12 +124,12 @@ class GroupTableViewController: GenericTableViewController {
     
     private func processResultOfImport(error: Error?) {
         if let error = error {
-            self.showNotification(text: error.localizedDescription)
+            show(message: error.localizedDescription)
         } else {
-            self.hideNotification()
+            hideActivity()
         }
-        self.performFetch()
-        self.refreshControl?.endRefreshing()
+        performFetch()
+        refreshControl?.endRefreshing()
         let records = fetchedResultsController?.fetchedObjects ?? []
         if records.isEmpty {
             show(message: noRecordsMessage)
@@ -194,11 +193,17 @@ class GroupTableViewController: GenericTableViewController {
                 destination.teacherID = nil
                 destination.auditoriumID = nil
             }
-
+            
         case "presentDatePicker":
-          let navigationVC = segue.destination as? UINavigationController
-          let vc = navigationVC?.viewControllers.first as? DatePickerViewController
-          vc?.selectedDate = selectedDate
+            let navigationVC = segue.destination as? UINavigationController
+            let vc = navigationVC?.viewControllers.first as? DatePickerViewController
+            vc?.selectedDate = selectedDate
+            vc?.selectDate = { date in
+                self.selectedDate = date
+                self.updateDateButton()
+                self.updateFetchedResultsController()
+                self.fetchOrImportRecordsForSelectedDate()
+            }
             
         default:
             break
@@ -213,14 +218,13 @@ class GroupTableViewController: GenericTableViewController {
     }()
     
     private lazy var fetchedResultsController: NSFetchedResultsController<RecordEntity>? = {
-        guard let group = group else { return nil }
         let request: NSFetchRequest<RecordEntity> = RecordEntity.fetchRequest()
         
         let dateString = NSSortDescriptor(key: #keyPath(RecordEntity.dateString), ascending: true)
         let time = NSSortDescriptor(key: #keyPath(RecordEntity.time), ascending: true)
 
         request.sortDescriptors = [dateString, time]
-        request.predicate = NSPredicate(format: "ANY groups == %@", group)
+        request.predicate = generatePredicate()
         request.fetchBatchSize = 20
         
         if let context = viewContext {
@@ -252,6 +256,22 @@ class GroupTableViewController: GenericTableViewController {
             print("Error in the fetched results controller: \(error).")
         }
     }
+    
+    private func updateFetchedResultsController() {
+        fetchedResultsController?.fetchRequest.predicate = generatePredicate()
+    }
+    
+    private func generatePredicate() -> NSPredicate? {
+        guard let group = group else { return nil }
+        
+        let startOfDay = selectedDate.startOfDay as NSDate
+        let endOfDay = selectedDate.endOfDay as NSDate
+        
+        let datePredicate = NSPredicate(format: "(date >= %@) AND (date <= %@)", startOfDay, endOfDay)
+        let groupsPredicate = NSPredicate(format: "ANY groups == %@", group)
+        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [groupsPredicate, datePredicate])
+        return compoundPredicate
+    }
 
   // MARK: - Date
 
@@ -261,6 +281,20 @@ class GroupTableViewController: GenericTableViewController {
   private func updateDateButton() {
     dateButton.title = dateFormatter.string(from: selectedDate)
   }
+    
+    private func fetchOrImportRecordsForSelectedDate() {
+        updateFetchedResultsController()
+        
+        performFetch()
+        
+        let records = fetchedResultsController?.fetchedObjects ?? []
+        if records.isEmpty {
+            importRecords()
+        } else {
+            hideActivity()
+            tableView.reloadData()
+        }
+    }
 }
 
 // MARK: - UIStateRestoring

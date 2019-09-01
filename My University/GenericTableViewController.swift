@@ -47,4 +47,16 @@ class GenericTableViewController: UITableViewController {
     func hideMessage() {
         tableView.backgroundView = nil
     }
+    
+    // MARK: - Activity
+    
+    func showActivity() {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "ActivityViewController") {
+            tableView.backgroundView = vc.view
+        }
+    }
+    
+    func hideActivity() {
+        tableView.backgroundView = nil
+    }
 }
