@@ -32,6 +32,11 @@ class SelectUniversityViewController: GenericTableViewController {
         // Loading...
         tableView.dataSource = dataSource
         loadUniversities()
+        
+        // Remember date of the first usage
+        if UserData.firstUsage == nil {
+            UserData.firstUsage = Date()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

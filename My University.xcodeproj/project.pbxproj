@@ -79,6 +79,7 @@
 		DEE576E7226B8B98008F9EB6 /* AuditoriumsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE576E6226B8B98008F9EB6 /* AuditoriumsTableViewController.swift */; };
 		DEEEEBE02205BC2C0072A19A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEEEBDF2205BC2C0072A19A /* Settings.swift */; };
 		E44C69EB2296FCED00A0102D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44C69EA2296FCED00A0102D /* Date.swift */; };
+		E48FD404231DB2E60049438F /* PersonalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48FD403231DB2E60049438F /* PersonalData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -160,6 +161,7 @@
 		DEEEEBDF2205BC2C0072A19A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		E44C69EA2296FCED00A0102D /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		E47DD960229B1F3700137850 /* Schedule 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Schedule 3.xcdatamodel"; sourceTree = "<group>"; };
+		E48FD403231DB2E60049438F /* PersonalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +226,7 @@
 				DE13AF7D226A115E009DF581 /* Teachers */,
 				DEE576E1226B7AD1008F9EB6 /* UI Subclasses */,
 				DE5FAE072263B36A00333121 /* University */,
+				E48FD402231DB2080049438F /* UserDefaults */,
 			);
 			path = "My University";
 			sourceTree = "<group>";
@@ -477,6 +480,14 @@
 			name = Records;
 			sourceTree = "<group>";
 		};
+		E48FD402231DB2080049438F /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				E48FD403231DB2E60049438F /* PersonalData.swift */,
+			);
+			name = UserDefaults;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -601,6 +612,7 @@
 				DE584C5C219869990099415E /* Auditorium+Import.swift in Sources */,
 				DEE576E4226B7B9E008F9EB6 /* SearchableTableViewController.swift in Sources */,
 				DE7B1D9F2269BCA5003E3028 /* GenericTableViewController.swift in Sources */,
+				E48FD404231DB2E60049438F /* PersonalData.swift in Sources */,
 				DE4AA07121A5DF0500E06FEA /* AuditoriumDataSource.swift in Sources */,
 				DEAB1D47230D5487008FBFE3 /* NibLoadableView.swift in Sources */,
 				DE13AF7F226A30D4009DF581 /* TeachersTableViewController.swift in Sources */,
