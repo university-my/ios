@@ -13,15 +13,8 @@ class TeacherTableViewController: GenericTableViewController {
     
     // MARK: - Properties
 
-    private var dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .full
-        return dateFormatter
-    }()
-
     private var sectionsTitles: [String] = []
 
-    @IBOutlet weak var statusButton: UIBarButtonItem!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     
     // MARK: - Lifecycle
@@ -29,18 +22,12 @@ class TeacherTableViewController: GenericTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // For notifications
-//        configureNotificationLabel()
-//        statusButton.customView = notificationLabel
-        
         tableView.rowHeight = UITableView.automaticDimension
         
         setup()
     }
     
     func setup() {
-        configureTable()
-
         if let id = teacherID, let context = viewContext {
             teacher = TeacherEntity.fetchTeacher(id: id, context: context)
         }
@@ -52,20 +39,15 @@ class TeacherTableViewController: GenericTableViewController {
             favoriteButton.markAs(isFavorites: teacher.isFavorite)
 
             // Records
-            performFetch()
-            
-            let records = fetchedResultsController?.fetchedObjects ?? []
-            if records.isEmpty {
-                importRecords()
-            }
+            fetchOrImportRecordsForSelectedDate()
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+      super.viewWillAppear(animated)
 
-    // MARK: - Configure table
-
-  private func configureTable() {
-    tableView.register(DatePickerTableViewCell.self)
-  }
+      updateDateButton()
+    }
     
     // MARK: - Pull to refresh
     
@@ -113,31 +95,33 @@ class TeacherTableViewController: GenericTableViewController {
         guard let teacher = teacher else { return }
         guard let university = teacher.university else { return }
         
-        let text = NSLocalizedString("Loading records...", comment: "")
-        showNotification(text: text)
-
+        // Hide previous records or activity
+        hideActivity()
+        tableView.reloadData()
+        
+        // Show activity indicator
+        showActivity()
+        
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         // Download records for Teacher from backend and save to database.
         importManager = Record.ImportForTeacher(persistentContainer: persistentContainer, teacher: teacher, university: university)
-        DispatchQueue.global().async {
-            self.importManager?.importRecords({ (error) in
+        importManager?.importRecords(for: selectedDate, { (error) in
+            
+            DispatchQueue.main.async {
                 
-                DispatchQueue.main.async {
-
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-
-                    self.processResultOfImport(error: error)
-                }
-            })
-        }
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                
+                self.processResultOfImport(error: error)
+            }
+        })
     }
     
     private func processResultOfImport(error: Error?) {
         if let error = error {
-            showNotification(text: error.localizedDescription)
+            show(message: error.localizedDescription)
         } else {
-            hideNotification()
+            hideActivity()
         }
         performFetch()
         refreshControl?.endRefreshing()
@@ -162,24 +146,17 @@ class TeacherTableViewController: GenericTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-//      if indexPath.section == 0 {
-//        let cell = tableView.dequeueReusableCell(for: indexPath) as DatePickerTableViewCell
-//        return cell
-//
-//      } else {
         let cell = tableView.dequeueReusableCell(withIdentifier: "detailTableCell", for: indexPath)
-
+        
         // Configure the cell
         if let record = fetchedResultsController?.object(at: indexPath) {
-          // Title
-          cell.textLabel?.text = record.title
-
-          // Detail
-          cell.detailTextLabel?.text = record.detail
+            // Title
+            cell.textLabel?.text = record.title
+            
+            // Detail
+            cell.detailTextLabel?.text = record.detail
         }
         return cell
-//      }
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -211,6 +188,17 @@ class TeacherTableViewController: GenericTableViewController {
                 destination.groupID = nil
             }
             
+            case "presentDatePicker":
+            let navigationVC = segue.destination as? UINavigationController
+            let vc = navigationVC?.viewControllers.first as? DatePickerViewController
+            vc?.selectedDate = selectedDate
+            vc?.selectDate = { date in
+                self.selectedDate = date
+                self.updateDateButton()
+                self.updateFetchedResultsController()
+                self.fetchOrImportRecordsForSelectedDate()
+            }
+            
         default:
             break
         }
@@ -231,9 +219,7 @@ class TeacherTableViewController: GenericTableViewController {
         let time = NSSortDescriptor(key: #keyPath(RecordEntity.time), ascending: true)
 
         request.sortDescriptors = [dateString, time]
-        let teacherPredicate = NSPredicate(format: "teacher == %@", teacher)
-      let datePredicate = NSPredicate(format: "date == %@", Date() as NSDate)
-        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [teacherPredicate, datePredicate])
+        request.predicate = generatePredicate()
         request.fetchBatchSize = 20
         
         if let context = viewContext {
@@ -254,7 +240,7 @@ class TeacherTableViewController: GenericTableViewController {
                 for section in sections {
                     if let firstObjectInSection = section.objects?.first as? RecordEntity {
                         if let date = firstObjectInSection.date {
-                            let dateString = dateFormatter.string(from: date)
+                            let dateString = DateFormatter.full.string(from: date)
                             newSectionsTitles.append(dateString)
                         }
                     }
@@ -265,14 +251,53 @@ class TeacherTableViewController: GenericTableViewController {
             print("Error in the fetched results controller: \(error).")
         }
     }
+    
+    private func updateFetchedResultsController() {
+        fetchedResultsController?.fetchRequest.predicate = generatePredicate()
+    }
+    
+    private func generatePredicate() -> NSPredicate? {
+        guard let teacher = teacher else { return nil }
+        
+        let startOfDay = selectedDate.startOfDay as NSDate
+        let endOfDay = selectedDate.endOfDay as NSDate
+        
+        let datePredicate = NSPredicate(format: "(date >= %@) AND (date <= %@)", startOfDay, endOfDay)
+        let teacherPredicate = NSPredicate(format: "teacher == %@", teacher)
+        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [teacherPredicate, datePredicate])
+        return compoundPredicate
+    }
 
   // MARK: - Sections
 
-  // Number of sections in data source + first section with date picker
+  // Number of sections in data source
   private func numberOfSections() -> Int {
     let sectionsWithData = fetchedResultsController?.sections?.count ?? 0
-    return sectionsWithData + 1
+    return sectionsWithData
   }
+    
+    // MARK: - Date
+    
+    private var selectedDate: Date = Date()
+    @IBOutlet weak var dateButton: UIBarButtonItem!
+    
+    private func updateDateButton() {
+        dateButton.title = DateFormatter.full.string(from: selectedDate)
+    }
+    
+    private func fetchOrImportRecordsForSelectedDate() {
+        updateFetchedResultsController()
+        
+        performFetch()
+        
+        let records = fetchedResultsController?.fetchedObjects ?? []
+        if records.isEmpty {
+            importRecords()
+        } else {
+            hideActivity()
+            tableView.reloadData()
+        }
+    }
 }
 
 // MARK: - UIStateRestoring

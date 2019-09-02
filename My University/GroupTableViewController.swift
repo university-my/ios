@@ -13,12 +13,6 @@ class GroupTableViewController: GenericTableViewController {
     
     // MARK: - Properties
 
-    private var dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .full
-        return dateFormatter
-    }()
-
     private var sectionsTitles: [String] = []
 
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
@@ -99,13 +93,6 @@ class GroupTableViewController: GenericTableViewController {
         
         guard let group = group else { return }
         guard let university = group.university else { return }
-        
-        // Hide previous records or activity
-        hideActivity()
-        tableView.reloadData()
-        
-        // Show activity indicator
-        showActivity()
 
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
@@ -245,7 +232,7 @@ class GroupTableViewController: GenericTableViewController {
                 for section in sections {
                     if let firstObjectInSection = section.objects?.first as? RecordEntity {
                         if let date = firstObjectInSection.date {
-                            let dateString = dateFormatter.string(from: date)
+                            let dateString = DateFormatter.full.string(from: date)
                             newSectionsTitles.append(dateString)
                         }
                     }
@@ -279,7 +266,7 @@ class GroupTableViewController: GenericTableViewController {
   @IBOutlet weak var dateButton: UIBarButtonItem!
 
   private func updateDateButton() {
-    dateButton.title = dateFormatter.string(from: selectedDate)
+    dateButton.title = DateFormatter.full.string(from: selectedDate)
   }
     
     private func fetchOrImportRecordsForSelectedDate() {
@@ -289,6 +276,15 @@ class GroupTableViewController: GenericTableViewController {
         
         let records = fetchedResultsController?.fetchedObjects ?? []
         if records.isEmpty {
+            
+            // Hide previous records or activity
+            hideActivity()
+            tableView.reloadData()
+            
+            // Show activity indicator
+            showActivity()
+            
+            // Start import
             importRecords()
         } else {
             hideActivity()

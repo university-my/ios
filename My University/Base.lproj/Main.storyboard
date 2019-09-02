@@ -555,7 +555,11 @@
                     </tableView>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="f8t-eU-nSu"/>
-                        <barButtonItem id="yZL-hE-NWI"/>
+                        <barButtonItem title="2 sep 2019" id="yZL-hE-NWI">
+                            <connections>
+                                <segue destination="1TM-0j-hBc" kind="presentation" identifier="presentDatePicker" id="US4-7F-RWC"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Oc9-Ne-LoN"/>
                         <barButtonItem image="Star Empty Image" id="9K7-P8-dKV" userLabel="Favorite">
                             <connections>
@@ -579,8 +583,8 @@
                         </connections>
                     </refreshControl>
                     <connections>
+                        <outlet property="dateButton" destination="yZL-hE-NWI" id="2Kj-ms-olu"/>
                         <outlet property="favoriteButton" destination="9K7-P8-dKV" id="CwB-a2-74N"/>
-                        <outlet property="statusButton" destination="yZL-hE-NWI" id="ELI-ZH-lWQ"/>
                         <segue destination="6a0-mN-k10" kind="show" identifier="recordDetailed" id="rwN-20-jVp"/>
                     </connections>
                 </tableViewController>
@@ -829,6 +833,14 @@
             </objects>
             <point key="canvasLocation" x="4774" y="-553"/>
         </scene>
+        <!--Date Picker-->
+        <scene sceneID="XJG-i0-pPx">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Date Picker" id="1TM-0j-hBc" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bky-u8-Gzg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4773" y="137"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Star Empty Image" width="42.666667938232422" height="42.666667938232422"/>
@@ -836,7 +848,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="9Ak-Un-uFs"/>
-        <segue reference="8RE-PV-Sh1"/>
+        <segue reference="gEh-DL-Rpx"/>
         <segue reference="iFT-Sz-Ze3"/>
         <segue reference="xLB-MN-h7a"/>
     </inferredMetricsTieBreakers>

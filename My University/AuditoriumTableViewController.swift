@@ -113,7 +113,7 @@ class AuditoriumTableViewController: GenericTableViewController {
         // Download records for Auditorium from backend and save to database.
         importManager = Record.ImportForAuditorium(persistentContainer: persistentContainer, auditoriumID: auditoriumID, universityURL: universityURL)
         DispatchQueue.global().async {
-            self.importManager?.importRecords({ (error) in
+            self.importManager?.importRecords(for: Date(), { (error) in
                 
                 DispatchQueue.main.async {
 
