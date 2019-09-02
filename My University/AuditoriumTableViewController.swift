@@ -13,25 +13,13 @@ class AuditoriumTableViewController: GenericTableViewController {
     
     // MARK: - Properties
 
-    private var dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .full
-        return dateFormatter
-    }()
-
     private var sectionsTitles: [String] = []
-
-    @IBOutlet weak var statusButton: UIBarButtonItem!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // For notifications
-        configureNotificationLabel()
-        statusButton.customView = notificationLabel
         
         tableView.rowHeight = UITableView.automaticDimension
         
@@ -54,10 +42,20 @@ class AuditoriumTableViewController: GenericTableViewController {
 
             let records = fetchedResultsController?.fetchedObjects ?? []
             if records.isEmpty {
-                importRecords()
+              // Show activity indicator
+              showActivity()
             }
+
+            // Start import
+            importRecords()
         }
     }
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+
+    updateDateButton()
+  }
   
     // MARK: - Pull to refresh
     
@@ -97,39 +95,34 @@ class AuditoriumTableViewController: GenericTableViewController {
     
     private var importManager: Record.ImportForAuditorium?
     
-    private func importRecords() {
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        guard let persistentContainer = appDelegate?.persistentContainer else { return }
-        
-        guard let auditoriumID = auditorium?.id else { return }
-        guard let university = auditorium?.university else { return }
-        guard let universityURL = university.url else { return }
-        
-        let text = NSLocalizedString("Loading records...", comment: "")
-        showNotification(text: text)
+  private func importRecords() {
+    let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    guard let persistentContainer = appDelegate?.persistentContainer else { return }
 
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
-        // Download records for Auditorium from backend and save to database.
-        importManager = Record.ImportForAuditorium(persistentContainer: persistentContainer, auditoriumID: auditoriumID, universityURL: universityURL)
-        DispatchQueue.global().async {
-            self.importManager?.importRecords(for: Date(), { (error) in
-                
-                DispatchQueue.main.async {
+    guard let auditoriumID = auditorium?.id else { return }
+    guard let university = auditorium?.university else { return }
+    guard let universityURL = university.url else { return }
 
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    UIApplication.shared.isNetworkActivityIndicatorVisible = true
 
-                    self.processResultOfImport(error: error)
-                }
-            })
-        }
-    }
+    // Download records for Auditorium from backend and save to database.
+    importManager = Record.ImportForAuditorium(persistentContainer: persistentContainer, auditoriumID: auditoriumID, universityURL: universityURL)
+    self.importManager?.importRecords(for: selectedDate, { (error) in
+
+      DispatchQueue.main.async {
+
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+
+        self.processResultOfImport(error: error)
+      }
+    })
+  }
     
     private func processResultOfImport(error: Error?) {
         if let error = error {
-            showNotification(text: error.localizedDescription)
+            show(message: error.localizedDescription)
         } else {
-            hideNotification()
+            hideActivity()
         }
         performFetch()
         refreshControl?.endRefreshing()
@@ -196,6 +189,17 @@ class AuditoriumTableViewController: GenericTableViewController {
                 destination.teacherID = nil
                 destination.groupID = nil
             }
+
+        case "presentDatePicker":
+          let navigationVC = segue.destination as? UINavigationController
+          let vc = navigationVC?.viewControllers.first as? DatePickerViewController
+          vc?.selectedDate = selectedDate
+          vc?.selectDate = { date in
+            self.selectedDate = date
+            self.updateDateButton()
+            self.updateFetchedResultsController()
+            self.fetchOrImportRecordsForSelectedDate()
+          }
             
         default:
             break
@@ -217,7 +221,7 @@ class AuditoriumTableViewController: GenericTableViewController {
         let time = NSSortDescriptor(key: #keyPath(RecordEntity.time), ascending: true)
 
         request.sortDescriptors = [dateString, time]
-        request.predicate = NSPredicate(format: "auditorium == %@", auditorium)
+        request.predicate = generatePredicate()
         request.fetchBatchSize = 20
         
         if let context = viewContext {
@@ -238,7 +242,7 @@ class AuditoriumTableViewController: GenericTableViewController {
                 for section in sections {
                     if let firstObjectInSection = section.objects?.first as? RecordEntity {
                         if let date = firstObjectInSection.date {
-                            let dateString = dateFormatter.string(from: date)
+                          let dateString = DateFormatter.full.string(from: date)
                             newSectionsTitles.append(dateString)
                         }
                     }
@@ -249,6 +253,54 @@ class AuditoriumTableViewController: GenericTableViewController {
             print("Error in the fetched results controller: \(error).")
         }
     }
+
+  private func updateFetchedResultsController() {
+      fetchedResultsController?.fetchRequest.predicate = generatePredicate()
+  }
+
+  private func generatePredicate() -> NSPredicate? {
+      guard let auditorium = auditorium else { return nil }
+
+      let startOfDay = selectedDate.startOfDay as NSDate
+      let endOfDay = selectedDate.endOfDay as NSDate
+
+      let datePredicate = NSPredicate(format: "(date >= %@) AND (date <= %@)", startOfDay, endOfDay)
+      let teacherPredicate = NSPredicate(format: "auditorium == %@", auditorium)
+      let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [teacherPredicate, datePredicate])
+      return compoundPredicate
+  }
+
+  // MARK: - Date
+
+  private var selectedDate: Date = Date()
+  @IBOutlet weak var dateButton: UIBarButtonItem!
+
+  private func updateDateButton() {
+      dateButton.title = DateFormatter.full.string(from: selectedDate)
+  }
+
+  private func fetchOrImportRecordsForSelectedDate() {
+      updateFetchedResultsController()
+
+      performFetch()
+
+      let records = fetchedResultsController?.fetchedObjects ?? []
+      if records.isEmpty {
+
+          // Hide previous records or activity
+          hideActivity()
+          tableView.reloadData()
+
+          // Show activity indicator
+          showActivity()
+
+          // Start import
+          importRecords()
+      } else {
+          hideActivity()
+          tableView.reloadData()
+      }
+  }
 }
 
 // MARK: - UIStateRestoring

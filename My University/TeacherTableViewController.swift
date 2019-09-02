@@ -14,7 +14,6 @@ class TeacherTableViewController: GenericTableViewController {
     // MARK: - Properties
 
     private var sectionsTitles: [String] = []
-
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     
     // MARK: - Lifecycle
@@ -39,7 +38,16 @@ class TeacherTableViewController: GenericTableViewController {
             favoriteButton.markAs(isFavorites: teacher.isFavorite)
 
             // Records
-            fetchOrImportRecordsForSelectedDate()
+            performFetch()
+
+            let records = fetchedResultsController?.fetchedObjects ?? []
+            if records.isEmpty {
+              // Show activity indicator
+              showActivity()
+            }
+
+            // Start import
+            importRecords()
         }
     }
     
@@ -94,13 +102,6 @@ class TeacherTableViewController: GenericTableViewController {
         
         guard let teacher = teacher else { return }
         guard let university = teacher.university else { return }
-        
-        // Hide previous records or activity
-        hideActivity()
-        tableView.reloadData()
-        
-        // Show activity indicator
-        showActivity()
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
@@ -188,16 +189,16 @@ class TeacherTableViewController: GenericTableViewController {
                 destination.groupID = nil
             }
             
-            case "presentDatePicker":
-            let navigationVC = segue.destination as? UINavigationController
-            let vc = navigationVC?.viewControllers.first as? DatePickerViewController
-            vc?.selectedDate = selectedDate
-            vc?.selectDate = { date in
-                self.selectedDate = date
-                self.updateDateButton()
-                self.updateFetchedResultsController()
-                self.fetchOrImportRecordsForSelectedDate()
-            }
+        case "presentDatePicker":
+          let navigationVC = segue.destination as? UINavigationController
+          let vc = navigationVC?.viewControllers.first as? DatePickerViewController
+          vc?.selectedDate = selectedDate
+          vc?.selectDate = { date in
+            self.selectedDate = date
+            self.updateDateButton()
+            self.updateFetchedResultsController()
+            self.fetchOrImportRecordsForSelectedDate()
+          }
             
         default:
             break
@@ -292,6 +293,15 @@ class TeacherTableViewController: GenericTableViewController {
         
         let records = fetchedResultsController?.fetchedObjects ?? []
         if records.isEmpty {
+
+            // Hide previous records or activity
+            hideActivity()
+            tableView.reloadData()
+
+            // Show activity indicator
+            showActivity()
+
+            // Start import
             importRecords()
         } else {
             hideActivity()

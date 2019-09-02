@@ -81,14 +81,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Favorites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="u9X-Is-i2Y">
-                                                    <rect key="frame" x="73" y="0.0" width="235.66666666666669" height="44"/>
+                                                    <rect key="frame" x="72.666666666666671" y="0.0" width="236.00000000000003" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="Star Filled Image" id="fgf-ef-z9y">
-                                                    <rect key="frame" x="15" y="0.33333333333333215" width="43" height="43"/>
+                                                    <rect key="frame" x="14.999999999999996" y="0.66666666666666785" width="42.666666666666664" height="42.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
@@ -735,7 +735,11 @@
                     </tableView>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="qv5-tK-bth"/>
-                        <barButtonItem id="QsR-27-aNW"/>
+                        <barButtonItem title="02 sep 2019" id="QsR-27-aNW">
+                            <connections>
+                                <segue destination="3Bn-33-xIm" kind="presentation" identifier="presentDatePicker" id="HPS-QI-Dqx"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="MAv-Ot-BYG"/>
                         <barButtonItem image="Star Empty Image" id="2OL-NB-eiT" userLabel="Favorite">
                             <connections>
@@ -758,8 +762,8 @@
                         </connections>
                     </refreshControl>
                     <connections>
+                        <outlet property="dateButton" destination="QsR-27-aNW" id="2DD-qa-QKV"/>
                         <outlet property="favoriteButton" destination="2OL-NB-eiT" id="hXv-nI-6St"/>
-                        <outlet property="statusButton" destination="QsR-27-aNW" id="L9u-0J-oDa"/>
                         <segue destination="6a0-mN-k10" kind="show" identifier="recordDetailed" id="ykC-F8-LFZ"/>
                     </connections>
                 </tableViewController>
@@ -793,6 +797,7 @@
                                                 <rect key="frame" x="177.66666666666666" y="357" width="20" height="20"/>
                                             </activityIndicatorView>
                                         </subviews>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="6ye-td-foG" firstAttribute="centerY" secondItem="xCa-Z8-dGv" secondAttribute="centerY" id="GRS-GF-XtP"/>
                                             <constraint firstItem="6ye-td-foG" firstAttribute="centerX" secondItem="xCa-Z8-dGv" secondAttribute="centerX" id="HvU-pf-cjX"/>
@@ -841,15 +846,23 @@
             </objects>
             <point key="canvasLocation" x="4773" y="137"/>
         </scene>
+        <!--Date Picker-->
+        <scene sceneID="rFf-9L-e0O">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Date Picker" id="3Bn-33-xIm" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZtU-gr-fkE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5758" y="913"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Star Empty Image" width="42.666667938232422" height="42.666667938232422"/>
         <image name="Star Filled Image" width="42.666667938232422" height="42.666667938232422"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9Ak-Un-uFs"/>
+        <segue reference="15p-7P-TtC"/>
         <segue reference="gEh-DL-Rpx"/>
-        <segue reference="iFT-Sz-Ze3"/>
+        <segue reference="ykC-F8-LFZ"/>
         <segue reference="xLB-MN-h7a"/>
     </inferredMetricsTieBreakers>
 </document>

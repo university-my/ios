@@ -38,7 +38,16 @@ class GroupTableViewController: GenericTableViewController {
             favoriteButton.markAs(isFavorites: group.isFavorite)
 
             // Records
-            fetchOrImportRecordsForSelectedDate()
+            performFetch()
+
+            let records = fetchedResultsController?.fetchedObjects ?? []
+            if records.isEmpty {
+              // Show activity indicator
+              showActivity()
+            }
+
+            // Start import
+            importRecords()
         }
     }
 
