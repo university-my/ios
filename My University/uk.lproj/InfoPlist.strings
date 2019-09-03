@@ -1,3 +1,6 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "Мій Університет";
+
 /* Bundle name */
 "CFBundleName" = "Мій Університет";
 

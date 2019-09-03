@@ -159,6 +159,8 @@
 		DEE576E6226B8B98008F9EB6 /* AuditoriumsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditoriumsTableViewController.swift; sourceTree = "<group>"; };
 		DEED86042263BA9300E5D710 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = "uk.lproj/Launch Screen.strings"; sourceTree = "<group>"; };
 		DEEEEBDF2205BC2C0072A19A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		DEFD9779231E7AA900FA5B7A /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/About.strings; sourceTree = "<group>"; };
+		DEFD977A231E7AA900FA5B7A /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = "uk.lproj/Date Picker.strings"; sourceTree = "<group>"; };
 		E44C69EA2296FCED00A0102D /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		E47DD960229B1F3700137850 /* Schedule 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Schedule 3.xcdatamodel"; sourceTree = "<group>"; };
 		E48FD403231DB2E60049438F /* PersonalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalData.swift; sourceTree = "<group>"; };
@@ -643,6 +645,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				DE3EB6B4231B0AE7007EA63C /* Base */,
+				DEFD9779231E7AA900FA5B7A /* uk */,
 			);
 			name = About.storyboard;
 			sourceTree = "<group>";
@@ -651,6 +654,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				DE3EB6B7231B0C03007EA63C /* Base */,
+				DEFD977A231E7AA900FA5B7A /* uk */,
 			);
 			name = "Date Picker.storyboard";
 			sourceTree = "<group>";
