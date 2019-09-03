@@ -8,6 +8,7 @@
 
 import CoreData
 import UIKit
+import StoreKit
 
 class RecordDetailedTableViewController: GenericTableViewController {
     
@@ -74,6 +75,36 @@ class RecordDetailedTableViewController: GenericTableViewController {
             record = RecordEntity.fetch(id: id, context: context)
             title = nameAndTime()
             sections = generateSections()
+        }
+        
+        showRateApp()
+    }
+    
+    // MARK: - Rate App
+    
+    // Check whether it is ready to show Rate alert
+    private func shouldRatingApp(for date: Date?) -> Bool {
+        guard let date = date else { return false }
+        
+        var dateComponent = DateComponents()
+        dateComponent.day = 14
+        
+        let futureDate = Calendar.current.date(byAdding: dateComponent, to: date)
+        
+        // Show only after passing two weeks since launching the app
+        if futureDate != nil, futureDate! <= Date() {
+            UserData.firstUsage = nil
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    private func showRateApp() {
+        if shouldRatingApp(for: UserData.firstUsage) {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0, execute: {
+              SKStoreReviewController.requestReview()
+            })
         }
     }
     
