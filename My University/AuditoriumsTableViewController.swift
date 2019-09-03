@@ -73,7 +73,7 @@ class AuditoriumsTableViewController: SearchableTableViewController {
     func importAuditoriums() {
         guard let dataSource = dataSource else { return }
         
-        let text = NSLocalizedString("Loading auditoriums ...", comment: "")
+        let text = NSLocalizedString("Loading auditoriums...", comment: "")
         showNotification(text: text)
 
         UIApplication.shared.isNetworkActivityIndicatorVisible = true

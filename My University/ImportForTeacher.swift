@@ -50,10 +50,10 @@ extension Record {
         
         // MARK: - Methods
         
-        func importRecords(_ completion: @escaping ((_ error: Error?) -> ())) {
+        func importRecords(for date: Date, _ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            networkClient.downloadRecords(teacherID: teacher.id, unversityURL: university.url ?? "") { (error) in
+            networkClient.downloadRecords(teacherID: teacher.id, date: date, unversityURL: university.url ?? "") { (error) in
                 if let error = error {
                     self.completionHandler?(error)
                 } else {
@@ -123,23 +123,7 @@ extension Record {
                     return (idsToUpdate.contains(record.id) == false)
                 })
                 
-                // IDs
-                let ids = parsedRecords.map({ record in
-                    return record.id
-                })
-                
-                // Now find auditoriums to delete
-                let allRecords = RecordEntity.fetchAll(teacher: teacherInContext, context: taskContext)
-                let toDelete = allRecords.filter({ record in
-                    return (ids.contains(record.id) == false)
-                })
-                
-                // 1. Delete
-                for record in toDelete {
-                    taskContext.delete(record)
-                }
-                
-                // 2. Update
+                // Update
                 for record in toUpdate {
                     if let recordFromServer = parsedRecords.first(where: { parsedRecord in
                         return parsedRecord.id == record.id
@@ -154,7 +138,7 @@ extension Record {
                     }
                 }
                 
-                // 3. Intert
+                // Intert
                 for record in toInsert {
                     self.insert(record, teacher: teacherInContext, context: taskContext)
                 }

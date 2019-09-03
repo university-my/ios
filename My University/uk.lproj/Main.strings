@@ -1,26 +1,8 @@
-/* Class = "UITableViewSection"; headerTitle = "Social Networks"; ObjectID = "2hV-ey-dHe"; */
-"2hV-ey-dHe.headerTitle" = "Соціальні мережі";
-
 /* Class = "UILabel"; text = "Auditoriums"; ObjectID = "8ph-AF-sdi"; */
 "8ph-AF-sdi.text" = "Аудиторії";
 
 /* Class = "UINavigationItem"; title = "Groups"; ObjectID = "9cZ-5M-bkh"; */
 "9cZ-5M-bkh.title" = "Групи";
-
-/* Class = "UINavigationItem"; title = "About us"; ObjectID = "85Z-ni-zCj"; */
-"85Z-ni-zCj.title" = "Про нас";
-
-/* Class = "UILabel"; text = "Privacy Policy"; ObjectID = "az0-li-16Z"; */
-"az0-li-16Z.text" = "Політика конфіденційності";
-
-/* Class = "UILabel"; text = "Rate this app"; ObjectID = "chB-FO-YPg"; */
-"chB-FO-YPg.text" = "Оцінити додаток";
-
-/* Class = "UILabel"; text = "Facebook page @myuniversityservice"; ObjectID = "cN9-cb-11O"; */
-"cN9-cb-11O.text" = "Facebook сторінка @myuniversityservice";
-
-/* Class = "UITableViewSection"; headerTitle = "Legal documents"; ObjectID = "fcI-hA-FTU"; */
-"fcI-hA-FTU.headerTitle" = "Правові документи";
 
 /* Class = "UINavigationItem"; title = "Universities"; ObjectID = "Fi8-G5-eC2"; */
 "Fi8-G5-eC2.title" = "Університети";
@@ -34,29 +16,11 @@
 /* Class = "UILabel"; text = "Teachers"; ObjectID = "hAt-35-YQG"; */
 "hAt-35-YQG.text" = "Викладачі";
 
-/* Class = "UILabel"; text = "my-university.com.ua"; ObjectID = "hDR-UY-hnA"; */
-"hDR-UY-hnA.text" = "my-university.com.ua";
-
 /* Class = "UINavigationItem"; title = "Auditorium"; ObjectID = "iff-ln-ZeD"; */
 "iff-ln-ZeD.title" = "Аудиторія";
 
-/* Class = "UILabel"; text = "Telegram channel @university_my"; ObjectID = "M7b-Qk-mQH"; */
-"M7b-Qk-mQH.text" = "Telegram канал @university_my";
-
 /* Class = "UINavigationItem"; title = "Auditoriums"; ObjectID = "NKD-iB-bR8"; */
 "NKD-iB-bR8.title" = "Аудиторії";
-
-/* Class = "UITableViewSection"; headerTitle = "Our website"; ObjectID = "oJW-gb-zbZ"; */
-"oJW-gb-zbZ.headerTitle" = "Наш сайт";
-
-/* Class = "UILabel"; text = "Terms of Service"; ObjectID = "PeZ-fu-tgp"; */
-"PeZ-fu-tgp.text" = "Умови обслуговування";
-
-/* Class = "UILabel"; text = "Follow @my_university_su on Twitter"; ObjectID = "PLO-Lb-0bL"; */
-"PLO-Lb-0bL.text" = "Twitter @myuniversity_su";
-
-/* Class = "UILabel"; text = "Instagram account university.my"; ObjectID = "rVb-do-Zv6"; */
-"rVb-do-Zv6.text" = "Instagram акаунт university.my";
 
 /* Class = "UILabel"; text = "Favorites"; ObjectID = "u9X-Is-i2Y"; */
 "u9X-Is-i2Y.text" = "Обрані";
@@ -66,9 +30,6 @@
 
 /* Class = "UINavigationItem"; title = "Group"; ObjectID = "wCI-ox-0ZG"; */
 "wCI-ox-0ZG.title" = "Група";
-
-/* Class = "UITableViewSection"; headerTitle = "App Store"; ObjectID = "Wlt-dr-OL6"; */
-"Wlt-dr-OL6.headerTitle" = "App Store";
 
 /* Class = "UINavigationItem"; title = "Teacher"; ObjectID = "zWn-2a-KNf"; */
 "zWn-2a-KNf.title" = "Викладач";

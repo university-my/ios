@@ -32,6 +32,11 @@ class SelectUniversityViewController: GenericTableViewController {
         // Loading...
         tableView.dataSource = dataSource
         loadUniversities()
+        
+        // Remember date of the first usage
+        if UserData.firstUsage == nil {
+            UserData.firstUsage = Date()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,7 +60,7 @@ class SelectUniversityViewController: GenericTableViewController {
     }
     
     private func importUniversities() {
-        let text = NSLocalizedString("Loading universities ...", comment: "")
+        let text = NSLocalizedString("Loading universities...", comment: "")
         showNotification(text: text)
 
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
