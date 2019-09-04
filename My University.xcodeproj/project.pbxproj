@@ -27,8 +27,6 @@
 		DE18942021BD457F00C7F9DB /* ImportForGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941F21BD457F00C7F9DB /* ImportForGroup.swift */; };
 		DE18942221BD45E600C7F9DB /* ImportForAuditorium.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18942121BD45E600C7F9DB /* ImportForAuditorium.swift */; };
 		DE3A6638220230D800E64D6C /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A6637220230D800E64D6C /* Collection.swift */; };
-		DE3B565D21823912008A77D1 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE3B565C21823912008A77D1 /* Colors.xcassets */; };
-		DE3B566021823A97008A77D1 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3B565F21823A97008A77D1 /* UIColor.swift */; };
 		DE3EB6B5231B0AE7007EA63C /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3EB6B3231B0AE7007EA63C /* About.storyboard */; };
 		DE3EB6B8231B0C03007EA63C /* Date Picker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3EB6B6231B0C03007EA63C /* Date Picker.storyboard */; };
 		DE3EB6BA231B11F8007EA63C /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3EB6B9231B11F8007EA63C /* DateFormatter.swift */; };
@@ -105,8 +103,6 @@
 		DE18941F21BD457F00C7F9DB /* ImportForGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportForGroup.swift; sourceTree = "<group>"; };
 		DE18942121BD45E600C7F9DB /* ImportForAuditorium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportForAuditorium.swift; sourceTree = "<group>"; };
 		DE3A6637220230D800E64D6C /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
-		DE3B565C21823912008A77D1 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
-		DE3B565F21823A97008A77D1 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		DE3EB6B4231B0AE7007EA63C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/About.storyboard; sourceTree = "<group>"; };
 		DE3EB6B7231B0C03007EA63C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Date Picker.storyboard"; sourceTree = "<group>"; };
 		DE3EB6B9231B11F8007EA63C /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
@@ -330,7 +326,6 @@
 				DE3A6637220230D800E64D6C /* Collection.swift */,
 				E44C69EA2296FCED00A0102D /* Date.swift */,
 				DE95523722A253D400D70DA4 /* UIBarButtonItem.swift */,
-				DE3B565F21823A97008A77D1 /* UIColor.swift */,
 				DEAB1D48230D575B008FBFE3 /* UITableView.swift */,
 				DE3EB6B9231B11F8007EA63C /* DateFormatter.swift */,
 			);
@@ -379,7 +374,6 @@
 			isa = PBXGroup;
 			children = (
 				C2B5CDFC1EEF0E750066DB30 /* Assets.xcassets */,
-				DE3B565C21823912008A77D1 /* Colors.xcassets */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -553,7 +547,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEDA50ED218620E0006C7B27 /* Localizable.strings in Resources */,
-				DE3B565D21823912008A77D1 /* Colors.xcassets in Resources */,
 				DE3EB6B5231B0AE7007EA63C /* About.storyboard in Resources */,
 				DEAB1D42230D5432008FBFE3 /* DatePickerTableViewCell.xib in Resources */,
 				DE5FAE142263BA2A00333121 /* Launch Screen.storyboard in Resources */,
@@ -591,7 +584,6 @@
 				C250C1831FBCD1CA00C90B53 /* AboutUsTableViewController.swift in Sources */,
 				DEAB1D49230D575B008FBFE3 /* UITableView.swift in Sources */,
 				DE540EC82215DDB40092FC81 /* TeacherTableViewController.swift in Sources */,
-				DE3B566021823A97008A77D1 /* UIColor.swift in Sources */,
 				DE3A6638220230D800E64D6C /* Collection.swift in Sources */,
 				DE540EBD2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift in Sources */,
 				DE584C54219860E80099415E /* Auditorium.swift in Sources */,

@@ -48,7 +48,7 @@ class GenericTableViewController: UITableViewController {
         tableView.backgroundView = nil
     }
     
-    // MARK: - Activity
+    // MARK: - Activity (backgroud view)
     
     func showActivity() {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "ActivityViewController") {

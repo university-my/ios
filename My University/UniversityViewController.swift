@@ -9,12 +9,12 @@
 import UIKit
 
 class UniversityViewController: GenericTableViewController {
-
+    
     // MARK: - Properties
-
+    
     var universityID: Int64?
     private var dataSource: UniversityDataSource?
-
+    
     private var auditoriumsDataSource: AuditoriumDataSource?
     private var groupsDataSource: GroupsDataSource?
     private var teachersDataSource: TeacherDataSource?
@@ -25,19 +25,19 @@ class UniversityViewController: GenericTableViewController {
     @IBOutlet weak var teachersCell: UITableViewCell!
     @IBOutlet weak var auditoriumsCell: UITableViewCell!
     @IBOutlet weak var favoritesCell: UITableViewCell!
-
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // For notifications
         configureNotificationLabel()
         statusButton.customView = notificationLabel
-
+        
         setup()
     }
-
+    
     private func setup() {
         // Fetch university
         if let id = universityID {
@@ -45,16 +45,16 @@ class UniversityViewController: GenericTableViewController {
             dataSource?.fetch(id: id)
             dataSource?.configureSections()
         }
-
+        
         if let university = dataSource?.university {
             // Title
             title = university.shortName
-
+            
             // Init all data sources
             auditoriumsDataSource = AuditoriumDataSource(universityID: university.id)
             groupsDataSource = GroupsDataSource(universityID: university.id)
             teachersDataSource = TeacherDataSource(universityID: university.id)
-
+            
             // Start from groups,
             // And import auditoriums and teachers
             loadGroups()
@@ -62,7 +62,7 @@ class UniversityViewController: GenericTableViewController {
     }
     
     // MARK: - Table
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return dataSource?.sections.count ?? 0
     }
@@ -70,7 +70,7 @@ class UniversityViewController: GenericTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = dataSource?.sections[safe: indexPath.section]
         let row = section?.rows[safe: indexPath.row]
-
+        
         if let kind = row?.kind {
             switch kind {
             case .auditoriums:
@@ -117,7 +117,7 @@ class UniversityViewController: GenericTableViewController {
         case "showTeachers":
             let vc = segue.destination as? TeachersTableViewController
             vc?.universityID = dataSource?.university?.id
-
+            
         case "showFavorites":
             let vc = segue.destination as? FavoritesViewController
             vc?.universityID = dataSource?.university?.id
@@ -135,7 +135,7 @@ class UniversityViewController: GenericTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = dataSource?.sections[safe: indexPath.section]
         let row = section?.rows[safe: indexPath.row]
-
+        
         let kind = row!.kind
         switch kind {
             
@@ -147,7 +147,7 @@ class UniversityViewController: GenericTableViewController {
             
         case .auditoriums:
             return auditoriumsCell
-
+            
         case .favorites:
             return favoritesCell
         }
@@ -161,15 +161,12 @@ class UniversityViewController: GenericTableViewController {
         let groups = dataSource.fetchedResultsController?.fetchedObjects ?? []
         
         if groups.isEmpty {
-            let text = NSLocalizedString("Loading groups...", comment: "")
-            showNotification(text: text)
-
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
             
             dataSource.importGroups { (error) in
-
+                
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
-
+                
                 if let error = error {
                     self.showNotification(text: error.localizedDescription)
                 } else {
@@ -189,15 +186,12 @@ class UniversityViewController: GenericTableViewController {
         
         let teachers = dataSource.fetchedResultsController?.fetchedObjects ?? []
         if teachers.isEmpty {
-            let text = NSLocalizedString("Loading teachers...", comment: "")
-            showNotification(text: text)
-
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
             
             dataSource.importTeachers { (error) in
-
+                
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
-
+                
                 if let error = error {
                     self.showNotification(text: error.localizedDescription)
                 } else {
@@ -231,18 +225,15 @@ class UniversityViewController: GenericTableViewController {
     private func loadAuditoriums() {
         guard let dataSource = auditoriumsDataSource else { return }
         dataSource.performFetch()
-
+        
         let auditoriums = dataSource.fetchedResultsController?.fetchedObjects ?? []
         if auditoriums.isEmpty {
-            let text = NSLocalizedString("Loading auditoriums...", comment: "")
-            showNotification(text: text)
-
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
             
             dataSource.importAuditoriums { (error) in
-
+                
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
-
+                
                 if let error = error {
                     self.showNotification(text: error.localizedDescription)
                 } else {
@@ -262,18 +253,18 @@ class UniversityViewController: GenericTableViewController {
 // MARK: - UIStateRestoring
 
 extension UniversityViewController {
-
+    
     override func encodeRestorableState(with coder: NSCoder) {
         if let id = universityID {
             coder.encode(id, forKey: "universityID")
         }
         super.encodeRestorableState(with: coder)
     }
-
+    
     override func decodeRestorableState(with coder: NSCoder) {
         universityID = coder.decodeInt64(forKey: "universityID")
     }
-
+    
     override func applicationFinishedRestoringState() {
         setup()
     }
