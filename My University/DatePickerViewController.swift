@@ -11,17 +11,27 @@ import UIKit
 class DatePickerViewController: UITableViewController {
     
     // MARK: - Date
-    
-    var selectedDate: Date = Date()
-    var selectDate: ((_ date: Date) -> ())?
+
+    var selectDate: (() -> ())?
     @IBOutlet weak var datePicker: UIDatePicker!
-    
+    @IBOutlet weak var dateCell: UITableViewCell!
+
+    @IBAction func didChangeDate(_ sender: Any) {
+      updateDateCell()
+    }
+
+    private func updateDateCell() {
+      let dateString = DateFormatter.full.string(from: datePicker.date)
+      dateCell.textLabel?.text = dateString
+    }
+
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        datePicker.date = selectedDate
+
+        datePicker.date = DatePicker.shared.pairDate
+        updateDateCell()
     }
     
     // MARK: - Cancel
@@ -33,7 +43,8 @@ class DatePickerViewController: UITableViewController {
     // MARK: - Done
     
     @IBAction func done(_ sender: Any) {
-        selectDate?(datePicker.date)
+        DatePicker.shared.pairDate = datePicker.date
+        selectDate?()
         dismiss(animated: true)
     }
 }

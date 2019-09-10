@@ -28,6 +28,8 @@ class GroupTableViewController: GenericTableViewController {
     }
     
     func setup() {
+        updateDateButton()
+
         if let id = groupID, let context = viewContext {
             group = GroupEntity.fetch(id: id, context: context)
         }
@@ -50,12 +52,6 @@ class GroupTableViewController: GenericTableViewController {
             importRecords()
         }
     }
-
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-
-    updateDateButton()
-  }
     
     // MARK: - Pull to refresh
     
@@ -69,7 +65,8 @@ class GroupTableViewController: GenericTableViewController {
         guard let group = group else { return }
         guard let universityURL = group.university?.url else { return }
         guard let slug = group.slug else { return }
-        let url = Settings.shared.baseURL + "/universities/\(universityURL)/groups/\(slug)"
+      let dateString = DateFormatter.short.string(from: DatePicker.shared.pairDate)
+        let url = Settings.shared.baseURL + "/universities/\(universityURL)/groups/\(slug)?pair_date=\(dateString)"
         if let siteURL = URL(string: url) {
             let sharedItems = [siteURL]
             let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
@@ -106,6 +103,7 @@ class GroupTableViewController: GenericTableViewController {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         // Download records for Group from backend and save to database.
+        let selectedDate = DatePicker.shared.pairDate
         importManager = Record.ImportForGroup(persistentContainer: persistentContainer, group: group, university: university)
         importManager?.importRecords(for: selectedDate, { (error) in
             
@@ -193,11 +191,8 @@ class GroupTableViewController: GenericTableViewController {
         case "presentDatePicker":
             let navigationVC = segue.destination as? UINavigationController
             let vc = navigationVC?.viewControllers.first as? DatePickerViewController
-            vc?.selectedDate = selectedDate
-            vc?.selectDate = { date in
-                self.selectedDate = date
+            vc?.selectDate = {
                 self.updateDateButton()
-                self.updateFetchedResultsController()
                 self.fetchOrImportRecordsForSelectedDate()
             }
             
@@ -253,13 +248,10 @@ class GroupTableViewController: GenericTableViewController {
         }
     }
     
-    private func updateFetchedResultsController() {
-        fetchedResultsController?.fetchRequest.predicate = generatePredicate()
-    }
-    
     private func generatePredicate() -> NSPredicate? {
         guard let group = group else { return nil }
-        
+
+        let selectedDate = DatePicker.shared.pairDate
         let startOfDay = selectedDate.startOfDay as NSDate
         let endOfDay = selectedDate.endOfDay as NSDate
         
@@ -271,15 +263,15 @@ class GroupTableViewController: GenericTableViewController {
 
   // MARK: - Date
 
-  private var selectedDate: Date = Date()
   @IBOutlet weak var dateButton: UIBarButtonItem!
 
   private func updateDateButton() {
+    let selectedDate = DatePicker.shared.pairDate
     dateButton.title = DateFormatter.full.string(from: selectedDate)
   }
     
     private func fetchOrImportRecordsForSelectedDate() {
-        updateFetchedResultsController()
+        fetchedResultsController?.fetchRequest.predicate = generatePredicate()
         
         performFetch()
         

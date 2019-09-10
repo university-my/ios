@@ -27,10 +27,11 @@ class AuditoriumTableViewController: GenericTableViewController {
     }
     
     func setup() {
+        updateDateButton()
+
         if let id = auditoriumID, let context = viewContext {
             auditorium = AuditoriumEntity.fetch(id: id, context: context)
         }
-        
         if let auditorium = auditorium {
             title = auditorium.name
 
@@ -54,7 +55,7 @@ class AuditoriumTableViewController: GenericTableViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
-    updateDateButton()
+//    updateDateButton()
   }
   
     // MARK: - Pull to refresh
@@ -69,7 +70,8 @@ class AuditoriumTableViewController: GenericTableViewController {
         guard let auditorium = auditorium else { return }
         guard let universityURL = auditorium.university?.url else { return }
         guard let slug = auditorium.slug else { return }
-        let url = Settings.shared.baseURL + "/universities/\(universityURL)/auditoriums/\(slug)"
+      let dateString = DateFormatter.short.string(from: DatePicker.shared.pairDate)
+        let url = Settings.shared.baseURL + "/universities/\(universityURL)/auditoriums/\(slug)?pair_date=\(dateString)"
         if let siteURL = URL(string: url) {
             let sharedItems = [siteURL]
             let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
@@ -106,6 +108,7 @@ class AuditoriumTableViewController: GenericTableViewController {
     UIApplication.shared.isNetworkActivityIndicatorVisible = true
 
     // Download records for Auditorium from backend and save to database.
+    let selectedDate = DatePicker.shared.pairDate
     importManager = Record.ImportForAuditorium(persistentContainer: persistentContainer, auditoriumID: auditoriumID, universityURL: universityURL)
     self.importManager?.importRecords(for: selectedDate, { (error) in
 
@@ -193,11 +196,8 @@ class AuditoriumTableViewController: GenericTableViewController {
         case "presentDatePicker":
           let navigationVC = segue.destination as? UINavigationController
           let vc = navigationVC?.viewControllers.first as? DatePickerViewController
-          vc?.selectedDate = selectedDate
-          vc?.selectDate = { date in
-            self.selectedDate = date
+          vc?.selectDate = {
             self.updateDateButton()
-            self.updateFetchedResultsController()
             self.fetchOrImportRecordsForSelectedDate()
           }
             
@@ -254,13 +254,10 @@ class AuditoriumTableViewController: GenericTableViewController {
         }
     }
 
-  private func updateFetchedResultsController() {
-      fetchedResultsController?.fetchRequest.predicate = generatePredicate()
-  }
-
   private func generatePredicate() -> NSPredicate? {
       guard let auditorium = auditorium else { return nil }
 
+      let selectedDate = DatePicker.shared.pairDate
       let startOfDay = selectedDate.startOfDay as NSDate
       let endOfDay = selectedDate.endOfDay as NSDate
 
@@ -272,15 +269,15 @@ class AuditoriumTableViewController: GenericTableViewController {
 
   // MARK: - Date
 
-  private var selectedDate: Date = Date()
   @IBOutlet weak var dateButton: UIBarButtonItem!
 
   private func updateDateButton() {
+      let selectedDate = DatePicker.shared.pairDate
       dateButton.title = DateFormatter.full.string(from: selectedDate)
   }
 
   private func fetchOrImportRecordsForSelectedDate() {
-      updateFetchedResultsController()
+      fetchedResultsController?.fetchRequest.predicate = generatePredicate()
 
       performFetch()
 

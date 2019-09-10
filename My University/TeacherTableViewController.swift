@@ -27,6 +27,8 @@ class TeacherTableViewController: GenericTableViewController {
     }
     
     func setup() {
+        updateDateButton()
+
         if let id = teacherID, let context = viewContext {
             teacher = TeacherEntity.fetchTeacher(id: id, context: context)
         }
@@ -51,12 +53,6 @@ class TeacherTableViewController: GenericTableViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-      super.viewWillAppear(animated)
-
-      updateDateButton()
-    }
-    
     // MARK: - Pull to refresh
     
     @IBAction func refresh(_ sender: Any) {
@@ -69,7 +65,8 @@ class TeacherTableViewController: GenericTableViewController {
         guard let teacher = teacher else { return }
         guard let universityURL = teacher.university?.url else { return }
         guard let slug = teacher.slug else { return }
-        let url = Settings.shared.baseURL + "/universities/\(universityURL)/teachers/\(slug)"
+        let dateString = DateFormatter.short.string(from: DatePicker.shared.pairDate)
+        let url = Settings.shared.baseURL + "/universities/\(universityURL)/teachers/\(slug)?pair_date=\(dateString)"
         if let siteURL = URL(string: url) {
             let sharedItems = [siteURL]
             let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
@@ -106,6 +103,7 @@ class TeacherTableViewController: GenericTableViewController {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         // Download records for Teacher from backend and save to database.
+        let selectedDate = DatePicker.shared.pairDate
         importManager = Record.ImportForTeacher(persistentContainer: persistentContainer, teacher: teacher, university: university)
         importManager?.importRecords(for: selectedDate, { (error) in
             
@@ -192,11 +190,8 @@ class TeacherTableViewController: GenericTableViewController {
         case "presentDatePicker":
           let navigationVC = segue.destination as? UINavigationController
           let vc = navigationVC?.viewControllers.first as? DatePickerViewController
-          vc?.selectedDate = selectedDate
-          vc?.selectDate = { date in
-            self.selectedDate = date
+          vc?.selectDate = {
             self.updateDateButton()
-            self.updateFetchedResultsController()
             self.fetchOrImportRecordsForSelectedDate()
           }
             
@@ -253,12 +248,9 @@ class TeacherTableViewController: GenericTableViewController {
         }
     }
     
-    private func updateFetchedResultsController() {
-        fetchedResultsController?.fetchRequest.predicate = generatePredicate()
-    }
-    
     private func generatePredicate() -> NSPredicate? {
         guard let teacher = teacher else { return nil }
+        let selectedDate = DatePicker.shared.pairDate
         
         let startOfDay = selectedDate.startOfDay as NSDate
         let endOfDay = selectedDate.endOfDay as NSDate
@@ -278,16 +270,16 @@ class TeacherTableViewController: GenericTableViewController {
   }
     
     // MARK: - Date
-    
-    private var selectedDate: Date = Date()
+
     @IBOutlet weak var dateButton: UIBarButtonItem!
     
     private func updateDateButton() {
+        let selectedDate = DatePicker.shared.pairDate
         dateButton.title = DateFormatter.full.string(from: selectedDate)
     }
     
     private func fetchOrImportRecordsForSelectedDate() {
-        updateFetchedResultsController()
+        fetchedResultsController?.fetchRequest.predicate = generatePredicate()
         
         performFetch()
         
