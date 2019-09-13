@@ -21,14 +21,10 @@ class AboutUsTableViewController: UITableViewController {
                     UIApplication.shared.open(facebookPageURL)
                 }
             case 1:
-                if let twitterURL = URL(string: "https://twitter.com/myuniversity_su") {
-                    UIApplication.shared.open(twitterURL)
-                }
-            case 2:
                 if let instagramURL = URL(string: "https://www.instagram.com/university.my/") {
                     UIApplication.shared.open(instagramURL)
                 }
-            case 3:
+            case 2:
                 if let telegramURL = URL(string: "https://t.me/university_my") {
                     UIApplication.shared.open(telegramURL)
                 }

@@ -9,11 +9,16 @@
 import WebKit
 import UIKit
 
+struct WebPage {
+  let url: String
+  let title: String
+}
+
 class WebViewController: UIViewController {
     
     // MARK: - Properties
-    
-    var urlString = ""
+
+    var webPage: WebPage?
     var webView: WKWebView!
     
     // MARK: - Lifecycle
@@ -27,9 +32,12 @@ class WebViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        guard let page = webPage else { return }
         
-        let myURL = URL(string: urlString)
+        let myURL = URL(string: page.url)
         let myRequest = URLRequest(url: myURL!)
+        title = page.title
         webView.load(myRequest)
     }
 }

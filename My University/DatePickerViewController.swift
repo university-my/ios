@@ -21,7 +21,7 @@ class DatePickerViewController: UITableViewController {
     }
 
     private func updateDateCell() {
-      let dateString = DateFormatter.full.string(from: datePicker.date)
+      let dateString = DateFormatter.date.string(from: datePicker.date)
       dateCell.textLabel?.text = dateString
     }
 

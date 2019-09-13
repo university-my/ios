@@ -19,7 +19,7 @@ class GenericTableViewController: UITableViewController {
         notificationLabel.sizeToFit()
         notificationLabel.backgroundColor = .clear
         notificationLabel.textAlignment = .center
-        notificationLabel.textColor = .darkText
+      notificationLabel.textColor = .systemBlue
         notificationLabel.adjustsFontSizeToFitWidth = true
         notificationLabel.minimumScaleFactor = 0.5
     }

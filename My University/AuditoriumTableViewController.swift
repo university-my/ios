@@ -51,12 +51,6 @@ class AuditoriumTableViewController: GenericTableViewController {
             importRecords()
         }
     }
-
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-
-//    updateDateButton()
-  }
   
     // MARK: - Pull to refresh
     
@@ -66,18 +60,23 @@ class AuditoriumTableViewController: GenericTableViewController {
     
     // MARK: - Share
     
-    @IBAction func share(_ sender: Any) {
-        guard let auditorium = auditorium else { return }
-        guard let universityURL = auditorium.university?.url else { return }
-        guard let slug = auditorium.slug else { return }
-      let dateString = DateFormatter.short.string(from: DatePicker.shared.pairDate)
-        let url = Settings.shared.baseURL + "/universities/\(universityURL)/auditoriums/\(slug)?pair_date=\(dateString)"
-        if let siteURL = URL(string: url) {
-            let sharedItems = [siteURL]
-            let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
-            present(vc, animated: true)
-        }
+  @IBAction func share(_ sender: Any) {
+    guard let url = auditoriumURL() else { return }
+    if let siteURL = URL(string: url) {
+      let sharedItems = [siteURL]
+      let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
+      present(vc, animated: true)
     }
+  }
+
+  private func auditoriumURL() -> String? {
+    guard let auditorium = auditorium else { return nil }
+    guard let universityURL = auditorium.university?.url else { return nil }
+    guard let slug = auditorium.slug else { return nil }
+    let dateString = DateFormatter.short.string(from: DatePicker.shared.pairDate)
+    let url = Settings.shared.baseURL + "/universities/\(universityURL)/auditoriums/\(slug)?pair_date=\(dateString)"
+    return url
+  }
     
     // MARK: - Favorites
     
@@ -105,17 +104,12 @@ class AuditoriumTableViewController: GenericTableViewController {
     guard let university = auditorium?.university else { return }
     guard let universityURL = university.url else { return }
 
-    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-
     // Download records for Auditorium from backend and save to database.
     let selectedDate = DatePicker.shared.pairDate
     importManager = Record.ImportForAuditorium(persistentContainer: persistentContainer, auditoriumID: auditoriumID, universityURL: universityURL)
     self.importManager?.importRecords(for: selectedDate, { (error) in
 
       DispatchQueue.main.async {
-
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-
         self.processResultOfImport(error: error)
       }
     })
@@ -200,6 +194,14 @@ class AuditoriumTableViewController: GenericTableViewController {
             self.updateDateButton()
             self.fetchOrImportRecordsForSelectedDate()
           }
+
+        case "presentInformation":
+          let navigationVC = segue.destination as? UINavigationController
+          let vc = navigationVC?.viewControllers.first as? InformationTableViewController
+          if let auditorium = auditorium, let url = auditoriumURL() {
+            let page = WebPage(url: url, title: auditorium.name ?? "")
+            vc?.webPage = page
+          }
             
         default:
             break
@@ -217,15 +219,15 @@ class AuditoriumTableViewController: GenericTableViewController {
         guard let auditorium = auditorium else { return nil }
         let request: NSFetchRequest<RecordEntity> = RecordEntity.fetchRequest()
         
-        let dateString = NSSortDescriptor(key: #keyPath(RecordEntity.dateString), ascending: true)
+        let pairName = NSSortDescriptor(key: #keyPath(RecordEntity.pairName), ascending: true)
         let time = NSSortDescriptor(key: #keyPath(RecordEntity.time), ascending: true)
 
-        request.sortDescriptors = [dateString, time]
+        request.sortDescriptors = [pairName, time]
         request.predicate = generatePredicate()
         request.fetchBatchSize = 20
         
         if let context = viewContext {
-            let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: #keyPath(RecordEntity.dateString), cacheName: nil)
+            let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: #keyPath(RecordEntity.pairName), cacheName: nil)
             return controller
         } else {
             return nil
@@ -241,10 +243,14 @@ class AuditoriumTableViewController: GenericTableViewController {
                 var newSectionsTitles: [String] = []
                 for section in sections {
                     if let firstObjectInSection = section.objects?.first as? RecordEntity {
-                        if let date = firstObjectInSection.date {
-                          let dateString = DateFormatter.full.string(from: date)
-                            newSectionsTitles.append(dateString)
-                        }
+                      var sectionName = ""
+                      if let name = firstObjectInSection.pairName {
+                        sectionName = name
+                      }
+                      if let time = firstObjectInSection.time {
+                        sectionName += " (\(time))"
+                      }
+                      newSectionsTitles.append(sectionName)
                     }
                 }
                 sectionsTitles = newSectionsTitles
@@ -273,7 +279,7 @@ class AuditoriumTableViewController: GenericTableViewController {
 
   private func updateDateButton() {
       let selectedDate = DatePicker.shared.pairDate
-      dateButton.title = DateFormatter.full.string(from: selectedDate)
+      dateButton.title = DateFormatter.date.string(from: selectedDate)
   }
 
   private func fetchOrImportRecordsForSelectedDate() {

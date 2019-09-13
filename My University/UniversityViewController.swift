@@ -161,11 +161,8 @@ class UniversityViewController: GenericTableViewController {
         let groups = dataSource.fetchedResultsController?.fetchedObjects ?? []
         
         if groups.isEmpty {
-            UIApplication.shared.isNetworkActivityIndicatorVisible = true
             
             dataSource.importGroups { (error) in
-                
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 
                 if let error = error {
                     self.showNotification(text: error.localizedDescription)
@@ -186,11 +183,8 @@ class UniversityViewController: GenericTableViewController {
         
         let teachers = dataSource.fetchedResultsController?.fetchedObjects ?? []
         if teachers.isEmpty {
-            UIApplication.shared.isNetworkActivityIndicatorVisible = true
             
             dataSource.importTeachers { (error) in
-                
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 
                 if let error = error {
                     self.showNotification(text: error.localizedDescription)
@@ -228,11 +222,8 @@ class UniversityViewController: GenericTableViewController {
         
         let auditoriums = dataSource.fetchedResultsController?.fetchedObjects ?? []
         if auditoriums.isEmpty {
-            UIApplication.shared.isNetworkActivityIndicatorVisible = true
             
             dataSource.importAuditoriums { (error) in
-                
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 
                 if let error = error {
                     self.showNotification(text: error.localizedDescription)

@@ -73,12 +73,8 @@ class GroupsTableViewController: SearchableTableViewController {
     
     func importGroups() {
         guard let dataSource = dataSource else { return }
-
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         dataSource.importGroups { (error) in
-
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
 
             if let error = error {
                 self.showNotification(text: error.localizedDescription)
