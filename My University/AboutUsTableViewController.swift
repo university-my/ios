@@ -45,10 +45,12 @@ class AboutUsTableViewController: UITableViewController {
         } else if section == 3 {
             switch row {
             case 0:
-                performSegue(withIdentifier: "showWebView", sender: (title: "Privacy Policy", url: "https://my-university.com.ua/privacy-policy"))
+                let page = WebPage(url: "https://my-university.com.ua/privacy-policy", title: "Privacy Policy")
+                performSegue(withIdentifier: "showWebView", sender: page)
                 
             case 1:
-                performSegue(withIdentifier: "showWebView", sender: (title: "Terms of Service", url: "https://my-university.com.ua/terms-of-service"))
+                let page = WebPage(url: "https://my-university.com.ua/terms-of-service", title: "Terms of Service")
+                performSegue(withIdentifier: "showWebView", sender: page)
                 
             default:
                 break
@@ -65,10 +67,7 @@ class AboutUsTableViewController: UITableViewController {
             
         case "showWebView":
             let vc = segue.destination as? WebViewController
-            if let (title, url) = (sender as? (String, String)) {
-                vc?.urlString = url
-                vc?.title = title
-            }
+            vc?.webPage = sender as? WebPage
             
         default:
             break

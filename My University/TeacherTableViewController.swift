@@ -62,17 +62,22 @@ class TeacherTableViewController: GenericTableViewController {
     // MARK: - Share
     
     @IBAction func share(_ sender: Any) {
-        guard let teacher = teacher else { return }
-        guard let universityURL = teacher.university?.url else { return }
-        guard let slug = teacher.slug else { return }
-        let dateString = DateFormatter.short.string(from: DatePicker.shared.pairDate)
-        let url = Settings.shared.baseURL + "/universities/\(universityURL)/teachers/\(slug)?pair_date=\(dateString)"
+        guard let url = teacherURL() else { return }
         if let siteURL = URL(string: url) {
             let sharedItems = [siteURL]
             let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
             present(vc, animated: true)
         }
     }
+
+  private func teacherURL() -> String? {
+    guard let teacher = teacher else { return nil }
+    guard let universityURL = teacher.university?.url else { return nil }
+    guard let slug = teacher.slug else { return nil }
+    let dateString = DateFormatter.short.string(from: DatePicker.shared.pairDate)
+    let url = Settings.shared.baseURL + "/universities/\(universityURL)/teachers/\(slug)?pair_date=\(dateString)"
+    return url
+  }
     
     // MARK: - Favorites
     
@@ -189,6 +194,14 @@ class TeacherTableViewController: GenericTableViewController {
           vc?.selectDate = {
             self.updateDateButton()
             self.fetchOrImportRecordsForSelectedDate()
+          }
+
+          case "presentInformation":
+          let navigationVC = segue.destination as? UINavigationController
+          let vc = navigationVC?.viewControllers.first as? InformationTableViewController
+          if let teacher = teacher, let url = teacherURL() {
+            let page = WebPage(url: url, title: teacher.name ?? "")
+            vc?.webPage = page
           }
             
         default:

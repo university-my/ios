@@ -14,8 +14,9 @@ class TeacherDataSource: NSObject {
     // MARK: - Favories
 
     private var favoritesImageView: UIImageView {
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "Star Filled Image"))
-        return imageView
+      let image = UIImage(systemName: "star.fill")
+      let imageView = UIImageView(image: image)
+      return imageView
     }
     
     // MARK: - Init

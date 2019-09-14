@@ -36,7 +36,7 @@ class InformationTableViewController: UITableViewController {
     guard let cell = tableView.cellForRow(at: indexPath) else { return }
 
     if cell == webVersionCell {
-      performSegue(withIdentifier: "showWebView", sender: (title: "Terms of Service", url: "https://my-university.com.ua/terms-of-service"))
+      performSegue(withIdentifier: "showWebView", sender: webPage)
 
     } else if cell == feedbackCell {
       if let telegramURL = URL(string: "https://t.me/voevodin_yura") {
@@ -54,10 +54,7 @@ class InformationTableViewController: UITableViewController {
 
     case "showWebView":
       let vc = segue.destination as? WebViewController
-      if let (title, url) = (sender as? (String, String)) {
-          vc?.urlString = url
-          vc?.title = title
-      }
+      vc?.webPage = sender as? WebPage
 
     default:
       break

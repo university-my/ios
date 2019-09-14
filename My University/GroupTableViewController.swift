@@ -61,18 +61,23 @@ class GroupTableViewController: GenericTableViewController {
     
     // MARK: - Share
     
-    @IBAction func share(_ sender: Any) {
-        guard let group = group else { return }
-        guard let universityURL = group.university?.url else { return }
-        guard let slug = group.slug else { return }
-      let dateString = DateFormatter.short.string(from: DatePicker.shared.pairDate)
-        let url = Settings.shared.baseURL + "/universities/\(universityURL)/groups/\(slug)?pair_date=\(dateString)"
-        if let siteURL = URL(string: url) {
-            let sharedItems = [siteURL]
-            let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
-            present(vc, animated: true)
-        }
+  @IBAction func share(_ sender: Any) {
+    guard let url = groupURL() else { return }
+    if let siteURL = URL(string: url) {
+      let sharedItems = [siteURL]
+      let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
+      present(vc, animated: true)
     }
+  }
+
+  private func groupURL() -> String? {
+    guard let group = group else { return nil }
+    guard let universityURL = group.university?.url else { return nil }
+    guard let slug = group.slug else { return nil }
+    let dateString = DateFormatter.short.string(from: DatePicker.shared.pairDate)
+    let url = Settings.shared.baseURL + "/universities/\(universityURL)/groups/\(slug)?pair_date=\(dateString)"
+    return url
+  }
     
     // MARK: - Favorites
     
@@ -190,6 +195,14 @@ class GroupTableViewController: GenericTableViewController {
                 self.updateDateButton()
                 self.fetchOrImportRecordsForSelectedDate()
             }
+
+        case "presentInformation":
+          let navigationVC = segue.destination as? UINavigationController
+          let vc = navigationVC?.viewControllers.first as? InformationTableViewController
+          if let group = group, let url = groupURL() {
+            let page = WebPage(url: url, title: group.name ?? "")
+            vc?.webPage = page
+          }
             
         default:
             break

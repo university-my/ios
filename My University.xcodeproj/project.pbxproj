@@ -26,6 +26,7 @@
 		DE18941E21BC3AD100C7F9DB /* AuditoriumTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941D21BC3AD100C7F9DB /* AuditoriumTableViewController.swift */; };
 		DE18942021BD457F00C7F9DB /* ImportForGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941F21BD457F00C7F9DB /* ImportForGroup.swift */; };
 		DE18942221BD45E600C7F9DB /* ImportForAuditorium.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18942121BD45E600C7F9DB /* ImportForAuditorium.swift */; };
+		DE29D024232CE9980054B748 /* Information.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE29D023232CE9980054B748 /* Information.storyboard */; };
 		DE3A6638220230D800E64D6C /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A6637220230D800E64D6C /* Collection.swift */; };
 		DE3D3011232BF2F00071BAC5 /* InformationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3D3010232BF2F00071BAC5 /* InformationTableViewController.swift */; };
 		DE3D3013232BFAB60071BAC5 /* Web View.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3D3012232BFAB60071BAC5 /* Web View.storyboard */; };
@@ -105,6 +106,7 @@
 		DE18941D21BC3AD100C7F9DB /* AuditoriumTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditoriumTableViewController.swift; sourceTree = "<group>"; };
 		DE18941F21BD457F00C7F9DB /* ImportForGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportForGroup.swift; sourceTree = "<group>"; };
 		DE18942121BD45E600C7F9DB /* ImportForAuditorium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportForAuditorium.swift; sourceTree = "<group>"; };
+		DE29D023232CE9980054B748 /* Information.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Information.storyboard; sourceTree = "<group>"; };
 		DE3A6637220230D800E64D6C /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		DE3D3010232BF2F00071BAC5 /* InformationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationTableViewController.swift; sourceTree = "<group>"; };
 		DE3D3012232BFAB60071BAC5 /* Web View.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Web View.storyboard"; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 		DE3D300F232BF2E20071BAC5 /* Information */ = {
 			isa = PBXGroup;
 			children = (
+				DE29D023232CE9980054B748 /* Information.storyboard */,
 				DE3D3010232BF2F00071BAC5 /* InformationTableViewController.swift */,
 			);
 			name = Information;
@@ -570,6 +573,7 @@
 				DE5FAE142263BA2A00333121 /* Launch Screen.storyboard in Resources */,
 				DE5E4984226C630500D6827D /* Main.storyboard in Resources */,
 				C2B5CDFD1EEF0E750066DB30 /* Assets.xcassets in Resources */,
+				DE29D024232CE9980054B748 /* Information.storyboard in Resources */,
 				DEDA50EA21862091006C7B27 /* InfoPlist.strings in Resources */,
 				DE3EB6B8231B0C03007EA63C /* Date Picker.storyboard in Resources */,
 			);
