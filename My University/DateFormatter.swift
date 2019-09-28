@@ -21,4 +21,10 @@ extension DateFormatter {
         dateFormatter.dateStyle = .full
         return dateFormatter
     }()
+
+    static var date: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, d MMMM"
+        return dateFormatter
+    }()
 }

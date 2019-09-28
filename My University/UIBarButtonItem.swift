@@ -12,9 +12,9 @@ extension UIBarButtonItem {
 
     func markAs(isFavorites: Bool) {
         if isFavorites {
-            image = UIImage(named: "Star Filled Image")
+            image = UIImage(systemName: "star.fill")
         } else {
-            image = UIImage(named: "Star Empty Image")
+            image = UIImage(systemName: "star")
         }
     }
 }

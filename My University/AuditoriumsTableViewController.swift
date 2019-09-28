@@ -72,12 +72,8 @@ class AuditoriumsTableViewController: SearchableTableViewController {
     
     func importAuditoriums() {
         guard let dataSource = dataSource else { return }
-
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         dataSource.importAuditoriums { (error) in
-
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
 
             if let error = error {
                 self.showNotification(text: error.localizedDescription)

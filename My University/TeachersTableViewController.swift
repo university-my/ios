@@ -73,12 +73,8 @@ class TeachersTableViewController: SearchableTableViewController {
     
     func importTeachers() {
         guard let dataSource = dataSource else { return }
-
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         dataSource.importTeachers { (error) in
-
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
 
             if let error = error {
                 self.showNotification(text: error.localizedDescription)

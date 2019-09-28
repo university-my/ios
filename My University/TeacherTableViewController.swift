@@ -62,17 +62,22 @@ class TeacherTableViewController: GenericTableViewController {
     // MARK: - Share
     
     @IBAction func share(_ sender: Any) {
-        guard let teacher = teacher else { return }
-        guard let universityURL = teacher.university?.url else { return }
-        guard let slug = teacher.slug else { return }
-        let dateString = DateFormatter.short.string(from: DatePicker.shared.pairDate)
-        let url = Settings.shared.baseURL + "/universities/\(universityURL)/teachers/\(slug)?pair_date=\(dateString)"
+        guard let url = teacherURL() else { return }
         if let siteURL = URL(string: url) {
             let sharedItems = [siteURL]
             let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
             present(vc, animated: true)
         }
     }
+
+  private func teacherURL() -> String? {
+    guard let teacher = teacher else { return nil }
+    guard let universityURL = teacher.university?.url else { return nil }
+    guard let slug = teacher.slug else { return nil }
+    let dateString = DateFormatter.short.string(from: DatePicker.shared.pairDate)
+    let url = Settings.shared.baseURL + "/universities/\(universityURL)/teachers/\(slug)?pair_date=\(dateString)"
+    return url
+  }
     
     // MARK: - Favorites
     
@@ -100,16 +105,12 @@ class TeacherTableViewController: GenericTableViewController {
         guard let teacher = teacher else { return }
         guard let university = teacher.university else { return }
         
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
         // Download records for Teacher from backend and save to database.
         let selectedDate = DatePicker.shared.pairDate
         importManager = Record.ImportForTeacher(persistentContainer: persistentContainer, teacher: teacher, university: university)
         importManager?.importRecords(for: selectedDate, { (error) in
             
             DispatchQueue.main.async {
-                
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 
                 self.processResultOfImport(error: error)
             }
@@ -194,6 +195,14 @@ class TeacherTableViewController: GenericTableViewController {
             self.updateDateButton()
             self.fetchOrImportRecordsForSelectedDate()
           }
+
+          case "presentInformation":
+          let navigationVC = segue.destination as? UINavigationController
+          let vc = navigationVC?.viewControllers.first as? InformationTableViewController
+          if let teacher = teacher, let url = teacherURL() {
+            let page = WebPage(url: url, title: teacher.name ?? "")
+            vc?.webPage = page
+          }
             
         default:
             break
@@ -211,15 +220,15 @@ class TeacherTableViewController: GenericTableViewController {
         guard let teacher = teacher else { return nil }
         let request: NSFetchRequest<RecordEntity> = RecordEntity.fetchRequest()
         
-        let dateString = NSSortDescriptor(key: #keyPath(RecordEntity.dateString), ascending: true)
+        let pairName = NSSortDescriptor(key: #keyPath(RecordEntity.pairName), ascending: true)
         let time = NSSortDescriptor(key: #keyPath(RecordEntity.time), ascending: true)
 
-        request.sortDescriptors = [dateString, time]
+        request.sortDescriptors = [pairName, time]
         request.predicate = generatePredicate()
         request.fetchBatchSize = 20
         
         if let context = viewContext {
-            let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: #keyPath(RecordEntity.dateString), cacheName: nil)
+            let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: #keyPath(RecordEntity.pairName), cacheName: nil)
             return controller
         } else {
             return nil
@@ -235,10 +244,14 @@ class TeacherTableViewController: GenericTableViewController {
                 var newSectionsTitles: [String] = []
                 for section in sections {
                     if let firstObjectInSection = section.objects?.first as? RecordEntity {
-                        if let date = firstObjectInSection.date {
-                            let dateString = DateFormatter.full.string(from: date)
-                            newSectionsTitles.append(dateString)
+                        var sectionName = ""
+                        if let name = firstObjectInSection.pairName {
+                          sectionName = name
                         }
+                        if let time = firstObjectInSection.time {
+                          sectionName += " (\(time))"
+                        }
+                        newSectionsTitles.append(sectionName)
                     }
                 }
                 sectionsTitles = newSectionsTitles
@@ -275,7 +288,7 @@ class TeacherTableViewController: GenericTableViewController {
     
     private func updateDateButton() {
         let selectedDate = DatePicker.shared.pairDate
-        dateButton.title = DateFormatter.full.string(from: selectedDate)
+        dateButton.title = DateFormatter.date.string(from: selectedDate)
     }
     
     private func fetchOrImportRecordsForSelectedDate() {

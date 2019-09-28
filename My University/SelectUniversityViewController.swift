@@ -60,23 +60,17 @@ class SelectUniversityViewController: GenericTableViewController {
     }
     
     private func importUniversities() {
-        let text = NSLocalizedString("Loading universities...", comment: "")
-        showNotification(text: text)
-
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
-        dataSource.importUniversities { (error) in
-
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
-
-            if let error = error {
-                self.refreshControl?.endRefreshing()
-                self.showNotification(text: error.localizedDescription)
-            } else {
-                self.dataSource.fetchUniversities()
-                self.tableView.reloadData()
-                self.refreshControl?.endRefreshing()
-                self.hideNotification()
+        dataSource.importUniversities { [weak self] (error) in
+            if let strongSelf = self {
+              if let error = error {
+                  strongSelf.refreshControl?.endRefreshing()
+                  strongSelf.showNotification(text: error.localizedDescription)
+              } else {
+                  strongSelf.refreshControl?.endRefreshing()
+                  strongSelf.dataSource.fetchUniversities()
+                  strongSelf.tableView.reloadData()
+                  strongSelf.hideNotification()
+              }
             }
         }
     }

@@ -21,14 +21,10 @@ class AboutUsTableViewController: UITableViewController {
                     UIApplication.shared.open(facebookPageURL)
                 }
             case 1:
-                if let twitterURL = URL(string: "https://twitter.com/myuniversity_su") {
-                    UIApplication.shared.open(twitterURL)
-                }
-            case 2:
                 if let instagramURL = URL(string: "https://www.instagram.com/university.my/") {
                     UIApplication.shared.open(instagramURL)
                 }
-            case 3:
+            case 2:
                 if let telegramURL = URL(string: "https://t.me/university_my") {
                     UIApplication.shared.open(telegramURL)
                 }
@@ -49,10 +45,12 @@ class AboutUsTableViewController: UITableViewController {
         } else if section == 3 {
             switch row {
             case 0:
-                performSegue(withIdentifier: "showWebView", sender: (title: "Privacy Policy", url: "https://my-university.com.ua/privacy-policy"))
+                let page = WebPage(url: "https://my-university.com.ua/privacy-policy", title: "Privacy Policy")
+                performSegue(withIdentifier: "showWebView", sender: page)
                 
             case 1:
-                performSegue(withIdentifier: "showWebView", sender: (title: "Terms of Service", url: "https://my-university.com.ua/terms-of-service"))
+                let page = WebPage(url: "https://my-university.com.ua/terms-of-service", title: "Terms of Service")
+                performSegue(withIdentifier: "showWebView", sender: page)
                 
             default:
                 break
@@ -69,10 +67,7 @@ class AboutUsTableViewController: UITableViewController {
             
         case "showWebView":
             let vc = segue.destination as? WebViewController
-            if let (title, url) = (sender as? (String, String)) {
-                vc?.urlString = url
-                vc?.title = title
-            }
+            vc?.webPage = sender as? WebPage
             
         default:
             break
