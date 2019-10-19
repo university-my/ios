@@ -474,11 +474,6 @@
                             <outlet property="delegate" destination="6a0-mN-k10" id="a0o-WO-wXp"/>
                         </connections>
                     </tableView>
-                    <connections>
-                        <segue destination="xEv-Se-Sjg" kind="show" identifier="showTeacher" id="8RE-PV-Sh1"/>
-                        <segue destination="kjp-pL-LDS" kind="show" identifier="showGroup" id="xLB-MN-h7a"/>
-                        <segue destination="ds8-eS-Cn9" kind="show" identifier="showAuditorium" id="9Ak-Un-uFs"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Ap-Oh-zM4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
