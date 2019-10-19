@@ -305,23 +305,3 @@ class GroupTableViewController: GenericTableViewController {
         }
     }
 }
-
-// MARK: - UIStateRestoring
-
-extension GroupTableViewController {
-    
-    override func encodeRestorableState(with coder: NSCoder) {
-        if let id = groupID {
-            coder.encode(id, forKey: "groupID")
-        }
-        super.encodeRestorableState(with: coder)
-    }
-    
-    override func decodeRestorableState(with coder: NSCoder) {
-        groupID = coder.decodeInt64(forKey: "groupID")
-    }
-    
-    override func applicationFinishedRestoringState() {
-        setup()
-    }
-}

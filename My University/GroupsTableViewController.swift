@@ -163,23 +163,3 @@ extension GroupsTableViewController: UISearchResultsUpdating {
         }
     }
 }
-
-// MARK: - UIStateRestoring
-
-extension GroupsTableViewController {
-
-    override func encodeRestorableState(with coder: NSCoder) {
-        if let id = universityID {
-            coder.encode(id, forKey: "universityID")
-        }
-        super.encodeRestorableState(with: coder)
-    }
-
-    override func decodeRestorableState(with coder: NSCoder) {
-        universityID = coder.decodeInt64(forKey: "universityID")
-    }
-    
-    override func applicationFinishedRestoringState() {
-        setup()
-    }
-}

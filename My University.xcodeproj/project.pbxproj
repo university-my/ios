@@ -215,7 +215,7 @@
 				DE3D300F232BF2E20071BAC5 /* Information */,
 				DE472C7321B84313003AE86D /* About */,
 				DE94500122C132FE00550A1C /* App Delegate */,
-				DE94500022C132DA00550A1C /* Assets */,
+				C2B5CDFC1EEF0E750066DB30 /* Assets.xcassets */,
 				DEE576E5226B7E37008F9EB6 /* Auditoriums */,
 				C2B5CE2B1EF06E3A0066DB30 /* Core Data */,
 				C2C0E9AE1FB8CD870012FA9C /* Data Models */,
@@ -388,14 +388,6 @@
 				DE3EB6BF231B2280007EA63C /* ActivityViewController.swift */,
 			);
 			name = Groups;
-			sourceTree = "<group>";
-		};
-		DE94500022C132DA00550A1C /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				C2B5CDFC1EEF0E750066DB30 /* Assets.xcassets */,
-			);
-			name = Assets;
 			sourceTree = "<group>";
 		};
 		DE94500122C132FE00550A1C /* App Delegate */ = {
