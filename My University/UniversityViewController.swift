@@ -24,16 +24,14 @@ class UniversityViewController: GenericTableViewController {
     @IBOutlet weak var groupsCell: UITableViewCell!
     @IBOutlet weak var teachersCell: UITableViewCell!
     @IBOutlet weak var auditoriumsCell: UITableViewCell!
-    @IBOutlet weak var favoritesCell: UITableViewCell!
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // For notifications
-        configureNotificationLabel()
-        statusButton.customView = notificationLabel
+        // Current university is selected one
+        universityID = University.selectedUniversityID
         
         setup()
     }
@@ -43,7 +41,7 @@ class UniversityViewController: GenericTableViewController {
         if let id = universityID {
             dataSource = UniversityDataSource()
             dataSource?.fetch(id: id)
-            dataSource?.configureSections()
+            dataSource?.configureRows()
         }
         
         if let university = dataSource?.university {
@@ -64,12 +62,11 @@ class UniversityViewController: GenericTableViewController {
     // MARK: - Table
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return dataSource?.sections.count ?? 0
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let section = dataSource?.sections[safe: indexPath.section]
-        let row = section?.rows[safe: indexPath.row]
+        let row = dataSource?.rows[safe: indexPath.row]
         
         if let kind = row?.kind {
             switch kind {
@@ -79,24 +76,12 @@ class UniversityViewController: GenericTableViewController {
                 performSegue(withIdentifier: "showGroups", sender: nil)
             case .teachers:
                 performSegue(withIdentifier: "showTeachers", sender: nil)
-            case .favorites:
-                performSegue(withIdentifier: "showFavorites", sender: nil)
             }
         }
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let section = dataSource?.sections[safe: section]
-        if let kind = section?.kind {
-            switch kind {
-            case .all:
-                return dataSource?.university?.fullName
-            case .favorites:
-                return nil
-            }
-        } else {
-            return nil
-        }
+        return dataSource?.university?.fullName
     }
     
     // MARK: - Navigation
@@ -118,23 +103,17 @@ class UniversityViewController: GenericTableViewController {
             let vc = segue.destination as? TeachersTableViewController
             vc?.universityID = dataSource?.university?.id
             
-        case "showFavorites":
-            let vc = segue.destination as? FavoritesViewController
-            vc?.universityID = dataSource?.university?.id
-            
         default:
             break
         }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let section = dataSource?.sections[safe: section]
-        return section?.rows.count ?? 0
+        return dataSource?.rows.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = dataSource?.sections[safe: indexPath.section]
-        let row = section?.rows[safe: indexPath.row]
+        let row = dataSource?.rows[safe: indexPath.row]
         
         let kind = row!.kind
         switch kind {
@@ -147,9 +126,6 @@ class UniversityViewController: GenericTableViewController {
             
         case .auditoriums:
             return auditoriumsCell
-            
-        case .favorites:
-            return favoritesCell
         }
     }
     
@@ -164,8 +140,8 @@ class UniversityViewController: GenericTableViewController {
             
             dataSource.importGroups { (error) in
                 
-                if let error = error {
-                    self.showNotification(text: error.localizedDescription)
+                if let _ = error {
+                    
                 } else {
                     self.loadTeachers()
                 }
@@ -186,21 +162,17 @@ class UniversityViewController: GenericTableViewController {
             
             dataSource.importTeachers { (error) in
                 
-                if let error = error {
-                    self.showNotification(text: error.localizedDescription)
+                if let _ = error {
+                    
                 } else {
                     if self.shouldImportAuditoriums() {
                         self.loadAuditoriums()
-                    } else {
-                        self.hideNotification()
                     }
                 }
             }
         } else {
             if shouldImportAuditoriums() {
                 loadAuditoriums()
-            } else {
-                hideNotification()
             }
         }
     }
@@ -225,18 +197,10 @@ class UniversityViewController: GenericTableViewController {
             
             dataSource.importAuditoriums { (error) in
                 
-                if let error = error {
-                    self.showNotification(text: error.localizedDescription)
-                } else {
-                    self.hideNotification()
+                if let _ = error {
+                    
                 }
             }
-        } else {
-            self.hideNotification()
         }
     }
-    
-    // MARK: - Notificaion
-    
-    @IBOutlet weak var statusButton: UIBarButtonItem!
 }

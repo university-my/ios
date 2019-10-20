@@ -40,8 +40,9 @@ class UniversitiesDataSource: NSObject {
         }
     }()
 
-    func fetchUniversities() {
+    func fetchUniversities(delegate: NSFetchedResultsControllerDelegate) {
         do {
+            fetchedResultsController?.delegate = delegate
             try fetchedResultsController?.performFetch()
         } catch {
             print("Error in the fetched results controller: \(error).")
