@@ -30,6 +30,7 @@
 		DE3A6638220230D800E64D6C /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A6637220230D800E64D6C /* Collection.swift */; };
 		DE3D3011232BF2F00071BAC5 /* InformationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3D3010232BF2F00071BAC5 /* InformationTableViewController.swift */; };
 		DE3D3013232BFAB60071BAC5 /* Web View.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3D3012232BFAB60071BAC5 /* Web View.storyboard */; };
+		DE3DC048235E46E5007805DA /* Record Details.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3DC047235E46E5007805DA /* Record Details.storyboard */; };
 		DE3EB6B5231B0AE7007EA63C /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3EB6B3231B0AE7007EA63C /* About.storyboard */; };
 		DE3EB6B8231B0C03007EA63C /* Date Picker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3EB6B6231B0C03007EA63C /* Date Picker.storyboard */; };
 		DE3EB6BA231B11F8007EA63C /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3EB6B9231B11F8007EA63C /* DateFormatter.swift */; };
@@ -68,8 +69,7 @@
 		DE95523622A24A3600D70DA4 /* FavoritesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE95523522A24A3600D70DA4 /* FavoritesDataSource.swift */; };
 		DE95523822A253D400D70DA4 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE95523722A253D400D70DA4 /* UIBarButtonItem.swift */; };
 		DE999ABE227C54160018F725 /* UniversityDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE999ABD227C54160018F725 /* UniversityDataSource.swift */; };
-		DEAB1D41230D5432008FBFE3 /* DatePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB1D3F230D5432008FBFE3 /* DatePickerTableViewCell.swift */; };
-		DEAB1D42230D5432008FBFE3 /* DatePickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEAB1D40230D5432008FBFE3 /* DatePickerTableViewCell.xib */; };
+		DE9E3F84235F8FB90067DDFE /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9E3F83235F8FB90067DDFE /* RecordTableViewCell.swift */; };
 		DEAB1D45230D5471008FBFE3 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB1D44230D5471008FBFE3 /* ReusableView.swift */; };
 		DEAB1D47230D5487008FBFE3 /* NibLoadableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB1D46230D5487008FBFE3 /* NibLoadableView.swift */; };
 		DEAB1D49230D575B008FBFE3 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB1D48230D575B008FBFE3 /* UITableView.swift */; };
@@ -115,6 +115,7 @@
 		DE3A6637220230D800E64D6C /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		DE3D3010232BF2F00071BAC5 /* InformationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationTableViewController.swift; sourceTree = "<group>"; };
 		DE3D3012232BFAB60071BAC5 /* Web View.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Web View.storyboard"; sourceTree = "<group>"; };
+		DE3DC047235E46E5007805DA /* Record Details.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Record Details.storyboard"; sourceTree = "<group>"; };
 		DE3EB6B4231B0AE7007EA63C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/About.storyboard; sourceTree = "<group>"; };
 		DE3EB6B7231B0C03007EA63C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Date Picker.storyboard"; sourceTree = "<group>"; };
 		DE3EB6B9231B11F8007EA63C /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
@@ -154,8 +155,7 @@
 		DE95523522A24A3600D70DA4 /* FavoritesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesDataSource.swift; sourceTree = "<group>"; };
 		DE95523722A253D400D70DA4 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		DE999ABD227C54160018F725 /* UniversityDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityDataSource.swift; sourceTree = "<group>"; };
-		DEAB1D3F230D5432008FBFE3 /* DatePickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTableViewCell.swift; sourceTree = "<group>"; };
-		DEAB1D40230D5432008FBFE3 /* DatePickerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickerTableViewCell.xib; sourceTree = "<group>"; };
+		DE9E3F83235F8FB90067DDFE /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 		DEAB1D44230D5471008FBFE3 /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		DEAB1D46230D5487008FBFE3 /* NibLoadableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadableView.swift; sourceTree = "<group>"; };
 		DEAB1D48230D575B008FBFE3 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
@@ -235,7 +235,7 @@
 				DE87B78C235B9E1D0090B63E /* Initial */,
 				DEBB74B2235CEC2100226C7E /* Launch Screen */,
 				C29FF4CE2002382500B50299 /* Networking */,
-				DEE576E8226B955A008F9EB6 /* Records */,
+				DE3DC046235E468F007805DA /* Record Details */,
 				DE4AA06F21A5DEDC00E06FEA /* Search */,
 				C2B5CE2A1EF06E0E0066DB30 /* Supporting Files */,
 				DE94500222C1343800550A1C /* Table Message */,
@@ -352,6 +352,15 @@
 			name = Information;
 			sourceTree = "<group>";
 		};
+		DE3DC046235E468F007805DA /* Record Details */ = {
+			isa = PBXGroup;
+			children = (
+				DE3DC047235E46E5007805DA /* Record Details.storyboard */,
+				DE5A7E922219CCBF00CA9A79 /* RecordDetailedTableViewController.swift */,
+			);
+			name = "Record Details";
+			sourceTree = "<group>";
+		};
 		DE472C7321B84313003AE86D /* About */ = {
 			isa = PBXGroup;
 			children = (
@@ -438,8 +447,7 @@
 		DEAB1D3E230D5405008FBFE3 /* Table Cells */ = {
 			isa = PBXGroup;
 			children = (
-				DEAB1D3F230D5432008FBFE3 /* DatePickerTableViewCell.swift */,
-				DEAB1D40230D5432008FBFE3 /* DatePickerTableViewCell.xib */,
+				DE9E3F83235F8FB90067DDFE /* RecordTableViewCell.swift */,
 			);
 			name = "Table Cells";
 			sourceTree = "<group>";
@@ -549,14 +557,6 @@
 			name = Auditoriums;
 			sourceTree = "<group>";
 		};
-		DEE576E8226B955A008F9EB6 /* Records */ = {
-			isa = PBXGroup;
-			children = (
-				DE5A7E922219CCBF00CA9A79 /* RecordDetailedTableViewController.swift */,
-			);
-			name = Records;
-			sourceTree = "<group>";
-		};
 		E48FD402231DB2080049438F /* UserDefaults */ = {
 			isa = PBXGroup;
 			children = (
@@ -629,11 +629,11 @@
 			files = (
 				DEBB74B1235CE67700226C7E /* Universities.storyboard in Resources */,
 				DE3D3013232BFAB60071BAC5 /* Web View.storyboard in Resources */,
+				DE3DC048235E46E5007805DA /* Record Details.storyboard in Resources */,
 				DEDA50ED218620E0006C7B27 /* Localizable.strings in Resources */,
 				DE87B790235B9EEC0090B63E /* Initial.storyboard in Resources */,
 				DE3EB6B5231B0AE7007EA63C /* About.storyboard in Resources */,
 				DEBB74B9235CF3E100226C7E /* University.storyboard in Resources */,
-				DEAB1D42230D5432008FBFE3 /* DatePickerTableViewCell.xib in Resources */,
 				DEBB74B4235CEC5A00226C7E /* Launch Screen.storyboard in Resources */,
 				C2B5CDFD1EEF0E750066DB30 /* Assets.xcassets in Resources */,
 				DE29D024232CE9980054B748 /* Information.storyboard in Resources */,
@@ -701,9 +701,9 @@
 				DE13AF7F226A30D4009DF581 /* TeachersTableViewController.swift in Sources */,
 				DE4AA07321A5E31900E06FEA /* GroupsDataSource.swift in Sources */,
 				DE584C562198615F0099415E /* Teacher.swift in Sources */,
-				DEAB1D41230D5432008FBFE3 /* DatePickerTableViewCell.swift in Sources */,
 				C2B5CDF31EEF0E750066DB30 /* AppDelegate.swift in Sources */,
 				C2C0E9B01FB8CDA00012FA9C /* Group.swift in Sources */,
+				DE9E3F84235F8FB90067DDFE /* RecordTableViewCell.swift in Sources */,
 				DE95523822A253D400D70DA4 /* UIBarButtonItem.swift in Sources */,
 				DE945ACA2264D17C00143303 /* University.swift in Sources */,
 				DE3EB6BA231B11F8007EA63C /* DateFormatter.swift in Sources */,

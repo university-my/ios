@@ -12,15 +12,28 @@ import UIKit
 class UniversityDataSource: NSObject {
     
     // MARK: - Types
-    
-    struct Row {
-        
+
+    struct Section {
+
+        let rows: [Row]
+
         let kind: Kind
-        
+
+        enum Kind {
+            case all
+            case favorites
+        }
+    }
+
+    struct Row {
+
+        let kind: Kind
+
         enum Kind {
             case auditoriums
             case groups
             case teachers
+            case favorites
         }
     }
     
@@ -37,12 +50,12 @@ class UniversityDataSource: NSObject {
         guard let context = viewContext else { return }
         university = UniversityEntity.fetch(id: id, context: context)
     }
-    
-    // MARK: - Rows
-    
-    var rows: [Row] = []
-    
-    func configureRows() {
+
+    // MARK: - Sections
+
+    var sections: [Section] = []
+
+    func configureSections() {
         guard let university = university else { return }
         
         // Group, teachers and auditoriums
@@ -58,7 +71,10 @@ class UniversityDataSource: NSObject {
             let auditoriums = Row(kind: .auditoriums)
             rows = [grops, teachers, auditoriums]
         }
-        
-        self.rows = rows
+        sections.append(Section(rows: rows, kind: .all))
+
+        // Favorites
+        let favoritesRow = Row(kind: .favorites)
+        sections.append(Section(rows: [favoritesRow], kind: .favorites))
     }
 }

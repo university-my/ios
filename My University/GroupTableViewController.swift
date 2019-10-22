@@ -27,6 +27,13 @@ class GroupTableViewController: GenericTableViewController {
         setup()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Show toolbar
+        navigationController?.setToolbarHidden(false, animated: true)
+    }
+    
     func setup() {
         updateDateButton()
 
@@ -146,15 +153,11 @@ class GroupTableViewController: GenericTableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "detailTableCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(for: indexPath) as RecordTableViewCell
         
         // Configure the cell
         if let record = fetchedResultsController?.object(at: indexPath) {
-            // Title
-            cell.textLabel?.text = record.title
-            
-            // Detail
-            cell.detailTextLabel?.text = record.detail
+            cell.update(with: record)
         }
         return cell
     }
@@ -171,7 +174,8 @@ class GroupTableViewController: GenericTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let record = fetchedResultsController?.object(at: indexPath)
-        performSegue(withIdentifier: "recordDetailed", sender: record)
+        performSegue(withIdentifier: "recordDetails", sender: record)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // MARK: - Navigation
@@ -180,12 +184,14 @@ class GroupTableViewController: GenericTableViewController {
         
         switch segue.identifier {
             
-        case "recordDetailed":
-            if let destination = segue.destination as? RecordDetailedTableViewController {
-                destination.recordID = (sender as? RecordEntity)?.id
-                destination.groupID = groupID
-                destination.teacherID = nil
-                destination.auditoriumID = nil
+        case "recordDetails":
+            if let navigation = segue.destination as? UINavigationController {
+                if let destination = navigation.viewControllers.first as? RecordDetailedTableViewController {
+                        destination.recordID = (sender as? RecordEntity)?.id
+                        destination.groupID = groupID
+                        destination.teacherID = nil
+                        destination.auditoriumID = nil
+                    }
             }
             
         case "presentDatePicker":

@@ -22,6 +22,8 @@ class FavoritesViewController: GenericTableViewController {
         super.viewDidLoad()
 
         setup()
+        
+        tabBarController?.tabBar.shadowImage = #imageLiteral(resourceName: "TransparentPixel")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -32,9 +34,12 @@ class FavoritesViewController: GenericTableViewController {
         dataSource?.fetchTeachers()
         dataSource?.configureSections()
         tableView.reloadData()
+        
+        navigationController?.setToolbarHidden(true, animated: true)
     }
 
     private func setup() {
+        universityID = University.selectedUniversityID
         if let id = universityID {
             dataSource = FavoritesDataSource()
             dataSource?.fetchUniversity(with: id)

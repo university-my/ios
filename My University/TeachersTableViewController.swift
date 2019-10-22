@@ -44,6 +44,9 @@ class TeachersTableViewController: SearchableTableViewController {
             datasource.performFetch()
             tableView.reloadData()
         }
+        
+        // Hide toolbar
+        navigationController?.setToolbarHidden(true, animated: true)
     }
     
     func setup() {

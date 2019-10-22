@@ -12,12 +12,12 @@ import UIKit
 class TeacherTableViewController: GenericTableViewController {
     
     // MARK: - Properties
-
+    
     private var sectionsTitles: [String] = []
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     
     // MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,28 +26,35 @@ class TeacherTableViewController: GenericTableViewController {
         setup()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Show toolbar
+        navigationController?.setToolbarHidden(false, animated: true)
+    }
+    
     func setup() {
         updateDateButton()
-
+        
         if let id = teacherID, let context = viewContext {
             teacher = TeacherEntity.fetchTeacher(id: id, context: context)
         }
         
         if let teacher = teacher {
             title = teacher.name
-
+            
             // Is Favorites
             favoriteButton.markAs(isFavorites: teacher.isFavorite)
-
+            
             // Records
             performFetch()
-
+            
             let records = fetchedResultsController?.fetchedObjects ?? []
             if records.isEmpty {
-              // Show activity indicator
-              showActivity()
+                // Show activity indicator
+                showActivity()
             }
-
+            
             // Start import
             importRecords()
         }
@@ -69,15 +76,15 @@ class TeacherTableViewController: GenericTableViewController {
             present(vc, animated: true)
         }
     }
-
-  private func teacherURL() -> String? {
-    guard let teacher = teacher else { return nil }
-    guard let universityURL = teacher.university?.url else { return nil }
-    guard let slug = teacher.slug else { return nil }
-    let dateString = DateFormatter.short.string(from: DatePicker.shared.pairDate)
-    let url = Settings.shared.baseURL + "/universities/\(universityURL)/teachers/\(slug)?pair_date=\(dateString)"
-    return url
-  }
+    
+    private func teacherURL() -> String? {
+        guard let teacher = teacher else { return nil }
+        guard let universityURL = teacher.university?.url else { return nil }
+        guard let slug = teacher.slug else { return nil }
+        let dateString = DateFormatter.short.string(from: DatePicker.shared.pairDate)
+        let url = Settings.shared.baseURL + "/universities/\(universityURL)/teachers/\(slug)?pair_date=\(dateString)"
+        return url
+    }
     
     // MARK: - Favorites
     
@@ -133,28 +140,24 @@ class TeacherTableViewController: GenericTableViewController {
             tableView.reloadData()
         }
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return numberOfSections()
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let section = fetchedResultsController?.sections?[safe: section]
         return section?.numberOfObjects ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "detailTableCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(for: indexPath) as RecordTableViewCell
         
         // Configure the cell
         if let record = fetchedResultsController?.object(at: indexPath) {
-            // Title
-            cell.textLabel?.text = record.title
-            
-            // Detail
-            cell.detailTextLabel?.text = record.detail
+            cell.update(with: record)
         }
         return cell
     }
@@ -171,7 +174,8 @@ class TeacherTableViewController: GenericTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let record = fetchedResultsController?.object(at: indexPath)
-        performSegue(withIdentifier: "recordDetailed", sender: record)
+        performSegue(withIdentifier: "recordDetails", sender: record)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // MARK: - Navigation
@@ -180,29 +184,31 @@ class TeacherTableViewController: GenericTableViewController {
         
         switch segue.identifier {
             
-        case "recordDetailed":
-            if let destination = segue.destination as? RecordDetailedTableViewController {
-                destination.recordID = (sender as? RecordEntity)?.id
-                destination.teacherID = teacherID
-                destination.auditoriumID = nil
-                destination.groupID = nil
+        case "recordDetails":
+            if let navigation = segue.destination as? UINavigationController {
+                if let destination = navigation.viewControllers.first as? RecordDetailedTableViewController {
+                    destination.recordID = (sender as? RecordEntity)?.id
+                    destination.teacherID = teacherID
+                    destination.auditoriumID = nil
+                    destination.groupID = nil
+                }
             }
             
         case "presentDatePicker":
-          let navigationVC = segue.destination as? UINavigationController
-          let vc = navigationVC?.viewControllers.first as? DatePickerViewController
-          vc?.selectDate = {
-            self.updateDateButton()
-            self.fetchOrImportRecordsForSelectedDate()
-          }
-
-          case "presentInformation":
-          let navigationVC = segue.destination as? UINavigationController
-          let vc = navigationVC?.viewControllers.first as? InformationTableViewController
-          if let teacher = teacher, let url = teacherURL() {
-            let page = WebPage(url: url, title: teacher.name ?? "")
-            vc?.webPage = page
-          }
+            let navigationVC = segue.destination as? UINavigationController
+            let vc = navigationVC?.viewControllers.first as? DatePickerViewController
+            vc?.selectDate = {
+                self.updateDateButton()
+                self.fetchOrImportRecordsForSelectedDate()
+            }
+            
+        case "presentInformation":
+            let navigationVC = segue.destination as? UINavigationController
+            let vc = navigationVC?.viewControllers.first as? InformationTableViewController
+            if let teacher = teacher, let url = teacherURL() {
+                let page = WebPage(url: url, title: teacher.name ?? "")
+                vc?.webPage = page
+            }
             
         default:
             break
@@ -222,7 +228,7 @@ class TeacherTableViewController: GenericTableViewController {
         
         let pairName = NSSortDescriptor(key: #keyPath(RecordEntity.pairName), ascending: true)
         let time = NSSortDescriptor(key: #keyPath(RecordEntity.time), ascending: true)
-
+        
         request.sortDescriptors = [pairName, time]
         request.predicate = generatePredicate()
         request.fetchBatchSize = 20
@@ -234,11 +240,11 @@ class TeacherTableViewController: GenericTableViewController {
             return nil
         }
     }()
-
+    
     private func performFetch() {
         do {
             try fetchedResultsController?.performFetch()
-
+            
             // Generate title for sections
             if let controller = fetchedResultsController, let sections = controller.sections {
                 var newSectionsTitles: [String] = []
@@ -246,10 +252,10 @@ class TeacherTableViewController: GenericTableViewController {
                     if let firstObjectInSection = section.objects?.first as? RecordEntity {
                         var sectionName = ""
                         if let name = firstObjectInSection.pairName {
-                          sectionName = name
+                            sectionName = name
                         }
                         if let time = firstObjectInSection.time {
-                          sectionName += " (\(time))"
+                            sectionName += " (\(time))"
                         }
                         newSectionsTitles.append(sectionName)
                     }
@@ -273,17 +279,17 @@ class TeacherTableViewController: GenericTableViewController {
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [teacherPredicate, datePredicate])
         return compoundPredicate
     }
-
-  // MARK: - Sections
-
-  // Number of sections in data source
-  private func numberOfSections() -> Int {
-    let sectionsWithData = fetchedResultsController?.sections?.count ?? 0
-    return sectionsWithData
-  }
+    
+    // MARK: - Sections
+    
+    // Number of sections in data source
+    private func numberOfSections() -> Int {
+        let sectionsWithData = fetchedResultsController?.sections?.count ?? 0
+        return sectionsWithData
+    }
     
     // MARK: - Date
-
+    
     @IBOutlet weak var dateButton: UIBarButtonItem!
     
     private func updateDateButton() {
@@ -298,14 +304,14 @@ class TeacherTableViewController: GenericTableViewController {
         
         let records = fetchedResultsController?.fetchedObjects ?? []
         if records.isEmpty {
-
+            
             // Hide previous records or activity
             hideActivity()
             tableView.reloadData()
-
+            
             // Show activity indicator
             showActivity()
-
+            
             // Start import
             importRecords()
         } else {

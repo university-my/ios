@@ -232,4 +232,10 @@ class RecordDetailedTableViewController: GenericTableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sections[section].name
     }
+    
+    // MARK: - Done
+    
+    @IBAction func done(_ sender: Any) {
+        dismiss(animated: true)
+    }
 }
