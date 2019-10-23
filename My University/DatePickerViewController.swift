@@ -12,7 +12,7 @@ class DatePickerViewController: UITableViewController {
     
     // MARK: - Date
 
-    var selectDate: (() -> ())?
+    var selectDate: ((_ date: Date) -> ())?
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var dateCell: UITableViewCell!
 
@@ -44,7 +44,7 @@ class DatePickerViewController: UITableViewController {
     
     @IBAction func done(_ sender: Any) {
         DatePicker.shared.pairDate = datePicker.date
-        selectDate?()
+        selectDate?(datePicker.date)
         dismiss(animated: true)
     }
 }

@@ -767,41 +767,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qN6-yp-tgM">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l2Z-Ba-11L">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
-                                        <subviews>
-                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="y4L-Du-MDz">
-                                                <rect key="frame" x="188.5" y="390.5" width="37" height="37"/>
-                                            </activityIndicatorView>
-                                        </subviews>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstItem="y4L-Du-MDz" firstAttribute="centerX" secondItem="l2Z-Ba-11L" secondAttribute="centerX" id="9ip-fl-G1Z"/>
-                                            <constraint firstItem="y4L-Du-MDz" firstAttribute="centerY" secondItem="l2Z-Ba-11L" secondAttribute="centerY" id="V2h-ob-HTI"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="l2Z-Ba-11L" secondAttribute="bottom" id="Lvu-fE-zq4"/>
-                                    <constraint firstAttribute="trailing" secondItem="l2Z-Ba-11L" secondAttribute="trailing" id="e18-aa-uB8"/>
-                                    <constraint firstItem="l2Z-Ba-11L" firstAttribute="top" secondItem="qN6-yp-tgM" secondAttribute="top" id="kMd-iy-2Xq"/>
-                                    <constraint firstItem="l2Z-Ba-11L" firstAttribute="leading" secondItem="qN6-yp-tgM" secondAttribute="leading" id="obv-qB-Frl"/>
-                                </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="xf9-7p-0Cr"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="dIa-hF-kwb"/>
-                            </scrollView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="y4L-Du-MDz">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Vh2-KR-0Vz" firstAttribute="bottom" secondItem="qN6-yp-tgM" secondAttribute="bottom" id="0Ub-jK-sbE"/>
-                            <constraint firstItem="l2Z-Ba-11L" firstAttribute="height" secondItem="Vh2-KR-0Vz" secondAttribute="height" id="31o-Pn-bnv"/>
-                            <constraint firstItem="qN6-yp-tgM" firstAttribute="top" secondItem="Vh2-KR-0Vz" secondAttribute="top" id="6cI-cV-8RE"/>
-                            <constraint firstItem="l2Z-Ba-11L" firstAttribute="width" secondItem="Vh2-KR-0Vz" secondAttribute="width" id="f7I-e1-1xz"/>
-                            <constraint firstItem="qN6-yp-tgM" firstAttribute="leading" secondItem="Vh2-KR-0Vz" secondAttribute="leading" id="uEQ-ET-0gZ"/>
-                            <constraint firstItem="Vh2-KR-0Vz" firstAttribute="trailing" secondItem="qN6-yp-tgM" secondAttribute="trailing" id="zOJ-JO-kXN"/>
+                            <constraint firstItem="y4L-Du-MDz" firstAttribute="centerX" secondItem="qA9-TZ-qRe" secondAttribute="centerX" id="mz8-0o-i4v"/>
+                            <constraint firstItem="y4L-Du-MDz" firstAttribute="centerY" secondItem="qA9-TZ-qRe" secondAttribute="centerY" id="q6Y-8c-EyR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Vh2-KR-0Vz"/>
                     </view>

@@ -197,7 +197,7 @@ class GroupTableViewController: GenericTableViewController {
         case "presentDatePicker":
             let navigationVC = segue.destination as? UINavigationController
             let vc = navigationVC?.viewControllers.first as? DatePickerViewController
-            vc?.selectDate = {
+            vc?.selectDate = { selecteDate in
                 self.updateDateButton()
                 self.fetchOrImportRecordsForSelectedDate()
             }
