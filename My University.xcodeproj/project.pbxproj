@@ -18,6 +18,8 @@
 		C2B5CDFB1EEF0E750066DB30 /* Schedule.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C2B5CDF91EEF0E750066DB30 /* Schedule.xcdatamodeld */; };
 		C2B5CDFD1EEF0E750066DB30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2B5CDFC1EEF0E750066DB30 /* Assets.xcassets */; };
 		C2C0E9B01FB8CDA00012FA9C /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C0E9AF1FB8CDA00012FA9C /* Group.swift */; };
+		DE017F9523622B0D0046D3ED /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE017F9423622B0D0046D3ED /* Preferences.storyboard */; };
+		DE017F9723622BC70046D3ED /* PreferencesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE017F9623622BC70046D3ED /* PreferencesTableViewController.swift */; };
 		DE0D64082264E1330001FCCF /* UniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0D64072264E1330001FCCF /* UniversityViewController.swift */; };
 		DE11A3B0230EA98B005131E8 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE11A3AF230EA98B005131E8 /* DatePickerViewController.swift */; };
 		DE13AF7F226A30D4009DF581 /* TeachersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE13AF7E226A30D4009DF581 /* TeachersTableViewController.swift */; };
@@ -102,6 +104,8 @@
 		C2B5CDFC1EEF0E750066DB30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C2B5CE011EEF0E750066DB30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2C0E9AF1FB8CDA00012FA9C /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		DE017F9423622B0D0046D3ED /* Preferences.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
+		DE017F9623622BC70046D3ED /* PreferencesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesTableViewController.swift; sourceTree = "<group>"; };
 		DE0D64072264E1330001FCCF /* UniversityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityViewController.swift; sourceTree = "<group>"; };
 		DE11A3AF230EA98B005131E8 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		DE13AF7E226A30D4009DF581 /* TeachersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersTableViewController.swift; sourceTree = "<group>"; };
@@ -233,6 +237,7 @@
 				DE87B78C235B9E1D0090B63E /* Initial */,
 				DEBB74B2235CEC2100226C7E /* Launch Screen */,
 				C29FF4CE2002382500B50299 /* Networking */,
+				DE017F9323622AF80046D3ED /* Preferences */,
 				DE3DC046235E468F007805DA /* Record Details */,
 				DE4AA06F21A5DEDC00E06FEA /* Search */,
 				C2B5CE2A1EF06E0E0066DB30 /* Supporting Files */,
@@ -296,6 +301,15 @@
 				DE18941721BC336700C7F9DB /* Record */,
 			);
 			name = Import;
+			sourceTree = "<group>";
+		};
+		DE017F9323622AF80046D3ED /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				DE017F9423622B0D0046D3ED /* Preferences.storyboard */,
+				DE017F9623622BC70046D3ED /* PreferencesTableViewController.swift */,
+			);
+			name = Preferences;
 			sourceTree = "<group>";
 		};
 		DE11A3AE230EA976005131E8 /* Date Picker */ = {
@@ -632,6 +646,7 @@
 				DE3EB6B5231B0AE7007EA63C /* About.storyboard in Resources */,
 				DEBB74B9235CF3E100226C7E /* University.storyboard in Resources */,
 				DEBB74B4235CEC5A00226C7E /* Launch Screen.storyboard in Resources */,
+				DE017F9523622B0D0046D3ED /* Preferences.storyboard in Resources */,
 				C2B5CDFD1EEF0E750066DB30 /* Assets.xcassets in Resources */,
 				DE29D024232CE9980054B748 /* Information.storyboard in Resources */,
 				DEDA50EA21862091006C7B27 /* InfoPlist.strings in Resources */,
@@ -646,6 +661,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE017F9723622BC70046D3ED /* PreferencesTableViewController.swift in Sources */,
 				DE945AD22264D71B00143303 /* UniversitiesDataSource.swift in Sources */,
 				DE945AC82264D11700143303 /* UniversityEntity+CoreDataProperties.swift in Sources */,
 				DE18942221BD45E600C7F9DB /* ImportForAuditorium.swift in Sources */,

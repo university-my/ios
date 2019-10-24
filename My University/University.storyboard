@@ -72,6 +72,14 @@
             </objects>
             <point key="canvasLocation" x="983" y="-990"/>
         </scene>
+        <!--Preferences-->
+        <scene sceneID="7nM-K4-YKe">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Preferences" id="LZv-ek-u7m" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vb5-f1-9fZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="615" y="554"/>
+        </scene>
         <!--University View Controller-->
         <scene sceneID="rGc-uI-4fn">
             <objects>
@@ -181,7 +189,11 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="AL9-1Q-JpS">
-                        <barButtonItem key="rightBarButtonItem" image="gear" catalog="system" id="U58-VY-iNv"/>
+                        <barButtonItem key="rightBarButtonItem" image="gear" catalog="system" id="U58-VY-iNv">
+                            <connections>
+                                <segue destination="LZv-ek-u7m" kind="presentation" id="5tV-FR-6SI"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="auditoriumsCell" destination="9TX-Vp-0ze" id="BXt-hD-5rc"/>

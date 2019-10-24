@@ -151,7 +151,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Jky-oG-8ri">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aTW-F7-zhe" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="aTW-F7-zhe" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="gch-PW-hva">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
