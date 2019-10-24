@@ -35,6 +35,9 @@ class AuditoriumsTableViewController: SearchableTableViewController {
         configureSearchControllers()
         searchController.searchResultsUpdater = self
         
+        // Always visible search bar
+        navigationItem.hidesSearchBarWhenScrolling = false
+        
         setup()
     }
     
@@ -129,12 +132,6 @@ class AuditoriumsTableViewController: SearchableTableViewController {
         default:
             break
         }
-    }
-    
-    // MARK: - Search
-    
-    @IBAction func search(_ sender: Any) {
-        searchController.searchBar.becomeFirstResponder()
     }
 }
 

@@ -226,13 +226,7 @@
                         <barButtonItem id="Y4L-vb-mq3"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="H7O-zf-AWj"/>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Groups" id="aej-Et-KUK">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="hFl-AC-w87">
-                            <connections>
-                                <action selector="search:" destination="eav-eo-NTI" id="ffn-3Z-Bug"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Groups" id="aej-Et-KUK"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="aoL-s0-MGp">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -391,13 +385,7 @@
                         <barButtonItem id="9cp-XM-mpF"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="0hN-Ny-hDd"/>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Auditoriums" id="McU-ms-NIE">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="CP2-9A-cOI">
-                            <connections>
-                                <action selector="search:" destination="W7b-zz-Rsa" id="l0Q-w7-iLu"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Auditoriums" id="McU-ms-NIE"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="VRV-59-n5L">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -548,13 +536,7 @@
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="ufC-tf-gyJ"/>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Teachers" id="Fhk-g8-5rv">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="3VI-9m-NER">
-                            <connections>
-                                <action selector="search:" destination="P1W-Vf-SQ3" id="Dm0-w3-FYZ"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Teachers" id="Fhk-g8-5rv"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="dYP-Hi-nzp">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -782,8 +764,8 @@
         <image name="table" catalog="system" width="64" height="46"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0on-lD-CFF"/>
+        <segue reference="MfV-VQ-oKG"/>
         <segue reference="swU-6C-ISC"/>
-        <segue reference="qIA-57-LcL"/>
+        <segue reference="esS-pW-g3R"/>
     </inferredMetricsTieBreakers>
 </document>
