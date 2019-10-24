@@ -196,18 +196,11 @@ class AuditoriumTableViewController: GenericTableViewController {
         case "presentDatePicker":
             let navigationVC = segue.destination as? UINavigationController
             let vc = navigationVC?.viewControllers.first as? DatePickerViewController
-            vc?.selectDate = { selecteDate in
+            vc?.pairDate = pairDate
+            vc?.didSelectDate = { selecteDate in
                 self.pairDate = selecteDate
                 self.updatePrompt()
                 self.fetchOrImportRecordsForSelectedDate()
-            }
-            
-        case "presentInformation":
-            let navigationVC = segue.destination as? UINavigationController
-            let vc = navigationVC?.viewControllers.first as? InformationTableViewController
-            if let auditorium = auditorium, let url = auditoriumURL() {
-                let page = WebPage(url: url, title: auditorium.name ?? "")
-                vc?.webPage = page
             }
             
         default:

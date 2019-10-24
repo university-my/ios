@@ -12,7 +12,8 @@ class DatePickerViewController: UITableViewController {
     
     // MARK: - Date
 
-    var selectDate: ((_ date: Date) -> ())?
+    var pairDate = Date()
+    var didSelectDate: ((_ date: Date) -> ())?
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var dateCell: UITableViewCell!
 
@@ -30,7 +31,7 @@ class DatePickerViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        datePicker.date = DatePicker.shared.pairDate
+        datePicker.date = pairDate
         updateDateCell()
     }
     
@@ -43,8 +44,8 @@ class DatePickerViewController: UITableViewController {
     // MARK: - Done
     
     @IBAction func done(_ sender: Any) {
-        DatePicker.shared.pairDate = datePicker.date
-        selectDate?(datePicker.date)
+        pairDate = datePicker.date
+        didSelectDate?(pairDate)
         dismiss(animated: true)
     }
 }

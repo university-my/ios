@@ -34,7 +34,7 @@ class TeacherTableViewController: GenericTableViewController {
     }
     
     func setup() {
-        updateDateButton()
+        updatePrompt()
         
         if let id = teacherID, let context = viewContext {
             teacher = TeacherEntity.fetchTeacher(id: id, context: context)
@@ -81,7 +81,7 @@ class TeacherTableViewController: GenericTableViewController {
         guard let teacher = teacher else { return nil }
         guard let universityURL = teacher.university?.url else { return nil }
         guard let slug = teacher.slug else { return nil }
-        let dateString = DateFormatter.short.string(from: DatePicker.shared.pairDate)
+        let dateString = DateFormatter.short.string(from: pairDate)
         let url = Settings.shared.baseURL + "/universities/\(universityURL)/teachers/\(slug)?pair_date=\(dateString)"
         return url
     }
@@ -113,9 +113,8 @@ class TeacherTableViewController: GenericTableViewController {
         guard let university = teacher.university else { return }
         
         // Download records for Teacher from backend and save to database.
-        let selectedDate = DatePicker.shared.pairDate
         importManager = Record.ImportForTeacher(persistentContainer: persistentContainer, teacher: teacher, university: university)
-        importManager?.importRecords(for: selectedDate, { (error) in
+        importManager?.importRecords(for: pairDate, { (error) in
             
             DispatchQueue.main.async {
                 
@@ -197,17 +196,11 @@ class TeacherTableViewController: GenericTableViewController {
         case "presentDatePicker":
             let navigationVC = segue.destination as? UINavigationController
             let vc = navigationVC?.viewControllers.first as? DatePickerViewController
-            vc?.selectDate = { selecteDate in
-                self.updateDateButton()
+            vc?.pairDate = pairDate
+            vc?.didSelectDate = { selecteDate in
+                self.pairDate = selecteDate
+                self.updatePrompt()
                 self.fetchOrImportRecordsForSelectedDate()
-            }
-            
-        case "presentInformation":
-            let navigationVC = segue.destination as? UINavigationController
-            let vc = navigationVC?.viewControllers.first as? InformationTableViewController
-            if let teacher = teacher, let url = teacherURL() {
-                let page = WebPage(url: url, title: teacher.name ?? "")
-                vc?.webPage = page
             }
             
         default:
@@ -269,7 +262,7 @@ class TeacherTableViewController: GenericTableViewController {
     
     private func generatePredicate() -> NSPredicate? {
         guard let teacher = teacher else { return nil }
-        let selectedDate = DatePicker.shared.pairDate
+        let selectedDate = pairDate
         
         let startOfDay = selectedDate.startOfDay as NSDate
         let endOfDay = selectedDate.endOfDay as NSDate
@@ -290,11 +283,31 @@ class TeacherTableViewController: GenericTableViewController {
     
     // MARK: - Date
     
+    private var pairDate = Date()
     @IBOutlet weak var dateButton: UIBarButtonItem!
     
-    private func updateDateButton() {
-        let selectedDate = DatePicker.shared.pairDate
-        dateButton.title = DateFormatter.date.string(from: selectedDate)
+    private func updatePrompt() {
+        navigationItem.prompt = DateFormatter.date.string(from: pairDate)
+    }
+    
+    @IBAction func previousDate(_ sender: Any) {
+        // -1 day
+        let currentDate = pairDate
+        if let previousDate = Calendar.current.date(byAdding: .day, value: -1, to: currentDate) {
+            pairDate = previousDate
+            fetchOrImportRecordsForSelectedDate()
+            updatePrompt()
+        }
+    }
+    
+    @IBAction func nextDate(_ sender: Any) {
+        // +1 day
+        let currentDate = pairDate
+        if let nextDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate) {
+            pairDate = nextDate
+            fetchOrImportRecordsForSelectedDate()
+            updatePrompt()
+        }
     }
     
     private func fetchOrImportRecordsForSelectedDate() {

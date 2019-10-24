@@ -288,15 +288,21 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem systemItem="action" id="rdm-Ip-Cds">
+                        <barButtonItem image="chevron.left" catalog="system" id="pjH-QF-RS6">
                             <connections>
-                                <action selector="share:" destination="qNV-DU-Cbu" id="oB9-c5-Ucg"/>
+                                <action selector="previousDate:" destination="qNV-DU-Cbu" id="XHZ-bW-G2q"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="ov4-kB-dpc"/>
-                        <barButtonItem title="22 aug 2019" id="CCj-zG-I0C">
+                        <barButtonItem image="chevron.right" catalog="system" id="Epz-S9-lQc">
                             <connections>
-                                <segue destination="b19-ct-wxw" kind="presentation" identifier="presentDatePicker" id="UZ5-q4-RS2"/>
+                                <action selector="nextDate:" destination="qNV-DU-Cbu" id="389-sb-iUo"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="MXW-UD-ct8"/>
+                        <barButtonItem systemItem="action" id="rdm-Ip-Cds">
+                            <connections>
+                                <action selector="share:" destination="qNV-DU-Cbu" id="oB9-c5-Ucg"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="EhE-Im-eo8"/>
@@ -305,18 +311,12 @@
                                 <action selector="toggleFavorite:" destination="qNV-DU-Cbu" id="7Tz-m3-eiY"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem style="plain" systemItem="fixedSpace" id="ziL-Im-9vb"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Group" id="gAt-SW-9Hm">
-                        <barButtonItem key="rightBarButtonItem" id="p2H-Mz-dMU">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" lineBreakMode="middleTruncation" id="s0v-z6-mBo">
-                                <rect key="frame" x="369" y="10" width="25" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <segue destination="7hN-hv-zpW" kind="presentation" identifier="presentInformation" id="Ivr-Pq-peB"/>
-                                </connections>
-                            </button>
-                            <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
+                        <barButtonItem key="rightBarButtonItem" image="calendar" catalog="system" id="CCj-zG-I0C">
+                            <connections>
+                                <segue destination="b19-ct-wxw" kind="presentation" identifier="presentDatePicker" id="UZ5-q4-RS2"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -344,15 +344,7 @@
                 <viewControllerPlaceholder storyboardName="Record Details" id="43g-7n-gTu" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xeB-jy-Isi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4941" y="-546"/>
-        </scene>
-        <!--Information-->
-        <scene sceneID="Aom-x5-s1n">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Information" id="7hN-hv-zpW" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="c9e-pL-VdE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4915" y="-579"/>
+            <point key="canvasLocation" x="4884" y="-512"/>
         </scene>
         <!--Date Picker-->
         <scene sceneID="CXH-zL-nfN">
@@ -360,7 +352,7 @@
                 <viewControllerPlaceholder storyboardName="Date Picker" id="b19-ct-wxw" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aHA-Gl-foy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4941" y="-512"/>
+            <point key="canvasLocation" x="4871" y="-605"/>
         </scene>
         <!--Auditoriums-->
         <scene sceneID="AD2-bS-ESw">
@@ -618,15 +610,21 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
+                        <barButtonItem image="chevron.left" catalog="system" id="Cef-Jb-UFU">
+                            <connections>
+                                <action selector="previousDate:" destination="pja-59-5tR" id="eED-ch-qd5"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="f1c-ej-Xxc"/>
+                        <barButtonItem image="chevron.right" catalog="system" id="kHe-4j-eUB">
+                            <connections>
+                                <action selector="nextDate:" destination="pja-59-5tR" id="mbg-Fr-7WC"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="KgO-O1-8CM"/>
                         <barButtonItem systemItem="action" id="eE2-0W-bVn">
                             <connections>
                                 <action selector="share:" destination="pja-59-5tR" id="8Ex-qL-zR7"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="uF7-kt-9fS"/>
-                        <barButtonItem title="2 sep 2019" id="Zqq-hI-hdu">
-                            <connections>
-                                <segue destination="HVA-cE-QrU" kind="presentation" identifier="presentDatePicker" id="8nl-Os-cpj"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="tqR-Q8-j9n"/>
@@ -638,15 +636,10 @@
                         <barButtonItem style="plain" systemItem="fixedSpace" id="zTW-E8-yXF"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Teacher" largeTitleDisplayMode="never" id="bxn-Q4-B4U">
-                        <barButtonItem key="rightBarButtonItem" id="ERy-Uq-r1k">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" lineBreakMode="middleTruncation" id="u5J-OP-axh">
-                                <rect key="frame" x="369" y="10" width="25" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <segue destination="PIU-7P-LaH" kind="presentation" identifier="presentInformation" id="psI-Cn-id8"/>
-                                </connections>
-                            </button>
-                            <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
+                        <barButtonItem key="rightBarButtonItem" image="calendar" catalog="system" id="Zqq-hI-hdu">
+                            <connections>
+                                <segue destination="HVA-cE-QrU" kind="presentation" identifier="presentDatePicker" id="8nl-Os-cpj"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -673,15 +666,7 @@
                 <viewControllerPlaceholder storyboardName="Date Picker" id="HVA-cE-QrU" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JMy-Ls-emw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4913" y="207"/>
-        </scene>
-        <!--Information-->
-        <scene sceneID="eSE-kP-V3w">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Information" id="PIU-7P-LaH" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3KF-Fo-frA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4915" y="100"/>
+            <point key="canvasLocation" x="4839" y="92"/>
         </scene>
         <!--Record Details-->
         <scene sceneID="Yo4-Vb-sDW">
@@ -689,7 +674,7 @@
                 <viewControllerPlaceholder storyboardName="Record Details" id="0H0-wj-wSc" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M2C-ud-tSL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4918" y="154"/>
+            <point key="canvasLocation" x="4826" y="224"/>
         </scene>
         <!--Search Results Table View Controller-->
         <scene sceneID="TiF-r5-XhY">
