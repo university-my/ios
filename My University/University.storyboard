@@ -204,6 +204,7 @@
                         <segue destination="P1W-Vf-SQ3" kind="show" identifier="showTeachers" id="TzT-2s-pyY"/>
                         <segue destination="W7b-zz-Rsa" kind="show" identifier="showAuditoriums" id="7in-AW-ArM"/>
                         <segue destination="xPC-tj-ooa" kind="show" identifier="showFavorites" id="frt-Nw-Iky"/>
+                        <segue destination="xPC-tj-ooa" kind="show" identifier="favoritesWithoutAnimation" animates="NO" id="j2h-pi-CHy"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NeF-49-RUJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -839,5 +840,6 @@
         <segue reference="MfV-VQ-oKG"/>
         <segue reference="swU-6C-ISC"/>
         <segue reference="esS-pW-g3R"/>
+        <segue reference="j2h-pi-CHy"/>
     </inferredMetricsTieBreakers>
 </document>

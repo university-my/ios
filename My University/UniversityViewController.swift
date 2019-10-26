@@ -61,9 +61,37 @@ class UniversityViewController: GenericTableViewController {
             groupsDataSource = GroupsDataSource(universityID: university.id)
             teachersDataSource = TeacherDataSource(universityID: university.id)
             
+            // Favorites
+            checkFavorites()
+            
             // Start from groups,
             // And import auditoriums and teachers
             loadGroups()
+        }
+    }
+    
+    // MARK: - Favorites
+    
+    /// Check if need to show favorites after app launch
+    private func checkFavorites() {
+        guard let id = universityID else { return }
+        let favoritesDataSource = FavoritesDataSource()
+        favoritesDataSource.fetchUniversity(with: id)
+        
+        favoritesDataSource.fetchAuditoriums()
+        favoritesDataSource.fetchGroups()
+        favoritesDataSource.fetchTeachers()
+        
+        var showFavorites = false
+        if favoritesDataSource.auditoriums?.fetchedObjects?.isEmpty == false {
+            showFavorites = true
+        } else if favoritesDataSource.groups?.fetchedObjects?.isEmpty == false {
+            showFavorites = true
+        } else if favoritesDataSource.teachers?.fetchedObjects?.isEmpty == false {
+            showFavorites = true
+        }
+        if showFavorites {
+            performSegue(withIdentifier: "favoritesWithoutAnimation", sender: nil)
         }
     }
     
