@@ -15,6 +15,7 @@ class AuditoriumTableViewController: GenericTableViewController {
     
     private var sectionsTitles: [String] = []
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
+    @IBOutlet weak var titleLabel: UILabel!
     
     // MARK: - Lifecycle
     
@@ -34,13 +35,13 @@ class AuditoriumTableViewController: GenericTableViewController {
     }
     
     func setup() {
-        updatePrompt()
+        updateTitleWithDate()
         
         if let id = auditoriumID, let context = viewContext {
             auditorium = AuditoriumEntity.fetch(id: id, context: context)
         }
         if let auditorium = auditorium {
-            title = auditorium.name
+            titleLabel.text = auditorium.name
             
             // Is Favorites
             favoriteButton.markAs(isFavorites: auditorium.isFavorite)
@@ -199,7 +200,7 @@ class AuditoriumTableViewController: GenericTableViewController {
             vc?.pairDate = pairDate
             vc?.didSelectDate = { selecteDate in
                 self.pairDate = selecteDate
-                self.updatePrompt()
+                self.updateTitleWithDate()
                 self.fetchOrImportRecordsForSelectedDate()
             }
             
@@ -278,8 +279,8 @@ class AuditoriumTableViewController: GenericTableViewController {
     private var pairDate = Date()
     @IBOutlet weak var dateButton: UIBarButtonItem!
     
-    private func updatePrompt() {
-        navigationItem.prompt = DateFormatter.date.string(from: pairDate)
+    private func updateTitleWithDate() {
+        title = DateFormatter.date.string(from: pairDate)
     }
     
     @IBAction func previousDate(_ sender: Any) {
@@ -288,7 +289,7 @@ class AuditoriumTableViewController: GenericTableViewController {
         if let previousDate = Calendar.current.date(byAdding: .day, value: -1, to: currentDate) {
             pairDate = previousDate
             fetchOrImportRecordsForSelectedDate()
-            updatePrompt()
+            updateTitleWithDate()
         }
     }
     
@@ -298,7 +299,7 @@ class AuditoriumTableViewController: GenericTableViewController {
         if let nextDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate) {
             pairDate = nextDate
             fetchOrImportRecordsForSelectedDate()
-            updatePrompt()
+            updateTitleWithDate()
         }
     }
     

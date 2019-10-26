@@ -24,7 +24,7 @@ extension DateFormatter {
 
     static var date: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE, d MMMM"
+        dateFormatter.dateFormat = "EEEE, d MMM"
         return dateFormatter
     }()
 }

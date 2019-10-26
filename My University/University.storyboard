@@ -263,9 +263,28 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="mGT-n5-zT7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="53g-V4-xMb">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ikp-AV-rSQ">
+                                    <rect key="frame" x="20" y="8" width="374" height="28"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="ikp-AV-rSQ" firstAttribute="top" secondItem="53g-V4-xMb" secondAttribute="top" constant="8" id="UJW-Iq-yWb"/>
+                                <constraint firstItem="ikp-AV-rSQ" firstAttribute="leading" secondItem="53g-V4-xMb" secondAttribute="leading" constant="20" symbolic="YES" id="faK-jZ-m52"/>
+                                <constraint firstAttribute="trailing" secondItem="ikp-AV-rSQ" secondAttribute="trailing" constant="20" symbolic="YES" id="neD-4y-41R"/>
+                                <constraint firstAttribute="bottom" secondItem="ikp-AV-rSQ" secondAttribute="bottom" constant="8" id="ra2-mC-IxU"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecordTableViewCell" textLabel="Fwg-VM-4OT" detailTextLabel="Bb8-wM-wnL" style="IBUITableViewCellStyleSubtitle" id="Odp-y9-auS" customClass="RecordTableViewCell" customModule="My_University" customModuleProvider="target">
-                                <rect key="frame" x="20" y="55.5" width="374" height="55.5"/>
+                                <rect key="frame" x="20" y="99.5" width="374" height="55.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Odp-y9-auS" id="3xf-SM-SHj">
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="55.5"/>
@@ -337,6 +356,7 @@
                     <connections>
                         <outlet property="dateButton" destination="CCj-zG-I0C" id="khP-Dz-oA5"/>
                         <outlet property="favoriteButton" destination="FkD-w5-ffK" id="Lzu-So-gCR"/>
+                        <outlet property="titleLabel" destination="ikp-AV-rSQ" id="BS0-Hv-hxF"/>
                         <segue destination="43g-7n-gTu" kind="presentation" identifier="recordDetails" id="XK9-se-gJu"/>
                     </connections>
                 </tableViewController>
@@ -422,9 +442,28 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="b5u-zK-3uw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="Wfr-w3-Pmq">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yR3-u0-xw5">
+                                    <rect key="frame" x="20" y="8" width="374" height="28"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="yR3-u0-xw5" firstAttribute="leading" secondItem="Wfr-w3-Pmq" secondAttribute="leading" constant="20" symbolic="YES" id="8bf-IN-b4d"/>
+                                <constraint firstAttribute="trailing" secondItem="yR3-u0-xw5" secondAttribute="trailing" constant="20" symbolic="YES" id="eAp-VK-UWg"/>
+                                <constraint firstItem="yR3-u0-xw5" firstAttribute="top" secondItem="Wfr-w3-Pmq" secondAttribute="top" constant="8" id="kUq-RT-1lT"/>
+                                <constraint firstAttribute="bottom" secondItem="yR3-u0-xw5" secondAttribute="bottom" constant="8" id="qvG-2j-aTw"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecordTableViewCell" textLabel="apO-DF-cCn" detailTextLabel="OdG-T3-aLK" style="IBUITableViewCellStyleSubtitle" id="BfX-Kn-g6s" customClass="RecordTableViewCell" customModule="My_University" customModuleProvider="target">
-                                <rect key="frame" x="20" y="55.5" width="374" height="55.5"/>
+                                <rect key="frame" x="20" y="99.5" width="374" height="55.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BfX-Kn-g6s" id="7U9-WE-CQn">
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="55.5"/>
@@ -495,6 +534,7 @@
                     <connections>
                         <outlet property="dateButton" destination="KYM-F3-LCK" id="uT4-dr-uon"/>
                         <outlet property="favoriteButton" destination="qBX-Cv-vdP" id="sh5-TT-dTP"/>
+                        <outlet property="titleLabel" destination="yR3-u0-xw5" id="8Ak-8r-sm5"/>
                         <segue destination="smG-A5-woS" kind="presentation" identifier="recordDetails" id="7tb-1p-J0p"/>
                     </connections>
                 </tableViewController>
@@ -573,9 +613,28 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Poy-xG-UTc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="By3-4Z-ELp">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4VN-bV-gfO">
+                                    <rect key="frame" x="20" y="8" width="374" height="28"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="4VN-bV-gfO" firstAttribute="leading" secondItem="By3-4Z-ELp" secondAttribute="leading" constant="20" symbolic="YES" id="0ES-cp-xod"/>
+                                <constraint firstAttribute="trailing" secondItem="4VN-bV-gfO" secondAttribute="trailing" constant="20" symbolic="YES" id="5co-gW-VgD"/>
+                                <constraint firstAttribute="bottom" secondItem="4VN-bV-gfO" secondAttribute="bottom" constant="8" id="Onx-W3-Kdy"/>
+                                <constraint firstItem="4VN-bV-gfO" firstAttribute="top" secondItem="By3-4Z-ELp" secondAttribute="top" constant="8" id="T7t-Lz-rZR"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecordTableViewCell" textLabel="Oy5-7d-R7M" detailTextLabel="4eW-DF-1HT" style="IBUITableViewCellStyleSubtitle" id="8G3-wf-2qI" customClass="RecordTableViewCell" customModule="My_University" customModuleProvider="target">
-                                <rect key="frame" x="20" y="55.5" width="374" height="55.5"/>
+                                <rect key="frame" x="20" y="99.5" width="374" height="55.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8G3-wf-2qI" id="hSZ-LR-kAn">
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="55.5"/>
@@ -629,7 +688,7 @@
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="fixedSpace" id="zTW-E8-yXF"/>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Teacher" largeTitleDisplayMode="never" id="bxn-Q4-B4U">
+                    <navigationItem key="navigationItem" title="Teacher" id="bxn-Q4-B4U">
                         <barButtonItem key="rightBarButtonItem" image="calendar" catalog="system" id="Zqq-hI-hdu">
                             <connections>
                                 <segue destination="HVA-cE-QrU" kind="presentation" identifier="presentDatePicker" id="8nl-Os-cpj"/>
@@ -647,6 +706,7 @@
                     <connections>
                         <outlet property="dateButton" destination="Zqq-hI-hdu" id="Lee-ub-oUJ"/>
                         <outlet property="favoriteButton" destination="BNn-sQ-kol" id="b3g-gN-ig6"/>
+                        <outlet property="titleLabel" destination="4VN-bV-gfO" id="Hur-z9-rMW"/>
                         <segue destination="0H0-wj-wSc" kind="presentation" identifier="recordDetails" id="MQM-PM-u2C"/>
                     </connections>
                 </tableViewController>

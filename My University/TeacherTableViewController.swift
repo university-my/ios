@@ -15,6 +15,7 @@ class TeacherTableViewController: GenericTableViewController {
     
     private var sectionsTitles: [String] = []
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
+    @IBOutlet weak var titleLabel: UILabel!
     
     // MARK: - Lifecycle
     
@@ -34,14 +35,14 @@ class TeacherTableViewController: GenericTableViewController {
     }
     
     func setup() {
-        updatePrompt()
+        updateTitleWithDate()
         
         if let id = teacherID, let context = viewContext {
             teacher = TeacherEntity.fetchTeacher(id: id, context: context)
         }
         
         if let teacher = teacher {
-            title = teacher.name
+            titleLabel.text = teacher.name
             
             // Is Favorites
             favoriteButton.markAs(isFavorites: teacher.isFavorite)
@@ -199,7 +200,7 @@ class TeacherTableViewController: GenericTableViewController {
             vc?.pairDate = pairDate
             vc?.didSelectDate = { selecteDate in
                 self.pairDate = selecteDate
-                self.updatePrompt()
+                self.updateTitleWithDate()
                 self.fetchOrImportRecordsForSelectedDate()
             }
             
@@ -286,8 +287,8 @@ class TeacherTableViewController: GenericTableViewController {
     private var pairDate = Date()
     @IBOutlet weak var dateButton: UIBarButtonItem!
     
-    private func updatePrompt() {
-        navigationItem.prompt = DateFormatter.date.string(from: pairDate)
+    private func updateTitleWithDate() {
+        title = DateFormatter.date.string(from: pairDate)
     }
     
     @IBAction func previousDate(_ sender: Any) {
@@ -296,7 +297,7 @@ class TeacherTableViewController: GenericTableViewController {
         if let previousDate = Calendar.current.date(byAdding: .day, value: -1, to: currentDate) {
             pairDate = previousDate
             fetchOrImportRecordsForSelectedDate()
-            updatePrompt()
+            updateTitleWithDate()
         }
     }
     
@@ -306,7 +307,7 @@ class TeacherTableViewController: GenericTableViewController {
         if let nextDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate) {
             pairDate = nextDate
             fetchOrImportRecordsForSelectedDate()
-            updatePrompt()
+            updateTitleWithDate()
         }
     }
     

@@ -394,9 +394,9 @@
 		DE5FAE072263B36A00333121 /* Universities */ = {
 			isa = PBXGroup;
 			children = (
-				DEBB74AE235CE62600226C7E /* Storyboard */,
 				DE87B791235B9FCD0090B63E /* Data Models */,
 				DEE576E0226B7875008F9EB6 /* Data Source */,
+				DEBB74AE235CE62600226C7E /* Storyboard */,
 				DEE576DF226B7861008F9EB6 /* View Controllers */,
 			);
 			name = Universities;

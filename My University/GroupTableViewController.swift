@@ -15,6 +15,7 @@ class GroupTableViewController: GenericTableViewController {
     
     private var sectionsTitles: [String] = []
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
+    @IBOutlet weak var titleLabel: UILabel!
     
     // MARK: - Lifecycle
     
@@ -34,13 +35,13 @@ class GroupTableViewController: GenericTableViewController {
     }
     
     func setup() {
-        updatePrompt()
+        updateTitleWithDate()
         
         if let id = groupID, let context = viewContext {
             group = GroupEntity.fetch(id: id, context: context)
         }
         if let group = group {
-            title = group.name
+            titleLabel.text = group.name
             
             // Is Favorites
             favoriteButton.markAs(isFavorites: group.isFavorite)
@@ -198,7 +199,7 @@ class GroupTableViewController: GenericTableViewController {
             vc?.pairDate = pairDate
             vc?.didSelectDate = { selecteDate in
                 self.pairDate = selecteDate
-                self.updatePrompt()
+                self.updateTitleWithDate()
                 self.fetchOrImportRecordsForSelectedDate()
             }
             
@@ -276,8 +277,8 @@ class GroupTableViewController: GenericTableViewController {
     private var pairDate = Date()
     @IBOutlet weak var dateButton: UIBarButtonItem!
     
-    private func updatePrompt() {
-        navigationItem.prompt = DateFormatter.date.string(from: pairDate)
+    private func updateTitleWithDate() {
+        title = DateFormatter.date.string(from: pairDate)
     }
     
     @IBAction func previousDate(_ sender: Any) {
@@ -286,7 +287,7 @@ class GroupTableViewController: GenericTableViewController {
         if let previousDate = Calendar.current.date(byAdding: .day, value: -1, to: currentDate) {
             pairDate = previousDate
             fetchOrImportRecordsForSelectedDate()
-            updatePrompt()
+            updateTitleWithDate()
         }
     }
     
@@ -296,7 +297,7 @@ class GroupTableViewController: GenericTableViewController {
         if let nextDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate) {
             pairDate = nextDate
             fetchOrImportRecordsForSelectedDate()
-            updatePrompt()
+            updateTitleWithDate()
         }
     }
     
