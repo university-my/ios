@@ -13,9 +13,28 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="KEP-ki-qJI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="WYT-Sw-2MU">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7F-Za-SXt">
+                                    <rect key="frame" x="20" y="8" width="374" height="28"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="d7F-Za-SXt" secondAttribute="trailing" constant="20" symbolic="YES" id="1sA-90-4Ik"/>
+                                <constraint firstItem="d7F-Za-SXt" firstAttribute="top" secondItem="WYT-Sw-2MU" secondAttribute="top" constant="8" id="efv-FF-NXI"/>
+                                <constraint firstAttribute="bottom" secondItem="d7F-Za-SXt" secondAttribute="bottom" constant="8" id="k8W-aD-GCm"/>
+                                <constraint firstItem="d7F-Za-SXt" firstAttribute="leading" secondItem="WYT-Sw-2MU" secondAttribute="leading" constant="20" symbolic="YES" id="kXr-CD-gN4"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="recordDetailed" textLabel="MNR-t6-Pqr" detailTextLabel="gBg-DD-lsi" style="IBUITableViewCellStyleSubtitle" id="1Jr-cg-KUH">
-                                <rect key="frame" x="20" y="55.5" width="374" height="55.5"/>
+                                <rect key="frame" x="20" y="99.5" width="374" height="55.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1Jr-cg-KUH" id="ojj-o3-AgK">
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="55.5"/>
@@ -50,6 +69,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="dateLabel" destination="d7F-Za-SXt" id="hQe-0X-beC"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6C2-EY-dRm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -60,8 +82,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8Kk-Au-t8L" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yku-hR-mTt">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="yku-hR-mTt">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

@@ -14,30 +14,33 @@ class RecordDetailedTableViewController: GenericTableViewController {
     
     // MARK: - Types
     
-    enum SectionType {
-        case date(dateString: String)
+    struct Section {
+        let type: SectionType
+        var rows: [RowType]
+    }
+    
+    enum RowType {
         case pairName(name: String?, type: String?)
         case reason(reason: String)
         case auditorium(auditorium: AuditoriumEntity)
         case teacher(teacher: TeacherEntity)
-        case groups(groups: NSSet)
+        case group(group: GroupEntity)
+    }
+    
+    enum SectionType {
+        case pair
+        case auditorium
+        case teacher
+        case groups
         
         var name: String {
             switch self {
             case .auditorium:
                 return NSLocalizedString("AUDITORIUM", comment: "")
-            case .date(_):
-                return NSLocalizedString("DATE", comment: "")
-            case .groups(let groups):
-                if groups.count > 1 {
-                    return NSLocalizedString("GROUPS", comment: "")
-                } else {
-                    return NSLocalizedString("GROUP", comment: "")
-                }
-            case .pairName(_):
-                return NSLocalizedString("NAME", comment: "")
-            case .reason:
-                return NSLocalizedString("DESCRIPTION", comment: "")
+            case .groups:
+                return NSLocalizedString("GROUPS", comment: "")
+            case .pair:
+                return NSLocalizedString("PAIR", comment: "")
             case .teacher:
                 return NSLocalizedString("TEACHER", comment: "")
             }
@@ -52,7 +55,7 @@ class RecordDetailedTableViewController: GenericTableViewController {
     
     var recordID: Int64?
     private weak var record: RecordEntity?
-
+    
     private var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .full
@@ -74,10 +77,24 @@ class RecordDetailedTableViewController: GenericTableViewController {
         if let id = recordID, let context = viewContext {
             record = RecordEntity.fetch(id: id, context: context)
             title = nameAndTime()
+            updateWithPairDate()
             sections = generateSections()
         }
         
         showRateApp()
+    }
+    
+    // MARK: - Date
+    
+    @IBOutlet weak var dateLabel: UILabel!
+    
+    /// Date in table header
+    private func updateWithPairDate() {
+        if let date = record?.date {
+            dateLabel.text = dateFormatter.string(from: date)
+        } else {
+            dateLabel.text = nil
+        }
     }
     
     // MARK: - Rate App
@@ -103,7 +120,7 @@ class RecordDetailedTableViewController: GenericTableViewController {
     private func showRateApp() {
         if shouldRatingApp(for: UserData.firstUsage) {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0, execute: {
-              SKStoreReviewController.requestReview()
+                SKStoreReviewController.requestReview()
             })
         }
     }
@@ -122,44 +139,52 @@ class RecordDetailedTableViewController: GenericTableViewController {
     
     // MARK: - Sections
     
-    private var sections: [SectionType] = []
+    private var sections: [Section] = []
     
-    private func generateSections() -> [SectionType] {
+    private func generateSections() -> [Section] {
         guard let record = record else { return [] }
-        var sections: [SectionType] = []
+        
+        var sections: [Section] = []
+        
+        // Pair
+        var pairSection = Section(type: .pair, rows: [])
         
         // Name and type
         if let name = record.name, name.isEmpty == false {
-            sections.append(.pairName(name: record.name, type: record.type))
+            pairSection.rows.append(.pairName(name: record.name, type: record.type))
             
         } else if let type = record.type, type.isEmpty == false {
-            sections.append(.pairName(name: record.name, type: record.type))
-        }
-        
-        // Date
-        if let date = record.date {
-            let dateString = dateFormatter.string(from: date)
-            sections.append(.date(dateString: dateString))
+            pairSection.rows.append(.pairName(name: record.name, type: record.type))
         }
         
         // Description
         if let description = record.reason, description.isEmpty == false {
-            sections.append(.reason(reason: description))
+            pairSection.rows.append(.reason(reason: description))
         }
+        sections.append(pairSection)
         
         // Auditorium
         if let auditorium = record.auditorium {
-            sections.append(.auditorium(auditorium: auditorium))
+            let section = Section(type: .auditorium, rows: [.auditorium(auditorium: auditorium)])
+            sections.append(section)
         }
         
         // Teacher
         if let teacher = record.teacher {
-            sections.append(.teacher(teacher: teacher))
+            let section = Section(type: .teacher, rows: [.teacher(teacher: teacher)])
+            sections.append(section)
         }
         
         // Groups
         if let groups = record.groups, groups.count != 0 {
-            sections.append(.groups(groups: groups))
+            var groupsRows: [RowType] = []
+            groups.forEach { (group) in
+                if let group = group as? GroupEntity {
+                    groupsRows.append(.group(group: group))
+                }
+            }
+            let groupsSection = Section(type: .groups, rows: groupsRows)
+            sections.append(groupsSection)
         }
         
         return sections
@@ -172,32 +197,19 @@ class RecordDetailedTableViewController: GenericTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let section = sections[section]
-        if case let SectionType.groups(groups) = section {
-            return groups.count
-        } else {
-            return 1
-        }
+        let currentSection = sections[section]
+        return currentSection.rows.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "recordDetailed", for: indexPath)
         cell.selectionStyle = .none
         
-        let row = sections[indexPath.section]
+        let row = sections[indexPath.section].rows[indexPath.row]
         
         switch row {
             
-        case .date(let dateString):
-            cell.accessoryType = .none
-            // Date
-            cell.textLabel?.text = dateString
-            
-            // Name and time
-            cell.detailTextLabel?.text = nameAndTime()
-            
         case .pairName(let name, let type):
-            cell.accessoryType = .none
             if let name = name, name.isEmpty == false {
                 cell.textLabel?.text = name
                 cell.detailTextLabel?.text = type
@@ -207,7 +219,6 @@ class RecordDetailedTableViewController: GenericTableViewController {
             }
             
         case .reason(let reason):
-            cell.accessoryType = .none
             cell.textLabel?.text = reason
             cell.textLabel?.numberOfLines = 0
             cell.detailTextLabel?.text = nil
@@ -220,9 +231,8 @@ class RecordDetailedTableViewController: GenericTableViewController {
             cell.textLabel?.text = teacher.name
             cell.detailTextLabel?.text = nil
             
-        case .groups(let groups):
-            let group = Array(groups)[indexPath.row] as? GroupEntity
-            cell.textLabel?.text = group?.name
+        case .group(let group):
+            cell.textLabel?.text = group.name
             cell.detailTextLabel?.text = nil
         }
         
@@ -230,7 +240,7 @@ class RecordDetailedTableViewController: GenericTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section].name
+        return sections[section].type.name
     }
     
     // MARK: - Done
