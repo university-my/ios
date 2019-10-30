@@ -2,7 +2,7 @@
 //  TeacherEntity+CoreDataProperties.swift
 //  My University
 //
-//  Created by Yura Voevodin on 6/14/19.
+//  Created by Yura Voevodin on 30.10.2019.
 //  Copyright © 2019 Yura Voevodin. All rights reserved.
 //
 //
@@ -22,6 +22,7 @@ extension TeacherEntity {
     @NSManaged public var isFavorite: Bool
     @NSManaged public var name: String?
     @NSManaged public var slug: String?
+    @NSManaged public var updatedAt: Date?
     @NSManaged public var records: NSSet?
     @NSManaged public var university: UniversityEntity?
 

@@ -93,6 +93,12 @@ class AuditoriumsTableViewController: SearchableTableViewController {
         }
     }
     
+    private func needToUpdateAuditoriums() -> Bool {
+        guard let context = dataSource?.viewContext else { return false }
+        let lastSynchronization = AuditoriumEntity.lastSynchronization(context: context)
+        return AuditoriumEntity.needToUpdate(from: lastSynchronization)
+    }
+    
     // MARK: - Pull to refresh
     
     @IBAction func refresh(_ sender: Any) {
