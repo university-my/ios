@@ -22,7 +22,6 @@ extension AuditoriumEntity {
     @NSManaged public var isFavorite: Bool
     @NSManaged public var name: String?
     @NSManaged public var slug: String?
-    @NSManaged public var updatedAt: Date?
     @NSManaged public var records: NSSet?
     @NSManaged public var university: UniversityEntity?
 

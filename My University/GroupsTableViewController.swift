@@ -70,6 +70,9 @@ class GroupsTableViewController: SearchableTableViewController {
         let groups = dataSource.fetchedResultsController?.fetchedObjects ?? []
         if groups.isEmpty {
             importGroups()
+        } else if needToUpdateGroups() {
+            // Update groups once in a day
+            importGroups()
         } else {
             tableView.reloadData()
             refreshControl?.endRefreshing()
@@ -86,11 +89,24 @@ class GroupsTableViewController: SearchableTableViewController {
                 self.showNotification(text: error.localizedDescription)
             } else {
                 self.hideNotification()
+                
+                // Save date of last update
+                if let id = self.universityID {
+                    UpdateHelper.updated(at: Date(), universityID: id, type: .group)
+                }
             }
+            
             dataSource.performFetch()
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
         }
+    }
+    
+    /// Check last updated date of groups
+    private func needToUpdateGroups() -> Bool {
+        guard let id = universityID else { return false }
+        let lastSynchronization = UpdateHelper.lastUpdated(for: id, type: .group)
+        return UpdateHelper.needToUpdate(from: lastSynchronization)
     }
     
     // MARK: - Pull to refresh

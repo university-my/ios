@@ -70,6 +70,9 @@ class TeachersTableViewController: SearchableTableViewController {
         let teachers = dataSource.fetchedResultsController?.fetchedObjects ?? []
         if teachers.isEmpty {
             importTeachers()
+        } else if needToUpdateTeachers() {
+            // Update teachers once in a day
+            importTeachers()
         } else {
             tableView.reloadData()
             refreshControl?.endRefreshing()
@@ -86,12 +89,25 @@ class TeachersTableViewController: SearchableTableViewController {
                 self.showNotification(text: error.localizedDescription)
             } else {
                 self.hideNotification()
+                
+                // Save date of last update
+                if let id = self.universityID {
+                    UpdateHelper.updated(at: Date(), universityID: id, type: .teacher)
+                }
             }
+            
             dataSource.performFetch()
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
             self.hideNotification()
         }
+    }
+    
+    /// Check last updated date of teachers
+    private func needToUpdateTeachers() -> Bool {
+        guard let id = universityID else { return false }
+        let lastSynchronization = UpdateHelper.lastUpdated(for: id, type: .teacher)
+        return UpdateHelper.needToUpdate(from: lastSynchronization)
     }
     
     // MARK: - Pull to refresh

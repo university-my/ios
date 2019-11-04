@@ -69,6 +69,9 @@ class AuditoriumsTableViewController: SearchableTableViewController {
         let auditoriums = dataSource.fetchedResultsController?.fetchedObjects ?? []
         if auditoriums.isEmpty {
             importAuditoriums()
+        } else if needToUpdateAuditoriums() {
+            // Update auditoriums once in a day
+            importAuditoriums()
         } else {
             tableView.reloadData()
             refreshControl?.endRefreshing()
@@ -85,7 +88,13 @@ class AuditoriumsTableViewController: SearchableTableViewController {
                 self.showNotification(text: error.localizedDescription)
             } else {
                 self.hideNotification()
+                
+                // Save date of last update
+                if let id = self.universityID {
+                    UpdateHelper.updated(at: Date(), universityID: id, type: .auditorium)
+                }
             }
+            
             dataSource.performFetch()
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
@@ -93,10 +102,11 @@ class AuditoriumsTableViewController: SearchableTableViewController {
         }
     }
     
+    /// Check last updated date of auditoriums
     private func needToUpdateAuditoriums() -> Bool {
-        guard let context = dataSource?.viewContext else { return false }
-        let lastSynchronization = AuditoriumEntity.lastSynchronization(context: context)
-        return AuditoriumEntity.needToUpdate(from: lastSynchronization)
+        guard let id = universityID else { return false }
+        let lastSynchronization = UpdateHelper.lastUpdated(for: id, type: .auditorium)
+        return UpdateHelper.needToUpdate(from: lastSynchronization)
     }
     
     // MARK: - Pull to refresh

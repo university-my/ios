@@ -57,23 +57,4 @@ public class AuditoriumEntity: NSManagedObject {
             return nil
         }
     }
-    
-    static func lastSynchronization(context: NSManagedObjectContext) -> Date {
-        let fetchRequest: NSFetchRequest<AuditoriumEntity> = AuditoriumEntity.fetchRequest()
-        let updatedAt = NSSortDescriptor(key: #keyPath(AuditoriumEntity.updatedAt), ascending: false)
-        fetchRequest.sortDescriptors = [updatedAt]
-        fetchRequest.fetchLimit = 1
-        do {
-            let result = try context.fetch(fetchRequest)
-            if let auditorium = result.first, let updatedAt = auditorium.updatedAt {
-                return updatedAt
-            } else {
-                return Date(timeIntervalSince1970: 1)
-            }
-        } catch {
-            return Date(timeIntervalSince1970: 1)
-        }
-    }
 }
-
-extension AuditoriumEntity: ImportProtocol {}
