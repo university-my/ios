@@ -18,10 +18,11 @@
 		C2B5CDFB1EEF0E750066DB30 /* Schedule.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C2B5CDF91EEF0E750066DB30 /* Schedule.xcdatamodeld */; };
 		C2B5CDFD1EEF0E750066DB30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2B5CDFC1EEF0E750066DB30 /* Assets.xcassets */; };
 		C2C0E9B01FB8CDA00012FA9C /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C0E9AF1FB8CDA00012FA9C /* Group.swift */; };
-		DE017F9523622B0D0046D3ED /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE017F9423622B0D0046D3ED /* Preferences.storyboard */; };
 		DE017F9723622BC70046D3ED /* PreferencesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE017F9623622BC70046D3ED /* PreferencesTableViewController.swift */; };
 		DE04D1F32370AA3200A18649 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE04D1F22370AA3200A18649 /* UserDefaultsKey.swift */; };
 		DE04D1F72370B79F00A18649 /* UpdateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE04D1F62370B79F00A18649 /* UpdateHelper.swift */; };
+		DE05ADB02370C8260005B0E7 /* University.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE05ADAE2370C8260005B0E7 /* University.storyboard */; };
+		DE05ADB32370C83F0005B0E7 /* Universities.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE05ADB12370C83F0005B0E7 /* Universities.storyboard */; };
 		DE0D64082264E1330001FCCF /* UniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0D64072264E1330001FCCF /* UniversityViewController.swift */; };
 		DE11A3B0230EA98B005131E8 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE11A3AF230EA98B005131E8 /* DatePickerViewController.swift */; };
 		DE13AF7F226A30D4009DF581 /* TeachersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE13AF7E226A30D4009DF581 /* TeachersTableViewController.swift */; };
@@ -30,11 +31,8 @@
 		DE18941E21BC3AD100C7F9DB /* AuditoriumTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941D21BC3AD100C7F9DB /* AuditoriumTableViewController.swift */; };
 		DE18942021BD457F00C7F9DB /* ImportForGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941F21BD457F00C7F9DB /* ImportForGroup.swift */; };
 		DE18942221BD45E600C7F9DB /* ImportForAuditorium.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18942121BD45E600C7F9DB /* ImportForAuditorium.swift */; };
-		DE29D024232CE9980054B748 /* Information.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE29D023232CE9980054B748 /* Information.storyboard */; };
 		DE3A6638220230D800E64D6C /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A6637220230D800E64D6C /* Collection.swift */; };
 		DE3D3011232BF2F00071BAC5 /* InformationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3D3010232BF2F00071BAC5 /* InformationTableViewController.swift */; };
-		DE3D3013232BFAB60071BAC5 /* Web View.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3D3012232BFAB60071BAC5 /* Web View.storyboard */; };
-		DE3DC048235E46E5007805DA /* Record Details.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3DC047235E46E5007805DA /* Record Details.storyboard */; };
 		DE3EB6B5231B0AE7007EA63C /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3EB6B3231B0AE7007EA63C /* About.storyboard */; };
 		DE3EB6B8231B0C03007EA63C /* Date Picker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3EB6B6231B0C03007EA63C /* Date Picker.storyboard */; };
 		DE3EB6BA231B11F8007EA63C /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3EB6B9231B11F8007EA63C /* DateFormatter.swift */; };
@@ -54,11 +52,16 @@
 		DE584C5F21986E740099415E /* AuditoriumEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE584C5D21986E740099415E /* AuditoriumEntity+CoreDataClass.swift */; };
 		DE584C6021986E740099415E /* AuditoriumEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE584C5E21986E740099415E /* AuditoriumEntity+CoreDataProperties.swift */; };
 		DE5A7E932219CCBF00CA9A79 /* RecordDetailedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A7E922219CCBF00CA9A79 /* RecordDetailedTableViewController.swift */; };
+		DE65DA902370C5BD00022B21 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE65DA8E2370C5BD00022B21 /* Preferences.storyboard */; };
+		DE65DA932370C68200022B21 /* Record Details.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE65DA912370C68200022B21 /* Record Details.storyboard */; };
+		DE65DA962370C6AE00022B21 /* Information.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE65DA942370C6AE00022B21 /* Information.storyboard */; };
+		DE65DA992370C6BA00022B21 /* Initial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE65DA972370C6BA00022B21 /* Initial.storyboard */; };
+		DE65DA9C2370C6C500022B21 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE65DA9A2370C6C500022B21 /* Launch Screen.storyboard */; };
+		DE65DA9F2370C70700022B21 /* Web View.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE65DA9D2370C70700022B21 /* Web View.storyboard */; };
 		DE6794352268976E0068087A /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6794342268976E0068087A /* GroupsTableViewController.swift */; };
 		DE7AF21D22550B9D0043E927 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AF21C22550B9D0043E927 /* WebViewController.swift */; };
 		DE7B1D9F2269BCA5003E3028 /* GenericTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7B1D9E2269BCA5003E3028 /* GenericTableViewController.swift */; };
 		DE87B78E235B9E450090B63E /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE87B78D235B9E450090B63E /* InitialViewController.swift */; };
-		DE87B790235B9EEC0090B63E /* Initial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE87B78F235B9EEC0090B63E /* Initial.storyboard */; };
 		DE8B668121CAC91C00C43F81 /* Group+Import.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B668021CAC91C00C43F81 /* Group+Import.swift */; };
 		DE8B668321CACDF800C43F81 /* Auditorium+NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B668221CACDF800C43F81 /* Auditorium+NetworkClient.swift */; };
 		DE8B668521CACE5600C43F81 /* Group+NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B668421CACE5600C43F81 /* Group+NetworkClient.swift */; };
@@ -80,9 +83,6 @@
 		DEAE5C4A236A23B50086E734 /* ImportProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAE5C49236A23B50086E734 /* ImportProtocolTests.swift */; };
 		DEBB74AA235CE1AC00226C7E /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBB74A9235CE1AC00226C7E /* Bundle.swift */; };
 		DEBB74AD235CE51400226C7E /* SetViewControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBB74AC235CE51400226C7E /* SetViewControllerSegue.swift */; };
-		DEBB74B1235CE67700226C7E /* Universities.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEBB74AF235CE67700226C7E /* Universities.storyboard */; };
-		DEBB74B4235CEC5A00226C7E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEBB74B3235CEC5A00226C7E /* Launch Screen.storyboard */; };
-		DEBB74B9235CF3E100226C7E /* University.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEBB74B8235CF3E100226C7E /* University.storyboard */; };
 		DEBB74BB235CF4C300226C7E /* UniversitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBB74BA235CF4C300226C7E /* UniversitiesViewController.swift */; };
 		DEDA50EA21862091006C7B27 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50E821862090006C7B27 /* InfoPlist.strings */; };
 		DEDA50ED218620E0006C7B27 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50EB218620E0006C7B27 /* Localizable.strings */; };
@@ -117,10 +117,14 @@
 		C2B5CDFC1EEF0E750066DB30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C2B5CE011EEF0E750066DB30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2C0E9AF1FB8CDA00012FA9C /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
-		DE017F9423622B0D0046D3ED /* Preferences.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
 		DE017F9623622BC70046D3ED /* PreferencesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesTableViewController.swift; sourceTree = "<group>"; };
 		DE04D1F22370AA3200A18649 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		DE04D1F62370B79F00A18649 /* UpdateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateHelper.swift; sourceTree = "<group>"; };
+		DE05ADAF2370C8260005B0E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/University.storyboard; sourceTree = "<group>"; };
+		DE05ADB22370C83F0005B0E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Universities.storyboard; sourceTree = "<group>"; };
+		DE05ADB42370C9860005B0E7 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Universities.strings; sourceTree = "<group>"; };
+		DE05ADB52370C9860005B0E7 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/University.strings; sourceTree = "<group>"; };
+		DE05ADB62370C9860005B0E7 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Preferences.strings; sourceTree = "<group>"; };
 		DE0D64072264E1330001FCCF /* UniversityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityViewController.swift; sourceTree = "<group>"; };
 		DE11A3AF230EA98B005131E8 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		DE13AF7E226A30D4009DF581 /* TeachersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersTableViewController.swift; sourceTree = "<group>"; };
@@ -129,11 +133,8 @@
 		DE18941D21BC3AD100C7F9DB /* AuditoriumTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditoriumTableViewController.swift; sourceTree = "<group>"; };
 		DE18941F21BD457F00C7F9DB /* ImportForGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportForGroup.swift; sourceTree = "<group>"; };
 		DE18942121BD45E600C7F9DB /* ImportForAuditorium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportForAuditorium.swift; sourceTree = "<group>"; };
-		DE29D023232CE9980054B748 /* Information.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Information.storyboard; sourceTree = "<group>"; };
 		DE3A6637220230D800E64D6C /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		DE3D3010232BF2F00071BAC5 /* InformationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationTableViewController.swift; sourceTree = "<group>"; };
-		DE3D3012232BFAB60071BAC5 /* Web View.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Web View.storyboard"; sourceTree = "<group>"; };
-		DE3DC047235E46E5007805DA /* Record Details.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Record Details.storyboard"; sourceTree = "<group>"; };
 		DE3EB6B4231B0AE7007EA63C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/About.storyboard; sourceTree = "<group>"; };
 		DE3EB6B7231B0C03007EA63C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Date Picker.storyboard"; sourceTree = "<group>"; };
 		DE3EB6B9231B11F8007EA63C /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
@@ -154,11 +155,16 @@
 		DE584C5D21986E740099415E /* AuditoriumEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuditoriumEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		DE584C5E21986E740099415E /* AuditoriumEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuditoriumEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DE5A7E922219CCBF00CA9A79 /* RecordDetailedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailedTableViewController.swift; sourceTree = "<group>"; };
+		DE65DA8F2370C5BD00022B21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Preferences.storyboard; sourceTree = "<group>"; };
+		DE65DA922370C68200022B21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Record Details.storyboard"; sourceTree = "<group>"; };
+		DE65DA952370C6AE00022B21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Information.storyboard; sourceTree = "<group>"; };
+		DE65DA982370C6BA00022B21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Initial.storyboard; sourceTree = "<group>"; };
+		DE65DA9B2370C6C500022B21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Launch Screen.storyboard"; sourceTree = "<group>"; };
+		DE65DA9E2370C70700022B21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Web View.storyboard"; sourceTree = "<group>"; };
 		DE6794342268976E0068087A /* GroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
 		DE7AF21C22550B9D0043E927 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		DE7B1D9E2269BCA5003E3028 /* GenericTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableViewController.swift; sourceTree = "<group>"; };
 		DE87B78D235B9E450090B63E /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
-		DE87B78F235B9EEC0090B63E /* Initial.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Initial.storyboard; sourceTree = "<group>"; };
 		DE8B668021CAC91C00C43F81 /* Group+Import.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+Import.swift"; sourceTree = "<group>"; };
 		DE8B668221CACDF800C43F81 /* Auditorium+NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auditorium+NetworkClient.swift"; sourceTree = "<group>"; };
 		DE8B668421CACE5600C43F81 /* Group+NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+NetworkClient.swift"; sourceTree = "<group>"; };
@@ -182,9 +188,6 @@
 		DEAE5C4B236A23B50086E734 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEBB74A9235CE1AC00226C7E /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		DEBB74AC235CE51400226C7E /* SetViewControllerSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetViewControllerSegue.swift; sourceTree = "<group>"; };
-		DEBB74B0235CE67700226C7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Universities.storyboard; sourceTree = "<group>"; };
-		DEBB74B3235CEC5A00226C7E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		DEBB74B8235CF3E100226C7E /* University.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = University.storyboard; sourceTree = "<group>"; };
 		DEBB74BA235CF4C300226C7E /* UniversitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversitiesViewController.swift; sourceTree = "<group>"; };
 		DEDA50E921862090006C7B27 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DEDA50EC218620E0006C7B27 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -335,7 +338,7 @@
 		DE017F9323622AF80046D3ED /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				DE017F9423622B0D0046D3ED /* Preferences.storyboard */,
+				DE65DA8E2370C5BD00022B21 /* Preferences.storyboard */,
 				DE017F9623622BC70046D3ED /* PreferencesTableViewController.swift */,
 			);
 			name = Preferences;
@@ -386,7 +389,7 @@
 		DE3D300F232BF2E20071BAC5 /* Information */ = {
 			isa = PBXGroup;
 			children = (
-				DE29D023232CE9980054B748 /* Information.storyboard */,
+				DE65DA942370C6AE00022B21 /* Information.storyboard */,
 				DE3D3010232BF2F00071BAC5 /* InformationTableViewController.swift */,
 			);
 			name = Information;
@@ -395,7 +398,7 @@
 		DE3DC046235E468F007805DA /* Record Details */ = {
 			isa = PBXGroup;
 			children = (
-				DE3DC047235E46E5007805DA /* Record Details.storyboard */,
+				DE65DA912370C68200022B21 /* Record Details.storyboard */,
 				DE5A7E922219CCBF00CA9A79 /* RecordDetailedTableViewController.swift */,
 			);
 			name = "Record Details";
@@ -404,10 +407,10 @@
 		DE472C7321B84313003AE86D /* About */ = {
 			isa = PBXGroup;
 			children = (
-				DE3D3012232BFAB60071BAC5 /* Web View.storyboard */,
-				DE3EB6B3231B0AE7007EA63C /* About.storyboard */,
 				C250C1821FBCD1CA00C90B53 /* AboutUsTableViewController.swift */,
 				DE7AF21C22550B9D0043E927 /* WebViewController.swift */,
+				DE3EB6B3231B0AE7007EA63C /* About.storyboard */,
+				DE65DA9D2370C70700022B21 /* Web View.storyboard */,
 			);
 			name = About;
 			sourceTree = "<group>";
@@ -445,8 +448,8 @@
 		DE87B78C235B9E1D0090B63E /* Initial */ = {
 			isa = PBXGroup;
 			children = (
+				DE65DA972370C6BA00022B21 /* Initial.storyboard */,
 				DE87B78D235B9E450090B63E /* InitialViewController.swift */,
-				DE87B78F235B9EEC0090B63E /* Initial.storyboard */,
 			);
 			name = Initial;
 			sourceTree = "<group>";
@@ -521,7 +524,7 @@
 		DEBB74AE235CE62600226C7E /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				DEBB74AF235CE67700226C7E /* Universities.storyboard */,
+				DE05ADB12370C83F0005B0E7 /* Universities.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -529,7 +532,7 @@
 		DEBB74B2235CEC2100226C7E /* Launch Screen */ = {
 			isa = PBXGroup;
 			children = (
-				DEBB74B3235CEC5A00226C7E /* Launch Screen.storyboard */,
+				DE65DA9A2370C6C500022B21 /* Launch Screen.storyboard */,
 			);
 			name = "Launch Screen";
 			sourceTree = "<group>";
@@ -554,7 +557,7 @@
 		DEBB74B7235CF36400226C7E /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				DEBB74B8235CF3E100226C7E /* University.storyboard */,
+				DE05ADAE2370C8260005B0E7 /* University.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -699,17 +702,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEBB74B1235CE67700226C7E /* Universities.storyboard in Resources */,
-				DE3D3013232BFAB60071BAC5 /* Web View.storyboard in Resources */,
-				DE3DC048235E46E5007805DA /* Record Details.storyboard in Resources */,
 				DEDA50ED218620E0006C7B27 /* Localizable.strings in Resources */,
-				DE87B790235B9EEC0090B63E /* Initial.storyboard in Resources */,
+				DE65DA992370C6BA00022B21 /* Initial.storyboard in Resources */,
+				DE05ADB02370C8260005B0E7 /* University.storyboard in Resources */,
+				DE65DA932370C68200022B21 /* Record Details.storyboard in Resources */,
+				DE65DA9C2370C6C500022B21 /* Launch Screen.storyboard in Resources */,
 				DE3EB6B5231B0AE7007EA63C /* About.storyboard in Resources */,
-				DEBB74B9235CF3E100226C7E /* University.storyboard in Resources */,
-				DEBB74B4235CEC5A00226C7E /* Launch Screen.storyboard in Resources */,
-				DE017F9523622B0D0046D3ED /* Preferences.storyboard in Resources */,
+				DE65DA9F2370C70700022B21 /* Web View.storyboard in Resources */,
+				DE05ADB32370C83F0005B0E7 /* Universities.storyboard in Resources */,
+				DE65DA962370C6AE00022B21 /* Information.storyboard in Resources */,
+				DE65DA902370C5BD00022B21 /* Preferences.storyboard in Resources */,
 				C2B5CDFD1EEF0E750066DB30 /* Assets.xcassets in Resources */,
-				DE29D024232CE9980054B748 /* Information.storyboard in Resources */,
 				DEDA50EA21862091006C7B27 /* InfoPlist.strings in Resources */,
 				DE3EB6B8231B0C03007EA63C /* Date Picker.storyboard in Resources */,
 			);
@@ -821,6 +824,24 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		DE05ADAE2370C8260005B0E7 /* University.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DE05ADAF2370C8260005B0E7 /* Base */,
+				DE05ADB52370C9860005B0E7 /* uk */,
+			);
+			name = University.storyboard;
+			sourceTree = "<group>";
+		};
+		DE05ADB12370C83F0005B0E7 /* Universities.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DE05ADB22370C83F0005B0E7 /* Base */,
+				DE05ADB42370C9860005B0E7 /* uk */,
+			);
+			name = Universities.storyboard;
+			sourceTree = "<group>";
+		};
 		DE3EB6B3231B0AE7007EA63C /* About.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -839,12 +860,53 @@
 			name = "Date Picker.storyboard";
 			sourceTree = "<group>";
 		};
-		DEBB74AF235CE67700226C7E /* Universities.storyboard */ = {
+		DE65DA8E2370C5BD00022B21 /* Preferences.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				DEBB74B0235CE67700226C7E /* Base */,
+				DE65DA8F2370C5BD00022B21 /* Base */,
+				DE05ADB62370C9860005B0E7 /* uk */,
 			);
-			name = Universities.storyboard;
+			name = Preferences.storyboard;
+			sourceTree = "<group>";
+		};
+		DE65DA912370C68200022B21 /* Record Details.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DE65DA922370C68200022B21 /* Base */,
+			);
+			name = "Record Details.storyboard";
+			sourceTree = "<group>";
+		};
+		DE65DA942370C6AE00022B21 /* Information.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DE65DA952370C6AE00022B21 /* Base */,
+			);
+			name = Information.storyboard;
+			sourceTree = "<group>";
+		};
+		DE65DA972370C6BA00022B21 /* Initial.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DE65DA982370C6BA00022B21 /* Base */,
+			);
+			name = Initial.storyboard;
+			sourceTree = "<group>";
+		};
+		DE65DA9A2370C6C500022B21 /* Launch Screen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DE65DA9B2370C6C500022B21 /* Base */,
+			);
+			name = "Launch Screen.storyboard";
+			sourceTree = "<group>";
+		};
+		DE65DA9D2370C70700022B21 /* Web View.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DE65DA9E2370C70700022B21 /* Base */,
+			);
+			name = "Web View.storyboard";
 			sourceTree = "<group>";
 		};
 		DEDA50E821862090006C7B27 /* InfoPlist.strings */ = {

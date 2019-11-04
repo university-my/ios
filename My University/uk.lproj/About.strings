@@ -7,11 +7,8 @@
 /* Class = "UILabel"; text = "Privacy Policy"; ObjectID = "az0-li-16Z"; */
 "az0-li-16Z.text" = "Політика конфіденційності";
 
-/* Class = "UILabel"; text = "Rate this app"; ObjectID = "chB-FO-YPg"; */
-"chB-FO-YPg.text" = "Оцінити додаток";
-
-/* Class = "UILabel"; text = "Facebook page @myuniversityservice"; ObjectID = "cN9-cb-11O"; */
-"cN9-cb-11O.text" = "Facebook сторінка @myuniversityservic";
+/* Class = "UILabel"; text = "Facebook"; ObjectID = "cN9-cb-11O"; */
+"cN9-cb-11O.text" = "Facebook";
 
 /* Class = "UITableViewSection"; headerTitle = "Legal documents"; ObjectID = "fcI-hA-FTU"; */
 "fcI-hA-FTU.headerTitle" = "Документи";
@@ -19,8 +16,8 @@
 /* Class = "UILabel"; text = "my-university.com.ua"; ObjectID = "hDR-UY-hnA"; */
 "hDR-UY-hnA.text" = "my-university.com.ua";
 
-/* Class = "UILabel"; text = "Telegram channel @university_my"; ObjectID = "M7b-Qk-mQH"; */
-"M7b-Qk-mQH.text" = "Telegram канал @university_my";
+/* Class = "UILabel"; text = "Telegram"; ObjectID = "M7b-Qk-mQH"; */
+"M7b-Qk-mQH.text" = "Telegram";
 
 /* Class = "UITableViewSection"; headerTitle = "Website"; ObjectID = "oJW-gb-zbZ"; */
 "oJW-gb-zbZ.headerTitle" = "Веб-сайт";
@@ -28,12 +25,6 @@
 /* Class = "UILabel"; text = "Terms of Service"; ObjectID = "PeZ-fu-tgp"; */
 "PeZ-fu-tgp.text" = "Умови обслуговування";
 
-/* Class = "UILabel"; text = "Follow @my_university_su on Twitter"; ObjectID = "PLO-Lb-0bL"; */
-"PLO-Lb-0bL.text" = "Twitter @my_university_su";
-
-/* Class = "UILabel"; text = "Instagram account university.my"; ObjectID = "rVb-do-Zv6"; */
-"rVb-do-Zv6.text" = "Instagram акаунт university.my";
-
-/* Class = "UITableViewSection"; headerTitle = "App Store"; ObjectID = "Wlt-dr-OL6"; */
-"Wlt-dr-OL6.headerTitle" = "App Store";
+/* Class = "UILabel"; text = "Instagram"; ObjectID = "rVb-do-Zv6"; */
+"rVb-do-Zv6.text" = "Instagram";
 
