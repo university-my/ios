@@ -15,7 +15,7 @@ extension Bundle {
     if let bundleIdentifier = Bundle.main.bundleIdentifier {
       return bundleIdentifier
     } else {
-      return "com.voevodin-yura.Schedule"
+      return "ua.com.my-university"
     }
   }
 }

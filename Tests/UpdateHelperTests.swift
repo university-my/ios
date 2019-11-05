@@ -1,6 +1,6 @@
 //
-//  MyUniversityTests.swift
-//  MyUniversityTests
+//  UpdateHelperTests.swift
+//  Tests
 //
 //  Created by Yura Voevodin on 30.10.2019.
 //  Copyright © 2019 Yura Voevodin. All rights reserved.
@@ -9,7 +9,7 @@
 @testable import My_University
 import XCTest
 
-class ImportProtocolTests: XCTestCase {
+class UpdateHelperTests: XCTestCase {
 
     func testNeedToUpdate() {
         // Current day

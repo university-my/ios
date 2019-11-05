@@ -80,7 +80,7 @@
 		DEAB1D45230D5471008FBFE3 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB1D44230D5471008FBFE3 /* ReusableView.swift */; };
 		DEAB1D47230D5487008FBFE3 /* NibLoadableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB1D46230D5487008FBFE3 /* NibLoadableView.swift */; };
 		DEAB1D49230D575B008FBFE3 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB1D48230D575B008FBFE3 /* UITableView.swift */; };
-		DEAE5C4A236A23B50086E734 /* ImportProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAE5C49236A23B50086E734 /* ImportProtocolTests.swift */; };
+		DEAE5C4A236A23B50086E734 /* UpdateHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAE5C49236A23B50086E734 /* UpdateHelperTests.swift */; };
 		DEBB74AA235CE1AC00226C7E /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBB74A9235CE1AC00226C7E /* Bundle.swift */; };
 		DEBB74AD235CE51400226C7E /* SetViewControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBB74AC235CE51400226C7E /* SetViewControllerSegue.swift */; };
 		DEBB74BB235CF4C300226C7E /* UniversitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBB74BA235CF4C300226C7E /* UniversitiesViewController.swift */; };
@@ -184,7 +184,7 @@
 		DEAB1D46230D5487008FBFE3 /* NibLoadableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadableView.swift; sourceTree = "<group>"; };
 		DEAB1D48230D575B008FBFE3 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		DEAE5C47236A23B50086E734 /* MyUniversityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyUniversityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DEAE5C49236A23B50086E734 /* ImportProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportProtocolTests.swift; sourceTree = "<group>"; };
+		DEAE5C49236A23B50086E734 /* UpdateHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateHelperTests.swift; sourceTree = "<group>"; };
 		DEAE5C4B236A23B50086E734 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEBB74A9235CE1AC00226C7E /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		DEBB74AC235CE51400226C7E /* SetViewControllerSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetViewControllerSegue.swift; sourceTree = "<group>"; };
@@ -235,7 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				C2B5CDF11EEF0E750066DB30 /* My University */,
-				DEAE5C48236A23B50086E734 /* MyUniversityTests */,
+				DEAE5C48236A23B50086E734 /* Tests */,
 				C2B5CDF01EEF0E750066DB30 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -504,13 +504,13 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		DEAE5C48236A23B50086E734 /* MyUniversityTests */ = {
+		DEAE5C48236A23B50086E734 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				DEAE5C49236A23B50086E734 /* ImportProtocolTests.swift */,
+				DEAE5C49236A23B50086E734 /* UpdateHelperTests.swift */,
 				DEAE5C4B236A23B50086E734 /* Info.plist */,
 			);
-			path = MyUniversityTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		DEBB74AB235CE4F900226C7E /* Segues */ = {
@@ -809,7 +809,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEAE5C4A236A23B50086E734 /* ImportProtocolTests.swift in Sources */,
+				DEAE5C4A236A23B50086E734 /* UpdateHelperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1088,7 +1088,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M2BF9ZE9NW;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = MyUniversityTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1115,7 +1115,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M2BF9ZE9NW;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = MyUniversityTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
