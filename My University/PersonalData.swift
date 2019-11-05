@@ -10,36 +10,12 @@ import Foundation
 
 struct UserData {
     
-    // MARK: - Enum
-    
-    enum Keys: String {
-        case firstUsage
-        
-        // MARK: - Variables
-        
-        private var prefix: String {
-            get {
-                if let bundle = Bundle.main.bundleIdentifier {
-                    return bundle + "userData"
-                }
-                return "userData"
-            }
-        }
-        
-        var value: String {
-            switch self {
-            case .firstUsage:
-                return prefix + self.rawValue
-            }
-        }
-    }
-    
     static var firstUsage: Date? {
         get {
-            return UserDefaults.standard.object(forKey: Keys.firstUsage.value) as? Date
+            return UserDefaults.standard.object(forKey: UserDefaultsKey.firstUsage) as? Date
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: Keys.firstUsage.value)
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.firstUsage)
         }
     }
 }

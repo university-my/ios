@@ -12,10 +12,10 @@ import UIKit
 class GroupTableViewController: GenericTableViewController {
     
     // MARK: - Properties
-
+    
     private var sectionsTitles: [String] = []
-
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
+    @IBOutlet weak var titleLabel: UILabel!
     
     // MARK: - Lifecycle
     
@@ -27,27 +27,34 @@ class GroupTableViewController: GenericTableViewController {
         setup()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Show toolbar
+        navigationController?.setToolbarHidden(false, animated: true)
+    }
+    
     func setup() {
-        updateDateButton()
-
+        updateTitleWithDate()
+        
         if let id = groupID, let context = viewContext {
             group = GroupEntity.fetch(id: id, context: context)
         }
         if let group = group {
-            title = group.name
-
+            titleLabel.text = group.name
+            
             // Is Favorites
             favoriteButton.markAs(isFavorites: group.isFavorite)
-
+            
             // Records
             performFetch()
-
+            
             let records = fetchedResultsController?.fetchedObjects ?? []
             if records.isEmpty {
-              // Show activity indicator
-              showActivity()
+                // Show activity indicator
+                showActivity()
             }
-
+            
             // Start import
             importRecords()
         }
@@ -61,23 +68,23 @@ class GroupTableViewController: GenericTableViewController {
     
     // MARK: - Share
     
-  @IBAction func share(_ sender: Any) {
-    guard let url = groupURL() else { return }
-    if let siteURL = URL(string: url) {
-      let sharedItems = [siteURL]
-      let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
-      present(vc, animated: true)
+    @IBAction func share(_ sender: Any) {
+        guard let url = groupURL() else { return }
+        if let siteURL = URL(string: url) {
+            let sharedItems = [siteURL]
+            let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
+            present(vc, animated: true)
+        }
     }
-  }
-
-  private func groupURL() -> String? {
-    guard let group = group else { return nil }
-    guard let universityURL = group.university?.url else { return nil }
-    guard let slug = group.slug else { return nil }
-    let dateString = DateFormatter.short.string(from: DatePicker.shared.pairDate)
-    let url = Settings.shared.baseURL + "/universities/\(universityURL)/groups/\(slug)?pair_date=\(dateString)"
-    return url
-  }
+    
+    private func groupURL() -> String? {
+        guard let group = group else { return nil }
+        guard let universityURL = group.university?.url else { return nil }
+        guard let slug = group.slug else { return nil }
+        let dateString = DateFormatter.short.string(from: pairDate)
+        let url = Settings.shared.baseURL + "/universities/\(universityURL)/groups/\(slug)?pair_date=\(dateString)"
+        return url
+    }
     
     // MARK: - Favorites
     
@@ -106,9 +113,8 @@ class GroupTableViewController: GenericTableViewController {
         guard let university = group.university else { return }
         
         // Download records for Group from backend and save to database.
-        let selectedDate = DatePicker.shared.pairDate
         importManager = Record.ImportForGroup(persistentContainer: persistentContainer, group: group, university: university)
-        importManager?.importRecords(for: selectedDate, { (error) in
+        importManager?.importRecords(for: pairDate, { (error) in
             
             DispatchQueue.main.async {
                 self.processResultOfImport(error: error)
@@ -146,15 +152,11 @@ class GroupTableViewController: GenericTableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "detailTableCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(for: indexPath) as RecordTableViewCell
         
         // Configure the cell
         if let record = fetchedResultsController?.object(at: indexPath) {
-            // Title
-            cell.textLabel?.text = record.title
-            
-            // Detail
-            cell.detailTextLabel?.text = record.detail
+            cell.update(with: record)
         }
         return cell
     }
@@ -171,7 +173,8 @@ class GroupTableViewController: GenericTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let record = fetchedResultsController?.object(at: indexPath)
-        performSegue(withIdentifier: "recordDetailed", sender: record)
+        performSegue(withIdentifier: "recordDetails", sender: record)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // MARK: - Navigation
@@ -180,29 +183,25 @@ class GroupTableViewController: GenericTableViewController {
         
         switch segue.identifier {
             
-        case "recordDetailed":
-            if let destination = segue.destination as? RecordDetailedTableViewController {
-                destination.recordID = (sender as? RecordEntity)?.id
-                destination.groupID = groupID
-                destination.teacherID = nil
-                destination.auditoriumID = nil
+        case "recordDetails":
+            if let navigation = segue.destination as? UINavigationController {
+                if let destination = navigation.viewControllers.first as? RecordDetailedTableViewController {
+                    destination.recordID = (sender as? RecordEntity)?.id
+                    destination.groupID = groupID
+                    destination.teacherID = nil
+                    destination.auditoriumID = nil
+                }
             }
             
         case "presentDatePicker":
             let navigationVC = segue.destination as? UINavigationController
             let vc = navigationVC?.viewControllers.first as? DatePickerViewController
-            vc?.selectDate = {
-                self.updateDateButton()
+            vc?.pairDate = pairDate
+            vc?.didSelectDate = { selecteDate in
+                self.pairDate = selecteDate
+                self.updateTitleWithDate()
                 self.fetchOrImportRecordsForSelectedDate()
             }
-
-        case "presentInformation":
-          let navigationVC = segue.destination as? UINavigationController
-          let vc = navigationVC?.viewControllers.first as? InformationTableViewController
-          if let group = group, let url = groupURL() {
-            let page = WebPage(url: url, title: group.name ?? "")
-            vc?.webPage = page
-          }
             
         default:
             break
@@ -221,7 +220,7 @@ class GroupTableViewController: GenericTableViewController {
         
         let pairName = NSSortDescriptor(key: #keyPath(RecordEntity.pairName), ascending: true)
         let time = NSSortDescriptor(key: #keyPath(RecordEntity.time), ascending: true)
-
+        
         request.sortDescriptors = [pairName, time]
         request.predicate = generatePredicate()
         request.fetchBatchSize = 20
@@ -233,11 +232,11 @@ class GroupTableViewController: GenericTableViewController {
             return nil
         }
     }()
-
+    
     private func performFetch() {
         do {
             try fetchedResultsController?.performFetch()
-
+            
             // Generate title for sections
             if let controller = fetchedResultsController, let sections = controller.sections {
                 var newSectionsTitles: [String] = []
@@ -245,10 +244,10 @@ class GroupTableViewController: GenericTableViewController {
                     if let firstObjectInSection = section.objects?.first as? RecordEntity {
                         var sectionName = ""
                         if let name = firstObjectInSection.pairName {
-                          sectionName = name
+                            sectionName = name
                         }
                         if let time = firstObjectInSection.time {
-                          sectionName += " (\(time))"
+                            sectionName += " (\(time))"
                         }
                         newSectionsTitles.append(sectionName)
                     }
@@ -262,8 +261,8 @@ class GroupTableViewController: GenericTableViewController {
     
     private func generatePredicate() -> NSPredicate? {
         guard let group = group else { return nil }
-
-        let selectedDate = DatePicker.shared.pairDate
+        
+        let selectedDate = pairDate
         let startOfDay = selectedDate.startOfDay as NSDate
         let endOfDay = selectedDate.endOfDay as NSDate
         
@@ -272,15 +271,35 @@ class GroupTableViewController: GenericTableViewController {
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [groupsPredicate, datePredicate])
         return compoundPredicate
     }
-
-  // MARK: - Date
-
-  @IBOutlet weak var dateButton: UIBarButtonItem!
-
-  private func updateDateButton() {
-    let selectedDate = DatePicker.shared.pairDate
-    dateButton.title = DateFormatter.date.string(from: selectedDate)
-  }
+    
+    // MARK: - Date
+    
+    private var pairDate = Date()
+    @IBOutlet weak var dateButton: UIBarButtonItem!
+    
+    private func updateTitleWithDate() {
+        title = DateFormatter.date.string(from: pairDate)
+    }
+    
+    @IBAction func previousDate(_ sender: Any) {
+        // -1 day
+        let currentDate = pairDate
+        if let previousDate = Calendar.current.date(byAdding: .day, value: -1, to: currentDate) {
+            pairDate = previousDate
+            fetchOrImportRecordsForSelectedDate()
+            updateTitleWithDate()
+        }
+    }
+    
+    @IBAction func nextDate(_ sender: Any) {
+        // +1 day
+        let currentDate = pairDate
+        if let nextDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate) {
+            pairDate = nextDate
+            fetchOrImportRecordsForSelectedDate()
+            updateTitleWithDate()
+        }
+    }
     
     private func fetchOrImportRecordsForSelectedDate() {
         fetchedResultsController?.fetchRequest.predicate = generatePredicate()
@@ -303,25 +322,5 @@ class GroupTableViewController: GenericTableViewController {
             hideActivity()
             tableView.reloadData()
         }
-    }
-}
-
-// MARK: - UIStateRestoring
-
-extension GroupTableViewController {
-    
-    override func encodeRestorableState(with coder: NSCoder) {
-        if let id = groupID {
-            coder.encode(id, forKey: "groupID")
-        }
-        super.encodeRestorableState(with: coder)
-    }
-    
-    override func decodeRestorableState(with coder: NSCoder) {
-        groupID = coder.decodeInt64(forKey: "groupID")
-    }
-    
-    override func applicationFinishedRestoringState() {
-        setup()
     }
 }

@@ -41,7 +41,7 @@ class AuditoriumDataSource: NSObject {
         return appDelegate?.persistentContainer
     }()
     
-    private lazy var viewContext: NSManagedObjectContext? = {
+    lazy var viewContext: NSManagedObjectContext? = {
         return persistentContainer?.viewContext
     }()
     

@@ -1,0 +1,15 @@
+/* Class = "UILabel"; text = "Report a problem"; ObjectID = "2Es-lr-PLu"; */
+"2Es-lr-PLu.text" = "Повідомити про помилку";
+
+/* Class = "UITableViewSection"; headerTitle = "Support"; ObjectID = "2U6-Wx-qVN"; */
+"2U6-Wx-qVN.headerTitle" = "Підтримка";
+
+/* Class = "UITableViewSection"; headerTitle = "University"; ObjectID = "G7R-jO-ByP"; */
+"G7R-jO-ByP.headerTitle" = "Університет";
+
+/* Class = "UINavigationItem"; title = "Preferences"; ObjectID = "HK3-Ph-4zr"; */
+"HK3-Ph-4zr.title" = "Налаштування";
+
+/* Class = "UILabel"; text = "Change university"; ObjectID = "zCl-XE-nU0"; */
+"zCl-XE-nU0.text" = "Змінити університет";
+

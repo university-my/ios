@@ -29,7 +29,7 @@ public class AuditoriumEntity: NSManagedObject {
         do {
             let result = try context.fetch(fetchRequest)
             return result
-        } catch  {
+        } catch {
             return []
         }
     }
@@ -40,7 +40,7 @@ public class AuditoriumEntity: NSManagedObject {
         do {
             let result = try context.fetch(request)
             return result
-        } catch  {
+        } catch {
             return []
         }
     }
@@ -53,7 +53,7 @@ public class AuditoriumEntity: NSManagedObject {
             let result = try context.fetch(fetchRequest)
             let auditorium = result.first
             return auditorium
-        } catch  {
+        } catch {
             return nil
         }
     }

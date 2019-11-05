@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// For show messages instead of tables
 class TableMessageViewController: UIViewController {
 
     // MARK: - Message

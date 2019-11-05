@@ -12,9 +12,10 @@ import UIKit
 class AuditoriumTableViewController: GenericTableViewController {
     
     // MARK: - Properties
-
+    
     private var sectionsTitles: [String] = []
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
+    @IBOutlet weak var titleLabel: UILabel!
     
     // MARK: - Lifecycle
     
@@ -26,32 +27,39 @@ class AuditoriumTableViewController: GenericTableViewController {
         setup()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Show toolbar
+        navigationController?.setToolbarHidden(false, animated: true)
+    }
+    
     func setup() {
-        updateDateButton()
-
+        updateTitleWithDate()
+        
         if let id = auditoriumID, let context = viewContext {
             auditorium = AuditoriumEntity.fetch(id: id, context: context)
         }
         if let auditorium = auditorium {
-            title = auditorium.name
-
+            titleLabel.text = auditorium.name
+            
             // Is Favorites
             favoriteButton.markAs(isFavorites: auditorium.isFavorite)
-
+            
             // Records
             performFetch()
-
+            
             let records = fetchedResultsController?.fetchedObjects ?? []
             if records.isEmpty {
-              // Show activity indicator
-              showActivity()
+                // Show activity indicator
+                showActivity()
             }
-
+            
             // Start import
             importRecords()
         }
     }
-  
+    
     // MARK: - Pull to refresh
     
     @IBAction func refresh(_ sender: Any) {
@@ -60,23 +68,23 @@ class AuditoriumTableViewController: GenericTableViewController {
     
     // MARK: - Share
     
-  @IBAction func share(_ sender: Any) {
-    guard let url = auditoriumURL() else { return }
-    if let siteURL = URL(string: url) {
-      let sharedItems = [siteURL]
-      let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
-      present(vc, animated: true)
+    @IBAction func share(_ sender: Any) {
+        guard let url = auditoriumURL() else { return }
+        if let siteURL = URL(string: url) {
+            let sharedItems = [siteURL]
+            let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
+            present(vc, animated: true)
+        }
     }
-  }
-
-  private func auditoriumURL() -> String? {
-    guard let auditorium = auditorium else { return nil }
-    guard let universityURL = auditorium.university?.url else { return nil }
-    guard let slug = auditorium.slug else { return nil }
-    let dateString = DateFormatter.short.string(from: DatePicker.shared.pairDate)
-    let url = Settings.shared.baseURL + "/universities/\(universityURL)/auditoriums/\(slug)?pair_date=\(dateString)"
-    return url
-  }
+    
+    private func auditoriumURL() -> String? {
+        guard let auditorium = auditorium else { return nil }
+        guard let universityURL = auditorium.university?.url else { return nil }
+        guard let slug = auditorium.slug else { return nil }
+        let dateString = DateFormatter.short.string(from: pairDate)
+        let url = Settings.shared.baseURL + "/universities/\(universityURL)/auditoriums/\(slug)?pair_date=\(dateString)"
+        return url
+    }
     
     // MARK: - Favorites
     
@@ -96,24 +104,24 @@ class AuditoriumTableViewController: GenericTableViewController {
     
     private var importManager: Record.ImportForAuditorium?
     
-  private func importRecords() {
-    let appDelegate = UIApplication.shared.delegate as? AppDelegate
-    guard let persistentContainer = appDelegate?.persistentContainer else { return }
-
-    guard let auditoriumID = auditorium?.id else { return }
-    guard let university = auditorium?.university else { return }
-    guard let universityURL = university.url else { return }
-
-    // Download records for Auditorium from backend and save to database.
-    let selectedDate = DatePicker.shared.pairDate
-    importManager = Record.ImportForAuditorium(persistentContainer: persistentContainer, auditoriumID: auditoriumID, universityURL: universityURL)
-    self.importManager?.importRecords(for: selectedDate, { (error) in
-
-      DispatchQueue.main.async {
-        self.processResultOfImport(error: error)
-      }
-    })
-  }
+    private func importRecords() {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        guard let persistentContainer = appDelegate?.persistentContainer else { return }
+        
+        guard let auditoriumID = auditorium?.id else { return }
+        guard let university = auditorium?.university else { return }
+        guard let universityURL = university.url else { return }
+        
+        // Download records for Auditorium from backend and save to database.
+        let selectedDate = pairDate
+        importManager = Record.ImportForAuditorium(persistentContainer: persistentContainer, auditoriumID: auditoriumID, universityURL: universityURL)
+        self.importManager?.importRecords(for: selectedDate, { (error) in
+            
+            DispatchQueue.main.async {
+                self.processResultOfImport(error: error)
+            }
+        })
+    }
     
     private func processResultOfImport(error: Error?) {
         if let error = error {
@@ -145,15 +153,11 @@ class AuditoriumTableViewController: GenericTableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "detailTableCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(for: indexPath) as RecordTableViewCell
         
         // Configure the cell
         if let record = fetchedResultsController?.object(at: indexPath) {
-            // Title
-            cell.textLabel?.text = record.title
-            
-            // Detail
-            cell.detailTextLabel?.text = record.detail
+            cell.update(with: record)
         }
         return cell
     }
@@ -170,7 +174,8 @@ class AuditoriumTableViewController: GenericTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let record = fetchedResultsController?.object(at: indexPath)
-        performSegue(withIdentifier: "recordDetailed", sender: record)
+        performSegue(withIdentifier: "recordDetails", sender: record)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // MARK: - Navigation
@@ -179,29 +184,25 @@ class AuditoriumTableViewController: GenericTableViewController {
         
         switch segue.identifier {
             
-        case "recordDetailed":
-            if let destination = segue.destination as? RecordDetailedTableViewController {
-                destination.recordID = (sender as? RecordEntity)?.id
-                destination.auditoriumID = auditoriumID
-                destination.teacherID = nil
-                destination.groupID = nil
+        case "recordDetails":
+            if let navigation = segue.destination as? UINavigationController {
+                if let destination = navigation.viewControllers.first as? RecordDetailedTableViewController {
+                    destination.recordID = (sender as? RecordEntity)?.id
+                    destination.auditoriumID = auditoriumID
+                    destination.teacherID = nil
+                    destination.groupID = nil
+                }
             }
-
+            
         case "presentDatePicker":
-          let navigationVC = segue.destination as? UINavigationController
-          let vc = navigationVC?.viewControllers.first as? DatePickerViewController
-          vc?.selectDate = {
-            self.updateDateButton()
-            self.fetchOrImportRecordsForSelectedDate()
-          }
-
-        case "presentInformation":
-          let navigationVC = segue.destination as? UINavigationController
-          let vc = navigationVC?.viewControllers.first as? InformationTableViewController
-          if let auditorium = auditorium, let url = auditoriumURL() {
-            let page = WebPage(url: url, title: auditorium.name ?? "")
-            vc?.webPage = page
-          }
+            let navigationVC = segue.destination as? UINavigationController
+            let vc = navigationVC?.viewControllers.first as? DatePickerViewController
+            vc?.pairDate = pairDate
+            vc?.didSelectDate = { selecteDate in
+                self.pairDate = selecteDate
+                self.updateTitleWithDate()
+                self.fetchOrImportRecordsForSelectedDate()
+            }
             
         default:
             break
@@ -221,7 +222,7 @@ class AuditoriumTableViewController: GenericTableViewController {
         
         let pairName = NSSortDescriptor(key: #keyPath(RecordEntity.pairName), ascending: true)
         let time = NSSortDescriptor(key: #keyPath(RecordEntity.time), ascending: true)
-
+        
         request.sortDescriptors = [pairName, time]
         request.predicate = generatePredicate()
         request.fetchBatchSize = 20
@@ -233,24 +234,24 @@ class AuditoriumTableViewController: GenericTableViewController {
             return nil
         }
     }()
-
+    
     private func performFetch() {
         do {
             try fetchedResultsController?.performFetch()
-
+            
             // Generate title for sections
             if let controller = fetchedResultsController, let sections = controller.sections {
                 var newSectionsTitles: [String] = []
                 for section in sections {
                     if let firstObjectInSection = section.objects?.first as? RecordEntity {
-                      var sectionName = ""
-                      if let name = firstObjectInSection.pairName {
-                        sectionName = name
-                      }
-                      if let time = firstObjectInSection.time {
-                        sectionName += " (\(time))"
-                      }
-                      newSectionsTitles.append(sectionName)
+                        var sectionName = ""
+                        if let name = firstObjectInSection.pairName {
+                            sectionName = name
+                        }
+                        if let time = firstObjectInSection.time {
+                            sectionName += " (\(time))"
+                        }
+                        newSectionsTitles.append(sectionName)
                     }
                 }
                 sectionsTitles = newSectionsTitles
@@ -259,69 +260,69 @@ class AuditoriumTableViewController: GenericTableViewController {
             print("Error in the fetched results controller: \(error).")
         }
     }
-
-  private func generatePredicate() -> NSPredicate? {
-      guard let auditorium = auditorium else { return nil }
-
-      let selectedDate = DatePicker.shared.pairDate
-      let startOfDay = selectedDate.startOfDay as NSDate
-      let endOfDay = selectedDate.endOfDay as NSDate
-
-      let datePredicate = NSPredicate(format: "(date >= %@) AND (date <= %@)", startOfDay, endOfDay)
-      let teacherPredicate = NSPredicate(format: "auditorium == %@", auditorium)
-      let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [teacherPredicate, datePredicate])
-      return compoundPredicate
-  }
-
-  // MARK: - Date
-
-  @IBOutlet weak var dateButton: UIBarButtonItem!
-
-  private func updateDateButton() {
-      let selectedDate = DatePicker.shared.pairDate
-      dateButton.title = DateFormatter.date.string(from: selectedDate)
-  }
-
-  private func fetchOrImportRecordsForSelectedDate() {
-      fetchedResultsController?.fetchRequest.predicate = generatePredicate()
-
-      performFetch()
-
-      let records = fetchedResultsController?.fetchedObjects ?? []
-      if records.isEmpty {
-
-          // Hide previous records or activity
-          hideActivity()
-          tableView.reloadData()
-
-          // Show activity indicator
-          showActivity()
-
-          // Start import
-          importRecords()
-      } else {
-          hideActivity()
-          tableView.reloadData()
-      }
-  }
-}
-
-// MARK: - UIStateRestoring
-
-extension AuditoriumTableViewController {
-
-    override func encodeRestorableState(with coder: NSCoder) {
-        if let id = auditoriumID {
-            coder.encode(id, forKey: "auditoriumID")
-        }
-        super.encodeRestorableState(with: coder)
-    }
-
-    override func decodeRestorableState(with coder: NSCoder) {
-        auditoriumID = coder.decodeInt64(forKey: "auditoriumID")
+    
+    private func generatePredicate() -> NSPredicate? {
+        guard let auditorium = auditorium else { return nil }
+        
+        let selectedDate = pairDate
+        let startOfDay = selectedDate.startOfDay as NSDate
+        let endOfDay = selectedDate.endOfDay as NSDate
+        
+        let datePredicate = NSPredicate(format: "(date >= %@) AND (date <= %@)", startOfDay, endOfDay)
+        let teacherPredicate = NSPredicate(format: "auditorium == %@", auditorium)
+        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [teacherPredicate, datePredicate])
+        return compoundPredicate
     }
     
-    override func applicationFinishedRestoringState() {
-        setup()
+    // MARK: - Date
+    
+    private var pairDate = Date()
+    @IBOutlet weak var dateButton: UIBarButtonItem!
+    
+    private func updateTitleWithDate() {
+        title = DateFormatter.date.string(from: pairDate)
+    }
+    
+    @IBAction func previousDate(_ sender: Any) {
+        // -1 day
+        let currentDate = pairDate
+        if let previousDate = Calendar.current.date(byAdding: .day, value: -1, to: currentDate) {
+            pairDate = previousDate
+            fetchOrImportRecordsForSelectedDate()
+            updateTitleWithDate()
+        }
+    }
+    
+    @IBAction func nextDate(_ sender: Any) {
+        // +1 day
+        let currentDate = pairDate
+        if let nextDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate) {
+            pairDate = nextDate
+            fetchOrImportRecordsForSelectedDate()
+            updateTitleWithDate()
+        }
+    }
+    
+    private func fetchOrImportRecordsForSelectedDate() {
+        fetchedResultsController?.fetchRequest.predicate = generatePredicate()
+        
+        performFetch()
+        
+        let records = fetchedResultsController?.fetchedObjects ?? []
+        if records.isEmpty {
+            
+            // Hide previous records or activity
+            hideActivity()
+            tableView.reloadData()
+            
+            // Show activity indicator
+            showActivity()
+            
+            // Start import
+            importRecords()
+        } else {
+            hideActivity()
+            tableView.reloadData()
+        }
     }
 }

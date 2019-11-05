@@ -30,4 +30,15 @@ struct University {
         self.shortName = shortName
         self.url = url
     }
+    
+    // MARK: - Selected University
+    
+    static var selectedUniversityID: Int64? {
+        get {
+            return UserDefaults.standard.value(forKey: UserDefaultsKey.selectedUniversity) as? Int64
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.selectedUniversity)
+        }
+    }
 }

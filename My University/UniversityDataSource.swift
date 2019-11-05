@@ -10,7 +10,7 @@ import CoreData
 import UIKit
 
 class UniversityDataSource: NSObject {
-
+    
     // MARK: - Types
 
     struct Section {
@@ -36,16 +36,16 @@ class UniversityDataSource: NSObject {
             case favorites
         }
     }
-
+    
     // MARK: - University
-
+    
     private lazy var viewContext: NSManagedObjectContext? = {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         return appDelegate?.persistentContainer.viewContext
     }()
-
+    
     var university: UniversityEntity?
-
+    
     func fetch(id: Int64) {
         guard let context = viewContext else { return }
         university = UniversityEntity.fetch(id: id, context: context)
@@ -57,10 +57,10 @@ class UniversityDataSource: NSObject {
 
     func configureSections() {
         guard let university = university else { return }
-
+        
         // Group, teachers and auditoriums
         var rows: [Row] = []
-
+        
         if university.isKPI {
             let grops = Row(kind: .groups)
             let teachers = Row(kind: .teachers)

@@ -35,6 +35,9 @@ class AuditoriumsTableViewController: SearchableTableViewController {
         configureSearchControllers()
         searchController.searchResultsUpdater = self
         
+        // Always visible search bar
+        navigationItem.hidesSearchBarWhenScrolling = false
+        
         setup()
     }
     
@@ -44,6 +47,9 @@ class AuditoriumsTableViewController: SearchableTableViewController {
             datasource.performFetch()
             tableView.reloadData()
         }
+        
+        // Hide toolbar
+        navigationController?.setToolbarHidden(true, animated: true)
     }
     
     func setup() {
@@ -63,6 +69,9 @@ class AuditoriumsTableViewController: SearchableTableViewController {
         let auditoriums = dataSource.fetchedResultsController?.fetchedObjects ?? []
         if auditoriums.isEmpty {
             importAuditoriums()
+        } else if needToUpdateAuditoriums() {
+            // Update auditoriums once in a day
+            importAuditoriums()
         } else {
             tableView.reloadData()
             refreshControl?.endRefreshing()
@@ -79,12 +88,25 @@ class AuditoriumsTableViewController: SearchableTableViewController {
                 self.showNotification(text: error.localizedDescription)
             } else {
                 self.hideNotification()
+                
+                // Save date of last update
+                if let id = self.universityID {
+                    UpdateHelper.updated(at: Date(), universityID: id, type: .auditorium)
+                }
             }
+            
             dataSource.performFetch()
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
             self.hideNotification()
         }
+    }
+    
+    /// Check last updated date of auditoriums
+    private func needToUpdateAuditoriums() -> Bool {
+        guard let id = universityID else { return false }
+        let lastSynchronization = UpdateHelper.lastUpdated(for: id, type: .auditorium)
+        return UpdateHelper.needToUpdate(from: lastSynchronization)
     }
     
     // MARK: - Pull to refresh
@@ -127,12 +149,6 @@ class AuditoriumsTableViewController: SearchableTableViewController {
             break
         }
     }
-    
-    // MARK: - Search
-    
-    @IBAction func search(_ sender: Any) {
-        searchController.searchBar.becomeFirstResponder()
-    }
 }
 
 // MARK: - UISearchResultsUpdating
@@ -161,25 +177,5 @@ extension AuditoriumsTableViewController: UISearchResultsUpdating {
             resultsController.dataSourceType = .auditoriums
             resultsController.tableView.reloadData()
         }
-    }
-}
-
-// MARK: - UIStateRestoring
-
-extension AuditoriumsTableViewController {
-
-    override func encodeRestorableState(with coder: NSCoder) {
-        if let id = universityID {
-            coder.encode(id, forKey: "universityID")
-        }
-        super.encodeRestorableState(with: coder)
-    }
-
-    override func decodeRestorableState(with coder: NSCoder) {
-        universityID = coder.decodeInt64(forKey: "universityID")
-    }
-    
-    override func applicationFinishedRestoringState() {
-        setup()
     }
 }

@@ -38,11 +38,6 @@ class AboutUsTableViewController: UITableViewController {
             }
             
         } else if section == 2 {
-            if let appURL = URL(string: "https://apps.apple.com/ua/app/university-schedule/id1440425058") {
-                UIApplication.shared.open(appURL)
-            }
-            
-        } else if section == 3 {
             switch row {
             case 0:
                 let page = WebPage(url: "https://my-university.com.ua/privacy-policy", title: "Privacy Policy")
@@ -73,10 +68,10 @@ class AboutUsTableViewController: UITableViewController {
             break
         }
     }
-
-  // MARK: - Done
-
-  @IBAction func done(_ sender: Any) {
-    dismiss(animated: true)
-  }
+    
+    // MARK: - Done
+    
+    @IBAction func done(_ sender: Any) {
+        dismiss(animated: true)
+    }
 }

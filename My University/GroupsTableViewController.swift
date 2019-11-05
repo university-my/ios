@@ -35,6 +35,9 @@ class GroupsTableViewController: SearchableTableViewController {
         configureSearchControllers()
         searchController.searchResultsUpdater = self
         
+        // Always visible search bar
+        navigationItem.hidesSearchBarWhenScrolling = false
+        
         setup()
     }
     
@@ -44,6 +47,9 @@ class GroupsTableViewController: SearchableTableViewController {
             datasource.performFetch()
             tableView.reloadData()
         }
+        
+        // Hide toolbar
+        navigationController?.setToolbarHidden(true, animated: true)
     }
     
     func setup() {
@@ -64,6 +70,9 @@ class GroupsTableViewController: SearchableTableViewController {
         let groups = dataSource.fetchedResultsController?.fetchedObjects ?? []
         if groups.isEmpty {
             importGroups()
+        } else if needToUpdateGroups() {
+            // Update groups once in a day
+            importGroups()
         } else {
             tableView.reloadData()
             refreshControl?.endRefreshing()
@@ -80,11 +89,24 @@ class GroupsTableViewController: SearchableTableViewController {
                 self.showNotification(text: error.localizedDescription)
             } else {
                 self.hideNotification()
+                
+                // Save date of last update
+                if let id = self.universityID {
+                    UpdateHelper.updated(at: Date(), universityID: id, type: .group)
+                }
             }
+            
             dataSource.performFetch()
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
         }
+    }
+    
+    /// Check last updated date of groups
+    private func needToUpdateGroups() -> Bool {
+        guard let id = universityID else { return false }
+        let lastSynchronization = UpdateHelper.lastUpdated(for: id, type: .group)
+        return UpdateHelper.needToUpdate(from: lastSynchronization)
     }
     
     // MARK: - Pull to refresh
@@ -127,12 +149,6 @@ class GroupsTableViewController: SearchableTableViewController {
             break
         }
     }
-    
-    // MARK: - Search
-    
-    @IBAction func search(_ sender: Any) {
-        searchController.searchBar.becomeFirstResponder()
-    }
 }
 
 // MARK: - UISearchResultsUpdating
@@ -161,25 +177,5 @@ extension GroupsTableViewController: UISearchResultsUpdating {
             resultsController.dataSourceType = .groups
             resultsController.tableView.reloadData()
         }
-    }
-}
-
-// MARK: - UIStateRestoring
-
-extension GroupsTableViewController {
-
-    override func encodeRestorableState(with coder: NSCoder) {
-        if let id = universityID {
-            coder.encode(id, forKey: "universityID")
-        }
-        super.encodeRestorableState(with: coder)
-    }
-
-    override func decodeRestorableState(with coder: NSCoder) {
-        universityID = coder.decodeInt64(forKey: "universityID")
-    }
-    
-    override func applicationFinishedRestoringState() {
-        setup()
     }
 }

@@ -31,11 +31,17 @@ class UniversityViewController: GenericTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // For notifications
-        configureNotificationLabel()
-        statusButton.customView = notificationLabel
+        // Current university is selected one
+        universityID = University.selectedUniversityID
         
         setup()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Hide toolbar
+        navigationController?.setToolbarHidden(true, animated: true)
     }
     
     private func setup() {
@@ -55,9 +61,37 @@ class UniversityViewController: GenericTableViewController {
             groupsDataSource = GroupsDataSource(universityID: university.id)
             teachersDataSource = TeacherDataSource(universityID: university.id)
             
+            // Favorites
+            checkFavorites()
+            
             // Start from groups,
             // And import auditoriums and teachers
             loadGroups()
+        }
+    }
+    
+    // MARK: - Favorites
+    
+    /// Check if need to show favorites after app launch
+    private func checkFavorites() {
+        guard let id = universityID else { return }
+        let favoritesDataSource = FavoritesDataSource()
+        favoritesDataSource.fetchUniversity(with: id)
+        
+        favoritesDataSource.fetchAuditoriums()
+        favoritesDataSource.fetchGroups()
+        favoritesDataSource.fetchTeachers()
+        
+        var showFavorites = false
+        if favoritesDataSource.auditoriums?.fetchedObjects?.isEmpty == false {
+            showFavorites = true
+        } else if favoritesDataSource.groups?.fetchedObjects?.isEmpty == false {
+            showFavorites = true
+        } else if favoritesDataSource.teachers?.fetchedObjects?.isEmpty == false {
+            showFavorites = true
+        }
+        if showFavorites {
+            performSegue(withIdentifier: "favoritesWithoutAnimation", sender: nil)
         }
     }
     
@@ -164,8 +198,8 @@ class UniversityViewController: GenericTableViewController {
             
             dataSource.importGroups { (error) in
                 
-                if let error = error {
-                    self.showNotification(text: error.localizedDescription)
+                if let _ = error {
+                    
                 } else {
                     self.loadTeachers()
                 }
@@ -186,21 +220,17 @@ class UniversityViewController: GenericTableViewController {
             
             dataSource.importTeachers { (error) in
                 
-                if let error = error {
-                    self.showNotification(text: error.localizedDescription)
+                if let _ = error {
+                    
                 } else {
                     if self.shouldImportAuditoriums() {
                         self.loadAuditoriums()
-                    } else {
-                        self.hideNotification()
                     }
                 }
             }
         } else {
             if shouldImportAuditoriums() {
                 loadAuditoriums()
-            } else {
-                hideNotification()
             }
         }
     }
@@ -225,38 +255,10 @@ class UniversityViewController: GenericTableViewController {
             
             dataSource.importAuditoriums { (error) in
                 
-                if let error = error {
-                    self.showNotification(text: error.localizedDescription)
-                } else {
-                    self.hideNotification()
+                if let _ = error {
+                    
                 }
             }
-        } else {
-            self.hideNotification()
         }
-    }
-    
-    // MARK: - Notificaion
-    
-    @IBOutlet weak var statusButton: UIBarButtonItem!
-}
-
-// MARK: - UIStateRestoring
-
-extension UniversityViewController {
-    
-    override func encodeRestorableState(with coder: NSCoder) {
-        if let id = universityID {
-            coder.encode(id, forKey: "universityID")
-        }
-        super.encodeRestorableState(with: coder)
-    }
-    
-    override func decodeRestorableState(with coder: NSCoder) {
-        universityID = coder.decodeInt64(forKey: "universityID")
-    }
-    
-    override func applicationFinishedRestoringState() {
-        setup()
     }
 }

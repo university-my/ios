@@ -28,10 +28,6 @@ public class RecordEntity: NSManagedObject {
         if let type = type, type.isEmpty == false {
           detail = type
         }
-        // Auditorium
-        if let auditorium = auditorium, let name = auditorium.name {
-            detail += "\n\n" + name
-        }
         return detail
     }
     

@@ -35,6 +35,9 @@ class TeachersTableViewController: SearchableTableViewController {
         configureSearchControllers()
         searchController.searchResultsUpdater = self
         
+        // Always visible search bar
+        navigationItem.hidesSearchBarWhenScrolling = false
+        
         setup()
     }
 
@@ -44,6 +47,9 @@ class TeachersTableViewController: SearchableTableViewController {
             datasource.performFetch()
             tableView.reloadData()
         }
+        
+        // Hide toolbar
+        navigationController?.setToolbarHidden(true, animated: true)
     }
     
     func setup() {
@@ -64,6 +70,9 @@ class TeachersTableViewController: SearchableTableViewController {
         let teachers = dataSource.fetchedResultsController?.fetchedObjects ?? []
         if teachers.isEmpty {
             importTeachers()
+        } else if needToUpdateTeachers() {
+            // Update teachers once in a day
+            importTeachers()
         } else {
             tableView.reloadData()
             refreshControl?.endRefreshing()
@@ -80,12 +89,25 @@ class TeachersTableViewController: SearchableTableViewController {
                 self.showNotification(text: error.localizedDescription)
             } else {
                 self.hideNotification()
+                
+                // Save date of last update
+                if let id = self.universityID {
+                    UpdateHelper.updated(at: Date(), universityID: id, type: .teacher)
+                }
             }
+            
             dataSource.performFetch()
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
             self.hideNotification()
         }
+    }
+    
+    /// Check last updated date of teachers
+    private func needToUpdateTeachers() -> Bool {
+        guard let id = universityID else { return false }
+        let lastSynchronization = UpdateHelper.lastUpdated(for: id, type: .teacher)
+        return UpdateHelper.needToUpdate(from: lastSynchronization)
     }
     
     // MARK: - Pull to refresh
@@ -129,12 +151,6 @@ class TeachersTableViewController: SearchableTableViewController {
             break
         }
     }
-    
-    // MARK: - Search
-    
-    @IBAction func search(_ sender: Any) {
-        searchController.searchBar.becomeFirstResponder()
-    }
 }
 
 // MARK: - UISearchResultsUpdating
@@ -163,25 +179,5 @@ extension TeachersTableViewController: UISearchResultsUpdating {
             resultsController.dataSourceType = .teachers
             resultsController.tableView.reloadData()
         }
-    }
-}
-
-// MARK: - UIStateRestoring
-
-extension TeachersTableViewController {
-
-    override func encodeRestorableState(with coder: NSCoder) {
-        if let id = universityID {
-            coder.encode(id, forKey: "universityID")
-        }
-        super.encodeRestorableState(with: coder)
-    }
-
-    override func decodeRestorableState(with coder: NSCoder) {
-        universityID = coder.decodeInt64(forKey: "universityID")
-    }
-
-    override func applicationFinishedRestoringState() {
-        setup()
     }
 }
