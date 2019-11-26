@@ -37,9 +37,6 @@
 		DE3EB6B8231B0C03007EA63C /* Date Picker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3EB6B6231B0C03007EA63C /* Date Picker.storyboard */; };
 		DE3EB6BA231B11F8007EA63C /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3EB6B9231B11F8007EA63C /* DateFormatter.swift */; };
 		DE3EB6C0231B2280007EA63C /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3EB6BF231B2280007EA63C /* ActivityViewController.swift */; };
-		DE40FB9F238D43F8001DA3DE /* UniversityCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE40FB9E238D43F8001DA3DE /* UniversityCollectionViewController.swift */; };
-		DE40FBA2238D4640001DA3DE /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE40FBA1238D4640001DA3DE /* ListCell.swift */; };
-		DE40FBA4238D4657001DA3DE /* TextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE40FBA3238D4657001DA3DE /* TextCell.swift */; };
 		DE40FBA6238D4700001DA3DE /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE40FBA5238D4700001DA3DE /* UIColor.swift */; };
 		DE4AA07121A5DF0500E06FEA /* AuditoriumDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AA07021A5DF0500E06FEA /* AuditoriumDataSource.swift */; };
 		DE4AA07321A5E31900E06FEA /* GroupsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AA07221A5E31900E06FEA /* GroupsDataSource.swift */; };
@@ -143,9 +140,6 @@
 		DE3EB6B7231B0C03007EA63C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Date Picker.storyboard"; sourceTree = "<group>"; };
 		DE3EB6B9231B11F8007EA63C /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		DE3EB6BF231B2280007EA63C /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
-		DE40FB9E238D43F8001DA3DE /* UniversityCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityCollectionViewController.swift; sourceTree = "<group>"; };
-		DE40FBA1238D4640001DA3DE /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
-		DE40FBA3238D4657001DA3DE /* TextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCell.swift; sourceTree = "<group>"; };
 		DE40FBA5238D4700001DA3DE /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		DE4AA07021A5DF0500E06FEA /* AuditoriumDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditoriumDataSource.swift; sourceTree = "<group>"; };
 		DE4AA07221A5E31900E06FEA /* GroupsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsDataSource.swift; sourceTree = "<group>"; };
@@ -413,15 +407,6 @@
 			name = "Record Details";
 			sourceTree = "<group>";
 		};
-		DE40FBA0238D462B001DA3DE /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				DE40FBA1238D4640001DA3DE /* ListCell.swift */,
-				DE40FBA3238D4657001DA3DE /* TextCell.swift */,
-			);
-			name = Cells;
-			sourceTree = "<group>";
-		};
 		DE472C7321B84313003AE86D /* About */ = {
 			isa = PBXGroup;
 			children = (
@@ -558,7 +543,6 @@
 		DEBB74B5235CF34D00226C7E /* University */ = {
 			isa = PBXGroup;
 			children = (
-				DE40FBA0238D462B001DA3DE /* Cells */,
 				DEBB74B7235CF36400226C7E /* Storyboard */,
 				DEBB74B6235CF35900226C7E /* View Controllers */,
 			);
@@ -569,7 +553,6 @@
 			isa = PBXGroup;
 			children = (
 				DE0D64072264E1330001FCCF /* UniversityViewController.swift */,
-				DE40FB9E238D43F8001DA3DE /* UniversityCollectionViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -755,7 +738,6 @@
 				DE017F9723622BC70046D3ED /* PreferencesTableViewController.swift in Sources */,
 				DE945AD22264D71B00143303 /* UniversitiesDataSource.swift in Sources */,
 				DE945AC82264D11700143303 /* UniversityEntity+CoreDataProperties.swift in Sources */,
-				DE40FBA4238D4657001DA3DE /* TextCell.swift in Sources */,
 				DE18942221BD45E600C7F9DB /* ImportForAuditorium.swift in Sources */,
 				DE3EB6C0231B2280007EA63C /* ActivityViewController.swift in Sources */,
 				DE0D64082264E1330001FCCF /* UniversityViewController.swift in Sources */,
@@ -802,7 +784,6 @@
 				DE7B1D9F2269BCA5003E3028 /* GenericTableViewController.swift in Sources */,
 				E48FD404231DB2E60049438F /* PersonalData.swift in Sources */,
 				DE4AA07121A5DF0500E06FEA /* AuditoriumDataSource.swift in Sources */,
-				DE40FB9F238D43F8001DA3DE /* UniversityCollectionViewController.swift in Sources */,
 				DEAB1D47230D5487008FBFE3 /* NibLoadableView.swift in Sources */,
 				DE13AF7F226A30D4009DF581 /* TeachersTableViewController.swift in Sources */,
 				DE4AA07321A5E31900E06FEA /* GroupsDataSource.swift in Sources */,
@@ -823,7 +804,6 @@
 				DEEEEBE02205BC2C0072A19A /* Settings.swift in Sources */,
 				DE584C6021986E740099415E /* AuditoriumEntity+CoreDataProperties.swift in Sources */,
 				C22A2E581FC7664000587463 /* RecordEntity+CoreDataClass.swift in Sources */,
-				DE40FBA2238D4640001DA3DE /* ListCell.swift in Sources */,
 				DE18941C21BC3A3900C7F9DB /* GroupTableViewController.swift in Sources */,
 				C22A2E591FC7664000587463 /* RecordEntity+CoreDataProperties.swift in Sources */,
 			);
