@@ -29,7 +29,7 @@ extension Record {
             completionHandler = completion
             
             let dateString = DateFormatter.short.string(from: date)
-            let urlString = "\(Settings.shared.baseURL)/universities/\(unversityURL)/groups/\(groupID)/records.json?pair_date=\(dateString)"
+            let urlString = "\(Settings.shared.apiURL)/universities/\(unversityURL)/groups/\(groupID)/records?pair_date=\(dateString)"
             guard let url = URL(string: urlString) else {
                 completionHandler?(nil)
                 return
@@ -51,7 +51,7 @@ extension Record {
             completionHandler = completion
             
             let dateString = DateFormatter.short.string(from: date)
-            let urlString = "\(Settings.shared.baseURL)/universities/\(unversityURL)/auditoriums/\(auditoriumID)/records.json?pair_date=\(dateString)"
+            let urlString = "\(Settings.shared.apiURL)/universities/\(unversityURL)/auditoriums/\(auditoriumID)/records?pair_date=\(dateString)"
             guard let url = URL(string: urlString) else {
                 completionHandler?(nil)
                 return
@@ -73,7 +73,7 @@ extension Record {
             completionHandler = completion
             
             let dateString = DateFormatter.short.string(from: date)
-            let urlString = "\(Settings.shared.baseURL)/universities/\(unversityURL)/teachers/\(teacherID)/records.json?pair_date=\(dateString)"
+            let urlString = "\(Settings.shared.apiURL)/universities/\(unversityURL)/teachers/\(teacherID)/records?pair_date=\(dateString)"
             guard let url = URL(string: urlString) else {
                 completionHandler?(nil)
                 return

@@ -27,7 +27,7 @@ extension University {
 
     func downloadUniversities(_ completion: @escaping ((_ error: Error?) -> ())) {
       completionHandler = completion
-      guard let url = URL(string: Settings.shared.baseURL + "/universities.json") else {
+      guard let url = URL(string: "\(Settings.shared.apiURL)/universities") else {
         completionHandler?(nil)
         return
       }
