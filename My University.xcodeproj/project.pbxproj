@@ -37,6 +37,7 @@
 		DE3EB6B8231B0C03007EA63C /* Date Picker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3EB6B6231B0C03007EA63C /* Date Picker.storyboard */; };
 		DE3EB6BA231B11F8007EA63C /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3EB6B9231B11F8007EA63C /* DateFormatter.swift */; };
 		DE3EB6C0231B2280007EA63C /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3EB6BF231B2280007EA63C /* ActivityViewController.swift */; };
+		DE40FBA6238D4700001DA3DE /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE40FBA5238D4700001DA3DE /* UIColor.swift */; };
 		DE4AA07121A5DF0500E06FEA /* AuditoriumDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AA07021A5DF0500E06FEA /* AuditoriumDataSource.swift */; };
 		DE4AA07321A5E31900E06FEA /* GroupsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AA07221A5E31900E06FEA /* GroupsDataSource.swift */; };
 		DE540EBD2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE540EBB2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift */; };
@@ -139,6 +140,7 @@
 		DE3EB6B7231B0C03007EA63C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Date Picker.storyboard"; sourceTree = "<group>"; };
 		DE3EB6B9231B11F8007EA63C /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		DE3EB6BF231B2280007EA63C /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		DE40FBA5238D4700001DA3DE /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		DE4AA07021A5DF0500E06FEA /* AuditoriumDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditoriumDataSource.swift; sourceTree = "<group>"; };
 		DE4AA07221A5E31900E06FEA /* GroupsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsDataSource.swift; sourceTree = "<group>"; };
 		DE540EBB2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TeacherEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -382,6 +384,7 @@
 				DE3EB6B9231B11F8007EA63C /* DateFormatter.swift */,
 				DE95523722A253D400D70DA4 /* UIBarButtonItem.swift */,
 				DEAB1D48230D575B008FBFE3 /* UITableView.swift */,
+				DE40FBA5238D4700001DA3DE /* UIColor.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -789,6 +792,7 @@
 				DE04D1F72370B79F00A18649 /* UpdateHelper.swift in Sources */,
 				C2C0E9B01FB8CDA00012FA9C /* Group.swift in Sources */,
 				DE9E3F84235F8FB90067DDFE /* RecordTableViewCell.swift in Sources */,
+				DE40FBA6238D4700001DA3DE /* UIColor.swift in Sources */,
 				DE95523822A253D400D70DA4 /* UIBarButtonItem.swift in Sources */,
 				DE945ACA2264D17C00143303 /* University.swift in Sources */,
 				DE3EB6BA231B11F8007EA63C /* DateFormatter.swift in Sources */,
@@ -1043,6 +1047,7 @@
 		C2B5CE051EEF0E750066DB30 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				API_PREFIX = /api/v1;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = M2BF9ZE9NW;
@@ -1062,6 +1067,7 @@
 		C2B5CE061EEF0E750066DB30 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				API_PREFIX = /api/v1;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = M2BF9ZE9NW;

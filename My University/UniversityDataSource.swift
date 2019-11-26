@@ -57,6 +57,7 @@ class UniversityDataSource: NSObject {
 
     func configureSections() {
         guard let university = university else { return }
+        let favoritesRow = Row(kind: .favorites)
         
         // Group, teachers and auditoriums
         var rows: [Row] = []
@@ -64,17 +65,13 @@ class UniversityDataSource: NSObject {
         if university.isKPI {
             let grops = Row(kind: .groups)
             let teachers = Row(kind: .teachers)
-            rows = [grops, teachers]
+            rows = [grops, teachers, favoritesRow]
         } else {
             let grops = Row(kind: .groups)
             let teachers = Row(kind: .teachers)
             let auditoriums = Row(kind: .auditoriums)
-            rows = [grops, teachers, auditoriums]
+            rows = [grops, teachers, auditoriums, favoritesRow]
         }
         sections.append(Section(rows: rows, kind: .all))
-
-        // Favorites
-        let favoritesRow = Row(kind: .favorites)
-        sections.append(Section(rows: [favoritesRow], kind: .favorites))
     }
 }

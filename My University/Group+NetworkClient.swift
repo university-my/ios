@@ -29,7 +29,7 @@ extension Group {
             guard let universityURL = universityURL else { return }
             completionHandler = completion
             
-            guard let url = URL(string: Settings.shared.baseURL + "/universities/\(universityURL)/groups.json") else {
+            guard let url = URL(string: "\(Settings.shared.apiURL)/universities/\(universityURL)/groups") else {
                 completionHandler?(nil)
                 return
             }
