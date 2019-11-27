@@ -19,12 +19,6 @@
 /* Class = "UINavigationItem"; title = "Group"; ObjectID = "gAt-SW-9Hm"; */
 "gAt-SW-9Hm.title" = "Група";
 
-/* Class = "UINavigationItem"; title = "Favorites"; ObjectID = "iKa-uE-lq8"; */
-"iKa-uE-lq8.title" = "Обрані";
-
-/* Class = "UILabel"; text = "Favorites"; ObjectID = "lR2-Bq-bOC"; */
-"lR2-Bq-bOC.text" = "Обрані";
-
 /* Class = "UINavigationItem"; title = "Auditoriums"; ObjectID = "McU-ms-NIE"; */
 "McU-ms-NIE.title" = "Аудиторії";
 

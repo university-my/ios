@@ -1,8 +1,14 @@
+/* Favorites section name */
+"Auditorium" = "Аудиторія";
+
 /* No comment provided by engineer. */
 "AUDITORIUM" = "АУДИТОРІЯ";
 
 /* Favorites section name */
 "Auditoriums" = "Аудиторії";
+
+/* Favorites section name */
+"Group" = "Група";
 
 /* Favorites section name */
 "Groups" = "Групи";
@@ -18,6 +24,9 @@
 
 /* Placeholder in search controller */
 "Search" = "Пошук";
+
+/* Favorites section name */
+"Teacher" = "Викладач";
 
 /* No comment provided by engineer. */
 "TEACHER" = "ВИКЛАДАЧ";
