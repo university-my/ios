@@ -6,25 +6,26 @@
 //  Copyright © 2019 Yura Voevodin. All rights reserved.
 //
 
+import CoreData
 import UIKit
+
+// MARK: - Cells
+
+private let auditoriumsCell = "auditoriumsCell"
+private let groupsCell = "groupsCell"
+private let teachersCell = "teachersCell"
+private let favoritesCell = "favoritesCell"
 
 class UniversityViewController: GenericTableViewController {
     
     // MARK: - Properties
     
     var universityID: Int64?
-    private var dataSource: UniversityDataSource?
+    private var dataSource: UniversityDataSource!
     
     private var auditoriumsDataSource: AuditoriumDataSource?
     private var groupsDataSource: GroupsDataSource?
     private var teachersDataSource: TeacherDataSource?
-    
-    // MARK: - Cells
-    
-    @IBOutlet weak var groupsCell: UITableViewCell!
-    @IBOutlet weak var teachersCell: UITableViewCell!
-    @IBOutlet weak var auditoriumsCell: UITableViewCell!
-    @IBOutlet weak var favoritesCell: UITableViewCell!
     
     // MARK: - Lifecycle
     
@@ -48,11 +49,12 @@ class UniversityViewController: GenericTableViewController {
         // Fetch university
         if let id = universityID {
             dataSource = UniversityDataSource()
-            dataSource?.fetch(id: id)
-            dataSource?.configureSections()
+            dataSource.fetch(id: id)
+            dataSource.fetchFavorites(delegate: self)
+            dataSource.configureSections()
         }
         
-        if let university = dataSource?.university {
+        if let university = dataSource.university {
             // Title
             title = university.shortName
             
@@ -61,76 +63,47 @@ class UniversityViewController: GenericTableViewController {
             groupsDataSource = GroupsDataSource(universityID: university.id)
             teachersDataSource = TeacherDataSource(universityID: university.id)
             
-            // Favorites
-            checkFavorites()
-            
             // Start from groups,
             // And import auditoriums and teachers
             loadGroups()
         }
     }
     
-    // MARK: - Favorites
-    
-    /// Check if need to show favorites after app launch
-    private func checkFavorites() {
-        guard let id = universityID else { return }
-        let favoritesDataSource = FavoritesDataSource()
-        favoritesDataSource.fetchUniversity(with: id)
-        
-        favoritesDataSource.fetchAuditoriums()
-        favoritesDataSource.fetchGroups()
-        favoritesDataSource.fetchTeachers()
-        
-        var showFavorites = false
-        if favoritesDataSource.auditoriums?.fetchedObjects?.isEmpty == false {
-            showFavorites = true
-        } else if favoritesDataSource.groups?.fetchedObjects?.isEmpty == false {
-            showFavorites = true
-        } else if favoritesDataSource.teachers?.fetchedObjects?.isEmpty == false {
-            showFavorites = true
-        }
-        if showFavorites {
-            performSegue(withIdentifier: "favoritesWithoutAnimation", sender: nil)
-        }
-    }
-    
     // MARK: - Table
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return dataSource?.sections.count ?? 0
+        return dataSource.sections.count
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let section = dataSource?.sections[safe: indexPath.section]
-        let row = section?.rows[safe: indexPath.row]
+        guard let section = dataSource.sections[safe: indexPath.section] else { return }
         
-        if let kind = row?.kind {
-            switch kind {
-            case .auditoriums:
+        switch section.kind {
+        case .auditoriums:
+            performSegue(withIdentifier: "showAuditorium", sender: nil)
+        case .groups:
+            performSegue(withIdentifier: "showGroup", sender: nil)
+        case .teachers:
+            performSegue(withIdentifier: "showTeacher", sender: nil)
+            
+        case .university:
+            let row = dataSource.universityRows[indexPath.row]
+            if case .auditoriums = row.kind {
                 performSegue(withIdentifier: "showAuditoriums", sender: nil)
-            case .groups:
+            } else if case .groups = row.kind {
                 performSegue(withIdentifier: "showGroups", sender: nil)
-            case .teachers:
+            } else if case .teachers = row.kind {
                 performSegue(withIdentifier: "showTeachers", sender: nil)
-            case .favorites:
-                performSegue(withIdentifier: "showFavorites", sender: nil)
             }
         }
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let section = dataSource?.sections[safe: section]
-        if let kind = section?.kind {
-            switch kind {
-            case .all:
-                return dataSource?.university?.fullName
-            case .favorites:
-                return nil
-            }
-        } else {
-            return nil
-        }
+        return dataSource.titleForHeader(in: section)
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return dataSource.titleForFooter(in: section)
     }
     
     // MARK: - Navigation
@@ -142,19 +115,36 @@ class UniversityViewController: GenericTableViewController {
             
         case "showAuditoriums":
             let vc = segue.destination as? AuditoriumsTableViewController
-            vc?.universityID = dataSource?.university?.id
+            vc?.universityID = dataSource.university?.id
             
         case "showGroups":
             let vc = segue.destination as? GroupsTableViewController
-            vc?.universityID = dataSource?.university?.id
+            vc?.universityID = dataSource.university?.id
             
         case "showTeachers":
             let vc = segue.destination as? TeachersTableViewController
-            vc?.universityID = dataSource?.university?.id
+            vc?.universityID = dataSource.university?.id
             
-        case "showFavorites":
-            let vc = segue.destination as? FavoritesViewController
-            vc?.universityID = dataSource?.university?.id
+        case "showAuditorium":
+            let vc = segue.destination as? AuditoriumTableViewController
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let auditorium = dataSource.auditoriums?.fetchedObjects?[safe: indexPath.row]
+                vc?.auditoriumID = auditorium?.id
+            }
+            
+        case "showGroup":
+            let vc = segue.destination as? GroupTableViewController
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let group = dataSource.groups?.fetchedObjects?[safe: indexPath.row]
+                vc?.groupID = group?.id
+            }
+            
+        case "showTeacher":
+            let vc = segue.destination as? TeacherTableViewController
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let teacher = dataSource.teachers?.fetchedObjects?[safe: indexPath.row]
+                vc?.teacherID = teacher?.id
+            }
             
         default:
             break
@@ -162,28 +152,64 @@ class UniversityViewController: GenericTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let section = dataSource?.sections[safe: section]
-        return section?.rows.count ?? 0
+        guard let section = dataSource.sections[safe: section] else {
+            return 0
+        }
+        switch section.kind {
+        case .auditoriums:
+            return dataSource.auditoriums?.fetchedObjects?.count ?? 0
+        case .groups:
+            return dataSource.groups?.fetchedObjects?.count ?? 0
+        case .teachers:
+            return dataSource.teachers?.fetchedObjects?.count ?? 0
+        case .university:
+            return dataSource.universityRows.count
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = dataSource?.sections[safe: indexPath.section]
-        let row = section?.rows[safe: indexPath.row]
+        let section = dataSource.sections[indexPath.section]
         
-        let kind = row!.kind
-        switch kind {
-            
-        case .groups:
-            return groupsCell
-            
-        case .teachers:
-            return teachersCell
+        switch section.kind {
             
         case .auditoriums:
-            return auditoriumsCell
+            let auditorium = dataSource?.auditoriums?.fetchedObjects?[safe: indexPath.row]
+            let cell = tableView.dequeueReusableCell(withIdentifier: favoritesCell, for: indexPath)
+            cell.textLabel?.text = auditorium?.name
+            return cell
             
-        case .favorites:
-            return favoritesCell
+        case .groups:
+            let group = dataSource?.groups?.fetchedObjects?[safe: indexPath.row]
+            let cell = tableView.dequeueReusableCell(withIdentifier: favoritesCell, for: indexPath)
+            cell.textLabel?.text = group?.name
+            return cell
+            
+        case .teachers:
+            let teacher = dataSource?.teachers?.fetchedObjects?[safe: indexPath.row]
+            let cell = tableView.dequeueReusableCell(withIdentifier: favoritesCell, for: indexPath)
+            cell.textLabel?.text = teacher?.name
+            return cell
+            
+        case .university:
+            let row = dataSource.universityRows[indexPath.row]
+            
+            if case .auditoriums = row.kind {
+                let cell = tableView.dequeueReusableCell(withIdentifier: auditoriumsCell, for: indexPath)
+                return cell
+                
+            } else if case .groups = row.kind {
+                let cell = tableView.dequeueReusableCell(withIdentifier: groupsCell, for: indexPath)
+                return cell
+                
+            } else if case .teachers = row.kind {
+                let cell = tableView.dequeueReusableCell(withIdentifier: teachersCell, for: indexPath)
+                return cell
+                
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: favoritesCell, for: indexPath)
+                cell.textLabel?.text = nil
+                return cell
+            }
         }
     }
     
@@ -238,7 +264,7 @@ class UniversityViewController: GenericTableViewController {
     // MARK: - Auditoriums
     
     private func shouldImportAuditoriums() -> Bool {
-        guard let university = dataSource?.university else { return false }
+        guard let university = dataSource.university else { return false }
         if university.isKPI {
             return false
         } else {
@@ -260,5 +286,16 @@ class UniversityViewController: GenericTableViewController {
                 }
             }
         }
+    }
+}
+
+// MARK: - NSFetchedResultsControllerDelegate
+
+extension UniversityViewController: NSFetchedResultsControllerDelegate {
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        // Re-configure sections
+        dataSource.configureSections()
+        tableView.reloadData()
     }
 }
