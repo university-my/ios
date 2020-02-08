@@ -40,12 +40,10 @@ class AboutUsTableViewController: UITableViewController {
         } else if section == 2 {
             switch row {
             case 0:
-                let page = WebPage(url: "https://my-university.com.ua/privacy-policy", title: "Privacy Policy")
-                performSegue(withIdentifier: "showWebView", sender: page)
+                performSegue(withIdentifier: "legalDocument", sender: LegalDocument.privacyPolicy)
                 
             case 1:
-                let page = WebPage(url: "https://my-university.com.ua/terms-of-service", title: "Terms of Service")
-                performSegue(withIdentifier: "showWebView", sender: page)
+                performSegue(withIdentifier: "legalDocument", sender: LegalDocument.termsOfService)
                 
             default:
                 break
@@ -59,10 +57,10 @@ class AboutUsTableViewController: UITableViewController {
         guard let identifier = segue.identifier else { return }
         
         switch identifier {
-            
-        case "showWebView":
-            let vc = segue.destination as? WebViewController
-            vc?.webPage = sender as? WebPage
+
+        case "legalDocument":
+            let vc = segue.destination as? LegalDocumentViewController
+            vc?.documentName = sender as? String
             
         default:
             break

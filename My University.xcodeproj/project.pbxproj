@@ -31,7 +31,6 @@
 		DE18941E21BC3AD100C7F9DB /* AuditoriumTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941D21BC3AD100C7F9DB /* AuditoriumTableViewController.swift */; };
 		DE18942021BD457F00C7F9DB /* ImportForGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941F21BD457F00C7F9DB /* ImportForGroup.swift */; };
 		DE18942221BD45E600C7F9DB /* ImportForAuditorium.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18942121BD45E600C7F9DB /* ImportForAuditorium.swift */; };
-		DE3D3011232BF2F00071BAC5 /* InformationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3D3010232BF2F00071BAC5 /* InformationTableViewController.swift */; };
 		DE3EB6B5231B0AE7007EA63C /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3EB6B3231B0AE7007EA63C /* About.storyboard */; };
 		DE3EB6B8231B0C03007EA63C /* Date Picker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3EB6B6231B0C03007EA63C /* Date Picker.storyboard */; };
 		DE3EB6BA231B11F8007EA63C /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3EB6B9231B11F8007EA63C /* DateFormatter.swift */; };
@@ -39,6 +38,11 @@
 		DE40FBA6238D4700001DA3DE /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE40FBA5238D4700001DA3DE /* UIColor.swift */; };
 		DE4AA07121A5DF0500E06FEA /* AuditoriumDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AA07021A5DF0500E06FEA /* AuditoriumDataSource.swift */; };
 		DE4AA07321A5E31900E06FEA /* GroupsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AA07221A5E31900E06FEA /* GroupsDataSource.swift */; };
+		DE4FCBFB23EF5CA2000B53F4 /* Legal Document.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE4FCBFA23EF5CA2000B53F4 /* Legal Document.storyboard */; };
+		DE4FCBFD23EF5CF9000B53F4 /* LegalDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4FCBFC23EF5CF9000B53F4 /* LegalDocumentViewController.swift */; };
+		DE4FCBFF23EF5D50000B53F4 /* LegalDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4FCBFE23EF5D50000B53F4 /* LegalDocument.swift */; };
+		DE4FCC0323EF5DB4000B53F4 /* Terms Of Service.rtf in Resources */ = {isa = PBXBuildFile; fileRef = DE4FCC0123EF5DB4000B53F4 /* Terms Of Service.rtf */; };
+		DE4FCC0423EF5DB4000B53F4 /* Privacy Policy.rtf in Resources */ = {isa = PBXBuildFile; fileRef = DE4FCC0223EF5DB4000B53F4 /* Privacy Policy.rtf */; };
 		DE540EBD2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE540EBB2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift */; };
 		DE540EBE2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE540EBC2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift */; };
 		DE540EC02215CD840092FC81 /* Teacher+Import.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE540EBF2215CD840092FC81 /* Teacher+Import.swift */; };
@@ -54,12 +58,9 @@
 		DE5A7E932219CCBF00CA9A79 /* RecordDetailedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A7E922219CCBF00CA9A79 /* RecordDetailedTableViewController.swift */; };
 		DE65DA902370C5BD00022B21 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE65DA8E2370C5BD00022B21 /* Preferences.storyboard */; };
 		DE65DA932370C68200022B21 /* Record Details.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE65DA912370C68200022B21 /* Record Details.storyboard */; };
-		DE65DA962370C6AE00022B21 /* Information.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE65DA942370C6AE00022B21 /* Information.storyboard */; };
 		DE65DA992370C6BA00022B21 /* Initial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE65DA972370C6BA00022B21 /* Initial.storyboard */; };
 		DE65DA9C2370C6C500022B21 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE65DA9A2370C6C500022B21 /* Launch Screen.storyboard */; };
-		DE65DA9F2370C70700022B21 /* Web View.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE65DA9D2370C70700022B21 /* Web View.storyboard */; };
 		DE6794352268976E0068087A /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6794342268976E0068087A /* GroupsTableViewController.swift */; };
-		DE7AF21D22550B9D0043E927 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AF21C22550B9D0043E927 /* WebViewController.swift */; };
 		DE7B1D9F2269BCA5003E3028 /* GenericTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7B1D9E2269BCA5003E3028 /* GenericTableViewController.swift */; };
 		DE8417A923EA19810084E24F /* MyLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = DE8417A823EA19810084E24F /* MyLibrary */; };
 		DE87B78E235B9E450090B63E /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE87B78D235B9E450090B63E /* InitialViewController.swift */; };
@@ -129,7 +130,6 @@
 		DE18941D21BC3AD100C7F9DB /* AuditoriumTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditoriumTableViewController.swift; sourceTree = "<group>"; };
 		DE18941F21BD457F00C7F9DB /* ImportForGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportForGroup.swift; sourceTree = "<group>"; };
 		DE18942121BD45E600C7F9DB /* ImportForAuditorium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportForAuditorium.swift; sourceTree = "<group>"; };
-		DE3D3010232BF2F00071BAC5 /* InformationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationTableViewController.swift; sourceTree = "<group>"; };
 		DE3EB6B4231B0AE7007EA63C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/About.storyboard; sourceTree = "<group>"; };
 		DE3EB6B7231B0C03007EA63C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Date Picker.storyboard"; sourceTree = "<group>"; };
 		DE3EB6B9231B11F8007EA63C /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
@@ -137,6 +137,11 @@
 		DE40FBA5238D4700001DA3DE /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		DE4AA07021A5DF0500E06FEA /* AuditoriumDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditoriumDataSource.swift; sourceTree = "<group>"; };
 		DE4AA07221A5E31900E06FEA /* GroupsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsDataSource.swift; sourceTree = "<group>"; };
+		DE4FCBFA23EF5CA2000B53F4 /* Legal Document.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Legal Document.storyboard"; sourceTree = "<group>"; };
+		DE4FCBFC23EF5CF9000B53F4 /* LegalDocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDocumentViewController.swift; sourceTree = "<group>"; };
+		DE4FCBFE23EF5D50000B53F4 /* LegalDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDocument.swift; sourceTree = "<group>"; };
+		DE4FCC0123EF5DB4000B53F4 /* Terms Of Service.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "Terms Of Service.rtf"; sourceTree = "<group>"; };
+		DE4FCC0223EF5DB4000B53F4 /* Privacy Policy.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "Privacy Policy.rtf"; sourceTree = "<group>"; };
 		DE540EBB2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TeacherEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		DE540EBC2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TeacherEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DE540EBF2215CD840092FC81 /* Teacher+Import.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Teacher+Import.swift"; sourceTree = "<group>"; };
@@ -153,12 +158,9 @@
 		DE5A7E922219CCBF00CA9A79 /* RecordDetailedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailedTableViewController.swift; sourceTree = "<group>"; };
 		DE65DA8F2370C5BD00022B21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Preferences.storyboard; sourceTree = "<group>"; };
 		DE65DA922370C68200022B21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Record Details.storyboard"; sourceTree = "<group>"; };
-		DE65DA952370C6AE00022B21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Information.storyboard; sourceTree = "<group>"; };
 		DE65DA982370C6BA00022B21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Initial.storyboard; sourceTree = "<group>"; };
 		DE65DA9B2370C6C500022B21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Launch Screen.storyboard"; sourceTree = "<group>"; };
-		DE65DA9E2370C70700022B21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Web View.storyboard"; sourceTree = "<group>"; };
 		DE6794342268976E0068087A /* GroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
-		DE7AF21C22550B9D0043E927 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		DE7B1D9E2269BCA5003E3028 /* GenericTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableViewController.swift; sourceTree = "<group>"; };
 		DE87B78D235B9E450090B63E /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		DE8B668021CAC91C00C43F81 /* Group+Import.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+Import.swift"; sourceTree = "<group>"; };
@@ -254,9 +256,9 @@
 				DE3B565E21823A7F008A77D1 /* Extensions */,
 				DE6794332268975F0068087A /* Groups */,
 				C2C76A2C200243BD00BFF3D4 /* Import */,
-				DE3D300F232BF2E20071BAC5 /* Information */,
 				DE87B78C235B9E1D0090B63E /* Initial */,
 				DEBB74B2235CEC2100226C7E /* Launch Screen */,
+				DE6B249723EF5C47008ED1F1 /* Legal */,
 				C29FF4CE2002382500B50299 /* Networking */,
 				DE017F9323622AF80046D3ED /* Preferences */,
 				DE3DC046235E468F007805DA /* Record Details */,
@@ -384,15 +386,6 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
-		DE3D300F232BF2E20071BAC5 /* Information */ = {
-			isa = PBXGroup;
-			children = (
-				DE65DA942370C6AE00022B21 /* Information.storyboard */,
-				DE3D3010232BF2F00071BAC5 /* InformationTableViewController.swift */,
-			);
-			name = Information;
-			sourceTree = "<group>";
-		};
 		DE3DC046235E468F007805DA /* Record Details */ = {
 			isa = PBXGroup;
 			children = (
@@ -406,9 +399,7 @@
 			isa = PBXGroup;
 			children = (
 				C250C1821FBCD1CA00C90B53 /* AboutUsTableViewController.swift */,
-				DE7AF21C22550B9D0043E927 /* WebViewController.swift */,
 				DE3EB6B3231B0AE7007EA63C /* About.storyboard */,
-				DE65DA9D2370C70700022B21 /* Web View.storyboard */,
 			);
 			name = About;
 			sourceTree = "<group>";
@@ -419,6 +410,15 @@
 				C293559D1FBE246000071719 /* SearchResultsTableViewController.swift */,
 			);
 			name = Search;
+			sourceTree = "<group>";
+		};
+		DE4FCC0023EF5DB4000B53F4 /* Legal Documents */ = {
+			isa = PBXGroup;
+			children = (
+				DE4FCC0123EF5DB4000B53F4 /* Terms Of Service.rtf */,
+				DE4FCC0223EF5DB4000B53F4 /* Privacy Policy.rtf */,
+			);
+			path = "Legal Documents";
 			sourceTree = "<group>";
 		};
 		DE5FAE072263B36A00333121 /* Universities */ = {
@@ -441,6 +441,17 @@
 				DE3EB6BF231B2280007EA63C /* ActivityViewController.swift */,
 			);
 			name = Groups;
+			sourceTree = "<group>";
+		};
+		DE6B249723EF5C47008ED1F1 /* Legal */ = {
+			isa = PBXGroup;
+			children = (
+				DE4FCBFA23EF5CA2000B53F4 /* Legal Document.storyboard */,
+				DE4FCBFE23EF5D50000B53F4 /* LegalDocument.swift */,
+				DE4FCBFC23EF5CF9000B53F4 /* LegalDocumentViewController.swift */,
+				DE4FCC0023EF5DB4000B53F4 /* Legal Documents */,
+			);
+			name = Legal;
 			sourceTree = "<group>";
 		};
 		DE87B78C235B9E1D0090B63E /* Initial */ = {
@@ -690,12 +701,13 @@
 				DEDA50ED218620E0006C7B27 /* Localizable.strings in Resources */,
 				DE65DA992370C6BA00022B21 /* Initial.storyboard in Resources */,
 				DE05ADB02370C8260005B0E7 /* University.storyboard in Resources */,
+				DE4FCC0323EF5DB4000B53F4 /* Terms Of Service.rtf in Resources */,
 				DE65DA932370C68200022B21 /* Record Details.storyboard in Resources */,
 				DE65DA9C2370C6C500022B21 /* Launch Screen.storyboard in Resources */,
 				DE3EB6B5231B0AE7007EA63C /* About.storyboard in Resources */,
-				DE65DA9F2370C70700022B21 /* Web View.storyboard in Resources */,
+				DE4FCBFB23EF5CA2000B53F4 /* Legal Document.storyboard in Resources */,
 				DE05ADB32370C83F0005B0E7 /* Universities.storyboard in Resources */,
-				DE65DA962370C6AE00022B21 /* Information.storyboard in Resources */,
+				DE4FCC0423EF5DB4000B53F4 /* Privacy Policy.rtf in Resources */,
 				DE65DA902370C5BD00022B21 /* Preferences.storyboard in Resources */,
 				C2B5CDFD1EEF0E750066DB30 /* Assets.xcassets in Resources */,
 				DEDA50EA21862091006C7B27 /* InfoPlist.strings in Resources */,
@@ -724,7 +736,6 @@
 				DE3EB6C0231B2280007EA63C /* ActivityViewController.swift in Sources */,
 				DE0D64082264E1330001FCCF /* UniversityViewController.swift in Sources */,
 				DE18941921BC349400C7F9DB /* Record+NetworkClient.swift in Sources */,
-				DE3D3011232BF2F00071BAC5 /* InformationTableViewController.swift in Sources */,
 				DE999ABE227C54160018F725 /* UniversityDataSource.swift in Sources */,
 				DE540EC02215CD840092FC81 /* Teacher+Import.swift in Sources */,
 				DE540EBE2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift in Sources */,
@@ -752,13 +763,14 @@
 				DE540EC22215CDCD0092FC81 /* Teacher+NetworkClient.swift in Sources */,
 				DE945ACE2264D2AA00143303 /* Universoty+NetworkClient.swift in Sources */,
 				DE540EC42215CF9F0092FC81 /* TeacherDataSource.swift in Sources */,
-				DE7AF21D22550B9D0043E927 /* WebViewController.swift in Sources */,
 				DEBB74AA235CE1AC00226C7E /* Bundle.swift in Sources */,
 				DE18942021BD457F00C7F9DB /* ImportForGroup.swift in Sources */,
 				DE5A7E932219CCBF00CA9A79 /* RecordDetailedTableViewController.swift in Sources */,
+				DE4FCBFD23EF5CF9000B53F4 /* LegalDocumentViewController.swift in Sources */,
 				DE584C5C219869990099415E /* Auditorium+Import.swift in Sources */,
 				DEE576E4226B7B9E008F9EB6 /* SearchableTableViewController.swift in Sources */,
 				DE7B1D9F2269BCA5003E3028 /* GenericTableViewController.swift in Sources */,
+				DE4FCBFF23EF5D50000B53F4 /* LegalDocument.swift in Sources */,
 				E48FD404231DB2E60049438F /* PersonalData.swift in Sources */,
 				DE4AA07121A5DF0500E06FEA /* AuditoriumDataSource.swift in Sources */,
 				DE13AF7F226A30D4009DF581 /* TeachersTableViewController.swift in Sources */,
@@ -857,14 +869,6 @@
 			name = "Record Details.storyboard";
 			sourceTree = "<group>";
 		};
-		DE65DA942370C6AE00022B21 /* Information.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DE65DA952370C6AE00022B21 /* Base */,
-			);
-			name = Information.storyboard;
-			sourceTree = "<group>";
-		};
 		DE65DA972370C6BA00022B21 /* Initial.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -879,14 +883,6 @@
 				DE65DA9B2370C6C500022B21 /* Base */,
 			);
 			name = "Launch Screen.storyboard";
-			sourceTree = "<group>";
-		};
-		DE65DA9D2370C70700022B21 /* Web View.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DE65DA9E2370C70700022B21 /* Base */,
-			);
-			name = "Web View.storyboard";
 			sourceTree = "<group>";
 		};
 		DEDA50E821862090006C7B27 /* InfoPlist.strings */ = {
