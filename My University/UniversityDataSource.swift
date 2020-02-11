@@ -74,22 +74,6 @@ class UniversityDataSource: NSObject {
         
         var newSections: [Section] = []
         
-        // University
-        var rows: [UniversityRow] = []
-        
-        if university.isKPI {
-            let grops = UniversityRow(kind: .groups)
-            let teachers = UniversityRow(kind: .teachers)
-            rows = [grops, teachers]
-        } else {
-            let grops = UniversityRow(kind: .groups)
-            let teachers = UniversityRow(kind: .teachers)
-            let auditoriums = UniversityRow(kind: .auditoriums)
-            rows = [grops, teachers, auditoriums]
-        }
-        universityRows = rows
-        newSections.append(Section(kind: .university))
-        
         // Groups
         if groups?.fetchedObjects?.isEmpty == false {
             newSections.append(Section(kind: .groups))
@@ -104,6 +88,22 @@ class UniversityDataSource: NSObject {
         if auditoriums?.fetchedObjects?.isEmpty == false {
             newSections.append(Section(kind: .auditoriums))
         }
+
+        // University
+        var rows: [UniversityRow] = []
+
+        if university.isKPI {
+            let grops = UniversityRow(kind: .groups)
+            let teachers = UniversityRow(kind: .teachers)
+            rows = [grops, teachers]
+        } else {
+            let grops = UniversityRow(kind: .groups)
+            let teachers = UniversityRow(kind: .teachers)
+            let auditoriums = UniversityRow(kind: .auditoriums)
+            rows = [grops, teachers, auditoriums]
+        }
+        universityRows = rows
+        newSections.append(Section(kind: .university))
         
         sections = newSections
     }

@@ -7,8 +7,17 @@
 /* Class = "UITableViewSection"; headerTitle = "University"; ObjectID = "G7R-jO-ByP"; */
 "G7R-jO-ByP.headerTitle" = "Університет";
 
+/* Class = "UITableViewSection"; headerTitle = "Legal documents"; ObjectID = "h35-66-BkH"; */
+"h35-66-BkH.headerTitle" = "Документи";
+
 /* Class = "UINavigationItem"; title = "Preferences"; ObjectID = "HK3-Ph-4zr"; */
 "HK3-Ph-4zr.title" = "Налаштування";
+
+/* Class = "UILabel"; text = "Privacy Policy"; ObjectID = "IaU-t7-ZbT"; */
+"IaU-t7-ZbT.text" = "Політика конфіденційності";
+
+/* Class = "UILabel"; text = "Terms of Service"; ObjectID = "Thd-dY-DhF"; */
+"Thd-dY-DhF.text" = "Умови обслуговування";
 
 /* Class = "UILabel"; text = "Change university"; ObjectID = "zCl-XE-nU0"; */
 "zCl-XE-nU0.text" = "Змінити університет";

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aTW-F7-zhe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aTW-F7-zhe">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -141,7 +141,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="OiT-WH-1KL" kind="show" identifier="showWebView" id="MHl-iH-BcE"/>
+                        <segue destination="3sb-gd-gi2" kind="show" identifier="legalDocument" id="C3r-q1-w68"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EvV-gU-8ES" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -166,15 +166,15 @@
             </objects>
             <point key="canvasLocation" x="39" y="913"/>
         </scene>
-        <!--Web View-->
-        <scene sceneID="p02-yQ-ge9">
+        <!--Legal Document-->
+        <scene sceneID="K8i-iJ-U8s">
             <objects>
-                <viewControllerPlaceholder storyboardName="Web View" id="OiT-WH-1KL" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="9la-Mt-1we"/>
+                <viewControllerPlaceholder storyboardName="Legal Document" id="3sb-gd-gi2" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Xa2-qK-jpb"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Tfg-po-HKh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oTu-jj-Iqs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1588" y="913"/>
+            <point key="canvasLocation" x="1625" y="913"/>
         </scene>
     </scenes>
 </document>
