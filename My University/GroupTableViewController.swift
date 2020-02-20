@@ -219,9 +219,9 @@ class GroupTableViewController: GenericTableViewController {
         let request: NSFetchRequest<RecordEntity> = RecordEntity.fetchRequest()
         
         let pairName = NSSortDescriptor(key: #keyPath(RecordEntity.pairName), ascending: true)
-        let time = NSSortDescriptor(key: #keyPath(RecordEntity.time), ascending: true)
+        let date = NSSortDescriptor(key: #keyPath(RecordEntity.date), ascending: true)
         
-        request.sortDescriptors = [pairName, time]
+        request.sortDescriptors = [pairName, date]
         request.predicate = generatePredicate()
         request.fetchBatchSize = 20
         
