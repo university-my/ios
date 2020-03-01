@@ -19,6 +19,9 @@
 /* Class = "UILabel"; text = "Terms of Service"; ObjectID = "Thd-dY-DhF"; */
 "Thd-dY-DhF.text" = "Умови обслуговування";
 
+/* Class = "UILabel"; text = "Support on Patreon"; ObjectID = "w9Z-7r-Jb3"; */
+"w9Z-7r-Jb3.text" = "Підтримати на Patreon";
+
 /* Class = "UILabel"; text = "Change university"; ObjectID = "zCl-XE-nU0"; */
 "zCl-XE-nU0.text" = "Змінити університет";
 

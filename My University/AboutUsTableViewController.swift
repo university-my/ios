@@ -36,8 +36,13 @@ class AboutUsTableViewController: UITableViewController {
             if let websiteURL = URL(string: "https://my-university.com.ua") {
                 UIApplication.shared.open(websiteURL)
             }
-            
+
         } else if section == 2 {
+            if let parteonURL = URL(string: "https://www.patreon.com/my_university") {
+                UIApplication.shared.open(parteonURL)
+            }
+            
+        } else if section == 3 {
             switch row {
             case 0:
                 performSegue(withIdentifier: "legalDocument", sender: LegalDocument.privacyPolicy)
