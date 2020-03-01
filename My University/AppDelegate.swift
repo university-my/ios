@@ -23,6 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mergePolicy = NSMergePolicy(merge: NSMergePolicyType.mergeByPropertyObjectTrumpMergePolicyType)
         persistentContainer.viewContext.mergePolicy = mergePolicy
 
+        // Default settings for user
+        UserData.registerDefaultValues()
+
         return true
     }
 
