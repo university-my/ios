@@ -62,6 +62,9 @@
 		DE65DA992370C6BA00022B21 /* Initial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE65DA972370C6BA00022B21 /* Initial.storyboard */; };
 		DE65DA9C2370C6C500022B21 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE65DA9A2370C6C500022B21 /* Launch Screen.storyboard */; };
 		DE6794352268976E0068087A /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6794342268976E0068087A /* GroupsTableViewController.swift */; };
+		DE78478B240D9FBC002C2EDC /* UIStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78478A240D9FBC002C2EDC /* UIStoryboard.swift */; };
+		DE78478D240DA16B002C2EDC /* LegalDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78478C240DA16B002C2EDC /* LegalDocumentView.swift */; };
+		DE784790240DB406002C2EDC /* ContinueButtonContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78478F240DB406002C2EDC /* ContinueButtonContent.swift */; };
 		DE7B1D9F2269BCA5003E3028 /* GenericTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7B1D9E2269BCA5003E3028 /* GenericTableViewController.swift */; };
 		DE8417A923EA19810084E24F /* MyLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = DE8417A823EA19810084E24F /* MyLibrary */; };
 		DE87B78E235B9E450090B63E /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE87B78D235B9E450090B63E /* InitialViewController.swift */; };
@@ -165,6 +168,9 @@
 		DE65DA982370C6BA00022B21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Initial.storyboard; sourceTree = "<group>"; };
 		DE65DA9B2370C6C500022B21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Launch Screen.storyboard"; sourceTree = "<group>"; };
 		DE6794342268976E0068087A /* GroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
+		DE78478A240D9FBC002C2EDC /* UIStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboard.swift; sourceTree = "<group>"; };
+		DE78478C240DA16B002C2EDC /* LegalDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDocumentView.swift; sourceTree = "<group>"; };
+		DE78478F240DB406002C2EDC /* ContinueButtonContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueButtonContent.swift; sourceTree = "<group>"; };
 		DE7B1D9E2269BCA5003E3028 /* GenericTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableViewController.swift; sourceTree = "<group>"; };
 		DE87B78D235B9E450090B63E /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		DE8B668021CAC91C00C43F81 /* Group+Import.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+Import.swift"; sourceTree = "<group>"; };
@@ -396,6 +402,7 @@
 				DE3EB6B9231B11F8007EA63C /* DateFormatter.swift */,
 				DE95523722A253D400D70DA4 /* UIBarButtonItem.swift */,
 				DE40FBA5238D4700001DA3DE /* UIColor.swift */,
+				DE78478A240D9FBC002C2EDC /* UIStoryboard.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -464,8 +471,17 @@
 				DE4FCBFE23EF5D50000B53F4 /* LegalDocument.swift */,
 				DE4FCBFC23EF5CF9000B53F4 /* LegalDocumentViewController.swift */,
 				DE4FCC0023EF5DB4000B53F4 /* Legal Documents */,
+				DE78478C240DA16B002C2EDC /* LegalDocumentView.swift */,
 			);
 			name = Legal;
+			sourceTree = "<group>";
+		};
+		DE78478E240DB3EA002C2EDC /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				DE78478F240DB406002C2EDC /* ContinueButtonContent.swift */,
+			);
+			name = Buttons;
 			sourceTree = "<group>";
 		};
 		DE87B78C235B9E1D0090B63E /* Initial */ = {
@@ -588,6 +604,7 @@
 		DEE576E1226B7AD1008F9EB6 /* UI Subclasses */ = {
 			isa = PBXGroup;
 			children = (
+				DE78478E240DB3EA002C2EDC /* Buttons */,
 				DEBB74AB235CE4F900226C7E /* Segues */,
 				DEAB1D3E230D5405008FBFE3 /* Table Cells */,
 				DEE576E2226B7AE3008F9EB6 /* View Controllers */,
@@ -745,6 +762,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE017F9723622BC70046D3ED /* PreferencesTableViewController.swift in Sources */,
+				DE784790240DB406002C2EDC /* ContinueButtonContent.swift in Sources */,
 				DE945AD22264D71B00143303 /* UniversitiesDataSource.swift in Sources */,
 				DE945AC82264D11700143303 /* UniversityEntity+CoreDataProperties.swift in Sources */,
 				DE18942221BD45E600C7F9DB /* ImportForAuditorium.swift in Sources */,
@@ -762,6 +780,7 @@
 				DE8B668121CAC91C00C43F81 /* Group+Import.swift in Sources */,
 				C250C1831FBCD1CA00C90B53 /* AboutUsTableViewController.swift in Sources */,
 				DEBB74BB235CF4C300226C7E /* UniversitiesViewController.swift in Sources */,
+				DE78478D240DA16B002C2EDC /* LegalDocumentView.swift in Sources */,
 				DE540EC82215DDB40092FC81 /* TeacherTableViewController.swift in Sources */,
 				DEBB74AD235CE51400226C7E /* SetViewControllerSegue.swift in Sources */,
 				DE04D1F32370AA3200A18649 /* UserDefaultsKey.swift in Sources */,
@@ -790,6 +809,7 @@
 				DE4AA07121A5DF0500E06FEA /* AuditoriumDataSource.swift in Sources */,
 				DE13AF7F226A30D4009DF581 /* TeachersTableViewController.swift in Sources */,
 				DE4AA07321A5E31900E06FEA /* GroupsDataSource.swift in Sources */,
+				DE78478B240D9FBC002C2EDC /* UIStoryboard.swift in Sources */,
 				DE584C562198615F0099415E /* Teacher.swift in Sources */,
 				C2B5CDF31EEF0E750066DB30 /* AppDelegate.swift in Sources */,
 				DE04D1F72370B79F00A18649 /* UpdateHelper.swift in Sources */,

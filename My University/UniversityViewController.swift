@@ -301,14 +301,19 @@ class UniversityViewController: GenericTableViewController {
     private func checkWhatsNew() {
         if UserData.whatsNew1_6_3 {
             // What's new in version 1.6.3
-            let swiftUIView = WhatsNewOneSixThree {
+            var whatsNewView = WhatsNewOneSixThree()
+
+            // Continue
+            whatsNewView.continueAction = {
                 self.dismiss(animated: true)
             }
-            let hostingController = UIHostingController(rootView: swiftUIView)
+
+            let hostingController = UIHostingController(rootView: whatsNewView)
             present(hostingController, animated: true)
 
             // Present only once
-            UserData.whatsNew1_6_3 = false
+            #warning("Uncoment this")
+//            UserData.whatsNew1_6_3 = false
         }
     }
 }

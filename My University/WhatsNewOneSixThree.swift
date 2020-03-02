@@ -10,27 +10,63 @@ import SwiftUI
 
 struct WhatsNewOneSixThree: View {
 
-    var dismiss: (() -> Void)?
+    var continueAction: (() -> Void)?
+    var termsOfService: (() -> Void)?
 
     var body: some View {
         VStack {
+            // Logo
             Spacer()
-            Text("Welcome")
-                .font(.largeTitle)
-            Text("Thank you for using this app! ❤️")
-                .font(.subheadline)
+            Image("Logo").resizable().frame(width: 120, height: 120, alignment: .center)
+
+            // Welcome text
+            Text("Welcome").font(.largeTitle)
+            Text("Thank you for using this app! ❤️").font(.subheadline)
             Spacer()
 
+            // What's new
             VStack() {
-                Text("Check out what's new in this version:")
-                    .font(.headline)
+                Text("Check out what's new in this version:").font(.headline)
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("New and shiny Privacy Policy")
-                    .padding(.top)
+
+                    // Privacy Policy
+                    privacyPolicy()
                     Divider()
-                    Text("New Terms Of Service")
+
+                    // Terms of Service
+                    HStack(alignment: .center, spacing: 10) {
+                        Text("New ") + Text("Terms Of Service").bold()
+                        Spacer()
+                        Image(systemName: "info.circle")
+                            .foregroundColor(.blue)
+                    }
+                    .frame(height: 50)
+                    .gesture(
+                        TapGesture()
+                            .onEnded { _ in
+                                self.termsOfService?()
+                        }
+                    )
                     Divider()
-                    Text("Now you can support this project on Patreon")
+
+                    // Terms of Service
+                    HStack(alignment: .center, spacing: 10) {
+                        Text("Support on ") + Text("Patreon").bold()
+                        Spacer()
+                        Image(systemName: "info.circle")
+                            .foregroundColor(.blue)
+                    }
+                    .frame(height: 50)
+                    .gesture(
+                        TapGesture()
+                            .onEnded { _ in
+                                if let parteonURL = URL(string: "https://www.patreon.com/my_university") {
+                                    UIApplication.shared.open(parteonURL)
+                                    self.continueAction?()
+                                }
+                        }
+                    )
+                    Divider()
                 }
                 .padding(.horizontal, 10.0)
             }
@@ -38,42 +74,41 @@ struct WhatsNewOneSixThree: View {
 
             Spacer()
 
-            // Support on Patreon
+            // Continue
             Button(action: {
-                if let parteonURL = URL(string: "https://www.patreon.com/my_university") {
-                    UIApplication.shared.open(parteonURL)
-                    self.dismiss?()
-                }
+                self.continueAction?()
             }) {
-                SupportButtonContent()
+                ContinueButtonContent()
             }
-            .padding(.vertical, 20)
-
-            // Dismiss
-            Button(action: {
-                self.dismiss?()
-            }) {
-                Text("Dismiss")
-            }
-            .padding(.bottom)
         }
+    }
+
+    // MARK: - Privacy Policy
+
+    @State var privacyPolicyModal: Bool = false
+
+    fileprivate func privacyPolicy() -> some View {
+        return
+            HStack(alignment: .center, spacing: 10) {
+                Text("New ") + Text("Privacy Policy").bold()
+                Spacer()
+                Image(systemName: "info.circle").foregroundColor(.blue)
+            }
+            .frame(height: 50)
+            .sheet(isPresented: $privacyPolicyModal) {
+                LegalDocumentView(documentName: LegalDocument.privacyPolicy) {
+                    // Continue
+                    self.privacyPolicyModal = false
+                }
+            }
+            .gesture(TapGesture().onEnded { _ in
+                self.privacyPolicyModal = true
+            })
     }
 }
 
 struct WhatsNewOneSixThree_Previews: PreviewProvider {
     static var previews: some View {
         WhatsNewOneSixThree()
-    }
-}
-
-struct SupportButtonContent: View {
-    var body: some View {
-        Text("Support on Patreon")
-            .font(.headline)
-            .foregroundColor(.white)
-            .padding()
-            .frame(width: 240, height: 60)
-            .background(Color.green)
-            .cornerRadius(15)
     }
 }
