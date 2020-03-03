@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class AboutUsTableViewController: UITableViewController {
     
@@ -53,6 +54,18 @@ class AboutUsTableViewController: UITableViewController {
             default:
                 break
             }
+        } else if section == 4 {
+            // What's new in version 1.6.3
+            var whatsNewView = WhatsNewOneSixThree()
+
+            // Continue
+            whatsNewView.continueAction = {
+                self.dismiss(animated: true)
+            }
+
+            let hostingController = UIHostingController(rootView: whatsNewView)
+            present(hostingController, animated: true)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
     }
     

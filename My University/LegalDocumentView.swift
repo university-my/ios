@@ -25,11 +25,9 @@ struct LegalDocumentView: View {
             legalDocumentController()
 
             // Continue
-            Button(action: {
-                self.continueAction?()
-            }) {
+            Button(action: { self.continueAction?() }) {
                 ContinueButtonContent()
-            }
+            }.padding()
         }
     }
 }

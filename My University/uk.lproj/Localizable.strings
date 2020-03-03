@@ -11,7 +11,7 @@
 "Check out what's new in this version:" = "Що нового в цій версії:";
 
 /* No comment provided by engineer. */
-"Dismiss" = "Відхилити";
+"Continue" = "Продовжити";
 
 /* Favorites section name */
 "Group" = "Група";
@@ -22,26 +22,23 @@
 /* No comment provided by engineer. */
 "GROUPS" = "ГРУПИ";
 
-/* No comment provided by engineer. */
-"New and shiny Privacy Policy" = "Нова і блискуча Політика Конфіденційності";
-
-/* No comment provided by engineer. */
-"New Terms Of Service" = "Нові Умови Обслуговування";
-
 /* Message */
 "No records" = "Пар немає";
 
 /* No comment provided by engineer. */
-"Now you can support this project on Patreon" = "Тепер ви можете підтримати цей проект на Patreon";
+"PAIR" = "ПАРА";
 
 /* No comment provided by engineer. */
-"PAIR" = "ПАРА";
+"Patreon" = "Patreon";
+
+/* No comment provided by engineer. */
+"Privacy Policy" = "Політика конфіденційності";
 
 /* Placeholder in search controller */
 "Search" = "Пошук";
 
 /* No comment provided by engineer. */
-"Support on Patreon" = "Підтримати на Patreon";
+"Support on " = "Підтримати на ";
 
 /* Favorites section name */
 "Teacher" = "Викладач";
@@ -51,6 +48,9 @@
 
 /* Favorites section name */
 "Teachers" = "Викладачі";
+
+/* No comment provided by engineer. */
+"Terms Of Service" = "Умови надання послуг";
 
 /* No comment provided by engineer. */
 "Thank you for using this app! ❤️" = "Дякуємо, що користуєтеся цим додатком! ❤️";

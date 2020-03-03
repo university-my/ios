@@ -14,9 +14,14 @@ struct ContinueButtonContent: View {
             .font(.headline)
             .foregroundColor(.white)
             .padding()
-            .frame(width: 240, height: 60)
-            .background(Color.green)
+            .frame(width: 260, height: 60)
+            .background(gradient)
             .cornerRadius(15)
+    }
+
+    private var gradient: LinearGradient {
+        let gradient = Gradient(colors: [Color(UIColor.cornflowerBlue), .purple])
+        return LinearGradient(gradient: gradient, startPoint: .leading, endPoint: .trailing)
     }
 }
 

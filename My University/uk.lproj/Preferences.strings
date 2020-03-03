@@ -19,8 +19,14 @@
 /* Class = "UILabel"; text = "Privacy Policy"; ObjectID = "IaU-t7-ZbT"; */
 "IaU-t7-ZbT.text" = "Політика конфіденційності";
 
+/* Class = "UITableViewSection"; headerTitle = "What's new"; ObjectID = "rfT-ay-gM1"; */
+"rfT-ay-gM1.headerTitle" = "Що нового";
+
 /* Class = "UILabel"; text = "Terms of Service"; ObjectID = "Thd-dY-DhF"; */
 "Thd-dY-DhF.text" = "Умови обслуговування";
+
+/* Class = "UILabel"; text = "Check out what's new"; ObjectID = "uC6-0r-67z"; */
+"uC6-0r-67z.text" = "Перевірте, що нового";
 
 /* Class = "UILabel"; text = "Support on Patreon"; ObjectID = "w9Z-7r-Jb3"; */
 "w9Z-7r-Jb3.text" = "Підтримати на Patreon";

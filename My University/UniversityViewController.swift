@@ -312,8 +312,7 @@ class UniversityViewController: GenericTableViewController {
             present(hostingController, animated: true)
 
             // Present only once
-            #warning("Uncoment this")
-//            UserData.whatsNew1_6_3 = false
+            UserData.whatsNew1_6_3 = false
         }
     }
 }
