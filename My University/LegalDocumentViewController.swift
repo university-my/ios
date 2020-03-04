@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SwiftUI
 
-class LegalDocumentViewController: UIViewController {
+final class LegalDocumentViewController: UIViewController {
 
     // MARK: - Lifecycle
 
@@ -49,4 +50,22 @@ class LegalDocumentViewController: UIViewController {
 
         } catch {}
     }
+}
+
+// MARK: - UIViewControllerRepresentable
+
+extension LegalDocumentViewController: UIViewControllerRepresentable {
+
+    func makeUIViewController(context: UIViewControllerRepresentableContext<LegalDocumentViewController>) -> LegalDocumentViewController {
+        let storyboard = UIStoryboard.legalDocument()
+        let controller = storyboard.instantiateInitialViewController() as! LegalDocumentViewController
+        controller.documentName = documentName
+        return controller
+    }
+
+    func updateUIViewController(_ uiViewController: LegalDocumentViewController, context: UIViewControllerRepresentableContext<LegalDocumentViewController>) {
+
+    }
+
+    typealias UIViewControllerType = LegalDocumentViewController
 }

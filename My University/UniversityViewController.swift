@@ -8,6 +8,7 @@
 
 import CoreData
 import UIKit
+import SwiftUI
 
 // MARK: - Cells
 
@@ -43,6 +44,13 @@ class UniversityViewController: GenericTableViewController {
         
         // Hide toolbar
         navigationController?.setToolbarHidden(true, animated: true)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        // What's new
+        checkWhatsNew()
     }
     
     private func setup() {
@@ -285,6 +293,26 @@ class UniversityViewController: GenericTableViewController {
                     
                 }
             }
+        }
+    }
+
+    // MARK: - What's new
+
+    private func checkWhatsNew() {
+        if UserData.whatsNew1_6_3 {
+            // What's new in version 1.6.3
+            var whatsNewView = WhatsNewOneSixThree()
+
+            // Continue
+            whatsNewView.continueAction = {
+                self.dismiss(animated: true)
+            }
+
+            let hostingController = UIHostingController(rootView: whatsNewView)
+            present(hostingController, animated: true)
+
+            // Present only once
+            UserData.whatsNew1_6_3 = false
         }
     }
 }

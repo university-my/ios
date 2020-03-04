@@ -7,6 +7,12 @@
 /* Favorites section name */
 "Auditoriums" = "Аудиторії";
 
+/* No comment provided by engineer. */
+"Check out what's new in this version:" = "Що нового в цій версії:";
+
+/* No comment provided by engineer. */
+"Continue" = "Продовжити";
+
 /* Favorites section name */
 "Group" = "Група";
 
@@ -22,8 +28,17 @@
 /* No comment provided by engineer. */
 "PAIR" = "ПАРА";
 
+/* No comment provided by engineer. */
+"Patreon" = "Patreon";
+
+/* No comment provided by engineer. */
+"Privacy Policy" = "Політика конфіденційності";
+
 /* Placeholder in search controller */
 "Search" = "Пошук";
+
+/* No comment provided by engineer. */
+"Support on " = "Підтримати на ";
 
 /* Favorites section name */
 "Teacher" = "Викладач";
@@ -33,4 +48,13 @@
 
 /* Favorites section name */
 "Teachers" = "Викладачі";
+
+/* No comment provided by engineer. */
+"Terms Of Service" = "Умови надання послуг";
+
+/* No comment provided by engineer. */
+"Thank you for using this app! ❤️" = "Дякуємо, що користуєтеся цим додатком! ❤️";
+
+/* No comment provided by engineer. */
+"Welcome" = "Вітаємо";
 

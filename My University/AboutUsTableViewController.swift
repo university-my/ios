@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class AboutUsTableViewController: UITableViewController {
     
@@ -36,8 +37,13 @@ class AboutUsTableViewController: UITableViewController {
             if let websiteURL = URL(string: "https://my-university.com.ua") {
                 UIApplication.shared.open(websiteURL)
             }
-            
+
         } else if section == 2 {
+            if let parteonURL = URL(string: "https://www.patreon.com/my_university") {
+                UIApplication.shared.open(parteonURL)
+            }
+            
+        } else if section == 3 {
             switch row {
             case 0:
                 performSegue(withIdentifier: "legalDocument", sender: LegalDocument.privacyPolicy)
@@ -48,6 +54,18 @@ class AboutUsTableViewController: UITableViewController {
             default:
                 break
             }
+        } else if section == 4 {
+            // What's new in version 1.6.3
+            var whatsNewView = WhatsNewOneSixThree()
+
+            // Continue
+            whatsNewView.continueAction = {
+                self.dismiss(animated: true)
+            }
+
+            let hostingController = UIHostingController(rootView: whatsNewView)
+            present(hostingController, animated: true)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
     }
     

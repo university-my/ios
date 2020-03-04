@@ -7,8 +7,14 @@
 /* Class = "UILabel"; text = "Privacy Policy"; ObjectID = "az0-li-16Z"; */
 "az0-li-16Z.text" = "Політика конфіденційності";
 
+/* Class = "UITableViewSection"; headerTitle = "What's new"; ObjectID = "bsu-5D-B2A"; */
+"bsu-5D-B2A.headerTitle" = "Що нового";
+
 /* Class = "UILabel"; text = "Facebook"; ObjectID = "cN9-cb-11O"; */
 "cN9-cb-11O.text" = "Facebook";
+
+/* Class = "UITableViewSection"; headerTitle = "Patreon"; ObjectID = "d9o-7l-kH2"; */
+"d9o-7l-kH2.headerTitle" = "Patreon";
 
 /* Class = "UITableViewSection"; headerTitle = "Legal documents"; ObjectID = "fcI-hA-FTU"; */
 "fcI-hA-FTU.headerTitle" = "Документи";
@@ -22,9 +28,15 @@
 /* Class = "UITableViewSection"; headerTitle = "Website"; ObjectID = "oJW-gb-zbZ"; */
 "oJW-gb-zbZ.headerTitle" = "Веб-сайт";
 
+/* Class = "UILabel"; text = "Check out what's new"; ObjectID = "OwK-4c-v2m"; */
+"OwK-4c-v2m.text" = "Перевірте, що нового";
+
 /* Class = "UILabel"; text = "Terms of Service"; ObjectID = "PeZ-fu-tgp"; */
 "PeZ-fu-tgp.text" = "Умови обслуговування";
 
 /* Class = "UILabel"; text = "Instagram"; ObjectID = "rVb-do-Zv6"; */
 "rVb-do-Zv6.text" = "Instagram";
+
+/* Class = "UILabel"; text = "Support on Patreon"; ObjectID = "zub-x8-GPd"; */
+"zub-x8-GPd.text" = "Підтримати на Patreon";
 

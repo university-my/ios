@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class PreferencesTableViewController: UITableViewController {
 
@@ -36,9 +37,11 @@ class PreferencesTableViewController: UITableViewController {
         dismiss(animated: true)
     }
     
-    // MARK: - Report a problem
+    // MARK: - Table view delegate
     
     @IBOutlet weak var reportProblemCell: UITableViewCell!
+    @IBOutlet weak var patreonCell: UITableViewCell!
+    @IBOutlet weak var newFeatures: UITableViewCell!
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
@@ -46,6 +49,22 @@ class PreferencesTableViewController: UITableViewController {
             if let websiteURL = URL(string: "https://my-university.com.ua/contacts") {
                 UIApplication.shared.open(websiteURL)
             }
+        } else if cell == patreonCell {
+            if let parteonURL = URL(string: "https://www.patreon.com/my_university") {
+                UIApplication.shared.open(parteonURL)
+            }
+        } else if cell == newFeatures {
+            // What's new in version 1.6.3
+            var whatsNewView = WhatsNewOneSixThree()
+
+            // Continue
+            whatsNewView.continueAction = {
+                self.dismiss(animated: true)
+            }
+
+            let hostingController = UIHostingController(rootView: whatsNewView)
+            present(hostingController, animated: true)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
     }
 }

@@ -112,5 +112,44 @@ extension Record {
                 completionHandler?(nil)
             }
         }
+
+        // MARK: - Tests
+
+        static func loadTestRecords(_ completion: @escaping (([Record]) -> Void)) {
+            let urlString = "\(Settings.shared.apiURL)/records/test"
+            guard let url = URL(string: urlString) else { return }
+
+            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+                if let data = data {
+                    let records = serializeTestRecords(from: data)
+                    completion(records)
+                } else {
+                    completion([])
+                }
+            }
+            task.resume()
+        }
+
+        private static func serializeTestRecords(from data: Data) -> [Record] {
+            // Date formatter
+            let dateFormatter = ISO8601DateFormatter()
+            dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+
+            // Serialization
+            do {
+                let object = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                let records = object?.first { key, _ in
+                    return key == "records"
+                }
+                if let records = records?.value as? [[String: Any]] {
+                    let parsedRecords = records.compactMap { Record($0, dateFormatter: dateFormatter) }
+                    return parsedRecords
+                } else {
+                    return []
+                }
+            } catch {
+                return []
+            }
+        }
     }
 }

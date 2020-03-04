@@ -21,4 +21,8 @@ enum UserDefaultsKey {
     static var firstUsage: String {
         return Bundle.identifier + ".first-usage"
     }
+
+    static var whatsNew1_6_3: String {
+        return Bundle.identifier + ".whatsNew1_6_3"
+    }
 }
