@@ -108,7 +108,6 @@ struct WhatsNewOneSixThree: View {
         .gesture(TapGesture().onEnded { _ in
             if let parteonURL = URL(string: "https://www.patreon.com/my_university") {
                 UIApplication.shared.open(parteonURL)
-                self.continueAction?()
             }
         })
     }
