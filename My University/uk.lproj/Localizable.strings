@@ -1,3 +1,6 @@
+/* Alert title */
+"An error occurred" = "Сталася помилка";
+
 /* Favorites section name */
 "Auditorium" = "Аудиторія";
 
@@ -6,6 +9,9 @@
 
 /* Favorites section name */
 "Auditoriums" = "Аудиторії";
+
+/* Alert action */
+"Cancel" = "Скасувати";
 
 /* No comment provided by engineer. */
 "Check out what's new in this version:" = "Що нового в цій версії:";
@@ -34,6 +40,9 @@
 /* No comment provided by engineer. */
 "Privacy Policy" = "Політика конфіденційності";
 
+/* Aler action */
+"Report an error" = "Повідомити про помилку";
+
 /* Placeholder in search controller */
 "Search" = "Пошук";
 
@@ -54,6 +63,9 @@
 
 /* No comment provided by engineer. */
 "Thank you for using this app! ❤️" = "Дякуємо, що користуєтеся цим додатком! ❤️";
+
+/* Alert action */
+"Try again" = "Спробувати ще раз";
 
 /* No comment provided by engineer. */
 "Welcome" = "Вітаємо";
