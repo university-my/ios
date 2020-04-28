@@ -11,7 +11,7 @@ import UIKit
 
 class GroupsDataSource: NSObject {
 
-    // MARK: - Is Favories
+    // MARK: - Is Favorites
 
   private var favoritesImageView: UIImageView {
     let image = UIImage(systemName: "star.fill")

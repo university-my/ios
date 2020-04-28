@@ -110,7 +110,7 @@ extension Record {
                 guard let groupInContext = taskContext.object(with: group.objectID) as? GroupEntity else { return }
                 
                 // Parse records
-                let parsedRecords = json.compactMap { Record($0, dateFormatter: dateFormatter) }
+                let parsedRecords = json.compactMap { Record.CodingData($0, dateFormatter: dateFormatter) }
                 
                 // Records to update
                 let toUpdate = RecordEntity.fetch(parsedRecords, group: groupInContext, context: taskContext)
@@ -163,7 +163,7 @@ extension Record {
         }
         
         /// Insert new record with related group
-        private func insert(_ parsedRecord: Record, group: GroupEntity, context: NSManagedObjectContext) {
+        private func insert(_ parsedRecord: Record.CodingData, group: GroupEntity, context: NSManagedObjectContext) {
             let recordEntity = RecordEntity(context: context)
             
             recordEntity.id = NSNumber(value: parsedRecord.id).int64Value

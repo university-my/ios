@@ -1,6 +1,6 @@
 //
 //  GroupTableViewController.swift
-//  Schedule
+//  My University
 //
 //  Created by Yura Voevodin on 19.11.17.
 //  Copyright © 2017 Yura Voevodin. All rights reserved.
@@ -13,7 +13,6 @@ class GroupTableViewController: GenericTableViewController {
     
     // MARK: - Properties
     
-    private var sectionsTitles: [String] = []
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -35,41 +34,68 @@ class GroupTableViewController: GenericTableViewController {
     }
     
     func setup() {
+        // Data source
+        setupDataSource(with: groupID)
+        dataSource.fetchRecords()
+        dataSource.rebuild()
+        
+        configureTableView()
         updateTitleWithDate()
         
-        if let id = groupID, let context = viewContext {
-            group = GroupEntity.fetch(id: id, context: context)
+        if dataSource.fetchedRecords.isEmpty {
+            // Show activity indicator
+            showActivity()
+        } else {
+            #warning("Fix a bug with activity indicator")
+            tableView.reloadData()
         }
+        
+        // Start import
+        dataSource.importRecords()
+        
         if let group = group {
             titleLabel.text = group.name
             
             // Is Favorites
             favoriteButton.markAs(isFavorites: group.isFavorite)
-            
-            // Records
-            performFetch()
-            
-            let records = fetchedResultsController?.fetchedObjects ?? []
-            if records.isEmpty {
-                // Show activity indicator
-                showActivity()
-            }
-            
-            // Start import
-            importRecords()
         }
+    }
+    
+    // MARK: - Group
+    
+    var groupID: Int64!
+    
+    // TODO: Change to Struct
+    var group: GroupEntity? {
+        return dataSource.group
+    }
+    
+    // MARK: - Data Source
+    
+    var dataSource: GroupDataSource!
+    
+    private func setupDataSource(with groupID: Int64) {
+        dataSource = GroupDataSource(groupID: groupID)
+        dataSource.delegate = self
+        dataSource.fetchGroup()
+    }
+    
+    // MARK: - Table views
+    
+    private func configureTableView() {
+        tableView.register(NoRecordsTableViewCell.self)
     }
     
     // MARK: - Pull to refresh
     
     @IBAction func refresh(_ sender: Any) {
-        importRecords()
+        dataSource.importRecords()
     }
     
     // MARK: - Share
     
     @IBAction func share(_ sender: Any) {
-        guard let url = groupURL() else { return }
+        guard let url = dataSource.groupURL() else { return }
         if let siteURL = URL(string: url) {
             let sharedItems = [siteURL]
             let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
@@ -77,102 +103,55 @@ class GroupTableViewController: GenericTableViewController {
         }
     }
     
-    private func groupURL() -> String? {
-        guard let group = group else { return nil }
-        guard let universityURL = group.university?.url else { return nil }
-        guard let slug = group.slug else { return nil }
-        let dateString = DateFormatter.short.string(from: pairDate)
-        let url = Settings.shared.baseURL + "/universities/\(universityURL)/groups/\(slug)?pair_date=\(dateString)"
-        return url
-    }
-    
     // MARK: - Favorites
     
     @IBAction func toggleFavorite(_ sender: Any) {
         if let group = group {
-            let appDelegate = UIApplication.shared.delegate as? AppDelegate
-            group.isFavorite.toggle()
-            appDelegate?.saveContext()
+            dataSource.toggleFavorite(for: group)
             favoriteButton.markAs(isFavorites: group.isFavorite)
-        }
-    }
-    
-    // MARK: - Import Records
-    
-    private var group: GroupEntity?
-    var groupID: Int64?
-    
-    private var importManager: Record.ImportForGroup?
-    
-    private func importRecords() {
-        // Do nothing without CoreData.
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        guard let persistentContainer = appDelegate?.persistentContainer else { return }
-        
-        guard let group = group else { return }
-        guard let university = group.university else { return }
-        
-        // Download records for Group from backend and save to database.
-        importManager = Record.ImportForGroup(persistentContainer: persistentContainer, group: group, university: university)
-        importManager?.importRecords(for: pairDate, { (error) in
-            
-            DispatchQueue.main.async {
-                self.processResultOfImport(error: error)
-            }
-        })
-    }
-    
-    private func processResultOfImport(error: Error?) {
-        if let error = error {
-            show(message: error.localizedDescription)
-        } else {
-            hideActivity()
-        }
-        refreshControl?.endRefreshing()
-        performFetch()
-        let records = fetchedResultsController?.fetchedObjects ?? []
-        if records.isEmpty {
-            show(message: noRecordsMessage)
-        } else {
-            hideMessage()
-            tableView.reloadData()
         }
     }
     
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return fetchedResultsController?.sections?.count ?? 0
+        return dataSource.sections.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let section = fetchedResultsController?.sections?[safe: section]
-        return section?.numberOfObjects ?? 0
+        switch dataSource.sections[section].kind {
+        case .noRecords:
+            return 1
+        case .records(let records, _):
+            return records.count
+        }
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(for: indexPath) as RecordTableViewCell
-        
-        // Configure the cell
-        if let record = fetchedResultsController?.object(at: indexPath) {
+        let section = dataSource.sections[indexPath.section]
+        switch section.kind {
+            
+        case .noRecords:
+            let cell = tableView.dequeueReusableCell(for: indexPath) as NoRecordsTableViewCell
+            // TODO: Pick random image
+            return cell
+            
+        case .records(let records, _):
+            let cell = tableView.dequeueReusableCell(for: indexPath) as RecordTableViewCell
+            let record = records[indexPath.row]
             cell.update(with: record)
+            return cell
         }
-        return cell
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if sectionsTitles.indices.contains(section) {
-            return sectionsTitles[section]
-        } else {
-            return fetchedResultsController?.sections?[safe: section]?.name
-        }
+        return dataSource.sections[section].title
     }
     
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let record = fetchedResultsController?.object(at: indexPath)
+        let record = dataSource.record(at: indexPath)
         performSegue(withIdentifier: "recordDetails", sender: record)
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -186,7 +165,7 @@ class GroupTableViewController: GenericTableViewController {
         case "recordDetails":
             if let navigation = segue.destination as? UINavigationController {
                 if let destination = navigation.viewControllers.first as? RecordDetailedTableViewController {
-                    destination.recordID = (sender as? RecordEntity)?.id
+                    destination.recordID = (sender as? Record)?.id
                     destination.groupID = groupID
                     destination.teacherID = nil
                     destination.auditoriumID = nil
@@ -197,8 +176,8 @@ class GroupTableViewController: GenericTableViewController {
             let navigationVC = segue.destination as? UINavigationController
             let vc = navigationVC?.viewControllers.first as? DatePickerViewController
             vc?.pairDate = pairDate
-            vc?.didSelectDate = { selecteDate in
-                self.pairDate = selecteDate
+            vc?.didSelectDate = { selectedDate in
+                self.pairDate = selectedDate
                 self.updateTitleWithDate()
                 self.fetchOrImportRecordsForSelectedDate()
             }
@@ -208,73 +187,17 @@ class GroupTableViewController: GenericTableViewController {
         }
     }
     
-    // MARK: - NSFetchedResultsController
-    
-    private lazy var viewContext: NSManagedObjectContext? = {
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        return appDelegate?.persistentContainer.viewContext
-    }()
-    
-    private lazy var fetchedResultsController: NSFetchedResultsController<RecordEntity>? = {
-        let request: NSFetchRequest<RecordEntity> = RecordEntity.fetchRequest()
-        
-        let pairName = NSSortDescriptor(key: #keyPath(RecordEntity.pairName), ascending: true)
-        let date = NSSortDescriptor(key: #keyPath(RecordEntity.date), ascending: true)
-        
-        request.sortDescriptors = [pairName, date]
-        request.predicate = generatePredicate()
-        request.fetchBatchSize = 20
-        
-        if let context = viewContext {
-            let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: #keyPath(RecordEntity.pairName), cacheName: nil)
-            return controller
-        } else {
-            return nil
-        }
-    }()
-    
-    private func performFetch() {
-        do {
-            try fetchedResultsController?.performFetch()
-            
-            // Generate title for sections
-            if let controller = fetchedResultsController, let sections = controller.sections {
-                var newSectionsTitles: [String] = []
-                for section in sections {
-                    if let firstObjectInSection = section.objects?.first as? RecordEntity {
-                        var sectionName = ""
-                        if let name = firstObjectInSection.pairName {
-                            sectionName = name
-                        }
-                        if let time = firstObjectInSection.time {
-                            sectionName += " (\(time))"
-                        }
-                        newSectionsTitles.append(sectionName)
-                    }
-                }
-                sectionsTitles = newSectionsTitles
-            }
-        } catch {
-            print("Error in the fetched results controller: \(error).")
-        }
-    }
-    
-    private func generatePredicate() -> NSPredicate? {
-        guard let group = group else { return nil }
-        
-        let selectedDate = pairDate
-        let startOfDay = selectedDate.startOfDay as NSDate
-        let endOfDay = selectedDate.endOfDay as NSDate
-        
-        let datePredicate = NSPredicate(format: "(date >= %@) AND (date <= %@)", startOfDay, endOfDay)
-        let groupsPredicate = NSPredicate(format: "ANY groups == %@", group)
-        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [groupsPredicate, datePredicate])
-        return compoundPredicate
-    }
-    
     // MARK: - Date
     
-    private var pairDate = Date()
+    private var pairDate: Date {
+        get {
+            return dataSource.pairDate
+        }
+        set {
+            dataSource.pairDate = newValue
+        }
+    }
+    
     @IBOutlet weak var dateButton: UIBarButtonItem!
     
     private func updateTitleWithDate() {
@@ -302,12 +225,11 @@ class GroupTableViewController: GenericTableViewController {
     }
     
     private func fetchOrImportRecordsForSelectedDate() {
-        fetchedResultsController?.fetchRequest.predicate = generatePredicate()
+        dataSource.updateDatePredicate()
+        dataSource.fetchRecords()
+        dataSource.rebuild()
         
-        performFetch()
-        
-        let records = fetchedResultsController?.fetchedObjects ?? []
-        if records.isEmpty {
+        if dataSource.fetchedRecords.isEmpty {
             
             // Hide previous records or activity
             hideActivity()
@@ -317,10 +239,33 @@ class GroupTableViewController: GenericTableViewController {
             showActivity()
             
             // Start import
-            importRecords()
+            dataSource.importRecords()
         } else {
             hideActivity()
             tableView.reloadData()
         }
+    }
+}
+
+// MARK: - GroupDataSourceDelegate
+
+extension GroupTableViewController: GroupDataSourceDelegate {
+    
+    func didImportRecords(_ error: Error?) {
+        refreshControl?.endRefreshing()
+        
+        if let error = error {
+            
+            // TODO: Test UI with error
+            
+            show(message: error.localizedDescription)
+            return
+        }
+        
+        hideActivity()
+        dataSource.fetchRecords()
+        dataSource.rebuild()
+        
+        tableView.reloadData()
     }
 }

@@ -57,3 +57,17 @@ public class GroupEntity: NSManagedObject {
         }
     }
 }
+
+// MARK: - FavoriteEntityProtocol
+
+extension GroupEntity: FavoriteEntityProtocol {
+    
+    var favorite: Bool {
+        get {
+            return isFavorite
+        }
+        set {
+            isFavorite = newValue
+        }
+    }
+}

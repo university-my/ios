@@ -115,7 +115,7 @@ extension Record {
 
         // MARK: - Tests
 
-        static func loadTestRecords(_ completion: @escaping (([Record]) -> Void)) {
+        static func loadTestRecords(_ completion: @escaping (([Record.CodingData]) -> Void)) {
             let urlString = "\(Settings.shared.apiURL)/records/test"
             guard let url = URL(string: urlString) else { return }
 
@@ -130,7 +130,7 @@ extension Record {
             task.resume()
         }
 
-        private static func serializeTestRecords(from data: Data) -> [Record] {
+        private static func serializeTestRecords(from data: Data) -> [Record.CodingData] {
             // Date formatter
             let dateFormatter = ISO8601DateFormatter()
             dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
@@ -142,7 +142,7 @@ extension Record {
                     return key == "records"
                 }
                 if let records = records?.value as? [[String: Any]] {
-                    let parsedRecords = records.compactMap { Record($0, dateFormatter: dateFormatter) }
+                    let parsedRecords = records.compactMap { Record.CodingData($0, dateFormatter: dateFormatter) }
                     return parsedRecords
                 } else {
                     return []

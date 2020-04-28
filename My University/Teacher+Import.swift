@@ -96,7 +96,7 @@ extension Teacher {
                 }
                 
                 // Parse teachers.
-                let parsedTeachers = json.compactMap { Teacher($0) }
+                let parsedTeachers = json.compactMap { Teacher.CodingData($0) }
                 
                 // Teachers to update
                 let toUpdate = TeacherEntity.fetch(parsedTeachers, university: universityInContext, context: taskContext)
@@ -189,7 +189,7 @@ extension Teacher {
             }
         }
         
-        private func insert(_ parsedTeacher: Teacher, university: UniversityEntity, context: NSManagedObjectContext) {
+        private func insert(_ parsedTeacher: Teacher.CodingData, university: UniversityEntity, context: NSManagedObjectContext) {
             let teacherEntity = TeacherEntity(context: context)
             teacherEntity.id = parsedTeacher.id
             teacherEntity.name = parsedTeacher.name

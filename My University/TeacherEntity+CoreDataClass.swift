@@ -26,7 +26,7 @@ public class TeacherEntity: NSManagedObject {
         }
     }
     
-    static func fetch(_ teachers: [Teacher], university: UniversityEntity?, context: NSManagedObjectContext) -> [TeacherEntity] {
+    static func fetch(_ teachers: [Teacher.CodingData], university: UniversityEntity?, context: NSManagedObjectContext) -> [TeacherEntity] {
         // University should not be nil
         guard let university = university else { return [] }
         
@@ -55,5 +55,15 @@ public class TeacherEntity: NSManagedObject {
         } catch  {
             return []
         }
+    }
+    
+    func asStruct() -> Teacher {
+        return Teacher(
+            firstSymbol: firstSymbol,
+            id: id,
+            isFavorite: isFavorite,
+            name: name,
+            slug: slug
+        )
     }
 }

@@ -43,7 +43,7 @@ public class RecordEntity: NSManagedObject {
         }
     }
     
-    static func fetch(_ records: [Record], auditorium: AuditoriumEntity?, context: NSManagedObjectContext) -> [RecordEntity] {
+    static func fetch(_ records: [Record.CodingData], auditorium: AuditoriumEntity?, context: NSManagedObjectContext) -> [RecordEntity] {
         guard let auditorium = auditorium else { return [] }
         
         let ids = records.map { record in
@@ -62,7 +62,7 @@ public class RecordEntity: NSManagedObject {
         }
     }
     
-    static func fetch(_ records: [Record], group: GroupEntity?, context: NSManagedObjectContext) -> [RecordEntity] {
+    static func fetch(_ records: [Record.CodingData], group: GroupEntity?, context: NSManagedObjectContext) -> [RecordEntity] {
         guard let group = group else { return [] }
         
         let ids = records.map { record in
@@ -81,7 +81,7 @@ public class RecordEntity: NSManagedObject {
         }
     }
     
-    static func fetch(_ records: [Record], teacher: TeacherEntity?, context: NSManagedObjectContext) -> [RecordEntity] {
+    static func fetch(_ records: [Record.CodingData], teacher: TeacherEntity?, context: NSManagedObjectContext) -> [RecordEntity] {
         guard let teacher = teacher else { return [] }
         
         let ids = records.map { record in
@@ -130,6 +130,22 @@ public class RecordEntity: NSManagedObject {
             return result
         } catch  {
             return []
+        }
+    }
+    
+    func asStruct() -> Record? {
+        guard let teacher = teacher?.asStruct() else { return nil }
+        return Record(auditorium: nil, date: date, groups: [], id: id, name: name, pairName: pairName, reason: reason, teacher: teacher, time: time, type: type)
+    }
+}
+
+// MARK: - Collection
+
+extension Collection where Self == [RecordEntity] {
+    
+    func toStructs() -> [Record] {
+        return self.compactMap { (record) -> Record? in
+            return record.asStruct()
         }
     }
 }

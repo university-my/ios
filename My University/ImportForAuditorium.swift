@@ -111,7 +111,7 @@ extension Record {
                 }
                 
                 // Parse records
-                let parsedRecords = json.compactMap { Record($0, dateFormatter: dateFormatter) }
+                let parsedRecords = json.compactMap { Record.CodingData($0, dateFormatter: dateFormatter) }
                 
                 // Records to update
                 let toUpdate = RecordEntity.fetch(parsedRecords, auditorium: auditoriumInContext, context: taskContext)
@@ -163,7 +163,7 @@ extension Record {
             }
         }
         
-        private func insert(_ parsedRecord: Record, auditorium: AuditoriumEntity, context: NSManagedObjectContext) {
+        private func insert(_ parsedRecord: Record.CodingData, auditorium: AuditoriumEntity, context: NSManagedObjectContext) {
             let recordEntity = RecordEntity(context: context)
             
             recordEntity.id = NSNumber(value: parsedRecord.id).int64Value
