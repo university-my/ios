@@ -133,9 +133,19 @@ public class RecordEntity: NSManagedObject {
         }
     }
     
-    func asStruct() -> Record? {
-        guard let teacher = teacher?.asStruct() else { return nil }
-        return Record(auditorium: nil, date: date, groups: [], id: id, name: name, pairName: pairName, reason: reason, teacher: teacher, time: time, type: type)
+    func asStruct() -> Record {
+        Record(
+            auditorium: nil,
+            date: date,
+            groups: [],
+            id: id,
+            name: name,
+            pairName: pairName,
+            reason: reason,
+            teacher: teacher?.asStruct(),
+            time: time,
+            type: type
+        )
     }
 }
 
@@ -144,7 +154,7 @@ public class RecordEntity: NSManagedObject {
 extension Collection where Self == [RecordEntity] {
     
     func toStructs() -> [Record] {
-        return self.compactMap { (record) -> Record? in
+        return self.map { (record) -> Record in
             return record.asStruct()
         }
     }

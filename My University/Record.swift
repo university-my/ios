@@ -17,7 +17,7 @@ struct Record {
     let name: String?
     let pairName: String?
     let reason: String?
-    let teacher: Teacher
+    let teacher: Teacher?
     let time: String?
     let type: String?
 }

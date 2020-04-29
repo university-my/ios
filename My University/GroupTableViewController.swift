@@ -11,19 +11,31 @@ import UIKit
 
 class GroupTableViewController: GenericTableViewController {
     
+    @IBOutlet weak var tableTitleLabel: UILabel!
+    
     // MARK: - Properties
     
-    @IBOutlet weak var favoriteButton: UIBarButtonItem!
-    @IBOutlet weak var titleLabel: UILabel!
+    private let logic: GroupLogicController
+    
+    // MARK: - Init
+    
+    required init?(coder: NSCoder) {
+        logic = GroupLogicController()
+        super.init(coder: coder)
+        
+        logic.delegate = self
+    }
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.rowHeight = UITableView.automaticDimension
+        // Table
+        configureTableView()
         
-        setup()
+        // Data
+        logic.fetchData(for: groupID)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,31 +45,43 @@ class GroupTableViewController: GenericTableViewController {
         navigationController?.setToolbarHidden(false, animated: true)
     }
     
-    func setup() {
-        // Data source
-        setupDataSource(with: groupID)
-        dataSource.fetchRecords()
-        dataSource.rebuild()
-        
-        configureTableView()
-        updateTitleWithDate()
-        
-        if dataSource.fetchedRecords.isEmpty {
-            // Show activity indicator
-            showActivity()
-        } else {
-            #warning("Fix a bug with activity indicator")
-            tableView.reloadData()
-        }
-        
-        // Start import
-        dataSource.importRecords()
-        
-        if let group = group {
-            titleLabel.text = group.name
+    // MARK: - State
+    
+    enum State {
+        case loading
+        case presenting(Group)
+        case failed(Error)
+    }
+    
+    func render(_ state: State) {
+        switch state {
+            
+        case .loading:
+            // Show a loading spinner
+            // TODO: Show activity indicator in separate child controller
+            break
+            
+        case .presenting(let group):
+            // Bind the user model to the view controller's views
+            
+            // Title
+            tableTitleLabel.text = group.name
             
             // Is Favorites
             favoriteButton.markAs(isFavorites: group.isFavorite)
+            
+            // Controller title
+            title = DateFormatter.date.string(from: pairDate)
+            
+            tableView.reloadData()
+            
+        case .failed(let error):
+            // Show an error view
+            present(error) {
+                // Try again
+                self.logic.importRecordsIfNeeded()
+            }
+            refreshControl?.endRefreshing()
         }
     }
     
@@ -65,70 +89,52 @@ class GroupTableViewController: GenericTableViewController {
     
     var groupID: Int64!
     
-    // TODO: Change to Struct
     var group: GroupEntity? {
-        return dataSource.group
-    }
-    
-    // MARK: - Data Source
-    
-    var dataSource: GroupDataSource!
-    
-    private func setupDataSource(with groupID: Int64) {
-        dataSource = GroupDataSource(groupID: groupID)
-        dataSource.delegate = self
-        dataSource.fetchGroup()
+        return logic.group
     }
     
     // MARK: - Table views
     
     private func configureTableView() {
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.register(NoRecordsTableViewCell.self)
     }
     
     // MARK: - Pull to refresh
     
     @IBAction func refresh(_ sender: Any) {
-        dataSource.importRecords()
+        logic.importRecordsIfNeeded()
     }
     
     // MARK: - Share
     
     @IBAction func share(_ sender: Any) {
-        guard let url = dataSource.groupURL() else { return }
-        if let siteURL = URL(string: url) {
-            let sharedItems = [siteURL]
-            let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
-            present(vc, animated: true)
-        }
+        guard let url = logic.shareURL() else { return }
+        let sharedItems = [url]
+        let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
+        present(vc, animated: true)
     }
     
     // MARK: - Favorites
     
+    @IBOutlet weak var favoriteButton: UIBarButtonItem!
+    
     @IBAction func toggleFavorite(_ sender: Any) {
-        if let group = group {
-            dataSource.toggleFavorite(for: group)
-            favoriteButton.markAs(isFavorites: group.isFavorite)
-        }
+        logic.toggleFavorite()
     }
     
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return dataSource.sections.count
+        return logic.numberOfSections
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch dataSource.sections[section].kind {
-        case .noRecords:
-            return 1
-        case .records(let records, _):
-            return records.count
-        }
+        logic.numberOfRows(in: section)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = dataSource.sections[indexPath.section]
+        let section = logic.section(at: indexPath.section)
         switch section.kind {
             
         case .noRecords:
@@ -145,13 +151,13 @@ class GroupTableViewController: GenericTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return dataSource.sections[section].title
+        logic.section(at: section).title
     }
     
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let record = dataSource.record(at: indexPath)
+        let record = logic.record(at: indexPath)
         performSegue(withIdentifier: "recordDetails", sender: record)
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -177,9 +183,7 @@ class GroupTableViewController: GenericTableViewController {
             let vc = navigationVC?.viewControllers.first as? DatePickerViewController
             vc?.pairDate = pairDate
             vc?.didSelectDate = { selectedDate in
-                self.pairDate = selectedDate
-                self.updateTitleWithDate()
-                self.fetchOrImportRecordsForSelectedDate()
+                self.logic.changePairDate(to: selectedDate)
             }
             
         default:
@@ -190,82 +194,29 @@ class GroupTableViewController: GenericTableViewController {
     // MARK: - Date
     
     private var pairDate: Date {
-        get {
-            return dataSource.pairDate
-        }
-        set {
-            dataSource.pairDate = newValue
-        }
+        logic.pairDate
     }
     
     @IBOutlet weak var dateButton: UIBarButtonItem!
     
-    private func updateTitleWithDate() {
-        title = DateFormatter.date.string(from: pairDate)
-    }
-    
     @IBAction func previousDate(_ sender: Any) {
-        // -1 day
-        let currentDate = pairDate
-        if let previousDate = Calendar.current.date(byAdding: .day, value: -1, to: currentDate) {
-            pairDate = previousDate
-            fetchOrImportRecordsForSelectedDate()
-            updateTitleWithDate()
-        }
+        logic.previousDate()
     }
     
     @IBAction func nextDate(_ sender: Any) {
-        // +1 day
-        let currentDate = pairDate
-        if let nextDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate) {
-            pairDate = nextDate
-            fetchOrImportRecordsForSelectedDate()
-            updateTitleWithDate()
-        }
-    }
-    
-    private func fetchOrImportRecordsForSelectedDate() {
-        dataSource.updateDatePredicate()
-        dataSource.fetchRecords()
-        dataSource.rebuild()
-        
-        if dataSource.fetchedRecords.isEmpty {
-            
-            // Hide previous records or activity
-            hideActivity()
-            tableView.reloadData()
-            
-            // Show activity indicator
-            showActivity()
-            
-            // Start import
-            dataSource.importRecords()
-        } else {
-            hideActivity()
-            tableView.reloadData()
-        }
+        logic.nextDate()
     }
 }
 
-// MARK: - GroupDataSourceDelegate
+// MARK: - GroupLogicControllerDelegate
 
-extension GroupTableViewController: GroupDataSourceDelegate {
+extension GroupTableViewController: GroupLogicControllerDelegate {
     
-    func didImportRecords(_ error: Error?) {
-        refreshControl?.endRefreshing()
-        
-        if let error = error {
-            
-            // TODO: Test UI with error
-            
-            show(message: error.localizedDescription)
-            return
-        }
-        
-        hideActivity()
-        dataSource.fetchRecords()
-        dataSource.rebuild()
-        
-        tableView.reloadData()
+    func didChangeState(to newState: State) {
+        render(newState)
     }
 }
+
+// MARK: - ErrorAlertRepresentable
+
+extension GroupTableViewController: ErrorAlertRepresentable {}

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5GV-1r-HQg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5GV-1r-HQg">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -202,7 +202,6 @@
         <!--Group-->
         <scene sceneID="7Jr-Ne-5AE">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QRU-oe-Wbh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="qNV-DU-Cbu" customClass="GroupTableViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="mGT-n5-zT7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -300,26 +299,27 @@
                     <connections>
                         <outlet property="dateButton" destination="CCj-zG-I0C" id="khP-Dz-oA5"/>
                         <outlet property="favoriteButton" destination="FkD-w5-ffK" id="Lzu-So-gCR"/>
-                        <outlet property="titleLabel" destination="ikp-AV-rSQ" id="BS0-Hv-hxF"/>
+                        <outlet property="tableTitleLabel" destination="ikp-AV-rSQ" id="iN6-3Z-ge1"/>
                         <segue destination="43g-7n-gTu" kind="presentation" identifier="recordDetails" id="XK9-se-gJu"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QRU-oe-Wbh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4235" y="-762"/>
         </scene>
         <!--Record Details-->
         <scene sceneID="p00-kH-kt9">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xeB-jy-Isi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="Record Details" id="43g-7n-gTu" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xeB-jy-Isi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4790" y="-702"/>
         </scene>
         <!--Date Picker-->
         <scene sceneID="CXH-zL-nfN">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aHA-Gl-foy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="Date Picker" id="b19-ct-wxw" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aHA-Gl-foy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4825" y="-879"/>
         </scene>
@@ -766,20 +766,20 @@
             <point key="canvasLocation" x="7702" y="137"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="briefcase" catalog="system" width="64" height="50"/>
-        <image name="calendar" catalog="system" width="64" height="52"/>
-        <image name="chevron.left" catalog="system" width="48" height="64"/>
-        <image name="chevron.right" catalog="system" width="48" height="64"/>
-        <image name="gear" catalog="system" width="64" height="58"/>
-        <image name="magnifyingglass" catalog="system" width="64" height="56"/>
-        <image name="person.2" catalog="system" width="64" height="40"/>
-        <image name="star" catalog="system" width="64" height="58"/>
-        <image name="table" catalog="system" width="64" height="46"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="MfV-VQ-oKG"/>
         <segue reference="swU-6C-ISC"/>
         <segue reference="esS-pW-g3R"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <image name="briefcase" catalog="system" width="128" height="102"/>
+        <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="chevron.left" catalog="system" width="96" height="128"/>
+        <image name="chevron.right" catalog="system" width="96" height="128"/>
+        <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="person.2" catalog="system" width="128" height="81"/>
+        <image name="star" catalog="system" width="128" height="116"/>
+        <image name="table" catalog="system" width="128" height="93"/>
+    </resources>
 </document>

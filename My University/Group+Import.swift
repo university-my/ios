@@ -97,7 +97,7 @@ extension Group {
                 }
                 
                 // Parse groups.
-                let parsedGroups = json.compactMap { Group($0) }
+                let parsedGroups = json.compactMap { Group.CodingData($0) }
                 
                 // Groups to update
                 let toUpdate = GroupEntity.fetch(parsedGroups, university: universityInContext, context: taskContext)
@@ -190,7 +190,7 @@ extension Group {
             }
         }
         
-        private func insert(_ parsedGroup: Group, university: UniversityEntity, context: NSManagedObjectContext) {
+        private func insert(_ parsedGroup: Group.CodingData, university: UniversityEntity, context: NSManagedObjectContext) {
             let groupEntity = GroupEntity(context: context)
             
             if let firstCharacter = parsedGroup.name.first {

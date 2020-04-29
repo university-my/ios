@@ -46,12 +46,10 @@ class PreferencesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         if cell == reportProblemCell {
-            if let websiteURL = URL(string: "https://my-university.com.ua/contacts") {
-                UIApplication.shared.open(websiteURL)
-            }
+            UIApplication.shared.open(BaseEndpoint.contacts.url)
         } else if cell == patreonCell {
-            if let parteonURL = URL(string: "https://www.patreon.com/my_university") {
-                UIApplication.shared.open(parteonURL)
+            if let patreonURL = URL(string: "https://www.patreon.com/my_university") {
+                UIApplication.shared.open(patreonURL)
             }
         } else if cell == newFeatures {
             // What's new in version 1.6.3

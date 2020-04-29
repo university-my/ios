@@ -15,7 +15,7 @@ class GroupsTableViewController: SearchableTableViewController {
     var universityID: Int64?
     private var dataSource: GroupsDataSource?
     
-    // MARK: - Notificaion
+    // MARK: - Notification
     
     @IBOutlet weak var statusButton: UIBarButtonItem!
     

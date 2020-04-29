@@ -26,7 +26,7 @@ public class GroupEntity: NSManagedObject {
     }
     
     /// Fetch groups
-    class func fetch(_ groups: [Group], university: UniversityEntity?, context: NSManagedObjectContext) -> [GroupEntity] {
+    class func fetch(_ groups: [Group.CodingData], university: UniversityEntity?, context: NSManagedObjectContext) -> [GroupEntity] {
         // University should not be nil
         guard let university = university else { return [] }
         
@@ -55,6 +55,12 @@ public class GroupEntity: NSManagedObject {
         } catch  {
             return []
         }
+    }
+    
+    func asStruct() -> Group? {
+        guard let name = name else { return nil }
+        guard let slug = slug else { return nil }
+        return Group(id: id, name: name, slug: slug, isFavorite: isFavorite)
     }
 }
 

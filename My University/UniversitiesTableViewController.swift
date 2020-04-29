@@ -46,7 +46,10 @@ class UniversitiesTableViewController: GenericTableViewController {
             if let strongSelf = self {
                 if let error = error {
                     strongSelf.refreshControl?.endRefreshing()
-                    strongSelf.present(error)
+                    strongSelf.present(error) {
+                        // Try again
+                        strongSelf.importUniversities()
+                    }
                 } else {
                     strongSelf.refreshControl?.endRefreshing()
                     strongSelf.dataSource.fetchUniversities(delegate: strongSelf)
@@ -69,38 +72,6 @@ class UniversitiesTableViewController: GenericTableViewController {
         University.selectedUniversityID = university?.id
         performSegue(withIdentifier: "setUniversity", sender: nil)
     }
-
-    // MARK: - An error alert
-
-    private func present(_ error: Error) {
-        let title = NSLocalizedString("An error occurred", comment: "Alert title")
-        let message = error.localizedDescription
-
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-
-        // Try again
-        let tryAgainTitle = NSLocalizedString("Try again", comment: "Alert action")
-        let tryAgainAction = UIAlertAction(title: tryAgainTitle, style: .default) { (_) in
-            self.importUniversities()
-        }
-        alert.addAction(tryAgainAction)
-
-        // Report an error
-        let reportAnError = NSLocalizedString("Report an error", comment: "Aler action")
-        let reportAction = UIAlertAction(title: reportAnError, style: .default) { (_) in
-            if let websiteURL = URL(string: "https://my-university.com.ua/contacts") {
-                UIApplication.shared.open(websiteURL)
-            }
-        }
-        alert.addAction(reportAction)
-
-        // Cancel
-        let canlel = NSLocalizedString("Cancel", comment: "Alert action")
-        let cancelAction = UIAlertAction(title: canlel, style: .cancel)
-        alert.addAction(cancelAction)
-
-        present(alert, animated: true)
-    }
 }
 
 // MARK: - NSFetchedResultsControllerDelegate
@@ -111,3 +82,7 @@ extension UniversitiesTableViewController: NSFetchedResultsControllerDelegate {
         tableView.reloadData()
     }
 }
+
+// MARK: - ErrorAlertProtocol
+
+extension UniversitiesTableViewController: ErrorAlertRepresentable {}

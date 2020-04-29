@@ -30,7 +30,7 @@ extension Record {
         /// Description or comment
         let reason: String?
         let auditorium: Auditorium?
-        let groups: [Group]
+        let groups: [Group.CodingData]
         let teacher: Teacher.CodingData?
         
         // MARK: - Initialization
@@ -69,11 +69,11 @@ extension Record {
             }
             
             // Groups
-            var groups: [Group] = []
+            var groups: [Group.CodingData] = []
             if let groupsObject = json["groups"] as? [Any] {
                 for item in groupsObject {
                     if let groupObject = item as? [String: Any] {
-                        if let group = Group(groupObject) {
+                        if let group = Group.CodingData(groupObject) {
                             groups.append(group)
                         }
                     }

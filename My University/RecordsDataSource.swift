@@ -84,21 +84,4 @@ class RecordsDataSource {
         entity.toggleFavorite()
         appDelegate?.saveContext()
     }
-    
-    // MARK: - Record
-    
-    func record(at indexPath: IndexPath) -> Record? {
-        let section =  sections[safe: indexPath.section]
-        switch section?.kind {
-            
-        case .none:
-            return nil
-            
-        case .noRecords:
-            return nil
-            
-        case .records(let records, _):
-            return records[safe: indexPath.item]
-        }
-    }
 }
