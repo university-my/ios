@@ -105,6 +105,8 @@
 		DEE6740E2459ACE300B8F9F1 /* Group+CodingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE6740D2459ACE300B8F9F1 /* Group+CodingData.swift */; };
 		DEE674102459B15200B8F9F1 /* GroupDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE6740F2459B15200B8F9F1 /* GroupDataController.swift */; };
 		DEE674122459B7BC00B8F9F1 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE674112459B7BC00B8F9F1 /* CoreData.swift */; };
+		DEE674142459EF8900B8F9F1 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE674132459EF8900B8F9F1 /* GroupViewController.swift */; };
+		DEE674172459F55100B8F9F1 /* GroupTableDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE674162459F55100B8F9F1 /* GroupTableDataController.swift */; };
 		DEEEEBE02205BC2C0072A19A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEEEBDF2205BC2C0072A19A /* Settings.swift */; };
 		DEFDC10023FD83B900D206A9 /* RecordsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFDC0FF23FD83B900D206A9 /* RecordsTests.swift */; };
 		E44C69EB2296FCED00A0102D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44C69EA2296FCED00A0102D /* Date.swift */; };
@@ -228,6 +230,8 @@
 		DEE6740D2459ACE300B8F9F1 /* Group+CodingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+CodingData.swift"; sourceTree = "<group>"; };
 		DEE6740F2459B15200B8F9F1 /* GroupDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDataController.swift; sourceTree = "<group>"; };
 		DEE674112459B7BC00B8F9F1 /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
+		DEE674132459EF8900B8F9F1 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
+		DEE674162459F55100B8F9F1 /* GroupTableDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableDataController.swift; sourceTree = "<group>"; };
 		DEEEEBDF2205BC2C0072A19A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		DEFD9779231E7AA900FA5B7A /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/About.strings; sourceTree = "<group>"; };
 		DEFD977A231E7AA900FA5B7A /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = "uk.lproj/Date Picker.strings"; sourceTree = "<group>"; };
@@ -622,7 +626,8 @@
 				DEE6740F2459B15200B8F9F1 /* GroupDataController.swift */,
 				DEB0316B245988F600A5D29D /* GroupLogicController.swift */,
 				DEB0316D2459895A00A5D29D /* GroupNetworkController.swift */,
-				DE18941B21BC3A3900C7F9DB /* GroupTableViewController.swift */,
+				DEE674132459EF8900B8F9F1 /* GroupViewController.swift */,
+				DEE674152459F53500B8F9F1 /* Table */,
 			);
 			name = Group;
 			sourceTree = "<group>";
@@ -741,6 +746,15 @@
 				DEB0316F2459A62300A5D29D /* Group+Endpoint.swift */,
 			);
 			name = Group;
+			sourceTree = "<group>";
+		};
+		DEE674152459F53500B8F9F1 /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				DE18941B21BC3A3900C7F9DB /* GroupTableViewController.swift */,
+				DEE674162459F55100B8F9F1 /* GroupTableDataController.swift */,
+			);
+			name = Table;
 			sourceTree = "<group>";
 		};
 		E48FD402231DB2080049438F /* UserDefaults */ = {
@@ -932,6 +946,7 @@
 				DE4FCBFF23EF5D50000B53F4 /* LegalDocument.swift in Sources */,
 				E48FD404231DB2E60049438F /* PersonalData.swift in Sources */,
 				DE4AA07121A5DF0500E06FEA /* AuditoriumDataSource.swift in Sources */,
+				DEE674172459F55100B8F9F1 /* GroupTableDataController.swift in Sources */,
 				DE13AF7F226A30D4009DF581 /* TeachersTableViewController.swift in Sources */,
 				DE4AA07321A5E31900E06FEA /* GroupsDataSource.swift in Sources */,
 				DE78478B240D9FBC002C2EDC /* UIStoryboard.swift in Sources */,
@@ -948,6 +963,7 @@
 				DE3EB6BA231B11F8007EA63C /* DateFormatter.swift in Sources */,
 				DE8B668321CACDF800C43F81 /* Auditorium+NetworkClient.swift in Sources */,
 				DE87B78E235B9E450090B63E /* InitialViewController.swift in Sources */,
+				DEE674142459EF8900B8F9F1 /* GroupViewController.swift in Sources */,
 				DE11A3B0230EA98B005131E8 /* DatePickerViewController.swift in Sources */,
 				DE945ACC2264D27B00143303 /* University+Import.swift in Sources */,
 				C280894B1FB8D54A002B5676 /* GroupEntity+CoreDataClass.swift in Sources */,

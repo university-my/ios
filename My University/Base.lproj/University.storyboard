@@ -144,9 +144,9 @@
                         <segue destination="eav-eo-NTI" kind="show" identifier="showGroups" id="BvS-GR-DzH"/>
                         <segue destination="P1W-Vf-SQ3" kind="show" identifier="showTeachers" id="TzT-2s-pyY"/>
                         <segue destination="W7b-zz-Rsa" kind="show" identifier="showAuditoriums" id="7in-AW-ArM"/>
-                        <segue destination="qNV-DU-Cbu" kind="show" identifier="showGroup" id="y9u-Ns-CGu"/>
                         <segue destination="pja-59-5tR" kind="show" identifier="showTeacher" id="JSr-R3-8lb"/>
                         <segue destination="d7E-KM-3bA" kind="show" identifier="showAuditorium" id="7Hg-41-5Mu"/>
+                        <segue destination="E9X-YU-kp3" kind="show" identifier="showGroup" id="fqa-SH-Sbg"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NeF-49-RUJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -192,7 +192,7 @@
                     </refreshControl>
                     <connections>
                         <outlet property="statusButton" destination="Y4L-vb-mq3" id="MTo-y0-l4G"/>
-                        <segue destination="qNV-DU-Cbu" kind="show" identifier="groupDetailed" id="esS-pW-g3R"/>
+                        <segue destination="E9X-YU-kp3" kind="show" identifier="groupDetailed" id="4DM-yW-lZ7"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xIU-zu-olT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -255,31 +255,7 @@
                             <outlet property="delegate" destination="qNV-DU-Cbu" id="W1S-mF-m7l"/>
                         </connections>
                     </tableView>
-                    <toolbarItems>
-                        <barButtonItem image="chevron.left" catalog="system" id="pjH-QF-RS6">
-                            <connections>
-                                <action selector="previousDate:" destination="qNV-DU-Cbu" id="XHZ-bW-G2q"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="ov4-kB-dpc"/>
-                        <barButtonItem image="chevron.right" catalog="system" id="Epz-S9-lQc">
-                            <connections>
-                                <action selector="nextDate:" destination="qNV-DU-Cbu" id="389-sb-iUo"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="MXW-UD-ct8"/>
-                        <barButtonItem systemItem="action" id="rdm-Ip-Cds">
-                            <connections>
-                                <action selector="share:" destination="qNV-DU-Cbu" id="oB9-c5-Ucg"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="EhE-Im-eo8"/>
-                        <barButtonItem image="star" catalog="system" id="FkD-w5-ffK" userLabel="Favorite">
-                            <connections>
-                                <action selector="toggleFavorite:" destination="qNV-DU-Cbu" id="7Tz-m3-eiY"/>
-                            </connections>
-                        </barButtonItem>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Group" id="gAt-SW-9Hm">
                         <barButtonItem key="rightBarButtonItem" image="calendar" catalog="system" id="CCj-zG-I0C">
                             <connections>
@@ -297,15 +273,13 @@
                         </connections>
                     </refreshControl>
                     <connections>
-                        <outlet property="dateButton" destination="CCj-zG-I0C" id="khP-Dz-oA5"/>
-                        <outlet property="favoriteButton" destination="FkD-w5-ffK" id="Lzu-So-gCR"/>
                         <outlet property="tableTitleLabel" destination="ikp-AV-rSQ" id="iN6-3Z-ge1"/>
                         <segue destination="43g-7n-gTu" kind="presentation" identifier="recordDetails" id="XK9-se-gJu"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QRU-oe-Wbh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4235" y="-762"/>
+            <point key="canvasLocation" x="6204" y="-760"/>
         </scene>
         <!--Record Details-->
         <scene sceneID="p00-kH-kt9">
@@ -313,7 +287,7 @@
                 <viewControllerPlaceholder storyboardName="Record Details" id="43g-7n-gTu" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xeB-jy-Isi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4790" y="-702"/>
+            <point key="canvasLocation" x="7362" y="-731"/>
         </scene>
         <!--Date Picker-->
         <scene sceneID="CXH-zL-nfN">
@@ -321,7 +295,69 @@
                 <viewControllerPlaceholder storyboardName="Date Picker" id="b19-ct-wxw" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aHA-Gl-foy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4825" y="-879"/>
+            <point key="canvasLocation" x="7396" y="-908"/>
+        </scene>
+        <!--Group-->
+        <scene sceneID="ed0-1Q-ruW">
+            <objects>
+                <viewController id="E9X-YU-kp3" customClass="GroupViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6HZ-7E-t2V">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="28M-22-8vZ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <connections>
+                                    <segue destination="qNV-DU-Cbu" kind="embed" identifier="records" id="Cyv-21-eVT"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="CKP-GX-qQT" firstAttribute="trailing" secondItem="28M-22-8vZ" secondAttribute="trailing" id="77C-xL-U7R"/>
+                            <constraint firstItem="28M-22-8vZ" firstAttribute="leading" secondItem="CKP-GX-qQT" secondAttribute="leading" id="jXp-eZ-ya3"/>
+                            <constraint firstItem="28M-22-8vZ" firstAttribute="top" secondItem="6HZ-7E-t2V" secondAttribute="top" id="lBF-28-ANd"/>
+                            <constraint firstAttribute="bottom" secondItem="28M-22-8vZ" secondAttribute="bottom" id="pKc-gJ-hhM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="CKP-GX-qQT"/>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem image="chevron.left" catalog="system" id="pjH-QF-RS6">
+                            <connections>
+                                <action selector="previousDate:" destination="E9X-YU-kp3" id="4P6-uR-vL1"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="ov4-kB-dpc"/>
+                        <barButtonItem image="chevron.right" catalog="system" id="Epz-S9-lQc">
+                            <connections>
+                                <action selector="nextDate:" destination="E9X-YU-kp3" id="PGQ-tC-E9s"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="MXW-UD-ct8"/>
+                        <barButtonItem systemItem="action" id="rdm-Ip-Cds">
+                            <connections>
+                                <action selector="share:" destination="E9X-YU-kp3" id="cHO-v6-RTu"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="EhE-Im-eo8"/>
+                        <barButtonItem image="star" catalog="system" id="FkD-w5-ffK" userLabel="Favorite">
+                            <connections>
+                                <action selector="toggleFavorite:" destination="E9X-YU-kp3" id="160-xV-Lzc"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Group" id="FHr-9V-uk4">
+                        <barButtonItem key="rightBarButtonItem" image="calendar" catalog="system" id="zwb-mo-dTY"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="dateButton" destination="zwb-mo-dTY" id="dKv-0U-AgX"/>
+                        <outlet property="favoriteButton" destination="FkD-w5-ffK" id="9pg-w4-h6v"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UbZ-XS-Q46" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5300" y="-760"/>
         </scene>
         <!--Auditoriums-->
         <scene sceneID="AD2-bS-ESw">
@@ -767,9 +803,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="MfV-VQ-oKG"/>
-        <segue reference="swU-6C-ISC"/>
-        <segue reference="esS-pW-g3R"/>
+        <segue reference="JSr-R3-8lb"/>
+        <segue reference="7Hg-41-5Mu"/>
+        <segue reference="fqa-SH-Sbg"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="briefcase" catalog="system" width="128" height="102"/>

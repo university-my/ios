@@ -42,9 +42,13 @@ class GroupDataController {
         guard let group = group else {
             preconditionFailure("Group not found")
         }
-        if fetchedRecords.isEmpty {
+        if needToImportRecords {
             network.importRecords(for: group, by: pairDate)
         }
+    }
+    
+    var needToImportRecords: Bool {
+        fetchedRecords.isEmpty
     }
     
     // MARK: - Group
@@ -68,7 +72,7 @@ class GroupDataController {
     }
     
     private var fetchedRecords: [RecordEntity] {
-        return fetchedResultsController?.fetchedObjects ?? []
+        fetchedResultsController?.fetchedObjects ?? []
     }
     
     func record(at indexPath: IndexPath) -> Record? {
@@ -150,15 +154,6 @@ class GroupDataController {
             sectionName += " (\(time))"
         }
         return sectionName
-    }
-    
-    func numberOfRows(in section: Int) -> Int {
-        switch sections[section].kind {
-        case .noRecords:
-            return 1
-        case .records(let records, _):
-            return records.count
-        }
     }
     
     // MARK: - Date

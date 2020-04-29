@@ -9,11 +9,11 @@
 import Foundation
 
 protocol GroupLogicControllerDelegate: class {
-    func didChangeState(to newState: GroupTableViewController.State)
+    func didChangeState(to newState: GroupViewController.State)
 }
 
 class GroupLogicController {
-    typealias Handler = (GroupTableViewController.State) -> Void
+    typealias Handler = (GroupViewController.State) -> Void
     
     // MARK: - Init
 
@@ -30,16 +30,18 @@ class GroupLogicController {
     func fetchData(for groupID: Int64)  {
         dataController.fetchGroup(with: groupID)
         dataController.loadData()
-        
-        // TODO: Show activity?
-        
-        dataController.importRecordsIfNeeded()
+        importRecordsIfNeeded()
     }
     
     func importRecordsIfNeeded() {
-        // TODO: Show activity?
-        
-        dataController.importRecordsIfNeeded()
+        if dataController.needToImportRecords {
+            delegate?.didChangeState(to: .loading)
+            dataController.importRecordsIfNeeded()
+        }
+    }
+    
+    var sections: [GroupDataController.Section] {
+        return dataController.sections
     }
     
     // MARK: - Group
@@ -100,24 +102,6 @@ class GroupLogicController {
     
     func changePairDate(to newDate: Date) {
         dataController.changePairDate(to: newDate)
-    }
-    
-    // MARK: - Table view
-    
-    var numberOfSections: Int {
-        dataController.sections.count
-    }
-    
-    func numberOfRows(in section: Int) -> Int {
-        dataController.numberOfRows(in: section)
-    }
-    
-    func section(at index: Int) -> GroupDataController.Section {
-        dataController.sections[index]
-    }
-    
-    func record(at indexPath: IndexPath) -> Record? {
-        dataController.record(at: indexPath)
     }
 }
 

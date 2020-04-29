@@ -131,7 +131,7 @@ class GroupsTableViewController: SearchableTableViewController {
         switch identifier {
             
         case "groupDetailed":
-            if let detailTableViewController = segue.destination as? GroupTableViewController {
+            if let detailTableViewController = segue.destination as? GroupViewController {
                 if searchController.isActive {
                     if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
                         let selectedGroup = resultsTableController.filteredGroups[safe: indexPath.row]

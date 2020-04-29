@@ -6,135 +6,55 @@
 //  Copyright © 2017 Yura Voevodin. All rights reserved.
 //
 
-import CoreData
 import UIKit
 
 class GroupTableViewController: GenericTableViewController {
     
-    @IBOutlet weak var tableTitleLabel: UILabel!
-    
-    // MARK: - Properties
-    
-    private let logic: GroupLogicController
-    
-    // MARK: - Init
-    
-    required init?(coder: NSCoder) {
-        logic = GroupLogicController()
-        super.init(coder: coder)
-        
-        logic.delegate = self
-    }
+    private let dataController = GroupTableDataController()
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Table
-        configureTableView()
-        
-        // Data
-        logic.fetchData(for: groupID)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Show toolbar
-        navigationController?.setToolbarHidden(false, animated: true)
-    }
-    
-    // MARK: - State
-    
-    enum State {
-        case loading
-        case presenting(Group)
-        case failed(Error)
-    }
-    
-    func render(_ state: State) {
-        switch state {
-            
-        case .loading:
-            // Show a loading spinner
-            // TODO: Show activity indicator in separate child controller
-            break
-            
-        case .presenting(let group):
-            // Bind the user model to the view controller's views
-            
-            // Title
-            tableTitleLabel.text = group.name
-            
-            // Is Favorites
-            favoriteButton.markAs(isFavorites: group.isFavorite)
-            
-            // Controller title
-            title = DateFormatter.date.string(from: pairDate)
-            
-            tableView.reloadData()
-            
-        case .failed(let error):
-            // Show an error view
-            present(error) {
-                // Try again
-                self.logic.importRecordsIfNeeded()
-            }
-            refreshControl?.endRefreshing()
-        }
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.register(NoRecordsTableViewCell.self)
     }
     
     // MARK: - Group
     
     var groupID: Int64!
     
-    var group: GroupEntity? {
-        return logic.group
-    }
+    // MARK: - Title
     
-    // MARK: - Table views
+    @IBOutlet weak var tableTitleLabel: UILabel!
     
-    private func configureTableView() {
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.register(NoRecordsTableViewCell.self)
+    // MARK: - Data
+    
+    func update(with sections: [GroupDataController.Section]) {
+        dataController.update(with: sections)
+        refreshControl?.endRefreshing()
+        tableView.reloadData()
     }
     
     // MARK: - Pull to refresh
     
     @IBAction func refresh(_ sender: Any) {
-        logic.importRecordsIfNeeded()
-    }
-    
-    // MARK: - Share
-    
-    @IBAction func share(_ sender: Any) {
-        guard let url = logic.shareURL() else { return }
-        let sharedItems = [url]
-        let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
-        present(vc, animated: true)
-    }
-    
-    // MARK: - Favorites
-    
-    @IBOutlet weak var favoriteButton: UIBarButtonItem!
-    
-    @IBAction func toggleFavorite(_ sender: Any) {
-        logic.toggleFavorite()
+//        logic.importRecordsIfNeeded()
     }
     
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return logic.numberOfSections
+        dataController.sections.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        logic.numberOfRows(in: section)
+        dataController.numberOfRows(in: section)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = logic.section(at: indexPath.section)
+        let section = dataController.sections[indexPath.section]
         switch section.kind {
             
         case .noRecords:
@@ -151,13 +71,13 @@ class GroupTableViewController: GenericTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        logic.section(at: section).title
+        dataController.sections[section].title
     }
     
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let record = logic.record(at: indexPath)
+        let record = dataController.record(at: indexPath)
         performSegue(withIdentifier: "recordDetails", sender: record)
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -178,45 +98,8 @@ class GroupTableViewController: GenericTableViewController {
                 }
             }
             
-        case "presentDatePicker":
-            let navigationVC = segue.destination as? UINavigationController
-            let vc = navigationVC?.viewControllers.first as? DatePickerViewController
-            vc?.pairDate = pairDate
-            vc?.didSelectDate = { selectedDate in
-                self.logic.changePairDate(to: selectedDate)
-            }
-            
         default:
             break
         }
     }
-    
-    // MARK: - Date
-    
-    private var pairDate: Date {
-        logic.pairDate
-    }
-    
-    @IBOutlet weak var dateButton: UIBarButtonItem!
-    
-    @IBAction func previousDate(_ sender: Any) {
-        logic.previousDate()
-    }
-    
-    @IBAction func nextDate(_ sender: Any) {
-        logic.nextDate()
-    }
 }
-
-// MARK: - GroupLogicControllerDelegate
-
-extension GroupTableViewController: GroupLogicControllerDelegate {
-    
-    func didChangeState(to newState: State) {
-        render(newState)
-    }
-}
-
-// MARK: - ErrorAlertRepresentable
-
-extension GroupTableViewController: ErrorAlertRepresentable {}

@@ -141,7 +141,7 @@ class UniversityViewController: GenericTableViewController {
             }
             
         case "showGroup":
-            let vc = segue.destination as? GroupTableViewController
+            let vc = segue.destination as? GroupViewController
             if let indexPath = tableView.indexPathForSelectedRow {
                 let group = dataSource.groups?.fetchedObjects?[safe: indexPath.row]
                 vc?.groupID = group?.id
