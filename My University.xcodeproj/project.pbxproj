@@ -108,6 +108,8 @@
 		DEE674142459EF8900B8F9F1 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE674132459EF8900B8F9F1 /* GroupViewController.swift */; };
 		DEE674172459F55100B8F9F1 /* GroupTableDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE674162459F55100B8F9F1 /* GroupTableDataController.swift */; };
 		DEEEEBE02205BC2C0072A19A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEEEBDF2205BC2C0072A19A /* Settings.swift */; };
+		DEF63C5F245AC488007E82F9 /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEF63C5E245AC488007E82F9 /* Activity.storyboard */; };
+		DEF63C61245AC543007E82F9 /* ActivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF63C60245AC543007E82F9 /* ActivityController.swift */; };
 		DEFDC10023FD83B900D206A9 /* RecordsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFDC0FF23FD83B900D206A9 /* RecordsTests.swift */; };
 		E44C69EB2296FCED00A0102D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44C69EA2296FCED00A0102D /* Date.swift */; };
 		E48FD404231DB2E60049438F /* PersonalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48FD403231DB2E60049438F /* PersonalData.swift */; };
@@ -233,6 +235,8 @@
 		DEE674132459EF8900B8F9F1 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		DEE674162459F55100B8F9F1 /* GroupTableDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableDataController.swift; sourceTree = "<group>"; };
 		DEEEEBDF2205BC2C0072A19A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		DEF63C5E245AC488007E82F9 /* Activity.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Activity.storyboard; sourceTree = "<group>"; };
+		DEF63C60245AC543007E82F9 /* ActivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityController.swift; sourceTree = "<group>"; };
 		DEFD9779231E7AA900FA5B7A /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/About.strings; sourceTree = "<group>"; };
 		DEFD977A231E7AA900FA5B7A /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = "uk.lproj/Date Picker.strings"; sourceTree = "<group>"; };
 		DEFDC0FF23FD83B900D206A9 /* RecordsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsTests.swift; sourceTree = "<group>"; };
@@ -297,6 +301,7 @@
 			children = (
 				C2B5CDFC1EEF0E750066DB30 /* Assets.xcassets */,
 				DE472C7321B84313003AE86D /* About */,
+				DEF63C5D245AC477007E82F9 /* Activity */,
 				DE94500122C132FE00550A1C /* App Delegate */,
 				DEE576E5226B7E37008F9EB6 /* Auditoriums */,
 				C2B5CE2B1EF06E3A0066DB30 /* Core Data */,
@@ -535,7 +540,6 @@
 				DEB031682459880800A5D29D /* Group */,
 				DE131FE32456CAEE009D09EA /* Data Source */,
 				DE6794342268976E0068087A /* GroupsTableViewController.swift */,
-				DE3EB6BF231B2280007EA63C /* ActivityViewController.swift */,
 			);
 			name = Groups;
 			sourceTree = "<group>";
@@ -757,6 +761,16 @@
 			name = Table;
 			sourceTree = "<group>";
 		};
+		DEF63C5D245AC477007E82F9 /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				DEF63C5E245AC488007E82F9 /* Activity.storyboard */,
+				DEF63C60245AC543007E82F9 /* ActivityController.swift */,
+				DE3EB6BF231B2280007EA63C /* ActivityViewController.swift */,
+			);
+			name = Activity;
+			sourceTree = "<group>";
+		};
 		E48FD402231DB2080049438F /* UserDefaults */ = {
 			isa = PBXGroup;
 			children = (
@@ -863,6 +877,7 @@
 				DE65DA932370C68200022B21 /* Record Details.storyboard in Resources */,
 				DE65DA9C2370C6C500022B21 /* Launch Screen.storyboard in Resources */,
 				DE3EB6B5231B0AE7007EA63C /* About.storyboard in Resources */,
+				DEF63C5F245AC488007E82F9 /* Activity.storyboard in Resources */,
 				DE28637D245600330036A01F /* NoRecordsTableViewCell.xib in Resources */,
 				DE4FCBFB23EF5CA2000B53F4 /* Legal Document.storyboard in Resources */,
 				DE05ADB32370C83F0005B0E7 /* Universities.storyboard in Resources */,
@@ -901,6 +916,7 @@
 				DE18941921BC349400C7F9DB /* Record+NetworkClient.swift in Sources */,
 				DE999ABE227C54160018F725 /* UniversityDataSource.swift in Sources */,
 				DE540EC02215CD840092FC81 /* Teacher+Import.swift in Sources */,
+				DEF63C61245AC543007E82F9 /* ActivityController.swift in Sources */,
 				DE540EBE2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift in Sources */,
 				C22A2E551FC7644600587463 /* Record.swift in Sources */,
 				C2B5CDFB1EEF0E750066DB30 /* Schedule.xcdatamodeld in Sources */,

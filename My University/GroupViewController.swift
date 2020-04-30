@@ -17,7 +17,7 @@ class GroupViewController: UIViewController {
     // MARK: - Init
     
     required init?(coder: NSCoder) {
-        logic = GroupLogicController()
+        logic = GroupLogicController(activity: activityController)
         super.init(coder: coder)
         
         logic.delegate = self
@@ -42,7 +42,7 @@ class GroupViewController: UIViewController {
     // MARK: - State
         
         enum State {
-            case loading
+            case loading(showActivity: Bool)
             case presenting(Group)
             case failed(Error)
         }
@@ -50,13 +50,11 @@ class GroupViewController: UIViewController {
         func render(_ state: State) {
             switch state {
                 
-            case .loading:
-                
-                // TODO: Add "showActivity: Bool" property
-                // TODO: Import (update) new records without activity indication, if records are present
-                
-                // Show a loading spinner
-                showActivity()
+            case .loading(let showActivity):
+                if showActivity {
+                    // Show a loading spinner
+                    activityController.showActivity(in: self)
+                }
                 
             case .presenting(let group):
                 // Bind the user model to the view controller's views
@@ -72,15 +70,15 @@ class GroupViewController: UIViewController {
 
                 tableViewController.update(with: logic.sections)
                 
-                hideActivity()
+                activityController.hideActivity()
                 
             case .failed(let error):
-                hideActivity()
+                activityController.hideActivity()
                 
                 // Show an error view
                 present(error) {
                     // Try again
-                    self.logic.importRecordsIfNeeded()
+                    self.logic.importRecords()
                 }
                 tableViewController.refreshControl?.endRefreshing()
             }
@@ -141,6 +139,7 @@ class GroupViewController: UIViewController {
         case "records":
             let vc = segue.destination as! GroupTableViewController
             tableViewController = vc
+            tableViewController.delegate = self
             
         case "presentDatePicker":
             let navigationVC = segue.destination as? UINavigationController
@@ -157,31 +156,7 @@ class GroupViewController: UIViewController {
     
     // MARK: - Activity
     
-    /// Reference to the view controller with `UIActivityIndicatorView`
-    /// Can be added as child to any  subclass of `ViewController`
-    private var activityViewController: ActivityViewController?
-    
-    func showActivity(with text: String? = nil) {
-        guard let child = storyboard?.instantiateViewController(identifier: "ActivityViewController") as? ActivityViewController else {
-            return
-        }
-
-        // Add the spinner view controller
-        addChild(child)
-        child.view.frame = view.frame
-        view.addSubview(child.view)
-        child.didMove(toParent: self)
-        activityViewController = child
-    }
-
-    func hideActivity() {
-        if let child = activityViewController {
-            // Remove the spinner view controller
-            child.willMove(toParent: nil)
-            child.view.removeFromSuperview()
-            child.removeFromParent()
-        }
-    }
+    private let activityController = ActivityController()
 }
 
 // MARK: - GroupLogicControllerDelegate
@@ -190,6 +165,17 @@ extension GroupViewController: GroupLogicControllerDelegate {
     
     func didChangeState(to newState: State) {
         render(newState)
+    }
+}
+
+// MARK: - GroupTableViewControllerDelegate
+
+extension GroupViewController: GroupTableViewControllerDelegate {
+    
+    func didBeginRefresh(in viewController: GroupTableViewController) {
+        // Import records on "pull to refresh"
+        // Don't show activity indicator in the center of the screen
+        logic.importRecords(showActivity: false)
     }
 }
 

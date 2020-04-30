@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// For show activity indicator in tables
+/// For show activity indicator
 class ActivityViewController: UIViewController {
 
 }

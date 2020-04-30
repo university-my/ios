@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol GroupTableViewControllerDelegate: class {
+    func didBeginRefresh(in viewController: GroupTableViewController)
+}
+
 class GroupTableViewController: GenericTableViewController {
+    
+    weak var delegate: GroupTableViewControllerDelegate?
     
     private let dataController = GroupTableDataController()
     
@@ -40,7 +46,7 @@ class GroupTableViewController: GenericTableViewController {
     // MARK: - Pull to refresh
     
     @IBAction func refresh(_ sender: Any) {
-//        logic.importRecordsIfNeeded()
+        delegate?.didBeginRefresh(in: self)
     }
     
     // MARK: - Table view data source

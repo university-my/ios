@@ -57,7 +57,7 @@ final class LegalDocumentViewController: UIViewController {
 extension LegalDocumentViewController: UIViewControllerRepresentable {
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<LegalDocumentViewController>) -> LegalDocumentViewController {
-        let storyboard = UIStoryboard.legalDocument()
+        let storyboard = UIStoryboard.legalDocument
         let controller = storyboard.instantiateInitialViewController() as! LegalDocumentViewController
         controller.documentName = documentName
         return controller

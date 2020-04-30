@@ -13,16 +13,19 @@ protocol GroupLogicControllerDelegate: class {
 }
 
 class GroupLogicController {
-    typealias Handler = (GroupViewController.State) -> Void
     
     // MARK: - Init
 
     weak var delegate: GroupLogicControllerDelegate?
     private let dataController: GroupDataController
+    private let activityController: ActivityController
     
-    init() {
+    init(activity: ActivityController) {
         dataController = GroupDataController()
+        activityController = activity
+        
         dataController.delegate = self
+        activityController.delegate = self
     }
     
     // MARK: - Data
@@ -35,9 +38,13 @@ class GroupLogicController {
     
     func importRecordsIfNeeded() {
         if dataController.needToImportRecords {
-            delegate?.didChangeState(to: .loading)
-            dataController.importRecordsIfNeeded()
+            importRecords()
         }
+    }
+    
+    func importRecords(showActivity: Bool = true) {
+        delegate?.didChangeState(to: .loading(showActivity: showActivity))
+        dataController.importRecords()
     }
     
     var sections: [GroupDataController.Section] {
@@ -89,6 +96,7 @@ class GroupLogicController {
         let currentDate = dataController.pairDate
         if let previousDate = Calendar.current.date(byAdding: .day, value: -1, to: currentDate) {
             dataController.changePairDate(to: previousDate)
+            importRecordsIfNeeded()
         }
     }
     
@@ -97,11 +105,13 @@ class GroupLogicController {
         let currentDate = dataController.pairDate
         if let nextDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate) {
             dataController.changePairDate(to: nextDate)
+            importRecordsIfNeeded()
         }
     }
     
     func changePairDate(to newDate: Date) {
         dataController.changePairDate(to: newDate)
+        importRecordsIfNeeded()
     }
 }
 
@@ -116,6 +126,26 @@ extension GroupLogicController: GroupDataControllerDelegate {
     }
     
     func groupDataController(didBuildSectionsFor group: Group) {
+        if activityController.isRunningTransitionAnimation {
+            // Do nothing, wait for the animation to finish
+            return
+        }
         delegate?.didChangeState(to: .presenting(group))
+    }
+}
+
+// MARK: - ActivityControllerDelegate
+
+extension GroupLogicController: ActivityControllerDelegate {
+    
+    func didPresentActivity(from controller: ActivityController) {
+        if dataController.isImporting {
+            // Do nothing, wait for import
+            return
+        }
+        
+        if let groupEntity = dataController.group, let group = groupEntity.asStruct() {
+            delegate?.didChangeState(to: .presenting(group))
+        }
     }
 }

@@ -9,8 +9,12 @@
 import UIKit
 
 extension UIStoryboard {
+    
+    static var activity: UIStoryboard {
+        UIStoryboard(name: "Activity", bundle: nil)
+    }
 
-    static func legalDocument() -> UIStoryboard {
-        return UIStoryboard(name: "Legal Document", bundle: nil)
+    static var legalDocument: UIStoryboard {
+        UIStoryboard(name: "Legal Document", bundle: nil)
     }
 }

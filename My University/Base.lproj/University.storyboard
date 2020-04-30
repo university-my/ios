@@ -257,11 +257,7 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Group" id="gAt-SW-9Hm">
-                        <barButtonItem key="rightBarButtonItem" image="calendar" catalog="system" id="CCj-zG-I0C">
-                            <connections>
-                                <segue destination="b19-ct-wxw" kind="presentation" identifier="presentDatePicker" id="UZ5-q4-RS2"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="calendar" catalog="system" id="CCj-zG-I0C"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="q0U-xX-kDx">
@@ -295,7 +291,7 @@
                 <viewControllerPlaceholder storyboardName="Date Picker" id="b19-ct-wxw" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aHA-Gl-foy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7396" y="-908"/>
+            <point key="canvasLocation" x="5299" y="-374"/>
         </scene>
         <!--Group-->
         <scene sceneID="ed0-1Q-ruW">
@@ -347,7 +343,11 @@
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Group" id="FHr-9V-uk4">
-                        <barButtonItem key="rightBarButtonItem" image="calendar" catalog="system" id="zwb-mo-dTY"/>
+                        <barButtonItem key="rightBarButtonItem" image="calendar" catalog="system" id="zwb-mo-dTY">
+                            <connections>
+                                <segue destination="b19-ct-wxw" kind="presentation" identifier="presentDatePicker" id="L8u-Pf-tkO"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -776,30 +776,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5au-2v-Omq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6833" y="137"/>
-        </scene>
-        <!--Activity View Controller-->
-        <scene sceneID="fqr-L5-saZ">
-            <objects>
-                <viewController storyboardIdentifier="ActivityViewController" id="MTK-Wf-mXT" customClass="ActivityViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="qA9-TZ-qRe">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="y4L-Du-MDz">
-                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
-                            </activityIndicatorView>
-                        </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="y4L-Du-MDz" firstAttribute="centerX" secondItem="qA9-TZ-qRe" secondAttribute="centerX" id="mz8-0o-i4v"/>
-                            <constraint firstItem="y4L-Du-MDz" firstAttribute="centerY" secondItem="qA9-TZ-qRe" secondAttribute="centerY" id="q6Y-8c-EyR"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="Vh2-KR-0Vz"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WMx-Mf-4FL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="7702" y="137"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

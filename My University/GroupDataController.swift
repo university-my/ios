@@ -28,6 +28,9 @@ class GroupDataController {
     
     // MARK: - Data
     
+    /// `true` while importing records and building sections
+    private(set) var isImporting = false
+    
     func loadData() {
         guard let groupEntity = group, let group = groupEntity.asStruct() else {
             preconditionFailure("Group not found")
@@ -38,13 +41,13 @@ class GroupDataController {
         delegate?.groupDataController(didBuildSectionsFor: group)
     }
     
-    func importRecordsIfNeeded() {
+    func importRecords() {
         guard let group = group else {
             preconditionFailure("Group not found")
         }
-        if needToImportRecords {
-            network.importRecords(for: group, by: pairDate)
-        }
+        // Start import
+        isImporting = true
+        network.importRecords(for: group, by: pairDate)
     }
     
     var needToImportRecords: Bool {
@@ -163,7 +166,6 @@ class GroupDataController {
     func changePairDate(to newDate: Date) {
         pairDate = newDate
         loadData()
-        importRecordsIfNeeded()
     }
     
     // MARK: - NSFetchedResultsController
@@ -217,6 +219,9 @@ extension GroupDataController: GroupNetworkControllerDelegate {
         updateDatePredicate()
         fetchRecords()
         buildSections()
+        
+        // Finish 🏁
+        isImporting = false
         delegate?.groupDataController(didBuildSectionsFor: group)
     }
 }
