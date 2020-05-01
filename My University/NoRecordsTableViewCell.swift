@@ -10,16 +10,23 @@ import UIKit
 import MyLibrary
 
 class NoRecordsTableViewCell: UITableViewCell, NibLoadableView, ReusableView {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
+    // MARK: - Images
+    
+    let images: [UIImage?] = [
+        UIImage(named: "1 Working remotely"),
+        UIImage(named: "2 Effective UI"),
+        UIImage(named: "4 Multitasking"),
+        UIImage(named: "6 Working at desk"),
+        UIImage(named: "7 Social Media"),
+        UIImage(named: "8 Work and life balance"),
+        UIImage(named: "13 Walking the dog")
+    ]
+    
+    @IBOutlet weak var placeholderImageView: UIImageView!
+    
+    func updateWithRandomImage() {
+        let images = self.images.compactMap { $0 }
+        placeholderImageView.image = images.randomElement()
+    }
 }

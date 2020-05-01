@@ -96,7 +96,7 @@ extension Auditorium {
                 }
                 
                 // Parse auditoriums.
-                let parsedAuditoriums = json.compactMap { Auditorium($0) }
+                let parsedAuditoriums = json.compactMap { Auditorium.CodingData($0) }
                 
                 // Auditoriums to update
                 let toUpdate = AuditoriumEntity.fetch(parsedAuditoriums, university: universityInContext, context: taskContext)
@@ -190,7 +190,7 @@ extension Auditorium {
             }
         }
         
-        private func insert(_ parsedAuditorium: Auditorium, university: UniversityEntity, context: NSManagedObjectContext) {
+        private func insert(_ parsedAuditorium: Auditorium.CodingData, university: UniversityEntity, context: NSManagedObjectContext) {
             let auditoriumEntity = AuditoriumEntity(context: context)
             auditoriumEntity.id = parsedAuditorium.id
             auditoriumEntity.name = parsedAuditorium.name

@@ -29,7 +29,7 @@ extension Record {
         
         /// Description or comment
         let reason: String?
-        let auditorium: Auditorium?
+        let auditorium: Auditorium.CodingData?
         let groups: [Group.CodingData]
         let teacher: Teacher.CodingData?
         
@@ -63,7 +63,7 @@ extension Record {
             
             // Auditorium
             if let auditoriumObject = json["auditorium"] as? [String: Any] {
-                self.auditorium = Auditorium(auditoriumObject)
+                self.auditorium = Auditorium.CodingData(auditoriumObject)
             } else {
                 self.auditorium = nil
             }

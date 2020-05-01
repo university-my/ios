@@ -65,7 +65,7 @@ class GroupTableViewController: GenericTableViewController {
             
         case .noRecords:
             let cell = tableView.dequeueReusableCell(for: indexPath) as NoRecordsTableViewCell
-            // TODO: Pick random image
+            cell.updateWithRandomImage()
             return cell
             
         case .records(let records, _):
@@ -83,9 +83,10 @@ class GroupTableViewController: GenericTableViewController {
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let record = dataController.record(at: indexPath)
-        performSegue(withIdentifier: "recordDetails", sender: record)
-        tableView.deselectRow(at: indexPath, animated: true)
+        if let record = dataController.record(at: indexPath) {
+            performSegue(withIdentifier: "recordDetails", sender: record)
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
     }
     
     // MARK: - Navigation
