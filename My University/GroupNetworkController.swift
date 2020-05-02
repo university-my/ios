@@ -6,18 +6,9 @@
 //  Copyright © 2020 Yura Voevodin. All rights reserved.
 //
 
-import UIKit
-import CoreData
+import Foundation
 
-protocol GroupNetworkControllerDelegate: class {
-    func didImportRecords(for group: Group, _ error: Error?)
-}
-
-class GroupNetworkController {
-    
-    weak var delegate: GroupNetworkControllerDelegate?
-    
-    // MARK: - Import Records
+class GroupNetworkController: EntityNetworkController<Group> {
     
     private var importManager: Record.ImportForGroup?
     

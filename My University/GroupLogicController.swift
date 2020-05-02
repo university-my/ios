@@ -117,20 +117,22 @@ class GroupLogicController {
 
 // MARK: - GroupDataControllerDelegate
 
-extension GroupLogicController: GroupDataControllerDelegate {
+extension GroupLogicController: EntityDataControllerDelegate {
     
-    func groupDataController(didImportRecordsFor group: Group, _ error: Error?) {
+    func entityDataController<StructType>(didImportRecordsFor structure: StructType, _ error: Error?) {
         if let error = error {
             delegate?.didChangeState(to: .failed(error))
         }
     }
     
-    func groupDataController(didBuildSectionsFor group: Group) {
+    func entityDataController<StructType>(didBuildSectionsFor structure: StructType) {
         if activityController.isRunningTransitionAnimation {
             // Do nothing, wait for the animation to finish
             return
         }
-        delegate?.didChangeState(to: .presenting(group))
+        if let group = structure as? Group {
+            delegate?.didChangeState(to: .presenting(group))
+        }
     }
 }
 

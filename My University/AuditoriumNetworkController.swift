@@ -8,15 +8,7 @@
 
 import Foundation
 
-protocol AuditoriumNetworkControllerDelegate: class {
-    func didImportRecords(for auditorium: Auditorium, _ error: Error?)
-}
-
-class AuditoriumNetworkController {
-    
-    weak var delegate: AuditoriumNetworkControllerDelegate?
-    
-    // MARK: - Import Records
+class AuditoriumNetworkController: EntityNetworkController<Auditorium> {
     
     private var importManager: Record.ImportForAuditorium?
     

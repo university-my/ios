@@ -98,6 +98,9 @@
 		DEB0316E2459895A00A5D29D /* GroupNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0316D2459895A00A5D29D /* GroupNetworkController.swift */; };
 		DEB031702459A62300A5D29D /* Group+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0316F2459A62300A5D29D /* Group+Endpoint.swift */; };
 		DEB031722459A72700A5D29D /* EndpointProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB031712459A72700A5D29D /* EndpointProtocol.swift */; };
+		DEB68197245DEBB7005FA2F0 /* EntityDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB68196245DEBB7005FA2F0 /* EntityDataController.swift */; };
+		DEB68199245DEF68005FA2F0 /* EntityDataControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB68198245DEF68005FA2F0 /* EntityDataControllerProtocol.swift */; };
+		DEB6819D245DF874005FA2F0 /* EntityNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB6819C245DF874005FA2F0 /* EntityNetworkController.swift */; };
 		DEBB74AA235CE1AC00226C7E /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBB74A9235CE1AC00226C7E /* Bundle.swift */; };
 		DEBB74AD235CE51400226C7E /* SetViewControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBB74AC235CE51400226C7E /* SetViewControllerSegue.swift */; };
 		DEBB74BB235CF4C300226C7E /* UniversitiesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBB74BA235CF4C300226C7E /* UniversitiesTableViewController.swift */; };
@@ -230,6 +233,9 @@
 		DEB0316D2459895A00A5D29D /* GroupNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNetworkController.swift; sourceTree = "<group>"; };
 		DEB0316F2459A62300A5D29D /* Group+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+Endpoint.swift"; sourceTree = SOURCE_ROOT; };
 		DEB031712459A72700A5D29D /* EndpointProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointProtocol.swift; sourceTree = "<group>"; };
+		DEB68196245DEBB7005FA2F0 /* EntityDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDataController.swift; sourceTree = "<group>"; };
+		DEB68198245DEF68005FA2F0 /* EntityDataControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDataControllerProtocol.swift; sourceTree = "<group>"; };
+		DEB6819C245DF874005FA2F0 /* EntityNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityNetworkController.swift; sourceTree = "<group>"; };
 		DEBB74A9235CE1AC00226C7E /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		DEBB74AC235CE51400226C7E /* SetViewControllerSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetViewControllerSegue.swift; sourceTree = "<group>"; };
 		DEBB74BA235CF4C300226C7E /* UniversitiesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversitiesTableViewController.swift; sourceTree = "<group>"; };
@@ -317,6 +323,7 @@
 				C2B5CE2B1EF06E3A0066DB30 /* Core Data */,
 				C2C0E9AE1FB8CD870012FA9C /* Data Models */,
 				DE11A3AE230EA976005131E8 /* Date Picker */,
+				DEB68195245DEBA2005FA2F0 /* Entity */,
 				DE3B565E21823A7F008A77D1 /* Extensions */,
 				DE6794332268975F0068087A /* Groups */,
 				C2C76A2C200243BD00BFF3D4 /* Import */,
@@ -666,6 +673,32 @@
 			name = Group;
 			sourceTree = "<group>";
 		};
+		DEB68195245DEBA2005FA2F0 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				DEB6819A245DF825005FA2F0 /* Data */,
+				DEB6819B245DF82E005FA2F0 /* Network */,
+			);
+			name = Entity;
+			sourceTree = "<group>";
+		};
+		DEB6819A245DF825005FA2F0 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				DEB68196245DEBB7005FA2F0 /* EntityDataController.swift */,
+				DEB68198245DEF68005FA2F0 /* EntityDataControllerProtocol.swift */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		DEB6819B245DF82E005FA2F0 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				DEB6819C245DF874005FA2F0 /* EntityNetworkController.swift */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
 		DEBB74AB235CE4F900226C7E /* Segues */ = {
 			isa = PBXGroup;
 			children = (
@@ -958,7 +991,9 @@
 				DE94500422C1345800550A1C /* TableMessageViewController.swift in Sources */,
 				DE8B668121CAC91C00C43F81 /* Group+Import.swift in Sources */,
 				DEB031672459809D00A5D29D /* ErrorAlertRepresentable.swift in Sources */,
+				DEB68199245DEF68005FA2F0 /* EntityDataControllerProtocol.swift in Sources */,
 				C250C1831FBCD1CA00C90B53 /* AboutUsTableViewController.swift in Sources */,
+				DEB68197245DEBB7005FA2F0 /* EntityDataController.swift in Sources */,
 				DEBB74BB235CF4C300226C7E /* UniversitiesTableViewController.swift in Sources */,
 				DE78478D240DA16B002C2EDC /* LegalDocumentView.swift in Sources */,
 				DEBC4607245705E000489CAA /* FavoriteEntityProtocol.swift in Sources */,
@@ -1024,6 +1059,7 @@
 				DEE674102459B15200B8F9F1 /* GroupDataController.swift in Sources */,
 				C22A2E581FC7664000587463 /* RecordEntity+CoreDataClass.swift in Sources */,
 				DE18941C21BC3A3900C7F9DB /* GroupTableViewController.swift in Sources */,
+				DEB6819D245DF874005FA2F0 /* EntityNetworkController.swift in Sources */,
 				C22A2E591FC7664000587463 /* RecordEntity+CoreDataProperties.swift in Sources */,
 				DE266D60240C4AAA00C30A4A /* WhatsNewOneSixThree.swift in Sources */,
 			);
