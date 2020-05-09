@@ -40,49 +40,49 @@ class GroupViewController: UIViewController {
     }
     
     // MARK: - State
-        
-        enum State {
-            case loading(showActivity: Bool)
-            case presenting(Group)
-            case failed(Error)
-        }
-        
-        func render(_ state: State) {
-            switch state {
-                
-            case .loading(let showActivity):
-                if showActivity {
-                    // Show a loading spinner
-                    activityController.showActivity(in: self)
-                }
-                
-            case .presenting(let group):
-                // Bind the user model to the view controller's views
-                
-                // Title
-                tableViewController.tableTitleLabel.text = group.name
-                
-                // Is Favorites
-                favoriteButton.markAs(isFavorites: group.isFavorite)
-                
-                // Controller title
-                title = DateFormatter.date.string(from: pairDate)
-
-                tableViewController.update(with: logic.sections)
-                
-                activityController.hideActivity()
-                
-            case .failed(let error):
-                activityController.hideActivity()
-                
-                // Show an error view
-                present(error) {
-                    // Try again
-                    self.logic.importRecords()
-                }
-                tableViewController.refreshControl?.endRefreshing()
+    
+    enum State {
+        case loading(showActivity: Bool)
+        case presenting(Group)
+        case failed(Error)
+    }
+    
+    func render(_ state: State) {
+        switch state {
+            
+        case .loading(let showActivity):
+            if showActivity {
+                // Show a loading spinner
+                activityController.showActivity(in: self)
             }
+            
+        case .presenting(let group):
+            // Bind the user model to the view controller's views
+            
+            // Title
+            tableViewController.tableTitleLabel.text = group.name
+            
+            // Is Favorites
+            favoriteButton.markAs(isFavorites: group.isFavorite)
+            
+            // Controller title
+            title = DateFormatter.date.string(from: pairDate)
+            
+            tableViewController.update(with: logic.sections)
+            
+            activityController.hideActivity()
+            
+        case .failed(let error):
+            activityController.hideActivity()
+            
+            // Show an error view
+            present(error) {
+                // Try again
+                self.logic.importRecords()
+            }
+            tableViewController.refreshControl?.endRefreshing()
         }
+    }
 
     // MARK: - Group
     
@@ -103,11 +103,11 @@ class GroupViewController: UIViewController {
     
     // MARK: - Favorites
         
-        @IBOutlet weak var favoriteButton: UIBarButtonItem!
-        
-        @IBAction func toggleFavorite(_ sender: Any) {
-            logic.toggleFavorite()
-        }
+    @IBOutlet weak var favoriteButton: UIBarButtonItem!
+    
+    @IBAction func toggleFavorite(_ sender: Any) {
+        logic.toggleFavorite()
+    }
     
     // MARK: - Date
     

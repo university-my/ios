@@ -28,9 +28,12 @@
 		DE131FE22456CAAB009D09EA /* RecordsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE131FE12456CAAB009D09EA /* RecordsDataSource.swift */; };
 		DE131FE82456D773009D09EA /* Record+CodingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE131FE72456D773009D09EA /* Record+CodingData.swift */; };
 		DE13AF7F226A30D4009DF581 /* TeachersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE13AF7E226A30D4009DF581 /* TeachersTableViewController.swift */; };
+		DE13EEAC2466B4390011F307 /* EntityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE13EEAB2466B4390011F307 /* EntityViewController.swift */; };
+		DE13EEB02466B59C0011F307 /* EntityLogicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE13EEAF2466B59C0011F307 /* EntityLogicController.swift */; };
+		DE13EEB22466B7E50011F307 /* EntityLogicControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE13EEB12466B7E50011F307 /* EntityLogicControllerProtocol.swift */; };
+		DE13EEB42466B9BA0011F307 /* StructRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE13EEB32466B9BA0011F307 /* StructRepresentable.swift */; };
 		DE18941921BC349400C7F9DB /* Record+NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941821BC349400C7F9DB /* Record+NetworkClient.swift */; };
 		DE18941C21BC3A3900C7F9DB /* GroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941B21BC3A3900C7F9DB /* GroupTableViewController.swift */; };
-		DE18941E21BC3AD100C7F9DB /* AuditoriumTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941D21BC3AD100C7F9DB /* AuditoriumTableViewController.swift */; };
 		DE18942021BD457F00C7F9DB /* ImportForGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941F21BD457F00C7F9DB /* ImportForGroup.swift */; };
 		DE18942221BD45E600C7F9DB /* ImportForAuditorium.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18942121BD45E600C7F9DB /* ImportForAuditorium.swift */; };
 		DE266D60240C4AAA00C30A4A /* WhatsNewOneSixThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE266D5F240C4AAA00C30A4A /* WhatsNewOneSixThree.swift */; };
@@ -75,6 +78,13 @@
 		DE78478B240D9FBC002C2EDC /* UIStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78478A240D9FBC002C2EDC /* UIStoryboard.swift */; };
 		DE78478D240DA16B002C2EDC /* LegalDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78478C240DA16B002C2EDC /* LegalDocumentView.swift */; };
 		DE784790240DB406002C2EDC /* ContinueButtonContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78478F240DB406002C2EDC /* ContinueButtonContent.swift */; };
+		DE7AB8562466C3050031E279 /* Auditorium+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB8552466C3050031E279 /* Auditorium+Endpoint.swift */; };
+		DE7AB8582466C4470031E279 /* EntityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB8572466C4470031E279 /* EntityProtocol.swift */; };
+		DE7AB85A24671E6D0031E279 /* EntityStructRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB85924671E6D0031E279 /* EntityStructRepresentable.swift */; };
+		DE7AB85D246720250031E279 /* AuditoriumTableDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB85C246720250031E279 /* AuditoriumTableDataController.swift */; };
+		DE7AB85F246720880031E279 /* EntityTableDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB85E246720880031E279 /* EntityTableDataController.swift */; };
+		DE7AB861246721F70031E279 /* NewAuditoriumTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB860246721F70031E279 /* NewAuditoriumTableViewController.swift */; };
+		DE7AB863246722AA0031E279 /* EntityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB862246722AA0031E279 /* EntityTableViewController.swift */; };
 		DE7B1D9F2269BCA5003E3028 /* GenericTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7B1D9E2269BCA5003E3028 /* GenericTableViewController.swift */; };
 		DE8417A923EA19810084E24F /* MyLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = DE8417A823EA19810084E24F /* MyLibrary */; };
 		DE87B78E235B9E450090B63E /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE87B78D235B9E450090B63E /* InitialViewController.swift */; };
@@ -160,9 +170,12 @@
 		DE131FE12456CAAB009D09EA /* RecordsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsDataSource.swift; sourceTree = "<group>"; };
 		DE131FE72456D773009D09EA /* Record+CodingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record+CodingData.swift"; sourceTree = "<group>"; };
 		DE13AF7E226A30D4009DF581 /* TeachersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersTableViewController.swift; sourceTree = "<group>"; };
+		DE13EEAB2466B4390011F307 /* EntityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityViewController.swift; sourceTree = "<group>"; };
+		DE13EEAF2466B59C0011F307 /* EntityLogicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityLogicController.swift; sourceTree = "<group>"; };
+		DE13EEB12466B7E50011F307 /* EntityLogicControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityLogicControllerProtocol.swift; sourceTree = "<group>"; };
+		DE13EEB32466B9BA0011F307 /* StructRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructRepresentable.swift; sourceTree = "<group>"; };
 		DE18941821BC349400C7F9DB /* Record+NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record+NetworkClient.swift"; sourceTree = "<group>"; };
 		DE18941B21BC3A3900C7F9DB /* GroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTableViewController.swift; sourceTree = "<group>"; };
-		DE18941D21BC3AD100C7F9DB /* AuditoriumTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditoriumTableViewController.swift; sourceTree = "<group>"; };
 		DE18941F21BD457F00C7F9DB /* ImportForGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportForGroup.swift; sourceTree = "<group>"; };
 		DE18942121BD45E600C7F9DB /* ImportForAuditorium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportForAuditorium.swift; sourceTree = "<group>"; };
 		DE266D5F240C4AAA00C30A4A /* WhatsNewOneSixThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewOneSixThree.swift; sourceTree = "<group>"; };
@@ -209,6 +222,13 @@
 		DE78478A240D9FBC002C2EDC /* UIStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboard.swift; sourceTree = "<group>"; };
 		DE78478C240DA16B002C2EDC /* LegalDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDocumentView.swift; sourceTree = "<group>"; };
 		DE78478F240DB406002C2EDC /* ContinueButtonContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueButtonContent.swift; sourceTree = "<group>"; };
+		DE7AB8552466C3050031E279 /* Auditorium+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auditorium+Endpoint.swift"; sourceTree = "<group>"; };
+		DE7AB8572466C4470031E279 /* EntityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityProtocol.swift; sourceTree = "<group>"; };
+		DE7AB85924671E6D0031E279 /* EntityStructRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityStructRepresentable.swift; sourceTree = "<group>"; };
+		DE7AB85C246720250031E279 /* AuditoriumTableDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditoriumTableDataController.swift; sourceTree = "<group>"; };
+		DE7AB85E246720880031E279 /* EntityTableDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityTableDataController.swift; sourceTree = "<group>"; };
+		DE7AB860246721F70031E279 /* NewAuditoriumTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAuditoriumTableViewController.swift; sourceTree = "<group>"; };
+		DE7AB862246722AA0031E279 /* EntityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityTableViewController.swift; sourceTree = "<group>"; };
 		DE7B1D9E2269BCA5003E3028 /* GenericTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableViewController.swift; sourceTree = "<group>"; };
 		DE87B78D235B9E450090B63E /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		DE8B668021CAC91C00C43F81 /* Group+Import.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+Import.swift"; sourceTree = "<group>"; };
@@ -465,6 +485,24 @@
 			name = Teachers;
 			sourceTree = "<group>";
 		};
+		DE13EEAD2466B4EB0011F307 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DE13EEAB2466B4390011F307 /* EntityViewController.swift */,
+				DE7AB862246722AA0031E279 /* EntityTableViewController.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		DE13EEAE2466B5870011F307 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				DE13EEAF2466B59C0011F307 /* EntityLogicController.swift */,
+				DE13EEB12466B7E50011F307 /* EntityLogicControllerProtocol.swift */,
+			);
+			name = Logic;
+			sourceTree = "<group>";
+		};
 		DE18941721BC336700C7F9DB /* Record */ = {
 			isa = PBXGroup;
 			children = (
@@ -521,6 +559,7 @@
 				DE3EC2C6245C741400E30536 /* AuditoriumLogicController.swift */,
 				DE3EC2C8245C742500E30536 /* AuditoriumNetworkController.swift */,
 				DE3EC2CA245C743500E30536 /* AuditoriumViewController.swift */,
+				DE7AB85B24671FF50031E279 /* Table */,
 			);
 			name = Auditorium;
 			sourceTree = "<group>";
@@ -530,6 +569,7 @@
 			children = (
 				DE584C53219860E80099415E /* Auditorium.swift */,
 				DE3EC2CD245C75F900E30536 /* Auditorium+CodingData.swift */,
+				DE7AB8552466C3050031E279 /* Auditorium+Endpoint.swift */,
 			);
 			name = Auditorium;
 			sourceTree = "<group>";
@@ -601,6 +641,15 @@
 			name = Buttons;
 			sourceTree = "<group>";
 		};
+		DE7AB85B24671FF50031E279 /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				DE7AB85C246720250031E279 /* AuditoriumTableDataController.swift */,
+				DE7AB860246721F70031E279 /* NewAuditoriumTableViewController.swift */,
+			);
+			name = Table;
+			sourceTree = "<group>";
+		};
 		DE87B78C235B9E1D0090B63E /* Initial */ = {
 			isa = PBXGroup;
 			children = (
@@ -657,6 +706,9 @@
 			isa = PBXGroup;
 			children = (
 				DEB031662459809D00A5D29D /* ErrorAlertRepresentable.swift */,
+				DE13EEB32466B9BA0011F307 /* StructRepresentable.swift */,
+				DE7AB8572466C4470031E279 /* EntityProtocol.swift */,
+				DE7AB85924671E6D0031E279 /* EntityStructRepresentable.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -677,7 +729,9 @@
 			isa = PBXGroup;
 			children = (
 				DEB6819A245DF825005FA2F0 /* Data */,
+				DE13EEAE2466B5870011F307 /* Logic */,
 				DEB6819B245DF82E005FA2F0 /* Network */,
+				DE13EEAD2466B4EB0011F307 /* View */,
 			);
 			name = Entity;
 			sourceTree = "<group>";
@@ -687,6 +741,7 @@
 			children = (
 				DEB68196245DEBB7005FA2F0 /* EntityDataController.swift */,
 				DEB68198245DEF68005FA2F0 /* EntityDataControllerProtocol.swift */,
+				DE7AB85E246720880031E279 /* EntityTableDataController.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -801,7 +856,6 @@
 				DE3EC2C3245C73E600E30536 /* Auditorium */,
 				DE4AA07021A5DF0500E06FEA /* AuditoriumDataSource.swift */,
 				DEE576E6226B8B98008F9EB6 /* AuditoriumsTableViewController.swift */,
-				DE18941D21BC3AD100C7F9DB /* AuditoriumTableViewController.swift */,
 			);
 			name = Auditoriums;
 			sourceTree = "<group>";
@@ -972,10 +1026,13 @@
 				DE3EC2C5245C740400E30536 /* AuditoriumDataController.swift in Sources */,
 				DE784790240DB406002C2EDC /* ContinueButtonContent.swift in Sources */,
 				DE945AD22264D71B00143303 /* UniversitiesDataSource.swift in Sources */,
+				DE7AB8582466C4470031E279 /* EntityProtocol.swift in Sources */,
 				DE945AC82264D11700143303 /* UniversityEntity+CoreDataProperties.swift in Sources */,
 				DE18942221BD45E600C7F9DB /* ImportForAuditorium.swift in Sources */,
+				DE13EEB22466B7E50011F307 /* EntityLogicControllerProtocol.swift in Sources */,
 				DE3EB6C0231B2280007EA63C /* ActivityViewController.swift in Sources */,
 				DE0D64082264E1330001FCCF /* UniversityViewController.swift in Sources */,
+				DE13EEB02466B59C0011F307 /* EntityLogicController.swift in Sources */,
 				DEB031702459A62300A5D29D /* Group+Endpoint.swift in Sources */,
 				DE131FE82456D773009D09EA /* Record+CodingData.swift in Sources */,
 				DE18941921BC349400C7F9DB /* Record+NetworkClient.swift in Sources */,
@@ -984,6 +1041,7 @@
 				DE3EC2CE245C75F900E30536 /* Auditorium+CodingData.swift in Sources */,
 				DEF63C61245AC543007E82F9 /* ActivityController.swift in Sources */,
 				DE540EBE2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift in Sources */,
+				DE13EEAC2466B4390011F307 /* EntityViewController.swift in Sources */,
 				C22A2E551FC7644600587463 /* Record.swift in Sources */,
 				C2B5CDFB1EEF0E750066DB30 /* Schedule.xcdatamodeld in Sources */,
 				E44C69EB2296FCED00A0102D /* Date.swift in Sources */,
@@ -1010,18 +1068,20 @@
 				C280894C1FB8D54A002B5676 /* GroupEntity+CoreDataProperties.swift in Sources */,
 				DE6794352268976E0068087A /* GroupsTableViewController.swift in Sources */,
 				DEB0316C245988F600A5D29D /* GroupLogicController.swift in Sources */,
+				DE7AB85A24671E6D0031E279 /* EntityStructRepresentable.swift in Sources */,
 				DE8B668521CACE5600C43F81 /* Group+NetworkClient.swift in Sources */,
-				DE18941E21BC3AD100C7F9DB /* AuditoriumTableViewController.swift in Sources */,
 				DE540EC22215CDCD0092FC81 /* Teacher+NetworkClient.swift in Sources */,
 				DE945ACE2264D2AA00143303 /* Universoty+NetworkClient.swift in Sources */,
 				DEE674122459B7BC00B8F9F1 /* CoreData.swift in Sources */,
 				DE3EC2CB245C743500E30536 /* AuditoriumViewController.swift in Sources */,
 				DE3EC2C7245C741400E30536 /* AuditoriumLogicController.swift in Sources */,
 				DE540EC42215CF9F0092FC81 /* TeacherDataSource.swift in Sources */,
+				DE7AB85D246720250031E279 /* AuditoriumTableDataController.swift in Sources */,
 				DEBB74AA235CE1AC00226C7E /* Bundle.swift in Sources */,
 				DE18942021BD457F00C7F9DB /* ImportForGroup.swift in Sources */,
 				DE28637C245600330036A01F /* NoRecordsTableViewCell.swift in Sources */,
 				DEB0316224597E4700A5D29D /* BaseEndpoint.swift in Sources */,
+				DE13EEB42466B9BA0011F307 /* StructRepresentable.swift in Sources */,
 				DEE6740E2459ACE300B8F9F1 /* Group+CodingData.swift in Sources */,
 				DE2863782455F75B0036A01F /* UniversitiesViewController.swift in Sources */,
 				DEB0316E2459895A00A5D29D /* GroupNetworkController.swift in Sources */,
@@ -1034,9 +1094,11 @@
 				E48FD404231DB2E60049438F /* PersonalData.swift in Sources */,
 				DE4AA07121A5DF0500E06FEA /* AuditoriumDataSource.swift in Sources */,
 				DEE674172459F55100B8F9F1 /* GroupTableDataController.swift in Sources */,
+				DE7AB863246722AA0031E279 /* EntityTableViewController.swift in Sources */,
 				DE13AF7F226A30D4009DF581 /* TeachersTableViewController.swift in Sources */,
 				DE4AA07321A5E31900E06FEA /* GroupsDataSource.swift in Sources */,
 				DE78478B240D9FBC002C2EDC /* UIStoryboard.swift in Sources */,
+				DE7AB85F246720880031E279 /* EntityTableDataController.swift in Sources */,
 				DE584C562198615F0099415E /* Teacher.swift in Sources */,
 				C2B5CDF31EEF0E750066DB30 /* AppDelegate.swift in Sources */,
 				DE04D1F72370B79F00A18649 /* UpdateHelper.swift in Sources */,
@@ -1044,6 +1106,7 @@
 				C2C0E9B01FB8CDA00012FA9C /* Group.swift in Sources */,
 				DE9E3F84235F8FB90067DDFE /* RecordTableViewCell.swift in Sources */,
 				DE40FBA6238D4700001DA3DE /* UIColor.swift in Sources */,
+				DE7AB861246721F70031E279 /* NewAuditoriumTableViewController.swift in Sources */,
 				DE95523822A253D400D70DA4 /* UIBarButtonItem.swift in Sources */,
 				DE945ACA2264D17C00143303 /* University.swift in Sources */,
 				DEB031722459A72700A5D29D /* EndpointProtocol.swift in Sources */,
@@ -1062,6 +1125,7 @@
 				DEB6819D245DF874005FA2F0 /* EntityNetworkController.swift in Sources */,
 				C22A2E591FC7664000587463 /* RecordEntity+CoreDataProperties.swift in Sources */,
 				DE266D60240C4AAA00C30A4A /* WhatsNewOneSixThree.swift in Sources */,
+				DE7AB8562466C3050031E279 /* Auditorium+Endpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

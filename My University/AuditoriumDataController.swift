@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class AuditoriumDataController: EntityDataController<Auditorium> {
+final class AuditoriumDataController: EntityDataController {
     
     // MARK: - Init
     

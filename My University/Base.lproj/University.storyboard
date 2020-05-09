@@ -145,8 +145,8 @@
                         <segue destination="P1W-Vf-SQ3" kind="show" identifier="showTeachers" id="TzT-2s-pyY"/>
                         <segue destination="W7b-zz-Rsa" kind="show" identifier="showAuditoriums" id="7in-AW-ArM"/>
                         <segue destination="pja-59-5tR" kind="show" identifier="showTeacher" id="JSr-R3-8lb"/>
-                        <segue destination="d7E-KM-3bA" kind="show" identifier="showAuditorium" id="7Hg-41-5Mu"/>
                         <segue destination="E9X-YU-kp3" kind="show" identifier="showGroup" id="fqa-SH-Sbg"/>
+                        <segue destination="4o0-Yq-o22" kind="show" identifier="showAuditorium" id="DrF-TY-jde"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NeF-49-RUJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -407,7 +407,7 @@
                     </refreshControl>
                     <connections>
                         <outlet property="statusButton" destination="9cp-XM-mpF" id="Z2f-hC-Qwa"/>
-                        <segue destination="d7E-KM-3bA" kind="show" identifier="auditoriumDetailed" id="swU-6C-ISC"/>
+                        <segue destination="4o0-Yq-o22" kind="show" identifier="auditoriumDetailed" id="xFY-Gp-WTl"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C3D-s7-HAL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -417,7 +417,7 @@
         <!--Auditorium-->
         <scene sceneID="xNp-eg-gQg">
             <objects>
-                <tableViewController id="d7E-KM-3bA" customClass="AuditoriumTableViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="d7E-KM-3bA" customClass="NewAuditoriumTableViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="b5u-zK-3uw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -470,56 +470,26 @@
                             <outlet property="delegate" destination="d7E-KM-3bA" id="OKR-Qn-L5T"/>
                         </connections>
                     </tableView>
-                    <toolbarItems>
-                        <barButtonItem image="chevron.left" catalog="system" id="rtA-s8-lYA">
-                            <connections>
-                                <action selector="previousDate:" destination="d7E-KM-3bA" id="BCU-V2-YLc"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="oKG-G2-8g1"/>
-                        <barButtonItem image="chevron.right" catalog="system" id="YOn-4d-dtf">
-                            <connections>
-                                <action selector="nextDate:" destination="d7E-KM-3bA" id="ESi-HK-nFU"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="XVn-Dl-YZx"/>
-                        <barButtonItem systemItem="action" id="Z22-3M-aB9">
-                            <connections>
-                                <action selector="share:" destination="d7E-KM-3bA" id="rrr-dV-BWp"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="NZ7-pg-pp1"/>
-                        <barButtonItem image="star" catalog="system" id="qBX-Cv-vdP" userLabel="Favorite">
-                            <connections>
-                                <action selector="toggleFavorite:" destination="d7E-KM-3bA" id="QlV-A5-EQ7"/>
-                            </connections>
-                        </barButtonItem>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Auditorium" id="BnI-no-h8n">
-                        <barButtonItem key="rightBarButtonItem" image="calendar" catalog="system" id="KYM-F3-LCK">
-                            <connections>
-                                <segue destination="XBi-Y2-oe7" kind="presentation" identifier="presentDatePicker" id="taq-cC-pw2"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="calendar" catalog="system" id="KYM-F3-LCK"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Sie-E4-t9v">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
-                            <action selector="refresh:" destination="d7E-KM-3bA" eventType="valueChanged" id="nVB-Ue-xsl"/>
+                            <action selector="refresh:" destination="d7E-KM-3bA" eventType="valueChanged" id="aMZ-hR-aca"/>
                         </connections>
                     </refreshControl>
                     <connections>
-                        <outlet property="dateButton" destination="KYM-F3-LCK" id="uT4-dr-uon"/>
-                        <outlet property="favoriteButton" destination="qBX-Cv-vdP" id="sh5-TT-dTP"/>
-                        <outlet property="titleLabel" destination="yR3-u0-xw5" id="8Ak-8r-sm5"/>
+                        <outlet property="tableTitleLabel" destination="yR3-u0-xw5" id="dfL-Ev-EWB"/>
                         <segue destination="smG-A5-woS" kind="presentation" identifier="recordDetails" id="7tb-1p-J0p"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JhT-ka-CkE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4300" y="919"/>
+            <point key="canvasLocation" x="5196" y="1723"/>
         </scene>
         <!--Record Details-->
         <scene sceneID="w9w-NY-7bF">
@@ -527,7 +497,72 @@
                 <viewControllerPlaceholder storyboardName="Record Details" id="smG-A5-woS" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BoT-pK-dNy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4904" y="962"/>
+            <point key="canvasLocation" x="5852" y="1723"/>
+        </scene>
+        <!--Auditorium-->
+        <scene sceneID="THL-LE-ZyW">
+            <objects>
+                <viewController id="4o0-Yq-o22" customClass="AuditoriumViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IJN-br-lBv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3j6-vy-rbk">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <connections>
+                                    <segue destination="d7E-KM-3bA" kind="embed" identifier="records" id="OXA-ka-dac"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="vvW-26-6Js" firstAttribute="trailing" secondItem="3j6-vy-rbk" secondAttribute="trailing" id="8x0-e7-lvW"/>
+                            <constraint firstAttribute="bottom" secondItem="3j6-vy-rbk" secondAttribute="bottom" id="DMM-3f-RVM"/>
+                            <constraint firstItem="3j6-vy-rbk" firstAttribute="top" secondItem="IJN-br-lBv" secondAttribute="top" id="FfC-Kj-Hax"/>
+                            <constraint firstItem="3j6-vy-rbk" firstAttribute="leading" secondItem="vvW-26-6Js" secondAttribute="leading" id="tSl-eI-VZg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vvW-26-6Js"/>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem image="chevron.left" catalog="system" id="rtA-s8-lYA">
+                            <connections>
+                                <action selector="previousDate:" destination="4o0-Yq-o22" id="Jms-pi-S5X"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="oKG-G2-8g1"/>
+                        <barButtonItem image="chevron.right" catalog="system" id="YOn-4d-dtf">
+                            <connections>
+                                <action selector="nextDate:" destination="4o0-Yq-o22" id="87j-L9-4ut"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="XVn-Dl-YZx"/>
+                        <barButtonItem systemItem="action" id="Z22-3M-aB9">
+                            <connections>
+                                <action selector="share:" destination="4o0-Yq-o22" id="1DO-zq-kyU"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="NZ7-pg-pp1"/>
+                        <barButtonItem image="star" catalog="system" id="qBX-Cv-vdP" userLabel="Favorite">
+                            <connections>
+                                <action selector="toggleFavorite:" destination="4o0-Yq-o22" id="ivC-Xb-hSt"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Auditorium" id="exC-FO-4Yt">
+                        <barButtonItem key="rightBarButtonItem" image="calendar" catalog="system" id="oXU-zw-YDx">
+                            <connections>
+                                <segue destination="XBi-Y2-oe7" kind="presentation" identifier="presentDatePicker" id="yep-uD-cW4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="favoriteButton" destination="qBX-Cv-vdP" id="kVk-4A-OMl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GrN-TV-NX1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4310" y="1723"/>
         </scene>
         <!--Date Picker-->
         <scene sceneID="J6q-gZ-Nqi">
@@ -535,7 +570,7 @@
                 <viewControllerPlaceholder storyboardName="Date Picker" id="XBi-Y2-oe7" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FpQ-Bx-NbG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4904" y="874"/>
+            <point key="canvasLocation" x="4299" y="2164"/>
         </scene>
         <!--Teachers-->
         <scene sceneID="Uli-He-4Zy">
@@ -780,7 +815,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="JSr-R3-8lb"/>
-        <segue reference="7Hg-41-5Mu"/>
+        <segue reference="DrF-TY-jde"/>
         <segue reference="fqa-SH-Sbg"/>
     </inferredMetricsTieBreakers>
     <resources>

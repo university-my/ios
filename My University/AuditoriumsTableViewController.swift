@@ -131,16 +131,16 @@ class AuditoriumsTableViewController: SearchableTableViewController {
         switch identifier {
             
         case "auditoriumDetailed":
-            if let detailTableViewController = segue.destination as? AuditoriumTableViewController {
+            if let detailViewController = segue.destination as? AuditoriumViewController {
                 if searchController.isActive {
                     if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
                         let selectedAuditorium = resultsTableController.filteredAuditoriums[safe: indexPath.row]
-                        detailTableViewController.auditoriumID = selectedAuditorium?.id
+                        detailViewController.entityID = selectedAuditorium?.id
                     }
                 } else {
                     if let indexPath = tableView.indexPathForSelectedRow {
                         let selectedAuditorium = dataSource?.fetchedResultsController?.object(at: indexPath)
-                        detailTableViewController.auditoriumID = selectedAuditorium?.id
+                        detailViewController.entityID = selectedAuditorium?.id
                     }
                 }
             }

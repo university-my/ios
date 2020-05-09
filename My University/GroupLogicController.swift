@@ -62,9 +62,6 @@ class GroupLogicController {
     func toggleFavorite() {
         guard let groupEntity = group else { return }
         dataController.toggleFavorite(for: groupEntity)
-        
-        // TODO: Refactor this
-        
         if let group = groupEntity.asStruct() {
             delegate?.didChangeState(to: .presenting(group))
         }

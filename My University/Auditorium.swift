@@ -15,3 +15,5 @@ struct Auditorium {
     let name: String
     let slug: String
 }
+
+extension Auditorium: EntityStructRepresentable {}

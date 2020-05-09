@@ -15,3 +15,5 @@ struct Group {
     let slug: String
     let isFavorite: Bool
 }
+
+extension Group: EntityStructRepresentable {}

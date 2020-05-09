@@ -134,10 +134,10 @@ class UniversityViewController: GenericTableViewController {
             vc?.universityID = dataSource.university?.id
             
         case "showAuditorium":
-            let vc = segue.destination as? AuditoriumTableViewController
+            let vc = segue.destination as? AuditoriumViewController
             if let indexPath = tableView.indexPathForSelectedRow {
                 let auditorium = dataSource.auditoriums?.fetchedObjects?[safe: indexPath.row]
-                vc?.auditoriumID = auditorium?.id
+                vc?.entityID = auditorium?.id
             }
             
         case "showGroup":

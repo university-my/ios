@@ -8,7 +8,7 @@
 
 import Foundation
 
-class GroupDataController: EntityDataController<Group> {
+class GroupDataController: EntityDataController {
     
     // MARK: - Init
     

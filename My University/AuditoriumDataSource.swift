@@ -11,7 +11,7 @@ import UIKit
 
 class AuditoriumDataSource: NSObject {
 
-    // MARK: - Favories
+    // MARK: - Favorites
 
   private var favoritesImageView: UIImageView {
     let image = UIImage(systemName: "star.fill")

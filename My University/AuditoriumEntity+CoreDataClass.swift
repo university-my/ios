@@ -64,3 +64,29 @@ public class AuditoriumEntity: NSManagedObject {
         return Auditorium(id: id, isFavorite: isFavorite, name: name, slug: slug)
     }
 }
+
+// MARK: - FavoriteEntityProtocol
+
+extension AuditoriumEntity: FavoriteEntityProtocol {
+    
+    var favorite: Bool {
+        get {
+            return isFavorite
+        }
+        set {
+            isFavorite = newValue
+        }
+    }
+}
+
+// MARK: - EntityProtocol
+
+extension AuditoriumEntity: EntityProtocol {
+    
+    func shareURL(for date: Date) -> URL? {
+        guard let universityURL = university?.url else { return nil }
+        guard let slug = slug else { return nil }
+        let dateString = DateFormatter.short.string(from: date)
+        return Auditorium.Endpoint.page(for: slug, university: universityURL, date: dateString).url
+    }
+}

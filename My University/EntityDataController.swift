@@ -11,14 +11,13 @@ import CoreData
 
 protocol EntityDataControllerDelegate: class {
     
-    func entityDataController<StructType>(didImportRecordsFor structure: StructType, _ error: Error?)
-    func entityDataController<StructType>(didBuildSectionsFor structure: StructType)
+    func entityDataController(didImportRecordsFor structure: EntityStructRepresentable, _ error: Error?)
+    func entityDataController(didBuildSectionsFor structure: EntityStructRepresentable)
 }
 
 /// Base class for data controllers of Auditorium, Group, Teacher
-class EntityDataController<T>: EntityDataControllerProtocol {
+class EntityDataController: EntityDataControllerProtocol {
     
-    typealias StructType = T
     weak var delegate: EntityDataControllerDelegate?
     
     // MARK: - Import
@@ -169,13 +168,20 @@ class EntityDataController<T>: EntityDataControllerProtocol {
         entity.toggleFavorite()
         CoreData.default.saveContext()
     }
+    
+    // MARK: - Share URL
+    
+    func shareURL(for entity: EntityProtocol?) -> URL? {
+        guard let entity = entity else { return nil }
+        return entity.shareURL(for: pairDate)
+    }
 }
 
 // MARK: - EntityNetworkControllerDelegate
 
 extension EntityDataController: EntityNetworkControllerDelegate {
     
-    func didImportRecords<StructType>(for structure: StructType, _ error: Error?) {
+    func didImportRecords(for structure: EntityStructRepresentable, _ error: Error?) {
         delegate?.entityDataController(didImportRecordsFor: structure, error)
         updateDatePredicate()
         fetchRecords()

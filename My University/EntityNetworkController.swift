@@ -9,7 +9,7 @@
 import Foundation
 
 protocol EntityNetworkControllerDelegate: class {
-    func didImportRecords<StructType>(for structure: StructType, _ error: Error?)
+    func didImportRecords(for structure: EntityStructRepresentable, _ error: Error?)
 }
 
 class EntityNetworkController<T> {
