@@ -38,9 +38,9 @@ class NewAuditoriumTableViewController: EntityTableViewController {
             if let navigation = segue.destination as? UINavigationController {
                 if let destination = navigation.viewControllers.first as? RecordDetailedTableViewController {
                     destination.recordID = (sender as? Record)?.id
-                    destination.groupID = entityID
+                    destination.groupID = nil
                     destination.teacherID = nil
-                    destination.auditoriumID = nil
+                    destination.auditoriumID = entityID
                 }
             }
             

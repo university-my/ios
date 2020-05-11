@@ -853,9 +853,9 @@
 		DEE576E5226B7E37008F9EB6 /* Auditoriums */ = {
 			isa = PBXGroup;
 			children = (
-				DE3EC2C3245C73E600E30536 /* Auditorium */,
 				DE4AA07021A5DF0500E06FEA /* AuditoriumDataSource.swift */,
 				DEE576E6226B8B98008F9EB6 /* AuditoriumsTableViewController.swift */,
+				DE3EC2C3245C73E600E30536 /* Auditorium */,
 			);
 			name = Auditoriums;
 			sourceTree = "<group>";
@@ -873,8 +873,8 @@
 		DEE674152459F53500B8F9F1 /* Table */ = {
 			isa = PBXGroup;
 			children = (
-				DE18941B21BC3A3900C7F9DB /* GroupTableViewController.swift */,
 				DEE674162459F55100B8F9F1 /* GroupTableDataController.swift */,
+				DE18941B21BC3A3900C7F9DB /* GroupTableViewController.swift */,
 			);
 			name = Table;
 			sourceTree = "<group>";

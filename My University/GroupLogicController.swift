@@ -8,41 +8,36 @@
 
 import Foundation
 
-protocol GroupLogicControllerDelegate: class {
-    func didChangeState(to newState: GroupViewController.State)
-}
-
-class GroupLogicController {
+final class GroupLogicController: EntityLogicController {
     
     // MARK: - Init
-
-    weak var delegate: GroupLogicControllerDelegate?
-    private let dataController: GroupDataController
-    private let activityController: ActivityController
     
-    init(activity: ActivityController) {
+    override init(activity: ActivityController) {
         dataController = GroupDataController()
-        activityController = activity
+        
+        super.init(activity: activity)
         
         dataController.delegate = self
-        activityController.delegate = self
+        activity.delegate = self
     }
     
     // MARK: - Data
     
-    func fetchData(for groupID: Int64)  {
-        dataController.fetchGroup(with: groupID)
+    private let dataController: GroupDataController
+    
+    override func fetchData(for entityID: Int64)  {
+        dataController.fetchGroup(with: entityID)
         dataController.loadData()
         importRecordsIfNeeded()
     }
     
-    func importRecordsIfNeeded() {
+    override func importRecordsIfNeeded() {
         if dataController.needToImportRecords {
             importRecords()
         }
     }
     
-    func importRecords(showActivity: Bool = true) {
+    override func importRecords(showActivity: Bool = true) {
         delegate?.didChangeState(to: .loading(showActivity: showActivity))
         dataController.importRecords()
     }
@@ -60,9 +55,9 @@ class GroupLogicController {
     // MARK: - Favorites
     
     func toggleFavorite() {
-        guard let groupEntity = group else { return }
-        dataController.toggleFavorite(for: groupEntity)
-        if let group = groupEntity.asStruct() {
+        guard let entity = group else { return }
+        dataController.toggleFavorite(for: entity)
+        if let group = entity.asStruct() {
             delegate?.didChangeState(to: .presenting(group))
         }
     }
@@ -70,16 +65,7 @@ class GroupLogicController {
     // MARK: - Share URL
     
     func shareURL() -> URL? {
-        guard let group = dataController.group else { return nil }
-        let date = dataController.pairDate
-        return url(for: group, by: date)
-    }
-    
-    private func url(for group: GroupEntity, by date: Date) -> URL? {
-        guard let universityURL = group.university?.url else { return nil }
-        guard let slug = group.slug else { return nil }
-        let dateString = DateFormatter.short.string(from: date)
-        return Group.Endpoint.page(for: slug, university: universityURL, date: dateString).url
+        dataController.shareURL(for: group)
     }
     
     // MARK: - Date
@@ -88,48 +74,18 @@ class GroupLogicController {
         return dataController.pairDate
     }
     
+    /// -1 day
     func previousDate() {
-        // -1 day
-        let currentDate = dataController.pairDate
-        if let previousDate = Calendar.current.date(byAdding: .day, value: -1, to: currentDate) {
-            dataController.changePairDate(to: previousDate)
-            importRecordsIfNeeded()
-        }
+        previousDate(for: dataController)
     }
     
+    /// +1 day
     func nextDate() {
-        // +1 day
-        let currentDate = dataController.pairDate
-        if let nextDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate) {
-            dataController.changePairDate(to: nextDate)
-            importRecordsIfNeeded()
-        }
+        nextDate(for: dataController)
     }
     
     func changePairDate(to newDate: Date) {
-        dataController.changePairDate(to: newDate)
-        importRecordsIfNeeded()
-    }
-}
-
-// MARK: - GroupDataControllerDelegate
-
-extension GroupLogicController: EntityDataControllerDelegate {
-    
-    func entityDataController<StructType>(didImportRecordsFor structure: StructType, _ error: Error?) {
-        if let error = error {
-            delegate?.didChangeState(to: .failed(error))
-        }
-    }
-    
-    func entityDataController<StructType>(didBuildSectionsFor structure: StructType) {
-        if activityController.isRunningTransitionAnimation {
-            // Do nothing, wait for the animation to finish
-            return
-        }
-        if let group = structure as? Group {
-            delegate?.didChangeState(to: .presenting(group))
-        }
+        changePairDate(to: newDate, for: dataController)
     }
 }
 
@@ -143,8 +99,8 @@ extension GroupLogicController: ActivityControllerDelegate {
             return
         }
         
-        if let groupEntity = dataController.group, let group = groupEntity.asStruct() {
-            delegate?.didChangeState(to: .presenting(group))
+        if let entity = group, let data = entity.asStruct() {
+            delegate?.didChangeState(to: .presenting(data))
         }
     }
 }

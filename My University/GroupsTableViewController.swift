@@ -135,12 +135,12 @@ class GroupsTableViewController: SearchableTableViewController {
                 if searchController.isActive {
                     if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
                         let selectedGroup = resultsTableController.filteredGroups[safe: indexPath.row]
-                        detailTableViewController.groupID = selectedGroup?.id
+                        detailTableViewController.entityID = selectedGroup?.id
                     }
                 } else {
                     if let indexPath = tableView.indexPathForSelectedRow {
                         let selectedGroup = dataSource?.fetchedResultsController?.object(at: indexPath)
-                        detailTableViewController.groupID = selectedGroup?.id
+                        detailTableViewController.entityID = selectedGroup?.id
                     }
                 }
             }

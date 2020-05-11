@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AuditoriumLogicController: EntityLogicController {
+final class AuditoriumLogicController: EntityLogicController {
     
     // MARK: - Init
     

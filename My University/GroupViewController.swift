@@ -8,16 +8,23 @@
 
 import UIKit
 
-class GroupViewController: UIViewController {
+class GroupViewController: EntityViewController {
     
     // MARK: - Properties
     
     private let logic: GroupLogicController
     
+    /// `UITableView`
+    var tableViewController: GroupTableViewController!
+    
+    /// Show an activity indicator over current `UIViewController`
+    let activityController = ActivityController()
+    
     // MARK: - Init
     
     required init?(coder: NSCoder) {
         logic = GroupLogicController(activity: activityController)
+        
         super.init(coder: coder)
         
         logic.delegate = self
@@ -29,23 +36,16 @@ class GroupViewController: UIViewController {
         super.viewDidLoad()
         
         // Data
-        logic.fetchData(for: groupID)
+        logic.fetchData(for: entityID)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Show toolbar
-        navigationController?.setToolbarHidden(false, animated: true)
+    // MARK: - Group
+    
+    var group: GroupEntity? {
+        return logic.group
     }
     
     // MARK: - State
-    
-    enum State {
-        case loading(showActivity: Bool)
-        case presenting(Group)
-        case failed(Error)
-    }
     
     func render(_ state: State) {
         switch state {
@@ -56,8 +56,11 @@ class GroupViewController: UIViewController {
                 activityController.showActivity(in: self)
             }
             
-        case .presenting(let group):
+        case .presenting(let structure):
             // Bind the user model to the view controller's views
+            guard let group = structure as? Group else {
+                preconditionFailure()
+            }
             
             // Title
             tableViewController.tableTitleLabel.text = group.name
@@ -83,22 +86,14 @@ class GroupViewController: UIViewController {
             tableViewController.refreshControl?.endRefreshing()
         }
     }
-
-    // MARK: - Group
-    
-    var groupID: Int64!
-    
-    var group: GroupEntity? {
-        return logic.group
-    }
     
     // MARK: - Share
     
     @IBAction func share(_ sender: Any) {
-        guard let url = logic.shareURL() else { return }
-        let sharedItems = [url]
-        let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
-        present(vc, animated: true)
+        guard let url = logic.shareURL() else {
+            return
+        }
+        share(url)
     }
     
     // MARK: - Favorites
@@ -125,10 +120,6 @@ class GroupViewController: UIViewController {
         logic.nextDate()
     }
     
-    // MARK: - Table
-    
-    var tableViewController: GroupTableViewController!
-    
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -153,29 +144,25 @@ class GroupViewController: UIViewController {
             break
         }
     }
-    
-    // MARK: - Activity
-    
-    private let activityController = ActivityController()
-}
-
-// MARK: - GroupLogicControllerDelegate
-
-extension GroupViewController: GroupLogicControllerDelegate {
-    
-    func didChangeState(to newState: State) {
-        render(newState)
-    }
 }
 
 // MARK: - GroupTableViewControllerDelegate
 
-extension GroupViewController: GroupTableViewControllerDelegate {
+extension GroupViewController: EntityTableViewControllerDelegate {
     
-    func didBeginRefresh(in viewController: GroupTableViewController) {
+    func didBeginRefresh(in viewController: EntityTableViewController) {
         // Import records on "pull to refresh"
         // Don't show activity indicator in the center of the screen
         logic.importRecords(showActivity: false)
+    }
+}
+
+// MARK: - GroupLogicControllerDelegate
+
+extension GroupViewController: EntityLogicControllerDelegate {
+    
+    func didChangeState(to newState: EntityViewController.State) {
+        render(newState)
     }
 }
 

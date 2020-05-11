@@ -10,7 +10,7 @@ import UIKit
 
 class AuditoriumViewController: EntityViewController {
     
-    // MARK: - Init
+    // MARK: - Properties
     
     private let logic: AuditoriumLogicController
     
@@ -19,6 +19,8 @@ class AuditoriumViewController: EntityViewController {
     
     /// Show an activity indicator over current `UIViewController`
     let activityController = ActivityController()
+    
+    // MARK: - Init
     
     required init?(coder: NSCoder) {
         logic = AuditoriumLogicController(activity: activityController)
