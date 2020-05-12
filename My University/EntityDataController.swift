@@ -133,7 +133,6 @@ class EntityDataController: EntityDataControllerProtocol {
     
     func changePairDate(to newDate: Date) {
         pairDate = newDate
-        loadData()
     }
     
     // MARK: - NSFetchedResultsController

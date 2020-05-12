@@ -19,7 +19,7 @@
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="WvN-EN-G5V">
                         <rect key="frame" x="16" y="11" width="288" height="228"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1 Working remotely" translatesAutoresizingMaskIntoConstraints="NO" id="Aau-ZH-3j3">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Aau-ZH-3j3">
                                 <rect key="frame" x="0.0" y="0.0" width="288" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="5wU-hy-eCh"/>
@@ -48,7 +48,4 @@
             <point key="canvasLocation" x="130.43478260869566" y="156.02678571428569"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="1 Working remotely" width="1227" height="924"/>
-    </resources>
 </document>

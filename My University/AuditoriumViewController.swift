@@ -51,7 +51,7 @@ class AuditoriumViewController: EntityViewController {
         switch state {
             
         case .loading(let showActivity):
-            if showActivity {
+            if !activityController.isRunningTransitionAnimation && showActivity {
                 // Show a loading spinner
                 activityController.showActivity(in: self)
             }

@@ -40,8 +40,7 @@ class EntityLogicController: EntityLogicControllerProtocol {
         // -1 day
         let currentDate = dataController.pairDate
         if let previousDate = Calendar.current.date(byAdding: .day, value: -1, to: currentDate) {
-            dataController.changePairDate(to: previousDate)
-            importRecordsIfNeeded()
+            loadRecords(for: previousDate, dataController: dataController)
         }
     }
     
@@ -49,14 +48,29 @@ class EntityLogicController: EntityLogicControllerProtocol {
         // +1 day
         let currentDate = dataController.pairDate
         if let nextDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate) {
-            dataController.changePairDate(to: nextDate)
-            importRecordsIfNeeded()
+            loadRecords(for: nextDate, dataController: dataController)
         }
     }
     
     func changePairDate(to newDate: Date, for dataController: EntityDataController) {
-        dataController.changePairDate(to: newDate)
-        importRecordsIfNeeded()
+        loadRecords(for: newDate, dataController: dataController)
+    }
+    
+    private func loadRecords(for date: Date, dataController: EntityDataController) {
+        // Change date
+        dataController.changePairDate(to: date)
+        
+        // Fetch records
+        dataController.updateDatePredicate()
+        dataController.fetchRecords()
+        
+        if dataController.needToImportRecords {
+            // Import
+            importRecords()
+        } else {
+            // Build data
+            dataController.loadData()
+        }
     }
 }
 
