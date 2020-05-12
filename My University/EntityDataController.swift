@@ -11,8 +11,8 @@ import CoreData
 
 protocol EntityDataControllerDelegate: class {
     
-    func entityDataController(didImportRecordsFor structure: EntityStructRepresentable, _ error: Error?)
-    func entityDataController(didBuildSectionsFor structure: EntityStructRepresentable)
+    func entityDataController(didImportRecordsFor structure: EntityRepresentable, _ error: Error?)
+    func entityDataController(didBuildSectionsFor structure: EntityRepresentable)
 }
 
 /// Base class for data controllers of Auditorium, Group, Teacher
@@ -25,8 +25,9 @@ class EntityDataController: EntityDataControllerProtocol {
     /// `true` while importing records and building sections
     var isImporting = false
     
-    /// Override in subclasses
-    func loadData() {}
+    func importRecords() {
+        // Override in subclasses
+    }
     
     // MARK: - Records
     
@@ -61,7 +62,22 @@ class EntityDataController: EntityDataControllerProtocol {
         }
     }
     
+    // MARK: - Entity
+    
+    var entity: NSManagedObject?
+    
     // MARK: - Sections
+    
+    func updateSections() {
+        guard let entity = entity as? StructRepresentable else {
+            preconditionFailure("Entity not found")
+        }
+        guard let structure = entity.asStruct() else {
+            preconditionFailure("Struct not found")
+        }
+        buildSections()
+        delegate?.entityDataController(didBuildSectionsFor: structure)
+    }
     
     struct Section {
         
@@ -180,7 +196,7 @@ class EntityDataController: EntityDataControllerProtocol {
 
 extension EntityDataController: EntityNetworkControllerDelegate {
     
-    func didImportRecords(for structure: EntityStructRepresentable, _ error: Error?) {
+    func didImportRecords(for structure: EntityRepresentable, _ error: Error?) {
         delegate?.entityDataController(didImportRecordsFor: structure, error)
         updateDatePredicate()
         fetchRecords()

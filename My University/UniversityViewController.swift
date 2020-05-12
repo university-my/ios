@@ -148,10 +148,10 @@ class UniversityViewController: GenericTableViewController {
             }
             
         case "showTeacher":
-            let vc = segue.destination as? TeacherTableViewController
+            let vc = segue.destination as? TeacherViewController
             if let indexPath = tableView.indexPathForSelectedRow {
                 let teacher = dataSource.teachers?.fetchedObjects?[safe: indexPath.row]
-                vc?.teacherID = teacher?.id
+                vc?.entityID = teacher?.id
             }
             
         default:

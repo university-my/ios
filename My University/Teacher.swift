@@ -16,3 +16,5 @@ struct Teacher {
     let name: String?
     let slug: String?
 }
+
+extension Teacher: EntityRepresentable {}

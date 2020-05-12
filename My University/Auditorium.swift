@@ -16,4 +16,4 @@ struct Auditorium {
     let slug: String
 }
 
-extension Auditorium: EntityStructRepresentable {}
+extension Auditorium: EntityRepresentable {}

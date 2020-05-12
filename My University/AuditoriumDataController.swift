@@ -21,38 +21,21 @@ final class AuditoriumDataController: EntityDataController {
         network.delegate = self
     }
     
-    // MARK: - Data
+    // MARK: - Auditorium
     
-    override func loadData() {
-        guard let entity = auditorium,
-            let auditorium = entity.asStruct() else {
-                preconditionFailure("Auditorium not found")
-        }
-        updateDatePredicate()
-        fetchRecords()
-        buildSections()
-        delegate?.entityDataController(didBuildSectionsFor: auditorium)
+    var auditorium: AuditoriumEntity? {
+        return entity as? AuditoriumEntity
     }
     
     // MARK: - Import
     
-    func importRecords() {
+    override func importRecords() {
         guard let entity = auditorium else {
             preconditionFailure("Auditorium not found")
         }
         // Start import
         isImporting = true
         network.importRecords(for: entity, by: pairDate)
-    }
-    
-    // MARK: - Auditorium
-    
-    private(set) var auditorium: AuditoriumEntity?
-    private(set) var auditoriumID: Int64?
-    
-    func fetchAuditorium(with id: Int64) {
-        auditoriumID = id
-        auditorium = AuditoriumEntity.fetch(id: id, context: CoreData.default.viewContext)
     }
     
     // MARK: - NSPredicate
@@ -65,8 +48,8 @@ final class AuditoriumDataController: EntityDataController {
         let endOfDay = selectedDate.endOfDay as NSDate
         
         let datePredicate = NSPredicate(format: "(date >= %@) AND (date <= %@)", startOfDay, endOfDay)
-        let groupsPredicate = NSPredicate(format: "auditorium == %@", auditorium)
-        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [groupsPredicate, datePredicate])
+        let auditoriumPredicate = NSPredicate(format: "auditorium == %@", auditorium)
+        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [auditoriumPredicate, datePredicate])
         return compoundPredicate
     }
 }

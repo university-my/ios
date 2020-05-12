@@ -132,17 +132,17 @@ class TeachersTableViewController: SearchableTableViewController {
         switch identifier {
             
         case "teacherDetailed":
-            if let detailTableViewController = segue.destination as? TeacherTableViewController {
+            if let detailTableViewController = segue.destination as? TeacherViewController {
                 
                 if searchController.isActive {
                     if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
                         let selectedTeacher = resultsTableController.filteredTeachers[safe: indexPath.row]
-                        detailTableViewController.teacherID = selectedTeacher?.id
+                        detailTableViewController.entityID = selectedTeacher?.id
                     }
                 } else {
                     if let indexPath = tableView.indexPathForSelectedRow {
                         let selectedTeacher = dataSource?.fetchedResultsController?.object(at: indexPath)
-                        detailTableViewController.teacherID = selectedTeacher?.id
+                        detailTableViewController.entityID = selectedTeacher?.id
                     }
                 }
             }

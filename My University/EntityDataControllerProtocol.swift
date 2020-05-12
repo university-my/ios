@@ -11,8 +11,5 @@ import Foundation
 protocol EntityDataControllerProtocol {
     
     /// Override in subclasses
-    func loadData()
-    
-    /// Override in subclasses
     func generatePredicate() -> NSPredicate?
 }

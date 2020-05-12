@@ -8,7 +8,7 @@
 
 import Foundation
 
-class GroupNetworkController: EntityNetworkController<Group> {
+class GroupNetworkController: EntityNetworkController {
     
     private var importManager: Record.ImportForGroup?
     

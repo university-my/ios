@@ -16,4 +16,4 @@ struct Group {
     let isFavorite: Bool
 }
 
-extension Group: EntityStructRepresentable {}
+extension Group: EntityRepresentable {}

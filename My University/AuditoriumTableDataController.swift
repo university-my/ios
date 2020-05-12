@@ -8,4 +8,4 @@
 
 import Foundation
 
-class AuditoriumTableDataController: EntityTableDataController {}
+final class AuditoriumTableDataController: EntityTableDataController {}

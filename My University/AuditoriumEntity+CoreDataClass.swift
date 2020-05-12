@@ -57,12 +57,6 @@ public class AuditoriumEntity: NSManagedObject {
             return nil
         }
     }
-    
-    func asStruct() -> Auditorium? {
-        guard let name = name else { return nil }
-        guard let slug = slug else { return nil }
-        return Auditorium(id: id, isFavorite: isFavorite, name: name, slug: slug)
-    }
 }
 
 // MARK: - FavoriteEntityProtocol
@@ -88,5 +82,16 @@ extension AuditoriumEntity: EntityProtocol {
         guard let slug = slug else { return nil }
         let dateString = DateFormatter.short.string(from: date)
         return Auditorium.Endpoint.page(for: slug, university: universityURL, date: dateString).url
+    }
+}
+
+// MARK: - StructRepresentable
+
+extension AuditoriumEntity: StructRepresentable {
+    
+    func asStruct() -> EntityRepresentable? {
+        guard let name = name else { return nil }
+        guard let slug = slug else { return nil }
+        return Auditorium(id: id, isFavorite: isFavorite, name: name, slug: slug)
     }
 }

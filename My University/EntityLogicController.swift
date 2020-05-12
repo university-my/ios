@@ -23,16 +23,31 @@ class EntityLogicController: EntityLogicControllerProtocol {
         activityController = activity
     }
     
-    // MARK: - Data
-    
+    // MARK: - Fetch
+
     /// Override in subclasses
     func fetchData(for entityID: Int64)  {}
+    
+    func fetchData(controller: EntityDataController) {
+        controller.updateDatePredicate()
+        controller.fetchRecords()
+        
+        if controller.needToImportRecords {
+            importRecords()
+        } else {
+            controller.updateSections()
+        }
+    }
+    
+    // MARK: - Import
     
     /// Override in subclasses
     func importRecords(showActivity: Bool = true) {}
     
-    /// Override in subclasses
-    func importRecordsIfNeeded() {}
+    func importRecords(showActivity: Bool = true, controller: EntityDataController) {
+        delegate?.didChangeState(to: .loading(showActivity: showActivity))
+        controller.importRecords()
+    }
  
     // MARK: - Date
     
@@ -69,7 +84,7 @@ class EntityLogicController: EntityLogicControllerProtocol {
             importRecords()
         } else {
             // Build data
-            dataController.loadData()
+            dataController.updateSections()
         }
     }
 }
@@ -78,13 +93,13 @@ class EntityLogicController: EntityLogicControllerProtocol {
 
 extension EntityLogicController: EntityDataControllerDelegate {
     
-    func entityDataController(didImportRecordsFor structure: EntityStructRepresentable, _ error: Error?) {
+    func entityDataController(didImportRecordsFor structure: EntityRepresentable, _ error: Error?) {
         if let error = error {
             delegate?.didChangeState(to: .failed(error))
         }
     }
     
-    func entityDataController(didBuildSectionsFor structure: EntityStructRepresentable) {
+    func entityDataController(didBuildSectionsFor structure: EntityRepresentable) {
         if activityController.isRunningTransitionAnimation {
             // Do nothing, wait for the animation to finish
             return

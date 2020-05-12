@@ -1,21 +1,21 @@
 //
-//  AuditoriumLogicController.swift
+//  TeacherLogicController.swift
 //  My University
 //
-//  Created by Yura Voevodin on 01.05.2020.
+//  Created by Yura Voevodin on 12.05.2020.
 //  Copyright © 2020 Yura Voevodin. All rights reserved.
 //
 
 import Foundation
 
-final class AuditoriumLogicController: EntityLogicController {
+final class TeacherLogicController: EntityLogicController {
     
-    private let dataController: AuditoriumDataController
+    private let dataController: TeacherDataController
     
     // MARK: - Init
     
     override init(activity: ActivityController) {
-        dataController = AuditoriumDataController()
+        dataController = TeacherDataController()
         
         super.init(activity: activity)
         
@@ -26,7 +26,7 @@ final class AuditoriumLogicController: EntityLogicController {
     // MARK: - Data
     
     override func fetchData(for entityID: Int64) {
-        dataController.entity = AuditoriumEntity.fetch(id: entityID, context: CoreData.default.viewContext)
+        dataController.entity = TeacherEntity.fetchTeacher(id: entityID, context: CoreData.default.viewContext)
         fetchData(controller: dataController)
     }
     
@@ -34,30 +34,30 @@ final class AuditoriumLogicController: EntityLogicController {
         importRecords(showActivity: showActivity, controller: dataController)
     }
     
-    var sections: [AuditoriumDataController.Section] {
+    var sections: [TeacherDataController.Section] {
         return dataController.sections
     }
     
-    // MARK: - Auditorium
+    // MARK: - Teacher
     
-    var auditorium: AuditoriumEntity? {
-        return dataController.auditorium
+    var teacher: TeacherEntity? {
+        return dataController.teacher
     }
     
     // MARK: - Favorites
     
     func toggleFavorite() {
-        guard let entity = auditorium else { return }
+        guard let entity = teacher else { return }
         dataController.toggleFavorite(for: entity)
-        if let auditorium = entity.asStruct() {
-            delegate?.didChangeState(to: .presenting(auditorium))
+        if let teacher = entity.asStruct() {
+            delegate?.didChangeState(to: .presenting(teacher))
         }
     }
     
     // MARK: - Share URL
     
     func shareURL() -> URL? {
-        dataController.shareURL(for: auditorium)
+        dataController.shareURL(for: teacher)
     }
     
     // MARK: - Date
@@ -83,16 +83,14 @@ final class AuditoriumLogicController: EntityLogicController {
 
 // MARK: - ActivityControllerDelegate
 
-// TODO: Move to the EntityLogicController
-
-extension AuditoriumLogicController: ActivityControllerDelegate {
+extension TeacherLogicController: ActivityControllerDelegate {
     
     func didPresentActivity(from controller: ActivityController) {
         if dataController.isImporting {
             // Do nothing, wait for import
             return
         }
-        if let entity = auditorium, let data = entity.asStruct()  {
+        if let entity = teacher, let data = entity.asStruct()  {
             delegate?.didChangeState(to: .presenting(data))
         }
     }

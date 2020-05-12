@@ -9,5 +9,5 @@
 import Foundation
 
 protocol StructRepresentable {
-    func asStruct<StructType>() -> StructType
+    func asStruct() -> EntityRepresentable?
 }

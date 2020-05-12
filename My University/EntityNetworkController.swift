@@ -9,11 +9,10 @@
 import Foundation
 
 protocol EntityNetworkControllerDelegate: class {
-    func didImportRecords(for structure: EntityStructRepresentable, _ error: Error?)
+    func didImportRecords(for structure: EntityRepresentable, _ error: Error?)
 }
 
-class EntityNetworkController<T> {
+class EntityNetworkController {
     
-    typealias StructType = T
     weak var delegate: EntityNetworkControllerDelegate?
 }

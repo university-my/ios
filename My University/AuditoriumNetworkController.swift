@@ -8,12 +8,12 @@
 
 import Foundation
 
-class AuditoriumNetworkController: EntityNetworkController<Auditorium> {
+class AuditoriumNetworkController: EntityNetworkController {
     
     private var importManager: Record.ImportForAuditorium?
     
     func importRecords(for auditoriumEntity: AuditoriumEntity, by date: Date) {
-        guard let auditorium = auditoriumEntity.asStruct() else {
+        guard let auditorium = auditoriumEntity.asStruct() as? Auditorium else {
             preconditionFailure("Invalid auditorium")
         }
         guard let universityURL = auditoriumEntity.university?.url else {

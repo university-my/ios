@@ -56,8 +56,39 @@ public class TeacherEntity: NSManagedObject {
             return []
         }
     }
+}
+
+// MARK: - FavoriteEntityProtocol
+
+extension TeacherEntity: FavoriteEntityProtocol {
     
-    func asStruct() -> Teacher {
+    var favorite: Bool {
+        get {
+            return isFavorite
+        }
+        set {
+            isFavorite = newValue
+        }
+    }
+}
+
+// MARK: - EntityProtocol
+
+extension TeacherEntity: EntityProtocol {
+    
+    func shareURL(for date: Date) -> URL? {
+        guard let universityURL = university?.url else { return nil }
+        guard let slug = slug else { return nil }
+        let dateString = DateFormatter.short.string(from: date)
+        return Teacher.Endpoint.page(for: slug, university: universityURL, date: dateString).url
+    }
+}
+
+// MARK: - StructRepresentable
+
+extension TeacherEntity: StructRepresentable {
+    
+    func asStruct() -> EntityRepresentable? {
         return Teacher(
             firstSymbol: firstSymbol,
             id: id,

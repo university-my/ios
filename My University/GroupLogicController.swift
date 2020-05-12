@@ -26,20 +26,12 @@ final class GroupLogicController: EntityLogicController {
     private let dataController: GroupDataController
     
     override func fetchData(for entityID: Int64)  {
-        dataController.fetchGroup(with: entityID)
-        dataController.loadData()
-        importRecordsIfNeeded()
-    }
-    
-    override func importRecordsIfNeeded() {
-        if dataController.needToImportRecords {
-            importRecords()
-        }
+        dataController.entity = GroupEntity.fetch(id: entityID, context: CoreData.default.viewContext)
+        fetchData(controller: dataController)
     }
     
     override func importRecords(showActivity: Bool = true) {
-        delegate?.didChangeState(to: .loading(showActivity: showActivity))
-        dataController.importRecords()
+        importRecords(showActivity: showActivity, controller: dataController)
     }
     
     var sections: [GroupDataController.Section] {

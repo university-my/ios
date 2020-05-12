@@ -21,20 +21,7 @@ final class GroupDataController: EntityDataController {
         network.delegate = self
     }
     
-    // MARK: - Data
-    
-   override func loadData() {
-        guard let groupEntity = group,
-            let group = groupEntity.asStruct() else {
-            preconditionFailure("Group not found")
-        }
-        updateDatePredicate()
-        fetchRecords()
-        buildSections()
-        delegate?.entityDataController(didBuildSectionsFor: group)
-    }
-    
-    func importRecords() {
+    override func importRecords() {
         guard let group = group else {
             preconditionFailure("Group not found")
         }
@@ -45,12 +32,8 @@ final class GroupDataController: EntityDataController {
     
     // MARK: - Group
     
-    private(set) var group: GroupEntity?
-    private(set) var groupID: Int64?
-    
-    func fetchGroup(with id: Int64) {
-        groupID = id
-        group = GroupEntity.fetch(id: id, context: CoreData.default.viewContext)
+    var group: GroupEntity? {
+        return entity as? GroupEntity
     }
     
     // MARK: - NSPredicate

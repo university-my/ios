@@ -32,7 +32,7 @@ class EntityViewController: UIViewController {
     
     enum State {
         case loading(showActivity: Bool)
-        case presenting(EntityStructRepresentable)
+        case presenting(EntityRepresentable)
         case failed(Error)
     }
     

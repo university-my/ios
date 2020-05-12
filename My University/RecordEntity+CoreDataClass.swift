@@ -142,7 +142,7 @@ public class RecordEntity: NSManagedObject {
             name: name,
             pairName: pairName,
             reason: reason,
-            teacher: teacher?.asStruct(),
+            teacher: teacher?.asStruct() as? Teacher,
             time: time,
             type: type
         )
