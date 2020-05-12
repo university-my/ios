@@ -85,6 +85,9 @@ class EntityLogicController: EntityLogicControllerProtocol {
         } else {
             // Build data
             dataController.updateSections()
+            
+            // Import for update to newer data
+            importRecords(showActivity: false)
         }
     }
 }

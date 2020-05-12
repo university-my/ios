@@ -55,6 +55,8 @@ class AuditoriumViewController: EntityViewController {
                 // Show a loading spinner
                 activityController.showActivity(in: self)
             }
+            // Controller title
+            title = DateFormatter.date.string(from: pairDate)
             
         case .presenting(let structure):
             // Bind the user model to the view controller's views

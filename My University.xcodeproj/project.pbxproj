@@ -358,6 +358,7 @@
 				DE11A3AE230EA976005131E8 /* Date Picker */,
 				DEB68195245DEBA2005FA2F0 /* Entity */,
 				DE3B565E21823A7F008A77D1 /* Extensions */,
+				DEB031682459880800A5D29D /* Group */,
 				DE6794332268975F0068087A /* Groups */,
 				C2C76A2C200243BD00BFF3D4 /* Import */,
 				DE87B78C235B9E1D0090B63E /* Initial */,
@@ -629,7 +630,6 @@
 			children = (
 				DE6794342268976E0068087A /* GroupsTableViewController.swift */,
 				DE131FE32456CAEE009D09EA /* Data Source */,
-				DEB031682459880800A5D29D /* Group */,
 			);
 			name = Groups;
 			sourceTree = "<group>";
