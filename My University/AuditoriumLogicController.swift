@@ -83,8 +83,6 @@ final class AuditoriumLogicController: EntityLogicController {
 
 // MARK: - ActivityControllerDelegate
 
-// TODO: Move to the EntityLogicController
-
 extension AuditoriumLogicController: ActivityControllerDelegate {
     
     func didPresentActivity(from controller: ActivityController) {

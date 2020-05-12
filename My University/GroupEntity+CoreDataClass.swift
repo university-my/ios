@@ -56,12 +56,6 @@ public class GroupEntity: NSManagedObject {
             return []
         }
     }
-    
-    func asStruct() -> Group? {
-        guard let name = name else { return nil }
-        guard let slug = slug else { return nil }
-        return Group(id: id, name: name, slug: slug, isFavorite: isFavorite)
-    }
 }
 
 // MARK: - FavoriteEntityProtocol
@@ -87,5 +81,16 @@ extension GroupEntity: EntityProtocol {
         guard let slug = slug else { return nil }
         let dateString = DateFormatter.short.string(from: date)
         return Group.Endpoint.page(for: slug, university: universityURL, date: dateString).url
+    }
+}
+
+// MARK: - StructRepresentable
+
+extension GroupEntity: StructRepresentable {
+    
+    func asStruct() -> EntityRepresentable? {
+        guard let name = name else { return nil }
+        guard let slug = slug else { return nil }
+        return Group(id: id, name: name, slug: slug, isFavorite: isFavorite)
     }
 }
