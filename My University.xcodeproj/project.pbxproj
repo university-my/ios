@@ -108,6 +108,7 @@
 		DEA2B3EB246AE7D000F96E28 /* TeacherTableDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2B3EA246AE7D000F96E28 /* TeacherTableDataController.swift */; };
 		DEA2B3ED246AE81000F96E28 /* NewTeacherTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2B3EC246AE81000F96E28 /* NewTeacherTableViewController.swift */; };
 		DEA2B3F1246BCEC600F96E28 /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEA2B3EF246BCEC600F96E28 /* Group.storyboard */; };
+		DEA2B3F3246BF4C900F96E28 /* Teacher.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEA2B3F2246BF4C900F96E28 /* Teacher.storyboard */; };
 		DEAE5C4A236A23B50086E734 /* UpdateHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAE5C49236A23B50086E734 /* UpdateHelperTests.swift */; };
 		DEB0316224597E4700A5D29D /* BaseEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0316124597E4700A5D29D /* BaseEndpoint.swift */; };
 		DEB031672459809D00A5D29D /* ErrorAlertRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB031662459809D00A5D29D /* ErrorAlertRepresentable.swift */; };
@@ -257,6 +258,7 @@
 		DEA2B3EA246AE7D000F96E28 /* TeacherTableDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherTableDataController.swift; sourceTree = "<group>"; };
 		DEA2B3EC246AE81000F96E28 /* NewTeacherTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTeacherTableViewController.swift; sourceTree = "<group>"; };
 		DEA2B3F0246BCEC600F96E28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Group.storyboard; sourceTree = "<group>"; };
+		DEA2B3F2246BF4C900F96E28 /* Teacher.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Teacher.storyboard; sourceTree = SOURCE_ROOT; };
 		DEAE5C47236A23B50086E734 /* MyUniversityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyUniversityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEAE5C49236A23B50086E734 /* UpdateHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateHelperTests.swift; sourceTree = "<group>"; };
 		DEAE5C4B236A23B50086E734 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -654,6 +656,7 @@
 		DE79DC98246AA61F00C8C0EF /* Teacher */ = {
 			isa = PBXGroup;
 			children = (
+				DEA2B3F2246BF4C900F96E28 /* Teacher.storyboard */,
 				DE79DC9B246AA7F800C8C0EF /* TeacherDataController.swift */,
 				DEA2B3E3246AE3C200F96E28 /* TeacherLogicController.swift */,
 				DE79DC99246AA63D00C8C0EF /* TeacherNetworkController.swift */,
@@ -1023,6 +1026,7 @@
 				DE3EB6B5231B0AE7007EA63C /* About.storyboard in Resources */,
 				DEF63C5F245AC488007E82F9 /* Activity.storyboard in Resources */,
 				DE28637D245600330036A01F /* NoRecordsTableViewCell.xib in Resources */,
+				DEA2B3F3246BF4C900F96E28 /* Teacher.storyboard in Resources */,
 				DE4FCBFB23EF5CA2000B53F4 /* Legal Document.storyboard in Resources */,
 				DE05ADB32370C83F0005B0E7 /* Universities.storyboard in Resources */,
 				DE4FCC0423EF5DB4000B53F4 /* Privacy Policy.rtf in Resources */,

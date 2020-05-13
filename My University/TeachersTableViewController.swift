@@ -15,7 +15,7 @@ class TeachersTableViewController: SearchableTableViewController {
     var universityID: Int64?
     private var dataSource: TeacherDataSource?
     
-    // MARK: - Notificaion
+    // MARK: - Notification
     
     @IBOutlet weak var statusButton: UIBarButtonItem!
     
@@ -24,7 +24,7 @@ class TeachersTableViewController: SearchableTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // For notificationsm
+        // For notifications
         configureNotificationLabel()
         statusButton.customView = notificationLabel
 
@@ -123,7 +123,7 @@ class TeachersTableViewController: SearchableTableViewController {
     // MARK - Navigation
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "teacherDetailed", sender: nil)
+        performSegue(withIdentifier: "teacherDetails", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -131,19 +131,18 @@ class TeachersTableViewController: SearchableTableViewController {
         
         switch identifier {
             
-        case "teacherDetailed":
-            if let detailTableViewController = segue.destination as? TeacherViewController {
-                
-                if searchController.isActive {
-                    if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
-                        let selectedTeacher = resultsTableController.filteredTeachers[safe: indexPath.row]
-                        detailTableViewController.entityID = selectedTeacher?.id
-                    }
-                } else {
-                    if let indexPath = tableView.indexPathForSelectedRow {
-                        let selectedTeacher = dataSource?.fetchedResultsController?.object(at: indexPath)
-                        detailTableViewController.entityID = selectedTeacher?.id
-                    }
+        case "teacherDetails":
+            let navigationVC = segue.destination as? UINavigationController
+            let vc = navigationVC?.viewControllers.first as? TeacherViewController
+            if searchController.isActive {
+                if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
+                    let selectedTeacher = resultsTableController.filteredTeachers[safe: indexPath.row]
+                    vc?.entityID = selectedTeacher?.id
+                }
+            } else {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    let selectedTeacher = dataSource?.fetchedResultsController?.object(at: indexPath)
+                    vc?.entityID = selectedTeacher?.id
                 }
             }
             

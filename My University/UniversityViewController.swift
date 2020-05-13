@@ -92,7 +92,7 @@ class UniversityViewController: GenericTableViewController {
         case .groups:
             performSegue(withIdentifier: SegueIdentifier.groupDetails.rawValue, sender: nil)
         case .teachers:
-            performSegue(withIdentifier: "showTeacher", sender: nil)
+            performSegue(withIdentifier: SegueIdentifier.teacherDetails.rawValue, sender: nil)
             
         case .university:
             let row = dataSource.universityRows[indexPath.row]
@@ -118,6 +118,7 @@ class UniversityViewController: GenericTableViewController {
     
     enum SegueIdentifier: String {
         case groupDetails
+        case teacherDetails
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -131,6 +132,14 @@ class UniversityViewController: GenericTableViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let group = dataSource.groups?.fetchedObjects?[safe: indexPath.row]
                 vc?.entityID = group?.id
+            }
+            
+        case .teacherDetails:
+            let navigationVC = segue.destination as? UINavigationController
+            let vc = navigationVC?.viewControllers.first as? TeacherViewController
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let teacher = dataSource.teachers?.fetchedObjects?[safe: indexPath.row]
+                vc?.entityID = teacher?.id
             }
             
         case .none:
@@ -156,20 +165,6 @@ class UniversityViewController: GenericTableViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let auditorium = dataSource.auditoriums?.fetchedObjects?[safe: indexPath.row]
                 vc?.entityID = auditorium?.id
-            }
-            
-        case "showGroup":
-            let vc = segue.destination as? GroupViewController
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let group = dataSource.groups?.fetchedObjects?[safe: indexPath.row]
-                vc?.entityID = group?.id
-            }
-            
-        case "showTeacher":
-            let vc = segue.destination as? TeacherViewController
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let teacher = dataSource.teachers?.fetchedObjects?[safe: indexPath.row]
-                vc?.entityID = teacher?.id
             }
             
         default:

@@ -10,7 +10,7 @@ import Foundation
 
 final class TeacherLogicController: EntityLogicController {
     
-    private let dataController: TeacherDataController
+    let dataController: TeacherDataController
     
     // MARK: - Init
     
@@ -42,16 +42,6 @@ final class TeacherLogicController: EntityLogicController {
     
     var teacher: TeacherEntity? {
         return dataController.teacher
-    }
-    
-    // MARK: - Favorites
-    
-    func toggleFavorite() {
-        guard let entity = teacher else { return }
-        dataController.toggleFavorite(for: entity)
-        if let teacher = entity.asStruct() {
-            delegate?.didChangeState(to: .presenting(teacher))
-        }
     }
     
     // MARK: - Share URL

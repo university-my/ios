@@ -67,9 +67,6 @@ class TeacherViewController: EntityViewController {
             // Title
             tableViewController.tableTitleLabel.text = teacher.name
             
-            // Is Favorites
-            favoriteButton.markAs(isFavorites: teacher.isFavorite)
-            
             // Controller title
             title = DateFormatter.date.string(from: pairDate)
             
@@ -89,21 +86,14 @@ class TeacherViewController: EntityViewController {
         }
     }
     
-    // MARK: - Share
+    // MARK: - Menu
     
-    @IBAction func share(_ sender: Any) {
+    @IBAction func menu(_ sender: Any) {
         guard let url = logic.shareURL() else {
             return
         }
-        share(url)
-    }
-    
-    // MARK: - Favorites
-    
-    @IBOutlet weak var favoriteButton: UIBarButtonItem!
-    
-    @IBAction func toggleFavorite(_ sender: Any) {
-        logic.toggleFavorite()
+        let favoritesAction = favorites(for: teacher, data: logic.dataController)
+        showMenu(shareURL: url, favorites: favoritesAction)
     }
     
     // MARK: - Date
