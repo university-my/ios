@@ -6,8 +6,10 @@
 //  Copyright © 2020 Yura Voevodin. All rights reserved.
 //
 
-import Foundation
+import CoreData
 
-protocol EntityProtocol {
+protocol EntityProtocol: NSManagedObject {
+    var name: String? { get set }
+    var favorite: Bool { get set }
     func shareURL(for date: Date) -> URL?
 }

@@ -58,9 +58,9 @@ public class GroupEntity: NSManagedObject {
     }
 }
 
-// MARK: - FavoriteEntityProtocol
+// MARK: - EntityProtocol
 
-extension GroupEntity: FavoriteEntityProtocol {
+extension GroupEntity: EntityProtocol {
     
     var favorite: Bool {
         get {
@@ -70,11 +70,6 @@ extension GroupEntity: FavoriteEntityProtocol {
             isFavorite = newValue
         }
     }
-}
-
-// MARK: - EntityProtocol
-
-extension GroupEntity: EntityProtocol {
     
     func shareURL(for date: Date) -> URL? {
         guard let universityURL = university?.url else { return nil }

@@ -58,9 +58,9 @@ public class TeacherEntity: NSManagedObject {
     }
 }
 
-// MARK: - FavoriteEntityProtocol
+// MARK: - EntityProtocol
 
-extension TeacherEntity: FavoriteEntityProtocol {
+extension TeacherEntity: EntityProtocol {
     
     var favorite: Bool {
         get {
@@ -70,11 +70,6 @@ extension TeacherEntity: FavoriteEntityProtocol {
             isFavorite = newValue
         }
     }
-}
-
-// MARK: - EntityProtocol
-
-extension TeacherEntity: EntityProtocol {
     
     func shareURL(for date: Date) -> URL? {
         guard let universityURL = university?.url else { return nil }

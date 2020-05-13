@@ -90,7 +90,7 @@ class UniversityViewController: GenericTableViewController {
         case .auditoriums:
             performSegue(withIdentifier: "showAuditorium", sender: nil)
         case .groups:
-            performSegue(withIdentifier: "showGroup", sender: nil)
+            performSegue(withIdentifier: SegueIdentifier.groupDetails.rawValue, sender: nil)
         case .teachers:
             performSegue(withIdentifier: "showTeacher", sender: nil)
             
@@ -116,8 +116,26 @@ class UniversityViewController: GenericTableViewController {
     
     // MARK: - Navigation
     
+    enum SegueIdentifier: String {
+        case groupDetails
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier else { return }
+        
+        switch SegueIdentifier(rawValue: identifier) {
+            
+        case .groupDetails:
+            let navigationVC = segue.destination as? UINavigationController
+            let vc = navigationVC?.viewControllers.first as? GroupViewController
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let group = dataSource.groups?.fetchedObjects?[safe: indexPath.row]
+                vc?.entityID = group?.id
+            }
+            
+        case .none:
+            break
+        }
         
         switch identifier {
             
@@ -314,6 +332,37 @@ class UniversityViewController: GenericTableViewController {
             // Present only once
             UserData.whatsNew1_6_3 = false
         }
+    }
+    
+    // MARK: - Preferences
+    
+    @IBAction func showPreferences(_ sender: Any) {
+        let title = NSLocalizedString("Preferences", comment: "Alert title")
+        let message = NSLocalizedString("What you want to do?", comment: "Alert message")
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        
+        // Change university
+        let changeUniversityTitle = NSLocalizedString("Change University", comment: "Action title")
+        let changeUniversityAction = UIAlertAction(title: changeUniversityTitle, style: .default) { (_) in
+            self.performSegue(withIdentifier: "changeUniversity", sender: nil)
+        }
+        alert.addAction(changeUniversityAction)
+        
+        // Report a problem
+        let reportProblemTitle = NSLocalizedString("Report a problem", comment: "Action title")
+        let reportProblemAction = UIAlertAction(title: reportProblemTitle, style: .default) { (_) in
+            UIApplication.shared.open(BaseEndpoint.contacts.url)
+        }
+        alert.addAction(reportProblemAction)
+        
+        // Cancel
+        let cancelTitle = NSLocalizedString("Cancel", comment: "Action title")
+        let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel) { (_) in
+            
+        }
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
     }
 }
 

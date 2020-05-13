@@ -90,6 +90,12 @@ class EntityLogicController: EntityLogicControllerProtocol {
             importRecords(showActivity: false)
         }
     }
+    
+    // MARK: - Favorites
+    
+    func toggleFavorite(_ controller: EntityDataController) {
+        controller.toggleFavorites()
+    }
 }
 
 // MARK: - EntityDataControllerDelegate

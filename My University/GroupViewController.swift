@@ -67,9 +67,6 @@ class GroupViewController: EntityViewController {
             // Title
             tableViewController.tableTitleLabel.text = group.name
             
-            // Is Favorites
-            favoriteButton.markAs(isFavorites: group.isFavorite)
-            
             // Controller title
             title = DateFormatter.date.string(from: pairDate)
             
@@ -89,21 +86,14 @@ class GroupViewController: EntityViewController {
         }
     }
     
-    // MARK: - Share
+    // MARK: - Menu
     
-    @IBAction func share(_ sender: Any) {
+    @IBAction func menu(_ sender: Any) {
         guard let url = logic.shareURL() else {
             return
         }
-        share(url)
-    }
-    
-    // MARK: - Favorites
-        
-    @IBOutlet weak var favoriteButton: UIBarButtonItem!
-    
-    @IBAction func toggleFavorite(_ sender: Any) {
-        logic.toggleFavorite()
+        let favoritesAction = favorites(for: group, data: logic.dataController)
+        showMenu(shareURL: url, favorites: favoritesAction)
     }
     
     // MARK: - Date
@@ -111,8 +101,6 @@ class GroupViewController: EntityViewController {
     private var pairDate: Date {
         logic.pairDate
     }
-    
-    @IBOutlet weak var dateButton: UIBarButtonItem!
     
     @IBAction func previousDate(_ sender: Any) {
         logic.previousDate()

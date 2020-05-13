@@ -23,7 +23,7 @@ final class GroupLogicController: EntityLogicController {
     
     // MARK: - Data
     
-    private let dataController: GroupDataController
+    let dataController: GroupDataController
     
     override func fetchData(for entityID: Int64)  {
         dataController.entity = GroupEntity.fetch(id: entityID, context: CoreData.default.viewContext)
@@ -42,16 +42,6 @@ final class GroupLogicController: EntityLogicController {
     
     var group: GroupEntity? {
         return dataController.group
-    }
-    
-    // MARK: - Favorites
-    
-    func toggleFavorite() {
-        guard let entity = group else { return }
-        dataController.toggleFavorite(for: entity)
-        if let group = entity.asStruct() {
-            delegate?.didChangeState(to: .presenting(group))
-        }
     }
     
     // MARK: - Share URL

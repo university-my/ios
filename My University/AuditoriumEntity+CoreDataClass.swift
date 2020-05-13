@@ -59,9 +59,9 @@ public class AuditoriumEntity: NSManagedObject {
     }
 }
 
-// MARK: - FavoriteEntityProtocol
+// MARK: - EntityProtocol
 
-extension AuditoriumEntity: FavoriteEntityProtocol {
+extension AuditoriumEntity: EntityProtocol {
     
     var favorite: Bool {
         get {
@@ -71,11 +71,6 @@ extension AuditoriumEntity: FavoriteEntityProtocol {
             isFavorite = newValue
         }
     }
-}
-
-// MARK: - EntityProtocol
-
-extension AuditoriumEntity: EntityProtocol {
     
     func shareURL(for date: Date) -> URL? {
         guard let universityURL = university?.url else { return nil }

@@ -178,9 +178,17 @@ class EntityDataController: EntityDataControllerProtocol {
     }
     
     // MARK: - Favorite
+    // TODO: Remove this?
+    func toggleFavorite<T: EntityProtocol>(for entity: T) {
+        entity.favorite.toggle()
+        CoreData.default.saveContext()
+    }
     
-    func toggleFavorite<T: FavoriteEntityProtocol>(for entity: T) {
-        entity.toggleFavorite()
+    func toggleFavorites() {
+        guard let entity = entity as? EntityProtocol else {
+            return
+        }
+        entity.favorite.toggle()
         CoreData.default.saveContext()
     }
     

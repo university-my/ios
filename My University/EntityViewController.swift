@@ -43,4 +43,52 @@ class EntityViewController: UIViewController {
         let vc = UIActivityViewController(activityItems: sharedItems, applicationActivities: nil)
         present(vc, animated: true)
     }
+    
+    // MARK: - Menu
+    
+    func showMenu(shareURL: URL, favorites: UIAlertAction?) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        // Share
+        let shareTitle = NSLocalizedString("Share", comment: "Action title")
+        let shareAction = UIAlertAction(title: shareTitle, style: .default) { (_) in
+            self.share(shareURL)
+        }
+        alert.addAction(shareAction)
+        
+        // Favorites
+        if let favoritesAction = favorites {
+            alert.addAction(favoritesAction)
+        }        
+        
+        // University
+        let universityTitle = NSLocalizedString("Go to University", comment: "Action title")
+        let universityAction = UIAlertAction(title: universityTitle, style: .default) { (_) in
+            self.performSegue(withIdentifier: "setUniversity", sender: nil)
+        }
+        alert.addAction(universityAction)
+        
+        // Cancel
+        let cancelTitle = NSLocalizedString("Cancel", comment: "Action title")
+        let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
+    }
+    
+    func favorites(for entity: EntityProtocol?, data dataController: EntityDataController) -> UIAlertAction? {
+        guard let entity = entity else {
+            return nil
+        }
+        let favoritesTitle: String
+        if entity.favorite {
+            favoritesTitle = NSLocalizedString("Remove from favorites", comment: "Action title")
+        } else {
+            favoritesTitle = NSLocalizedString("Add to favorites", comment: "Action title")
+        }
+        let action = UIAlertAction(title: favoritesTitle, style: .default) { (_) in
+            dataController.toggleFavorites()
+        }
+        return action
+    }
 }
