@@ -10,7 +10,7 @@ import Foundation
 
 final class AuditoriumLogicController: EntityLogicController {
     
-    private let dataController: AuditoriumDataController
+    let dataController: AuditoriumDataController
     
     // MARK: - Init
     
@@ -42,16 +42,6 @@ final class AuditoriumLogicController: EntityLogicController {
     
     var auditorium: AuditoriumEntity? {
         return dataController.auditorium
-    }
-    
-    // MARK: - Favorites
-    
-    func toggleFavorite() {
-        guard let entity = auditorium else { return }
-        dataController.toggleFavorite(for: entity)
-        if let auditorium = entity.asStruct() {
-            delegate?.didChangeState(to: .presenting(auditorium))
-        }
     }
     
     // MARK: - Share URL

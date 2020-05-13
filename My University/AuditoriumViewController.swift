@@ -67,9 +67,6 @@ class AuditoriumViewController: EntityViewController {
             // Title
             tableViewController.tableTitleLabel.text = auditorium.name
             
-            // Is Favorites
-            favoriteButton.markAs(isFavorites: auditorium.isFavorite)
-            
             // Controller title
             title = DateFormatter.date.string(from: pairDate)
             
@@ -89,21 +86,14 @@ class AuditoriumViewController: EntityViewController {
         }
     }
     
-    // MARK: - Share
+    // MARK: - Menu
     
-    @IBAction func share(_ sender: Any) {
+    @IBAction func menu(_ sender: Any) {
         guard let url = logic.shareURL() else {
             return
         }
-        share(url)
-    }
-    
-    // MARK: - Favorites
-    
-    @IBOutlet weak var favoriteButton: UIBarButtonItem!
-    
-    @IBAction func toggleFavorite(_ sender: Any) {
-        logic.toggleFavorite()
+        let favoritesAction = favorites(for: auditorium, data: logic.dataController)
+        showMenu(shareURL: url, favorites: favoritesAction)
     }
     
     // MARK: - Date

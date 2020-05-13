@@ -109,6 +109,8 @@
 		DEA2B3ED246AE81000F96E28 /* NewTeacherTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2B3EC246AE81000F96E28 /* NewTeacherTableViewController.swift */; };
 		DEA2B3F1246BCEC600F96E28 /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEA2B3EF246BCEC600F96E28 /* Group.storyboard */; };
 		DEA2B3F3246BF4C900F96E28 /* Teacher.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEA2B3F2246BF4C900F96E28 /* Teacher.storyboard */; };
+		DEA2B3F6246BF8A100F96E28 /* Auditorium.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEA2B3F4246BF8A100F96E28 /* Auditorium.storyboard */; };
+		DEA2B3F8246BFB6D00F96E28 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2B3F7246BFB6D00F96E28 /* UIViewController.swift */; };
 		DEAE5C4A236A23B50086E734 /* UpdateHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAE5C49236A23B50086E734 /* UpdateHelperTests.swift */; };
 		DEB0316224597E4700A5D29D /* BaseEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0316124597E4700A5D29D /* BaseEndpoint.swift */; };
 		DEB031672459809D00A5D29D /* ErrorAlertRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB031662459809D00A5D29D /* ErrorAlertRepresentable.swift */; };
@@ -259,6 +261,8 @@
 		DEA2B3EC246AE81000F96E28 /* NewTeacherTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTeacherTableViewController.swift; sourceTree = "<group>"; };
 		DEA2B3F0246BCEC600F96E28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Group.storyboard; sourceTree = "<group>"; };
 		DEA2B3F2246BF4C900F96E28 /* Teacher.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Teacher.storyboard; sourceTree = SOURCE_ROOT; };
+		DEA2B3F5246BF8A100F96E28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Auditorium.storyboard; sourceTree = "<group>"; };
+		DEA2B3F7246BFB6D00F96E28 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		DEAE5C47236A23B50086E734 /* MyUniversityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyUniversityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEAE5C49236A23B50086E734 /* UpdateHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateHelperTests.swift; sourceTree = "<group>"; };
 		DEAE5C4B236A23B50086E734 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -552,6 +556,7 @@
 				DE95523722A253D400D70DA4 /* UIBarButtonItem.swift */,
 				DE40FBA5238D4700001DA3DE /* UIColor.swift */,
 				DE78478A240D9FBC002C2EDC /* UIStoryboard.swift */,
+				DEA2B3F7246BFB6D00F96E28 /* UIViewController.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -572,6 +577,7 @@
 				DE3EC2C6245C741400E30536 /* AuditoriumLogicController.swift */,
 				DE3EC2C8245C742500E30536 /* AuditoriumNetworkController.swift */,
 				DE3EC2CA245C743500E30536 /* AuditoriumViewController.swift */,
+				DEA2B3F4246BF8A100F96E28 /* Auditorium.storyboard */,
 				DE7AB85B24671FF50031E279 /* Table */,
 			);
 			name = Auditorium;
@@ -1022,6 +1028,7 @@
 				DE05ADB02370C8260005B0E7 /* University.storyboard in Resources */,
 				DE4FCC0323EF5DB4000B53F4 /* Terms Of Service.rtf in Resources */,
 				DE65DA932370C68200022B21 /* Record Details.storyboard in Resources */,
+				DEA2B3F6246BF8A100F96E28 /* Auditorium.storyboard in Resources */,
 				DE65DA9C2370C6C500022B21 /* Launch Screen.storyboard in Resources */,
 				DE3EB6B5231B0AE7007EA63C /* About.storyboard in Resources */,
 				DEF63C5F245AC488007E82F9 /* Activity.storyboard in Resources */,
@@ -1102,6 +1109,7 @@
 				DE6794352268976E0068087A /* GroupsTableViewController.swift in Sources */,
 				DEB0316C245988F600A5D29D /* GroupLogicController.swift in Sources */,
 				DEA2B3ED246AE81000F96E28 /* NewTeacherTableViewController.swift in Sources */,
+				DEA2B3F8246BFB6D00F96E28 /* UIViewController.swift in Sources */,
 				DE7AB85A24671E6D0031E279 /* EntityRepresentable.swift in Sources */,
 				DE8B668521CACE5600C43F81 /* Group+NetworkClient.swift in Sources */,
 				DE540EC22215CDCD0092FC81 /* Teacher+NetworkClient.swift in Sources */,
@@ -1261,6 +1269,14 @@
 				DEA2B3F0246BCEC600F96E28 /* Base */,
 			);
 			name = Group.storyboard;
+			sourceTree = "<group>";
+		};
+		DEA2B3F4246BF8A100F96E28 /* Auditorium.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DEA2B3F5246BF8A100F96E28 /* Base */,
+			);
+			name = Auditorium.storyboard;
 			sourceTree = "<group>";
 		};
 		DEDA50E821862090006C7B27 /* InfoPlist.strings */ = {

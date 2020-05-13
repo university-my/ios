@@ -88,11 +88,11 @@ class UniversityViewController: GenericTableViewController {
         
         switch section.kind {
         case .auditoriums:
-            performSegue(withIdentifier: "showAuditorium", sender: nil)
+            performSegue(withIdentifier: .auditoriumDetails)
         case .groups:
-            performSegue(withIdentifier: SegueIdentifier.groupDetails.rawValue, sender: nil)
+            performSegue(withIdentifier: .groupDetails)
         case .teachers:
-            performSegue(withIdentifier: SegueIdentifier.teacherDetails.rawValue, sender: nil)
+            performSegue(withIdentifier: .teacherDetails)
             
         case .university:
             let row = dataSource.universityRows[indexPath.row]
@@ -116,15 +116,18 @@ class UniversityViewController: GenericTableViewController {
     
     // MARK: - Navigation
     
-    enum SegueIdentifier: String {
-        case groupDetails
-        case teacherDetails
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier else { return }
         
-        switch SegueIdentifier(rawValue: identifier) {
+        switch identifier {
+            
+        case .auditoriumDetails:
+            let navigationVC = segue.destination as? UINavigationController
+            let vc = navigationVC?.viewControllers.first as? AuditoriumViewController
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let auditorium = dataSource.auditoriums?.fetchedObjects?[safe: indexPath.row]
+                vc?.entityID = auditorium?.id
+            }
             
         case .groupDetails:
             let navigationVC = segue.destination as? UINavigationController
@@ -142,12 +145,6 @@ class UniversityViewController: GenericTableViewController {
                 vc?.entityID = teacher?.id
             }
             
-        case .none:
-            break
-        }
-        
-        switch identifier {
-            
         case "showAuditoriums":
             let vc = segue.destination as? AuditoriumsTableViewController
             vc?.universityID = dataSource.university?.id
@@ -159,13 +156,6 @@ class UniversityViewController: GenericTableViewController {
         case "showTeachers":
             let vc = segue.destination as? TeachersTableViewController
             vc?.universityID = dataSource.university?.id
-            
-        case "showAuditorium":
-            let vc = segue.destination as? AuditoriumViewController
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let auditorium = dataSource.auditoriums?.fetchedObjects?[safe: indexPath.row]
-                vc?.entityID = auditorium?.id
-            }
             
         default:
             break
@@ -332,9 +322,7 @@ class UniversityViewController: GenericTableViewController {
     // MARK: - Preferences
     
     @IBAction func showPreferences(_ sender: Any) {
-        let title = NSLocalizedString("Preferences", comment: "Alert title")
-        let message = NSLocalizedString("What you want to do?", comment: "Alert message")
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         // Change university
         let changeUniversityTitle = NSLocalizedString("Change University", comment: "Action title")
@@ -359,6 +347,18 @@ class UniversityViewController: GenericTableViewController {
         
         present(alert, animated: true)
     }
+}
+
+// MARK: - SegueIdentifier
+
+extension UniversityViewController {
+    typealias SegueIdentifier = String
+}
+
+extension UniversityViewController.SegueIdentifier {
+    static let auditoriumDetails = "auditoriumDetails"
+    static let groupDetails = "groupDetails"
+    static let teacherDetails = "teacherDetails"
 }
 
 // MARK: - NSFetchedResultsControllerDelegate

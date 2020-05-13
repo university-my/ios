@@ -15,7 +15,7 @@ class AuditoriumsTableViewController: SearchableTableViewController {
     var universityID: Int64?
     private var dataSource: AuditoriumDataSource?
     
-    // MARK: - Notificaion
+    // MARK: - Notification
     
     @IBOutlet weak var statusButton: UIBarButtonItem!
     
@@ -122,7 +122,7 @@ class AuditoriumsTableViewController: SearchableTableViewController {
     // MARK - Navigation
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "auditoriumDetailed", sender: nil)
+        performSegue(withIdentifier: "auditoriumDetails", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -130,18 +130,18 @@ class AuditoriumsTableViewController: SearchableTableViewController {
         
         switch identifier {
             
-        case "auditoriumDetailed":
-            if let detailViewController = segue.destination as? AuditoriumViewController {
-                if searchController.isActive {
-                    if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
-                        let selectedAuditorium = resultsTableController.filteredAuditoriums[safe: indexPath.row]
-                        detailViewController.entityID = selectedAuditorium?.id
-                    }
-                } else {
-                    if let indexPath = tableView.indexPathForSelectedRow {
-                        let selectedAuditorium = dataSource?.fetchedResultsController?.object(at: indexPath)
-                        detailViewController.entityID = selectedAuditorium?.id
-                    }
+        case "auditoriumDetails":
+            let navigationVC = segue.destination as? UINavigationController
+            let vc = navigationVC?.viewControllers.first as? AuditoriumViewController
+            if searchController.isActive {
+                if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
+                    let selectedAuditorium = resultsTableController.filteredAuditoriums[safe: indexPath.row]
+                    vc?.entityID = selectedAuditorium?.id
+                }
+            } else {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    let selectedAuditorium = dataSource?.fetchedResultsController?.object(at: indexPath)
+                    vc?.entityID = selectedAuditorium?.id
                 }
             }
             
