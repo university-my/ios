@@ -35,6 +35,10 @@ class AuditoriumViewController: EntityViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Save last opened entity to UserDefaults
+        let entity = Entity(kind: .auditorium, id: entityID)
+        Entity.Manager.shared.update(with: entity)
+        
         // Data
         logic.fetchData(for: entityID)
     }

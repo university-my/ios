@@ -35,6 +35,10 @@ class TeacherViewController: EntityViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Save last opened entity to UserDefaults
+        let entity = Entity(kind: .teacher, id: entityID)
+        Entity.Manager.shared.update(with: entity)
+        
         // Data
         logic.fetchData(for: entityID)
     }
