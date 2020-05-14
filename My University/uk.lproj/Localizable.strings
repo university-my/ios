@@ -1,3 +1,6 @@
+/* Action title */
+"Add to favorites" = "Додати до обраних";
+
 /* Alert title */
 "An error occurred" = "Сталася помилка";
 
@@ -10,14 +13,21 @@
 /* Favorites section name */
 "Auditoriums" = "Аудиторії";
 
-/* Alert action */
+/* Action title
+   Alert action */
 "Cancel" = "Скасувати";
+
+/* Action title */
+"Change University" = "Змінити університет";
 
 /* No comment provided by engineer. */
 "Check out what's new in this version:" = "Що нового в цій версії:";
 
 /* No comment provided by engineer. */
 "Continue" = "Продовжити";
+
+/* Action title */
+"Go to University" = "Перейти до університету";
 
 /* Favorites section name */
 "Group" = "Група";
@@ -40,11 +50,20 @@
 /* No comment provided by engineer. */
 "Privacy Policy" = "Політика конфіденційності";
 
-/* Aler action */
+/* Action title */
+"Remove from favorites" = "Видалити з обраних";
+
+/* Action title */
+"Report a problem" = "Повідомити про помилку";
+
+/* Alert action */
 "Report an error" = "Повідомити про помилку";
 
 /* Placeholder in search controller */
 "Search" = "Пошук";
+
+/* Action title */
+"Share" = "Поділитися";
 
 /* No comment provided by engineer. */
 "Support on " = "Підтримати на ";

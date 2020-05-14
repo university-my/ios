@@ -23,6 +23,7 @@
 		DE04D1F72370B79F00A18649 /* UpdateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE04D1F62370B79F00A18649 /* UpdateHelper.swift */; };
 		DE05ADB02370C8260005B0E7 /* University.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE05ADAE2370C8260005B0E7 /* University.storyboard */; };
 		DE05ADB32370C83F0005B0E7 /* Universities.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE05ADB12370C83F0005B0E7 /* Universities.storyboard */; };
+		DE06999E246D707100F49AF0 /* NoRecordsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE0699A0246D707100F49AF0 /* NoRecordsTableViewCell.xib */; };
 		DE0D64082264E1330001FCCF /* UniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0D64072264E1330001FCCF /* UniversityViewController.swift */; };
 		DE11A3B0230EA98B005131E8 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE11A3AF230EA98B005131E8 /* DatePickerViewController.swift */; };
 		DE131FE22456CAAB009D09EA /* RecordsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE131FE12456CAAB009D09EA /* RecordsDataSource.swift */; };
@@ -39,7 +40,6 @@
 		DE266D60240C4AAA00C30A4A /* WhatsNewOneSixThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE266D5F240C4AAA00C30A4A /* WhatsNewOneSixThree.swift */; };
 		DE2863782455F75B0036A01F /* UniversitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2863772455F75B0036A01F /* UniversitiesViewController.swift */; };
 		DE28637C245600330036A01F /* NoRecordsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE28637A245600330036A01F /* NoRecordsTableViewCell.swift */; };
-		DE28637D245600330036A01F /* NoRecordsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE28637B245600330036A01F /* NoRecordsTableViewCell.xib */; };
 		DE3EB6B5231B0AE7007EA63C /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3EB6B3231B0AE7007EA63C /* About.storyboard */; };
 		DE3EB6B8231B0C03007EA63C /* Date Picker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3EB6B6231B0C03007EA63C /* Date Picker.storyboard */; };
 		DE3EB6BA231B11F8007EA63C /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3EB6B9231B11F8007EA63C /* DateFormatter.swift */; };
@@ -176,6 +176,10 @@
 		DE05ADB42370C9860005B0E7 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Universities.strings; sourceTree = "<group>"; };
 		DE05ADB52370C9860005B0E7 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/University.strings; sourceTree = "<group>"; };
 		DE05ADB62370C9860005B0E7 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Preferences.strings; sourceTree = "<group>"; };
+		DE06999C246D6F4C00F49AF0 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Auditorium.strings; sourceTree = "<group>"; };
+		DE06999D246D6F4C00F49AF0 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Group.strings; sourceTree = "<group>"; };
+		DE06999F246D707100F49AF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NoRecordsTableViewCell.xib; sourceTree = "<group>"; };
+		DE0699A1246D70A400F49AF0 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/NoRecordsTableViewCell.strings; sourceTree = "<group>"; };
 		DE0D64072264E1330001FCCF /* UniversityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityViewController.swift; sourceTree = "<group>"; };
 		DE11A3AF230EA98B005131E8 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		DE131FE12456CAAB009D09EA /* RecordsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsDataSource.swift; sourceTree = "<group>"; };
@@ -193,7 +197,6 @@
 		DE266D61240C607A00C30A4A /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = "uk.lproj/Record Details.strings"; sourceTree = "<group>"; };
 		DE2863772455F75B0036A01F /* UniversitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversitiesViewController.swift; sourceTree = "<group>"; };
 		DE28637A245600330036A01F /* NoRecordsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoRecordsTableViewCell.swift; sourceTree = "<group>"; };
-		DE28637B245600330036A01F /* NoRecordsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoRecordsTableViewCell.xib; sourceTree = "<group>"; };
 		DE3EB6B4231B0AE7007EA63C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/About.storyboard; sourceTree = "<group>"; };
 		DE3EB6B7231B0C03007EA63C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Date Picker.storyboard"; sourceTree = "<group>"; };
 		DE3EB6B9231B11F8007EA63C /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
@@ -543,7 +546,7 @@
 			isa = PBXGroup;
 			children = (
 				DE28637A245600330036A01F /* NoRecordsTableViewCell.swift */,
-				DE28637B245600330036A01F /* NoRecordsTableViewCell.xib */,
+				DE0699A0246D707100F49AF0 /* NoRecordsTableViewCell.xib */,
 			);
 			name = "No Records";
 			sourceTree = "<group>";
@@ -1046,7 +1049,7 @@
 				DE65DA9C2370C6C500022B21 /* Launch Screen.storyboard in Resources */,
 				DE3EB6B5231B0AE7007EA63C /* About.storyboard in Resources */,
 				DEF63C5F245AC488007E82F9 /* Activity.storyboard in Resources */,
-				DE28637D245600330036A01F /* NoRecordsTableViewCell.xib in Resources */,
+				DE06999E246D707100F49AF0 /* NoRecordsTableViewCell.xib in Resources */,
 				DEA2B3F3246BF4C900F96E28 /* Teacher.storyboard in Resources */,
 				DE4FCBFB23EF5CA2000B53F4 /* Legal Document.storyboard in Resources */,
 				DE05ADB32370C83F0005B0E7 /* Universities.storyboard in Resources */,
@@ -1227,6 +1230,15 @@
 			name = Universities.storyboard;
 			sourceTree = "<group>";
 		};
+		DE0699A0246D707100F49AF0 /* NoRecordsTableViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DE06999F246D707100F49AF0 /* Base */,
+				DE0699A1246D70A400F49AF0 /* uk */,
+			);
+			name = NoRecordsTableViewCell.xib;
+			sourceTree = "<group>";
+		};
 		DE3EB6B3231B0AE7007EA63C /* About.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1283,6 +1295,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				DEA2B3F0246BCEC600F96E28 /* Base */,
+				DE06999D246D6F4C00F49AF0 /* uk */,
 			);
 			name = Group.storyboard;
 			sourceTree = "<group>";
@@ -1291,6 +1304,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				DEA2B3F5246BF8A100F96E28 /* Base */,
+				DE06999C246D6F4C00F49AF0 /* uk */,
 			);
 			name = Auditorium.storyboard;
 			sourceTree = "<group>";

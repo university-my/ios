@@ -82,7 +82,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="heart" catalog="system" id="KXw-XA-v6F">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="heart.fill" catalog="system" id="KXw-XA-v6F">
                                                     <rect key="frame" x="21.75" y="13.5" width="20.5" height="17.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
@@ -167,7 +167,7 @@
     <resources>
         <image name="doc.text" catalog="system" width="115" height="128"/>
         <image name="gift" catalog="system" width="128" height="121"/>
-        <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
         <image name="info.circle.fill" catalog="system" width="128" height="121"/>
         <image name="lock.shield" catalog="system" width="128" height="121"/>
     </resources>

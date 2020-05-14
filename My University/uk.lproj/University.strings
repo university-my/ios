@@ -1,7 +1,4 @@
-/* Class = "UILabel"; text = "Label"; ObjectID = "4VN-bV-gfO"; */
-"4VN-bV-gfO.text" = "Мітка";
-
-/* Class = "UITabBarItem"; title = "Search"; ObjectID = "9He-qn-uIH"; */
+/* Class = "UITabBarItem"; title = "University"; ObjectID = "9He-qn-uIH"; */
 "9He-qn-uIH.title" = "Пошук";
 
 /* Class = "UILabel"; text = "Groups"; ObjectID = "aAq-pV-Hge"; */
@@ -10,20 +7,11 @@
 /* Class = "UINavigationItem"; title = "Groups"; ObjectID = "aej-Et-KUK"; */
 "aej-Et-KUK.title" = "Групи";
 
-/* Class = "UINavigationItem"; title = "Auditorium"; ObjectID = "BnI-no-h8n"; */
-"BnI-no-h8n.title" = "Аудиторія";
-
-/* Class = "UINavigationItem"; title = "Teacher"; ObjectID = "bxn-Q4-B4U"; */
-"bxn-Q4-B4U.title" = "Викладач";
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "AUW-6L-HvF"; */
+"AUW-6L-HvF.title" = "Елемент";
 
 /* Class = "UINavigationItem"; title = "Teachers"; ObjectID = "Fhk-g8-5rv"; */
 "Fhk-g8-5rv.title" = "Викладачі";
-
-/* Class = "UINavigationItem"; title = "Group"; ObjectID = "gAt-SW-9Hm"; */
-"gAt-SW-9Hm.title" = "Група";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "ikp-AV-rSQ"; */
-"ikp-AV-rSQ.text" = "Мітка";
 
 /* Class = "UINavigationItem"; title = "Auditoriums"; ObjectID = "McU-ms-NIE"; */
 "McU-ms-NIE.title" = "Аудиторії";
@@ -33,7 +21,4 @@
 
 /* Class = "UILabel"; text = "Auditoriums"; ObjectID = "umN-Sj-wza"; */
 "umN-Sj-wza.text" = "Аудиторії";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "yR3-u0-xw5"; */
-"yR3-u0-xw5.text" = "Мітка";
 
