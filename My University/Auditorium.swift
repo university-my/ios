@@ -10,20 +10,10 @@ import Foundation
 
 struct Auditorium {
     
-    // MARK: - Properties
-    
     let id: Int64
+    let isFavorite: Bool
     let name: String
     let slug: String
-    
-    // MARK: - Initialization
-    
-    init?(_ json: [String: Any]) {
-        guard let id = json["id"] as? Int64 else { return nil }
-        guard let name = json["name"] as? String else { return nil }
-        guard let slug = json["slug"] as? String else { return nil }
-        self.id = id
-        self.name = name
-        self.slug = slug
-    }
 }
+
+extension Auditorium: EntityRepresentable {}

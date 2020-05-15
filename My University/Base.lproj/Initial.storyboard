@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xIq-NI-hJm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xIq-NI-hJm">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,14 +15,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="NEY-ci-r9I">
-                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
-                            </activityIndicatorView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="B9A-m3-1kB">
+                                <rect key="frame" x="87" y="323" width="240" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="DsG-31-GiR"/>
+                                    <constraint firstAttribute="height" constant="250" id="seA-Bd-hCB"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="NEY-ci-r9I" firstAttribute="centerY" secondItem="oMO-Qy-QGL" secondAttribute="centerY" id="bc9-ty-bQO"/>
-                            <constraint firstItem="NEY-ci-r9I" firstAttribute="centerX" secondItem="oMO-Qy-QGL" secondAttribute="centerX" id="l3D-AV-reJ"/>
+                            <constraint firstItem="B9A-m3-1kB" firstAttribute="centerY" secondItem="oMO-Qy-QGL" secondAttribute="centerY" id="BgH-bv-GVl"/>
+                            <constraint firstItem="B9A-m3-1kB" firstAttribute="centerX" secondItem="oMO-Qy-QGL" secondAttribute="centerX" id="TYg-BO-KP2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9L3-T6-CR2"/>
                     </view>
@@ -52,4 +56,7 @@
             <point key="canvasLocation" x="628" y="168"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Logo" width="2048" height="2048"/>
+    </resources>
 </document>

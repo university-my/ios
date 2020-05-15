@@ -15,7 +15,7 @@ class GroupsTableViewController: SearchableTableViewController {
     var universityID: Int64?
     private var dataSource: GroupsDataSource?
     
-    // MARK: - Notificaion
+    // MARK: - Notification
     
     @IBOutlet weak var statusButton: UIBarButtonItem!
     
@@ -122,7 +122,7 @@ class GroupsTableViewController: SearchableTableViewController {
     // MARK - Table delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "groupDetailed", sender: nil)
+        performSegue(withIdentifier: "groupDetails", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -130,18 +130,18 @@ class GroupsTableViewController: SearchableTableViewController {
         
         switch identifier {
             
-        case "groupDetailed":
-            if let detailTableViewController = segue.destination as? GroupTableViewController {
-                if searchController.isActive {
-                    if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
-                        let selectedGroup = resultsTableController.filteredGroups[safe: indexPath.row]
-                        detailTableViewController.groupID = selectedGroup?.id
-                    }
-                } else {
-                    if let indexPath = tableView.indexPathForSelectedRow {
-                        let selectedGroup = dataSource?.fetchedResultsController?.object(at: indexPath)
-                        detailTableViewController.groupID = selectedGroup?.id
-                    }
+        case "groupDetails":
+            let navigationVC = segue.destination as? UINavigationController
+            let vc = navigationVC?.viewControllers.first as? GroupViewController
+            if searchController.isActive {
+                if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
+                    let selectedGroup = resultsTableController.filteredGroups[safe: indexPath.row]
+                    vc?.entityID = selectedGroup?.id
+                }
+            } else {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    let selectedGroup = dataSource?.fetchedResultsController?.object(at: indexPath)
+                    vc?.entityID = selectedGroup?.id
                 }
             }
             

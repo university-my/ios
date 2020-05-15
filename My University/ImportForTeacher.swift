@@ -108,7 +108,7 @@ extension Record {
                 guard let teacherInContext = taskContext.object(with: teacher.objectID) as? TeacherEntity else { return }
                 
                 // Parse records
-                let parsedRecords = json.compactMap { Record($0, dateFormatter: dateFormatter) }
+                let parsedRecords = json.compactMap { Record.CodingData($0, dateFormatter: dateFormatter) }
                 
                 // Records to update
                 let toUpdate = RecordEntity.fetch(parsedRecords, teacher: teacherInContext, context: taskContext)
@@ -160,7 +160,7 @@ extension Record {
             }
         }
         
-        private func insert(_ parsedRecord: Record, teacher: TeacherEntity, context: NSManagedObjectContext) {
+        private func insert(_ parsedRecord: Record.CodingData, teacher: TeacherEntity, context: NSManagedObjectContext) {
             let recordEntity = RecordEntity(context: context)
             
             recordEntity.id = NSNumber(value: parsedRecord.id).int64Value

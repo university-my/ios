@@ -26,7 +26,7 @@ public class GroupEntity: NSManagedObject {
     }
     
     /// Fetch groups
-    class func fetch(_ groups: [Group], university: UniversityEntity?, context: NSManagedObjectContext) -> [GroupEntity] {
+    class func fetch(_ groups: [Group.CodingData], university: UniversityEntity?, context: NSManagedObjectContext) -> [GroupEntity] {
         // University should not be nil
         guard let university = university else { return [] }
         
@@ -55,5 +55,37 @@ public class GroupEntity: NSManagedObject {
         } catch  {
             return []
         }
+    }
+}
+
+// MARK: - EntityProtocol
+
+extension GroupEntity: EntityProtocol {
+    
+    var favorite: Bool {
+        get {
+            return isFavorite
+        }
+        set {
+            isFavorite = newValue
+        }
+    }
+    
+    func shareURL(for date: Date) -> URL? {
+        guard let universityURL = university?.url else { return nil }
+        guard let slug = slug else { return nil }
+        let dateString = DateFormatter.short.string(from: date)
+        return Group.Endpoint.page(for: slug, university: universityURL, date: dateString).url
+    }
+}
+
+// MARK: - StructRepresentable
+
+extension GroupEntity: StructRepresentable {
+    
+    func asStruct() -> EntityRepresentable? {
+        guard let name = name else { return nil }
+        guard let slug = slug else { return nil }
+        return Group(id: id, name: name, slug: slug, isFavorite: isFavorite)
     }
 }

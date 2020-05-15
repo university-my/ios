@@ -87,21 +87,33 @@ class UniversityViewController: GenericTableViewController {
         guard let section = dataSource.sections[safe: indexPath.section] else { return }
         
         switch section.kind {
+            
         case .auditoriums:
-            performSegue(withIdentifier: "showAuditorium", sender: nil)
+            if let auditorium = dataSource.auditoriums?.fetchedObjects?[safe: indexPath.row] {
+                selectedEntityID = auditorium.id
+                performSegue(withIdentifier: .auditoriumDetails)
+            }
+            
         case .groups:
-            performSegue(withIdentifier: "showGroup", sender: nil)
+            if let group = dataSource.groups?.fetchedObjects?[safe: indexPath.row] {
+                selectedEntityID = group.id
+                performSegue(withIdentifier: .groupDetails)
+            }
+            
         case .teachers:
-            performSegue(withIdentifier: "showTeacher", sender: nil)
+            if let teacher = dataSource.teachers?.fetchedObjects?[safe: indexPath.row] {
+                selectedEntityID = teacher.id
+                performSegue(withIdentifier: .teacherDetails)
+            }
             
         case .university:
             let row = dataSource.universityRows[indexPath.row]
             if case .auditoriums = row.kind {
-                performSegue(withIdentifier: "showAuditoriums", sender: nil)
+                performSegue(withIdentifier: .showAuditoriums)
             } else if case .groups = row.kind {
-                performSegue(withIdentifier: "showGroups", sender: nil)
+                performSegue(withIdentifier: .showGroups)
             } else if case .teachers = row.kind {
-                performSegue(withIdentifier: "showTeachers", sender: nil)
+                performSegue(withIdentifier: .showTeachers)
             }
         }
     }
@@ -112,51 +124,6 @@ class UniversityViewController: GenericTableViewController {
     
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         return dataSource.titleForFooter(in: section)
-    }
-    
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let identifier = segue.identifier else { return }
-        
-        switch identifier {
-            
-        case "showAuditoriums":
-            let vc = segue.destination as? AuditoriumsTableViewController
-            vc?.universityID = dataSource.university?.id
-            
-        case "showGroups":
-            let vc = segue.destination as? GroupsTableViewController
-            vc?.universityID = dataSource.university?.id
-            
-        case "showTeachers":
-            let vc = segue.destination as? TeachersTableViewController
-            vc?.universityID = dataSource.university?.id
-            
-        case "showAuditorium":
-            let vc = segue.destination as? AuditoriumTableViewController
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let auditorium = dataSource.auditoriums?.fetchedObjects?[safe: indexPath.row]
-                vc?.auditoriumID = auditorium?.id
-            }
-            
-        case "showGroup":
-            let vc = segue.destination as? GroupTableViewController
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let group = dataSource.groups?.fetchedObjects?[safe: indexPath.row]
-                vc?.groupID = group?.id
-            }
-            
-        case "showTeacher":
-            let vc = segue.destination as? TeacherTableViewController
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let teacher = dataSource.teachers?.fetchedObjects?[safe: indexPath.row]
-                vc?.teacherID = teacher?.id
-            }
-            
-        default:
-            break
-        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -218,6 +185,62 @@ class UniversityViewController: GenericTableViewController {
                 cell.textLabel?.text = nil
                 return cell
             }
+        }
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier else { return }
+        
+        switch identifier {
+            
+        case .auditoriumDetails:
+            let navigationVC = segue.destination as? UINavigationController
+            let vc = navigationVC?.viewControllers.first as? AuditoriumViewController
+            vc?.entityID = selectedEntityID
+            
+        case .groupDetails:
+            let navigationVC = segue.destination as? UINavigationController
+            let vc = navigationVC?.viewControllers.first as? GroupViewController
+            vc?.entityID = selectedEntityID
+            
+        case .teacherDetails:
+            let navigationVC = segue.destination as? UINavigationController
+            let vc = navigationVC?.viewControllers.first as? TeacherViewController
+            vc?.entityID = selectedEntityID
+            
+        case .showAuditoriums:
+            let vc = segue.destination as? AuditoriumsTableViewController
+            vc?.universityID = dataSource.university?.id
+            
+        case .showGroups:
+            let vc = segue.destination as? GroupsTableViewController
+            vc?.universityID = dataSource.university?.id
+            
+        case .showTeachers:
+            let vc = segue.destination as? TeachersTableViewController
+            vc?.universityID = dataSource.university?.id
+            
+        default:
+            break
+        }
+    }
+    
+    // MARK: - Show
+    
+    var selectedEntityID: Int64?
+    
+    func show(_ entity: Entity) {
+        selectedEntityID = entity.id
+        
+        switch entity.kind {
+        case .auditorium:
+            performSegue(withIdentifier: .auditoriumDetails)
+        case .group:
+            performSegue(withIdentifier: .groupDetails)
+        case .teacher:
+            performSegue(withIdentifier: .teacherDetails)
         }
     }
     
@@ -315,6 +338,53 @@ class UniversityViewController: GenericTableViewController {
             UserData.whatsNew1_6_3 = false
         }
     }
+    
+    // MARK: - Preferences
+    
+    @IBAction func showPreferences(_ sender: Any) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        // Change university
+        let changeUniversityTitle = NSLocalizedString("Change University", comment: "Action title")
+        let changeUniversityAction = UIAlertAction(title: changeUniversityTitle, style: .default) { (_) in
+            
+            Entity.Manager.shared.deleteLastOpened()
+            self.performSegue(withIdentifier: .changeUniversity)
+        }
+        alert.addAction(changeUniversityAction)
+        
+        // Report a problem
+        let reportProblemTitle = NSLocalizedString("Report a problem", comment: "Action title")
+        let reportProblemAction = UIAlertAction(title: reportProblemTitle, style: .default) { (_) in
+            UIApplication.shared.open(BaseEndpoint.contacts.url)
+        }
+        alert.addAction(reportProblemAction)
+        
+        // Cancel
+        let cancelTitle = NSLocalizedString("Cancel", comment: "Action title")
+        let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel) { (_) in
+            
+        }
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
+    }
+}
+
+// MARK: - SegueIdentifier
+
+extension UniversityViewController {
+    typealias SegueIdentifier = String
+}
+
+extension UniversityViewController.SegueIdentifier {
+    static let auditoriumDetails = "auditoriumDetails"
+    static let changeUniversity = "changeUniversity"
+    static let groupDetails = "groupDetails"
+    static let showAuditoriums = "showAuditoriums"
+    static let showGroups = "showGroups"
+    static let showTeachers = "showTeachers"
+    static let teacherDetails = "teacherDetails"
 }
 
 // MARK: - NSFetchedResultsControllerDelegate

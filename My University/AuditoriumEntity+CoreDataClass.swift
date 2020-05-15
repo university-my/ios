@@ -14,7 +14,7 @@ import CoreData
 public class AuditoriumEntity: NSManagedObject {
     
     /// Fetch groups
-    class func fetch(_ auditoriums: [Auditorium], university: UniversityEntity?, context: NSManagedObjectContext) -> [AuditoriumEntity] {
+    class func fetch(_ auditoriums: [Auditorium.CodingData], university: UniversityEntity?, context: NSManagedObjectContext) -> [AuditoriumEntity] {
         // University should not be nil
         guard let university = university else { return [] }
         
@@ -22,9 +22,9 @@ public class AuditoriumEntity: NSManagedObject {
             return auditorium.slug
         }
         let fetchRequest: NSFetchRequest<AuditoriumEntity> = AuditoriumEntity.fetchRequest()
-        let isdPredicate = NSPredicate(format: "slug IN %@", slugs)
+        let slugPredicate = NSPredicate(format: "slug IN %@", slugs)
         let universityPredicate = NSPredicate(format: "university == %@", university)
-        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [universityPredicate, isdPredicate])
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [universityPredicate, slugPredicate])
         fetchRequest.predicate = predicate
         do {
             let result = try context.fetch(fetchRequest)
@@ -56,5 +56,37 @@ public class AuditoriumEntity: NSManagedObject {
         } catch {
             return nil
         }
+    }
+}
+
+// MARK: - EntityProtocol
+
+extension AuditoriumEntity: EntityProtocol {
+    
+    var favorite: Bool {
+        get {
+            return isFavorite
+        }
+        set {
+            isFavorite = newValue
+        }
+    }
+    
+    func shareURL(for date: Date) -> URL? {
+        guard let universityURL = university?.url else { return nil }
+        guard let slug = slug else { return nil }
+        let dateString = DateFormatter.short.string(from: date)
+        return Auditorium.Endpoint.page(for: slug, university: universityURL, date: dateString).url
+    }
+}
+
+// MARK: - StructRepresentable
+
+extension AuditoriumEntity: StructRepresentable {
+    
+    func asStruct() -> EntityRepresentable? {
+        guard let name = name else { return nil }
+        guard let slug = slug else { return nil }
+        return Auditorium(id: id, isFavorite: isFavorite, name: name, slug: slug)
     }
 }

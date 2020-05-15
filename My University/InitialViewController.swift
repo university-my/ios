@@ -13,10 +13,22 @@ class InitialViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if let id = University.selectedUniversityID {
-            performSegue(withIdentifier: "setUniversity", sender: id)
-        } else {
-            performSegue(withIdentifier: "setAllUniversities", sender: nil)
+        if University.selectedUniversityID == nil {
+            // Show all universities
+            performSegue(withIdentifier: "setAllUniversities")
+            return
         }
+        
+        guard let entity = Entity.lastOpened else {
+            // Show selected university
+            performSegue(withIdentifier: "setUniversity")
+            return
+        }
+        
+        // Show last opened Auditorium, Group or Teacher
+        let tabBarController = UIStoryboard.university.instantiateInitialViewController() as! UITabBarController
+        let navigation = tabBarController.viewControllers?.first as! UINavigationController
+        let universityViewController = navigation.topViewController as! UniversityViewController
+        universityViewController.show(entity)
     }
 }

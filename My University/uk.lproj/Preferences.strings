@@ -1,20 +1,14 @@
-/* Class = "UILabel"; text = "Report a problem"; ObjectID = "2Es-lr-PLu"; */
-"2Es-lr-PLu.text" = "Повідомити про помилку";
-
-/* Class = "UITableViewSection"; headerTitle = "Support"; ObjectID = "2U6-Wx-qVN"; */
-"2U6-Wx-qVN.headerTitle" = "Підтримка";
+/* Class = "UITabBarItem"; title = "Information"; ObjectID = "a3t-LJ-F3J"; */
+"a3t-LJ-F3J.title" = "Інформація";
 
 /* Class = "UITableViewSection"; headerTitle = "Patreon"; ObjectID = "CFL-VD-Yi0"; */
 "CFL-VD-Yi0.headerTitle" = "Patreon";
 
-/* Class = "UITableViewSection"; headerTitle = "University"; ObjectID = "G7R-jO-ByP"; */
-"G7R-jO-ByP.headerTitle" = "Університет";
-
 /* Class = "UITableViewSection"; headerTitle = "Legal documents"; ObjectID = "h35-66-BkH"; */
 "h35-66-BkH.headerTitle" = "Документи";
 
-/* Class = "UINavigationItem"; title = "Preferences"; ObjectID = "HK3-Ph-4zr"; */
-"HK3-Ph-4zr.title" = "Налаштування";
+/* Class = "UINavigationItem"; title = "Information"; ObjectID = "HK3-Ph-4zr"; */
+"HK3-Ph-4zr.title" = "Інформація";
 
 /* Class = "UILabel"; text = "Privacy Policy"; ObjectID = "IaU-t7-ZbT"; */
 "IaU-t7-ZbT.text" = "Політика конфіденційності";
@@ -30,7 +24,4 @@
 
 /* Class = "UILabel"; text = "Support on Patreon"; ObjectID = "w9Z-7r-Jb3"; */
 "w9Z-7r-Jb3.text" = "Підтримати на Patreon";
-
-/* Class = "UILabel"; text = "Change university"; ObjectID = "zCl-XE-nU0"; */
-"zCl-XE-nU0.text" = "Змінити університет";
 

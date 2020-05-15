@@ -33,7 +33,7 @@ class GenericTableViewController: UITableViewController {
         notificationLabel.text = nil
     }
     
-    // MARK: - Message (backgroud view)
+    // MARK: - Message (background view)
     
     let noRecordsMessage = NSLocalizedString("No records", comment: "Message")
     
@@ -48,7 +48,7 @@ class GenericTableViewController: UITableViewController {
         tableView.backgroundView = nil
     }
     
-    // MARK: - Activity (backgroud view)
+    // MARK: - Activity (background view)
     
     func showActivity() {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "ActivityViewController") {

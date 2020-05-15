@@ -26,7 +26,7 @@ public class TeacherEntity: NSManagedObject {
         }
     }
     
-    static func fetch(_ teachers: [Teacher], university: UniversityEntity?, context: NSManagedObjectContext) -> [TeacherEntity] {
+    static func fetch(_ teachers: [Teacher.CodingData], university: UniversityEntity?, context: NSManagedObjectContext) -> [TeacherEntity] {
         // University should not be nil
         guard let university = university else { return [] }
         
@@ -55,5 +55,41 @@ public class TeacherEntity: NSManagedObject {
         } catch  {
             return []
         }
+    }
+}
+
+// MARK: - EntityProtocol
+
+extension TeacherEntity: EntityProtocol {
+    
+    var favorite: Bool {
+        get {
+            return isFavorite
+        }
+        set {
+            isFavorite = newValue
+        }
+    }
+    
+    func shareURL(for date: Date) -> URL? {
+        guard let universityURL = university?.url else { return nil }
+        guard let slug = slug else { return nil }
+        let dateString = DateFormatter.short.string(from: date)
+        return Teacher.Endpoint.page(for: slug, university: universityURL, date: dateString).url
+    }
+}
+
+// MARK: - StructRepresentable
+
+extension TeacherEntity: StructRepresentable {
+    
+    func asStruct() -> EntityRepresentable? {
+        return Teacher(
+            firstSymbol: firstSymbol,
+            id: id,
+            isFavorite: isFavorite,
+            name: name,
+            slug: slug
+        )
     }
 }

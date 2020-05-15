@@ -24,4 +24,22 @@ class RecordTableViewCell: UITableViewCell, ReusableView {
             detailTextLabel?.text = detail
         }
     }
+    
+    func update(with record: Record) {
+        let title = record.title
+        let detail = record.detail
+        
+        if title.isEmpty && detail.isEmpty {
+            textLabel?.text = record.reason
+            detailTextLabel?.text = nil
+            
+        } else if title.isEmpty && !detail.isEmpty {
+            textLabel?.text = detail
+            detailTextLabel?.text = record.reason
+            
+        } else {
+            textLabel?.text = title
+            detailTextLabel?.text = detail
+        }
+    }
 }
