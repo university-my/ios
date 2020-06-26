@@ -41,6 +41,8 @@ class TeacherViewController: EntityViewController {
         
         // Data
         logic.fetchData(for: entityID)
+        
+        configureMenu()
     }
     
     // MARK: - Teacher
@@ -92,12 +94,29 @@ class TeacherViewController: EntityViewController {
     
     // MARK: - Menu
     
-    @IBAction func menu(_ sender: Any) {
-        guard let url = logic.shareURL() else {
-            return
+    @IBOutlet weak var menuBarButtonItem: UIBarButtonItem!
+    
+    private var menuPresenter: EntityMenuPresenter!
+    
+    func configureMenu() {
+        let config = EntityMenuPresenter.Config(item: menuBarButtonItem) {
+            if let url = self.logic.shareURL() {
+                self.share(url)
+            }
+            
+        } favoritesAction: {
+            self.logic.dataController.toggleFavorites()
+            self.menuPresenter.updateMenu(isFavorite: self.isFavorite)
+            
+        } universityAction: {
+            self.performSegue(withIdentifier: "setUniversity", sender: nil)
         }
-        let favoritesAction = favorites(for: teacher, data: logic.dataController)
-        showMenu(shareURL: url, favorites: favoritesAction)
+        menuPresenter = EntityMenuPresenter(config: config)
+        menuPresenter.updateMenu(isFavorite: isFavorite)
+    }
+    
+    var isFavorite: Bool {
+        teacher?.isFavorite ?? false
     }
     
     // MARK: - Date

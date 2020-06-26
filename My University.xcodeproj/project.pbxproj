@@ -25,6 +25,7 @@
 		DE05ADB32370C83F0005B0E7 /* Universities.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE05ADB12370C83F0005B0E7 /* Universities.storyboard */; };
 		DE06999E246D707100F49AF0 /* NoRecordsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE0699A0246D707100F49AF0 /* NoRecordsTableViewCell.xib */; };
 		DE0D64082264E1330001FCCF /* UniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0D64072264E1330001FCCF /* UniversityViewController.swift */; };
+		DE0D8FDD24A638FF00EE5775 /* EntityMenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0D8FDC24A638FF00EE5775 /* EntityMenuPresenter.swift */; };
 		DE11A3B0230EA98B005131E8 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE11A3AF230EA98B005131E8 /* DatePickerViewController.swift */; };
 		DE131FE22456CAAB009D09EA /* RecordsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE131FE12456CAAB009D09EA /* RecordsDataSource.swift */; };
 		DE131FE82456D773009D09EA /* Record+CodingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE131FE72456D773009D09EA /* Record+CodingData.swift */; };
@@ -183,6 +184,7 @@
 		DE06999F246D707100F49AF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NoRecordsTableViewCell.xib; sourceTree = "<group>"; };
 		DE0699A1246D70A400F49AF0 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/NoRecordsTableViewCell.strings; sourceTree = "<group>"; };
 		DE0D64072264E1330001FCCF /* UniversityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityViewController.swift; sourceTree = "<group>"; };
+		DE0D8FDC24A638FF00EE5775 /* EntityMenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityMenuPresenter.swift; sourceTree = "<group>"; };
 		DE11A3AF230EA98B005131E8 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		DE131FE12456CAAB009D09EA /* RecordsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsDataSource.swift; sourceTree = "<group>"; };
 		DE131FE72456D773009D09EA /* Record+CodingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record+CodingData.swift"; sourceTree = "<group>"; };
@@ -515,6 +517,7 @@
 			children = (
 				DE13EEAB2466B4390011F307 /* EntityViewController.swift */,
 				DE7AB862246722AA0031E279 /* EntityTableViewController.swift */,
+				DE0D8FDC24A638FF00EE5775 /* EntityMenuPresenter.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1108,6 +1111,7 @@
 				DEDF7C9D24A5EF26006B76D8 /* UIApplication.swift in Sources */,
 				C22A2E551FC7644600587463 /* Record.swift in Sources */,
 				C2B5CDFB1EEF0E750066DB30 /* Schedule.xcdatamodeld in Sources */,
+				DE0D8FDD24A638FF00EE5775 /* EntityMenuPresenter.swift in Sources */,
 				E44C69EB2296FCED00A0102D /* Date.swift in Sources */,
 				C293559E1FBE246000071719 /* SearchResultsTableViewController.swift in Sources */,
 				DE94500422C1345800550A1C /* TableMessageViewController.swift in Sources */,
