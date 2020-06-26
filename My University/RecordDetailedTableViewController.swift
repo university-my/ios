@@ -120,7 +120,8 @@ class RecordDetailedTableViewController: GenericTableViewController {
     private func showRateApp() {
         if shouldRatingApp(for: UserData.firstUsage) {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0, execute: {
-                SKStoreReviewController.requestReview()
+                // TODO: Finish this
+//                SKStoreReviewController.requestReview(in: <#T##UIWindowScene#>)
             })
         }
     }
