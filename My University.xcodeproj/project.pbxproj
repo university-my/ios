@@ -129,6 +129,8 @@
 		DEBC46052456F30A00489CAA /* Teacher+CodingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBC46042456F30A00489CAA /* Teacher+CodingData.swift */; };
 		DEDA50EA21862091006C7B27 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50E821862090006C7B27 /* InfoPlist.strings */; };
 		DEDA50ED218620E0006C7B27 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50EB218620E0006C7B27 /* Localizable.strings */; };
+		DEDF7C9B24A5EDB7006B76D8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF7C9A24A5EDB7006B76D8 /* SceneDelegate.swift */; };
+		DEDF7C9D24A5EF26006B76D8 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF7C9C24A5EF26006B76D8 /* UIApplication.swift */; };
 		DEE576E4226B7B9E008F9EB6 /* SearchableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE576E3226B7B9E008F9EB6 /* SearchableTableViewController.swift */; };
 		DEE576E7226B8B98008F9EB6 /* AuditoriumsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE576E6226B8B98008F9EB6 /* AuditoriumsTableViewController.swift */; };
 		DEE6740E2459ACE300B8F9F1 /* Group+CodingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE6740D2459ACE300B8F9F1 /* Group+CodingData.swift */; };
@@ -288,6 +290,8 @@
 		DEBC46042456F30A00489CAA /* Teacher+CodingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Teacher+CodingData.swift"; sourceTree = "<group>"; };
 		DEDA50E921862090006C7B27 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DEDA50EC218620E0006C7B27 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DEDF7C9A24A5EDB7006B76D8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		DEDF7C9C24A5EF26006B76D8 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		DEE576E3226B7B9E008F9EB6 /* SearchableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableTableViewController.swift; sourceTree = "<group>"; };
 		DEE576E6226B8B98008F9EB6 /* AuditoriumsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditoriumsTableViewController.swift; sourceTree = "<group>"; };
 		DEE6740D2459ACE300B8F9F1 /* Group+CodingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+CodingData.swift"; sourceTree = "<group>"; };
@@ -557,6 +561,7 @@
 				DEBB74A9235CE1AC00226C7E /* Bundle.swift */,
 				E44C69EA2296FCED00A0102D /* Date.swift */,
 				DE3EB6B9231B11F8007EA63C /* DateFormatter.swift */,
+				DEDF7C9C24A5EF26006B76D8 /* UIApplication.swift */,
 				DE95523722A253D400D70DA4 /* UIBarButtonItem.swift */,
 				DE40FBA5238D4700001DA3DE /* UIColor.swift */,
 				DE78478A240D9FBC002C2EDC /* UIStoryboard.swift */,
@@ -727,6 +732,7 @@
 				DE87B78C235B9E1D0090B63E /* Initial */,
 				DE65DA9A2370C6C500022B21 /* Launch Screen.storyboard */,
 				C2B5CDF21EEF0E750066DB30 /* AppDelegate.swift */,
+				DEDF7C9A24A5EDB7006B76D8 /* SceneDelegate.swift */,
 			);
 			name = Launch;
 			sourceTree = "<group>";
@@ -1099,6 +1105,7 @@
 				DEF63C61245AC543007E82F9 /* ActivityController.swift in Sources */,
 				DE540EBE2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift in Sources */,
 				DE13EEAC2466B4390011F307 /* EntityViewController.swift in Sources */,
+				DEDF7C9D24A5EF26006B76D8 /* UIApplication.swift in Sources */,
 				C22A2E551FC7644600587463 /* Record.swift in Sources */,
 				C2B5CDFB1EEF0E750066DB30 /* Schedule.xcdatamodeld in Sources */,
 				E44C69EB2296FCED00A0102D /* Date.swift in Sources */,
@@ -1111,6 +1118,7 @@
 				C250C1831FBCD1CA00C90B53 /* AboutUsTableViewController.swift in Sources */,
 				DEB68197245DEBB7005FA2F0 /* EntityDataController.swift in Sources */,
 				DEBB74BB235CF4C300226C7E /* UniversitiesTableViewController.swift in Sources */,
+				DEDF7C9B24A5EDB7006B76D8 /* SceneDelegate.swift in Sources */,
 				DE78478D240DA16B002C2EDC /* LegalDocumentView.swift in Sources */,
 				DEA2B3E8246AE75500F96E28 /* TeacherViewController.swift in Sources */,
 				DEBB74AD235CE51400226C7E /* SetViewControllerSegue.swift in Sources */,

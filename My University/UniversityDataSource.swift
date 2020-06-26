@@ -245,7 +245,7 @@ class UniversityDataSource: NSObject {
             teachers?.delegate = delegate
             try teachers?.performFetch()
         } catch {
-            print("Error in the fetched results controller: \(error).")
             logger.error("Error in the fetched results controller: \(error.localizedDescription).")
         }
     }
+}
