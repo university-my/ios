@@ -137,13 +137,10 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="AL9-1Q-JpS">
-                        <barButtonItem key="rightBarButtonItem" image="gear" catalog="system" id="U58-VY-iNv">
-                            <connections>
-                                <action selector="showPreferences:" destination="JQn-YR-tuX" id="drh-Zp-Sh6"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="ellipsis.circle" catalog="system" id="U58-VY-iNv"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="preferencesBarButtonItem" destination="U58-VY-iNv" id="lSI-tq-ZAC"/>
                         <segue destination="eav-eo-NTI" kind="show" identifier="showGroups" id="BvS-GR-DzH"/>
                         <segue destination="P1W-Vf-SQ3" kind="show" identifier="showTeachers" id="TzT-2s-pyY"/>
                         <segue destination="W7b-zz-Rsa" kind="show" identifier="showAuditoriums" id="7in-AW-ArM"/>
@@ -438,7 +435,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="briefcase" catalog="system" width="128" height="102"/>
-        <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="ellipsis.circle" catalog="system" width="128" height="121"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="person.2" catalog="system" width="128" height="81"/>
         <image name="tablecells" catalog="system" width="128" height="93"/>
