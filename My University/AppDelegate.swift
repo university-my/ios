@@ -13,7 +13,7 @@ import MyLibrary
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-
+    var metric: MetricKitSubscriber!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -24,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Default settings for user
         UserData.registerDefaultValues()
+        
+        metric = MetricKitSubscriber()
 
         return true
     }

@@ -38,6 +38,7 @@
 		DE18941C21BC3A3900C7F9DB /* GroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941B21BC3A3900C7F9DB /* GroupTableViewController.swift */; };
 		DE18942021BD457F00C7F9DB /* ImportForGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941F21BD457F00C7F9DB /* ImportForGroup.swift */; };
 		DE18942221BD45E600C7F9DB /* ImportForAuditorium.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18942121BD45E600C7F9DB /* ImportForAuditorium.swift */; };
+		DE18D46D24A73C92008EC017 /* MetricKitSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18D46C24A73C92008EC017 /* MetricKitSubscriber.swift */; };
 		DE266D60240C4AAA00C30A4A /* WhatsNewOneSixThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE266D5F240C4AAA00C30A4A /* WhatsNewOneSixThree.swift */; };
 		DE2863782455F75B0036A01F /* UniversitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2863772455F75B0036A01F /* UniversitiesViewController.swift */; };
 		DE28637C245600330036A01F /* NoRecordsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE28637A245600330036A01F /* NoRecordsTableViewCell.swift */; };
@@ -197,6 +198,8 @@
 		DE18941B21BC3A3900C7F9DB /* GroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTableViewController.swift; sourceTree = "<group>"; };
 		DE18941F21BD457F00C7F9DB /* ImportForGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportForGroup.swift; sourceTree = "<group>"; };
 		DE18942121BD45E600C7F9DB /* ImportForAuditorium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportForAuditorium.swift; sourceTree = "<group>"; };
+		DE18D46C24A73C92008EC017 /* MetricKitSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricKitSubscriber.swift; sourceTree = "<group>"; };
+		DE18D46F24A73E2D008EC017 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		DE266D5F240C4AAA00C30A4A /* WhatsNewOneSixThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewOneSixThree.swift; sourceTree = "<group>"; };
 		DE266D61240C607A00C30A4A /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = "uk.lproj/Record Details.strings"; sourceTree = "<group>"; };
 		DE2863772455F75B0036A01F /* UniversitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversitiesViewController.swift; sourceTree = "<group>"; };
@@ -351,6 +354,7 @@
 				C2B5CDF11EEF0E750066DB30 /* My University */,
 				DEAE5C48236A23B50086E734 /* Tests */,
 				C2B5CDF01EEF0E750066DB30 /* Products */,
+				DE18D46E24A73E2D008EC017 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -539,6 +543,14 @@
 				DE540EC92215DEC40092FC81 /* ImportForTeacher.swift */,
 			);
 			name = Record;
+			sourceTree = "<group>";
+		};
+		DE18D46E24A73E2D008EC017 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DE18D46F24A73E2D008EC017 /* MetalKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		DE266D5E240C4A7800C30A4A /* Whats New */ = {
@@ -736,6 +748,7 @@
 				DE65DA9A2370C6C500022B21 /* Launch Screen.storyboard */,
 				C2B5CDF21EEF0E750066DB30 /* AppDelegate.swift */,
 				DEDF7C9A24A5EDB7006B76D8 /* SceneDelegate.swift */,
+				DE18D46C24A73C92008EC017 /* MetricKitSubscriber.swift */,
 			);
 			name = Launch;
 			sourceTree = "<group>";
@@ -1160,6 +1173,7 @@
 				DE5A7E932219CCBF00CA9A79 /* RecordDetailedTableViewController.swift in Sources */,
 				DE4FCBFD23EF5CF9000B53F4 /* LegalDocumentViewController.swift in Sources */,
 				DE584C5C219869990099415E /* Auditorium+Import.swift in Sources */,
+				DE18D46D24A73C92008EC017 /* MetricKitSubscriber.swift in Sources */,
 				DEE576E4226B7B9E008F9EB6 /* SearchableTableViewController.swift in Sources */,
 				DE7B1D9F2269BCA5003E3028 /* GenericTableViewController.swift in Sources */,
 				DE4FCBFF23EF5D50000B53F4 /* LegalDocument.swift in Sources */,
