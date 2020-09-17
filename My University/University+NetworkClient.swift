@@ -1,5 +1,5 @@
 //
-//  Universoty+NetworkClient.swift
+//  University+NetworkClient.swift
 //  My University
 //
 //  Created by Yura Voevodin on 4/15/19.
