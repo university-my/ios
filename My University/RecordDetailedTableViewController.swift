@@ -118,11 +118,15 @@ class RecordDetailedTableViewController: GenericTableViewController {
     }
     
     private func showRateApp() {
-        if shouldRatingApp(for: UserData.firstUsage) {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0, execute: {
-                SKStoreReviewController.requestReview()
-            })
+        guard shouldRatingApp(for: UserData.firstUsage) else {
+            return
         }
+        guard let windowScene = UIApplication.shared.currentWindow?.windowScene else {
+            return
+        }
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0, execute: {
+            SKStoreReviewController.requestReview(in: windowScene)
+        })
     }
     
     /// Name and time

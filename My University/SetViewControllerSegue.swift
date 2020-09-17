@@ -11,8 +11,7 @@ import UIKit
 class SetViewControllerSegue: UIStoryboardSegue {
   
   override func perform() {
-    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-    guard let window = appDelegate.window else { return }
+    guard let window = UIApplication.shared.currentWindow else { return }
     window.rootViewController = self.destination
 
     // A mask of options indicating how you want to perform the animations.

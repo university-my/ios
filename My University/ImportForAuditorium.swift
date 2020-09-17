@@ -53,7 +53,7 @@ extension Record {
         func importRecords(for date: Date, _ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            networkClient.downloadRecords(auditoriumID: auditoriumID, date: date, unversityURL: universityURL) { (error) in
+            networkClient.downloadRecords(auditoriumID: auditoriumID, date: date, universityURL: universityURL) { (error) in
                 if let error = error {
                     self.completionHandler?(error)
                 } else {

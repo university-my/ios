@@ -54,7 +54,7 @@ extension Record {
         func importRecords(for date: Date, _ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            networkClient.downloadRecords(groupID: group.id, date: date, unversityURL: university.url ?? "") { (error) in
+            networkClient.downloadRecords(groupID: group.id, date: date, universityURL: university.url ?? "") { (error) in
                 if let error = error {
                     self.completionHandler?(error)
                 } else {
@@ -140,7 +140,7 @@ extension Record {
                     }
                 }
                 
-                // Intert
+                // Insert
                 for record in toInsert {
                     self.insert(record, group: groupInContext, context: taskContext)
                 }

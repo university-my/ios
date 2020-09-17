@@ -8,16 +8,19 @@
 
 import CoreData
 import UIKit
+import os
 
 class GroupsDataSource: NSObject {
-
+    
+    private let logger = Logger(subsystem: Bundle.identifier, category: "GroupsDataSource")
+    
     // MARK: - Is Favorites
-
-  private var favoritesImageView: UIImageView {
-    let image = UIImage(systemName: "star.fill")
-    let imageView = UIImageView(image: image)
-    return imageView
-  }
+    
+    private var favoritesImageView: UIImageView {
+        let image = UIImage(systemName: "star.fill")
+        let imageView = UIImageView(image: image)
+        return imageView
+    }
     
     // MARK: - Init
     
@@ -71,7 +74,7 @@ class GroupsDataSource: NSObject {
             try fetchedResultsController?.performFetch()
             collectNamesOfSections()
         } catch {
-            print("Error in the fetched results controller: \(error).")
+            logger.error("Error in the fetched results controller: \(error.localizedDescription).")
         }
     }
     
@@ -130,7 +133,7 @@ extension GroupsDataSource: UITableViewDataSource {
         // Configure cell
         if let group = fetchedResultsController?.object(at: indexPath) {
             cell.textLabel?.text = group.name
-
+            
             // Is favorites
             if group.isFavorite {
                 cell.accessoryView = favoritesImageView

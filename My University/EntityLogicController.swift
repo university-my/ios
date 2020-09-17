@@ -7,12 +7,15 @@
 //
 
 import Foundation
+import os
 
 protocol EntityLogicControllerDelegate: class {
     func didChangeState(to newState: EntityViewController.State)
 }
 
 class EntityLogicController: EntityLogicControllerProtocol {
+    
+    private let logger = Logger(subsystem: Bundle.identifier, category: "EntityLogicController")
     
     // MARK: - Init
 
@@ -104,6 +107,7 @@ extension EntityLogicController: EntityDataControllerDelegate {
     
     func entityDataController(didImportRecordsFor structure: EntityRepresentable, _ error: Error?) {
         if let error = error {
+            logger.debug("\(error.localizedDescription)")
             delegate?.didChangeState(to: .failed(error))
         }
     }

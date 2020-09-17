@@ -54,6 +54,8 @@ class UniversityViewController: GenericTableViewController {
     }
     
     private func setup() {
+        configurePreferencesMenu()
+        
         // Fetch university
         if let id = universityID {
             dataSource = UniversityDataSource()
@@ -341,33 +343,25 @@ class UniversityViewController: GenericTableViewController {
     
     // MARK: - Preferences
     
-    @IBAction func showPreferences(_ sender: Any) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        // Change university
-        let changeUniversityTitle = NSLocalizedString("Change University", comment: "Action title")
-        let changeUniversityAction = UIAlertAction(title: changeUniversityTitle, style: .default) { (_) in
-            
+    @IBOutlet weak var preferencesBarButtonItem: UIBarButtonItem!
+    
+    private func configurePreferencesMenu() {
+        let changeUniversity = UIAction(
+            title: NSLocalizedString("Change University", comment: "Action title"),
+            image: UIImage(systemName: "list.dash")
+        ) { _ in
             Entity.Manager.shared.deleteLastOpened()
             self.performSegue(withIdentifier: .changeUniversity)
         }
-        alert.addAction(changeUniversityAction)
         
-        // Report a problem
-        let reportProblemTitle = NSLocalizedString("Report a problem", comment: "Action title")
-        let reportProblemAction = UIAlertAction(title: reportProblemTitle, style: .default) { (_) in
+        let reportProblem = UIAction(
+            title: NSLocalizedString("Report a problem", comment: "Action title"),
+            image: UIImage(systemName: "exclamationmark.bubble.fill")
+        ) { _ in
             UIApplication.shared.open(BaseEndpoint.contacts.url)
         }
-        alert.addAction(reportProblemAction)
         
-        // Cancel
-        let cancelTitle = NSLocalizedString("Cancel", comment: "Action title")
-        let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel) { (_) in
-            
-        }
-        alert.addAction(cancelAction)
-        
-        present(alert, animated: true)
+        preferencesBarButtonItem.menu = UIMenu(title: "", children: [changeUniversity, reportProblem])
     }
 }
 

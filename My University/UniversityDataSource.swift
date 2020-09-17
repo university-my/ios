@@ -8,8 +8,11 @@
 
 import CoreData
 import UIKit
+import os
 
 class UniversityDataSource: NSObject {
+    
+    private let logger = Logger(subsystem: Bundle.identifier, category: "UniversityDataSource")
     
     // MARK: - Types
     
@@ -88,10 +91,10 @@ class UniversityDataSource: NSObject {
         if auditoriums?.fetchedObjects?.isEmpty == false {
             newSections.append(Section(kind: .auditoriums))
         }
-
+        
         // University
         var rows: [UniversityRow] = []
-
+        
         if university.isKPI {
             let grops = UniversityRow(kind: .groups)
             let teachers = UniversityRow(kind: .teachers)
@@ -121,7 +124,7 @@ class UniversityDataSource: NSObject {
     func titleForHeader(in section: Int) -> String? {
         guard let section = sections[safe: section] else { return nil }
         switch section.kind {
-            
+        
         case .auditoriums:
             if let auditoriums = auditoriums?.fetchedObjects, auditoriums.count > 1 {
                 return section.name
@@ -182,7 +185,7 @@ class UniversityDataSource: NSObject {
             auditoriums?.delegate = delegate
             try auditoriums?.performFetch()
         } catch {
-            print("Error in the fetched results controller: \(error).")
+            logger.error("Error in the fetched results controller: \(error.localizedDescription).")
         }
     }
     
@@ -212,7 +215,7 @@ class UniversityDataSource: NSObject {
             groups?.delegate = delegate
             try groups?.performFetch()
         } catch {
-            print("Error in the fetched results controller: \(error).")
+            logger.error("Error in the fetched results controller: \(error.localizedDescription).")
         }
     }
     
@@ -242,7 +245,7 @@ class UniversityDataSource: NSObject {
             teachers?.delegate = delegate
             try teachers?.performFetch()
         } catch {
-            print("Error in the fetched results controller: \(error).")
+            logger.error("Error in the fetched results controller: \(error.localizedDescription).")
         }
     }
 }
