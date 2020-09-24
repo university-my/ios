@@ -22,7 +22,7 @@ enum UserDefaultsKey {
         return Bundle.identifier + ".first-usage"
     }
 
-    static var whatsNew1_6_3: String {
-        return Bundle.identifier + ".whatsNew1_6_3"
+    static var whatsNew1_7_2: String {
+        return Bundle.identifier + ".whatsNew1_7_2"
     }
 }

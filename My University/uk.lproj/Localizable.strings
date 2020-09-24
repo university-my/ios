@@ -13,8 +13,7 @@
 /* Favorites section name */
 "Auditoriums" = "Аудиторії";
 
-/* Action title
-   Alert action */
+/* Alert action */
 "Cancel" = "Скасувати";
 
 /* Action title */
@@ -45,9 +44,6 @@
 "PAIR" = "ПАРА";
 
 /* No comment provided by engineer. */
-"Patreon" = "Patreon";
-
-/* No comment provided by engineer. */
 "Privacy Policy" = "Політика конфіденційності";
 
 /* Action title */
@@ -64,9 +60,6 @@
 
 /* Action title */
 "Share" = "Поділитися";
-
-/* No comment provided by engineer. */
-"Support on " = "Підтримати на ";
 
 /* Favorites section name */
 "Teacher" = "Викладач";
@@ -88,4 +81,13 @@
 
 /* No comment provided by engineer. */
 "Welcome" = "Вітаємо";
+
+/* No comment provided by engineer. */
+"whats_new.new_calendar" = "Новий календар (iOS 14)";
+
+/* No comment provided by engineer. */
+"whats_new.new_menus" = "Нові меню (Pull-Down Menus)";
+
+/* No comment provided by engineer. */
+"whats_new.support_iOS_14" = "Підтримка iOS 14";
 

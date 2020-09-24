@@ -13,9 +13,6 @@
 /* Class = "UILabel"; text = "Facebook"; ObjectID = "cN9-cb-11O"; */
 "cN9-cb-11O.text" = "Facebook";
 
-/* Class = "UITableViewSection"; headerTitle = "Patreon"; ObjectID = "d9o-7l-kH2"; */
-"d9o-7l-kH2.headerTitle" = "Patreon";
-
 /* Class = "UITableViewSection"; headerTitle = "Legal documents"; ObjectID = "fcI-hA-FTU"; */
 "fcI-hA-FTU.headerTitle" = "Документи";
 
@@ -36,7 +33,4 @@
 
 /* Class = "UILabel"; text = "Instagram"; ObjectID = "rVb-do-Zv6"; */
 "rVb-do-Zv6.text" = "Instagram";
-
-/* Class = "UILabel"; text = "Support on Patreon"; ObjectID = "zub-x8-GPd"; */
-"zub-x8-GPd.text" = "Підтримати на Patreon";
 

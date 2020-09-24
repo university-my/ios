@@ -25,7 +25,6 @@
 		DE05ADB32370C83F0005B0E7 /* Universities.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE05ADB12370C83F0005B0E7 /* Universities.storyboard */; };
 		DE06999E246D707100F49AF0 /* NoRecordsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE0699A0246D707100F49AF0 /* NoRecordsTableViewCell.xib */; };
 		DE0D64082264E1330001FCCF /* UniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0D64072264E1330001FCCF /* UniversityViewController.swift */; };
-		DE0D8FDD24A638FF00EE5775 /* EntityMenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0D8FDC24A638FF00EE5775 /* EntityMenuPresenter.swift */; };
 		DE11A3B0230EA98B005131E8 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE11A3AF230EA98B005131E8 /* DatePickerViewController.swift */; };
 		DE131FE22456CAAB009D09EA /* RecordsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE131FE12456CAAB009D09EA /* RecordsDataSource.swift */; };
 		DE131FE82456D773009D09EA /* Record+CodingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE131FE72456D773009D09EA /* Record+CodingData.swift */; };
@@ -38,8 +37,7 @@
 		DE18941C21BC3A3900C7F9DB /* GroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941B21BC3A3900C7F9DB /* GroupTableViewController.swift */; };
 		DE18942021BD457F00C7F9DB /* ImportForGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941F21BD457F00C7F9DB /* ImportForGroup.swift */; };
 		DE18942221BD45E600C7F9DB /* ImportForAuditorium.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18942121BD45E600C7F9DB /* ImportForAuditorium.swift */; };
-		DE18D46D24A73C92008EC017 /* MetricKitSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18D46C24A73C92008EC017 /* MetricKitSubscriber.swift */; };
-		DE266D60240C4AAA00C30A4A /* WhatsNewOneSixThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE266D5F240C4AAA00C30A4A /* WhatsNewOneSixThree.swift */; };
+		DE266D60240C4AAA00C30A4A /* WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE266D5F240C4AAA00C30A4A /* WhatsNewView.swift */; };
 		DE2863782455F75B0036A01F /* UniversitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2863772455F75B0036A01F /* UniversitiesViewController.swift */; };
 		DE28637C245600330036A01F /* NoRecordsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE28637A245600330036A01F /* NoRecordsTableViewCell.swift */; };
 		DE3EB6B5231B0AE7007EA63C /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3EB6B3231B0AE7007EA63C /* About.storyboard */; };
@@ -98,7 +96,6 @@
 		DE945AC82264D11700143303 /* UniversityEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE945AC62264D11700143303 /* UniversityEntity+CoreDataProperties.swift */; };
 		DE945ACA2264D17C00143303 /* University.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE945AC92264D17C00143303 /* University.swift */; };
 		DE945ACC2264D27B00143303 /* University+Import.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE945ACB2264D27B00143303 /* University+Import.swift */; };
-		DE945ACE2264D2AA00143303 /* University+NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE945ACD2264D2AA00143303 /* University+NetworkClient.swift */; };
 		DE945AD22264D71B00143303 /* UniversitiesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE945AD12264D71B00143303 /* UniversitiesDataSource.swift */; };
 		DE95523822A253D400D70DA4 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE95523722A253D400D70DA4 /* UIBarButtonItem.swift */; };
 		DE999ABE227C54160018F725 /* UniversityDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE999ABD227C54160018F725 /* UniversityDataSource.swift */; };
@@ -119,6 +116,15 @@
 		DEB0316C245988F600A5D29D /* GroupLogicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0316B245988F600A5D29D /* GroupLogicController.swift */; };
 		DEB0316E2459895A00A5D29D /* GroupNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0316D2459895A00A5D29D /* GroupNetworkController.swift */; };
 		DEB031722459A72700A5D29D /* EndpointProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB031712459A72700A5D29D /* EndpointProtocol.swift */; };
+		DEB0632125136BE700DB50CE /* University+NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0632025136BE700DB50CE /* University+NetworkClient.swift */; };
+		DEB0632725136C0300DB50CE /* Group+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0632625136C0300DB50CE /* Group+Endpoint.swift */; };
+		DEB0633325136C7A00DB50CE /* EntityMenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0633225136C7900DB50CE /* EntityMenuPresenter.swift */; };
+		DEB0633725136C9C00DB50CE /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0633625136C9C00DB50CE /* UIApplication.swift */; };
+		DEB0633D25136CC700DB50CE /* MetricKitSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0633C25136CC700DB50CE /* MetricKitSubscriber.swift */; };
+		DEB0634425136D2200DB50CE /* Teacher.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEB0634225136D2200DB50CE /* Teacher.storyboard */; };
+		DEB0634925136D3E00DB50CE /* Legal Document.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEB0634725136D3E00DB50CE /* Legal Document.storyboard */; };
+		DEB0635025136D5500DB50CE /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEB0634E25136D5500DB50CE /* Activity.storyboard */; };
+		DEB0635425136DDC00DB50CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0635325136DDC00DB50CE /* SceneDelegate.swift */; };
 		DEB68197245DEBB7005FA2F0 /* EntityDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB68196245DEBB7005FA2F0 /* EntityDataController.swift */; };
 		DEB68199245DEF68005FA2F0 /* EntityDataControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB68198245DEF68005FA2F0 /* EntityDataControllerProtocol.swift */; };
 		DEB6819D245DF874005FA2F0 /* EntityNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB6819C245DF874005FA2F0 /* EntityNetworkController.swift */; };
@@ -128,12 +134,6 @@
 		DEBC46052456F30A00489CAA /* Teacher+CodingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBC46042456F30A00489CAA /* Teacher+CodingData.swift */; };
 		DEDA50EA21862091006C7B27 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50E821862090006C7B27 /* InfoPlist.strings */; };
 		DEDA50ED218620E0006C7B27 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50EB218620E0006C7B27 /* Localizable.strings */; };
-		DEDD8CBC250252F5000EB1F3 /* Group+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDD8CBB250252F5000EB1F3 /* Group+Endpoint.swift */; };
-		DEDD8CBF25025322000EB1F3 /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEDD8CBD25025322000EB1F3 /* Activity.storyboard */; };
-		DEDD8CC225025346000EB1F3 /* Teacher.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEDD8CC025025346000EB1F3 /* Teacher.storyboard */; };
-		DEDD8CC525025355000EB1F3 /* Legal Document.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEDD8CC325025355000EB1F3 /* Legal Document.storyboard */; };
-		DEDF7C9B24A5EDB7006B76D8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF7C9A24A5EDB7006B76D8 /* SceneDelegate.swift */; };
-		DEDF7C9D24A5EF26006B76D8 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF7C9C24A5EF26006B76D8 /* UIApplication.swift */; };
 		DEE576E4226B7B9E008F9EB6 /* SearchableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE576E3226B7B9E008F9EB6 /* SearchableTableViewController.swift */; };
 		DEE576E7226B8B98008F9EB6 /* AuditoriumsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE576E6226B8B98008F9EB6 /* AuditoriumsTableViewController.swift */; };
 		DEE6740E2459ACE300B8F9F1 /* Group+CodingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE6740D2459ACE300B8F9F1 /* Group+CodingData.swift */; };
@@ -185,7 +185,6 @@
 		DE06999F246D707100F49AF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NoRecordsTableViewCell.xib; sourceTree = "<group>"; };
 		DE0699A1246D70A400F49AF0 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/NoRecordsTableViewCell.strings; sourceTree = "<group>"; };
 		DE0D64072264E1330001FCCF /* UniversityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityViewController.swift; sourceTree = "<group>"; };
-		DE0D8FDC24A638FF00EE5775 /* EntityMenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityMenuPresenter.swift; sourceTree = "<group>"; };
 		DE11A3AF230EA98B005131E8 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		DE131FE12456CAAB009D09EA /* RecordsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsDataSource.swift; sourceTree = "<group>"; };
 		DE131FE72456D773009D09EA /* Record+CodingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record+CodingData.swift"; sourceTree = "<group>"; };
@@ -198,9 +197,7 @@
 		DE18941B21BC3A3900C7F9DB /* GroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTableViewController.swift; sourceTree = "<group>"; };
 		DE18941F21BD457F00C7F9DB /* ImportForGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportForGroup.swift; sourceTree = "<group>"; };
 		DE18942121BD45E600C7F9DB /* ImportForAuditorium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportForAuditorium.swift; sourceTree = "<group>"; };
-		DE18D46C24A73C92008EC017 /* MetricKitSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricKitSubscriber.swift; sourceTree = "<group>"; };
-		DE18D46F24A73E2D008EC017 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
-		DE266D5F240C4AAA00C30A4A /* WhatsNewOneSixThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewOneSixThree.swift; sourceTree = "<group>"; };
+		DE266D5F240C4AAA00C30A4A /* WhatsNewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewView.swift; sourceTree = "<group>"; };
 		DE266D61240C607A00C30A4A /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = "uk.lproj/Record Details.strings"; sourceTree = "<group>"; };
 		DE2863772455F75B0036A01F /* UniversitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversitiesViewController.swift; sourceTree = "<group>"; };
 		DE28637A245600330036A01F /* NoRecordsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoRecordsTableViewCell.swift; sourceTree = "<group>"; };
@@ -260,7 +257,6 @@
 		DE945AC62264D11700143303 /* UniversityEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DE945AC92264D17C00143303 /* University.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = University.swift; sourceTree = "<group>"; };
 		DE945ACB2264D27B00143303 /* University+Import.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "University+Import.swift"; sourceTree = "<group>"; };
-		DE945ACD2264D2AA00143303 /* University+NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "University+NetworkClient.swift"; sourceTree = "<group>"; };
 		DE945AD12264D71B00143303 /* UniversitiesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversitiesDataSource.swift; sourceTree = "<group>"; };
 		DE95523722A253D400D70DA4 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		DE999ABD227C54160018F725 /* UniversityDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityDataSource.swift; sourceTree = "<group>"; };
@@ -283,6 +279,15 @@
 		DEB0316B245988F600A5D29D /* GroupLogicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupLogicController.swift; sourceTree = "<group>"; };
 		DEB0316D2459895A00A5D29D /* GroupNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNetworkController.swift; sourceTree = "<group>"; };
 		DEB031712459A72700A5D29D /* EndpointProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointProtocol.swift; sourceTree = "<group>"; };
+		DEB0632025136BE700DB50CE /* University+NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "University+NetworkClient.swift"; sourceTree = "<group>"; };
+		DEB0632625136C0300DB50CE /* Group+Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Group+Endpoint.swift"; sourceTree = "<group>"; };
+		DEB0633225136C7900DB50CE /* EntityMenuPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityMenuPresenter.swift; sourceTree = "<group>"; };
+		DEB0633625136C9C00DB50CE /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
+		DEB0633C25136CC700DB50CE /* MetricKitSubscriber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetricKitSubscriber.swift; sourceTree = "<group>"; };
+		DEB0634325136D2200DB50CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Teacher.storyboard; sourceTree = "<group>"; };
+		DEB0634825136D3E00DB50CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Legal Document.storyboard"; sourceTree = "<group>"; };
+		DEB0634F25136D5500DB50CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Activity.storyboard; sourceTree = "<group>"; };
+		DEB0635325136DDC00DB50CE /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DEB68196245DEBB7005FA2F0 /* EntityDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDataController.swift; sourceTree = "<group>"; };
 		DEB68198245DEF68005FA2F0 /* EntityDataControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDataControllerProtocol.swift; sourceTree = "<group>"; };
 		DEB6819C245DF874005FA2F0 /* EntityNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityNetworkController.swift; sourceTree = "<group>"; };
@@ -290,14 +295,9 @@
 		DEBB74AC235CE51400226C7E /* SetViewControllerSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetViewControllerSegue.swift; sourceTree = "<group>"; };
 		DEBB74BA235CF4C300226C7E /* UniversitiesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversitiesTableViewController.swift; sourceTree = "<group>"; };
 		DEBC46042456F30A00489CAA /* Teacher+CodingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Teacher+CodingData.swift"; sourceTree = "<group>"; };
+		DECF64EC251C75BE00F1AA33 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DEDA50E921862090006C7B27 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DEDA50EC218620E0006C7B27 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
-		DEDD8CBB250252F5000EB1F3 /* Group+Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Group+Endpoint.swift"; sourceTree = "<group>"; };
-		DEDD8CBE25025322000EB1F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Activity.storyboard; sourceTree = "<group>"; };
-		DEDD8CC125025346000EB1F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Teacher.storyboard; sourceTree = "<group>"; };
-		DEDD8CC425025355000EB1F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Legal Document.storyboard"; sourceTree = "<group>"; };
-		DEDF7C9A24A5EDB7006B76D8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DEDF7C9C24A5EF26006B76D8 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		DEE576E3226B7B9E008F9EB6 /* SearchableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableTableViewController.swift; sourceTree = "<group>"; };
 		DEE576E6226B8B98008F9EB6 /* AuditoriumsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditoriumsTableViewController.swift; sourceTree = "<group>"; };
 		DEE6740D2459ACE300B8F9F1 /* Group+CodingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+CodingData.swift"; sourceTree = "<group>"; };
@@ -343,7 +343,7 @@
 				DE8B668421CACE5600C43F81 /* Group+NetworkClient.swift */,
 				DE18941821BC349400C7F9DB /* Record+NetworkClient.swift */,
 				DE540EC12215CDCD0092FC81 /* Teacher+NetworkClient.swift */,
-				DE945ACD2264D2AA00143303 /* University+NetworkClient.swift */,
+				DEB0632025136BE700DB50CE /* University+NetworkClient.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -354,7 +354,6 @@
 				C2B5CDF11EEF0E750066DB30 /* My University */,
 				DEAE5C48236A23B50086E734 /* Tests */,
 				C2B5CDF01EEF0E750066DB30 /* Products */,
-				DE18D46E24A73E2D008EC017 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -521,7 +520,6 @@
 			children = (
 				DE13EEAB2466B4390011F307 /* EntityViewController.swift */,
 				DE7AB862246722AA0031E279 /* EntityTableViewController.swift */,
-				DE0D8FDC24A638FF00EE5775 /* EntityMenuPresenter.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -545,18 +543,10 @@
 			name = Record;
 			sourceTree = "<group>";
 		};
-		DE18D46E24A73E2D008EC017 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				DE18D46F24A73E2D008EC017 /* MetalKit.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		DE266D5E240C4A7800C30A4A /* Whats New */ = {
 			isa = PBXGroup;
 			children = (
-				DE266D5F240C4AAA00C30A4A /* WhatsNewOneSixThree.swift */,
+				DE266D5F240C4AAA00C30A4A /* WhatsNewView.swift */,
 			);
 			name = "Whats New";
 			sourceTree = "<group>";
@@ -576,7 +566,7 @@
 				DEBB74A9235CE1AC00226C7E /* Bundle.swift */,
 				E44C69EA2296FCED00A0102D /* Date.swift */,
 				DE3EB6B9231B11F8007EA63C /* DateFormatter.swift */,
-				DEDF7C9C24A5EF26006B76D8 /* UIApplication.swift */,
+				DEB0633625136C9C00DB50CE /* UIApplication.swift */,
 				DE95523722A253D400D70DA4 /* UIBarButtonItem.swift */,
 				DE40FBA5238D4700001DA3DE /* UIColor.swift */,
 				DE78478A240D9FBC002C2EDC /* UIStoryboard.swift */,
@@ -667,11 +657,11 @@
 		DE6B249723EF5C47008ED1F1 /* Legal */ = {
 			isa = PBXGroup;
 			children = (
-				DEDD8CC325025355000EB1F3 /* Legal Document.storyboard */,
 				DE4FCBFE23EF5D50000B53F4 /* LegalDocument.swift */,
-				DE4FCBFC23EF5CF9000B53F4 /* LegalDocumentViewController.swift */,
-				DE4FCC0023EF5DB4000B53F4 /* Legal Documents */,
 				DE78478C240DA16B002C2EDC /* LegalDocumentView.swift */,
+				DE4FCBFC23EF5CF9000B53F4 /* LegalDocumentViewController.swift */,
+				DEB0634725136D3E00DB50CE /* Legal Document.storyboard */,
+				DE4FCC0023EF5DB4000B53F4 /* Legal Documents */,
 			);
 			name = Legal;
 			sourceTree = "<group>";
@@ -687,7 +677,7 @@
 		DE79DC98246AA61F00C8C0EF /* Teacher */ = {
 			isa = PBXGroup;
 			children = (
-				DEDD8CC025025346000EB1F3 /* Teacher.storyboard */,
+				DEB0634225136D2200DB50CE /* Teacher.storyboard */,
 				DE79DC9B246AA7F800C8C0EF /* TeacherDataController.swift */,
 				DEA2B3E3246AE3C200F96E28 /* TeacherLogicController.swift */,
 				DE79DC99246AA63D00C8C0EF /* TeacherNetworkController.swift */,
@@ -744,11 +734,11 @@
 		DEA2B3EE246AF5DF00F96E28 /* Launch */ = {
 			isa = PBXGroup;
 			children = (
+				DEB0635325136DDC00DB50CE /* SceneDelegate.swift */,
+				C2B5CDF21EEF0E750066DB30 /* AppDelegate.swift */,
+				DEB0633C25136CC700DB50CE /* MetricKitSubscriber.swift */,
 				DE87B78C235B9E1D0090B63E /* Initial */,
 				DE65DA9A2370C6C500022B21 /* Launch Screen.storyboard */,
-				C2B5CDF21EEF0E750066DB30 /* AppDelegate.swift */,
-				DEDF7C9A24A5EDB7006B76D8 /* SceneDelegate.swift */,
-				DE18D46C24A73C92008EC017 /* MetricKitSubscriber.swift */,
 			);
 			name = Launch;
 			sourceTree = "<group>";
@@ -809,6 +799,7 @@
 		DEB68195245DEBA2005FA2F0 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				DEB0633225136C7900DB50CE /* EntityMenuPresenter.swift */,
 				DEB6819A245DF825005FA2F0 /* Data */,
 				DEA2B3FB246C01FD00F96E28 /* Data Models */,
 				DE13EEAE2466B5870011F307 /* Logic */,
@@ -937,9 +928,9 @@
 		DEE6740C2459AB3A00B8F9F1 /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
-				DEDD8CBB250252F5000EB1F3 /* Group+Endpoint.swift */,
 				C2C0E9AF1FB8CDA00012FA9C /* Group.swift */,
 				DEE6740D2459ACE300B8F9F1 /* Group+CodingData.swift */,
+				DEB0632625136C0300DB50CE /* Group+Endpoint.swift */,
 			);
 			name = "Data Models";
 			sourceTree = "<group>";
@@ -956,7 +947,7 @@
 		DEF63C5D245AC477007E82F9 /* Activity */ = {
 			isa = PBXGroup;
 			children = (
-				DEDD8CBD25025322000EB1F3 /* Activity.storyboard */,
+				DEB0634E25136D5500DB50CE /* Activity.storyboard */,
 				DEF63C60245AC543007E82F9 /* ActivityController.swift */,
 				DE3EB6BF231B2280007EA63C /* ActivityViewController.swift */,
 			);
@@ -1063,15 +1054,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEDA50ED218620E0006C7B27 /* Localizable.strings in Resources */,
+				DEB0635025136D5500DB50CE /* Activity.storyboard in Resources */,
 				DE65DA992370C6BA00022B21 /* Initial.storyboard in Resources */,
 				DE05ADB02370C8260005B0E7 /* University.storyboard in Resources */,
 				DE4FCC0323EF5DB4000B53F4 /* Terms Of Service.rtf in Resources */,
 				DE65DA932370C68200022B21 /* Record Details.storyboard in Resources */,
 				DEA2B3F6246BF8A100F96E28 /* Auditorium.storyboard in Resources */,
 				DE65DA9C2370C6C500022B21 /* Launch Screen.storyboard in Resources */,
-				DEDD8CBF25025322000EB1F3 /* Activity.storyboard in Resources */,
 				DE3EB6B5231B0AE7007EA63C /* About.storyboard in Resources */,
-				DEDD8CC525025355000EB1F3 /* Legal Document.storyboard in Resources */,
+				DEB0634925136D3E00DB50CE /* Legal Document.storyboard in Resources */,
 				DE06999E246D707100F49AF0 /* NoRecordsTableViewCell.xib in Resources */,
 				DE05ADB32370C83F0005B0E7 /* Universities.storyboard in Resources */,
 				DE4FCC0423EF5DB4000B53F4 /* Privacy Policy.rtf in Resources */,
@@ -1079,7 +1070,7 @@
 				DE65DA902370C5BD00022B21 /* Preferences.storyboard in Resources */,
 				C2B5CDFD1EEF0E750066DB30 /* Assets.xcassets in Resources */,
 				DEDA50EA21862091006C7B27 /* InfoPlist.strings in Resources */,
-				DEDD8CC225025346000EB1F3 /* Teacher.storyboard in Resources */,
+				DEB0634425136D2200DB50CE /* Teacher.storyboard in Resources */,
 				DE3EB6B8231B0C03007EA63C /* Date Picker.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1120,10 +1111,9 @@
 				DEF63C61245AC543007E82F9 /* ActivityController.swift in Sources */,
 				DE540EBE2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift in Sources */,
 				DE13EEAC2466B4390011F307 /* EntityViewController.swift in Sources */,
-				DEDF7C9D24A5EF26006B76D8 /* UIApplication.swift in Sources */,
 				C22A2E551FC7644600587463 /* Record.swift in Sources */,
+				DEB0633725136C9C00DB50CE /* UIApplication.swift in Sources */,
 				C2B5CDFB1EEF0E750066DB30 /* Schedule.xcdatamodeld in Sources */,
-				DE0D8FDD24A638FF00EE5775 /* EntityMenuPresenter.swift in Sources */,
 				E44C69EB2296FCED00A0102D /* Date.swift in Sources */,
 				C293559E1FBE246000071719 /* SearchResultsTableViewController.swift in Sources */,
 				DE94500422C1345800550A1C /* TableMessageViewController.swift in Sources */,
@@ -1134,17 +1124,19 @@
 				C250C1831FBCD1CA00C90B53 /* AboutUsTableViewController.swift in Sources */,
 				DEB68197245DEBB7005FA2F0 /* EntityDataController.swift in Sources */,
 				DEBB74BB235CF4C300226C7E /* UniversitiesTableViewController.swift in Sources */,
-				DEDF7C9B24A5EDB7006B76D8 /* SceneDelegate.swift in Sources */,
 				DE78478D240DA16B002C2EDC /* LegalDocumentView.swift in Sources */,
 				DEA2B3E8246AE75500F96E28 /* TeacherViewController.swift in Sources */,
 				DEBB74AD235CE51400226C7E /* SetViewControllerSegue.swift in Sources */,
 				DE3EC2C9245C742500E30536 /* AuditoriumNetworkController.swift in Sources */,
 				DE04D1F32370AA3200A18649 /* UserDefaultsKey.swift in Sources */,
+				DEB0632125136BE700DB50CE /* University+NetworkClient.swift in Sources */,
+				DEB0632725136C0300DB50CE /* Group+Endpoint.swift in Sources */,
 				DE540EBD2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift in Sources */,
 				DE584C54219860E80099415E /* Auditorium.swift in Sources */,
 				DEE576E7226B8B98008F9EB6 /* AuditoriumsTableViewController.swift in Sources */,
 				DE540ECA2215DEC40092FC81 /* ImportForTeacher.swift in Sources */,
 				DE945AC72264D11700143303 /* UniversityEntity+CoreDataClass.swift in Sources */,
+				DEB0635425136DDC00DB50CE /* SceneDelegate.swift in Sources */,
 				DE584C5F21986E740099415E /* AuditoriumEntity+CoreDataClass.swift in Sources */,
 				C280894C1FB8D54A002B5676 /* GroupEntity+CoreDataProperties.swift in Sources */,
 				DE6794352268976E0068087A /* GroupsTableViewController.swift in Sources */,
@@ -1154,14 +1146,12 @@
 				DE7AB85A24671E6D0031E279 /* EntityRepresentable.swift in Sources */,
 				DE8B668521CACE5600C43F81 /* Group+NetworkClient.swift in Sources */,
 				DE540EC22215CDCD0092FC81 /* Teacher+NetworkClient.swift in Sources */,
-				DE945ACE2264D2AA00143303 /* University+NetworkClient.swift in Sources */,
 				DEE674122459B7BC00B8F9F1 /* CoreData.swift in Sources */,
 				DE3EC2CB245C743500E30536 /* AuditoriumViewController.swift in Sources */,
 				DE3EC2C7245C741400E30536 /* AuditoriumLogicController.swift in Sources */,
 				DE540EC42215CF9F0092FC81 /* TeacherDataSource.swift in Sources */,
 				DE7AB85D246720250031E279 /* AuditoriumTableDataController.swift in Sources */,
 				DEBB74AA235CE1AC00226C7E /* Bundle.swift in Sources */,
-				DEDD8CBC250252F5000EB1F3 /* Group+Endpoint.swift in Sources */,
 				DE18942021BD457F00C7F9DB /* ImportForGroup.swift in Sources */,
 				DE28637C245600330036A01F /* NoRecordsTableViewCell.swift in Sources */,
 				DEA2B3E4246AE3C200F96E28 /* TeacherLogicController.swift in Sources */,
@@ -1173,7 +1163,6 @@
 				DE5A7E932219CCBF00CA9A79 /* RecordDetailedTableViewController.swift in Sources */,
 				DE4FCBFD23EF5CF9000B53F4 /* LegalDocumentViewController.swift in Sources */,
 				DE584C5C219869990099415E /* Auditorium+Import.swift in Sources */,
-				DE18D46D24A73C92008EC017 /* MetricKitSubscriber.swift in Sources */,
 				DEE576E4226B7B9E008F9EB6 /* SearchableTableViewController.swift in Sources */,
 				DE7B1D9F2269BCA5003E3028 /* GenericTableViewController.swift in Sources */,
 				DE4FCBFF23EF5D50000B53F4 /* LegalDocument.swift in Sources */,
@@ -1189,11 +1178,13 @@
 				C2B5CDF31EEF0E750066DB30 /* AppDelegate.swift in Sources */,
 				DE04D1F72370B79F00A18649 /* UpdateHelper.swift in Sources */,
 				DEBC46052456F30A00489CAA /* Teacher+CodingData.swift in Sources */,
+				DEB0633D25136CC700DB50CE /* MetricKitSubscriber.swift in Sources */,
 				C2C0E9B01FB8CDA00012FA9C /* Group.swift in Sources */,
 				DE9E3F84235F8FB90067DDFE /* RecordTableViewCell.swift in Sources */,
 				DE40FBA6238D4700001DA3DE /* UIColor.swift in Sources */,
 				DE7AB861246721F70031E279 /* NewAuditoriumTableViewController.swift in Sources */,
 				DE95523822A253D400D70DA4 /* UIBarButtonItem.swift in Sources */,
+				DEB0633325136C7A00DB50CE /* EntityMenuPresenter.swift in Sources */,
 				DE945ACA2264D17C00143303 /* University.swift in Sources */,
 				DEB031722459A72700A5D29D /* EndpointProtocol.swift in Sources */,
 				DE3EB6BA231B11F8007EA63C /* DateFormatter.swift in Sources */,
@@ -1212,7 +1203,7 @@
 				DEB6819D245DF874005FA2F0 /* EntityNetworkController.swift in Sources */,
 				C22A2E591FC7664000587463 /* RecordEntity+CoreDataProperties.swift in Sources */,
 				DEA2B3E6246AE5C200F96E28 /* Teacher+Endpoint.swift in Sources */,
-				DE266D60240C4AAA00C30A4A /* WhatsNewOneSixThree.swift in Sources */,
+				DE266D60240C4AAA00C30A4A /* WhatsNewView.swift in Sources */,
 				DE7AB8562466C3050031E279 /* Auditorium+Endpoint.swift in Sources */,
 				DEA2B3FD246C02BF00F96E28 /* Entity+Manager.swift in Sources */,
 			);
@@ -1335,6 +1326,30 @@
 			name = Auditorium.storyboard;
 			sourceTree = "<group>";
 		};
+		DEB0634225136D2200DB50CE /* Teacher.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DEB0634325136D2200DB50CE /* Base */,
+			);
+			name = Teacher.storyboard;
+			sourceTree = "<group>";
+		};
+		DEB0634725136D3E00DB50CE /* Legal Document.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DEB0634825136D3E00DB50CE /* Base */,
+			);
+			name = "Legal Document.storyboard";
+			sourceTree = "<group>";
+		};
+		DEB0634E25136D5500DB50CE /* Activity.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DEB0634F25136D5500DB50CE /* Base */,
+			);
+			name = Activity.storyboard;
+			sourceTree = "<group>";
+		};
 		DEDA50E821862090006C7B27 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1347,32 +1362,9 @@
 			isa = PBXVariantGroup;
 			children = (
 				DEDA50EC218620E0006C7B27 /* uk */,
+				DECF64EC251C75BE00F1AA33 /* en */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		DEDD8CBD25025322000EB1F3 /* Activity.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DEDD8CBE25025322000EB1F3 /* Base */,
-			);
-			name = Activity.storyboard;
-			sourceTree = "<group>";
-		};
-		DEDD8CC025025346000EB1F3 /* Teacher.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DEDD8CC125025346000EB1F3 /* Base */,
-			);
-			name = Teacher.storyboard;
-			sourceTree = "<group>";
-		};
-		DEDD8CC325025355000EB1F3 /* Legal Document.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DEDD8CC425025355000EB1F3 /* Base */,
-			);
-			name = "Legal Document.storyboard";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1495,14 +1487,14 @@
 			buildSettings = {
 				API_PREFIX = /api/v1;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = M2BF9ZE9NW;
 				INFOPLIST_FILE = "$(SRCROOT)/My University/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 1.7.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.voevodin-yura.Schedule";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SERVER_BASE_URL = "http://localhost:3000";
@@ -1515,14 +1507,14 @@
 			buildSettings = {
 				API_PREFIX = /api/v1;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = M2BF9ZE9NW;
 				INFOPLIST_FILE = "$(SRCROOT)/My University/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 1.7.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.voevodin-yura.Schedule";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SERVER_BASE_URL = "https://my-university.com.ua";
@@ -1541,7 +1533,7 @@
 				DEVELOPMENT_TEAM = M2BF9ZE9NW;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1568,7 +1560,7 @@
 				DEVELOPMENT_TEAM = M2BF9ZE9NW;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

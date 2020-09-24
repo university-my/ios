@@ -11,35 +11,38 @@ import SwiftUI
 
 class AboutUsTableViewController: UITableViewController {
     
+    @IBOutlet weak var privacyPolicyCell: UITableViewCell!
+    @IBOutlet weak var termsOfServiceCell: UITableViewCell!
+    @IBOutlet weak var websiteCell: UITableViewCell!
+    @IBOutlet weak var whatsNewCell: UITableViewCell!
+    @IBOutlet weak var facebookCell: UITableViewCell!
+    @IBOutlet weak var instagramCell: UITableViewCell!
+    @IBOutlet weak var telegramCell: UITableViewCell!
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let section = indexPath.section
-        let row = indexPath.row
+        performAction(at: indexPath)
+    }
+    
+    func performAction(at indexPath: IndexPath) {
+        guard let selectedCell = tableView.cellForRow(at: indexPath) else {
+            return
+        }
+        switch selectedCell {
         
-        if section == 0 {
-            switch row {
-            case 0:
-                performSegue(withIdentifier: "legalDocument", sender: LegalDocument.privacyPolicy)
-                
-            case 1:
-                performSegue(withIdentifier: "legalDocument", sender: LegalDocument.termsOfService)
-                
-            default:
-                break
-            }
+        case privacyPolicyCell:
+            performSegue(withIdentifier: "legalDocument", sender: LegalDocument.privacyPolicy)
             
-        } else if section == 1 {
+        case termsOfServiceCell:
+            performSegue(withIdentifier: "legalDocument", sender: LegalDocument.termsOfService)
+            
+        case websiteCell:
             if let websiteURL = URL(string: "https://my-university.com.ua") {
                 UIApplication.shared.open(websiteURL)
             }
             
-        } else if section == 2 {
-            if let patreonURL = URL(string: "https://www.patreon.com/my_university") {
-                UIApplication.shared.open(patreonURL)
-            }
-            
-        } else if section == 3 {
-            // What's new in version 1.6.3
-            var whatsNewView = WhatsNewOneSixThree()
+        case whatsNewCell:
+            // What's new
+            var whatsNewView = WhatsNewView()
             
             // Continue
             whatsNewView.continueAction = {
@@ -50,23 +53,23 @@ class AboutUsTableViewController: UITableViewController {
             present(hostingController, animated: true)
             tableView.deselectRow(at: indexPath, animated: true)
             
-        } else if section == 4 {
-            switch row {
-            case 0:
-                if let facebookPageURL = URL(string: "https://www.facebook.com/myuniversityservice") {
-                    UIApplication.shared.open(facebookPageURL)
-                }
-            case 1:
-                if let instagramURL = URL(string: "https://www.instagram.com/university.my/") {
-                    UIApplication.shared.open(instagramURL)
-                }
-            case 2:
-                if let telegramURL = URL(string: "https://t.me/university_my") {
-                    UIApplication.shared.open(telegramURL)
-                }
-            default:
-                break
+        case facebookCell:
+            if let facebookPageURL = URL(string: "https://www.facebook.com/myuniversityservice") {
+                UIApplication.shared.open(facebookPageURL)
             }
+            
+        case instagramCell:
+            if let instagramURL = URL(string: "https://www.instagram.com/university.my/") {
+                UIApplication.shared.open(instagramURL)
+            }
+            
+        case telegramCell:
+            if let telegramURL = URL(string: "https://t.me/university_my") {
+                UIApplication.shared.open(telegramURL)
+            }
+            
+        default:
+            break
         }
     }
     
@@ -76,7 +79,7 @@ class AboutUsTableViewController: UITableViewController {
         guard let identifier = segue.identifier else { return }
         
         switch identifier {
-            
+        
         case "legalDocument":
             let vc = segue.destination as? LegalDocumentViewController
             vc?.documentName = sender as? String

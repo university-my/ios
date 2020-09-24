@@ -19,20 +19,20 @@ struct UserData {
         }
     }
 
-    /// For show a controller with information what's new in version 1.6.3
-    static var whatsNew1_6_3: Bool {
+    /// For show a controller with information what's new in version 1.7.2
+    static var whatsNew1_7_2: Bool {
         get {
-            return UserDefaults.standard.bool(forKey: UserDefaultsKey.whatsNew1_6_3)
+            return UserDefaults.standard.bool(forKey: UserDefaultsKey.whatsNew1_7_2)
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.whatsNew1_6_3)
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.whatsNew1_7_2)
         }
     }
 
     /// Register default values of user
     static func registerDefaultValues() {
         let settings: [String: Any] = [
-            UserDefaultsKey.whatsNew1_6_3: true
+            UserDefaultsKey.whatsNew1_7_2: true
         ]
         UserDefaults.standard.register(defaults: settings)
         UserDefaults.standard.synchronize()
