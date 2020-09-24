@@ -39,8 +39,8 @@ class PreferencesTableViewController: UITableViewController {
         let cell = tableView.cellForRow(at: indexPath)
             
         if cell == newFeatures {
-            // What's new in version 1.6.3
-            var whatsNewView = WhatsNewOneSixThree()
+            // What's new
+            var whatsNewView = WhatsNewView()
 
             // Continue
             whatsNewView.continueAction = {

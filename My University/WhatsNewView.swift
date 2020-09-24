@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct WhatsNewOneSixThree: View {
+struct WhatsNewView: View {
 
     var continueAction: (() -> Void)?
 
@@ -121,6 +121,6 @@ struct WhatsNewOneSixThree: View {
 
 struct WhatsNewOneSixThree_Previews: PreviewProvider {
     static var previews: some View {
-        WhatsNewOneSixThree()
+        WhatsNewView()
     }
 }

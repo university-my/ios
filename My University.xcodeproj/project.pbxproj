@@ -37,7 +37,7 @@
 		DE18941C21BC3A3900C7F9DB /* GroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941B21BC3A3900C7F9DB /* GroupTableViewController.swift */; };
 		DE18942021BD457F00C7F9DB /* ImportForGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941F21BD457F00C7F9DB /* ImportForGroup.swift */; };
 		DE18942221BD45E600C7F9DB /* ImportForAuditorium.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18942121BD45E600C7F9DB /* ImportForAuditorium.swift */; };
-		DE266D60240C4AAA00C30A4A /* WhatsNewOneSixThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE266D5F240C4AAA00C30A4A /* WhatsNewOneSixThree.swift */; };
+		DE266D60240C4AAA00C30A4A /* WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE266D5F240C4AAA00C30A4A /* WhatsNewView.swift */; };
 		DE2863782455F75B0036A01F /* UniversitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2863772455F75B0036A01F /* UniversitiesViewController.swift */; };
 		DE28637C245600330036A01F /* NoRecordsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE28637A245600330036A01F /* NoRecordsTableViewCell.swift */; };
 		DE3EB6B5231B0AE7007EA63C /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3EB6B3231B0AE7007EA63C /* About.storyboard */; };
@@ -197,7 +197,7 @@
 		DE18941B21BC3A3900C7F9DB /* GroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTableViewController.swift; sourceTree = "<group>"; };
 		DE18941F21BD457F00C7F9DB /* ImportForGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportForGroup.swift; sourceTree = "<group>"; };
 		DE18942121BD45E600C7F9DB /* ImportForAuditorium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportForAuditorium.swift; sourceTree = "<group>"; };
-		DE266D5F240C4AAA00C30A4A /* WhatsNewOneSixThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewOneSixThree.swift; sourceTree = "<group>"; };
+		DE266D5F240C4AAA00C30A4A /* WhatsNewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewView.swift; sourceTree = "<group>"; };
 		DE266D61240C607A00C30A4A /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = "uk.lproj/Record Details.strings"; sourceTree = "<group>"; };
 		DE2863772455F75B0036A01F /* UniversitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversitiesViewController.swift; sourceTree = "<group>"; };
 		DE28637A245600330036A01F /* NoRecordsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoRecordsTableViewCell.swift; sourceTree = "<group>"; };
@@ -295,6 +295,7 @@
 		DEBB74AC235CE51400226C7E /* SetViewControllerSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetViewControllerSegue.swift; sourceTree = "<group>"; };
 		DEBB74BA235CF4C300226C7E /* UniversitiesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversitiesTableViewController.swift; sourceTree = "<group>"; };
 		DEBC46042456F30A00489CAA /* Teacher+CodingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Teacher+CodingData.swift"; sourceTree = "<group>"; };
+		DECF64EC251C75BE00F1AA33 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DEDA50E921862090006C7B27 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DEDA50EC218620E0006C7B27 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DEE576E3226B7B9E008F9EB6 /* SearchableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableTableViewController.swift; sourceTree = "<group>"; };
@@ -545,7 +546,7 @@
 		DE266D5E240C4A7800C30A4A /* Whats New */ = {
 			isa = PBXGroup;
 			children = (
-				DE266D5F240C4AAA00C30A4A /* WhatsNewOneSixThree.swift */,
+				DE266D5F240C4AAA00C30A4A /* WhatsNewView.swift */,
 			);
 			name = "Whats New";
 			sourceTree = "<group>";
@@ -1202,7 +1203,7 @@
 				DEB6819D245DF874005FA2F0 /* EntityNetworkController.swift in Sources */,
 				C22A2E591FC7664000587463 /* RecordEntity+CoreDataProperties.swift in Sources */,
 				DEA2B3E6246AE5C200F96E28 /* Teacher+Endpoint.swift in Sources */,
-				DE266D60240C4AAA00C30A4A /* WhatsNewOneSixThree.swift in Sources */,
+				DE266D60240C4AAA00C30A4A /* WhatsNewView.swift in Sources */,
 				DE7AB8562466C3050031E279 /* Auditorium+Endpoint.swift in Sources */,
 				DEA2B3FD246C02BF00F96E28 /* Entity+Manager.swift in Sources */,
 			);
@@ -1361,6 +1362,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				DEDA50EC218620E0006C7B27 /* uk */,
+				DECF64EC251C75BE00F1AA33 /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
