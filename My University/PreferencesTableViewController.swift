@@ -33,16 +33,12 @@ class PreferencesTableViewController: UITableViewController {
     
     // MARK: - Table view delegate
     
-    @IBOutlet weak var patreonCell: UITableViewCell!
     @IBOutlet weak var newFeatures: UITableViewCell!
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
             
-        if cell == patreonCell, let patreonURL = URL(string: "https://www.patreon.com/my_university") {
-            UIApplication.shared.open(patreonURL)
-            
-        } else if cell == newFeatures {
+        if cell == newFeatures {
             // What's new in version 1.6.3
             var whatsNewView = WhatsNewOneSixThree()
 

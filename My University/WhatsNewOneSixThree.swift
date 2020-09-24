@@ -25,19 +25,20 @@ struct WhatsNewOneSixThree: View {
 
             // What's new
             VStack() {
-                Text("Check out what's new in this version:").font(.headline)
+                Text("Check out what's new in this version:").font(.headline).padding()
+                
                 VStack(alignment: .leading, spacing: 5) {
 
-                    // Privacy Policy
-                    privacyPolicy()
+                    // iOS 14
+                    iOS14()
                     Divider()
 
-                    // Terms of Service
-                    termsOfService()
+                    // New menus
+                    iOS14NewMenus()
                     Divider()
-
-                    // Patreon
-                    patreon()
+                    
+                    // New calendar
+                    iOS14NewCalendar()
                     Divider()
 
                 }.padding(.horizontal, 20.0)
@@ -50,6 +51,27 @@ struct WhatsNewOneSixThree: View {
                 ContinueButtonContent()
             }.padding()
         }
+    }
+    
+    fileprivate func iOS14() -> some View {
+        HStack(alignment: .center, spacing: 10) {
+            Text("whats_new.support_iOS_14").bold()
+        }
+        .frame(height: 50)
+    }
+    
+    fileprivate func iOS14NewMenus() -> some View {
+        HStack(alignment: .center, spacing: 10) {
+            Text("whats_new.new_menus").bold()
+        }
+        .frame(height: 50)
+    }
+    
+    fileprivate func iOS14NewCalendar() -> some View {
+        HStack(alignment: .center, spacing: 10) {
+            Text("whats_new.new_calendar").bold()
+        }
+        .frame(height: 50)
     }
 
     // MARK: - Privacy Policy
@@ -76,7 +98,7 @@ struct WhatsNewOneSixThree: View {
 
     // MARK: - Terms of Service
 
-    @State var termsOfServideModal: Bool = false
+    @State var termsOfServiceModal: Bool = false
 
     fileprivate func termsOfService() -> some View {
         HStack(alignment: .center, spacing: 10) {
@@ -85,30 +107,14 @@ struct WhatsNewOneSixThree: View {
             Image(systemName: "info.circle").foregroundColor(.blue)
         }
         .frame(height: 50)
-        .sheet(isPresented: $termsOfServideModal) {
+        .sheet(isPresented: $termsOfServiceModal) {
             LegalDocumentView(documentName: LegalDocument.termsOfService) {
                 // Continue
-                self.termsOfServideModal = false
+                self.termsOfServiceModal = false
             }
         }
         .gesture(TapGesture().onEnded { _ in
-            self.termsOfServideModal = true
-        })
-    }
-
-    // MARK: - Patreon
-
-    fileprivate func patreon() -> some View {
-        HStack(alignment: .center, spacing: 10) {
-            Text("Support on ") + Text("Patreon").bold()
-            Spacer()
-            Image(systemName: "info.circle").foregroundColor(.blue)
-        }
-        .frame(height: 50)
-        .gesture(TapGesture().onEnded { _ in
-            if let parteonURL = URL(string: "https://www.patreon.com/my_university") {
-                UIApplication.shared.open(parteonURL)
-            }
+            self.termsOfServiceModal = true
         })
     }
 }

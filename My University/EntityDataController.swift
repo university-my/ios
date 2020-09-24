@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import os
 
 protocol EntityDataControllerDelegate: class {
     
@@ -17,6 +18,8 @@ protocol EntityDataControllerDelegate: class {
 
 /// Base class for data controllers of Auditorium, Group, Teacher
 class EntityDataController: EntityDataControllerProtocol {
+    
+    private let logger = Logger(subsystem: Bundle.identifier, category: "EntityDataController")
     
     weak var delegate: EntityDataControllerDelegate?
     
@@ -43,7 +46,7 @@ class EntityDataController: EntityDataControllerProtocol {
         do {
             try fetchedResultsController?.performFetch()
         } catch {
-            print("Error in the fetched results controller: \(error).")
+            logger.error("Error in the fetched results controller: \(error.localizedDescription).")
         }
     }
     

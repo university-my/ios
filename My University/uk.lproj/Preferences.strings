@@ -1,9 +1,6 @@
 /* Class = "UITabBarItem"; title = "Information"; ObjectID = "a3t-LJ-F3J"; */
 "a3t-LJ-F3J.title" = "Інформація";
 
-/* Class = "UITableViewSection"; headerTitle = "Patreon"; ObjectID = "CFL-VD-Yi0"; */
-"CFL-VD-Yi0.headerTitle" = "Patreon";
-
 /* Class = "UITableViewSection"; headerTitle = "Legal documents"; ObjectID = "h35-66-BkH"; */
 "h35-66-BkH.headerTitle" = "Документи";
 
@@ -21,7 +18,4 @@
 
 /* Class = "UILabel"; text = "Check out what's new"; ObjectID = "uC6-0r-67z"; */
 "uC6-0r-67z.text" = "Перевірте, що нового";
-
-/* Class = "UILabel"; text = "Support on Patreon"; ObjectID = "w9Z-7r-Jb3"; */
-"w9Z-7r-Jb3.text" = "Підтримати на Patreon";
 

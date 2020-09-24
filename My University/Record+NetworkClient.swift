@@ -25,11 +25,11 @@ extension Record {
         
         // MARK: - Download Records with Group ID
         
-        func downloadRecords(groupID: Int64, date: Date, unversityURL: String, _ completion: @escaping ((_ error: Error?) -> ())) {
+        func downloadRecords(groupID: Int64, date: Date, universityURL: String, _ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
             let dateString = DateFormatter.short.string(from: date)
-            let urlString = "\(Settings.shared.apiURL)/universities/\(unversityURL)/groups/\(groupID)/records?pair_date=\(dateString)"
+            let urlString = "\(Settings.shared.apiURL)/universities/\(universityURL)/groups/\(groupID)/records?pair_date=\(dateString)"
             guard let url = URL(string: urlString) else {
                 completionHandler?(nil)
                 return
@@ -47,11 +47,11 @@ extension Record {
         
         // MARK: - Download Records with Auditorium ID
         
-        func downloadRecords(auditoriumID: Int64, date: Date, unversityURL: String, _ completion: @escaping ((_ error: Error?) -> ())) {
+        func downloadRecords(auditoriumID: Int64, date: Date, universityURL: String, _ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
             let dateString = DateFormatter.short.string(from: date)
-            let urlString = "\(Settings.shared.apiURL)/universities/\(unversityURL)/auditoriums/\(auditoriumID)/records?pair_date=\(dateString)"
+            let urlString = "\(Settings.shared.apiURL)/universities/\(universityURL)/auditoriums/\(auditoriumID)/records?pair_date=\(dateString)"
             guard let url = URL(string: urlString) else {
                 completionHandler?(nil)
                 return
@@ -69,17 +69,16 @@ extension Record {
         
         // MARK: - Download Records with Teacher ID
         
-        func downloadRecords(teacherID: Int64, date: Date, unversityURL: String, _ completion: @escaping ((_ error: Error?) -> ())) {
+        func downloadRecords(teacherID: Int64, date: Date, universityURL: String, _ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
             let dateString = DateFormatter.short.string(from: date)
-            let urlString = "\(Settings.shared.apiURL)/universities/\(unversityURL)/teachers/\(teacherID)/records?pair_date=\(dateString)"
+            let urlString = "\(Settings.shared.apiURL)/universities/\(universityURL)/teachers/\(teacherID)/records?pair_date=\(dateString)"
             guard let url = URL(string: urlString) else {
                 completionHandler?(nil)
                 return
             }
             let task = URLSession.shared.downloadTask(with: url) { (url, response, error) in
-                
                 if let error = error {
                     self.completionHandler?(error)
                 } else {
@@ -100,7 +99,7 @@ extension Record {
                      */
                     try FileManager.default.removeItem(at: cacheFile)
                 } catch {
-                    print(error)
+                    
                 }
                 do {
                     try FileManager.default.moveItem(at: localURL, to: cacheFile)

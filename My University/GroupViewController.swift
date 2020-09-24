@@ -41,6 +41,8 @@ class GroupViewController: EntityViewController {
         
         // Data
         logic.fetchData(for: entityID)
+        
+        configureMenu()
     }
     
     // MARK: - Group
@@ -92,12 +94,29 @@ class GroupViewController: EntityViewController {
     
     // MARK: - Menu
     
-    @IBAction func menu(_ sender: Any) {
-        guard let url = logic.shareURL() else {
-            return
+    @IBOutlet weak var menuBarButtonItem: UIBarButtonItem!
+    
+    private var menuPresenter: EntityMenuPresenter!
+    
+    func configureMenu() {
+        let config = EntityMenuPresenter.Config(item: menuBarButtonItem) {
+            if let url = self.logic.shareURL() {
+                self.share(url)
+            }
+            
+        } favoritesAction: {
+            self.logic.dataController.toggleFavorites()
+            self.menuPresenter.updateMenu(isFavorite: self.isFavorite)
+            
+        } universityAction: {
+            self.performSegue(withIdentifier: "setUniversity", sender: nil)
         }
-        let favoritesAction = favorites(for: group, data: logic.dataController)
-        showMenu(shareURL: url, favorites: favoritesAction)
+        menuPresenter = EntityMenuPresenter(config: config)
+        menuPresenter.updateMenu(isFavorite: isFavorite)
+    }
+    
+    var isFavorite: Bool {
+        group?.isFavorite ?? false
     }
     
     // MARK: - Date

@@ -8,16 +8,19 @@
 
 import CoreData
 import UIKit
+import os
 
 class AuditoriumDataSource: NSObject {
-
+    
+    private let logger = Logger(subsystem: Bundle.identifier, category: "AuditoriumDataSource")
+    
     // MARK: - Favorites
-
-  private var favoritesImageView: UIImageView {
-    let image = UIImage(systemName: "star.fill")
-    let imageView = UIImageView(image: image)
-    return imageView
-  }
+    
+    private var favoritesImageView: UIImageView {
+        let image = UIImage(systemName: "star.fill")
+        let imageView = UIImageView(image: image)
+        return imageView
+    }
     
     // MARK: - Init
     
@@ -70,7 +73,7 @@ class AuditoriumDataSource: NSObject {
             try fetchedResultsController?.performFetch()
             collectNamesOfSections()
         } catch {
-            print("Error in the fetched results controller: \(error).")
+            logger.error("Error in the fetched results controller: \(error.localizedDescription).")
         }
     }
     
@@ -128,7 +131,7 @@ extension AuditoriumDataSource: UITableViewDataSource {
         // Configure cell
         if let auditorium = fetchedResultsController?.object(at: indexPath) {
             cell.textLabel?.text = auditorium.name
-
+            
             // Is favorites
             if auditorium.isFavorite {
                 cell.accessoryView = favoritesImageView

@@ -30,7 +30,9 @@ class DatePickerViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        datePicker.preferredDatePickerStyle = .inline
+        datePicker.datePickerMode = .date
         datePicker.date = pairDate
         updateDateCell()
     }
