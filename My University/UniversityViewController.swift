@@ -324,9 +324,9 @@ class UniversityViewController: GenericTableViewController {
     // MARK: - What's new
 
     private func checkWhatsNew() {
-        if UserData.whatsNew1_6_3 {
-            // What's new in version 1.6.3
-            var whatsNewView = WhatsNewOneSixThree()
+        if UserData.whatsNew1_7_2 {
+            // What's new
+            var whatsNewView = WhatsNewView()
 
             // Continue
             whatsNewView.continueAction = {
@@ -337,7 +337,7 @@ class UniversityViewController: GenericTableViewController {
             present(hostingController, animated: true)
 
             // Present only once
-            UserData.whatsNew1_6_3 = false
+            UserData.whatsNew1_7_2 = false
         }
     }
     

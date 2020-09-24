@@ -41,8 +41,8 @@ class AboutUsTableViewController: UITableViewController {
             }
             
         case whatsNewCell:
-            // What's new in version 1.6.3
-            var whatsNewView = WhatsNewOneSixThree()
+            // What's new
+            var whatsNewView = WhatsNewView()
             
             // Continue
             whatsNewView.continueAction = {
