@@ -144,10 +144,10 @@
                         <segue destination="eav-eo-NTI" kind="show" identifier="showGroups" id="BvS-GR-DzH"/>
                         <segue destination="P1W-Vf-SQ3" kind="show" identifier="showTeachers" id="TzT-2s-pyY"/>
                         <segue destination="W7b-zz-Rsa" kind="show" identifier="showAuditoriums" id="7in-AW-ArM"/>
-                        <segue destination="Plu-5u-lBa" kind="custom" identifier="changeUniversity" customClass="SetViewControllerSegue" customModule="My_University" customModuleProvider="target" id="QKM-8e-pVc"/>
-                        <segue destination="FBa-ki-ZHQ" kind="custom" identifier="groupDetails" customClass="SetViewControllerSegue" customModule="My_University" customModuleProvider="target" id="gYO-XM-ELK"/>
-                        <segue destination="vS9-3j-7La" kind="custom" identifier="teacherDetails" customClass="SetViewControllerSegue" customModule="My_University" customModuleProvider="target" id="u8g-7O-vIp"/>
-                        <segue destination="UaB-WI-CTA" kind="custom" identifier="auditoriumDetails" customClass="SetViewControllerSegue" customModule="My_University" customModuleProvider="target" id="8fl-xx-wzX"/>
+                        <segue destination="Plu-5u-lBa" kind="presentation" identifier="changeUniversity" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="QKM-8e-pVc"/>
+                        <segue destination="FBa-ki-ZHQ" kind="presentation" identifier="groupDetails" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="gYO-XM-ELK"/>
+                        <segue destination="vS9-3j-7La" kind="presentation" identifier="teacherDetails" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="u8g-7O-vIp"/>
+                        <segue destination="UaB-WI-CTA" kind="presentation" identifier="auditoriumDetails" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="8fl-xx-wzX"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NeF-49-RUJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -201,7 +201,7 @@
                     </refreshControl>
                     <connections>
                         <outlet property="statusButton" destination="Y4L-vb-mq3" id="MTo-y0-l4G"/>
-                        <segue destination="FBa-ki-ZHQ" kind="custom" identifier="groupDetails" customClass="SetViewControllerSegue" customModule="My_University" customModuleProvider="target" id="mOc-P4-gkQ"/>
+                        <segue destination="FBa-ki-ZHQ" kind="presentation" identifier="groupDetails" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="mOc-P4-gkQ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xIU-zu-olT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -256,7 +256,7 @@
                     </refreshControl>
                     <connections>
                         <outlet property="statusButton" destination="9cp-XM-mpF" id="Z2f-hC-Qwa"/>
-                        <segue destination="UaB-WI-CTA" kind="custom" identifier="auditoriumDetails" customClass="SetViewControllerSegue" customModule="My_University" customModuleProvider="target" id="1gW-8I-Z99"/>
+                        <segue destination="UaB-WI-CTA" kind="presentation" identifier="auditoriumDetails" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="1gW-8I-Z99"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C3D-s7-HAL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -304,7 +304,7 @@
                     </refreshControl>
                     <connections>
                         <outlet property="statusButton" destination="sCl-yN-HQc" id="69C-Il-ybY"/>
-                        <segue destination="vS9-3j-7La" kind="custom" identifier="teacherDetails" customClass="SetViewControllerSegue" customModule="My_University" customModuleProvider="target" id="MQi-Me-RO4"/>
+                        <segue destination="vS9-3j-7La" kind="presentation" identifier="teacherDetails" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="MQi-Me-RO4"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zfu-YY-trE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -429,9 +429,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="8fl-xx-wzX"/>
-        <segue reference="u8g-7O-vIp"/>
-        <segue reference="gYO-XM-ELK"/>
+        <segue reference="1gW-8I-Z99"/>
+        <segue reference="MQi-Me-RO4"/>
+        <segue reference="mOc-P4-gkQ"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="briefcase" catalog="system" width="128" height="102"/>

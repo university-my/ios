@@ -52,6 +52,8 @@
 		DE40FBA6238D4700001DA3DE /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE40FBA5238D4700001DA3DE /* UIColor.swift */; };
 		DE4AA07121A5DF0500E06FEA /* AuditoriumDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AA07021A5DF0500E06FEA /* AuditoriumDataSource.swift */; };
 		DE4AA07321A5E31900E06FEA /* GroupsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AA07221A5E31900E06FEA /* GroupsDataSource.swift */; };
+		DE4CD2DB252216BA00745055 /* Legal Document.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE4CD2D9252216BA00745055 /* Legal Document.storyboard */; };
+		DE4CD2E2252216E500745055 /* Record Details.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE4CD2E0252216E500745055 /* Record Details.storyboard */; };
 		DE4FCBFD23EF5CF9000B53F4 /* LegalDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4FCBFC23EF5CF9000B53F4 /* LegalDocumentViewController.swift */; };
 		DE4FCBFF23EF5D50000B53F4 /* LegalDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4FCBFE23EF5D50000B53F4 /* LegalDocument.swift */; };
 		DE4FCC0323EF5DB4000B53F4 /* Terms Of Service.rtf in Resources */ = {isa = PBXBuildFile; fileRef = DE4FCC0123EF5DB4000B53F4 /* Terms Of Service.rtf */; };
@@ -69,9 +71,7 @@
 		DE584C6021986E740099415E /* AuditoriumEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE584C5E21986E740099415E /* AuditoriumEntity+CoreDataProperties.swift */; };
 		DE5A7E932219CCBF00CA9A79 /* RecordDetailedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A7E922219CCBF00CA9A79 /* RecordDetailedTableViewController.swift */; };
 		DE65DA902370C5BD00022B21 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE65DA8E2370C5BD00022B21 /* Preferences.storyboard */; };
-		DE65DA932370C68200022B21 /* Record Details.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE65DA912370C68200022B21 /* Record Details.storyboard */; };
 		DE65DA992370C6BA00022B21 /* Initial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE65DA972370C6BA00022B21 /* Initial.storyboard */; };
-		DE65DA9C2370C6C500022B21 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE65DA9A2370C6C500022B21 /* Launch Screen.storyboard */; };
 		DE6794352268976E0068087A /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6794342268976E0068087A /* GroupsTableViewController.swift */; };
 		DE78478B240D9FBC002C2EDC /* UIStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78478A240D9FBC002C2EDC /* UIStoryboard.swift */; };
 		DE78478D240DA16B002C2EDC /* LegalDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78478C240DA16B002C2EDC /* LegalDocumentView.swift */; };
@@ -97,7 +97,6 @@
 		DE945ACA2264D17C00143303 /* University.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE945AC92264D17C00143303 /* University.swift */; };
 		DE945ACC2264D27B00143303 /* University+Import.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE945ACB2264D27B00143303 /* University+Import.swift */; };
 		DE945AD22264D71B00143303 /* UniversitiesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE945AD12264D71B00143303 /* UniversitiesDataSource.swift */; };
-		DE95523822A253D400D70DA4 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE95523722A253D400D70DA4 /* UIBarButtonItem.swift */; };
 		DE999ABE227C54160018F725 /* UniversityDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE999ABD227C54160018F725 /* UniversityDataSource.swift */; };
 		DE9E3F84235F8FB90067DDFE /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9E3F83235F8FB90067DDFE /* RecordTableViewCell.swift */; };
 		DEA2B3E4246AE3C200F96E28 /* TeacherLogicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2B3E3246AE3C200F96E28 /* TeacherLogicController.swift */; };
@@ -119,21 +118,19 @@
 		DEB0632125136BE700DB50CE /* University+NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0632025136BE700DB50CE /* University+NetworkClient.swift */; };
 		DEB0632725136C0300DB50CE /* Group+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0632625136C0300DB50CE /* Group+Endpoint.swift */; };
 		DEB0633325136C7A00DB50CE /* EntityMenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0633225136C7900DB50CE /* EntityMenuPresenter.swift */; };
-		DEB0633725136C9C00DB50CE /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0633625136C9C00DB50CE /* UIApplication.swift */; };
 		DEB0633D25136CC700DB50CE /* MetricKitSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0633C25136CC700DB50CE /* MetricKitSubscriber.swift */; };
 		DEB0634425136D2200DB50CE /* Teacher.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEB0634225136D2200DB50CE /* Teacher.storyboard */; };
-		DEB0634925136D3E00DB50CE /* Legal Document.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEB0634725136D3E00DB50CE /* Legal Document.storyboard */; };
 		DEB0635025136D5500DB50CE /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEB0634E25136D5500DB50CE /* Activity.storyboard */; };
 		DEB0635425136DDC00DB50CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0635325136DDC00DB50CE /* SceneDelegate.swift */; };
 		DEB68197245DEBB7005FA2F0 /* EntityDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB68196245DEBB7005FA2F0 /* EntityDataController.swift */; };
 		DEB68199245DEF68005FA2F0 /* EntityDataControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB68198245DEF68005FA2F0 /* EntityDataControllerProtocol.swift */; };
 		DEB6819D245DF874005FA2F0 /* EntityNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB6819C245DF874005FA2F0 /* EntityNetworkController.swift */; };
 		DEBB74AA235CE1AC00226C7E /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBB74A9235CE1AC00226C7E /* Bundle.swift */; };
-		DEBB74AD235CE51400226C7E /* SetViewControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBB74AC235CE51400226C7E /* SetViewControllerSegue.swift */; };
 		DEBB74BB235CF4C300226C7E /* UniversitiesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBB74BA235CF4C300226C7E /* UniversitiesTableViewController.swift */; };
 		DEBC46052456F30A00489CAA /* Teacher+CodingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBC46042456F30A00489CAA /* Teacher+CodingData.swift */; };
 		DEDA50EA21862091006C7B27 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50E821862090006C7B27 /* InfoPlist.strings */; };
 		DEDA50ED218620E0006C7B27 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50EB218620E0006C7B27 /* Localizable.strings */; };
+		DEE2E9AA25221D8800A18810 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE4CD2D02522168F00745055 /* Launch Screen.storyboard */; };
 		DEE576E4226B7B9E008F9EB6 /* SearchableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE576E3226B7B9E008F9EB6 /* SearchableTableViewController.swift */; };
 		DEE576E7226B8B98008F9EB6 /* AuditoriumsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE576E6226B8B98008F9EB6 /* AuditoriumsTableViewController.swift */; };
 		DEE6740E2459ACE300B8F9F1 /* Group+CodingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE6740D2459ACE300B8F9F1 /* Group+CodingData.swift */; };
@@ -198,7 +195,6 @@
 		DE18941F21BD457F00C7F9DB /* ImportForGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportForGroup.swift; sourceTree = "<group>"; };
 		DE18942121BD45E600C7F9DB /* ImportForAuditorium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportForAuditorium.swift; sourceTree = "<group>"; };
 		DE266D5F240C4AAA00C30A4A /* WhatsNewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewView.swift; sourceTree = "<group>"; };
-		DE266D61240C607A00C30A4A /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = "uk.lproj/Record Details.strings"; sourceTree = "<group>"; };
 		DE2863772455F75B0036A01F /* UniversitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversitiesViewController.swift; sourceTree = "<group>"; };
 		DE28637A245600330036A01F /* NoRecordsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoRecordsTableViewCell.swift; sourceTree = "<group>"; };
 		DE3EB6B4231B0AE7007EA63C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/About.storyboard; sourceTree = "<group>"; };
@@ -213,6 +209,9 @@
 		DE40FBA5238D4700001DA3DE /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		DE4AA07021A5DF0500E06FEA /* AuditoriumDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditoriumDataSource.swift; sourceTree = "<group>"; };
 		DE4AA07221A5E31900E06FEA /* GroupsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsDataSource.swift; sourceTree = "<group>"; };
+		DE4CD2D12522168F00745055 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Launch Screen.storyboard"; sourceTree = "<group>"; };
+		DE4CD2DA252216BA00745055 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Legal Document.storyboard"; sourceTree = "<group>"; };
+		DE4CD2E1252216E500745055 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Record Details.storyboard"; sourceTree = "<group>"; };
 		DE4FCBFC23EF5CF9000B53F4 /* LegalDocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDocumentViewController.swift; sourceTree = "<group>"; };
 		DE4FCBFE23EF5D50000B53F4 /* LegalDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDocument.swift; sourceTree = "<group>"; };
 		DE4FCC0123EF5DB4000B53F4 /* Terms Of Service.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "Terms Of Service.rtf"; sourceTree = "<group>"; };
@@ -231,9 +230,7 @@
 		DE584C5E21986E740099415E /* AuditoriumEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuditoriumEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DE5A7E922219CCBF00CA9A79 /* RecordDetailedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailedTableViewController.swift; sourceTree = "<group>"; };
 		DE65DA8F2370C5BD00022B21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Preferences.storyboard; sourceTree = "<group>"; };
-		DE65DA922370C68200022B21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Record Details.storyboard"; sourceTree = "<group>"; };
 		DE65DA982370C6BA00022B21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Initial.storyboard; sourceTree = "<group>"; };
-		DE65DA9B2370C6C500022B21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Launch Screen.storyboard"; sourceTree = "<group>"; };
 		DE6794342268976E0068087A /* GroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
 		DE78478A240D9FBC002C2EDC /* UIStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboard.swift; sourceTree = "<group>"; };
 		DE78478C240DA16B002C2EDC /* LegalDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDocumentView.swift; sourceTree = "<group>"; };
@@ -258,7 +255,6 @@
 		DE945AC92264D17C00143303 /* University.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = University.swift; sourceTree = "<group>"; };
 		DE945ACB2264D27B00143303 /* University+Import.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "University+Import.swift"; sourceTree = "<group>"; };
 		DE945AD12264D71B00143303 /* UniversitiesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversitiesDataSource.swift; sourceTree = "<group>"; };
-		DE95523722A253D400D70DA4 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		DE999ABD227C54160018F725 /* UniversityDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityDataSource.swift; sourceTree = "<group>"; };
 		DE9E3F83235F8FB90067DDFE /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 		DEA2B3E3246AE3C200F96E28 /* TeacherLogicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherLogicController.swift; sourceTree = "<group>"; };
@@ -282,17 +278,14 @@
 		DEB0632025136BE700DB50CE /* University+NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "University+NetworkClient.swift"; sourceTree = "<group>"; };
 		DEB0632625136C0300DB50CE /* Group+Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Group+Endpoint.swift"; sourceTree = "<group>"; };
 		DEB0633225136C7900DB50CE /* EntityMenuPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityMenuPresenter.swift; sourceTree = "<group>"; };
-		DEB0633625136C9C00DB50CE /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		DEB0633C25136CC700DB50CE /* MetricKitSubscriber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetricKitSubscriber.swift; sourceTree = "<group>"; };
 		DEB0634325136D2200DB50CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Teacher.storyboard; sourceTree = "<group>"; };
-		DEB0634825136D3E00DB50CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Legal Document.storyboard"; sourceTree = "<group>"; };
 		DEB0634F25136D5500DB50CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Activity.storyboard; sourceTree = "<group>"; };
 		DEB0635325136DDC00DB50CE /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DEB68196245DEBB7005FA2F0 /* EntityDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDataController.swift; sourceTree = "<group>"; };
 		DEB68198245DEF68005FA2F0 /* EntityDataControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDataControllerProtocol.swift; sourceTree = "<group>"; };
 		DEB6819C245DF874005FA2F0 /* EntityNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityNetworkController.swift; sourceTree = "<group>"; };
 		DEBB74A9235CE1AC00226C7E /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
-		DEBB74AC235CE51400226C7E /* SetViewControllerSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetViewControllerSegue.swift; sourceTree = "<group>"; };
 		DEBB74BA235CF4C300226C7E /* UniversitiesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversitiesTableViewController.swift; sourceTree = "<group>"; };
 		DEBC46042456F30A00489CAA /* Teacher+CodingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Teacher+CodingData.swift"; sourceTree = "<group>"; };
 		DECF64EC251C75BE00F1AA33 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -370,35 +363,18 @@
 			isa = PBXGroup;
 			children = (
 				C2B5CDFC1EEF0E750066DB30 /* Assets.xcassets */,
-				DE472C7321B84313003AE86D /* About */,
-				DEF63C5D245AC477007E82F9 /* Activity */,
-				DE3EC2C3245C73E600E30536 /* Auditorium */,
-				DEE576E5226B7E37008F9EB6 /* Auditoriums */,
 				C2B5CE2B1EF06E3A0066DB30 /* Core Data */,
 				C2C0E9AE1FB8CD870012FA9C /* Data Models */,
-				DE11A3AE230EA976005131E8 /* Date Picker */,
 				DEB68195245DEBA2005FA2F0 /* Entity */,
 				DE3B565E21823A7F008A77D1 /* Extensions */,
-				DEB031682459880800A5D29D /* Group */,
-				DE6794332268975F0068087A /* Groups */,
 				C2C76A2C200243BD00BFF3D4 /* Import */,
 				DEA2B3EE246AF5DF00F96E28 /* Launch */,
-				DE6B249723EF5C47008ED1F1 /* Legal */,
+				DE4CD2E52522170C00745055 /* Modules */,
 				C29FF4CE2002382500B50299 /* Networking */,
-				DE017F9323622AF80046D3ED /* Preferences */,
 				DEB031652459808F00A5D29D /* Protocols */,
-				DE3DC046235E468F007805DA /* Record Details */,
-				DE131FE02456CA8B009D09EA /* Records Data Source */,
-				DE4AA06F21A5DEDC00E06FEA /* Search */,
 				C2B5CE2A1EF06E0E0066DB30 /* Supporting Files */,
-				DE94500222C1343800550A1C /* Table Message */,
-				DE79DC98246AA61F00C8C0EF /* Teacher */,
-				DE13AF7D226A115E009DF581 /* Teachers */,
 				DEE576E1226B7AD1008F9EB6 /* UI Subclasses */,
-				DE5FAE072263B36A00333121 /* Universities */,
-				DEBB74B5235CF34D00226C7E /* University */,
-				E48FD402231DB2080049438F /* UserDefaults */,
-				DE266D5E240C4A7800C30A4A /* Whats New */,
+				E48FD402231DB2080049438F /* User Defaults */,
 			);
 			path = "My University";
 			sourceTree = "<group>";
@@ -566,8 +542,6 @@
 				DEBB74A9235CE1AC00226C7E /* Bundle.swift */,
 				E44C69EA2296FCED00A0102D /* Date.swift */,
 				DE3EB6B9231B11F8007EA63C /* DateFormatter.swift */,
-				DEB0633625136C9C00DB50CE /* UIApplication.swift */,
-				DE95523722A253D400D70DA4 /* UIBarButtonItem.swift */,
 				DE40FBA5238D4700001DA3DE /* UIColor.swift */,
 				DE78478A240D9FBC002C2EDC /* UIStoryboard.swift */,
 				DEA2B3F7246BFB6D00F96E28 /* UIViewController.swift */,
@@ -578,8 +552,8 @@
 		DE3DC046235E468F007805DA /* Record Details */ = {
 			isa = PBXGroup;
 			children = (
-				DE65DA912370C68200022B21 /* Record Details.storyboard */,
 				DE5A7E922219CCBF00CA9A79 /* RecordDetailedTableViewController.swift */,
+				DE4CD2E0252216E500745055 /* Record Details.storyboard */,
 			);
 			name = "Record Details";
 			sourceTree = "<group>";
@@ -625,6 +599,31 @@
 			name = Search;
 			sourceTree = "<group>";
 		};
+		DE4CD2E52522170C00745055 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				DE472C7321B84313003AE86D /* About */,
+				DEF63C5D245AC477007E82F9 /* Activity */,
+				DE3EC2C3245C73E600E30536 /* Auditorium */,
+				DEE576E5226B7E37008F9EB6 /* Auditoriums */,
+				DE11A3AE230EA976005131E8 /* Date Picker */,
+				DEB031682459880800A5D29D /* Group */,
+				DE6794332268975F0068087A /* Groups */,
+				DE6B249723EF5C47008ED1F1 /* Legal Documents */,
+				DE017F9323622AF80046D3ED /* Preferences */,
+				DE3DC046235E468F007805DA /* Record Details */,
+				DE131FE02456CA8B009D09EA /* Records Data Source */,
+				DE4AA06F21A5DEDC00E06FEA /* Search */,
+				DE94500222C1343800550A1C /* Table Message */,
+				DE79DC98246AA61F00C8C0EF /* Teacher */,
+				DE13AF7D226A115E009DF581 /* Teachers */,
+				DE5FAE072263B36A00333121 /* Universities */,
+				DEBB74B5235CF34D00226C7E /* University */,
+				DE266D5E240C4A7800C30A4A /* Whats New */,
+			);
+			name = Modules;
+			sourceTree = "<group>";
+		};
 		DE4FCC0023EF5DB4000B53F4 /* Legal Documents */ = {
 			isa = PBXGroup;
 			children = (
@@ -654,16 +653,16 @@
 			name = Groups;
 			sourceTree = "<group>";
 		};
-		DE6B249723EF5C47008ED1F1 /* Legal */ = {
+		DE6B249723EF5C47008ED1F1 /* Legal Documents */ = {
 			isa = PBXGroup;
 			children = (
 				DE4FCBFE23EF5D50000B53F4 /* LegalDocument.swift */,
 				DE78478C240DA16B002C2EDC /* LegalDocumentView.swift */,
 				DE4FCBFC23EF5CF9000B53F4 /* LegalDocumentViewController.swift */,
-				DEB0634725136D3E00DB50CE /* Legal Document.storyboard */,
 				DE4FCC0023EF5DB4000B53F4 /* Legal Documents */,
+				DE4CD2D9252216BA00745055 /* Legal Document.storyboard */,
 			);
-			name = Legal;
+			name = "Legal Documents";
 			sourceTree = "<group>";
 		};
 		DE78478E240DB3EA002C2EDC /* Buttons */ = {
@@ -734,11 +733,11 @@
 		DEA2B3EE246AF5DF00F96E28 /* Launch */ = {
 			isa = PBXGroup;
 			children = (
-				DEB0635325136DDC00DB50CE /* SceneDelegate.swift */,
 				C2B5CDF21EEF0E750066DB30 /* AppDelegate.swift */,
 				DEB0633C25136CC700DB50CE /* MetricKitSubscriber.swift */,
+				DEB0635325136DDC00DB50CE /* SceneDelegate.swift */,
 				DE87B78C235B9E1D0090B63E /* Initial */,
-				DE65DA9A2370C6C500022B21 /* Launch Screen.storyboard */,
+				DE4CD2D02522168F00745055 /* Launch Screen.storyboard */,
 			);
 			name = Launch;
 			sourceTree = "<group>";
@@ -827,14 +826,6 @@
 			name = Network;
 			sourceTree = "<group>";
 		};
-		DEBB74AB235CE4F900226C7E /* Segues */ = {
-			isa = PBXGroup;
-			children = (
-				DEBB74AC235CE51400226C7E /* SetViewControllerSegue.swift */,
-			);
-			name = Segues;
-			sourceTree = "<group>";
-		};
 		DEBB74AE235CE62600226C7E /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -900,7 +891,6 @@
 			isa = PBXGroup;
 			children = (
 				DE78478E240DB3EA002C2EDC /* Buttons */,
-				DEBB74AB235CE4F900226C7E /* Segues */,
 				DEAB1D3E230D5405008FBFE3 /* Table Cells */,
 				DEE576E2226B7AE3008F9EB6 /* View Controllers */,
 			);
@@ -954,12 +944,12 @@
 			name = Activity;
 			sourceTree = "<group>";
 		};
-		E48FD402231DB2080049438F /* UserDefaults */ = {
+		E48FD402231DB2080049438F /* User Defaults */ = {
 			isa = PBXGroup;
 			children = (
 				E48FD403231DB2E60049438F /* PersonalData.swift */,
 			);
-			name = UserDefaults;
+			name = "User Defaults";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1053,16 +1043,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEE2E9AA25221D8800A18810 /* Launch Screen.storyboard in Resources */,
 				DEDA50ED218620E0006C7B27 /* Localizable.strings in Resources */,
 				DEB0635025136D5500DB50CE /* Activity.storyboard in Resources */,
 				DE65DA992370C6BA00022B21 /* Initial.storyboard in Resources */,
 				DE05ADB02370C8260005B0E7 /* University.storyboard in Resources */,
+				DE4CD2DB252216BA00745055 /* Legal Document.storyboard in Resources */,
 				DE4FCC0323EF5DB4000B53F4 /* Terms Of Service.rtf in Resources */,
-				DE65DA932370C68200022B21 /* Record Details.storyboard in Resources */,
 				DEA2B3F6246BF8A100F96E28 /* Auditorium.storyboard in Resources */,
-				DE65DA9C2370C6C500022B21 /* Launch Screen.storyboard in Resources */,
 				DE3EB6B5231B0AE7007EA63C /* About.storyboard in Resources */,
-				DEB0634925136D3E00DB50CE /* Legal Document.storyboard in Resources */,
 				DE06999E246D707100F49AF0 /* NoRecordsTableViewCell.xib in Resources */,
 				DE05ADB32370C83F0005B0E7 /* Universities.storyboard in Resources */,
 				DE4FCC0423EF5DB4000B53F4 /* Privacy Policy.rtf in Resources */,
@@ -1070,6 +1059,7 @@
 				DE65DA902370C5BD00022B21 /* Preferences.storyboard in Resources */,
 				C2B5CDFD1EEF0E750066DB30 /* Assets.xcassets in Resources */,
 				DEDA50EA21862091006C7B27 /* InfoPlist.strings in Resources */,
+				DE4CD2E2252216E500745055 /* Record Details.storyboard in Resources */,
 				DEB0634425136D2200DB50CE /* Teacher.storyboard in Resources */,
 				DE3EB6B8231B0C03007EA63C /* Date Picker.storyboard in Resources */,
 			);
@@ -1112,7 +1102,6 @@
 				DE540EBE2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift in Sources */,
 				DE13EEAC2466B4390011F307 /* EntityViewController.swift in Sources */,
 				C22A2E551FC7644600587463 /* Record.swift in Sources */,
-				DEB0633725136C9C00DB50CE /* UIApplication.swift in Sources */,
 				C2B5CDFB1EEF0E750066DB30 /* Schedule.xcdatamodeld in Sources */,
 				E44C69EB2296FCED00A0102D /* Date.swift in Sources */,
 				C293559E1FBE246000071719 /* SearchResultsTableViewController.swift in Sources */,
@@ -1126,7 +1115,6 @@
 				DEBB74BB235CF4C300226C7E /* UniversitiesTableViewController.swift in Sources */,
 				DE78478D240DA16B002C2EDC /* LegalDocumentView.swift in Sources */,
 				DEA2B3E8246AE75500F96E28 /* TeacherViewController.swift in Sources */,
-				DEBB74AD235CE51400226C7E /* SetViewControllerSegue.swift in Sources */,
 				DE3EC2C9245C742500E30536 /* AuditoriumNetworkController.swift in Sources */,
 				DE04D1F32370AA3200A18649 /* UserDefaultsKey.swift in Sources */,
 				DEB0632125136BE700DB50CE /* University+NetworkClient.swift in Sources */,
@@ -1183,7 +1171,6 @@
 				DE9E3F84235F8FB90067DDFE /* RecordTableViewCell.swift in Sources */,
 				DE40FBA6238D4700001DA3DE /* UIColor.swift in Sources */,
 				DE7AB861246721F70031E279 /* NewAuditoriumTableViewController.swift in Sources */,
-				DE95523822A253D400D70DA4 /* UIBarButtonItem.swift in Sources */,
 				DEB0633325136C7A00DB50CE /* EntityMenuPresenter.swift in Sources */,
 				DE945ACA2264D17C00143303 /* University.swift in Sources */,
 				DEB031722459A72700A5D29D /* EndpointProtocol.swift in Sources */,
@@ -1274,6 +1261,30 @@
 			name = "Date Picker.storyboard";
 			sourceTree = "<group>";
 		};
+		DE4CD2D02522168F00745055 /* Launch Screen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DE4CD2D12522168F00745055 /* Base */,
+			);
+			name = "Launch Screen.storyboard";
+			sourceTree = "<group>";
+		};
+		DE4CD2D9252216BA00745055 /* Legal Document.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DE4CD2DA252216BA00745055 /* Base */,
+			);
+			name = "Legal Document.storyboard";
+			sourceTree = "<group>";
+		};
+		DE4CD2E0252216E500745055 /* Record Details.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DE4CD2E1252216E500745055 /* Base */,
+			);
+			name = "Record Details.storyboard";
+			sourceTree = "<group>";
+		};
 		DE65DA8E2370C5BD00022B21 /* Preferences.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1283,29 +1294,12 @@
 			name = Preferences.storyboard;
 			sourceTree = "<group>";
 		};
-		DE65DA912370C68200022B21 /* Record Details.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DE65DA922370C68200022B21 /* Base */,
-				DE266D61240C607A00C30A4A /* uk */,
-			);
-			name = "Record Details.storyboard";
-			sourceTree = "<group>";
-		};
 		DE65DA972370C6BA00022B21 /* Initial.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				DE65DA982370C6BA00022B21 /* Base */,
 			);
 			name = Initial.storyboard;
-			sourceTree = "<group>";
-		};
-		DE65DA9A2370C6C500022B21 /* Launch Screen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DE65DA9B2370C6C500022B21 /* Base */,
-			);
-			name = "Launch Screen.storyboard";
 			sourceTree = "<group>";
 		};
 		DEA2B3EF246BCEC600F96E28 /* Group.storyboard */ = {
@@ -1332,14 +1326,6 @@
 				DEB0634325136D2200DB50CE /* Base */,
 			);
 			name = Teacher.storyboard;
-			sourceTree = "<group>";
-		};
-		DEB0634725136D3E00DB50CE /* Legal Document.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DEB0634825136D3E00DB50CE /* Base */,
-			);
-			name = "Legal Document.storyboard";
 			sourceTree = "<group>";
 		};
 		DEB0634E25136D5500DB50CE /* Activity.storyboard */ = {
@@ -1533,7 +1519,7 @@
 				DEVELOPMENT_TEAM = M2BF9ZE9NW;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1560,7 +1546,7 @@
 				DEVELOPMENT_TEAM = M2BF9ZE9NW;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

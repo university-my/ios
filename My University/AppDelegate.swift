@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import MyLibrary
 
-@UIApplicationMain
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var metric: MetricKitSubscriber!

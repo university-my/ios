@@ -10,7 +10,9 @@ import UIKit
 
 extension UIViewController {
     
-    func performSegue(withIdentifier: String) {
+    typealias SegueIdentifier = String
+    
+    func performSegue(withIdentifier: SegueIdentifier) {
         performSegue(withIdentifier: withIdentifier, sender: nil)
     }
 }

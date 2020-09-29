@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xIq-NI-hJm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xIq-NI-hJm">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,24 +16,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="B9A-m3-1kB">
-                                <rect key="frame" x="87" y="323" width="240" height="250"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="DsG-31-GiR"/>
-                                    <constraint firstAttribute="height" constant="250" id="seA-Bd-hCB"/>
-                                </constraints>
-                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My University" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qy-D6-q0z">
+                                <rect key="frame" x="107.5" y="427.5" width="199" height="41"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="B9A-m3-1kB" firstAttribute="centerY" secondItem="oMO-Qy-QGL" secondAttribute="centerY" id="BgH-bv-GVl"/>
-                            <constraint firstItem="B9A-m3-1kB" firstAttribute="centerX" secondItem="oMO-Qy-QGL" secondAttribute="centerX" id="TYg-BO-KP2"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="9L3-T6-CR2"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="9qy-D6-q0z" firstAttribute="centerY" secondItem="oMO-Qy-QGL" secondAttribute="centerY" id="0kw-bb-7Xl"/>
+                            <constraint firstItem="9qy-D6-q0z" firstAttribute="centerX" secondItem="oMO-Qy-QGL" secondAttribute="centerX" id="4Yd-rE-TyG"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <segue destination="4RE-fI-Ce7" kind="custom" identifier="setUniversity" customClass="SetViewControllerSegue" customModule="My_University" customModuleProvider="target" id="TW0-Nk-g81"/>
-                        <segue destination="aOP-Pn-GnL" kind="custom" identifier="setAllUniversities" customClass="SetViewControllerSegue" customModule="My_University" customModuleProvider="target" animates="NO" id="aJE-XJ-7VJ"/>
+                        <segue destination="h2y-Pd-ag7" kind="presentation" identifier="allUniversities" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="I5E-QZ-Tl8"/>
+                        <segue destination="4RE-fI-Ce7" kind="presentation" identifier="selectedUniversity" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="ANi-oQ-E9x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NRe-0a-I6d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -45,18 +45,22 @@
                 <viewControllerPlaceholder storyboardName="University" id="4RE-fI-Ce7" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Po-gd-Utj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="627" y="58"/>
+            <point key="canvasLocation" x="665" y="31"/>
         </scene>
         <!--Universities-->
-        <scene sceneID="aOT-JC-7ha">
+        <scene sceneID="qE6-2E-ygb">
             <objects>
-                <viewControllerPlaceholder storyboardName="Universities" id="aOP-Pn-GnL" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OrQ-RT-6Sy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Universities" id="h2y-Pd-ag7" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="t0a-wG-1Y0"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZO2-F8-pJW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="628" y="168"/>
+            <point key="canvasLocation" x="666" y="253"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Logo" width="2048" height="2048"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
