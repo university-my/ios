@@ -168,6 +168,10 @@ extension TeacherViewController: EntityTableViewControllerDelegate {
         // Don't show activity indicator in the center of the screen
         logic.importRecords(showActivity: false)
     }
+    
+    func didDismissDetails(in viewController: EntityTableViewController) {
+        logic.makeReviewRequestIfNeeded()
+    }
 }
 
 // MARK: - EntityLogicControllerDelegate

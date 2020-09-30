@@ -10,6 +10,7 @@ import UIKit
 
 protocol EntityTableViewControllerDelegate: class {
     func didBeginRefresh(in viewController: EntityTableViewController)
+    func didDismissDetails(in viewController: EntityTableViewController)
 }
 
 class EntityTableViewController: GenericTableViewController {
@@ -75,5 +76,14 @@ class EntityTableViewController: GenericTableViewController {
             performSegue(withIdentifier: "recordDetails", sender: record)
             tableView.deselectRow(at: indexPath, animated: true)
         }
+    }
+}
+
+// MARK: - RecordDetailedTableViewControllerDelegate
+
+extension EntityTableViewController: RecordDetailedTableViewControllerDelegate {
+    
+    func didDismissDetails(in viewController: RecordDetailedTableViewController) {
+        delegate?.didDismissDetails(in: self)
     }
 }

@@ -41,6 +41,7 @@ class GroupTableViewController: EntityTableViewController {
                     destination.groupID = entityID
                     destination.teacherID = nil
                     destination.auditoriumID = nil
+                    destination.delegate = self
                 }
             }
             

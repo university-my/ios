@@ -109,7 +109,7 @@ class AuditoriumViewController: EntityViewController {
             self.menuPresenter.updateMenu(isFavorite: self.isFavorite)
             
         } universityAction: {
-            self.performSegue(withIdentifier: "setUniversity", sender: nil)
+            self.performSegue(withIdentifier: .setUniversity)
         }
         menuPresenter = EntityMenuPresenter(config: config)
         menuPresenter.updateMenu(isFavorite: isFavorite)
@@ -140,12 +140,12 @@ class AuditoriumViewController: EntityViewController {
         
         switch identifier {
             
-        case "records":
+        case .records:
             let vc = segue.destination as! NewAuditoriumTableViewController
             tableViewController = vc
             tableViewController.delegate = self
             
-        case "presentDatePicker":
+        case .presentDatePicker:
             let navigationVC = segue.destination as? UINavigationController
             let vc = navigationVC?.viewControllers.first as? DatePickerViewController
             vc?.pairDate = pairDate
@@ -168,6 +168,10 @@ extension AuditoriumViewController: EntityTableViewControllerDelegate {
         // Don't show activity indicator in the center of the screen
         logic.importRecords(showActivity: false)
     }
+    
+    func didDismissDetails(in viewController: EntityTableViewController) {
+        logic.makeReviewRequestIfNeeded()
+    }
 }
 
 // MARK: - EntityLogicControllerDelegate
@@ -182,3 +186,11 @@ extension AuditoriumViewController: EntityLogicControllerDelegate {
 // MARK: - ErrorAlertRepresentable
 
 extension AuditoriumViewController: ErrorAlertRepresentable {}
+
+// MARK: - SegueIdentifier
+
+private extension AuditoriumViewController.SegueIdentifier {
+    static let presentDatePicker = "presentDatePicker"
+    static let records = "records"
+    static let setUniversity = "setUniversity"
+}

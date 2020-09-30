@@ -31,10 +31,12 @@ class NewAuditoriumTableViewController: EntityTableViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        switch segue.identifier {
+        guard let identifier = segue.identifier else {
+            return
+        }
+        switch identifier {
             
-        case "recordDetails":
+        case .recordDetails:
             if let navigation = segue.destination as? UINavigationController {
                 if let destination = navigation.viewControllers.first as? RecordDetailedTableViewController {
                     destination.recordID = (sender as? Record)?.id
@@ -48,4 +50,10 @@ class NewAuditoriumTableViewController: EntityTableViewController {
             break
         }
     }
+}
+
+// MARK: - SegueIdentifier
+
+private extension NewAuditoriumTableViewController.SegueIdentifier {
+    static let recordDetails = "recordDetails"
 }

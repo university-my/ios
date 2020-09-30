@@ -122,7 +122,7 @@ class AuditoriumsTableViewController: SearchableTableViewController {
     // MARK - Navigation
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "auditoriumDetails", sender: nil)
+        performSegue(withIdentifier: .auditoriumDetails)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -130,7 +130,7 @@ class AuditoriumsTableViewController: SearchableTableViewController {
         
         switch identifier {
             
-        case "auditoriumDetails":
+        case .auditoriumDetails:
             let navigationVC = segue.destination as? UINavigationController
             let vc = navigationVC?.viewControllers.first as? AuditoriumViewController
             if searchController.isActive {
@@ -178,4 +178,12 @@ extension AuditoriumsTableViewController: UISearchResultsUpdating {
             resultsController.tableView.reloadData()
         }
     }
+}
+
+#warning("Rename auditoriums to classrooms")
+
+// MARK: - SegueIdentifier
+
+private extension AuditoriumsTableViewController.SegueIdentifier {
+    static let auditoriumDetails = "auditoriumDetails"
 }

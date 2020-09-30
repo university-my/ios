@@ -32,11 +32,6 @@ class UniversitiesTableViewController: GenericTableViewController {
         
         // Import universities every time
         importUniversities()
-        
-        // Remember date of the first usage
-        if UserData.firstUsage == nil {
-            UserData.firstUsage = Date()
-        }
     }
     
     // MARK: - Universities

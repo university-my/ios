@@ -21,12 +21,22 @@ class UniversityViewController: GenericTableViewController {
     
     // MARK: - Properties
     
+    private let logic: UniversityLogicController
+    
     var universityID: Int64?
     private var dataSource: UniversityDataSource!
     
     private var auditoriumsDataSource: AuditoriumDataSource?
     private var groupsDataSource: GroupsDataSource?
     private var teachersDataSource: TeacherDataSource?
+    
+    // MARK: - Init
+    
+    required init?(coder: NSCoder) {
+        logic = UniversityLogicController()
+        
+        super.init(coder: coder)
+    }
     
     // MARK: - Lifecycle
     
@@ -50,7 +60,7 @@ class UniversityViewController: GenericTableViewController {
         super.viewDidAppear(animated)
 
         // What's new
-        checkWhatsNew()
+        presentWhatsNewIfNeeded()
     }
     
     private func setup() {
@@ -322,22 +332,22 @@ class UniversityViewController: GenericTableViewController {
     }
 
     // MARK: - What's new
-
-    private func checkWhatsNew() {
-        if UserData.whatsNew1_7_2 {
+    
+    private func presentWhatsNewIfNeeded() {
+        if logic.needToPresentWhatsNew() {
             // What's new
             var whatsNewView = WhatsNewView()
-
+            
             // Continue
             whatsNewView.continueAction = {
                 self.dismiss(animated: true)
             }
-
+            
             let hostingController = UIHostingController(rootView: whatsNewView)
             present(hostingController, animated: true)
-
+            
             // Present only once
-            UserData.whatsNew1_7_2 = false
+            logic.updateLastVersionForNewFeatures()
         }
     }
     
