@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17132" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5C3-iv-Unt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5C3-iv-Unt">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17105"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -149,7 +149,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="MXW-UD-ct8"/>
                         <barButtonItem image="calendar" catalog="system" id="zwb-mo-dTY">
                             <connections>
-                                <segue destination="b19-ct-wxw" kind="presentation" identifier="presentDatePicker" id="L8u-Pf-tkO"/>
+                                <segue destination="b19-ct-wxw" kind="presentation" identifier="presentDatePicker" id="qhf-l5-8Nn"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="EhE-Im-eo8"/>
@@ -159,7 +159,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="menuBarButtonItem" destination="rdm-Ip-Cds" id="fAf-5A-t0o"/>
-                        <segue destination="7rN-1R-woF" kind="custom" identifier="setUniversity" customClass="SetViewControllerSegue" customModule="My_University" customModuleProvider="target" id="ote-VW-hHE"/>
+                        <segue destination="7rN-1R-woF" kind="presentation" identifier="setUniversity" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="ote-VW-hHE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UbZ-XS-Q46" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

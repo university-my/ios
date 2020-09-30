@@ -15,20 +15,18 @@ class InitialViewController: UIViewController {
         
         if University.selectedUniversityID == nil {
             // Show all universities
-            performSegue(withIdentifier: "setAllUniversities")
-            return
-        }
-        
-        guard let entity = Entity.lastOpened else {
+            performSegue(withIdentifier: .allUniversities)
+        } else {
             // Show selected university
-            performSegue(withIdentifier: "setUniversity")
-            return
+            performSegue(withIdentifier: .selectedUniversity)
         }
-        
-        // Show last opened Auditorium, Group or Teacher
-        let tabBarController = UIStoryboard.university.instantiateInitialViewController() as! UITabBarController
-        let navigation = tabBarController.viewControllers?.first as! UINavigationController
-        let universityViewController = navigation.topViewController as! UniversityViewController
-        universityViewController.show(entity)
     }
+    
+}
+
+// MARK: - SegueIdentifier
+
+private extension InitialViewController.SegueIdentifier {
+    static let allUniversities = "allUniversities"
+    static let selectedUniversity = "selectedUniversity"
 }

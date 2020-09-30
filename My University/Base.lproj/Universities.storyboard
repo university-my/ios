@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Dh3-Wn-yWN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Dh3-Wn-yWN">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,8 +12,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Dh3-Wn-yWN" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="hFo-Uh-bmv">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hFo-Uh-bmv">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -36,32 +36,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="15 Startup launch" translatesAutoresizingMaskIntoConstraints="NO" id="FAy-mZ-Vna">
-                                <rect key="frame" x="0.0" y="662" width="414" height="200"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="gtg-xd-qbP"/>
-                                </constraints>
-                            </imageView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s91-9g-pCI">
-                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <segue destination="5MU-Zn-Z2L" kind="embed" id="tWH-dE-9Ga"/>
                                 </connections>
                             </containerView>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <viewLayoutGuide key="safeArea" id="Qpl-nq-ihT"/>
+                        <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="s91-9g-pCI" firstAttribute="leading" secondItem="Qpl-nq-ihT" secondAttribute="leading" id="2LW-N0-tzg"/>
                             <constraint firstItem="s91-9g-pCI" firstAttribute="top" secondItem="Qpl-nq-ihT" secondAttribute="top" id="DmJ-g2-Wzh"/>
-                            <constraint firstItem="FAy-mZ-Vna" firstAttribute="leading" secondItem="64U-d3-bld" secondAttribute="leading" id="HKH-vE-sYy"/>
-                            <constraint firstItem="FAy-mZ-Vna" firstAttribute="bottom" secondItem="Qpl-nq-ihT" secondAttribute="bottom" id="KnO-aY-mbo"/>
-                            <constraint firstAttribute="trailing" secondItem="FAy-mZ-Vna" secondAttribute="trailing" id="OaY-3b-Oay"/>
                             <constraint firstItem="Qpl-nq-ihT" firstAttribute="trailing" secondItem="s91-9g-pCI" secondAttribute="trailing" id="S5r-7p-8oR"/>
-                            <constraint firstItem="FAy-mZ-Vna" firstAttribute="centerX" secondItem="64U-d3-bld" secondAttribute="centerX" id="hQA-rx-evv"/>
                             <constraint firstItem="Qpl-nq-ihT" firstAttribute="bottom" secondItem="s91-9g-pCI" secondAttribute="bottom" id="hhY-qD-4Sy"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Qpl-nq-ihT"/>
                     </view>
                     <navigationItem key="navigationItem" title="Universities" id="zJc-kh-WAS">
                         <barButtonItem key="rightBarButtonItem" id="abR-KG-IjY">
@@ -85,19 +75,19 @@
             <objects>
                 <tableViewController id="5MU-Zn-Z2L" customClass="UniversitiesTableViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="vab-2u-P2M">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="722"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="universityCell" textLabel="Hnt-60-noc" detailTextLabel="wQT-mX-Gwz" style="IBUITableViewCellStyleSubtitle" id="XCQ-S9-qn2">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="universityCell" textLabel="Hnt-60-noc" detailTextLabel="wQT-mX-Gwz" style="IBUITableViewCellStyleSubtitle" id="XCQ-S9-qn2">
                                 <rect key="frame" x="20" y="55.5" width="374" height="55.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XCQ-S9-qn2" id="k0J-Xp-W3p">
-                                    <rect key="frame" x="0.0" y="0.0" width="343" height="55.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="55.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hnt-60-noc">
-                                            <rect key="frame" x="20" y="10" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="20" y="10" width="33" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -111,7 +101,7 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="tableCellGroupedBackgroundColor"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -138,7 +128,7 @@
                         </connections>
                     </refreshControl>
                     <connections>
-                        <segue destination="Lcu-rN-3Zj" kind="custom" identifier="setUniversity" customClass="SetViewControllerSegue" customModule="My_University" customModuleProvider="target" id="D1m-jk-5D9"/>
+                        <segue destination="Lcu-rN-3Zj" kind="presentation" identifier="presentUniversity" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="D1m-jk-5D9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cL2-uq-iTa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -163,6 +153,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="15 Startup launch" width="1589" height="993"/>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tableCellGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

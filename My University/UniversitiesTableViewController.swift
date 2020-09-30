@@ -70,7 +70,7 @@ class UniversitiesTableViewController: GenericTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let university = dataSource.fetchedResultsController?.fetchedObjects?[safe: indexPath.row]
         University.selectedUniversityID = university?.id
-        performSegue(withIdentifier: "setUniversity", sender: nil)
+        performSegue(withIdentifier: .presentUniversity)
     }
 }
 
@@ -86,3 +86,9 @@ extension UniversitiesTableViewController: NSFetchedResultsControllerDelegate {
 // MARK: - ErrorAlertProtocol
 
 extension UniversitiesTableViewController: ErrorAlertRepresentable {}
+
+// MARK: - SegueIdentifier
+
+private extension UniversitiesTableViewController.SegueIdentifier {
+    static let presentUniversity = "presentUniversity"
+}

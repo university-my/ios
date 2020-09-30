@@ -367,11 +367,7 @@ class UniversityViewController: GenericTableViewController {
 
 // MARK: - SegueIdentifier
 
-extension UniversityViewController {
-    typealias SegueIdentifier = String
-}
-
-extension UniversityViewController.SegueIdentifier {
+private extension UniversityViewController.SegueIdentifier {
     static let auditoriumDetails = "auditoriumDetails"
     static let changeUniversity = "changeUniversity"
     static let groupDetails = "groupDetails"
