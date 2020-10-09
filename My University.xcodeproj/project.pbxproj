@@ -42,6 +42,19 @@
 		DE3628CB2524ADD0003A7939 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3628CA2524ADD0003A7939 /* UserDefaultsKeys.swift */; };
 		DE3628D52524EE4C003A7939 /* UniversityLogicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3628D42524EE4C003A7939 /* UniversityLogicController.swift */; };
 		DE3628D92524F008003A7939 /* UniversityLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3628D82524F008003A7939 /* UniversityLogicTests.swift */; };
+		DE365915252F8930002A1A11 /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE365914252F8930002A1A11 /* NetworkResponse.swift */; };
+		DE36591F252F8A9D002A1A11 /* ModelLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE36591E252F8A9D002A1A11 /* ModelLoader.swift */; };
+		DE365923252F8B88002A1A11 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE365922252F8B88002A1A11 /* Endpoint.swift */; };
+		DE36592E252F8CBA002A1A11 /* EndpointKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE36592D252F8CBA002A1A11 /* EndpointKind.swift */; };
+		DE365932252F8FCF002A1A11 /* InvalidEndpointError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE365931252F8FCF002A1A11 /* InvalidEndpointError.swift */; };
+		DE365936252F9649002A1A11 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE365935252F9649002A1A11 /* URL.swift */; };
+		DE36593A25303DA4002A1A11 /* NetworkRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE36593925303DA4002A1A11 /* NetworkRequestProtocol.swift */; };
+		DE36596C2530417C002A1A11 /* Teacher+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE36596B2530417C002A1A11 /* Teacher+Endpoints.swift */; };
+		DE365976253053D8002A1A11 /* WebsitePageParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE365975253053D8002A1A11 /* WebsitePageParameters.swift */; };
+		DE36597A25305445002A1A11 /* Auditorium+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE36597925305445002A1A11 /* Auditorium+Endpoints.swift */; };
+		DE36597F25305547002A1A11 /* PublicWebsitePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE36597E25305547002A1A11 /* PublicWebsitePage.swift */; };
+		DE365987253055D4002A1A11 /* Group+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE365986253055D4002A1A11 /* Group+Endpoints.swift */; };
+		DE36598D25305F92002A1A11 /* URLHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE36598C25305F92002A1A11 /* URLHost.swift */; };
 		DE3EB6B5231B0AE7007EA63C /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3EB6B3231B0AE7007EA63C /* About.storyboard */; };
 		DE3EB6B8231B0C03007EA63C /* Date Picker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3EB6B6231B0C03007EA63C /* Date Picker.storyboard */; };
 		DE3EB6BA231B11F8007EA63C /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3EB6B9231B11F8007EA63C /* DateFormatter.swift */; };
@@ -80,7 +93,6 @@
 		DE784790240DB406002C2EDC /* ContinueButtonContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78478F240DB406002C2EDC /* ContinueButtonContent.swift */; };
 		DE79DC9A246AA63D00C8C0EF /* TeacherNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE79DC99246AA63D00C8C0EF /* TeacherNetworkController.swift */; };
 		DE79DC9C246AA7F800C8C0EF /* TeacherDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE79DC9B246AA7F800C8C0EF /* TeacherDataController.swift */; };
-		DE7AB8562466C3050031E279 /* Auditorium+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB8552466C3050031E279 /* Auditorium+Endpoint.swift */; };
 		DE7AB8582466C4470031E279 /* EntityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB8572466C4470031E279 /* EntityProtocol.swift */; };
 		DE7AB85A24671E6D0031E279 /* EntityRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB85924671E6D0031E279 /* EntityRepresentable.swift */; };
 		DE7AB85D246720250031E279 /* AuditoriumTableDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB85C246720250031E279 /* AuditoriumTableDataController.swift */; };
@@ -102,7 +114,6 @@
 		DE999ABE227C54160018F725 /* UniversityDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE999ABD227C54160018F725 /* UniversityDataSource.swift */; };
 		DE9E3F84235F8FB90067DDFE /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9E3F83235F8FB90067DDFE /* RecordTableViewCell.swift */; };
 		DEA2B3E4246AE3C200F96E28 /* TeacherLogicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2B3E3246AE3C200F96E28 /* TeacherLogicController.swift */; };
-		DEA2B3E6246AE5C200F96E28 /* Teacher+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2B3E5246AE5C200F96E28 /* Teacher+Endpoint.swift */; };
 		DEA2B3E8246AE75500F96E28 /* TeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2B3E7246AE75500F96E28 /* TeacherViewController.swift */; };
 		DEA2B3EB246AE7D000F96E28 /* TeacherTableDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2B3EA246AE7D000F96E28 /* TeacherTableDataController.swift */; };
 		DEA2B3ED246AE81000F96E28 /* NewTeacherTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2B3EC246AE81000F96E28 /* NewTeacherTableViewController.swift */; };
@@ -112,13 +123,10 @@
 		DEA2B3FA246C011500F96E28 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2B3F9246C011500F96E28 /* Entity.swift */; };
 		DEA2B3FD246C02BF00F96E28 /* Entity+Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2B3FC246C02BF00F96E28 /* Entity+Manager.swift */; };
 		DEAE5C4A236A23B50086E734 /* UpdateHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAE5C49236A23B50086E734 /* UpdateHelperTests.swift */; };
-		DEB0316224597E4700A5D29D /* BaseEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0316124597E4700A5D29D /* BaseEndpoint.swift */; };
 		DEB031672459809D00A5D29D /* ErrorAlertRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB031662459809D00A5D29D /* ErrorAlertRepresentable.swift */; };
 		DEB0316C245988F600A5D29D /* GroupLogicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0316B245988F600A5D29D /* GroupLogicController.swift */; };
 		DEB0316E2459895A00A5D29D /* GroupNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0316D2459895A00A5D29D /* GroupNetworkController.swift */; };
-		DEB031722459A72700A5D29D /* EndpointProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB031712459A72700A5D29D /* EndpointProtocol.swift */; };
 		DEB0632125136BE700DB50CE /* University+NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0632025136BE700DB50CE /* University+NetworkClient.swift */; };
-		DEB0632725136C0300DB50CE /* Group+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0632625136C0300DB50CE /* Group+Endpoint.swift */; };
 		DEB0633325136C7A00DB50CE /* EntityMenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0633225136C7900DB50CE /* EntityMenuPresenter.swift */; };
 		DEB0633D25136CC700DB50CE /* MetricKitSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0633C25136CC700DB50CE /* MetricKitSubscriber.swift */; };
 		DEB0634425136D2200DB50CE /* Teacher.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEB0634225136D2200DB50CE /* Teacher.storyboard */; };
@@ -200,6 +208,19 @@
 		DE3628CA2524ADD0003A7939 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		DE3628D42524EE4C003A7939 /* UniversityLogicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityLogicController.swift; sourceTree = "<group>"; };
 		DE3628D82524F008003A7939 /* UniversityLogicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityLogicTests.swift; sourceTree = "<group>"; };
+		DE365914252F8930002A1A11 /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
+		DE36591E252F8A9D002A1A11 /* ModelLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelLoader.swift; sourceTree = "<group>"; };
+		DE365922252F8B88002A1A11 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		DE36592D252F8CBA002A1A11 /* EndpointKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointKind.swift; sourceTree = "<group>"; };
+		DE365931252F8FCF002A1A11 /* InvalidEndpointError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvalidEndpointError.swift; sourceTree = "<group>"; };
+		DE365935252F9649002A1A11 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		DE36593925303DA4002A1A11 /* NetworkRequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestProtocol.swift; sourceTree = "<group>"; };
+		DE36596B2530417C002A1A11 /* Teacher+Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Teacher+Endpoints.swift"; sourceTree = "<group>"; };
+		DE365975253053D8002A1A11 /* WebsitePageParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsitePageParameters.swift; sourceTree = "<group>"; };
+		DE36597925305445002A1A11 /* Auditorium+Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auditorium+Endpoints.swift"; sourceTree = "<group>"; };
+		DE36597E25305547002A1A11 /* PublicWebsitePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicWebsitePage.swift; sourceTree = "<group>"; };
+		DE365986253055D4002A1A11 /* Group+Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+Endpoints.swift"; sourceTree = "<group>"; };
+		DE36598C25305F92002A1A11 /* URLHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLHost.swift; sourceTree = "<group>"; };
 		DE3EB6B4231B0AE7007EA63C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/About.storyboard; sourceTree = "<group>"; };
 		DE3EB6B7231B0C03007EA63C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Date Picker.storyboard"; sourceTree = "<group>"; };
 		DE3EB6B9231B11F8007EA63C /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
@@ -240,7 +261,6 @@
 		DE78478F240DB406002C2EDC /* ContinueButtonContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueButtonContent.swift; sourceTree = "<group>"; };
 		DE79DC99246AA63D00C8C0EF /* TeacherNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherNetworkController.swift; sourceTree = "<group>"; };
 		DE79DC9B246AA7F800C8C0EF /* TeacherDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherDataController.swift; sourceTree = "<group>"; };
-		DE7AB8552466C3050031E279 /* Auditorium+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auditorium+Endpoint.swift"; sourceTree = "<group>"; };
 		DE7AB8572466C4470031E279 /* EntityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityProtocol.swift; sourceTree = "<group>"; };
 		DE7AB85924671E6D0031E279 /* EntityRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityRepresentable.swift; sourceTree = "<group>"; };
 		DE7AB85C246720250031E279 /* AuditoriumTableDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditoriumTableDataController.swift; sourceTree = "<group>"; };
@@ -261,7 +281,6 @@
 		DE999ABD227C54160018F725 /* UniversityDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityDataSource.swift; sourceTree = "<group>"; };
 		DE9E3F83235F8FB90067DDFE /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 		DEA2B3E3246AE3C200F96E28 /* TeacherLogicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherLogicController.swift; sourceTree = "<group>"; };
-		DEA2B3E5246AE5C200F96E28 /* Teacher+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Teacher+Endpoint.swift"; sourceTree = "<group>"; };
 		DEA2B3E7246AE75500F96E28 /* TeacherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherViewController.swift; sourceTree = "<group>"; };
 		DEA2B3EA246AE7D000F96E28 /* TeacherTableDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherTableDataController.swift; sourceTree = "<group>"; };
 		DEA2B3EC246AE81000F96E28 /* NewTeacherTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTeacherTableViewController.swift; sourceTree = "<group>"; };
@@ -273,13 +292,10 @@
 		DEAE5C47236A23B50086E734 /* MyUniversityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyUniversityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEAE5C49236A23B50086E734 /* UpdateHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateHelperTests.swift; sourceTree = "<group>"; };
 		DEAE5C4B236A23B50086E734 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DEB0316124597E4700A5D29D /* BaseEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEndpoint.swift; sourceTree = "<group>"; };
 		DEB031662459809D00A5D29D /* ErrorAlertRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlertRepresentable.swift; sourceTree = "<group>"; };
 		DEB0316B245988F600A5D29D /* GroupLogicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupLogicController.swift; sourceTree = "<group>"; };
 		DEB0316D2459895A00A5D29D /* GroupNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNetworkController.swift; sourceTree = "<group>"; };
-		DEB031712459A72700A5D29D /* EndpointProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointProtocol.swift; sourceTree = "<group>"; };
 		DEB0632025136BE700DB50CE /* University+NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "University+NetworkClient.swift"; sourceTree = "<group>"; };
-		DEB0632625136C0300DB50CE /* Group+Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Group+Endpoint.swift"; sourceTree = "<group>"; };
 		DEB0633225136C7900DB50CE /* EntityMenuPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityMenuPresenter.swift; sourceTree = "<group>"; };
 		DEB0633C25136CC700DB50CE /* MetricKitSubscriber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetricKitSubscriber.swift; sourceTree = "<group>"; };
 		DEB0634325136D2200DB50CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Teacher.storyboard; sourceTree = "<group>"; };
@@ -333,12 +349,15 @@
 			isa = PBXGroup;
 			children = (
 				DE8B668221CACDF800C43F81 /* Auditorium+NetworkClient.swift */,
-				DEB0316124597E4700A5D29D /* BaseEndpoint.swift */,
-				DEB031712459A72700A5D29D /* EndpointProtocol.swift */,
 				DE8B668421CACE5600C43F81 /* Group+NetworkClient.swift */,
+				DE36591E252F8A9D002A1A11 /* ModelLoader.swift */,
+				DE36593925303DA4002A1A11 /* NetworkRequestProtocol.swift */,
+				DE365914252F8930002A1A11 /* NetworkResponse.swift */,
 				DE18941821BC349400C7F9DB /* Record+NetworkClient.swift */,
 				DE540EC12215CDCD0092FC81 /* Teacher+NetworkClient.swift */,
 				DEB0632025136BE700DB50CE /* University+NetworkClient.swift */,
+				DE36592C252F8CA2002A1A11 /* Endpoint */,
+				DE36597D2530553C002A1A11 /* Website */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -536,6 +555,26 @@
 			name = "No Records";
 			sourceTree = "<group>";
 		};
+		DE36592C252F8CA2002A1A11 /* Endpoint */ = {
+			isa = PBXGroup;
+			children = (
+				DE365922252F8B88002A1A11 /* Endpoint.swift */,
+				DE36592D252F8CBA002A1A11 /* EndpointKind.swift */,
+				DE365931252F8FCF002A1A11 /* InvalidEndpointError.swift */,
+				DE36598C25305F92002A1A11 /* URLHost.swift */,
+			);
+			name = Endpoint;
+			sourceTree = "<group>";
+		};
+		DE36597D2530553C002A1A11 /* Website */ = {
+			isa = PBXGroup;
+			children = (
+				DE36597E25305547002A1A11 /* PublicWebsitePage.swift */,
+				DE365975253053D8002A1A11 /* WebsitePageParameters.swift */,
+			);
+			name = Website;
+			sourceTree = "<group>";
+		};
 		DE3B565E21823A7F008A77D1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -545,6 +584,7 @@
 				DE40FBA5238D4700001DA3DE /* UIColor.swift */,
 				DE78478A240D9FBC002C2EDC /* UIStoryboard.swift */,
 				DEA2B3F7246BFB6D00F96E28 /* UIViewController.swift */,
+				DE365935252F9649002A1A11 /* URL.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -577,7 +617,7 @@
 			children = (
 				DE584C53219860E80099415E /* Auditorium.swift */,
 				DE3EC2CD245C75F900E30536 /* Auditorium+CodingData.swift */,
-				DE7AB8552466C3050031E279 /* Auditorium+Endpoint.swift */,
+				DE36597925305445002A1A11 /* Auditorium+Endpoints.swift */,
 			);
 			name = "Data Models";
 			sourceTree = "<group>";
@@ -868,7 +908,7 @@
 			children = (
 				DE584C552198615F0099415E /* Teacher.swift */,
 				DEBC46042456F30A00489CAA /* Teacher+CodingData.swift */,
-				DEA2B3E5246AE5C200F96E28 /* Teacher+Endpoint.swift */,
+				DE36596B2530417C002A1A11 /* Teacher+Endpoints.swift */,
 			);
 			name = "Data Models";
 			sourceTree = "<group>";
@@ -923,7 +963,7 @@
 			children = (
 				C2C0E9AF1FB8CDA00012FA9C /* Group.swift */,
 				DEE6740D2459ACE300B8F9F1 /* Group+CodingData.swift */,
-				DEB0632625136C0300DB50CE /* Group+Endpoint.swift */,
+				DE365986253055D4002A1A11 /* Group+Endpoints.swift */,
 			);
 			name = "Data Models";
 			sourceTree = "<group>";
@@ -1074,6 +1114,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE36591F252F8A9D002A1A11 /* ModelLoader.swift in Sources */,
+				DE365932252F8FCF002A1A11 /* InvalidEndpointError.swift in Sources */,
 				DE017F9723622BC70046D3ED /* PreferencesTableViewController.swift in Sources */,
 				DE131FE22456CAAB009D09EA /* RecordsDataSource.swift in Sources */,
 				DE3EC2C5245C740400E30536 /* AuditoriumDataController.swift in Sources */,
@@ -1095,13 +1137,17 @@
 				DE79DC9C246AA7F800C8C0EF /* TeacherDataController.swift in Sources */,
 				DE3EC2CE245C75F900E30536 /* Auditorium+CodingData.swift in Sources */,
 				DEF63C61245AC543007E82F9 /* ActivityController.swift in Sources */,
+				DE36597A25305445002A1A11 /* Auditorium+Endpoints.swift in Sources */,
 				DE540EBE2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift in Sources */,
+				DE365936252F9649002A1A11 /* URL.swift in Sources */,
+				DE36592E252F8CBA002A1A11 /* EndpointKind.swift in Sources */,
 				DE13EEAC2466B4390011F307 /* EntityViewController.swift in Sources */,
 				C22A2E551FC7644600587463 /* Record.swift in Sources */,
 				C2B5CDFB1EEF0E750066DB30 /* Schedule.xcdatamodeld in Sources */,
 				E44C69EB2296FCED00A0102D /* Date.swift in Sources */,
 				C293559E1FBE246000071719 /* SearchResultsTableViewController.swift in Sources */,
 				DE94500422C1345800550A1C /* TableMessageViewController.swift in Sources */,
+				DE365987253055D4002A1A11 /* Group+Endpoints.swift in Sources */,
 				DE8B668121CAC91C00C43F81 /* Group+Import.swift in Sources */,
 				DEA2B3EB246AE7D000F96E28 /* TeacherTableDataController.swift in Sources */,
 				DEB031672459809D00A5D29D /* ErrorAlertRepresentable.swift in Sources */,
@@ -1114,7 +1160,6 @@
 				DE3EC2C9245C742500E30536 /* AuditoriumNetworkController.swift in Sources */,
 				DE3628CB2524ADD0003A7939 /* UserDefaultsKeys.swift in Sources */,
 				DEB0632125136BE700DB50CE /* University+NetworkClient.swift in Sources */,
-				DEB0632725136C0300DB50CE /* Group+Endpoint.swift in Sources */,
 				DE540EBD2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift in Sources */,
 				DE584C54219860E80099415E /* Auditorium.swift in Sources */,
 				DEE576E7226B8B98008F9EB6 /* AuditoriumsTableViewController.swift in Sources */,
@@ -1130,6 +1175,7 @@
 				DE7AB85A24671E6D0031E279 /* EntityRepresentable.swift in Sources */,
 				DE8B668521CACE5600C43F81 /* Group+NetworkClient.swift in Sources */,
 				DE540EC22215CDCD0092FC81 /* Teacher+NetworkClient.swift in Sources */,
+				DE365915252F8930002A1A11 /* NetworkResponse.swift in Sources */,
 				DEE674122459B7BC00B8F9F1 /* CoreData.swift in Sources */,
 				DE3EC2CB245C743500E30536 /* AuditoriumViewController.swift in Sources */,
 				DE3EC2C7245C741400E30536 /* AuditoriumLogicController.swift in Sources */,
@@ -1139,7 +1185,6 @@
 				DE18942021BD457F00C7F9DB /* ImportForGroup.swift in Sources */,
 				DE28637C245600330036A01F /* NoRecordsTableViewCell.swift in Sources */,
 				DEA2B3E4246AE3C200F96E28 /* TeacherLogicController.swift in Sources */,
-				DEB0316224597E4700A5D29D /* BaseEndpoint.swift in Sources */,
 				DE13EEB42466B9BA0011F307 /* StructRepresentable.swift in Sources */,
 				DEE6740E2459ACE300B8F9F1 /* Group+CodingData.swift in Sources */,
 				DE2863782455F75B0036A01F /* UniversitiesViewController.swift in Sources */,
@@ -1159,34 +1204,37 @@
 				DE7AB85F246720880031E279 /* EntityTableDataController.swift in Sources */,
 				DE584C562198615F0099415E /* Teacher.swift in Sources */,
 				C2B5CDF31EEF0E750066DB30 /* AppDelegate.swift in Sources */,
+				DE36593A25303DA4002A1A11 /* NetworkRequestProtocol.swift in Sources */,
 				DE04D1F72370B79F00A18649 /* UpdateHelper.swift in Sources */,
 				DEBC46052456F30A00489CAA /* Teacher+CodingData.swift in Sources */,
 				DEB0633D25136CC700DB50CE /* MetricKitSubscriber.swift in Sources */,
 				C2C0E9B01FB8CDA00012FA9C /* Group.swift in Sources */,
+				DE36596C2530417C002A1A11 /* Teacher+Endpoints.swift in Sources */,
 				DE9E3F84235F8FB90067DDFE /* RecordTableViewCell.swift in Sources */,
+				DE365976253053D8002A1A11 /* WebsitePageParameters.swift in Sources */,
 				DE40FBA6238D4700001DA3DE /* UIColor.swift in Sources */,
 				DE7AB861246721F70031E279 /* NewAuditoriumTableViewController.swift in Sources */,
 				DEB0633325136C7A00DB50CE /* EntityMenuPresenter.swift in Sources */,
 				DE945ACA2264D17C00143303 /* University.swift in Sources */,
-				DEB031722459A72700A5D29D /* EndpointProtocol.swift in Sources */,
 				DE3EB6BA231B11F8007EA63C /* DateFormatter.swift in Sources */,
 				DE8B668321CACDF800C43F81 /* Auditorium+NetworkClient.swift in Sources */,
 				DE87B78E235B9E450090B63E /* InitialViewController.swift in Sources */,
+				DE365923252F8B88002A1A11 /* Endpoint.swift in Sources */,
 				DEE674142459EF8900B8F9F1 /* GroupViewController.swift in Sources */,
 				DE11A3B0230EA98B005131E8 /* DatePickerViewController.swift in Sources */,
 				DE945ACC2264D27B00143303 /* University+Import.swift in Sources */,
+				DE36597F25305547002A1A11 /* PublicWebsitePage.swift in Sources */,
 				DEA2B3FA246C011500F96E28 /* Entity.swift in Sources */,
 				C280894B1FB8D54A002B5676 /* GroupEntity+CoreDataClass.swift in Sources */,
 				DEEEEBE02205BC2C0072A19A /* Settings.swift in Sources */,
 				DE584C6021986E740099415E /* AuditoriumEntity+CoreDataProperties.swift in Sources */,
+				DE36598D25305F92002A1A11 /* URLHost.swift in Sources */,
 				DEE674102459B15200B8F9F1 /* GroupDataController.swift in Sources */,
 				C22A2E581FC7664000587463 /* RecordEntity+CoreDataClass.swift in Sources */,
 				DE18941C21BC3A3900C7F9DB /* GroupTableViewController.swift in Sources */,
 				DEB6819D245DF874005FA2F0 /* EntityNetworkController.swift in Sources */,
 				C22A2E591FC7664000587463 /* RecordEntity+CoreDataProperties.swift in Sources */,
-				DEA2B3E6246AE5C200F96E28 /* Teacher+Endpoint.swift in Sources */,
 				DE266D60240C4AAA00C30A4A /* WhatsNewView.swift in Sources */,
-				DE7AB8562466C3050031E279 /* Auditorium+Endpoint.swift in Sources */,
 				DEA2B3FD246C02BF00F96E28 /* Entity+Manager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

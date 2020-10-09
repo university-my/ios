@@ -11,5 +11,24 @@ import CoreData
 protocol EntityProtocol: NSManagedObject {
     var name: String? { get set }
     var favorite: Bool { get set }
+    
+    var slug: String? { get set }
+    var university: UniversityEntity? { get set }
+    
     func shareURL(for date: Date) -> URL?
+}
+
+extension EntityProtocol {
+    
+    func pageParameters(with date: Date) -> WebsitePageParameters? {
+        guard let slug = slug else {
+            return nil
+        }
+        guard let universityURL = university?.url else {
+            return nil
+        }
+        let dateString = DateFormatter.short.string(from: date)
+        
+        return WebsitePageParameters(slug: slug, university: universityURL, date: dateString)
+    }
 }

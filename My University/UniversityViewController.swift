@@ -368,7 +368,7 @@ class UniversityViewController: GenericTableViewController {
             title: NSLocalizedString("Report a problem", comment: "Action title"),
             image: UIImage(systemName: "exclamationmark.bubble.fill")
         ) { _ in
-            UIApplication.shared.open(BaseEndpoint.contacts.url)
+            UIApplication.shared.open(.contacts)
         }
         
         preferencesBarButtonItem.menu = UIMenu(title: "", children: [changeUniversity, reportProblem])

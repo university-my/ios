@@ -28,7 +28,7 @@ extension ErrorAlertRepresentable {
         // Report an error
         let reportAnError = NSLocalizedString("Report an error", comment: "Alert action")
         let reportAction = UIAlertAction(title: reportAnError, style: .default) { (_) in
-            UIApplication.shared.open(BaseEndpoint.contacts.url)
+            UIApplication.shared.open(.contacts)
         }
         alert.addAction(reportAction)
         

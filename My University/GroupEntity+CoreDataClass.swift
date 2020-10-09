@@ -72,10 +72,10 @@ extension GroupEntity: EntityProtocol {
     }
     
     func shareURL(for date: Date) -> URL? {
-        guard let universityURL = university?.url else { return nil }
-        guard let slug = slug else { return nil }
-        let dateString = DateFormatter.short.string(from: date)
-        return Group.Endpoint.page(for: slug, university: universityURL, date: dateString).url
+        guard let parameters = pageParameters(with: date) else {
+            return nil
+        }
+        return Group.Endpoints.websitePage(from: parameters).url
     }
 }
 
