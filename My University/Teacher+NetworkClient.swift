@@ -29,7 +29,7 @@ extension Teacher {
             guard let universityURL = universityURL else { return }
             completionHandler = completion
             
-            guard let url = URL(string: "\(Settings.shared.apiURL)/universities/\(universityURL)/teachers") else {
+            guard let url = URL(string: "\(URL.myUniversityAPI.absoluteString)/universities/\(universityURL)/teachers") else {
                 completionHandler?(nil)
                 return
             }

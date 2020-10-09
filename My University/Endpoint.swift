@@ -31,9 +31,9 @@ extension Endpoint {
 
 extension Endpoint {
     
-    func host(for kind: Kind) -> String {
-        
-    }
+//    func host(for kind: Kind) -> String {
+//        
+//    }
     
     //    func makeRequest(with kind: Kind) -> URLRequest? {
     //        switch kind {

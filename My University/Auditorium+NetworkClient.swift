@@ -29,7 +29,7 @@ extension Auditorium {
             guard let universityURL = universityURL else { return }
             completionHandler = completion
             
-            guard let url = URL(string: "\(Settings.shared.apiURL)/universities/\(universityURL)/auditoriums") else {
+            guard let url = URL(string: "\(URL.myUniversityAPI.absoluteString)/universities/\(universityURL)/auditoriums") else {
                 completionHandler?(nil)
                 return
             }

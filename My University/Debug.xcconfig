@@ -1,0 +1,15 @@
+//
+//  Debug.xcconfig
+//  My University
+//
+//  Created by Yura Voevodin on 09.10.2020.
+//  Copyright © 2020 Yura Voevodin. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+MY_UNIVERSITY_SERVER_HOST = localhost
+MY_UNIVERSITY_SERVER_SCHEME = http
+MY_UNIVERSITY_API_PREFIX_V1 = /api/v1
+MY_UNIVERSITY_SERVER_PORT = 3000

@@ -29,7 +29,7 @@ extension Record {
             completionHandler = completion
             
             let dateString = DateFormatter.short.string(from: date)
-            let urlString = "\(Settings.shared.apiURL)/universities/\(universityURL)/groups/\(groupID)/records?pair_date=\(dateString)"
+            let urlString = "\(URL.myUniversityAPI.absoluteString)/universities/\(universityURL)/groups/\(groupID)/records?pair_date=\(dateString)"
             guard let url = URL(string: urlString) else {
                 completionHandler?(nil)
                 return
@@ -51,7 +51,7 @@ extension Record {
             completionHandler = completion
             
             let dateString = DateFormatter.short.string(from: date)
-            let urlString = "\(Settings.shared.apiURL)/universities/\(universityURL)/auditoriums/\(auditoriumID)/records?pair_date=\(dateString)"
+            let urlString = "\(URL.myUniversityAPI.absoluteString)/universities/\(universityURL)/auditoriums/\(auditoriumID)/records?pair_date=\(dateString)"
             guard let url = URL(string: urlString) else {
                 completionHandler?(nil)
                 return
@@ -73,7 +73,7 @@ extension Record {
             completionHandler = completion
             
             let dateString = DateFormatter.short.string(from: date)
-            let urlString = "\(Settings.shared.apiURL)/universities/\(universityURL)/teachers/\(teacherID)/records?pair_date=\(dateString)"
+            let urlString = "\(URL.myUniversityAPI.absoluteString)/universities/\(universityURL)/teachers/\(teacherID)/records?pair_date=\(dateString)"
             guard let url = URL(string: urlString) else {
                 completionHandler?(nil)
                 return
@@ -115,7 +115,7 @@ extension Record {
         // MARK: - Tests
 
         static func loadTestRecords(_ completion: @escaping (([Record.CodingData]) -> Void)) {
-            let urlString = "\(Settings.shared.apiURL)/records/test"
+            let urlString = "\(URL.myUniversityAPI.absoluteString)/records/test"
             guard let url = URL(string: urlString) else { return }
 
             let task = URLSession.shared.dataTask(with: url) { (data, response, error) in

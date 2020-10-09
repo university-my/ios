@@ -54,7 +54,7 @@
 		DE36597A25305445002A1A11 /* Auditorium+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE36597925305445002A1A11 /* Auditorium+Endpoints.swift */; };
 		DE36597F25305547002A1A11 /* PublicWebsitePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE36597E25305547002A1A11 /* PublicWebsitePage.swift */; };
 		DE365987253055D4002A1A11 /* Group+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE365986253055D4002A1A11 /* Group+Endpoints.swift */; };
-		DE36598D25305F92002A1A11 /* URLHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE36598C25305F92002A1A11 /* URLHost.swift */; };
+		DE3659B225307BBC002A1A11 /* ConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3659B125307BBC002A1A11 /* ConfigTests.swift */; };
 		DE3EB6B5231B0AE7007EA63C /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3EB6B3231B0AE7007EA63C /* About.storyboard */; };
 		DE3EB6B8231B0C03007EA63C /* Date Picker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3EB6B6231B0C03007EA63C /* Date Picker.storyboard */; };
 		DE3EB6BA231B11F8007EA63C /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3EB6B9231B11F8007EA63C /* DateFormatter.swift */; };
@@ -148,7 +148,6 @@
 		DEE674122459B7BC00B8F9F1 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE674112459B7BC00B8F9F1 /* CoreData.swift */; };
 		DEE674142459EF8900B8F9F1 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE674132459EF8900B8F9F1 /* GroupViewController.swift */; };
 		DEE674172459F55100B8F9F1 /* GroupTableDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE674162459F55100B8F9F1 /* GroupTableDataController.swift */; };
-		DEEEEBE02205BC2C0072A19A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEEEBDF2205BC2C0072A19A /* Settings.swift */; };
 		DEF63C61245AC543007E82F9 /* ActivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF63C60245AC543007E82F9 /* ActivityController.swift */; };
 		DEFDC10023FD83B900D206A9 /* RecordsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFDC0FF23FD83B900D206A9 /* RecordsTests.swift */; };
 		E44C69EB2296FCED00A0102D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44C69EA2296FCED00A0102D /* Date.swift */; };
@@ -220,7 +219,9 @@
 		DE36597925305445002A1A11 /* Auditorium+Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auditorium+Endpoints.swift"; sourceTree = "<group>"; };
 		DE36597E25305547002A1A11 /* PublicWebsitePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicWebsitePage.swift; sourceTree = "<group>"; };
 		DE365986253055D4002A1A11 /* Group+Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+Endpoints.swift"; sourceTree = "<group>"; };
-		DE36598C25305F92002A1A11 /* URLHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLHost.swift; sourceTree = "<group>"; };
+		DE365999253076DF002A1A11 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		DE36599A2530770F002A1A11 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		DE3659B125307BBC002A1A11 /* ConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigTests.swift; sourceTree = "<group>"; };
 		DE3EB6B4231B0AE7007EA63C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/About.storyboard; sourceTree = "<group>"; };
 		DE3EB6B7231B0C03007EA63C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Date Picker.storyboard"; sourceTree = "<group>"; };
 		DE3EB6B9231B11F8007EA63C /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
@@ -317,7 +318,6 @@
 		DEE674112459B7BC00B8F9F1 /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 		DEE674132459EF8900B8F9F1 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		DEE674162459F55100B8F9F1 /* GroupTableDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableDataController.swift; sourceTree = "<group>"; };
-		DEEEEBDF2205BC2C0072A19A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		DEF63C60245AC543007E82F9 /* ActivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityController.swift; sourceTree = "<group>"; };
 		DEFD9779231E7AA900FA5B7A /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/About.strings; sourceTree = "<group>"; };
 		DEFD977A231E7AA900FA5B7A /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = "uk.lproj/Date Picker.strings"; sourceTree = "<group>"; };
@@ -384,6 +384,7 @@
 			isa = PBXGroup;
 			children = (
 				C2B5CDFC1EEF0E750066DB30 /* Assets.xcassets */,
+				DE36599825307667002A1A11 /* Config */,
 				C2B5CE2B1EF06E3A0066DB30 /* Core Data */,
 				C2C0E9AE1FB8CD870012FA9C /* Data Models */,
 				DE3B565E21823A7F008A77D1 /* Extensions */,
@@ -431,7 +432,6 @@
 			isa = PBXGroup;
 			children = (
 				DE131FE62456D74E009D09EA /* Record */,
-				DEEEEBDF2205BC2C0072A19A /* Settings.swift */,
 				DE3628CA2524ADD0003A7939 /* UserDefaultsKeys.swift */,
 			);
 			name = "Data Models";
@@ -561,7 +561,6 @@
 				DE365922252F8B88002A1A11 /* Endpoint.swift */,
 				DE36592D252F8CBA002A1A11 /* EndpointKind.swift */,
 				DE365931252F8FCF002A1A11 /* InvalidEndpointError.swift */,
-				DE36598C25305F92002A1A11 /* URLHost.swift */,
 			);
 			name = Endpoint;
 			sourceTree = "<group>";
@@ -573,6 +572,15 @@
 				DE365975253053D8002A1A11 /* WebsitePageParameters.swift */,
 			);
 			name = Website;
+			sourceTree = "<group>";
+		};
+		DE36599825307667002A1A11 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				DE365999253076DF002A1A11 /* Debug.xcconfig */,
+				DE36599A2530770F002A1A11 /* Release.xcconfig */,
+			);
+			name = Config;
 			sourceTree = "<group>";
 		};
 		DE3B565E21823A7F008A77D1 /* Extensions */ = {
@@ -808,6 +816,7 @@
 				DEFDC0FF23FD83B900D206A9 /* RecordsTests.swift */,
 				DE3628D82524F008003A7939 /* UniversityLogicTests.swift */,
 				DEAE5C49236A23B50086E734 /* UpdateHelperTests.swift */,
+				DE3659B125307BBC002A1A11 /* ConfigTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -1226,9 +1235,7 @@
 				DE36597F25305547002A1A11 /* PublicWebsitePage.swift in Sources */,
 				DEA2B3FA246C011500F96E28 /* Entity.swift in Sources */,
 				C280894B1FB8D54A002B5676 /* GroupEntity+CoreDataClass.swift in Sources */,
-				DEEEEBE02205BC2C0072A19A /* Settings.swift in Sources */,
 				DE584C6021986E740099415E /* AuditoriumEntity+CoreDataProperties.swift in Sources */,
-				DE36598D25305F92002A1A11 /* URLHost.swift in Sources */,
 				DEE674102459B15200B8F9F1 /* GroupDataController.swift in Sources */,
 				C22A2E581FC7664000587463 /* RecordEntity+CoreDataClass.swift in Sources */,
 				DE18941C21BC3A3900C7F9DB /* GroupTableViewController.swift in Sources */,
@@ -1244,6 +1251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE3628D92524F008003A7939 /* UniversityLogicTests.swift in Sources */,
+				DE3659B225307BBC002A1A11 /* ConfigTests.swift in Sources */,
 				DEFDC10023FD83B900D206A9 /* RecordsTests.swift in Sources */,
 				DEAE5C4A236A23B50086E734 /* UpdateHelperTests.swift in Sources */,
 			);
@@ -1402,6 +1410,7 @@
 /* Begin XCBuildConfiguration section */
 		C2B5CE021EEF0E750066DB30 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE365999253076DF002A1A11 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -1461,6 +1470,7 @@
 		};
 		C2B5CE031EEF0E750066DB30 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE36599A2530770F002A1A11 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -1514,6 +1524,7 @@
 		};
 		C2B5CE051EEF0E750066DB30 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE365999253076DF002A1A11 /* Debug.xcconfig */;
 			buildSettings = {
 				API_PREFIX = /api/v1;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1534,6 +1545,7 @@
 		};
 		C2B5CE061EEF0E750066DB30 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE36599A2530770F002A1A11 /* Release.xcconfig */;
 			buildSettings = {
 				API_PREFIX = /api/v1;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1554,6 +1566,7 @@
 		};
 		DEAE5C4F236A23B50086E734 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE365999253076DF002A1A11 /* Debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1581,6 +1594,7 @@
 		};
 		DEAE5C50236A23B50086E734 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE36599A2530770F002A1A11 /* Release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

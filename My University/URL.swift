@@ -11,11 +11,22 @@ import Foundation
 extension URL {
     
     static var myUniversity: URL {
-        URL(string: "https://my-university.com.ua")!
+        let scheme = Bundle.main.infoDictionary?["MY_UNIVERSITY_SERVER_SCHEME"] as! String
+        let host = Bundle.main.infoDictionary?["MY_UNIVERSITY_SERVER_HOST"] as! String
+        let port = Bundle.main.infoDictionary?["MY_UNIVERSITY_SERVER_PORT"] as! String
+        var components = URLComponents()
+        components.scheme = scheme
+        components.host = host
+        components.port = Int(port)
+        guard let url = components.url else {
+            preconditionFailure()
+        }
+        return url
     }
     
     static var myUniversityAPI: URL {
-        URL.myUniversity.appendingPathComponent("api")
+        let prefix = Bundle.main.infoDictionary?["MY_UNIVERSITY_API_PREFIX_V1"] as! String
+        return URL.myUniversity.appendingPathComponent(prefix)
     }
     
     static var contacts: URL {
