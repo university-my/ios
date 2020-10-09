@@ -12,7 +12,7 @@ extension Auditorium {
     
     class Import {
         
-        typealias NetworkClient = Auditorium.NetworkClient
+        typealias NetworkClient = ModelNetworkClient<ModelKinds.ClassroomModel>
         
         // MARK: - Properties
         
@@ -43,7 +43,7 @@ extension Auditorium {
         func importAuditoriums(_ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            networkClient.downloadAuditoriums(universityURL: university?.url ?? "") { (error) in
+            networkClient.download(universityURL: university?.url ?? "") { (error) in
                 if let error = error {
                     self.completionHandler?(error)
                 } else {
@@ -95,7 +95,7 @@ extension Auditorium {
                     return
                 }
                 
-                // Parse auditoriums.
+                // Parse auditoriums
                 let parsedAuditoriums = json.compactMap { Auditorium.CodingData($0) }
                 
                 // Auditoriums to update

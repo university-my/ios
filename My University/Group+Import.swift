@@ -12,7 +12,7 @@ extension Group {
     
     class Import {
         
-        typealias NetworkClient = Group.NetworkClient
+        typealias NetworkClient = ModelNetworkClient<ModelKinds.GroupModel>
         
         // MARK: - Properties
         
@@ -40,10 +40,12 @@ extension Group {
         
         // MARK: - Methods
         
+        #warning("Move `importGroups` to the `ModelImportController`")
+        
         func importGroups(_ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            networkClient.downloadGroups(universityURL: university?.url ?? "") { (error) in
+            networkClient.download(universityURL: university?.url ?? "") { (error) in
                 if let error = error {
                     self.completionHandler?(error)
                 } else {
@@ -51,6 +53,8 @@ extension Group {
                 }
             }
         }
+        
+        #warning("Move `serializeJSON` to the `ModelSerializationController`")
         
         private func serializeJSON() {
             guard let stream = InputStream(url: cacheFile) else {

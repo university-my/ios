@@ -12,7 +12,7 @@ extension Teacher {
     
     class Import {
         
-        typealias NetworkClient = Teacher.NetworkClient
+        typealias NetworkClient = ModelNetworkClient<ModelKinds.TeacherModel>
         
         // MARK: - Properties
         
@@ -43,7 +43,7 @@ extension Teacher {
         func importTeachers(_ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            networkClient.downloadTeachers(universityURL: university?.url ?? "") { (error) in
+            networkClient.download(universityURL: university?.url ?? "") { (error) in
                 if let error = error {
                     self.completionHandler?(error)
                 } else {
