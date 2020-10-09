@@ -11,11 +11,11 @@ import Foundation
 extension Group {
     
     struct Endpoints {
-        
+        // Custom endpoints
     }
 }
 
-extension Group.Endpoints: PublicWebsitePage {
+extension Group.Endpoints: PublicWebsitePage, EntityEndpoint {
     static var entityPath: String {
         "groups"
     }

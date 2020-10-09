@@ -1,5 +1,5 @@
 //
-//  ConfigTests.swift
+//  URLTests.swift
 //  MyUniversityTests
 //
 //  Created by Yura Voevodin on 09.10.2020.
@@ -9,7 +9,7 @@
 @testable import My_University
 import XCTest
 
-class ConfigTests: XCTestCase {
+class URLTests: XCTestCase {
     
     func testMyUniversityURL() {
         XCTAssertEqual(URL.myUniversity.absoluteString, "http://localhost:3000")

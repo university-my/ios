@@ -11,11 +11,11 @@ import Foundation
 extension Auditorium {
     
     struct Endpoints {
-        
+        // Custom endpoints
     }
 }
 
-extension Auditorium.Endpoints: PublicWebsitePage {
+extension Auditorium.Endpoints: PublicWebsitePage, EntityEndpoint {
     static var entityPath: String {
         "auditoriums"
     }

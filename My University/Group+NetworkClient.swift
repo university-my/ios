@@ -29,10 +29,7 @@ extension Group {
             guard let universityURL = universityURL else { return }
             completionHandler = completion
             
-            guard let url = URL(string: "\(URL.myUniversityAPI.absoluteString)/universities/\(universityURL)/groups") else {
-                completionHandler?(nil)
-                return
-            }
+            let url = Group.Endpoints.all(university: universityURL).url
             
             let task = URLSession.shared.downloadTask(with: url) { (url, response, error) in
                 

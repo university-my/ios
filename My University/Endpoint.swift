@@ -14,35 +14,29 @@ struct Endpoint<Kind: EndpointKind> {
 
 extension Endpoint {
     var url: URL {
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = "my-university.com.ua"
-        components.path = "/" + path
-        components.queryItems = queryItems
+        let url = Kind.url
         
-        guard let url = components.url else {
+        var components = URLComponents()
+        components.scheme = url.scheme
+        components.host = url.host
+        components.port = url.port
+        components.path = url.path
+        components.queryItems = queryItems.isEmpty ? nil : queryItems
+        
+        guard var newURL = components.url else {
             preconditionFailure(
                 "Invalid URL components: \(components)"
             )
         }
-        return url
+        
+        // Endpoint path
+        newURL.appendPathComponent(path)
+        
+        return newURL
     }
 }
 
 extension Endpoint {
-    
-//    func host(for kind: Kind) -> String {
-//        
-//    }
-    
-    //    func makeRequest(with kind: Kind) -> URLRequest? {
-    //        switch kind {
-    //        case is EndpointKinds.Public:
-    //            break
-    //        default:
-    //            break
-    //        }
-    //    }
     
     func makeRequest(with data: Kind.RequestData) -> URLRequest? {
         var components = URLComponents()

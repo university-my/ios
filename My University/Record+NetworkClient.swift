@@ -29,11 +29,13 @@ extension Record {
             completionHandler = completion
             
             let dateString = DateFormatter.short.string(from: date)
-            let urlString = "\(URL.myUniversityAPI.absoluteString)/universities/\(universityURL)/groups/\(groupID)/records?pair_date=\(dateString)"
-            guard let url = URL(string: urlString) else {
-                completionHandler?(nil)
-                return
-            }
+            
+            let url = Group.Endpoints.records(params: Record.RequestParameters(
+                id: groupID,
+                university: universityURL,
+                date: dateString
+            )).url
+            
             let task = URLSession.shared.downloadTask(with: url) { (url, response, error) in
                 
                 if let error = error {
@@ -51,11 +53,13 @@ extension Record {
             completionHandler = completion
             
             let dateString = DateFormatter.short.string(from: date)
-            let urlString = "\(URL.myUniversityAPI.absoluteString)/universities/\(universityURL)/auditoriums/\(auditoriumID)/records?pair_date=\(dateString)"
-            guard let url = URL(string: urlString) else {
-                completionHandler?(nil)
-                return
-            }
+            
+            let url = Auditorium.Endpoints.records(params: Record.RequestParameters(
+                id: auditoriumID,
+                university: universityURL,
+                date: dateString
+            )).url
+            
             let task = URLSession.shared.downloadTask(with: url) { (url, response, error) in
                 
                 if let error = error {
@@ -73,11 +77,13 @@ extension Record {
             completionHandler = completion
             
             let dateString = DateFormatter.short.string(from: date)
-            let urlString = "\(URL.myUniversityAPI.absoluteString)/universities/\(universityURL)/teachers/\(teacherID)/records?pair_date=\(dateString)"
-            guard let url = URL(string: urlString) else {
-                completionHandler?(nil)
-                return
-            }
+            
+            let url = Auditorium.Endpoints.records(params: Record.RequestParameters(
+                id: teacherID,
+                university: universityURL,
+                date: dateString
+            )).url
+            
             let task = URLSession.shared.downloadTask(with: url) { (url, response, error) in
                 if let error = error {
                     self.completionHandler?(error)
@@ -115,8 +121,7 @@ extension Record {
         // MARK: - Tests
 
         static func loadTestRecords(_ completion: @escaping (([Record.CodingData]) -> Void)) {
-            let urlString = "\(URL.myUniversityAPI.absoluteString)/records/test"
-            guard let url = URL(string: urlString) else { return }
+            let url = Record.Endpoints.testRecords.url
 
             let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
                 if let data = data {

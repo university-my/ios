@@ -11,25 +11,12 @@ import Foundation
 extension Teacher {
     
     struct Endpoints {
-        
-//        static var allTeachers: Endpoint<EndpointKinds.Public, NetworkResponse<[Teacher.CodingData]>> {
-//            let endpoint = Endpoint<EndpointKinds.Public, NetworkResponse<[Teacher.CodingData]>>(path: "test")
-//            return endpoint
-//        }
-        
+        // Custom endpoints
     }
-    
-    
 }
 
-extension Teacher.Endpoints: PublicWebsitePage {
+extension Teacher.Endpoints: PublicWebsitePage, EntityEndpoint {
     static var entityPath: String {
         "teachers"
     }
 }
-
-
-// Exapmles
-// Teacher.Endpoints.allTeachers
-// Teacher.Endpoints.allTeachers.request
-// Teacher.Endpoints.allTeachers.url

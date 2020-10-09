@@ -27,10 +27,9 @@ extension University {
 
     func downloadUniversities(_ completion: @escaping ((_ error: Error?) -> ())) {
       completionHandler = completion
-      guard let url = URL(string: "\(URL.myUniversityAPI.absoluteString)/universities") else {
-        completionHandler?(nil)
-        return
-      }
+        
+        let url = University.Endpoints.allUniversities.url
+        
 
       let task = URLSession.shared.downloadTask(with: url) { (url, response, error) in
 

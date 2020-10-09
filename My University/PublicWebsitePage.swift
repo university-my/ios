@@ -9,7 +9,6 @@
 import Foundation
 
 protocol PublicWebsitePage {
-    
     static var entityPath: String { get }
 }
 

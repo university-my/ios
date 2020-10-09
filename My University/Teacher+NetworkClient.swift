@@ -29,10 +29,7 @@ extension Teacher {
             guard let universityURL = universityURL else { return }
             completionHandler = completion
             
-            guard let url = URL(string: "\(URL.myUniversityAPI.absoluteString)/universities/\(universityURL)/teachers") else {
-                completionHandler?(nil)
-                return
-            }
+            let url = Teacher.Endpoints.all(university: universityURL).url
             
             let task = URLSession.shared.downloadTask(with: url) { (url, response, error) in
                 
