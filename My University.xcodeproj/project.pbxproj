@@ -73,12 +73,12 @@
 		DE4FCC0423EF5DB4000B53F4 /* Privacy Policy.rtf in Resources */ = {isa = PBXBuildFile; fileRef = DE4FCC0223EF5DB4000B53F4 /* Privacy Policy.rtf */; };
 		DE540EBD2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE540EBB2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift */; };
 		DE540EBE2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE540EBC2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift */; };
-		DE540EC02215CD840092FC81 /* Teacher+Import.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE540EBF2215CD840092FC81 /* Teacher+Import.swift */; };
+		DE540EC02215CD840092FC81 /* Teacher+ImportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE540EBF2215CD840092FC81 /* Teacher+ImportController.swift */; };
 		DE540EC42215CF9F0092FC81 /* TeacherDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE540EC32215CF9F0092FC81 /* TeacherDataSource.swift */; };
 		DE540ECA2215DEC40092FC81 /* ImportForTeacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE540EC92215DEC40092FC81 /* ImportForTeacher.swift */; };
 		DE584C54219860E80099415E /* Auditorium.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE584C53219860E80099415E /* Auditorium.swift */; };
 		DE584C562198615F0099415E /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE584C552198615F0099415E /* Teacher.swift */; };
-		DE584C5C219869990099415E /* Auditorium+Import.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE584C5B219869990099415E /* Auditorium+Import.swift */; };
+		DE584C5C219869990099415E /* Auditorium+ImportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE584C5B219869990099415E /* Auditorium+ImportController.swift */; };
 		DE584C5F21986E740099415E /* AuditoriumEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE584C5D21986E740099415E /* AuditoriumEntity+CoreDataClass.swift */; };
 		DE584C6021986E740099415E /* AuditoriumEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE584C5E21986E740099415E /* AuditoriumEntity+CoreDataProperties.swift */; };
 		DE5A7E932219CCBF00CA9A79 /* RecordDetailedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A7E922219CCBF00CA9A79 /* RecordDetailedTableViewController.swift */; };
@@ -97,9 +97,11 @@
 		DE7AB861246721F70031E279 /* NewAuditoriumTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB860246721F70031E279 /* NewAuditoriumTableViewController.swift */; };
 		DE7AB863246722AA0031E279 /* EntityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB862246722AA0031E279 /* EntityTableViewController.swift */; };
 		DE7B1D9F2269BCA5003E3028 /* GenericTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7B1D9E2269BCA5003E3028 /* GenericTableViewController.swift */; };
+		DE7BEA3825330C300006F421 /* ModelImportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7BEA3725330C300006F421 /* ModelImportController.swift */; };
+		DE7BEA422533782D0006F421 /* BaseImportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7BEA412533782D0006F421 /* BaseImportController.swift */; };
 		DE8417A923EA19810084E24F /* MyLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = DE8417A823EA19810084E24F /* MyLibrary */; };
 		DE87B78E235B9E450090B63E /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE87B78D235B9E450090B63E /* InitialViewController.swift */; };
-		DE8B668121CAC91C00C43F81 /* Group+Import.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B668021CAC91C00C43F81 /* Group+Import.swift */; };
+		DE8B668121CAC91C00C43F81 /* Group+ImportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B668021CAC91C00C43F81 /* Group+ImportController.swift */; };
 		DE94500422C1345800550A1C /* TableMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE94500322C1345800550A1C /* TableMessageViewController.swift */; };
 		DE945AC72264D11700143303 /* UniversityEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE945AC52264D11700143303 /* UniversityEntity+CoreDataClass.swift */; };
 		DE945AC82264D11700143303 /* UniversityEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE945AC62264D11700143303 /* UniversityEntity+CoreDataProperties.swift */; };
@@ -245,13 +247,13 @@
 		DE4FCC0223EF5DB4000B53F4 /* Privacy Policy.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "Privacy Policy.rtf"; sourceTree = "<group>"; };
 		DE540EBB2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TeacherEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		DE540EBC2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TeacherEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		DE540EBF2215CD840092FC81 /* Teacher+Import.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Teacher+Import.swift"; sourceTree = "<group>"; };
+		DE540EBF2215CD840092FC81 /* Teacher+ImportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Teacher+ImportController.swift"; sourceTree = "<group>"; };
 		DE540EC32215CF9F0092FC81 /* TeacherDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherDataSource.swift; sourceTree = "<group>"; };
 		DE540EC92215DEC40092FC81 /* ImportForTeacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportForTeacher.swift; sourceTree = "<group>"; };
 		DE584C52219852430099415E /* Schedule 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Schedule 2.xcdatamodel"; sourceTree = "<group>"; };
 		DE584C53219860E80099415E /* Auditorium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auditorium.swift; sourceTree = "<group>"; };
 		DE584C552198615F0099415E /* Teacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
-		DE584C5B219869990099415E /* Auditorium+Import.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auditorium+Import.swift"; sourceTree = "<group>"; };
+		DE584C5B219869990099415E /* Auditorium+ImportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auditorium+ImportController.swift"; sourceTree = "<group>"; };
 		DE584C5D21986E740099415E /* AuditoriumEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuditoriumEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		DE584C5E21986E740099415E /* AuditoriumEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuditoriumEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DE5A7E922219CCBF00CA9A79 /* RecordDetailedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailedTableViewController.swift; sourceTree = "<group>"; };
@@ -270,8 +272,10 @@
 		DE7AB860246721F70031E279 /* NewAuditoriumTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAuditoriumTableViewController.swift; sourceTree = "<group>"; };
 		DE7AB862246722AA0031E279 /* EntityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityTableViewController.swift; sourceTree = "<group>"; };
 		DE7B1D9E2269BCA5003E3028 /* GenericTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableViewController.swift; sourceTree = "<group>"; };
+		DE7BEA3725330C300006F421 /* ModelImportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelImportController.swift; sourceTree = "<group>"; };
+		DE7BEA412533782D0006F421 /* BaseImportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseImportController.swift; sourceTree = "<group>"; };
 		DE87B78D235B9E450090B63E /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
-		DE8B668021CAC91C00C43F81 /* Group+Import.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+Import.swift"; sourceTree = "<group>"; };
+		DE8B668021CAC91C00C43F81 /* Group+ImportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+ImportController.swift"; sourceTree = "<group>"; };
 		DE94500322C1345800550A1C /* TableMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableMessageViewController.swift; sourceTree = "<group>"; };
 		DE945AC52264D11700143303 /* UniversityEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		DE945AC62264D11700143303 /* UniversityEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -445,12 +449,10 @@
 		C2C76A2C200243BD00BFF3D4 /* Import */ = {
 			isa = PBXGroup;
 			children = (
-				DE584C5B219869990099415E /* Auditorium+Import.swift */,
-				DE8B668021CAC91C00C43F81 /* Group+Import.swift */,
-				DE540EBF2215CD840092FC81 /* Teacher+Import.swift */,
-				DE945ACB2264D27B00143303 /* University+Import.swift */,
+				DE7BEA412533782D0006F421 /* BaseImportController.swift */,
+				DE7BEA3725330C300006F421 /* ModelImportController.swift */,
 				DE04D1F62370B79F00A18649 /* UpdateHelper.swift */,
-				DE18941721BC336700C7F9DB /* Record */,
+				DE7BEA47253379850006F421 /* Models */,
 			);
 			name = Import;
 			sourceTree = "<group>";
@@ -750,6 +752,18 @@
 				DE7AB860246721F70031E279 /* NewAuditoriumTableViewController.swift */,
 			);
 			name = Table;
+			sourceTree = "<group>";
+		};
+		DE7BEA47253379850006F421 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DE584C5B219869990099415E /* Auditorium+ImportController.swift */,
+				DE8B668021CAC91C00C43F81 /* Group+ImportController.swift */,
+				DE540EBF2215CD840092FC81 /* Teacher+ImportController.swift */,
+				DE945ACB2264D27B00143303 /* University+Import.swift */,
+				DE18941721BC336700C7F9DB /* Record */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		DE87B78C235B9E1D0090B63E /* Initial */ = {
@@ -1170,7 +1184,7 @@
 				DE131FE82456D773009D09EA /* Record+CodingData.swift in Sources */,
 				DE18941921BC349400C7F9DB /* Record+NetworkClient.swift in Sources */,
 				DE999ABE227C54160018F725 /* UniversityDataSource.swift in Sources */,
-				DE540EC02215CD840092FC81 /* Teacher+Import.swift in Sources */,
+				DE540EC02215CD840092FC81 /* Teacher+ImportController.swift in Sources */,
 				DE79DC9C246AA7F800C8C0EF /* TeacherDataController.swift in Sources */,
 				DE3EC2CE245C75F900E30536 /* Auditorium+CodingData.swift in Sources */,
 				DEF63C61245AC543007E82F9 /* ActivityController.swift in Sources */,
@@ -1185,7 +1199,7 @@
 				C293559E1FBE246000071719 /* SearchResultsTableViewController.swift in Sources */,
 				DE94500422C1345800550A1C /* TableMessageViewController.swift in Sources */,
 				DE365987253055D4002A1A11 /* Group+Endpoints.swift in Sources */,
-				DE8B668121CAC91C00C43F81 /* Group+Import.swift in Sources */,
+				DE8B668121CAC91C00C43F81 /* Group+ImportController.swift in Sources */,
 				DEA2B3EB246AE7D000F96E28 /* TeacherTableDataController.swift in Sources */,
 				DEB031672459809D00A5D29D /* ErrorAlertRepresentable.swift in Sources */,
 				DEBCBDA62530E2300087F216 /* Record+Endpoints.swift in Sources */,
@@ -1226,11 +1240,12 @@
 				DEA2B3E4246AE3C200F96E28 /* TeacherLogicController.swift in Sources */,
 				DE13EEB42466B9BA0011F307 /* StructRepresentable.swift in Sources */,
 				DEE6740E2459ACE300B8F9F1 /* Group+CodingData.swift in Sources */,
+				DE7BEA422533782D0006F421 /* BaseImportController.swift in Sources */,
 				DE2863782455F75B0036A01F /* UniversitiesViewController.swift in Sources */,
 				DEB0316E2459895A00A5D29D /* GroupNetworkController.swift in Sources */,
 				DE5A7E932219CCBF00CA9A79 /* RecordDetailedTableViewController.swift in Sources */,
 				DE4FCBFD23EF5CF9000B53F4 /* LegalDocumentViewController.swift in Sources */,
-				DE584C5C219869990099415E /* Auditorium+Import.swift in Sources */,
+				DE584C5C219869990099415E /* Auditorium+ImportController.swift in Sources */,
 				DEE576E4226B7B9E008F9EB6 /* SearchableTableViewController.swift in Sources */,
 				DE7B1D9F2269BCA5003E3028 /* GenericTableViewController.swift in Sources */,
 				DE4FCBFF23EF5D50000B53F4 /* LegalDocument.swift in Sources */,
@@ -1269,6 +1284,7 @@
 				C22A2E581FC7664000587463 /* RecordEntity+CoreDataClass.swift in Sources */,
 				DE18941C21BC3A3900C7F9DB /* GroupTableViewController.swift in Sources */,
 				DEB6819D245DF874005FA2F0 /* EntityNetworkController.swift in Sources */,
+				DE7BEA3825330C300006F421 /* ModelImportController.swift in Sources */,
 				C22A2E591FC7664000587463 /* RecordEntity+CoreDataProperties.swift in Sources */,
 				DE266D60240C4AAA00C30A4A /* WhatsNewView.swift in Sources */,
 				DEA2B3FD246C02BF00F96E28 /* Entity+Manager.swift in Sources */,

@@ -93,13 +93,13 @@ class TeacherDataSource: NSObject {
     
     // MARK: - Import
     
-    private var importManager: Teacher.Import?
+    private var importManager: Teacher.ImportController?
     
     /// Import Teachers from backend
     func importTeachers(_ completion: @escaping ((_ error: Error?) -> ())) {
         guard let persistentContainer = persistentContainer else { return }
         
-        importManager = Teacher.Import(persistentContainer: persistentContainer, universityID: university.id)
+        importManager = Teacher.ImportController(persistentContainer: persistentContainer, universityID: university.id)
         DispatchQueue.global().async { [weak self] in
             
             self?.importManager?.importTeachers({ (error) in

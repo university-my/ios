@@ -1,5 +1,5 @@
 //
-//  Auditorium+Import.swift
+//  Auditorium+ImportController.swift
 //  My University
 //
 //  Created by Yura Voevodin on 11/11/18.
@@ -10,73 +10,26 @@ import CoreData
 
 extension Auditorium {
     
-    class Import {
-        
-        typealias NetworkClient = ModelNetworkClient<ModelKinds.ClassroomModel>
-        
-        // MARK: - Properties
-        
-        private let cacheFile: URL
-        private let networkClient: NetworkClient
-        private var completionHandler: ((_ error: Error?) -> ())?
-        private var persistentContainer: NSPersistentContainer
-        private weak var university: UniversityEntity?
-        
-        // MARK: - Initialization
-        
-        init?(persistentContainer: NSPersistentContainer, universityID: Int64) {
-            // Cache file
-            let cachesFolder = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-            guard let cacheFile = cachesFolder?.appendingPathComponent("auditoriums.json") else { return nil }
-            
-            self.cacheFile = cacheFile
-            networkClient = NetworkClient(cacheFile: self.cacheFile)
-            
-            self.persistentContainer = persistentContainer
-            
-            guard let university = UniversityEntity.fetch(id: universityID, context: persistentContainer.viewContext) else { return nil }
-            self.university = university
-        }
-        
-        // MARK: - Methods
+   final class ImportController: BaseImportController<ModelKinds.ClassroomModel> {
         
         func importAuditoriums(_ completion: @escaping ((_ error: Error?) -> ())) {
+            guard let universityURL = university?.url else {
+                preconditionFailure()
+            }
             completionHandler = completion
             
-            networkClient.download(universityURL: university?.url ?? "") { (error) in
+            importController.importData(universityURL: universityURL) { (json, error) in
+                
                 if let error = error {
                     self.completionHandler?(error)
                 } else {
-                    self.serializeJSON()
-                }
-            }
-        }
-        
-        private func serializeJSON() {
-            guard let stream = InputStream(url: cacheFile) else {
-                completionHandler?(nil)
-                return
-            }
-            stream.open()
-            
-            defer {
-                stream.close()
-            }
-            do {
-                let object = try JSONSerialization.jsonObject(with: stream, options: []) as? [Any]
-                if let json = object as? [[String: Any]] {
-                    // New context for sync.
+                    // New context for sync
                     let taskContext = self.persistentContainer.newBackgroundContext()
                     taskContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
                     taskContext.undoManager = nil
                     
-                    syncAuditoriums(from: json, taskContext: taskContext)
-                    
-                } else {
-                    completionHandler?(nil)
+                    self.syncAuditoriums(from: json, taskContext: taskContext)
                 }
-            } catch {
-                completionHandler?(error)
             }
         }
         
@@ -204,4 +157,3 @@ extension Auditorium {
         }
     }
 }
-

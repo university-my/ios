@@ -94,14 +94,14 @@ class GroupsDataSource: NSObject {
     
     // MARK: - Import
     
-    var importManager: Group.Import?
+    var importManager: Group.ImportController?
     
     /// Import Groups from backend
     func importGroups(_ completion: @escaping ((_ error: Error?) -> ())) {
         guard let persistentContainer = persistentContainer else { return }
         
         // Download Groups from backend and save to database.
-        importManager = Group.Import(persistentContainer: persistentContainer, universityID: university.id)
+        importManager = Group.ImportController(persistentContainer: persistentContainer, universityID: university.id)
         DispatchQueue.global().async { [weak self] in
             
             self?.importManager?.importGroups { (error) in

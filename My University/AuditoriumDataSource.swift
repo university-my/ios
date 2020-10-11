@@ -93,13 +93,13 @@ class AuditoriumDataSource: NSObject {
     
     // MARK: - Import
     
-    private var importManager: Auditorium.Import?
+    private var importManager: Auditorium.ImportController?
     
     /// Import Auditoriums from backend
     func importAuditoriums(_ completion: @escaping ((_ error: Error?) -> ())) {
         guard let persistentContainer = persistentContainer else { return }
         
-        importManager = Auditorium.Import(persistentContainer: persistentContainer, universityID: university.id)
+        importManager = Auditorium.ImportController(persistentContainer: persistentContainer, universityID: university.id)
         DispatchQueue.global().async { [weak self] in
             
             self?.importManager?.importAuditoriums({ (error) in
