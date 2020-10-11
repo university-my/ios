@@ -98,7 +98,8 @@
 		DE7AB863246722AA0031E279 /* EntityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB862246722AA0031E279 /* EntityTableViewController.swift */; };
 		DE7B1D9F2269BCA5003E3028 /* GenericTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7B1D9E2269BCA5003E3028 /* GenericTableViewController.swift */; };
 		DE7BEA3825330C300006F421 /* ModelImportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7BEA3725330C300006F421 /* ModelImportController.swift */; };
-		DE7BEA422533782D0006F421 /* BaseImportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7BEA412533782D0006F421 /* BaseImportController.swift */; };
+		DE7BEA422533782D0006F421 /* BaseModelImportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7BEA412533782D0006F421 /* BaseModelImportController.swift */; };
+		DE7BEA5A2533833F0006F421 /* BaseRecordImportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7BEA592533833F0006F421 /* BaseRecordImportController.swift */; };
 		DE8417A923EA19810084E24F /* MyLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = DE8417A823EA19810084E24F /* MyLibrary */; };
 		DE87B78E235B9E450090B63E /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE87B78D235B9E450090B63E /* InitialViewController.swift */; };
 		DE8B668121CAC91C00C43F81 /* Group+ImportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B668021CAC91C00C43F81 /* Group+ImportController.swift */; };
@@ -273,7 +274,8 @@
 		DE7AB862246722AA0031E279 /* EntityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityTableViewController.swift; sourceTree = "<group>"; };
 		DE7B1D9E2269BCA5003E3028 /* GenericTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableViewController.swift; sourceTree = "<group>"; };
 		DE7BEA3725330C300006F421 /* ModelImportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelImportController.swift; sourceTree = "<group>"; };
-		DE7BEA412533782D0006F421 /* BaseImportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseImportController.swift; sourceTree = "<group>"; };
+		DE7BEA412533782D0006F421 /* BaseModelImportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModelImportController.swift; sourceTree = "<group>"; };
+		DE7BEA592533833F0006F421 /* BaseRecordImportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRecordImportController.swift; sourceTree = "<group>"; };
 		DE87B78D235B9E450090B63E /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		DE8B668021CAC91C00C43F81 /* Group+ImportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+ImportController.swift"; sourceTree = "<group>"; };
 		DE94500322C1345800550A1C /* TableMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableMessageViewController.swift; sourceTree = "<group>"; };
@@ -421,17 +423,8 @@
 		C2B5CE2B1EF06E3A0066DB30 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				DE584C5D21986E740099415E /* AuditoriumEntity+CoreDataClass.swift */,
-				DE584C5E21986E740099415E /* AuditoriumEntity+CoreDataProperties.swift */,
 				DEE674112459B7BC00B8F9F1 /* CoreData.swift */,
-				C28089491FB8D54A002B5676 /* GroupEntity+CoreDataClass.swift */,
-				C280894A1FB8D54A002B5676 /* GroupEntity+CoreDataProperties.swift */,
-				C22A2E561FC7664000587463 /* RecordEntity+CoreDataClass.swift */,
-				C22A2E571FC7664000587463 /* RecordEntity+CoreDataProperties.swift */,
-				DE540EBB2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift */,
-				DE540EBC2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift */,
-				DE945AC52264D11700143303 /* UniversityEntity+CoreDataClass.swift */,
-				DE945AC62264D11700143303 /* UniversityEntity+CoreDataProperties.swift */,
+				DE7BEA5625337FAE0006F421 /* Models */,
 				C2B5CDF91EEF0E750066DB30 /* Schedule.xcdatamodeld */,
 			);
 			name = "Core Data";
@@ -440,7 +433,11 @@
 		C2C0E9AE1FB8CD870012FA9C /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
+				DE3EC2CC245C75DD00E30536 /* Classroom */,
+				DEE6740C2459AB3A00B8F9F1 /* Group */,
 				DE131FE62456D74E009D09EA /* Record */,
+				DEBC46032456F2EC00489CAA /* Teacher */,
+				DE87B791235B9FCD0090B63E /* University */,
 				DE3628CA2524ADD0003A7939 /* UserDefaultsKeys.swift */,
 			);
 			name = "Data Models";
@@ -449,7 +446,7 @@
 		C2C76A2C200243BD00BFF3D4 /* Import */ = {
 			isa = PBXGroup;
 			children = (
-				DE7BEA412533782D0006F421 /* BaseImportController.swift */,
+				DE7BEA412533782D0006F421 /* BaseModelImportController.swift */,
 				DE7BEA3725330C300006F421 /* ModelImportController.swift */,
 				DE04D1F62370B79F00A18649 /* UpdateHelper.swift */,
 				DE7BEA47253379850006F421 /* Models */,
@@ -542,6 +539,7 @@
 				DE18942121BD45E600C7F9DB /* ImportForAuditorium.swift */,
 				DE18941F21BD457F00C7F9DB /* ImportForGroup.swift */,
 				DE540EC92215DEC40092FC81 /* ImportForTeacher.swift */,
+				DE7BEA592533833F0006F421 /* BaseRecordImportController.swift */,
 			);
 			name = Record;
 			sourceTree = "<group>";
@@ -623,20 +621,19 @@
 				DE3EC2C8245C742500E30536 /* AuditoriumNetworkController.swift */,
 				DE3EC2CA245C743500E30536 /* AuditoriumViewController.swift */,
 				DEA2B3F4246BF8A100F96E28 /* Auditorium.storyboard */,
-				DE3EC2CC245C75DD00E30536 /* Data Models */,
 				DE7AB85B24671FF50031E279 /* Table */,
 			);
 			name = Auditorium;
 			sourceTree = "<group>";
 		};
-		DE3EC2CC245C75DD00E30536 /* Data Models */ = {
+		DE3EC2CC245C75DD00E30536 /* Classroom */ = {
 			isa = PBXGroup;
 			children = (
 				DE584C53219860E80099415E /* Auditorium.swift */,
 				DE3EC2CD245C75F900E30536 /* Auditorium+CodingData.swift */,
 				DE36597925305445002A1A11 /* Auditorium+Endpoints.swift */,
 			);
-			name = "Data Models";
+			name = Classroom;
 			sourceTree = "<group>";
 		};
 		DE472C7321B84313003AE86D /* About */ = {
@@ -694,7 +691,6 @@
 		DE5FAE072263B36A00333121 /* Universities */ = {
 			isa = PBXGroup;
 			children = (
-				DE87B791235B9FCD0090B63E /* Data Models */,
 				DEE576E0226B7875008F9EB6 /* Data Source */,
 				DEBB74AE235CE62600226C7E /* Storyboard */,
 				DEE576DF226B7861008F9EB6 /* View Controllers */,
@@ -739,7 +735,6 @@
 				DEA2B3E3246AE3C200F96E28 /* TeacherLogicController.swift */,
 				DE79DC99246AA63D00C8C0EF /* TeacherNetworkController.swift */,
 				DEA2B3E7246AE75500F96E28 /* TeacherViewController.swift */,
-				DEBC46032456F2EC00489CAA /* Data Models */,
 				DEA2B3E9246AE7B600F96E28 /* Table */,
 			);
 			name = Teacher;
@@ -766,6 +761,23 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		DE7BEA5625337FAE0006F421 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DE584C5D21986E740099415E /* AuditoriumEntity+CoreDataClass.swift */,
+				DE584C5E21986E740099415E /* AuditoriumEntity+CoreDataProperties.swift */,
+				C28089491FB8D54A002B5676 /* GroupEntity+CoreDataClass.swift */,
+				C280894A1FB8D54A002B5676 /* GroupEntity+CoreDataProperties.swift */,
+				C22A2E561FC7664000587463 /* RecordEntity+CoreDataClass.swift */,
+				C22A2E571FC7664000587463 /* RecordEntity+CoreDataProperties.swift */,
+				DE540EBB2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift */,
+				DE540EBC2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift */,
+				DE945AC52264D11700143303 /* UniversityEntity+CoreDataClass.swift */,
+				DE945AC62264D11700143303 /* UniversityEntity+CoreDataProperties.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		DE87B78C235B9E1D0090B63E /* Initial */ = {
 			isa = PBXGroup;
 			children = (
@@ -775,13 +787,13 @@
 			name = Initial;
 			sourceTree = "<group>";
 		};
-		DE87B791235B9FCD0090B63E /* Data Models */ = {
+		DE87B791235B9FCD0090B63E /* University */ = {
 			isa = PBXGroup;
 			children = (
 				DE945AC92264D17C00143303 /* University.swift */,
 				DEBCBDA92530E3060087F216 /* University+Endpoints.swift */,
 			);
-			name = "Data Models";
+			name = University;
 			sourceTree = "<group>";
 		};
 		DE94500222C1343800550A1C /* Table Message */ = {
@@ -864,7 +876,6 @@
 				DEB0316B245988F600A5D29D /* GroupLogicController.swift */,
 				DEB0316D2459895A00A5D29D /* GroupNetworkController.swift */,
 				DEE674132459EF8900B8F9F1 /* GroupViewController.swift */,
-				DEE6740C2459AB3A00B8F9F1 /* Data Models */,
 				DEA2B3EF246BCEC600F96E28 /* Group.storyboard */,
 				DEE674152459F53500B8F9F1 /* Table */,
 			);
@@ -937,14 +948,14 @@
 			name = Storyboard;
 			sourceTree = "<group>";
 		};
-		DEBC46032456F2EC00489CAA /* Data Models */ = {
+		DEBC46032456F2EC00489CAA /* Teacher */ = {
 			isa = PBXGroup;
 			children = (
 				DE584C552198615F0099415E /* Teacher.swift */,
 				DEBC46042456F30A00489CAA /* Teacher+CodingData.swift */,
 				DE36596B2530417C002A1A11 /* Teacher+Endpoints.swift */,
 			);
-			name = "Data Models";
+			name = Teacher;
 			sourceTree = "<group>";
 		};
 		DEBCBDBB2530E4FB0087F216 /* Test Data */ = {
@@ -1009,14 +1020,14 @@
 			name = Auditoriums;
 			sourceTree = "<group>";
 		};
-		DEE6740C2459AB3A00B8F9F1 /* Data Models */ = {
+		DEE6740C2459AB3A00B8F9F1 /* Group */ = {
 			isa = PBXGroup;
 			children = (
 				C2C0E9AF1FB8CDA00012FA9C /* Group.swift */,
 				DEE6740D2459ACE300B8F9F1 /* Group+CodingData.swift */,
 				DE365986253055D4002A1A11 /* Group+Endpoints.swift */,
 			);
-			name = "Data Models";
+			name = Group;
 			sourceTree = "<group>";
 		};
 		DEE674152459F53500B8F9F1 /* Table */ = {
@@ -1225,6 +1236,7 @@
 				DEBCBDA22530E06A0087F216 /* Record+RequestParameters.swift in Sources */,
 				DEB0316C245988F600A5D29D /* GroupLogicController.swift in Sources */,
 				DEA2B3ED246AE81000F96E28 /* NewTeacherTableViewController.swift in Sources */,
+				DE7BEA5A2533833F0006F421 /* BaseRecordImportController.swift in Sources */,
 				DEA2B3F8246BFB6D00F96E28 /* UIViewController.swift in Sources */,
 				DE7AB85A24671E6D0031E279 /* EntityRepresentable.swift in Sources */,
 				DEBCBDAA2530E3060087F216 /* University+Endpoints.swift in Sources */,
@@ -1240,7 +1252,7 @@
 				DEA2B3E4246AE3C200F96E28 /* TeacherLogicController.swift in Sources */,
 				DE13EEB42466B9BA0011F307 /* StructRepresentable.swift in Sources */,
 				DEE6740E2459ACE300B8F9F1 /* Group+CodingData.swift in Sources */,
-				DE7BEA422533782D0006F421 /* BaseImportController.swift in Sources */,
+				DE7BEA422533782D0006F421 /* BaseModelImportController.swift in Sources */,
 				DE2863782455F75B0036A01F /* UniversitiesViewController.swift in Sources */,
 				DEB0316E2459895A00A5D29D /* GroupNetworkController.swift in Sources */,
 				DE5A7E932219CCBF00CA9A79 /* RecordDetailedTableViewController.swift in Sources */,

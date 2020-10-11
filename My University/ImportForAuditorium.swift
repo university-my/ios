@@ -10,102 +10,14 @@ import CoreData
 
 extension Record {
     
-    class ImportForAuditorium {
-        
-        typealias NetworkClient = Record.NetworkClient
-        
-        // MARK: - Properties
-        
-        private let cacheFile: URL
-        private let networkClient: NetworkClient
-        private var completionHandler: ((_ error: Error?) -> ())?
-        private let auditoriumID: Int64
-        private let universityURL: String
-        
-        private let persistentContainer: NSPersistentContainer
-        
-        private var viewContext: NSManagedObjectContext {
-            return persistentContainer.viewContext
-        }
-        
-        private var dateFormatter: ISO8601DateFormatter = {
-            let dateFormatter = ISO8601DateFormatter()
-            dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-            return dateFormatter
-        }()
-        
-        // MARK: - Initialization
-        
-        init?(persistentContainer: NSPersistentContainer, auditoriumID: Int64, universityURL: String) {
-            // Cache file
-            let cachesFolder = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-            guard let cacheFile = cachesFolder?.appendingPathComponent("auditorium_records.json") else { return nil }
-            
-            self.cacheFile = cacheFile
-            self.auditoriumID = auditoriumID
-            self.universityURL = universityURL
-            self.persistentContainer = persistentContainer
-            networkClient = NetworkClient(cacheFile: self.cacheFile)
-        }
-        
-        // MARK: - Methods
-        
-        func importRecords(for date: Date, _ completion: @escaping ((_ error: Error?) -> ())) {
-            completionHandler = completion
-            
-            networkClient.downloadRecords(auditoriumID: auditoriumID, date: date, universityURL: universityURL) { (error) in
-                if let error = error {
-                    self.completionHandler?(error)
-                } else {
-                    self.serializeJSON()
-                }
-            }
-        }
-        
-        private func serializeJSON() {
-            guard let stream = InputStream(url: cacheFile) else {
-                completionHandler?(nil)
-                return
-            }
-            stream.open()
-            
-            defer {
-                stream.close()
-            }
-            do {
-                let object = try JSONSerialization.jsonObject(with: stream, options: []) as? [String: Any]
-                let records = object?.first { key, _ in
-                    return key == "records"
-                }
-                if let records = records?.value as? [[String: Any]] {
-                    
-                    // Finish if no records in JSON.
-                    if records.isEmpty {
-                        completionHandler?(nil)
-                        return
-                    }
-                    
-                    // New context for sync.
-                    let taskContext = self.persistentContainer.newBackgroundContext()
-                    taskContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-                    taskContext.undoManager = nil
-                    
-                    syncRecords(records, taskContext: taskContext)
-                    
-                } else {
-                    completionHandler?(nil)
-                }
-            } catch {
-                completionHandler?(error)
-            }
-        }
+    final class ImportForAuditorium: BaseRecordImportController<ModelKinds.ClassroomModel> {
         
         /// Delete previous records and insert new records
-        private func syncRecords(_ json: [[String: Any]], taskContext: NSManagedObjectContext) {
+        override func syncRecords(_ json: [[String: Any]], taskContext: NSManagedObjectContext) {
             
             taskContext.performAndWait {
                 
-                guard let auditoriumInContext = AuditoriumEntity.fetch(id: auditoriumID, context: taskContext) else {
+                guard let auditoriumInContext = AuditoriumEntity.fetch(id: modelID, context: taskContext) else {
                     self.completionHandler?(nil)
                     return
                 }
@@ -141,7 +53,7 @@ extension Record {
                     }
                 }
                 
-                // Intert
+                // Insert
                 for record in toInsert {
                     self.insert(record, auditorium: auditoriumInContext, context: taskContext)
                 }
@@ -185,7 +97,7 @@ extension Record {
             
             // Fetch teacher entity for set relation with record
             if let object = parsedRecord.teacher {
-                recordEntity.teacher = TeacherEntity.fetchTeacher(id: object.id, context: context)
+                recordEntity.teacher = TeacherEntity.fetch(id: object.id, context: context)
             }
         }
     }

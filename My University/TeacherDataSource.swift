@@ -102,7 +102,7 @@ class TeacherDataSource: NSObject {
         importManager = Teacher.ImportController(persistentContainer: persistentContainer, universityID: university.id)
         DispatchQueue.global().async { [weak self] in
             
-            self?.importManager?.importTeachers({ (error) in
+            self?.importManager?.importData({ (error) in
                 
                 DispatchQueue.main.async {
                     completion(error)

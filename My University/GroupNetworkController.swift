@@ -21,7 +21,7 @@ class GroupNetworkController: EntityNetworkController {
         }
         // Init new import manager
         let container = CoreData.default.persistentContainer
-        importManager = Record.ImportForGroup(persistentContainer: container, group: groupEntity, university: university)
+        importManager = Record.ImportForGroup(persistentContainer: container, modelID: groupEntity.id, universityURL: university.url ?? "")
         
         // Download records for Group from backend and save to database.
         importManager?.importRecords(for: date, { [weak self] (error) in

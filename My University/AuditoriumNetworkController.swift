@@ -21,7 +21,7 @@ class AuditoriumNetworkController: EntityNetworkController {
         }
         // Init new import manager
         let container = CoreData.default.persistentContainer
-        importManager = Record.ImportForAuditorium(persistentContainer: container, auditoriumID: auditorium.id, universityURL: universityURL)
+        importManager = Record.ImportForAuditorium(persistentContainer: container, modelID: auditorium.id, universityURL: universityURL)
         
         // Download records for Group from backend and save to database.
         importManager?.importRecords(for: date, { [weak self] (error) in

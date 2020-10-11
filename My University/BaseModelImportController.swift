@@ -31,4 +31,32 @@ class BaseModelImportController<Kind: ModelKind> {
         guard let university = UniversityEntity.fetch(id: universityID, context: persistentContainer.viewContext) else { return nil }
         self.university = university
     }
+    
+    // MARK: - Methods
+    
+    func importData(_ completion: @escaping ((_ error: Error?) -> ())) {
+        guard let universityURL = university?.url else {
+            preconditionFailure()
+        }
+        completionHandler = completion
+        
+        importController.importData(universityURL: universityURL) { (json, error) in
+            
+            if let error = error {
+                self.completionHandler?(error)
+            } else {
+                // New context for sync
+                let context = self.persistentContainer.newBackgroundContext()
+                context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+                context.undoManager = nil
+                
+                self.sync(from: json, taskContext: context)
+            }
+        }
+    }
+    
+    /// Delete previous teachers and insert new
+    func sync(from json: [[String: Any]], taskContext: NSManagedObjectContext) {
+        
+    }
 }

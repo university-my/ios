@@ -53,6 +53,7 @@ class AuditoriumViewController: EntityViewController {
     
     // MARK: - State
     
+    #warning("Move `render(_ state: State)` to parent")
     func render(_ state: State) {
         switch state {
             

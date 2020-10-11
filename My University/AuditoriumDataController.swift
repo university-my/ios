@@ -23,6 +23,7 @@ final class AuditoriumDataController: EntityDataController {
     
     // MARK: - Auditorium
     
+    #warning("Add Generic type of `NSManagedObject` to the `ModelKind`")
     var auditorium: AuditoriumEntity? {
         return entity as? AuditoriumEntity
     }

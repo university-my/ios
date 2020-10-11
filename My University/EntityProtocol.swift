@@ -9,11 +9,15 @@
 import CoreData
 
 protocol EntityProtocol: NSManagedObject {
+    
+    // MARK: - Properties
+    
     var name: String? { get set }
     var favorite: Bool { get set }
-    
     var slug: String? { get set }
     var university: UniversityEntity? { get set }
+    
+    // MARK: - Methods
     
     func shareURL(for date: Date) -> URL?
 }

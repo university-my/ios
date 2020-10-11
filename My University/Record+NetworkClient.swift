@@ -7,15 +7,17 @@
 //
 
 import Foundation
+import os
 
 extension Record {
     
-    class NetworkClient {
+    class NetworkClient<Model: ModelKind> {
         
         // MARK: - Properties
         
         private let cacheFile: URL
         private var completionHandler: ((_ error: Error?) -> ())?
+        private let logger = Logger(subsystem: Bundle.identifier, category: "NetworkClient")
         
         // MARK: - Initialization
         
@@ -23,68 +25,21 @@ extension Record {
             self.cacheFile = cacheFile
         }
         
-        // MARK: - Download Records with Group ID
-        
-        func downloadRecords(groupID: Int64, date: Date, universityURL: String, _ completion: @escaping ((_ error: Error?) -> ())) {
+        func downloadRecords(modelID: Int64, date: Date, universityURL: String, _ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
             let dateString = DateFormatter.short.string(from: date)
             
-            let url = Group.Endpoints.records(params: Record.RequestParameters(
-                id: groupID,
+            let url = Model.recordsEndpoint(params: Record.RequestParameters(
+                id: modelID,
                 university: universityURL,
                 date: dateString
-            )).url
+            ))
             
             let task = URLSession.shared.downloadTask(with: url) { (url, response, error) in
                 
-                if let error = error {
-                    self.completionHandler?(error)
-                } else {
-                    self.downloadFinished(url: url, response: response)
-                }
-            }
-            task.resume()
-        }
-        
-        // MARK: - Download Records with Auditorium ID
-        
-        func downloadRecords(auditoriumID: Int64, date: Date, universityURL: String, _ completion: @escaping ((_ error: Error?) -> ())) {
-            completionHandler = completion
-            
-            let dateString = DateFormatter.short.string(from: date)
-            
-            let url = Auditorium.Endpoints.records(params: Record.RequestParameters(
-                id: auditoriumID,
-                university: universityURL,
-                date: dateString
-            )).url
-            
-            let task = URLSession.shared.downloadTask(with: url) { (url, response, error) in
+                self.logger.debug("\(response?.url?.absoluteString ?? "")")
                 
-                if let error = error {
-                    self.completionHandler?(error)
-                } else {
-                    self.downloadFinished(url: url, response: response)
-                }
-            }
-            task.resume()
-        }
-        
-        // MARK: - Download Records with Teacher ID
-        
-        func downloadRecords(teacherID: Int64, date: Date, universityURL: String, _ completion: @escaping ((_ error: Error?) -> ())) {
-            completionHandler = completion
-            
-            let dateString = DateFormatter.short.string(from: date)
-            
-            let url = Auditorium.Endpoints.records(params: Record.RequestParameters(
-                id: teacherID,
-                university: universityURL,
-                date: dateString
-            )).url
-            
-            let task = URLSession.shared.downloadTask(with: url) { (url, response, error) in
                 if let error = error {
                     self.completionHandler?(error)
                 } else {

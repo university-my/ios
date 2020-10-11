@@ -10,31 +10,10 @@ import CoreData
 
 extension Auditorium {
     
-   final class ImportController: BaseImportController<ModelKinds.ClassroomModel> {
-        
-        func importAuditoriums(_ completion: @escaping ((_ error: Error?) -> ())) {
-            guard let universityURL = university?.url else {
-                preconditionFailure()
-            }
-            completionHandler = completion
-            
-            importController.importData(universityURL: universityURL) { (json, error) in
-                
-                if let error = error {
-                    self.completionHandler?(error)
-                } else {
-                    // New context for sync
-                    let taskContext = self.persistentContainer.newBackgroundContext()
-                    taskContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-                    taskContext.undoManager = nil
-                    
-                    self.syncAuditoriums(from: json, taskContext: taskContext)
-                }
-            }
-        }
+    final class ImportController: BaseModelImportController<ModelKinds.ClassroomModel> {
         
         /// Delete previous groups and insert new
-        private func syncAuditoriums(from json: [[String: Any]], taskContext: NSManagedObjectContext) {
+        override func sync(from json: [[String: Any]], taskContext: NSManagedObjectContext) {
             
             taskContext.performAndWait {
                 
@@ -72,11 +51,11 @@ extension Auditorium {
                 // Now find auditoriums to delete
                 let allAuditoriums = AuditoriumEntity.fetchAll(university: universityInContext, context: taskContext)
                 let toDelete = allAuditoriums.filter({ auditorium in
-                  if let slug = auditorium.slug {
-                    return (slugs.contains(slug) == false)
-                  } else {
-                    return true
-                  }
+                    if let slug = auditorium.slug {
+                        return (slugs.contains(slug) == false)
+                    } else {
+                        return true
+                    }
                 })
                 
                 // 1. Delete
@@ -137,7 +116,7 @@ extension Auditorium {
                 
                 // Reset the context to clean up the cache and low the memory footprint.
                 taskContext.reset()
-
+                
                 // Finish.
                 self.completionHandler?(nil)
             }

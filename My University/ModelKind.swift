@@ -11,6 +11,7 @@ import Foundation
 protocol ModelKind {
     
     static func allEntities(university: String) -> URL
+    static func recordsEndpoint(params: Record.RequestParameters) -> URL
     
     static var cashFileName: String { get }
 }
@@ -26,6 +27,10 @@ enum ModelKinds {
         static func allEntities(university: String) -> URL {
             Auditorium.Endpoints.all(university: university).url
         }
+        
+        static func recordsEndpoint(params: Record.RequestParameters) -> URL {
+            Auditorium.Endpoints.records(params: params).url
+        }
     }
     
     enum GroupModel: ModelKind {
@@ -37,6 +42,10 @@ enum ModelKinds {
         static func allEntities(university: String) -> URL {
             Group.Endpoints.all(university: university).url
         }
+        
+        static func recordsEndpoint(params: Record.RequestParameters) -> URL {
+            Group.Endpoints.records(params: params).url
+        }
     }
     
     enum TeacherModel: ModelKind {
@@ -47,6 +56,10 @@ enum ModelKinds {
         
         static func allEntities(university: String) -> URL {
             Teacher.Endpoints.all(university: university).url
+        }
+        
+        static func recordsEndpoint(params: Record.RequestParameters) -> URL {
+            Teacher.Endpoints.records(params: params).url
         }
     }
 }

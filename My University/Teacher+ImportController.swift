@@ -10,31 +10,10 @@ import CoreData
 
 extension Teacher {
     
-    final class ImportController: BaseImportController<ModelKinds.TeacherModel> {
+    final class ImportController: BaseModelImportController<ModelKinds.TeacherModel> {
         
-        func importTeachers(_ completion: @escaping ((_ error: Error?) -> ())) {
-            guard let universityURL = university?.url else {
-                preconditionFailure()
-            }
-            completionHandler = completion
-            
-            importController.importData(universityURL: universityURL) { (json, error) in
-                
-                if let error = error {
-                    self.completionHandler?(error)
-                } else {
-                    // New context for sync
-                    let context = self.persistentContainer.newBackgroundContext()
-                    context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-                    context.undoManager = nil
-                    
-                    self.syncTeachers(from: json, taskContext: context)
-                }
-            }
-        }
-        
-        /// Delete previous groups and insert new
-        private func syncTeachers(from json: [[String: Any]], taskContext: NSManagedObjectContext) {
+        /// Delete previous teachers and insert new
+        override func sync(from json: [[String: Any]], taskContext: NSManagedObjectContext) {
             
             taskContext.performAndWait {
                 

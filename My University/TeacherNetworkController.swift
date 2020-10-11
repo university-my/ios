@@ -21,7 +21,7 @@ class TeacherNetworkController: EntityNetworkController {
         }
         // Init new import manager
         let container = CoreData.default.persistentContainer
-        importManager = Record.ImportForTeacher(persistentContainer: container, teacher: entity, university: university)
+        importManager = Record.ImportForTeacher(persistentContainer: container, modelID: entity.id, universityURL: university.url ?? "")
         
         // Download records for Teacher from backend and save to database.
         importManager?.importRecords(for: date, { [weak self] (error) in

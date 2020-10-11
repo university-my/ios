@@ -102,7 +102,7 @@ class AuditoriumDataSource: NSObject {
         importManager = Auditorium.ImportController(persistentContainer: persistentContainer, universityID: university.id)
         DispatchQueue.global().async { [weak self] in
             
-            self?.importManager?.importAuditoriums({ (error) in
+            self?.importManager?.importData({ (error) in
                 
                 DispatchQueue.main.async {
                     completion(error)

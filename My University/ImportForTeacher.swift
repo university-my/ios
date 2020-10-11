@@ -10,102 +10,17 @@ import CoreData
 
 extension Record {
     
-    class ImportForTeacher {
-        
-        typealias NetworkClient = Record.NetworkClient
-        
-        // MARK: - Properties
-        
-        private let cacheFile: URL
-        private let networkClient: NetworkClient
-        private var completionHandler: ((_ error: Error?) -> ())?
-        private let teacher: TeacherEntity
-        private let university: UniversityEntity
-        
-        private let persistentContainer: NSPersistentContainer
-        
-        private var viewContext: NSManagedObjectContext {
-            return persistentContainer.viewContext
-        }
-        
-        private var dateFormatter: ISO8601DateFormatter = {
-            let dateFormatter = ISO8601DateFormatter()
-            dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-            return dateFormatter
-        }()
-        
-        // MARK: - Init
-        
-        init?(persistentContainer: NSPersistentContainer, teacher: TeacherEntity, university: UniversityEntity) {
-            // Cache file
-            let cachesFolder = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-            guard let cacheFile = cachesFolder?.appendingPathComponent("teacher_records.json") else { return nil }
-            
-            self.cacheFile = cacheFile
-            self.teacher = teacher
-            self.university = university
-            self.persistentContainer = persistentContainer
-            networkClient = NetworkClient(cacheFile: self.cacheFile)
-        }
-        
-        // MARK: - Methods
-        
-        func importRecords(for date: Date, _ completion: @escaping ((_ error: Error?) -> ())) {
-            completionHandler = completion
-            
-            networkClient.downloadRecords(teacherID: teacher.id, date: date, universityURL: university.url ?? "") { (error) in
-                if let error = error {
-                    self.completionHandler?(error)
-                } else {
-                    self.serializeJSON()
-                }
-            }
-        }
-        
-        private func serializeJSON() {
-            guard let stream = InputStream(url: cacheFile) else {
-                completionHandler?(nil)
-                return
-            }
-            stream.open()
-            
-            defer {
-                stream.close()
-            }
-            do {
-                let object = try JSONSerialization.jsonObject(with: stream, options: []) as? [String: Any]
-                let records = object?.first { key, _ in
-                    return key == "records"
-                }
-                if let records = records?.value as? [[String: Any]] {
-                    
-                    // Finish if no records in JSON.
-                    if records.isEmpty {
-                        completionHandler?(nil)
-                        return
-                    }
-                    
-                    // New context for sync.
-                    let taskContext = self.persistentContainer.newBackgroundContext()
-                    taskContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-                    taskContext.undoManager = nil
-                    
-                    syncRecords(records, taskContext: taskContext)
-                    
-                } else {
-                    completionHandler?(nil)
-                }
-            } catch {
-                completionHandler?(error)
-            }
-        }
+    final class ImportForTeacher: BaseRecordImportController<ModelKinds.TeacherModel> {
         
         /// Delete previous records and insert new records
-        private func syncRecords(_ json: [[String: Any]], taskContext: NSManagedObjectContext) {
+        override func syncRecords(_ json: [[String: Any]], taskContext: NSManagedObjectContext) {
             
             taskContext.performAndWait {
                 
-                guard let teacherInContext = taskContext.object(with: teacher.objectID) as? TeacherEntity else { return }
+                guard let teacherInContext = TeacherEntity.fetch(id: modelID, context: taskContext) else {
+                    self.completionHandler?(nil)
+                    return
+                }
                 
                 // Parse records
                 let parsedRecords = json.compactMap { Record.CodingData($0, dateFormatter: dateFormatter) }
@@ -138,7 +53,7 @@ extension Record {
                     }
                 }
                 
-                // Intert
+                // Insert
                 for record in toInsert {
                     self.insert(record, teacher: teacherInContext, context: taskContext)
                 }

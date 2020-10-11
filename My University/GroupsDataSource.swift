@@ -104,7 +104,7 @@ class GroupsDataSource: NSObject {
         importManager = Group.ImportController(persistentContainer: persistentContainer, universityID: university.id)
         DispatchQueue.global().async { [weak self] in
             
-            self?.importManager?.importGroups { (error) in
+            self?.importManager?.importData { (error) in
                 
                 DispatchQueue.main.async {
                     completion(error)

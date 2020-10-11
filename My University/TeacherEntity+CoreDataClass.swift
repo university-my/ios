@@ -14,7 +14,7 @@ import CoreData
 public class TeacherEntity: NSManagedObject {
 
     /// Fetch teacher entity
-    static func fetchTeacher(id: Int64, context: NSManagedObjectContext) -> TeacherEntity? {
+    static func fetch(id: Int64, context: NSManagedObjectContext) -> TeacherEntity? {
         let fetchRequest: NSFetchRequest<TeacherEntity> = TeacherEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == %d", id)
         do {
