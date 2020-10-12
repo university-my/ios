@@ -1,5 +1,5 @@
 //
-//  AuditoriumDataSource.swift
+//  ClassroomDataSource.swift
 //  My University
 //
 //  Created by Yura Voevodin on 11/21/18.
@@ -10,9 +10,9 @@ import CoreData
 import UIKit
 import os
 
-class AuditoriumDataSource: NSObject {
+class ClassroomDataSource: NSObject {
     
-    private let logger = Logger(subsystem: Bundle.identifier, category: "AuditoriumDataSource")
+    private let logger = Logger(subsystem: Bundle.identifier, category: "ClassroomDataSource")
     
     // MARK: - Favorites
     
@@ -50,18 +50,18 @@ class AuditoriumDataSource: NSObject {
     
     // MARK: - NSFetchedResultsController
     
-    lazy var fetchedResultsController: NSFetchedResultsController<AuditoriumEntity>? = {
-        let request: NSFetchRequest<AuditoriumEntity> = AuditoriumEntity.fetchRequest()
+    lazy var fetchedResultsController: NSFetchedResultsController<ClassroomEntity>? = {
+        let request: NSFetchRequest<ClassroomEntity> = ClassroomEntity.fetchRequest()
         request.predicate = NSPredicate(format: "university == %@", university)
         
-        let firstSymbol = NSSortDescriptor(key: #keyPath(AuditoriumEntity.firstSymbol), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
-        let name = NSSortDescriptor(key: #keyPath(AuditoriumEntity.name), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
+        let firstSymbol = NSSortDescriptor(key: #keyPath(ClassroomEntity.firstSymbol), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
+        let name = NSSortDescriptor(key: #keyPath(ClassroomEntity.name), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
         
         request.sortDescriptors = [firstSymbol, name]
         request.fetchBatchSize = 20
         
         if let context = viewContext {
-            let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: #keyPath(AuditoriumEntity.firstSymbol), cacheName: nil)
+            let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: #keyPath(ClassroomEntity.firstSymbol), cacheName: nil)
             return controller
         } else {
             return nil
@@ -93,13 +93,13 @@ class AuditoriumDataSource: NSObject {
     
     // MARK: - Import
     
-    private var importManager: Auditorium.ImportController?
+    private var importManager: Classroom.ImportController?
     
-    /// Import Auditoriums from backend
-    func importAuditoriums(_ completion: @escaping ((_ error: Error?) -> ())) {
+    /// Import Classrooms from backend
+    func importClassrooms(_ completion: @escaping ((_ error: Error?) -> ())) {
         guard let persistentContainer = persistentContainer else { return }
         
-        importManager = Auditorium.ImportController(persistentContainer: persistentContainer, universityID: university.id)
+        importManager = Classroom.ImportController(persistentContainer: persistentContainer, universityID: university.id)
         DispatchQueue.global().async { [weak self] in
             
             self?.importManager?.importData({ (error) in
@@ -114,7 +114,7 @@ class AuditoriumDataSource: NSObject {
 
 // MARK: - UITableViewDataSource
 
-extension AuditoriumDataSource: UITableViewDataSource {
+extension ClassroomDataSource: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedResultsController?.sections?.count ?? 0
@@ -126,14 +126,14 @@ extension AuditoriumDataSource: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "auditoriumCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "classroomCell", for: indexPath)
         
         // Configure cell
-        if let auditorium = fetchedResultsController?.object(at: indexPath) {
-            cell.textLabel?.text = auditorium.name
+        if let classroom = fetchedResultsController?.object(at: indexPath) {
+            cell.textLabel?.text = classroom.name
             
             // Is favorites
-            if auditorium.isFavorite {
+            if classroom.isFavorite {
                 cell.accessoryView = favoritesImageView
             } else {
                 cell.accessoryView = nil

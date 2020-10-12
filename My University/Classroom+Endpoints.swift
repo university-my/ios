@@ -1,5 +1,5 @@
 //
-//  Auditorium+Endpoints.swift
+//  Classroom+Endpoints.swift
 //  My University
 //
 //  Created by Yura Voevodin on 09.10.2020.
@@ -8,14 +8,14 @@
 
 import Foundation
 
-extension Auditorium {
+extension Classroom {
     
     struct Endpoints {
         // Custom endpoints
     }
 }
 
-extension Auditorium.Endpoints: PublicWebsitePage, EntityEndpoint {
+extension Classroom.Endpoints: PublicWebsitePage, EntityEndpoint {
     static var entityPath: String {
         "auditoriums"
     }

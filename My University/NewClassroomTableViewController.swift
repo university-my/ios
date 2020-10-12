@@ -1,5 +1,5 @@
 //
-//  NewAuditoriumTableViewController.swift
+//  NewClassroomTableViewController.swift
 //  My University
 //
 //  Created by Yura Voevodin on 09.05.2020.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-class NewAuditoriumTableViewController: EntityTableViewController {
+class NewClassroomTableViewController: EntityTableViewController {
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
-        dataController = AuditoriumTableDataController()
+        dataController = ClassroomTableDataController()
         
         super.viewDidLoad()
     }
@@ -42,7 +42,7 @@ class NewAuditoriumTableViewController: EntityTableViewController {
                     destination.recordID = (sender as? Record)?.id
                     destination.groupID = nil
                     destination.teacherID = nil
-                    destination.auditoriumID = entityID
+                    destination.classroomID = entityID
                 }
             }
             
@@ -54,6 +54,6 @@ class NewAuditoriumTableViewController: EntityTableViewController {
 
 // MARK: - SegueIdentifier
 
-private extension NewAuditoriumTableViewController.SegueIdentifier {
+private extension NewClassroomTableViewController.SegueIdentifier {
     static let recordDetails = "recordDetails"
 }

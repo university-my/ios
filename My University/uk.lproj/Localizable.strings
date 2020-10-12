@@ -5,13 +5,13 @@
 "An error occurred" = "Сталася помилка";
 
 /* Favorites section name */
-"Auditorium" = "Аудиторія";
+"Classroom" = "Аудиторія";
 
 /* No comment provided by engineer. */
-"AUDITORIUM" = "АУДИТОРІЯ";
+"CLASSROOM" = "АУДИТОРІЯ";
 
 /* Favorites section name */
-"Auditoriums" = "Аудиторії";
+"Classrooms" = "Аудиторії";
 
 /* Alert action */
 "Cancel" = "Скасувати";

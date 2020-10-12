@@ -40,7 +40,7 @@ final class NewTeacherTableViewController: EntityTableViewController {
                     destination.recordID = (sender as? Record)?.id
                     destination.groupID = nil
                     destination.teacherID = entityID
-                    destination.auditoriumID = nil
+                    destination.classroomID = nil
                 }
             }
             

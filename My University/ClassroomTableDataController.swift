@@ -1,5 +1,5 @@
 //
-//  AuditoriumTableDataController.swift
+//  ClassroomTableDataController.swift
 //  My University
 //
 //  Created by Yura Voevodin on 09.05.2020.
@@ -8,4 +8,4 @@
 
 import Foundation
 
-final class AuditoriumTableDataController: EntityTableDataController {}
+final class ClassroomTableDataController: EntityTableDataController {}

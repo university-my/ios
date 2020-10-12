@@ -90,14 +90,14 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="auditoriumsCell" textLabel="umN-Sj-wza" imageView="5kF-MM-60z" style="IBUITableViewCellStyleDefault" id="9TX-Vp-0ze">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="classroomsCell" textLabel="umN-Sj-wza" imageView="5kF-MM-60z" style="IBUITableViewCellStyleDefault" id="9TX-Vp-0ze">
                                 <rect key="frame" x="20" y="142.5" width="374" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9TX-Vp-0ze" id="AwG-gS-mmO">
                                     <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Auditoriums" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="umN-Sj-wza">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Classrooms" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="umN-Sj-wza">
                                             <rect key="frame" x="59" y="0.0" width="276" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -143,11 +143,11 @@
                         <outlet property="preferencesBarButtonItem" destination="U58-VY-iNv" id="lSI-tq-ZAC"/>
                         <segue destination="eav-eo-NTI" kind="show" identifier="showGroups" id="BvS-GR-DzH"/>
                         <segue destination="P1W-Vf-SQ3" kind="show" identifier="showTeachers" id="TzT-2s-pyY"/>
-                        <segue destination="W7b-zz-Rsa" kind="show" identifier="showAuditoriums" id="7in-AW-ArM"/>
+                        <segue destination="W7b-zz-Rsa" kind="show" identifier="showClassrooms" id="7in-AW-ArM"/>
                         <segue destination="Plu-5u-lBa" kind="presentation" identifier="changeUniversity" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="QKM-8e-pVc"/>
                         <segue destination="FBa-ki-ZHQ" kind="presentation" identifier="groupDetails" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="gYO-XM-ELK"/>
                         <segue destination="vS9-3j-7La" kind="presentation" identifier="teacherDetails" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="u8g-7O-vIp"/>
-                        <segue destination="UaB-WI-CTA" kind="presentation" identifier="auditoriumDetails" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="8fl-xx-wzX"/>
+                        <segue destination="UaB-WI-CTA" kind="presentation" identifier="classroomDetails" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="8fl-xx-wzX"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NeF-49-RUJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -208,16 +208,16 @@
             </objects>
             <point key="canvasLocation" x="1990" y="-762"/>
         </scene>
-        <!--Auditoriums-->
+        <!--Classrooms-->
         <scene sceneID="AD2-bS-ESw">
             <objects>
-                <tableViewController id="W7b-zz-Rsa" customClass="AuditoriumsTableViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="W7b-zz-Rsa" customClass="ClassroomsTableViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="EFb-Io-ST4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="auditoriumCell" textLabel="wvq-nj-eSO" style="IBUITableViewCellStyleDefault" id="mbZ-M2-x9b">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="classroomCell" textLabel="wvq-nj-eSO" style="IBUITableViewCellStyleDefault" id="mbZ-M2-x9b">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mbZ-M2-x9b" id="zSO-jC-kvF">
@@ -245,7 +245,7 @@
                         <barButtonItem id="9cp-XM-mpF"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="0hN-Ny-hDd"/>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Auditoriums" id="McU-ms-NIE"/>
+                    <navigationItem key="navigationItem" title="Classrooms" id="McU-ms-NIE"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="VRV-59-n5L">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -256,7 +256,7 @@
                     </refreshControl>
                     <connections>
                         <outlet property="statusButton" destination="9cp-XM-mpF" id="Z2f-hC-Qwa"/>
-                        <segue destination="UaB-WI-CTA" kind="presentation" identifier="auditoriumDetails" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="1gW-8I-Z99"/>
+                        <segue destination="UaB-WI-CTA" kind="presentation" identifier="classroomDetails" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="1gW-8I-Z99"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C3D-s7-HAL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -417,10 +417,10 @@
             </objects>
             <point key="canvasLocation" x="3283" y="-234"/>
         </scene>
-        <!--Auditorium-->
+        <!--Classroom-->
         <scene sceneID="w40-dy-CfD">
             <objects>
-                <viewControllerPlaceholder storyboardName="Auditorium" id="UaB-WI-CTA" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Classroom" id="UaB-WI-CTA" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Shr-CB-UFQ"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Va-aS-sC5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

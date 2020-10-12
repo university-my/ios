@@ -14,7 +14,7 @@ class RecordsTests: XCTestCase {
     func testRecordsLoading() {
         let expectations = expectation(description: "Records")
 
-        Record.NetworkClient.loadTestRecords { (records) in
+        Record.NetworkClient<ModelKinds.ClassroomModel>.loadTestRecords { (records) in
             if !records.isEmpty {
                 expectations.fulfill()
             }

@@ -1,5 +1,5 @@
 //
-//  AuditoriumsTableViewController.swift
+//  ClassroomsTableViewController.swift
 //  My University
 //
 //  Created by Yura Voevodin on 4/20/19.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-class AuditoriumsTableViewController: SearchableTableViewController {
+class ClassroomsTableViewController: SearchableTableViewController {
     
     // MARK: - Properties
     
     var universityID: Int64?
-    private var dataSource: AuditoriumDataSource?
+    private var dataSource: ClassroomDataSource?
     
     // MARK: - Notification
     
@@ -54,24 +54,24 @@ class AuditoriumsTableViewController: SearchableTableViewController {
     
     func setup() {
         if let id = universityID {
-            dataSource = AuditoriumDataSource(universityID: id)
+            dataSource = ClassroomDataSource(universityID: id)
             tableView.dataSource = dataSource
-            loadAuditoriums()
+            loadClassrooms()
         }
     }
     
-    // MARK: - Auditoriums
+    // MARK: - Classrooms
     
-    func loadAuditoriums() {
+    func loadClassrooms() {
         guard let dataSource = dataSource else { return }
         dataSource.performFetch()
         
-        let auditoriums = dataSource.fetchedResultsController?.fetchedObjects ?? []
-        if auditoriums.isEmpty {
-            importAuditoriums()
-        } else if needToUpdateAuditoriums() {
-            // Update auditoriums once in a day
-            importAuditoriums()
+        let classrooms = dataSource.fetchedResultsController?.fetchedObjects ?? []
+        if classrooms.isEmpty {
+            importClassrooms()
+        } else if needToUpdateClassrooms() {
+            // Update classrooms once in a day
+            importClassrooms()
         } else {
             tableView.reloadData()
             refreshControl?.endRefreshing()
@@ -79,10 +79,10 @@ class AuditoriumsTableViewController: SearchableTableViewController {
         }
     }
     
-    func importAuditoriums() {
+    func importClassrooms() {
         guard let dataSource = dataSource else { return }
         
-        dataSource.importAuditoriums { (error) in
+        dataSource.importClassrooms { (error) in
 
             if let error = error {
                 self.showNotification(text: error.localizedDescription)
@@ -91,7 +91,7 @@ class AuditoriumsTableViewController: SearchableTableViewController {
                 
                 // Save date of last update
                 if let id = self.universityID {
-                    UpdateHelper.updated(at: Date(), universityID: id, type: .auditorium)
+                    UpdateHelper.updated(at: Date(), universityID: id, type: .classroom)
                 }
             }
             
@@ -102,10 +102,10 @@ class AuditoriumsTableViewController: SearchableTableViewController {
         }
     }
     
-    /// Check last updated date of auditoriums
-    private func needToUpdateAuditoriums() -> Bool {
+    /// Check last updated date of classrooms
+    private func needToUpdateClassrooms() -> Bool {
         guard let id = universityID else { return false }
-        let lastSynchronization = UpdateHelper.lastUpdated(for: id, type: .auditorium)
+        let lastSynchronization = UpdateHelper.lastUpdated(for: id, type: .classroom)
         return UpdateHelper.needToUpdate(from: lastSynchronization)
     }
     
@@ -116,13 +116,13 @@ class AuditoriumsTableViewController: SearchableTableViewController {
             refreshControl?.endRefreshing()
             return
         }
-        importAuditoriums()
+        importClassrooms()
     }
     
     // MARK - Navigation
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: .auditoriumDetails)
+        performSegue(withIdentifier: .classroomDetails)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -130,18 +130,18 @@ class AuditoriumsTableViewController: SearchableTableViewController {
         
         switch identifier {
             
-        case .auditoriumDetails:
+        case .classroomDetails:
             let navigationVC = segue.destination as? UINavigationController
-            let vc = navigationVC?.viewControllers.first as? AuditoriumViewController
+            let vc = navigationVC?.viewControllers.first as? ClassroomViewController
             if searchController.isActive {
                 if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
-                    let selectedAuditorium = resultsTableController.filteredAuditoriums[safe: indexPath.row]
-                    vc?.entityID = selectedAuditorium?.id
+                    let selectedClassroom = resultsTableController.filteredClassrooms[safe: indexPath.row]
+                    vc?.entityID = selectedClassroom?.id
                 }
             } else {
                 if let indexPath = tableView.indexPathForSelectedRow {
-                    let selectedAuditorium = dataSource?.fetchedResultsController?.object(at: indexPath)
-                    vc?.entityID = selectedAuditorium?.id
+                    let selectedClassroom = dataSource?.fetchedResultsController?.object(at: indexPath)
+                    vc?.entityID = selectedClassroom?.id
                 }
             }
             
@@ -153,7 +153,7 @@ class AuditoriumsTableViewController: SearchableTableViewController {
 
 // MARK: - UISearchResultsUpdating
 
-extension AuditoriumsTableViewController: UISearchResultsUpdating {
+extension ClassroomsTableViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         // Strip out all the leading and trailing spaces.
@@ -173,17 +173,15 @@ extension AuditoriumsTableViewController: UISearchResultsUpdating {
         
         // Hand over the filtered results to our search results table.
         if let resultsController = searchController.searchResultsController as? SearchResultsTableViewController {
-            resultsController.filteredAuditoriums = filteredResults
-            resultsController.dataSourceType = .auditoriums
+            resultsController.filteredClassrooms = filteredResults
+            resultsController.dataSourceType = .classrooms
             resultsController.tableView.reloadData()
         }
     }
 }
 
-#warning("Rename auditoriums to classrooms")
-
 // MARK: - SegueIdentifier
 
-private extension AuditoriumsTableViewController.SegueIdentifier {
-    static let auditoriumDetails = "auditoriumDetails"
+private extension ClassroomsTableViewController.SegueIdentifier {
+    static let classroomDetails = "classroomDetails"
 }

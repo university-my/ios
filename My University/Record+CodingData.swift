@@ -29,7 +29,7 @@ extension Record {
         
         /// Description or comment
         let reason: String?
-        let auditorium: Auditorium.CodingData?
+        let classroom: Classroom.CodingData?
         let groups: [Group.CodingData]
         let teacher: Teacher.CodingData?
         
@@ -61,11 +61,11 @@ extension Record {
             self.pairName = pairName
             self.reason = reason
             
-            // Auditorium
-            if let auditoriumObject = json["auditorium"] as? [String: Any] {
-                self.auditorium = Auditorium.CodingData(auditoriumObject)
+            // Classroom
+            if let classroomObject = json["classroom"] as? [String: Any] {
+                self.classroom = Classroom.CodingData(classroomObject)
             } else {
-                self.auditorium = nil
+                self.classroom = nil
             }
             
             // Groups

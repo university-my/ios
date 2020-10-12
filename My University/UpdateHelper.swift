@@ -11,7 +11,7 @@ import Foundation
 struct UpdateHelper {
     
     enum EntityType: String {
-        case auditorium = "auditorium"
+        case classroom = "classroom"
         case group = "group"
         case teacher = "teacher"
     }

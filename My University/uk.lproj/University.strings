@@ -13,12 +13,12 @@
 /* Class = "UINavigationItem"; title = "Teachers"; ObjectID = "Fhk-g8-5rv"; */
 "Fhk-g8-5rv.title" = "Викладачі";
 
-/* Class = "UINavigationItem"; title = "Auditoriums"; ObjectID = "McU-ms-NIE"; */
+/* Class = "UINavigationItem"; title = "Classrooms"; ObjectID = "McU-ms-NIE"; */
 "McU-ms-NIE.title" = "Аудиторії";
 
 /* Class = "UILabel"; text = "Teachers"; ObjectID = "Pa1-TM-LSt"; */
 "Pa1-TM-LSt.text" = "Викладачі";
 
-/* Class = "UILabel"; text = "Auditoriums"; ObjectID = "umN-Sj-wza"; */
+/* Class = "UILabel"; text = "Classrooms"; ObjectID = "umN-Sj-wza"; */
 "umN-Sj-wza.text" = "Аудиторії";
 

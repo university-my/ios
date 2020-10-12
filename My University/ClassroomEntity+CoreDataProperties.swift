@@ -1,9 +1,9 @@
 //
-//  AuditoriumEntity+CoreDataProperties.swift
+//  ClassroomEntity+CoreDataProperties.swift
 //  My University
 //
-//  Created by Yura Voevodin on 30.10.2019.
-//  Copyright © 2019 Yura Voevodin. All rights reserved.
+//  Created by Yura Voevodin on 12.10.2020.
+//  Copyright © 2020 Yura Voevodin. All rights reserved.
 //
 //
 
@@ -11,10 +11,10 @@ import Foundation
 import CoreData
 
 
-extension AuditoriumEntity {
+extension ClassroomEntity {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<AuditoriumEntity> {
-        return NSFetchRequest<AuditoriumEntity>(entityName: "AuditoriumEntity")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<ClassroomEntity> {
+        return NSFetchRequest<ClassroomEntity>(entityName: "ClassroomEntity")
     }
 
     @NSManaged public var firstSymbol: String?
@@ -28,7 +28,7 @@ extension AuditoriumEntity {
 }
 
 // MARK: Generated accessors for records
-extension AuditoriumEntity {
+extension ClassroomEntity {
 
     @objc(addRecordsObject:)
     @NSManaged public func addToRecords(_ value: RecordEntity)
@@ -41,5 +41,9 @@ extension AuditoriumEntity {
 
     @objc(removeRecords:)
     @NSManaged public func removeFromRecords(_ values: NSSet)
+
+}
+
+extension ClassroomEntity : Identifiable {
 
 }

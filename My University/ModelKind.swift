@@ -25,11 +25,11 @@ enum ModelKinds {
         }
         
         static func allEntities(university: String) -> URL {
-            Auditorium.Endpoints.all(university: university).url
+            Classroom.Endpoints.all(university: university).url
         }
         
         static func recordsEndpoint(params: Record.RequestParameters) -> URL {
-            Auditorium.Endpoints.records(params: params).url
+            Classroom.Endpoints.records(params: params).url
         }
     }
     

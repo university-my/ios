@@ -1,5 +1,5 @@
 //
-//  AuditoriumLogicController.swift
+//  ClassroomLogicController.swift
 //  My University
 //
 //  Created by Yura Voevodin on 01.05.2020.
@@ -8,14 +8,14 @@
 
 import Foundation
 
-final class AuditoriumLogicController: EntityLogicController {
+final class ClassroomLogicController: EntityLogicController {
     
-    let dataController: AuditoriumDataController
+    let dataController: ClassroomDataController
     
     // MARK: - Init
     
     override init(activity: ActivityController) {
-        dataController = AuditoriumDataController()
+        dataController = ClassroomDataController()
         
         super.init(activity: activity)
         
@@ -26,7 +26,7 @@ final class AuditoriumLogicController: EntityLogicController {
     // MARK: - Data
     
     override func fetchData(for entityID: Int64) {
-        dataController.entity = AuditoriumEntity.fetch(id: entityID, context: CoreData.default.viewContext)
+        dataController.entity = ClassroomEntity.fetch(id: entityID, context: CoreData.default.viewContext)
         fetchData(controller: dataController)
     }
     
@@ -34,20 +34,20 @@ final class AuditoriumLogicController: EntityLogicController {
         importRecords(showActivity: showActivity, controller: dataController)
     }
     
-    var sections: [AuditoriumDataController.Section] {
+    var sections: [ClassroomDataController.Section] {
         return dataController.sections
     }
     
-    // MARK: - Auditorium
+    // MARK: - Classroom
     
-    var auditorium: AuditoriumEntity? {
-        return dataController.auditorium
+    var classroom: ClassroomEntity? {
+        return dataController.classroom
     }
     
     // MARK: - Share URL
     
     func shareURL() -> URL? {
-        dataController.shareURL(for: auditorium)
+        dataController.shareURL(for: classroom)
     }
     
     // MARK: - Date
@@ -73,14 +73,14 @@ final class AuditoriumLogicController: EntityLogicController {
 
 // MARK: - ActivityControllerDelegate
 
-extension AuditoriumLogicController: ActivityControllerDelegate {
+extension ClassroomLogicController: ActivityControllerDelegate {
     
     func didPresentActivity(from controller: ActivityController) {
         if dataController.isImporting {
             // Do nothing, wait for import
             return
         }
-        if let entity = auditorium, let data = entity.asStruct()  {
+        if let entity = classroom, let data = entity.asStruct()  {
             delegate?.didChangeState(to: .presenting(data))
         }
     }

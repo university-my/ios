@@ -1,5 +1,5 @@
 //
-//  Auditorium+CodingData.swift
+//  Classroom+CodingData.swift
 //  My University
 //
 //  Created by Yura Voevodin on 01.05.2020.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension Auditorium {
+extension Classroom {
     
     struct CodingData {
         

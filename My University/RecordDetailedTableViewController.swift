@@ -26,21 +26,21 @@ class RecordDetailedTableViewController: GenericTableViewController {
     enum RowType {
         case pairName(name: String?, type: String?)
         case reason(reason: String)
-        case auditorium(auditorium: AuditoriumEntity)
+        case classroom(classroom: ClassroomEntity)
         case teacher(teacher: TeacherEntity)
         case group(group: GroupEntity)
     }
     
     enum SectionType {
         case pair
-        case auditorium
+        case classroom
         case teacher
         case groups
         
         var name: String {
             switch self {
-            case .auditorium:
-                return NSLocalizedString("AUDITORIUM", comment: "")
+            case .classroom:
+                return NSLocalizedString("CLASSROOM", comment: "")
             case .groups:
                 return NSLocalizedString("GROUPS", comment: "")
             case .pair:
@@ -53,7 +53,7 @@ class RecordDetailedTableViewController: GenericTableViewController {
     
     // MARK: - Properties
     
-    var auditoriumID: Int64?
+    var classroomID: Int64?
     var groupID: Int64?
     var teacherID: Int64?
     
@@ -146,9 +146,9 @@ class RecordDetailedTableViewController: GenericTableViewController {
         }
         sections.append(pairSection)
         
-        // Auditorium
-        if let auditorium = record.auditorium {
-            let section = Section(type: .auditorium, rows: [.auditorium(auditorium: auditorium)])
+        // Classroom
+        if let classroom = record.classroom {
+            let section = Section(type: .classroom, rows: [.classroom(classroom: classroom)])
             sections.append(section)
         }
         
@@ -206,8 +206,8 @@ class RecordDetailedTableViewController: GenericTableViewController {
             cell.textLabel?.numberOfLines = 0
             cell.detailTextLabel?.text = nil
             
-        case .auditorium(let auditorium):
-            cell.textLabel?.text = auditorium.name
+        case .classroom(let classroom):
+            cell.textLabel?.text = classroom.name
             cell.detailTextLabel?.text = nil
             
         case .teacher(let teacher):

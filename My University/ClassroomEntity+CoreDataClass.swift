@@ -1,27 +1,26 @@
 //
-//  AuditoriumEntity+CoreDataClass.swift
+//  ClassroomEntity+CoreDataClass.swift
 //  My University
 //
-//  Created by Yura Voevodin on 11/11/18.
-//  Copyright © 2018 Yura Voevodin. All rights reserved.
+//  Created by Yura Voevodin on 12.10.2020.
+//  Copyright © 2020 Yura Voevodin. All rights reserved.
 //
 //
 
 import Foundation
 import CoreData
 
-@objc(AuditoriumEntity)
-public class AuditoriumEntity: NSManagedObject {
-    
-    /// Fetch groups
-    class func fetch(_ auditoriums: [Auditorium.CodingData], university: UniversityEntity?, context: NSManagedObjectContext) -> [AuditoriumEntity] {
+@objc(ClassroomEntity)
+public class ClassroomEntity: NSManagedObject {
+
+    class func fetch(_ classrooms: [Classroom.CodingData], university: UniversityEntity?, context: NSManagedObjectContext) -> [ClassroomEntity] {
         // University should not be nil
         guard let university = university else { return [] }
         
-        let slugs = auditoriums.map { auditorium in
-            return auditorium.slug
+        let slugs = classrooms.map { classroom in
+            return classroom.slug
         }
-        let fetchRequest: NSFetchRequest<AuditoriumEntity> = AuditoriumEntity.fetchRequest()
+        let fetchRequest: NSFetchRequest<ClassroomEntity> = ClassroomEntity.fetchRequest()
         let slugPredicate = NSPredicate(format: "slug IN %@", slugs)
         let universityPredicate = NSPredicate(format: "university == %@", university)
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [universityPredicate, slugPredicate])
@@ -34,8 +33,8 @@ public class AuditoriumEntity: NSManagedObject {
         }
     }
     
-    static func fetchAll(university: UniversityEntity, context: NSManagedObjectContext) -> [AuditoriumEntity] {
-        let request: NSFetchRequest<AuditoriumEntity> = AuditoriumEntity.fetchRequest()
+    static func fetchAll(university: UniversityEntity, context: NSManagedObjectContext) -> [ClassroomEntity] {
+        let request: NSFetchRequest<ClassroomEntity> = ClassroomEntity.fetchRequest()
         request.predicate = NSPredicate(format: "university == %@", university)
         do {
             let result = try context.fetch(request)
@@ -45,14 +44,14 @@ public class AuditoriumEntity: NSManagedObject {
         }
     }
     
-    /// Fetch auditorium entity
-    static func fetch(id: Int64, context: NSManagedObjectContext) -> AuditoriumEntity? {
-        let fetchRequest: NSFetchRequest<AuditoriumEntity> = AuditoriumEntity.fetchRequest()
+    /// Fetch classroom entity
+    static func fetch(id: Int64, context: NSManagedObjectContext) -> ClassroomEntity? {
+        let fetchRequest: NSFetchRequest<ClassroomEntity> = ClassroomEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == %d", id)
         do {
             let result = try context.fetch(fetchRequest)
-            let auditorium = result.first
-            return auditorium
+            let classroom = result.first
+            return classroom
         } catch {
             return nil
         }
@@ -61,7 +60,7 @@ public class AuditoriumEntity: NSManagedObject {
 
 // MARK: - EntityProtocol
 
-extension AuditoriumEntity: EntityProtocol {
+extension ClassroomEntity: EntityProtocol {
     
     var favorite: Bool {
         get {
@@ -76,17 +75,17 @@ extension AuditoriumEntity: EntityProtocol {
         guard let parameters = pageParameters(with: date) else {
             return nil
         }
-        return Auditorium.Endpoints.websitePage(from: parameters).url
+        return Classroom.Endpoints.websitePage(from: parameters).url
     }
 }
 
 // MARK: - StructRepresentable
 
-extension AuditoriumEntity: StructRepresentable {
+extension ClassroomEntity: StructRepresentable {
     
     func asStruct() -> EntityRepresentable? {
         guard let name = name else { return nil }
         guard let slug = slug else { return nil }
-        return Auditorium(id: id, isFavorite: isFavorite, name: name, slug: slug)
+        return Classroom(id: id, isFavorite: isFavorite, name: name, slug: slug)
     }
 }

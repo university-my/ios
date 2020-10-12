@@ -1,5 +1,5 @@
 //
-//  Auditorium.swift
+//  Classroom.swift
 //  My University
 //
 //  Created by Yura Voevodin on 11/11/18.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Auditorium {
+struct Classroom {
     
     let id: Int64
     let isFavorite: Bool
@@ -16,4 +16,4 @@ struct Auditorium {
     let slug: String
 }
 
-extension Auditorium: EntityRepresentable {}
+extension Classroom: EntityRepresentable {}

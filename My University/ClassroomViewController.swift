@@ -1,5 +1,5 @@
 //
-//  AuditoriumViewController.swift
+//  ClassroomViewController.swift
 //  My University
 //
 //  Created by Yura Voevodin on 01.05.2020.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-class AuditoriumViewController: EntityViewController {
+class ClassroomViewController: EntityViewController {
     
     // MARK: - Properties
     
-    private let logic: AuditoriumLogicController
+    private let logic: ClassroomLogicController
     
     /// `UITableView`
-    var tableViewController: NewAuditoriumTableViewController!
+    var tableViewController: NewClassroomTableViewController!
     
     /// Show an activity indicator over current `UIViewController`
     let activityController = ActivityController()
@@ -23,7 +23,7 @@ class AuditoriumViewController: EntityViewController {
     // MARK: - Init
     
     required init?(coder: NSCoder) {
-        logic = AuditoriumLogicController(activity: activityController)
+        logic = ClassroomLogicController(activity: activityController)
         
         super.init(coder: coder)
 
@@ -36,7 +36,7 @@ class AuditoriumViewController: EntityViewController {
         super.viewDidLoad()
         
         // Save last opened entity to UserDefaults
-        let entity = Entity(kind: .auditorium, id: entityID)
+        let entity = Entity(kind: .classroom, id: entityID)
         Entity.Manager.shared.update(with: entity)
         
         // Data
@@ -45,15 +45,14 @@ class AuditoriumViewController: EntityViewController {
         configureMenu()
     }
     
-    // MARK: - Auditorium
+    // MARK: - Classroom
     
-    var auditorium: AuditoriumEntity? {
-        return logic.auditorium
+    var classroom: ClassroomEntity? {
+        return logic.classroom
     }
     
     // MARK: - State
     
-    #warning("Move `render(_ state: State)` to parent")
     func render(_ state: State) {
         switch state {
             
@@ -67,12 +66,12 @@ class AuditoriumViewController: EntityViewController {
             
         case .presenting(let structure):
             // Bind the user model to the view controller's views
-            guard let auditorium = structure as? Auditorium else {
+            guard let classroom = structure as? Classroom else {
                 preconditionFailure()
             }
             
             // Title
-            tableViewController.tableTitleLabel.text = auditorium.name
+            tableViewController.tableTitleLabel.text = classroom.name
             
             // Controller title
             title = DateFormatter.date.string(from: pairDate)
@@ -117,7 +116,7 @@ class AuditoriumViewController: EntityViewController {
     }
     
     var isFavorite: Bool {
-        auditorium?.isFavorite ?? false
+        classroom?.isFavorite ?? false
     }
     
     // MARK: - Date
@@ -142,7 +141,7 @@ class AuditoriumViewController: EntityViewController {
         switch identifier {
             
         case .records:
-            let vc = segue.destination as! NewAuditoriumTableViewController
+            let vc = segue.destination as! NewClassroomTableViewController
             tableViewController = vc
             tableViewController.delegate = self
             
@@ -162,7 +161,7 @@ class AuditoriumViewController: EntityViewController {
 
 // MARK: - EntityTableViewControllerDelegate
 
-extension AuditoriumViewController: EntityTableViewControllerDelegate {
+extension ClassroomViewController: EntityTableViewControllerDelegate {
     
     func didBeginRefresh(in viewController: EntityTableViewController) {
         // Import records on "pull to refresh"
@@ -177,7 +176,7 @@ extension AuditoriumViewController: EntityTableViewControllerDelegate {
 
 // MARK: - EntityLogicControllerDelegate
 
-extension AuditoriumViewController: EntityLogicControllerDelegate {
+extension ClassroomViewController: EntityLogicControllerDelegate {
     
     func didChangeState(to newState: EntityViewController.State) {
         render(newState)
@@ -186,11 +185,11 @@ extension AuditoriumViewController: EntityLogicControllerDelegate {
 
 // MARK: - ErrorAlertRepresentable
 
-extension AuditoriumViewController: ErrorAlertRepresentable {}
+extension ClassroomViewController: ErrorAlertRepresentable {}
 
 // MARK: - SegueIdentifier
 
-private extension AuditoriumViewController.SegueIdentifier {
+private extension ClassroomViewController.SegueIdentifier {
     static let presentDatePicker = "presentDatePicker"
     static let records = "records"
     static let setUniversity = "setUniversity"

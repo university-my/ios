@@ -40,7 +40,7 @@ class GroupTableViewController: EntityTableViewController {
                     destination.recordID = (sender as? Record)?.id
                     destination.groupID = entityID
                     destination.teacherID = nil
-                    destination.auditoriumID = nil
+                    destination.classroomID = nil
                     destination.delegate = self
                 }
             }

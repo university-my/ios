@@ -16,7 +16,7 @@ protocol EntityDataControllerDelegate: class {
     func entityDataController(didBuildSectionsFor structure: EntityRepresentable)
 }
 
-/// Base class for data controllers of Auditorium, Group, Teacher
+/// Base class for data controllers of Classroom, Group, Teacher
 class EntityDataController: EntityDataControllerProtocol {
     
     private let logger = Logger(subsystem: Bundle.identifier, category: "EntityDataController")

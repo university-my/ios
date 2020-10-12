@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18E226" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="AuditoriumEntity" representedClassName="AuditoriumEntity" syncable="YES">
-        <attribute name="firstSymbol" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="records" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RecordEntity" inverseName="auditorium" inverseEntity="RecordEntity" syncable="YES"/>
-        <relationship name="university" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UniversityEntity" inverseName="auditoriums" inverseEntity="UniversityEntity" syncable="YES"/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ClassroomEntity" representedClassName="ClassroomEntity" syncable="YES">
+        <attribute name="firstSymbol" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="records" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RecordEntity" inverseName="classroom" inverseEntity="RecordEntity"/>
+        <relationship name="university" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UniversityEntity" inverseName="auditoriums" inverseEntity="UniversityEntity"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
@@ -13,11 +13,11 @@
         </uniquenessConstraints>
     </entity>
     <entity name="GroupEntity" representedClassName="GroupEntity" syncable="YES">
-        <attribute name="firstSymbol" attributeType="String" syncable="YES"/>
-        <attribute name="id" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="records" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RecordEntity" inverseName="groups" inverseEntity="RecordEntity" syncable="YES"/>
-        <relationship name="university" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UniversityEntity" inverseName="groups" inverseEntity="UniversityEntity" syncable="YES"/>
+        <attribute name="firstSymbol" attributeType="String"/>
+        <attribute name="id" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="records" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RecordEntity" inverseName="groups" inverseEntity="RecordEntity"/>
+        <relationship name="university" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UniversityEntity" inverseName="groups" inverseEntity="UniversityEntity"/>
         <fetchIndex name="compoundIndex">
             <fetchIndexElement property="name" type="Binary" order="ascending"/>
         </fetchIndex>
@@ -28,17 +28,17 @@
         </uniquenessConstraints>
     </entity>
     <entity name="RecordEntity" representedClassName="RecordEntity" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="dateString" attributeType="String" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="pairName" attributeType="String" syncable="YES"/>
-        <attribute name="reason" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="time" attributeType="String" syncable="YES"/>
-        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="auditorium" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AuditoriumEntity" inverseName="records" inverseEntity="AuditoriumEntity" syncable="YES"/>
-        <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GroupEntity" inverseName="records" inverseEntity="GroupEntity" syncable="YES"/>
-        <relationship name="teacher" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TeacherEntity" inverseName="records" inverseEntity="TeacherEntity" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateString" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="pairName" attributeType="String"/>
+        <attribute name="reason" optional="YES" attributeType="String"/>
+        <attribute name="time" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <relationship name="classroom" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ClassroomEntity" inverseName="records" inverseEntity="ClassroomEntity"/>
+        <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GroupEntity" inverseName="records" inverseEntity="GroupEntity"/>
+        <relationship name="teacher" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TeacherEntity" inverseName="records" inverseEntity="TeacherEntity"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
@@ -46,11 +46,11 @@
         </uniquenessConstraints>
     </entity>
     <entity name="TeacherEntity" representedClassName="TeacherEntity" syncable="YES">
-        <attribute name="firstSymbol" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="records" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RecordEntity" inverseName="teacher" inverseEntity="RecordEntity" syncable="YES"/>
-        <relationship name="university" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UniversityEntity" inverseName="teachers" inverseEntity="UniversityEntity" syncable="YES"/>
+        <attribute name="firstSymbol" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="records" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RecordEntity" inverseName="teacher" inverseEntity="RecordEntity"/>
+        <relationship name="university" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UniversityEntity" inverseName="teachers" inverseEntity="UniversityEntity"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
@@ -58,13 +58,13 @@
         </uniquenessConstraints>
     </entity>
     <entity name="UniversityEntity" representedClassName="UniversityEntity" syncable="YES">
-        <attribute name="fullName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="shortName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="auditoriums" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AuditoriumEntity" inverseName="university" inverseEntity="AuditoriumEntity" syncable="YES"/>
-        <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GroupEntity" inverseName="university" inverseEntity="GroupEntity" syncable="YES"/>
-        <relationship name="teachers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TeacherEntity" inverseName="university" inverseEntity="TeacherEntity" syncable="YES"/>
+        <attribute name="fullName" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="shortName" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <relationship name="auditoriums" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ClassroomEntity" inverseName="university" inverseEntity="ClassroomEntity"/>
+        <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GroupEntity" inverseName="university" inverseEntity="GroupEntity"/>
+        <relationship name="teachers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TeacherEntity" inverseName="university" inverseEntity="TeacherEntity"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="url"/>
@@ -72,10 +72,10 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="AuditoriumEntity" positionX="31.9921875" positionY="107.68359375" width="128" height="120"/>
-        <element name="GroupEntity" positionX="35.59375" positionY="398.10546875" width="128" height="120"/>
-        <element name="RecordEntity" positionX="-387.71484375" positionY="184.6875" width="128" height="210"/>
-        <element name="TeacherEntity" positionX="-180" positionY="261" width="128" height="120"/>
-        <element name="UniversityEntity" positionX="-180" positionY="261" width="128" height="150"/>
+        <element name="ClassroomEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="GroupEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="RecordEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="TeacherEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="UniversityEntity" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

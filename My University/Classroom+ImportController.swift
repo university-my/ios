@@ -1,5 +1,5 @@
 //
-//  Auditorium+ImportController.swift
+//  Classroom+ImportController.swift
 //  My University
 //
 //  Created by Yura Voevodin on 11/11/18.
@@ -8,7 +8,7 @@
 
 import CoreData
 
-extension Auditorium {
+extension Classroom {
     
     final class ImportController: BaseModelImportController<ModelKinds.ClassroomModel> {
         
@@ -27,31 +27,31 @@ extension Auditorium {
                     return
                 }
                 
-                // Parse auditoriums
-                let parsedAuditoriums = json.compactMap { Auditorium.CodingData($0) }
+                // Parse classrooms
+                let parsedClassrooms = json.compactMap { Classroom.CodingData($0) }
                 
-                // Auditoriums to update
-                let toUpdate = AuditoriumEntity.fetch(parsedAuditoriums, university: universityInContext, context: taskContext)
+                // Classrooms to update
+                let toUpdate = ClassroomEntity.fetch(parsedClassrooms, university: universityInContext, context: taskContext)
                 
                 // IDs to update
-                let idsToUpdate = toUpdate.compactMap({ auditorium in
-                    return auditorium.slug
+                let idsToUpdate = toUpdate.compactMap({ classroom in
+                    return classroom.slug
                 })
                 
-                // Find auditoriums to insert
-                let toInsert = parsedAuditoriums.filter({ auditorium in
-                    return (idsToUpdate.contains(auditorium.slug) == false)
+                // Find classrooms to insert
+                let toInsert = parsedClassrooms.filter({ classroom in
+                    return (idsToUpdate.contains(classroom.slug) == false)
                 })
                 
                 // IDs
-                let slugs = parsedAuditoriums.map({ auditorium in
-                    return auditorium.slug
+                let slugs = parsedClassrooms.map({ classroom in
+                    return classroom.slug
                 })
                 
-                // Now find auditoriums to delete
-                let allAuditoriums = AuditoriumEntity.fetchAll(university: universityInContext, context: taskContext)
-                let toDelete = allAuditoriums.filter({ auditorium in
-                    if let slug = auditorium.slug {
+                // Now find classrooms to delete
+                let allClassrooms = ClassroomEntity.fetchAll(university: universityInContext, context: taskContext)
+                let toDelete = allClassrooms.filter({ classroom in
+                    if let slug = classroom.slug {
                         return (slugs.contains(slug) == false)
                     } else {
                         return true
@@ -59,31 +59,31 @@ extension Auditorium {
                 })
                 
                 // 1. Delete
-                for auditorium in toDelete {
-                    taskContext.delete(auditorium)
+                for classroom in toDelete {
+                    taskContext.delete(classroom)
                 }
                 
                 // 2. Update
-                for auditorium in toUpdate {
-                    if let auditoriumFromServer = parsedAuditoriums.first(where: { (parsedAuditorium) -> Bool in
-                        return parsedAuditorium.slug == auditorium.slug
+                for classroom in toUpdate {
+                    if let classroomFromServer = parsedClassrooms.first(where: { (parsedClassroom) -> Bool in
+                        return parsedClassroom.slug == classroom.slug
                     }) {
                         // Update name if changed
-                        if auditoriumFromServer.name != auditorium.name {
-                            auditorium.name = auditoriumFromServer.name
-                            if let firstCharacter = auditoriumFromServer.name.first {
-                                auditorium.firstSymbol = String(firstCharacter).uppercased()
+                        if classroomFromServer.name != classroom.name {
+                            classroom.name = classroomFromServer.name
+                            if let firstCharacter = classroomFromServer.name.first {
+                                classroom.firstSymbol = String(firstCharacter).uppercased()
                             } else {
-                                auditorium.firstSymbol = ""
+                                classroom.firstSymbol = ""
                             }
                         }
                         
-                        if (auditorium.records?.count ?? 0) > 0 {
+                        if (classroom.records?.count ?? 0) > 0 {
                             // Delete all related records
-                            // Because Auditorium can be changed to another one.
+                            // Because Classroom can be changed to another one.
                             let fetchRequest: NSFetchRequest<NSFetchRequestResult> = RecordEntity.fetchRequest()
                             
-                            fetchRequest.predicate = NSPredicate(format: "auditorium == %@", auditorium)
+                            fetchRequest.predicate = NSPredicate(format: "classroom == %@", classroom)
                             let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
                             deleteRequest.resultType = .resultTypeObjectIDs
                             
@@ -101,8 +101,8 @@ extension Auditorium {
                 }
                 
                 // 3. Insert
-                for auditorium in toInsert {
-                    self.insert(auditorium, university: universityInContext, context: taskContext)
+                for classroom in toInsert {
+                    self.insert(classroom, university: universityInContext, context: taskContext)
                 }
                 
                 // Finishing import. Save context.
@@ -122,17 +122,17 @@ extension Auditorium {
             }
         }
         
-        private func insert(_ parsedAuditorium: Auditorium.CodingData, university: UniversityEntity, context: NSManagedObjectContext) {
-            let auditoriumEntity = AuditoriumEntity(context: context)
-            auditoriumEntity.id = parsedAuditorium.id
-            auditoriumEntity.name = parsedAuditorium.name
-            if let firstCharacter = parsedAuditorium.name.first {
-                auditoriumEntity.firstSymbol = String(firstCharacter).uppercased()
+        private func insert(_ classroom: Classroom.CodingData, university: UniversityEntity, context: NSManagedObjectContext) {
+            let entity = ClassroomEntity(context: context)
+            entity.id = classroom.id
+            entity.name = classroom.name
+            if let firstCharacter = classroom.name.first {
+                entity.firstSymbol = String(firstCharacter).uppercased()
             } else {
-                auditoriumEntity.firstSymbol = ""
+                entity.firstSymbol = ""
             }
-            auditoriumEntity.university = university
-            auditoriumEntity.slug = parsedAuditorium.slug
+            entity.university = university
+            entity.slug = classroom.slug
         }
     }
 }

@@ -12,10 +12,10 @@ final class ClassroomDataController: EntityDataController {
     
     // MARK: - Init
     
-    let network: AuditoriumNetworkController
+    let network: ClassroomNetworkController
     
     override init() {
-        network = AuditoriumNetworkController()
+        network = ClassroomNetworkController()
         
         super.init()
         network.delegate = self

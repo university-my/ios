@@ -88,9 +88,9 @@ extension Record {
             recordEntity.time = parsedRecord.time
             recordEntity.type = parsedRecord.type
             
-            // Fetch auditorium entity for set relation with record
-            if let object = parsedRecord.auditorium {
-                recordEntity.auditorium = AuditoriumEntity.fetch(id: object.id, context: context)
+            // Fetch classroom entity for set relation with record
+            if let object = parsedRecord.classroom {
+                recordEntity.classroom = ClassroomEntity.fetch(id: object.id, context: context)
             }
             
             // Groups
