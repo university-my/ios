@@ -10,6 +10,8 @@ import CoreData
 
 extension Record {
     
+    #warning("Try to make single class")
+    
     final class ImportForGroup: BaseRecordImportController<ModelKinds.GroupModel> {
         
         /// Delete previous records and insert new records
@@ -17,7 +19,7 @@ extension Record {
             
             taskContext.performAndWait {
                 
-                guard let groupInContext = GroupEntity.fetch(id: modelID, context: taskContext) else {
+                guard let groupInContext = Group.fetch(id: modelID, context: taskContext) else {
                     self.completionHandler?(nil)
                     return
                 }
@@ -87,17 +89,19 @@ extension Record {
             
             // Fetch classroom entity for set relation with record
             if let object = parsedRecord.classroom {
-                recordEntity.classroom = ClassroomEntity.fetch(id: object.id, context: context)
+                recordEntity.classroom = Classroom.fetch(id: object.id, context: context)
             }
             
             // Groups
-            let groups = GroupEntity.fetch(parsedRecord.groups, university: group.university, context: context)
-            let set = NSSet(array: groups)
-            recordEntity.addToGroups(set)
+            if let university = group.university {
+                let groups = Group.fetch(parsedRecord.groups, for: university, in: context)
+                let set = NSSet(array: groups)
+                recordEntity.addToGroups(set)
+            }
             
             // Fetch teacher entity for set relation with record
             if let object = parsedRecord.teacher {
-                recordEntity.teacher = TeacherEntity.fetch(id: object.id, context: context)
+                recordEntity.teacher = Teacher.fetch(id: object.id, context: context)
             }
         }
     }

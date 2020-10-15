@@ -93,19 +93,26 @@ class TeacherDataSource: NSObject {
     
     // MARK: - Import
     
-    private var importManager: Teacher.ImportController?
+    private var syncController: Teacher.SyncController?
     
     /// Import Teachers from backend
     func importTeachers(_ completion: @escaping ((_ error: Error?) -> ())) {
-        guard let persistentContainer = persistentContainer else { return }
+        guard let container = persistentContainer else { return }
         
-        importManager = Teacher.ImportController(persistentContainer: persistentContainer, universityID: university.id)
+        syncController = Teacher.SyncController(persistentContainer: container, universityID: university.id)
+        
         DispatchQueue.global().async { [weak self] in
             
-            self?.importManager?.importData({ (error) in
+            self?.syncController?.beginSync({ (result) in
                 
                 DispatchQueue.main.async {
-                    completion(error)
+                    switch result {
+                    case .failure(let error):
+                        self?.logger.error("\(error.localizedDescription)")
+                        completion(error)
+                    case .success:
+                        completion(nil)
+                    }
                 }
             })
         }

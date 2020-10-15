@@ -26,7 +26,7 @@ final class GroupLogicController: EntityLogicController {
     let dataController: GroupDataController
     
     override func fetchData(for entityID: Int64)  {
-        dataController.entity = GroupEntity.fetch(id: entityID, context: CoreData.default.viewContext)
+        dataController.entity = Group.fetch(id: entityID, context: CoreData.default.viewContext)
         fetchData(controller: dataController)
     }
     

@@ -79,7 +79,7 @@ class RecordsDataSource {
     
     // MARK: - Favorite
     
-    func toggleFavorite<T: EntityProtocol>(for entity: T) {
+    func toggleFavorite<T: CoreDataEntityProtocol>(for entity: T) {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         entity.favorite.toggle()
         appDelegate?.saveContext()

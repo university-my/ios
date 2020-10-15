@@ -8,6 +8,7 @@
 
 import Foundation
 
+#warning("Move to extension of the `Model`")
 class ModelImportController<Kind: ModelKind> {
     
     typealias Model = Kind

@@ -182,13 +182,13 @@ class EntityDataController: EntityDataControllerProtocol {
     
     // MARK: - Favorite
     // TODO: Remove this?
-    func toggleFavorite<T: EntityProtocol>(for entity: T) {
+    func toggleFavorite<T: CoreDataEntityProtocol>(for entity: T) {
         entity.favorite.toggle()
         CoreData.default.saveContext()
     }
     
     func toggleFavorites() {
-        guard let entity = entity as? EntityProtocol else {
+        guard let entity = entity as? CoreDataEntityProtocol else {
             return
         }
         entity.favorite.toggle()
@@ -197,7 +197,7 @@ class EntityDataController: EntityDataControllerProtocol {
     
     // MARK: - Share URL
     
-    func shareURL(for entity: EntityProtocol?) -> URL? {
+    func shareURL(for entity: CoreDataEntityProtocol?) -> URL? {
         guard let entity = entity else { return nil }
         return entity.shareURL(for: pairDate)
     }

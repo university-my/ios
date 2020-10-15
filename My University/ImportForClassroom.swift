@@ -17,7 +17,7 @@ extension Record {
             
             taskContext.performAndWait {
                 
-                guard let classroomInContext = ClassroomEntity.fetch(id: modelID, context: taskContext) else {
+                guard let classroomInContext = Classroom.fetch(id: modelID, context: taskContext) else {
                     self.completionHandler?(nil)
                     return
                 }
@@ -88,13 +88,15 @@ extension Record {
             recordEntity.classroom = classroom
             
             // Groups
-            let groups = GroupEntity.fetch(parsedRecord.groups, university: classroom.university, context: context)
-            let set = NSSet(array: groups)
-            recordEntity.addToGroups(set)
+            if let university = classroom.university {
+                let groups = Group.fetch(parsedRecord.groups, for: university, in: context)
+                let set = NSSet(array: groups)
+                recordEntity.addToGroups(set)
+            }
             
             // Fetch teacher entity for set relation with record
             if let object = parsedRecord.teacher {
-                recordEntity.teacher = TeacherEntity.fetch(id: object.id, context: context)
+                recordEntity.teacher = Teacher.fetch(id: object.id, context: context)
             }
         }
     }

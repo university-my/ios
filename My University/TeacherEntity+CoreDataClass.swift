@@ -12,55 +12,12 @@ import CoreData
 
 @objc(TeacherEntity)
 public class TeacherEntity: NSManagedObject {
-
-    /// Fetch teacher entity
-    static func fetch(id: Int64, context: NSManagedObjectContext) -> TeacherEntity? {
-        let fetchRequest: NSFetchRequest<TeacherEntity> = TeacherEntity.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %d", id)
-        do {
-            let result = try context.fetch(fetchRequest)
-            let teacher = result.first
-            return teacher
-        } catch  {
-            return nil
-        }
-    }
     
-    static func fetch(_ teachers: [Teacher.CodingData], university: UniversityEntity?, context: NSManagedObjectContext) -> [TeacherEntity] {
-        // University should not be nil
-        guard let university = university else { return [] }
-        
-        let slugs = teachers.map { group in
-            return group.slug
-        }
-        let fetchRequest: NSFetchRequest<TeacherEntity> = TeacherEntity.fetchRequest()
-        let isdPredicate = NSPredicate(format: "slug IN %@", slugs)
-        let universityPredicate = NSPredicate(format: "university == %@", university)
-        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [universityPredicate, isdPredicate])
-        fetchRequest.predicate = predicate
-        do {
-            let result = try context.fetch(fetchRequest)
-            return result
-        } catch  {
-            return []
-        }
-    }
-    
-    static func fetchAll(university: UniversityEntity, context: NSManagedObjectContext) -> [TeacherEntity] {
-        let request: NSFetchRequest<TeacherEntity> = TeacherEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "university == %@", university)
-        do {
-            let result = try context.fetch(request)
-            return result
-        } catch  {
-            return []
-        }
-    }
 }
 
-// MARK: - EntityProtocol
+// MARK: - CoreDataEntityProtocol
 
-extension TeacherEntity: EntityProtocol {
+extension TeacherEntity: CoreDataEntityProtocol {
     
     var favorite: Bool {
         get {
@@ -84,12 +41,13 @@ extension TeacherEntity: EntityProtocol {
 extension TeacherEntity: StructRepresentable {
     
     func asStruct() -> EntityRepresentable? {
-        return Teacher(
-            firstSymbol: firstSymbol,
+        Teacher(
             id: id,
             isFavorite: isFavorite,
-            name: name,
-            slug: slug
+            name: name ?? "",
+            slug: slug ?? ""
         )
     }
 }
+
+extension TeacherEntity: CoreDataFetchable {}

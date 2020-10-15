@@ -26,7 +26,7 @@ final class TeacherLogicController: EntityLogicController {
     // MARK: - Data
     
     override func fetchData(for entityID: Int64) {
-        dataController.entity = TeacherEntity.fetch(id: entityID, context: CoreData.default.viewContext)
+        dataController.entity = Teacher.fetch(id: entityID, context: CoreData.default.viewContext)
         fetchData(controller: dataController)
     }
     

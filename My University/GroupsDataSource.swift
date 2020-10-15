@@ -94,22 +94,29 @@ class GroupsDataSource: NSObject {
     
     // MARK: - Import
     
-    var importManager: Group.ImportController?
+    var syncController: Group.SyncController?
     
     /// Import Groups from backend
     func importGroups(_ completion: @escaping ((_ error: Error?) -> ())) {
-        guard let persistentContainer = persistentContainer else { return }
+        guard let container = persistentContainer else { return }
         
         // Download Groups from backend and save to database.
-        importManager = Group.ImportController(persistentContainer: persistentContainer, universityID: university.id)
+        syncController = Group.SyncController(persistentContainer: container, universityID: university.id)
+        
         DispatchQueue.global().async { [weak self] in
             
-            self?.importManager?.importData { (error) in
+            self?.syncController?.beginSync({ (result) in
                 
                 DispatchQueue.main.async {
-                    completion(error)
+                    switch result {
+                    case .failure(let error):
+                        self?.logger.error("\(error.localizedDescription)")
+                        completion(error)
+                    case .success:
+                        completion(nil)
+                    }
                 }
-            }
+            })
         }
     }
 }

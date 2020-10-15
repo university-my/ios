@@ -7,18 +7,35 @@
 //
 
 import Foundation
+import CoreData
 
 protocol ModelKind {
     
     static func allEntities(university: String) -> URL
     static func recordsEndpoint(params: Record.RequestParameters) -> URL
     
+    // MARK: - Properties
+    
     static var cashFileName: String { get }
+    
+    /// For remote server API
+    static var entityPath: String { get }
+    
+    /// For fetch requests
+    static var coreDataSingleEntityName: String { get }
 }
 
 enum ModelKinds {
     
     enum ClassroomModel: ModelKind {
+        
+        static var coreDataSingleEntityName: String {
+            "classroom"
+        }
+        
+        static var entityPath: String {
+            "auditoriums"
+        }
         
         static var cashFileName: String {
             "classrooms"
@@ -35,6 +52,14 @@ enum ModelKinds {
     
     enum GroupModel: ModelKind {
         
+        static var coreDataSingleEntityName: String {
+            "group"
+        }
+        
+        static var entityPath: String {
+            "groups"
+        }
+        
         static var cashFileName: String {
             "groups"
         }
@@ -49,6 +74,14 @@ enum ModelKinds {
     }
     
     enum TeacherModel: ModelKind {
+        
+        static var coreDataSingleEntityName: String {
+            "teacher"
+        }
+        
+        static var entityPath: String {
+            "teachers"
+        }
         
         static var cashFileName: String {
             "teachers"
