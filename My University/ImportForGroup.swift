@@ -13,7 +13,7 @@ extension Record {
     final class ImportForGroup: BaseRecordImportController<ModelKinds.GroupModel> {
         
         /// Delete previous records and insert new records
-        override func syncRecords(_ json: [[String: Any]], taskContext: NSManagedObjectContext) {
+        override func sync(_ records: [Record.CodingData], taskContext: NSManagedObjectContext) {
             
             taskContext.performAndWait {
                 
@@ -22,11 +22,8 @@ extension Record {
                     return
                 }
                 
-                // Parse records
-                let parsedRecords = json.compactMap { Record.CodingData($0, dateFormatter: dateFormatter) }
-                
                 // Records to update
-                let toUpdate = RecordEntity.fetch(parsedRecords, group: groupInContext, context: taskContext)
+                let toUpdate = RecordEntity.fetch(records, group: groupInContext, context: taskContext)
                 
                 // IDs to update
                 let idsToUpdate = toUpdate.map({ record in
@@ -34,13 +31,13 @@ extension Record {
                 })
                 
                 // Find records to insert
-                let toInsert = parsedRecords.filter({ record in
+                let toInsert = records.filter({ record in
                     return (idsToUpdate.contains(record.id) == false)
                 })
                 
                 // Update
                 for record in toUpdate {
-                    if let recordFromServer = parsedRecords.first(where: { parsedRecord in
+                    if let recordFromServer = records.first(where: { parsedRecord in
                         return parsedRecord.id == record.id
                     }) {
                         record.date = recordFromServer.date

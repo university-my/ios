@@ -10,9 +10,7 @@ import Foundation
 
 extension Classroom {
     
-    struct CodingData {
-        
-        // TODO: Use `Codable`
+    struct CodingData: Codable {
         
         // MARK: - Properties
         
