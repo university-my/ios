@@ -10,11 +10,9 @@ import CoreData
 
 class BaseRecordImportController<Model: ModelKind> {
     
-    typealias NetworkClient = Record.NetworkClient<Model>
-    
     // MARK: - Properties
     
-    internal let networkClient: NetworkClient
+    internal let networkClient: NetworkClient<Record.RecordsList>
     internal var completionHandler: ((_ error: Error?) -> ())?
     internal let modelID: Int64
     internal let universityURL: String
@@ -37,9 +35,9 @@ class BaseRecordImportController<Model: ModelKind> {
         
         let dateString = DateFormatter.short.string(from: date)
         let params = Record.RequestParameters(id: modelID, university: universityURL, date: dateString)
+        let url = Model.recordsEndpoint(params: params)
         
-        networkClient.loadRecords(params) { (result) in
-            
+        networkClient.load(url: url) { (result) in
             switch result {
             
             case .failure(let error):

@@ -10,16 +10,16 @@ import XCTest
 @testable import My_University
 
 class RecordsTests: XCTestCase {
-
+    
     func testRecordsLoading() {
         let expectations = expectation(description: "Records")
         
-        let client = Record.NetworkClient<ModelKinds.ClassroomModel>()
-        client.loadTestRecords { (result) in
+        let client = NetworkClient<Record.RecordsList>()
+        client.load(url: Record.Endpoints.testRecords.url) { (result) in
             switch result {
             
             case .failure(let error):
-                XCTFail("Import fail: \(error)")
+                XCTFail("\(error)")
                 
             case .success(let list):
                 if !list.records.isEmpty {
@@ -27,18 +27,26 @@ class RecordsTests: XCTestCase {
                 }
             }
         }
-
+        
         wait(for: [expectations], timeout: 5)
     }
     
     func testRecordsLoadingWithPublisher() {
         let expectations = expectation(description: "Records")
         
-        let client = Record.NetworkClient<ModelKinds.ClassroomModel>()
+        let client = NetworkClient<Record.RecordsList>()
         let params = Record.RequestParameters(id: 1, university: "sumdu", date: "2020-10-10")
+        let url = ModelKinds.ClassroomModel.recordsEndpoint(params: params)
         
-        client.loadRecords(params) { (result) in
-            expectations.fulfill()
+        client.load(url: url) { (result) in
+            switch result {
+            
+            case .failure(let error):
+                XCTFail("\(error)")
+                
+            case .success:
+                expectations.fulfill()
+            }
         }
         
         wait(for: [expectations], timeout: 5)

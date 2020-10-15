@@ -23,8 +23,8 @@ class UniversityEndpointsTests: XCTestCase {
     func testUniversitiesLoading() {
         let expectations = expectation(description: "Universities")
         
-        let client = University.NetworkClient()
-        client.loadUniversities { (result) in
+        let client = NetworkClient<[University.CodingData]>()
+        client.load(url: University.Endpoints.allUniversities.url) { (result) in
             switch result {
             
             case .failure(let error):

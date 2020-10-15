@@ -31,7 +31,6 @@
 		DE13EEB02466B59C0011F307 /* EntityLogicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE13EEAF2466B59C0011F307 /* EntityLogicController.swift */; };
 		DE13EEB22466B7E50011F307 /* EntityLogicControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE13EEB12466B7E50011F307 /* EntityLogicControllerProtocol.swift */; };
 		DE13EEB42466B9BA0011F307 /* StructRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE13EEB32466B9BA0011F307 /* StructRepresentable.swift */; };
-		DE18941921BC349400C7F9DB /* Record+NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941821BC349400C7F9DB /* Record+NetworkClient.swift */; };
 		DE18941C21BC3A3900C7F9DB /* GroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941B21BC3A3900C7F9DB /* GroupTableViewController.swift */; };
 		DE18942021BD457F00C7F9DB /* ImportForGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941F21BD457F00C7F9DB /* ImportForGroup.swift */; };
 		DE18942221BD45E600C7F9DB /* ImportForClassroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18942121BD45E600C7F9DB /* ImportForClassroom.swift */; };
@@ -119,7 +118,6 @@
 		DEB031672459809D00A5D29D /* ErrorAlertRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB031662459809D00A5D29D /* ErrorAlertRepresentable.swift */; };
 		DEB0316C245988F600A5D29D /* GroupLogicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0316B245988F600A5D29D /* GroupLogicController.swift */; };
 		DEB0316E2459895A00A5D29D /* GroupNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0316D2459895A00A5D29D /* GroupNetworkController.swift */; };
-		DEB0632125136BE700DB50CE /* University+NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0632025136BE700DB50CE /* University+NetworkClient.swift */; };
 		DEB0633325136C7A00DB50CE /* EntityMenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0633225136C7900DB50CE /* EntityMenuPresenter.swift */; };
 		DEB0633D25136CC700DB50CE /* MetricKitSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0633C25136CC700DB50CE /* MetricKitSubscriber.swift */; };
 		DEB0634425136D2200DB50CE /* Teacher.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEB0634225136D2200DB50CE /* Teacher.storyboard */; };
@@ -130,6 +128,7 @@
 		DEB6819D245DF874005FA2F0 /* EntityNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB6819C245DF874005FA2F0 /* EntityNetworkController.swift */; };
 		DEB9BC6725387D1C008F41A2 /* Record+RecordsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BC6625387D1C008F41A2 /* Record+RecordsList.swift */; };
 		DEB9BD232538AB72008F41A2 /* University+CodingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BD222538AB72008F41A2 /* University+CodingData.swift */; };
+		DEB9BD292538B233008F41A2 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BD282538B233008F41A2 /* NetworkClient.swift */; };
 		DEBB74AA235CE1AC00226C7E /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBB74A9235CE1AC00226C7E /* Bundle.swift */; };
 		DEBB74BB235CF4C300226C7E /* UniversitiesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBB74BA235CF4C300226C7E /* UniversitiesTableViewController.swift */; };
 		DEBC46052456F30A00489CAA /* Teacher+CodingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBC46042456F30A00489CAA /* Teacher+CodingData.swift */; };
@@ -205,7 +204,6 @@
 		DE13EEAF2466B59C0011F307 /* EntityLogicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityLogicController.swift; sourceTree = "<group>"; };
 		DE13EEB12466B7E50011F307 /* EntityLogicControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityLogicControllerProtocol.swift; sourceTree = "<group>"; };
 		DE13EEB32466B9BA0011F307 /* StructRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructRepresentable.swift; sourceTree = "<group>"; };
-		DE18941821BC349400C7F9DB /* Record+NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record+NetworkClient.swift"; sourceTree = "<group>"; };
 		DE18941B21BC3A3900C7F9DB /* GroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTableViewController.swift; sourceTree = "<group>"; };
 		DE18941F21BD457F00C7F9DB /* ImportForGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportForGroup.swift; sourceTree = "<group>"; };
 		DE18942121BD45E600C7F9DB /* ImportForClassroom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportForClassroom.swift; sourceTree = "<group>"; };
@@ -298,7 +296,6 @@
 		DEB031662459809D00A5D29D /* ErrorAlertRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlertRepresentable.swift; sourceTree = "<group>"; };
 		DEB0316B245988F600A5D29D /* GroupLogicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupLogicController.swift; sourceTree = "<group>"; };
 		DEB0316D2459895A00A5D29D /* GroupNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNetworkController.swift; sourceTree = "<group>"; };
-		DEB0632025136BE700DB50CE /* University+NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "University+NetworkClient.swift"; sourceTree = "<group>"; };
 		DEB0633225136C7900DB50CE /* EntityMenuPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityMenuPresenter.swift; sourceTree = "<group>"; };
 		DEB0633C25136CC700DB50CE /* MetricKitSubscriber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetricKitSubscriber.swift; sourceTree = "<group>"; };
 		DEB0634325136D2200DB50CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Teacher.storyboard; sourceTree = "<group>"; };
@@ -309,6 +306,7 @@
 		DEB6819C245DF874005FA2F0 /* EntityNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityNetworkController.swift; sourceTree = "<group>"; };
 		DEB9BC6625387D1C008F41A2 /* Record+RecordsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record+RecordsList.swift"; sourceTree = "<group>"; };
 		DEB9BD222538AB72008F41A2 /* University+CodingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "University+CodingData.swift"; sourceTree = "<group>"; };
+		DEB9BD282538B233008F41A2 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		DEBB74A9235CE1AC00226C7E /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		DEBB74BA235CF4C300226C7E /* UniversitiesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversitiesTableViewController.swift; sourceTree = "<group>"; };
 		DEBC46042456F30A00489CAA /* Teacher+CodingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Teacher+CodingData.swift"; sourceTree = "<group>"; };
@@ -366,9 +364,7 @@
 		C29FF4CE2002382500B50299 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				DE18941821BC349400C7F9DB /* Record+NetworkClient.swift */,
-				DEBCBDA12530E06A0087F216 /* Record+RequestParameters.swift */,
-				DEB0632025136BE700DB50CE /* University+NetworkClient.swift */,
+				DEB9BD282538B233008F41A2 /* NetworkClient.swift */,
 				DE36592C252F8CA2002A1A11 /* Endpoint */,
 				DEBCBDC42530EA6D0087F216 /* Model */,
 				DE36597D2530553C002A1A11 /* Website */,
@@ -506,6 +502,7 @@
 				DE131FE72456D773009D09EA /* Record+CodingData.swift */,
 				DEBCBDA52530E2300087F216 /* Record+Endpoints.swift */,
 				DEB9BC6625387D1C008F41A2 /* Record+RecordsList.swift */,
+				DEBCBDA12530E06A0087F216 /* Record+RequestParameters.swift */,
 			);
 			name = Record;
 			sourceTree = "<group>";
@@ -1198,7 +1195,6 @@
 				DE0D64082264E1330001FCCF /* UniversityViewController.swift in Sources */,
 				DE13EEB02466B59C0011F307 /* EntityLogicController.swift in Sources */,
 				DE131FE82456D773009D09EA /* Record+CodingData.swift in Sources */,
-				DE18941921BC349400C7F9DB /* Record+NetworkClient.swift in Sources */,
 				DE999ABE227C54160018F725 /* UniversityDataSource.swift in Sources */,
 				DE540EC02215CD840092FC81 /* Teacher+ImportController.swift in Sources */,
 				DE79DC9C246AA7F800C8C0EF /* TeacherDataController.swift in Sources */,
@@ -1229,7 +1225,6 @@
 				DEA2B3E8246AE75500F96E28 /* TeacherViewController.swift in Sources */,
 				DE3EC2C9245C742500E30536 /* ClassroomNetworkController.swift in Sources */,
 				DE3628CB2524ADD0003A7939 /* UserDefaultsKeys.swift in Sources */,
-				DEB0632125136BE700DB50CE /* University+NetworkClient.swift in Sources */,
 				DEDA8CF52534930D00B54E41 /* ClassroomEntity+CoreDataClass.swift in Sources */,
 				DE540EBD2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift in Sources */,
 				DE584C54219860E80099415E /* Classroom.swift in Sources */,
@@ -1259,6 +1254,7 @@
 				DEA2B3E4246AE3C200F96E28 /* TeacherLogicController.swift in Sources */,
 				DE13EEB42466B9BA0011F307 /* StructRepresentable.swift in Sources */,
 				DEE6740E2459ACE300B8F9F1 /* Group+CodingData.swift in Sources */,
+				DEB9BD292538B233008F41A2 /* NetworkClient.swift in Sources */,
 				DE7BEA422533782D0006F421 /* BaseModelImportController.swift in Sources */,
 				DEDA8CF72534930D00B54E41 /* RecordEntity+CoreDataProperties.swift in Sources */,
 				DE2863782455F75B0036A01F /* UniversitiesViewController.swift in Sources */,

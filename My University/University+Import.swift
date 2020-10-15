@@ -12,11 +12,9 @@ extension University {
     
     class Import {
         
-        typealias NetworkClient = University.NetworkClient
-        
         // MARK: - Properties
         
-        private let networkClient: NetworkClient
+        private let networkClient: NetworkClient<[University.CodingData]>
         private var completionHandler: ((_ error: Error?) -> ())?
         private let persistentContainer: NSPersistentContainer
         
@@ -32,7 +30,7 @@ extension University {
         func importUniversities(_ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            networkClient.loadUniversities { (result) in
+            networkClient.load(url: University.Endpoints.allUniversities.url) { (result) in
                 switch result {
                 
                 case .failure(let error):
