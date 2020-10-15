@@ -13,7 +13,15 @@ extension Classroom {
     final class ImportController: BaseModelImportController<ModelKinds.ClassroomModel> {
         
         /// Delete previous groups and insert new
-        override func sync(from json: [[String: Any]], taskContext: NSManagedObjectContext) {
+        override func sync(from data: Data, taskContext: NSManagedObjectContext) {
+            
+            var classrooms: [Classroom.CodingData] = []
+            do {
+                let decoder = JSONDecoder()
+                classrooms = try decoder.decode([Classroom.CodingData].self, from: data)
+            } catch {
+                completionHandler?(error)
+            }
             
             taskContext.performAndWait {
                 
@@ -27,11 +35,8 @@ extension Classroom {
                     return
                 }
                 
-                // Parse classrooms
-                let parsedClassrooms = json.compactMap { Classroom.CodingData($0) }
-                
                 // Classrooms to update
-                let toUpdate = ClassroomEntity.fetch(parsedClassrooms, university: universityInContext, context: taskContext)
+                let toUpdate = ClassroomEntity.fetch(classrooms, university: universityInContext, context: taskContext)
                 
                 // IDs to update
                 let idsToUpdate = toUpdate.compactMap({ classroom in
@@ -39,12 +44,12 @@ extension Classroom {
                 })
                 
                 // Find classrooms to insert
-                let toInsert = parsedClassrooms.filter({ classroom in
+                let toInsert = classrooms.filter({ classroom in
                     return (idsToUpdate.contains(classroom.slug) == false)
                 })
                 
                 // IDs
-                let slugs = parsedClassrooms.map({ classroom in
+                let slugs = classrooms.map({ classroom in
                     return classroom.slug
                 })
                 
@@ -65,7 +70,7 @@ extension Classroom {
                 
                 // 2. Update
                 for classroom in toUpdate {
-                    if let classroomFromServer = parsedClassrooms.first(where: { (parsedClassroom) -> Bool in
+                    if let classroomFromServer = classrooms.first(where: { (parsedClassroom) -> Bool in
                         return parsedClassroom.slug == classroom.slug
                     }) {
                         // Update name if changed

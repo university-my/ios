@@ -13,7 +13,15 @@ extension Teacher {
     final class ImportController: BaseModelImportController<ModelKinds.TeacherModel> {
         
         /// Delete previous teachers and insert new
-        override func sync(from json: [[String: Any]], taskContext: NSManagedObjectContext) {
+        override func sync(from data: Data, taskContext: NSManagedObjectContext) {
+            
+            var teachers: [Teacher.CodingData] = []
+            do {
+                let decoder = JSONDecoder()
+                teachers = try decoder.decode([Teacher.CodingData].self, from: data)
+            } catch {
+                completionHandler?(error)
+            }
             
             taskContext.performAndWait {
                 
@@ -27,11 +35,8 @@ extension Teacher {
                     return
                 }
                 
-                // Parse teachers.
-                let parsedTeachers = json.compactMap { Teacher.CodingData($0) }
-                
                 // Teachers to update
-                let toUpdate = TeacherEntity.fetch(parsedTeachers, university: universityInContext, context: taskContext)
+                let toUpdate = TeacherEntity.fetch(teachers, university: universityInContext, context: taskContext)
                 
                 // IDs to update
                 let idsToUpdate = toUpdate.compactMap({ teacher in
@@ -39,12 +44,12 @@ extension Teacher {
                 })
                 
                 // Find teachers to insert
-                let toInsert = parsedTeachers.filter({ teachers in
+                let toInsert = teachers.filter({ teachers in
                     return (idsToUpdate.contains(teachers.slug) == false)
                 })
                 
                 // IDs
-                let slugs = parsedTeachers.map({ teachers in
+                let slugs = teachers.map({ teachers in
                     return teachers.slug
                 })
                 
@@ -65,7 +70,7 @@ extension Teacher {
                 
                 // 2. Update
                 for teacher in toUpdate {
-                    if let teacherFromServer = parsedTeachers.first(where: { (parsedTeacher) -> Bool in
+                    if let teacherFromServer = teachers.first(where: { (parsedTeacher) -> Bool in
                         return parsedTeacher.slug == teacher.slug
                     }) {
                         // Update name if changed

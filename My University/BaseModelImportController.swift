@@ -40,23 +40,26 @@ class BaseModelImportController<Kind: ModelKind> {
         }
         completionHandler = completion
         
-        importController.importData(universityURL: universityURL) { (json, error) in
+        importController.importData(universityURL: universityURL) { result in
             
-            if let error = error {
+            switch result {
+            
+            case .failure(let error):
                 self.completionHandler?(error)
-            } else {
+                
+            case .success(let data):
                 // New context for sync
                 let context = self.persistentContainer.newBackgroundContext()
                 context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
                 context.undoManager = nil
                 
-                self.sync(from: json, taskContext: context)
+                self.sync(from: data, taskContext: context)
             }
         }
     }
     
     /// Delete previous teachers and insert new
-    func sync(from json: [[String: Any]], taskContext: NSManagedObjectContext) {
+    func sync(from data: Data, taskContext: NSManagedObjectContext) {
         
     }
 }

@@ -12,6 +12,7 @@ class ModelImportController<Kind: ModelKind> {
     
     typealias Model = Kind
     typealias NetworkClient = ModelNetworkClient<Model>
+    typealias Completion = ((Result<Data, Error>) -> Void)
     
     // MARK: - Properties
     
@@ -36,38 +37,19 @@ class ModelImportController<Kind: ModelKind> {
     
     // MARK: - Methods
     
-    func importData(universityURL: String, _ completion: @escaping ((_ json: [[String : Any]], _ error: Error?) -> ())) {
+    func importData(universityURL: String, _ completion: @escaping Completion) {
+        let file = cacheFile
         networkClient.download(universityURL: universityURL) { (error) in
             if let error = error {
-                completion([], error)
+                completion(.failure(error))
             } else {
-                
-                self.serializeJSON(from: self.cacheFile) { (json, error) in
-                    completion(json, error)
+                do {
+                    let data = try Data(contentsOf: file, options: [])
+                    completion(.success(data))
+                } catch {
+                    completion(.failure(error))
                 }
             }
-        }
-    }
-    
-    func serializeJSON(from cacheFile: URL, _ completion: @escaping ((_ json: [[String : Any]], _ error: Error?) -> ())) {
-        guard let stream = InputStream(url: cacheFile) else {
-            completion([], nil)
-            return
-        }
-        stream.open()
-        
-        defer {
-            stream.close()
-        }
-        do {
-            let object = try JSONSerialization.jsonObject(with: stream, options: []) as? [Any]
-            if let json = object as? [[String: Any]] {
-                completion(json, nil)
-            } else {
-                completion([], nil)
-            }
-        } catch {
-            completion([], error)
         }
     }
 }

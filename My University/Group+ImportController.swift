@@ -13,7 +13,15 @@ extension Group {
     final class ImportController: BaseModelImportController<ModelKinds.GroupModel> {
         
         /// Delete previous groups and insert new
-        override func sync(from json: [[String: Any]], taskContext: NSManagedObjectContext) {
+        override func sync(from data: Data, taskContext: NSManagedObjectContext) {
+            
+            var groups: [Group.CodingData] = []
+            do {
+                let decoder = JSONDecoder()
+                groups = try decoder.decode([Group.CodingData].self, from: data)
+            } catch {
+                completionHandler?(error)
+            }
             
             taskContext.performAndWait {
                 
@@ -27,11 +35,8 @@ extension Group {
                     return
                 }
                 
-                // Parse groups.
-                let parsedGroups = json.compactMap { Group.CodingData($0) }
-                
                 // Groups to update
-                let toUpdate = GroupEntity.fetch(parsedGroups, university: universityInContext, context: taskContext)
+                let toUpdate = GroupEntity.fetch(groups, university: universityInContext, context: taskContext)
                 
                 // IDs to update
                 let idsToUpdate = toUpdate.compactMap({ group in
@@ -39,12 +44,12 @@ extension Group {
                 })
                 
                 // Find groups to insert
-                let toInsert = parsedGroups.filter({ group in
+                let toInsert = groups.filter({ group in
                     return (idsToUpdate.contains(group.slug) == false)
                 })
                 
                 // IDs
-                let slugs = parsedGroups.map({ group in
+                let slugs = groups.map({ group in
                     return group.slug
                 })
                 
@@ -65,7 +70,7 @@ extension Group {
                 
                 // 2. Update
                 for group in toUpdate {
-                    if let groupFromServer = parsedGroups.first(where: { (parsedGroup) -> Bool in
+                    if let groupFromServer = groups.first(where: { (parsedGroup) -> Bool in
                         return parsedGroup.slug == group.slug
                     }) {
                         // Update name if changed
