@@ -7,61 +7,37 @@
 //
 
 import Foundation
+import Combine
 
 extension University {
-
-  class NetworkClient {
-
-    // MARK: - Properties
-
-    let cacheFile: URL
-    var completionHandler: ((_ error: Error?) -> ())?
-
-    // MARK: - Init
-
-    init(cacheFile: URL) {
-      self.cacheFile = cacheFile
-    }
-
-    // MARK: - Download Universities
-
-    func downloadUniversities(_ completion: @escaping ((_ error: Error?) -> ())) {
-      completionHandler = completion
+    
+    class NetworkClient {
         
-        let url = University.Endpoints.allUniversities.url
+        typealias Completion = ((Result<[University.CodingData], Error>) -> Void)
         
-
-      let task = URLSession.shared.downloadTask(with: url) { (url, response, error) in
-
-        if let error = error {
-          self.completionHandler?(error)
-        } else {
-          self.downloadFinished(url: url, response: response)
+        private var cancellable: Cancellable!
+        
+        func loadUniversities(_ completion: @escaping Completion) {
+            let url = University.Endpoints.allUniversities.url
+            
+            let publisher = URLSession.shared.publisher(
+                for: url,
+                responseType: [University.CodingData].self
+            )
+            .print("➡️")
+            
+            cancellable = publisher.sink { (result) in
+                
+                switch result {
+                case .failure(let error):
+                    completion(.failure(error))
+                case .finished:
+                    break
+                }
+                
+            } receiveValue: { data in
+                completion(.success(data))
+            }
         }
-      }
-      task.resume()
     }
-
-    private func downloadFinished(url: URL?, response: URLResponse?) {
-      if let localURL = url {
-        do {
-          /*
-           If we already have a file at this location, just delete it.
-           Also, swallow the error, because we don't really care about it.
-           */
-          try FileManager.default.removeItem(at: cacheFile)
-        }
-        catch { }
-
-        do {
-          try FileManager.default.moveItem(at: localURL, to: cacheFile)
-          completionHandler?(nil)
-        } catch {
-          completionHandler?(error)
-        }
-      } else {
-        completionHandler?(nil)
-      }
-    }
-  }
 }

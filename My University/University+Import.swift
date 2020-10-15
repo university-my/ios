@@ -16,7 +16,6 @@ extension University {
         
         // MARK: - Properties
         
-        private let cacheFile: URL
         private let networkClient: NetworkClient
         private var completionHandler: ((_ error: Error?) -> ())?
         private let persistentContainer: NSPersistentContainer
@@ -24,13 +23,8 @@ extension University {
         // MARK: - Init
         
         init?(persistentContainer: NSPersistentContainer) {
-            // Cache file
-            let cachesFolder = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-            guard let cacheFile = cachesFolder?.appendingPathComponent("universities.json") else { return nil }
-            
-            self.cacheFile = cacheFile
             self.persistentContainer = persistentContainer
-            networkClient = NetworkClient(cacheFile: self.cacheFile)
+            networkClient = NetworkClient()
         }
         
         // MARK: - Methods
@@ -38,52 +32,29 @@ extension University {
         func importUniversities(_ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            networkClient.downloadUniversities { (error) in
-                if let error = error {
+            networkClient.loadUniversities { (result) in
+                switch result {
+                
+                case .failure(let error):
                     self.completionHandler?(error)
-                } else {
-                    self.serializeJSON()
-                }
-            }
-        }
-        
-        private func serializeJSON() {
-            guard let stream = InputStream(url: cacheFile) else {
-                completionHandler?(nil)
-                return
-            }
-            stream.open()
-            
-            defer {
-                stream.close()
-            }
-            do {
-                let object = try JSONSerialization.jsonObject(with: stream, options: []) as? [Any]
-                if let json = object as? [[String: Any]] {
-                    // New context for sync.
+                    
+                case .success(let universities):
+                    // New context for sync
                     let taskContext = self.persistentContainer.newBackgroundContext()
                     taskContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
                     taskContext.undoManager = nil
                     
-                    syncUniversities(from: json, taskContext: taskContext)
-                    
-                } else {
-                    completionHandler?(nil)
+                    self.sync(universities, in: taskContext)
                 }
-            } catch {
-                completionHandler?(error)
             }
         }
         
-        private func syncUniversities(from json: [[String: Any]], taskContext: NSManagedObjectContext) {
+        private func sync(_ universities: [University.CodingData], in taskContext: NSManagedObjectContext) {
             
             taskContext.performAndWait {
                 
-                // Parse universities.
-                let parsedUniversities = json.compactMap { University($0) }
-                
                 // IDs to fetch
-                let ids = parsedUniversities.map({ university in
+                let ids = universities.map({ university in
                     return university.serverID
                 })
                 
@@ -96,7 +67,7 @@ extension University {
                 })
                 
                 // Find universities to insert
-                let toInsert = parsedUniversities.filter({ university in
+                let toInsert = universities.filter({ university in
                     return (idsToUpdate.contains(university.serverID) == false)
                 })
                 
@@ -113,7 +84,7 @@ extension University {
                 
                 // 2. Update
                 for university in toUpdate {
-                    if let universityFromServer = parsedUniversities.first(where: { (parsedUniversity) -> Bool in
+                    if let universityFromServer = universities.first(where: { (parsedUniversity) -> Bool in
                         return university.id == parsedUniversity.serverID
                     }) {
                         university.fullName = universityFromServer.fullName
@@ -144,7 +115,7 @@ extension University {
             }
         }
         
-        private func insert(_ parsedUniversity: University, context: NSManagedObjectContext) {
+        private func insert(_ parsedUniversity: University.CodingData, context: NSManagedObjectContext) {
             let universityEntity = UniversityEntity(context: context)
             universityEntity.id = parsedUniversity.serverID
             universityEntity.fullName = parsedUniversity.fullName

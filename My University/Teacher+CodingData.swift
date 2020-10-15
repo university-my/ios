@@ -12,8 +12,6 @@ extension Teacher {
     
     struct CodingData: Codable {
         
-        // MARK: - Properties
-        
         let id: Int64
         let name: String
         let slug: String
