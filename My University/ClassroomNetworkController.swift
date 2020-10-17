@@ -10,24 +10,31 @@ import Foundation
 
 class ClassroomNetworkController: EntityNetworkController {
     
-    private var importManager: Record.ImportForClassroom?
-    
-    func importRecords(for classroomEntity: ClassroomEntity, by date: Date) {
+    func syncRecords(for classroomEntity: ClassroomEntity, by date: Date) {
         guard let classroom = classroomEntity.asStruct() as? Classroom else {
             preconditionFailure("Invalid classroom")
         }
-        guard let universityURL = classroomEntity.university?.url else {
+        guard let university = classroomEntity.university else {
             preconditionFailure("Invalid university")
         }
-        // Init new import manager
         let container = CoreData.default.persistentContainer
-        importManager = Record.ImportForClassroom(persistentContainer: container, modelID: classroom.id, universityURL: universityURL)
+        let syncController = Classroom.RecordsSyncController(
+            persistentContainer: container,
+            modelID: classroom.id,
+            university: university
+        )
         
-        // Download records for Group from backend and save to database.
-        importManager?.importRecords(for: date, { [weak self] (error) in
+        // Download records for Group from backend and save to database
+        syncController.importRecords(for: date, { [weak self] (result) in
             
             DispatchQueue.main.async {
-                self?.delegate?.didImportRecords(for: classroom, error)
+                
+                switch result {
+                case .failure(let error):
+                    self?.delegate?.didImportRecords(for: classroom, error)
+                case .success:
+                    self?.delegate?.didImportRecords(for: classroom, nil)
+                }
             }
         })
     }

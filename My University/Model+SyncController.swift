@@ -20,7 +20,7 @@ extension Model {
         internal var completionHandler: Completion?
         internal var persistentContainer: NSPersistentContainer
         internal weak var university: UniversityEntity?
-        internal let importController: ModelImportController<Kind>
+        internal let importController: ImportController
         
         // MARK: - Import
         
@@ -51,7 +51,7 @@ extension Model {
         // MARK: - Initialization
         
         init?(persistentContainer: NSPersistentContainer, universityID: Int64) {
-            guard let importController = ModelImportController<Kind>() else { return nil }
+            guard let importController = ImportController() else { return nil }
             self.importController = importController
             
             self.persistentContainer = persistentContainer
@@ -137,7 +137,7 @@ extension Model {
                             // Because NSManagedObject's can be changed to another one.
                             let fetchRequest: NSFetchRequest<NSFetchRequestResult> = RecordEntity.fetchRequest()
                             
-                            fetchRequest.predicate = NSPredicate(format: "\(coreDataSingleEntityName) == %@", entity)
+                            fetchRequest.predicate = Kind.fetchRequestPredicate(for: entity)
                             let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
                             deleteRequest.resultType = .resultTypeObjectIDs
                             

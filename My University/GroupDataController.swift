@@ -27,7 +27,7 @@ final class GroupDataController: EntityDataController {
         }
         // Start import
         isImporting = true
-        network.importRecords(for: group, by: pairDate)
+        network.syncRecords(for: group, by: pairDate)
     }
     
     // MARK: - Group

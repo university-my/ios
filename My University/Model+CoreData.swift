@@ -50,8 +50,4 @@ extension Model {
             return []
         }
     }
-    
-    static var coreDataSingleEntityName: String {
-        Kind.coreDataSingleEntityName
-    }
 }

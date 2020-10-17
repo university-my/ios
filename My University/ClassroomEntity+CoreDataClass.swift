@@ -19,16 +19,6 @@ public class ClassroomEntity: NSManagedObject {
 
 extension ClassroomEntity: CoreDataEntityProtocol {
     
-    #warning("Check this")
-    var favorite: Bool {
-        get {
-            return isFavorite
-        }
-        set {
-            isFavorite = newValue
-        }
-    }
-    
     func shareURL(for date: Date) -> URL? {
         guard let parameters = pageParameters(with: date) else {
             return nil

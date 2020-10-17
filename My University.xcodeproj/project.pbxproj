@@ -31,8 +31,6 @@
 		DE13EEB22466B7E50011F307 /* EntityLogicControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE13EEB12466B7E50011F307 /* EntityLogicControllerProtocol.swift */; };
 		DE13EEB42466B9BA0011F307 /* StructRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE13EEB32466B9BA0011F307 /* StructRepresentable.swift */; };
 		DE18941C21BC3A3900C7F9DB /* GroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941B21BC3A3900C7F9DB /* GroupTableViewController.swift */; };
-		DE18942021BD457F00C7F9DB /* ImportForGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941F21BD457F00C7F9DB /* ImportForGroup.swift */; };
-		DE18942221BD45E600C7F9DB /* ImportForClassroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18942121BD45E600C7F9DB /* ImportForClassroom.swift */; };
 		DE266D60240C4AAA00C30A4A /* WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE266D5F240C4AAA00C30A4A /* WhatsNewView.swift */; };
 		DE2863782455F75B0036A01F /* UniversitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2863772455F75B0036A01F /* UniversitiesViewController.swift */; };
 		DE28637C245600330036A01F /* NoRecordsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE28637A245600330036A01F /* NoRecordsTableViewCell.swift */; };
@@ -66,7 +64,6 @@
 		DE540EBD2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE540EBB2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift */; };
 		DE540EBE2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE540EBC2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift */; };
 		DE540EC42215CF9F0092FC81 /* TeacherDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE540EC32215CF9F0092FC81 /* TeacherDataSource.swift */; };
-		DE540ECA2215DEC40092FC81 /* ImportForTeacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE540EC92215DEC40092FC81 /* ImportForTeacher.swift */; };
 		DE5A7E932219CCBF00CA9A79 /* RecordDetailedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A7E922219CCBF00CA9A79 /* RecordDetailedTableViewController.swift */; };
 		DE65DA902370C5BD00022B21 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE65DA8E2370C5BD00022B21 /* Preferences.storyboard */; };
 		DE65DA992370C6BA00022B21 /* Initial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE65DA972370C6BA00022B21 /* Initial.storyboard */; };
@@ -83,8 +80,6 @@
 		DE7AB861246721F70031E279 /* NewClassroomTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB860246721F70031E279 /* NewClassroomTableViewController.swift */; };
 		DE7AB863246722AA0031E279 /* EntityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB862246722AA0031E279 /* EntityTableViewController.swift */; };
 		DE7B1D9F2269BCA5003E3028 /* GenericTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7B1D9E2269BCA5003E3028 /* GenericTableViewController.swift */; };
-		DE7BEA3825330C300006F421 /* ModelImportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7BEA3725330C300006F421 /* ModelImportController.swift */; };
-		DE7BEA5A2533833F0006F421 /* BaseRecordImportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7BEA592533833F0006F421 /* BaseRecordImportController.swift */; };
 		DE8417A923EA19810084E24F /* MyLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = DE8417A823EA19810084E24F /* MyLibrary */; };
 		DE87B78E235B9E450090B63E /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE87B78D235B9E450090B63E /* InitialViewController.swift */; };
 		DE94500422C1345800550A1C /* TableMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE94500322C1345800550A1C /* TableMessageViewController.swift */; };
@@ -125,6 +120,9 @@
 		DEB9BD5F2538C5EF008F41A2 /* Model+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BD5E2538C5EF008F41A2 /* Model+CoreData.swift */; };
 		DEB9BD6F2538CC54008F41A2 /* CoreDataFetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BD6E2538CC54008F41A2 /* CoreDataFetchable.swift */; };
 		DEB9BD752538CD0E008F41A2 /* NSManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BD742538CD0E008F41A2 /* NSManagedObject.swift */; };
+		DEB9BD87253975D4008F41A2 /* Model+ImportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BD86253975D4008F41A2 /* Model+ImportController.swift */; };
+		DEB9BD8E25397735008F41A2 /* Model+NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BD8D25397735008F41A2 /* Model+NetworkController.swift */; };
+		DEB9BD9C25397B1C008F41A2 /* Model+RecordsSyncController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BD9B25397B1C008F41A2 /* Model+RecordsSyncController.swift */; };
 		DEBB74AA235CE1AC00226C7E /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBB74A9235CE1AC00226C7E /* Bundle.swift */; };
 		DEBB74BB235CF4C300226C7E /* UniversitiesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBB74BA235CF4C300226C7E /* UniversitiesTableViewController.swift */; };
 		DEBCBD962530B2660087F216 /* EntityEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCBD952530B2660087F216 /* EntityEndpoint.swift */; };
@@ -135,7 +133,6 @@
 		DEBCBDAE2530E3BC0087F216 /* UniversityEndpointsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCBDAD2530E3BC0087F216 /* UniversityEndpointsTests.swift */; };
 		DEBCBDB52530E4CC0087F216 /* MockHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCBDB12530E4160087F216 /* MockHost.swift */; };
 		DEBCBDC12530E9F60087F216 /* ModelKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCBDC02530E9F60087F216 /* ModelKind.swift */; };
-		DEBCBDC62530EA810087F216 /* ModelNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCBDC52530EA810087F216 /* ModelNetworkClient.swift */; };
 		DED71BD3253847AF00776F24 /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED71BD2253847AF00776F24 /* URLSession.swift */; };
 		DEDA50EA21862091006C7B27 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50E821862090006C7B27 /* InfoPlist.strings */; };
 		DEDA50ED218620E0006C7B27 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50EB218620E0006C7B27 /* Localizable.strings */; };
@@ -146,6 +143,7 @@
 		DEE2E9AA25221D8800A18810 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE4CD2D02522168F00745055 /* Launch Screen.storyboard */; };
 		DEE576E4226B7B9E008F9EB6 /* SearchableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE576E3226B7B9E008F9EB6 /* SearchableTableViewController.swift */; };
 		DEE576E7226B8B98008F9EB6 /* ClassroomsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE576E6226B8B98008F9EB6 /* ClassroomsTableViewController.swift */; };
+		DEE643BE253B7BB7007A815B /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE643BD253B7BB7007A815B /* UITests.swift */; };
 		DEE674102459B15200B8F9F1 /* GroupDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE6740F2459B15200B8F9F1 /* GroupDataController.swift */; };
 		DEE674122459B7BC00B8F9F1 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE674112459B7BC00B8F9F1 /* CoreData.swift */; };
 		DEE674142459EF8900B8F9F1 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE674132459EF8900B8F9F1 /* GroupViewController.swift */; };
@@ -157,6 +155,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		DEAE5C4C236A23B50086E734 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C2B5CDE71EEF0E750066DB30 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C2B5CDEE1EEF0E750066DB30;
+			remoteInfo = "My University";
+		};
+		DEE643C0253B7BB7007A815B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C2B5CDE71EEF0E750066DB30 /* Project object */;
 			proxyType = 1;
@@ -198,8 +203,6 @@
 		DE13EEB12466B7E50011F307 /* EntityLogicControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityLogicControllerProtocol.swift; sourceTree = "<group>"; };
 		DE13EEB32466B9BA0011F307 /* StructRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructRepresentable.swift; sourceTree = "<group>"; };
 		DE18941B21BC3A3900C7F9DB /* GroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTableViewController.swift; sourceTree = "<group>"; };
-		DE18941F21BD457F00C7F9DB /* ImportForGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportForGroup.swift; sourceTree = "<group>"; };
-		DE18942121BD45E600C7F9DB /* ImportForClassroom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportForClassroom.swift; sourceTree = "<group>"; };
 		DE266D5F240C4AAA00C30A4A /* WhatsNewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewView.swift; sourceTree = "<group>"; };
 		DE2863772455F75B0036A01F /* UniversitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversitiesViewController.swift; sourceTree = "<group>"; };
 		DE28637A245600330036A01F /* NoRecordsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoRecordsTableViewCell.swift; sourceTree = "<group>"; };
@@ -236,7 +239,6 @@
 		DE540EBB2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TeacherEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		DE540EBC2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TeacherEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DE540EC32215CF9F0092FC81 /* TeacherDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherDataSource.swift; sourceTree = "<group>"; };
-		DE540EC92215DEC40092FC81 /* ImportForTeacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportForTeacher.swift; sourceTree = "<group>"; };
 		DE584C52219852430099415E /* Schedule 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Schedule 2.xcdatamodel"; sourceTree = "<group>"; };
 		DE5A7E922219CCBF00CA9A79 /* RecordDetailedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailedTableViewController.swift; sourceTree = "<group>"; };
 		DE65DA8F2370C5BD00022B21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Preferences.storyboard; sourceTree = "<group>"; };
@@ -254,8 +256,6 @@
 		DE7AB860246721F70031E279 /* NewClassroomTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewClassroomTableViewController.swift; sourceTree = "<group>"; };
 		DE7AB862246722AA0031E279 /* EntityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityTableViewController.swift; sourceTree = "<group>"; };
 		DE7B1D9E2269BCA5003E3028 /* GenericTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableViewController.swift; sourceTree = "<group>"; };
-		DE7BEA3725330C300006F421 /* ModelImportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelImportController.swift; sourceTree = "<group>"; };
-		DE7BEA592533833F0006F421 /* BaseRecordImportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRecordImportController.swift; sourceTree = "<group>"; };
 		DE87B78D235B9E450090B63E /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		DE94500322C1345800550A1C /* TableMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableMessageViewController.swift; sourceTree = "<group>"; };
 		DE945AC52264D11700143303 /* UniversityEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -297,6 +297,9 @@
 		DEB9BD5E2538C5EF008F41A2 /* Model+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+CoreData.swift"; sourceTree = "<group>"; };
 		DEB9BD6E2538CC54008F41A2 /* CoreDataFetchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFetchable.swift; sourceTree = "<group>"; };
 		DEB9BD742538CD0E008F41A2 /* NSManagedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObject.swift; sourceTree = "<group>"; };
+		DEB9BD86253975D4008F41A2 /* Model+ImportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+ImportController.swift"; sourceTree = "<group>"; };
+		DEB9BD8D25397735008F41A2 /* Model+NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+NetworkController.swift"; sourceTree = "<group>"; };
+		DEB9BD9B25397B1C008F41A2 /* Model+RecordsSyncController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+RecordsSyncController.swift"; sourceTree = "<group>"; };
 		DEBB74A9235CE1AC00226C7E /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		DEBB74BA235CF4C300226C7E /* UniversitiesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversitiesTableViewController.swift; sourceTree = "<group>"; };
 		DEBCBD952530B2660087F216 /* EntityEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityEndpoint.swift; sourceTree = "<group>"; };
@@ -307,7 +310,6 @@
 		DEBCBDAD2530E3BC0087F216 /* UniversityEndpointsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityEndpointsTests.swift; sourceTree = "<group>"; };
 		DEBCBDB12530E4160087F216 /* MockHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHost.swift; sourceTree = "<group>"; };
 		DEBCBDC02530E9F60087F216 /* ModelKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelKind.swift; sourceTree = "<group>"; };
-		DEBCBDC52530EA810087F216 /* ModelNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelNetworkClient.swift; sourceTree = "<group>"; };
 		DECF64EC251C75BE00F1AA33 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DED71BD2253847AF00776F24 /* URLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
 		DEDA50E921862090006C7B27 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -318,6 +320,9 @@
 		DEDA8CF32534930D00B54E41 /* RecordEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RecordEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DEE576E3226B7B9E008F9EB6 /* SearchableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableTableViewController.swift; sourceTree = "<group>"; };
 		DEE576E6226B8B98008F9EB6 /* ClassroomsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomsTableViewController.swift; sourceTree = "<group>"; };
+		DEE643BB253B7BB7007A815B /* UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEE643BD253B7BB7007A815B /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
+		DEE643BF253B7BB7007A815B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEE6740F2459B15200B8F9F1 /* GroupDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDataController.swift; sourceTree = "<group>"; };
 		DEE674112459B7BC00B8F9F1 /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 		DEE674132459EF8900B8F9F1 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
@@ -346,6 +351,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DEE643B8253B7BB7007A815B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -354,7 +366,6 @@
 			children = (
 				DEB9BD282538B233008F41A2 /* NetworkClient.swift */,
 				DE36592C252F8CA2002A1A11 /* Endpoint */,
-				DEBCBDC42530EA6D0087F216 /* Model */,
 				DE36597D2530553C002A1A11 /* Website */,
 			);
 			name = Networking;
@@ -365,6 +376,7 @@
 			children = (
 				C2B5CDF11EEF0E750066DB30 /* My University */,
 				DEAE5C48236A23B50086E734 /* Tests */,
+				DEE643BC253B7BB7007A815B /* UITests */,
 				C2B5CDF01EEF0E750066DB30 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -374,6 +386,7 @@
 			children = (
 				C2B5CDEF1EEF0E750066DB30 /* My University.app */,
 				DEAE5C47236A23B50086E734 /* MyUniversityTests.xctest */,
+				DEE643BB253B7BB7007A815B /* UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -421,12 +434,8 @@
 		C2C0E9AE1FB8CD870012FA9C /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
-				DEB9BD382538BCB4008F41A2 /* Model.swift */,
-				DEB9BD402538BD64008F41A2 /* Model+CodingData.swift */,
-				DEB9BD5E2538C5EF008F41A2 /* Model+CoreData.swift */,
-				DEB9BD4C2538C1D8008F41A2 /* Model+Endpoints.swift */,
-				DEBCBDC02530E9F60087F216 /* ModelKind.swift */,
 				DE3628CA2524ADD0003A7939 /* UserDefaultsKeys.swift */,
+				DEB9BD8C253976D2008F41A2 /* Model */,
 				DE131FE62456D74E009D09EA /* Record */,
 				DE87B791235B9FCD0090B63E /* University */,
 			);
@@ -436,10 +445,8 @@
 		C2C76A2C200243BD00BFF3D4 /* Import */ = {
 			isa = PBXGroup;
 			children = (
-				DE7BEA3725330C300006F421 /* ModelImportController.swift */,
 				DE04D1F62370B79F00A18649 /* UpdateHelper.swift */,
-				DE7BEA47253379850006F421 /* Models */,
-				DEB9BD5A2538C3F6008F41A2 /* Model+SyncController.swift */,
+				DE945ACB2264D27B00143303 /* University+Import.swift */,
 			);
 			name = Import;
 			sourceTree = "<group>";
@@ -523,17 +530,6 @@
 				DE13EEB12466B7E50011F307 /* EntityLogicControllerProtocol.swift */,
 			);
 			name = Logic;
-			sourceTree = "<group>";
-		};
-		DE18941721BC336700C7F9DB /* Record */ = {
-			isa = PBXGroup;
-			children = (
-				DE18942121BD45E600C7F9DB /* ImportForClassroom.swift */,
-				DE18941F21BD457F00C7F9DB /* ImportForGroup.swift */,
-				DE540EC92215DEC40092FC81 /* ImportForTeacher.swift */,
-				DE7BEA592533833F0006F421 /* BaseRecordImportController.swift */,
-			);
-			name = Record;
 			sourceTree = "<group>";
 		};
 		DE266D5E240C4A7800C30A4A /* Whats New */ = {
@@ -733,15 +729,6 @@
 			name = Table;
 			sourceTree = "<group>";
 		};
-		DE7BEA47253379850006F421 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				DE945ACB2264D27B00143303 /* University+Import.swift */,
-				DE18941721BC336700C7F9DB /* Record */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
 		DE7BEA5625337FAE0006F421 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -895,6 +882,22 @@
 			name = Network;
 			sourceTree = "<group>";
 		};
+		DEB9BD8C253976D2008F41A2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DEB9BD382538BCB4008F41A2 /* Model.swift */,
+				DEB9BD402538BD64008F41A2 /* Model+CodingData.swift */,
+				DEB9BD5E2538C5EF008F41A2 /* Model+CoreData.swift */,
+				DEB9BD4C2538C1D8008F41A2 /* Model+Endpoints.swift */,
+				DEB9BD86253975D4008F41A2 /* Model+ImportController.swift */,
+				DEB9BD8D25397735008F41A2 /* Model+NetworkController.swift */,
+				DEB9BD9B25397B1C008F41A2 /* Model+RecordsSyncController.swift */,
+				DEB9BD5A2538C3F6008F41A2 /* Model+SyncController.swift */,
+				DEBCBDC02530E9F60087F216 /* ModelKind.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		DEBB74AE235CE62600226C7E /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -936,14 +939,6 @@
 				DEBCBDB12530E4160087F216 /* MockHost.swift */,
 			);
 			name = "Test Data";
-			sourceTree = "<group>";
-		};
-		DEBCBDC42530EA6D0087F216 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				DEBCBDC52530EA810087F216 /* ModelNetworkClient.swift */,
-			);
-			name = Model;
 			sourceTree = "<group>";
 		};
 		DEE576DF226B7861008F9EB6 /* View Controllers */ = {
@@ -989,6 +984,15 @@
 				DEE576E6226B8B98008F9EB6 /* ClassroomsTableViewController.swift */,
 			);
 			name = Classrooms;
+			sourceTree = "<group>";
+		};
+		DEE643BC253B7BB7007A815B /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				DEE643BD253B7BB7007A815B /* UITests.swift */,
+				DEE643BF253B7BB7007A815B /* Info.plist */,
+			);
+			path = UITests;
 			sourceTree = "<group>";
 		};
 		DEE674152459F53500B8F9F1 /* Table */ = {
@@ -1051,13 +1055,31 @@
 			productReference = DEAE5C47236A23B50086E734 /* MyUniversityTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		DEE643BA253B7BB7007A815B /* UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DEE643C4253B7BB7007A815B /* Build configuration list for PBXNativeTarget "UITests" */;
+			buildPhases = (
+				DEE643B7253B7BB7007A815B /* Sources */,
+				DEE643B8253B7BB7007A815B /* Frameworks */,
+				DEE643B9253B7BB7007A815B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DEE643C1253B7BB7007A815B /* PBXTargetDependency */,
+			);
+			name = UITests;
+			productName = UITests;
+			productReference = DEE643BB253B7BB7007A815B /* UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		C2B5CDE71EEF0E750066DB30 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1110;
+				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Yura Voevodin";
 				TargetAttributes = {
@@ -1069,6 +1091,10 @@
 					};
 					DEAE5C46236A23B50086E734 = {
 						CreatedOnToolsVersion = 11.1;
+						TestTargetID = C2B5CDEE1EEF0E750066DB30;
+					};
+					DEE643BA253B7BB7007A815B = {
+						CreatedOnToolsVersion = 12.0.1;
 						TestTargetID = C2B5CDEE1EEF0E750066DB30;
 					};
 				};
@@ -1092,6 +1118,7 @@
 			targets = (
 				C2B5CDEE1EEF0E750066DB30 /* My University */,
 				DEAE5C46236A23B50086E734 /* MyUniversityTests */,
+				DEE643BA253B7BB7007A815B /* UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -1130,6 +1157,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DEE643B9253B7BB7007A815B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1138,6 +1172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE365932252F8FCF002A1A11 /* InvalidEndpointError.swift in Sources */,
+				DEB9BD8E25397735008F41A2 /* Model+NetworkController.swift in Sources */,
 				DE017F9723622BC70046D3ED /* PreferencesTableViewController.swift in Sources */,
 				DE131FE22456CAAB009D09EA /* RecordsDataSource.swift in Sources */,
 				DE3EC2C5245C740400E30536 /* ClassroomDataController.swift in Sources */,
@@ -1145,7 +1180,6 @@
 				DE945AD22264D71B00143303 /* UniversitiesDataSource.swift in Sources */,
 				DE7AB8582466C4470031E279 /* CoreDataEntityProtocol.swift in Sources */,
 				DE79DC9A246AA63D00C8C0EF /* TeacherNetworkController.swift in Sources */,
-				DE18942221BD45E600C7F9DB /* ImportForClassroom.swift in Sources */,
 				DE13EEB22466B7E50011F307 /* EntityLogicControllerProtocol.swift in Sources */,
 				DEBCBD962530B2660087F216 /* EntityEndpoint.swift in Sources */,
 				DE3628D52524EE4C003A7939 /* UniversityLogicController.swift in Sources */,
@@ -1171,6 +1205,7 @@
 				DE94500422C1345800550A1C /* TableMessageViewController.swift in Sources */,
 				DEA2B3EB246AE7D000F96E28 /* TeacherTableDataController.swift in Sources */,
 				DEB031672459809D00A5D29D /* ErrorAlertRepresentable.swift in Sources */,
+				DEB9BD87253975D4008F41A2 /* Model+ImportController.swift in Sources */,
 				DEBCBDA62530E2300087F216 /* Record+Endpoints.swift in Sources */,
 				DEB68199245DEF68005FA2F0 /* EntityDataControllerProtocol.swift in Sources */,
 				DEB9BD232538AB72008F41A2 /* University+CodingData.swift in Sources */,
@@ -1181,10 +1216,10 @@
 				DEA2B3E8246AE75500F96E28 /* TeacherViewController.swift in Sources */,
 				DE3EC2C9245C742500E30536 /* ClassroomNetworkController.swift in Sources */,
 				DE3628CB2524ADD0003A7939 /* UserDefaultsKeys.swift in Sources */,
+				DEB9BD9C25397B1C008F41A2 /* Model+RecordsSyncController.swift in Sources */,
 				DEDA8CF52534930D00B54E41 /* ClassroomEntity+CoreDataClass.swift in Sources */,
 				DE540EBD2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift in Sources */,
 				DEE576E7226B8B98008F9EB6 /* ClassroomsTableViewController.swift in Sources */,
-				DE540ECA2215DEC40092FC81 /* ImportForTeacher.swift in Sources */,
 				DEB9BD6F2538CC54008F41A2 /* CoreDataFetchable.swift in Sources */,
 				DE945AC72264D11700143303 /* UniversityEntity+CoreDataClass.swift in Sources */,
 				DEB9BD392538BCB4008F41A2 /* Model.swift in Sources */,
@@ -1195,7 +1230,6 @@
 				DEBCBDA22530E06A0087F216 /* Record+RequestParameters.swift in Sources */,
 				DEB0316C245988F600A5D29D /* GroupLogicController.swift in Sources */,
 				DEA2B3ED246AE81000F96E28 /* NewTeacherTableViewController.swift in Sources */,
-				DE7BEA5A2533833F0006F421 /* BaseRecordImportController.swift in Sources */,
 				DEA2B3F8246BFB6D00F96E28 /* UIViewController.swift in Sources */,
 				DE7AB85A24671E6D0031E279 /* EntityRepresentable.swift in Sources */,
 				DEBCBDAA2530E3060087F216 /* University+Endpoints.swift in Sources */,
@@ -1206,7 +1240,6 @@
 				DE540EC42215CF9F0092FC81 /* TeacherDataSource.swift in Sources */,
 				DE7AB85D246720250031E279 /* ClassroomTableDataController.swift in Sources */,
 				DEBB74AA235CE1AC00226C7E /* Bundle.swift in Sources */,
-				DE18942021BD457F00C7F9DB /* ImportForGroup.swift in Sources */,
 				DE28637C245600330036A01F /* NoRecordsTableViewCell.swift in Sources */,
 				DEB9BD5F2538C5EF008F41A2 /* Model+CoreData.swift in Sources */,
 				DEA2B3E4246AE3C200F96E28 /* TeacherLogicController.swift in Sources */,
@@ -1228,7 +1261,6 @@
 				DE4AA07321A5E31900E06FEA /* GroupsDataSource.swift in Sources */,
 				DE78478B240D9FBC002C2EDC /* UIStoryboard.swift in Sources */,
 				DE7AB85F246720880031E279 /* EntityTableDataController.swift in Sources */,
-				DEBCBDC62530EA810087F216 /* ModelNetworkClient.swift in Sources */,
 				C2B5CDF31EEF0E750066DB30 /* AppDelegate.swift in Sources */,
 				DE04D1F72370B79F00A18649 /* UpdateHelper.swift in Sources */,
 				DEDA8CF42534930D00B54E41 /* UniversityEntity+CoreDataProperties.swift in Sources */,
@@ -1253,7 +1285,6 @@
 				C22A2E581FC7664000587463 /* RecordEntity+CoreDataClass.swift in Sources */,
 				DE18941C21BC3A3900C7F9DB /* GroupTableViewController.swift in Sources */,
 				DEB6819D245DF874005FA2F0 /* EntityNetworkController.swift in Sources */,
-				DE7BEA3825330C300006F421 /* ModelImportController.swift in Sources */,
 				DE266D60240C4AAA00C30A4A /* WhatsNewView.swift in Sources */,
 				DEA2B3FD246C02BF00F96E28 /* Entity+Manager.swift in Sources */,
 			);
@@ -1273,6 +1304,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DEE643B7253B7BB7007A815B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEE643BE253B7BB7007A815B /* UITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1280,6 +1319,11 @@
 			isa = PBXTargetDependency;
 			target = C2B5CDEE1EEF0E750066DB30 /* My University */;
 			targetProxy = DEAE5C4C236A23B50086E734 /* PBXContainerItemProxy */;
+		};
+		DEE643C1253B7BB7007A815B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C2B5CDEE1EEF0E750066DB30 /* My University */;
+			targetProxy = DEE643C0253B7BB7007A815B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1635,6 +1679,55 @@
 			};
 			name = Release;
 		};
+		DEE643C2253B7BB7007A815B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.voevodin-yura.UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "My University";
+			};
+			name = Debug;
+		};
+		DEE643C3253B7BB7007A815B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.voevodin-yura.UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "My University";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1661,6 +1754,15 @@
 			buildConfigurations = (
 				DEAE5C4F236A23B50086E734 /* Debug */,
 				DEAE5C50236A23B50086E734 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DEE643C4253B7BB7007A815B /* Build configuration list for PBXNativeTarget "UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DEE643C2253B7BB7007A815B /* Debug */,
+				DEE643C3253B7BB7007A815B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

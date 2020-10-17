@@ -10,24 +10,31 @@ import Foundation
 
 class GroupNetworkController: EntityNetworkController {
     
-    private var importManager: Record.ImportForGroup?
-    
-    func importRecords(for groupEntity: GroupEntity, by date: Date) {
-        guard let group = groupEntity.asStruct() else {
-            preconditionFailure("Invalid group")
+    func syncRecords(for entity: GroupEntity, by date: Date) {
+        guard let object = entity.asStruct() as? Group else {
+            preconditionFailure("Invalid entity")
         }
-        guard let university = groupEntity.university else {
+        guard let university = entity.university else {
             preconditionFailure("Invalid university")
         }
-        // Init new import manager
         let container = CoreData.default.persistentContainer
-        importManager = Record.ImportForGroup(persistentContainer: container, modelID: groupEntity.id, universityURL: university.url ?? "")
+        let syncController = Group.RecordsSyncController(
+            persistentContainer: container,
+            modelID: object.id,
+            university: university
+        )
         
-        // Download records for Group from backend and save to database.
-        importManager?.importRecords(for: date, { [weak self] (error) in
+        // Download records for Group from backend and save to database
+        syncController.importRecords(for: date, { [weak self] (result) in
             
             DispatchQueue.main.async {
-                self?.delegate?.didImportRecords(for: group, error)
+                
+                switch result {
+                case .failure(let error):
+                    self?.delegate?.didImportRecords(for: object, error)
+                case .success:
+                    self?.delegate?.didImportRecords(for: object, nil)
+                }
             }
         })
     }

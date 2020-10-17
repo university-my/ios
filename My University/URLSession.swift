@@ -12,7 +12,8 @@ import Combine
 extension URLSession {
     
     func publisher<T: Decodable>(for url: URL, responseType: T.Type = T.self, decoder: JSONDecoder = .init()) -> AnyPublisher<T, Error> {
-        dataTaskPublisher(for: url)
+        print(url.absoluteString)
+        return dataTaskPublisher(for: url)
             .map(\.data)
             .decode(type: T.self, decoder: decoder)
             .eraseToAnyPublisher()

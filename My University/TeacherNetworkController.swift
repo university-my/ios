@@ -10,24 +10,33 @@ import Foundation
 
 class TeacherNetworkController: EntityNetworkController {
     
-    private var importManager: Record.ImportForTeacher?
+    #warning("Make it as single class")
     
-    func importRecords(for entity: TeacherEntity, date: Date) {
+    func syncRecords(for entity: TeacherEntity, by date: Date) {
+        guard let object = entity.asStruct() as? Teacher else {
+            preconditionFailure("Invalid entity")
+        }
         guard let university = entity.university else {
             preconditionFailure("Invalid university")
         }
-        guard let teacher = entity.asStruct() as? Teacher else {
-            preconditionFailure("Invalid teacher")
-        }
-        // Init new import manager
         let container = CoreData.default.persistentContainer
-        importManager = Record.ImportForTeacher(persistentContainer: container, modelID: entity.id, universityURL: university.url ?? "")
+        let syncController = Teacher.RecordsSyncController(
+            persistentContainer: container,
+            modelID: object.id,
+            university: university
+        )
         
-        // Download records for Teacher from backend and save to database.
-        importManager?.importRecords(for: date, { [weak self] (error) in
+        // Download records for Teacher from backend and save to database
+        syncController.importRecords(for: date, { [weak self] (result) in
             
             DispatchQueue.main.async {
-                self?.delegate?.didImportRecords(for: teacher, error)
+                
+                switch result {
+                case .failure(let error):
+                    self?.delegate?.didImportRecords(for: object, error)
+                case .success:
+                    self?.delegate?.didImportRecords(for: object, nil)
+                }
             }
         })
     }

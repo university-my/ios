@@ -35,7 +35,7 @@ final class TeacherDataController: EntityDataController {
         }
         // Start import
         isImporting = true
-        network.importRecords(for: entity, date: pairDate)
+        network.syncRecords(for: entity, by: pairDate)
     }
     
     // MARK: - NSPredicate

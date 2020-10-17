@@ -39,7 +39,7 @@ extension Record {
             case name
             case pairName = "pair_name"
             case reason
-            case classroom
+            case classroom = "auditorium"
             case groups
             case teacher
         }

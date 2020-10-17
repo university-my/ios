@@ -11,27 +11,24 @@ import CoreData
 
 protocol ModelKind {
     
-    static func allEntities(university: String) -> URL
-    static func recordsEndpoint(params: Record.RequestParameters) -> URL
-    
-    // MARK: - Properties
+    // MARK: API
     
     static var cashFileName: String { get }
     
     /// For remote server API
     static var entityPath: String { get }
     
-    /// For fetch requests
-    static var coreDataSingleEntityName: String { get }
+    static func allEntities(university: String) -> URL
+    static func recordsEndpoint(params: Record.RequestParameters) -> URL
+    
+    // MARK: Core Data
+    
+    static func fetchRequestPredicate(for entity: CoreDataFetchable & CoreDataEntityProtocol) -> NSPredicate
 }
 
 enum ModelKinds {
     
     enum ClassroomModel: ModelKind {
-        
-        static var coreDataSingleEntityName: String {
-            "classroom"
-        }
         
         static var entityPath: String {
             "auditoriums"
@@ -48,13 +45,13 @@ enum ModelKinds {
         static func recordsEndpoint(params: Record.RequestParameters) -> URL {
             Classroom.Endpoints.records(params: params).url
         }
+        
+        static func fetchRequestPredicate(for entity: CoreDataEntityProtocol & CoreDataFetchable) -> NSPredicate {
+            NSPredicate(format: "classroom == %@", entity)
+        }
     }
     
     enum GroupModel: ModelKind {
-        
-        static var coreDataSingleEntityName: String {
-            "group"
-        }
         
         static var entityPath: String {
             "groups"
@@ -71,13 +68,13 @@ enum ModelKinds {
         static func recordsEndpoint(params: Record.RequestParameters) -> URL {
             Group.Endpoints.records(params: params).url
         }
+        
+        static func fetchRequestPredicate(for entity: CoreDataEntityProtocol & CoreDataFetchable) -> NSPredicate {
+            NSPredicate(format: "ANY groups == %@", entity)
+        }
     }
     
     enum TeacherModel: ModelKind {
-        
-        static var coreDataSingleEntityName: String {
-            "teacher"
-        }
         
         static var entityPath: String {
             "teachers"
@@ -93,6 +90,10 @@ enum ModelKinds {
         
         static func recordsEndpoint(params: Record.RequestParameters) -> URL {
             Teacher.Endpoints.records(params: params).url
+        }
+        
+        static func fetchRequestPredicate(for entity: CoreDataEntityProtocol & CoreDataFetchable) -> NSPredicate {
+            NSPredicate(format: "teacher == %@", entity)
         }
     }
 }
