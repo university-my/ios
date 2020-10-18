@@ -92,6 +92,8 @@ enum ModelKinds {
             Teacher.Endpoints.records(params: params).url
         }
         
+        #warning("Move this to Model+CoreData")
+        
         static func fetchRequestPredicate(for entity: CoreDataEntityProtocol & CoreDataFetchable) -> NSPredicate {
             NSPredicate(format: "teacher == %@", entity)
         }

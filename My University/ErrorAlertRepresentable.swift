@@ -17,6 +17,7 @@ extension ErrorAlertRepresentable {
         let message = error.localizedDescription
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.view.tintColor = .systemIndigo
         
         // Try again
         let tryAgainTitle = NSLocalizedString("Try again", comment: "Alert action")

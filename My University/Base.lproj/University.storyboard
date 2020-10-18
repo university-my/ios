@@ -429,10 +429,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="8fl-xx-wzX"/>
-        <segue reference="u8g-7O-vIp"/>
+        <segue reference="1gW-8I-Z99"/>
+        <segue reference="MQi-Me-RO4"/>
         <segue reference="mOc-P4-gkQ"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" systemColor="systemIndigoColor"/>
     <resources>
         <image name="briefcase" catalog="system" width="128" height="102"/>
         <image name="ellipsis.circle" catalog="system" width="128" height="121"/>
@@ -447,6 +448,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
