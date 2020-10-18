@@ -198,11 +198,17 @@ class EntityDataController: EntityDataControllerProtocol {
     }
 }
 
-// MARK: - EntityNetworkControllerDelegate
+// MARK: - ModelNetworkControllerDelegate
 
-extension EntityDataController: EntityNetworkControllerDelegate {
+extension EntityDataController: ModelNetworkControllerDelegate {
     
-    func didImportRecords(for structure: EntityRepresentable, _ error: Error?) {
+    func didImportRecords(for entity: CoreDataEntityProtocol & CoreDataFetchable, _ error: Error?) {
+        guard let model = entity as? StructRepresentable else {
+            preconditionFailure()
+        }
+        guard let structure = model.asStruct() else {
+            preconditionFailure()
+        }
         delegate?.entityDataController(didImportRecordsFor: structure, error)
         updateDatePredicate()
         fetchRecords()

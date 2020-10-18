@@ -16,7 +16,7 @@ extension Model {
         // MARK: - Properties
         
         private let cacheFile: URL
-        private let networkController: NetworkController
+        private let downloadsController: DownloadsController
         
         // MARK: - Initialization
         
@@ -31,14 +31,14 @@ extension Model {
                 return nil
             }
             self.cacheFile = cacheFile
-            networkController = NetworkController(cacheFile: cacheFile)
+            downloadsController = DownloadsController(cacheFile: cacheFile)
         }
         
         // MARK: - Methods
         
         func importData(universityURL: String, _ completion: @escaping Completion) {
             let file = cacheFile
-            networkController.download(universityURL: universityURL) { (error) in
+            downloadsController.download(universityURL: universityURL) { (error) in
                 if let error = error {
                     completion(.failure(error))
                 } else {

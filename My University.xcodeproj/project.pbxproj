@@ -50,7 +50,6 @@
 		DE3EB6C0231B2280007EA63C /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3EB6BF231B2280007EA63C /* ActivityViewController.swift */; };
 		DE3EC2C5245C740400E30536 /* ClassroomDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3EC2C4245C740400E30536 /* ClassroomDataController.swift */; };
 		DE3EC2C7245C741400E30536 /* ClassroomLogicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3EC2C6245C741400E30536 /* ClassroomLogicController.swift */; };
-		DE3EC2C9245C742500E30536 /* ClassroomNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3EC2C8245C742500E30536 /* ClassroomNetworkController.swift */; };
 		DE3EC2CB245C743500E30536 /* ClassroomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3EC2CA245C743500E30536 /* ClassroomViewController.swift */; };
 		DE40FBA6238D4700001DA3DE /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE40FBA5238D4700001DA3DE /* UIColor.swift */; };
 		DE4AA07121A5DF0500E06FEA /* ClassroomDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AA07021A5DF0500E06FEA /* ClassroomDataSource.swift */; };
@@ -71,7 +70,6 @@
 		DE78478B240D9FBC002C2EDC /* UIStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78478A240D9FBC002C2EDC /* UIStoryboard.swift */; };
 		DE78478D240DA16B002C2EDC /* LegalDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78478C240DA16B002C2EDC /* LegalDocumentView.swift */; };
 		DE784790240DB406002C2EDC /* ContinueButtonContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78478F240DB406002C2EDC /* ContinueButtonContent.swift */; };
-		DE79DC9A246AA63D00C8C0EF /* TeacherNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE79DC99246AA63D00C8C0EF /* TeacherNetworkController.swift */; };
 		DE79DC9C246AA7F800C8C0EF /* TeacherDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE79DC9B246AA7F800C8C0EF /* TeacherDataController.swift */; };
 		DE7AB8582466C4470031E279 /* CoreDataEntityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB8572466C4470031E279 /* CoreDataEntityProtocol.swift */; };
 		DE7AB85A24671E6D0031E279 /* EntityRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB85924671E6D0031E279 /* EntityRepresentable.swift */; };
@@ -98,10 +96,10 @@
 		DEA2B3F8246BFB6D00F96E28 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2B3F7246BFB6D00F96E28 /* UIViewController.swift */; };
 		DEA2B3FA246C011500F96E28 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2B3F9246C011500F96E28 /* Entity.swift */; };
 		DEA2B3FD246C02BF00F96E28 /* Entity+Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2B3FC246C02BF00F96E28 /* Entity+Manager.swift */; };
+		DEA495FE253C5CD70025174E /* Model+NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA495FD253C5CD70025174E /* Model+NetworkController.swift */; };
 		DEAE5C4A236A23B50086E734 /* UpdateHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAE5C49236A23B50086E734 /* UpdateHelperTests.swift */; };
 		DEB031672459809D00A5D29D /* ErrorAlertRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB031662459809D00A5D29D /* ErrorAlertRepresentable.swift */; };
 		DEB0316C245988F600A5D29D /* GroupLogicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0316B245988F600A5D29D /* GroupLogicController.swift */; };
-		DEB0316E2459895A00A5D29D /* GroupNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0316D2459895A00A5D29D /* GroupNetworkController.swift */; };
 		DEB0633325136C7A00DB50CE /* EntityMenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0633225136C7900DB50CE /* EntityMenuPresenter.swift */; };
 		DEB0633D25136CC700DB50CE /* MetricKitSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0633C25136CC700DB50CE /* MetricKitSubscriber.swift */; };
 		DEB0634425136D2200DB50CE /* Teacher.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEB0634225136D2200DB50CE /* Teacher.storyboard */; };
@@ -109,7 +107,6 @@
 		DEB0635425136DDC00DB50CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0635325136DDC00DB50CE /* SceneDelegate.swift */; };
 		DEB68197245DEBB7005FA2F0 /* EntityDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB68196245DEBB7005FA2F0 /* EntityDataController.swift */; };
 		DEB68199245DEF68005FA2F0 /* EntityDataControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB68198245DEF68005FA2F0 /* EntityDataControllerProtocol.swift */; };
-		DEB6819D245DF874005FA2F0 /* EntityNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB6819C245DF874005FA2F0 /* EntityNetworkController.swift */; };
 		DEB9BC6725387D1C008F41A2 /* Record+RecordsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BC6625387D1C008F41A2 /* Record+RecordsList.swift */; };
 		DEB9BD232538AB72008F41A2 /* University+CodingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BD222538AB72008F41A2 /* University+CodingData.swift */; };
 		DEB9BD292538B233008F41A2 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BD282538B233008F41A2 /* NetworkClient.swift */; };
@@ -121,7 +118,7 @@
 		DEB9BD6F2538CC54008F41A2 /* CoreDataFetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BD6E2538CC54008F41A2 /* CoreDataFetchable.swift */; };
 		DEB9BD752538CD0E008F41A2 /* NSManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BD742538CD0E008F41A2 /* NSManagedObject.swift */; };
 		DEB9BD87253975D4008F41A2 /* Model+ImportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BD86253975D4008F41A2 /* Model+ImportController.swift */; };
-		DEB9BD8E25397735008F41A2 /* Model+NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BD8D25397735008F41A2 /* Model+NetworkController.swift */; };
+		DEB9BD8E25397735008F41A2 /* Model+DownloadsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BD8D25397735008F41A2 /* Model+DownloadsController.swift */; };
 		DEB9BD9C25397B1C008F41A2 /* Model+RecordsSyncController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BD9B25397B1C008F41A2 /* Model+RecordsSyncController.swift */; };
 		DEBB74AA235CE1AC00226C7E /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBB74A9235CE1AC00226C7E /* Bundle.swift */; };
 		DEBB74BB235CF4C300226C7E /* UniversitiesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBB74BA235CF4C300226C7E /* UniversitiesTableViewController.swift */; };
@@ -224,7 +221,6 @@
 		DE3EB6BF231B2280007EA63C /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		DE3EC2C4245C740400E30536 /* ClassroomDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomDataController.swift; sourceTree = "<group>"; };
 		DE3EC2C6245C741400E30536 /* ClassroomLogicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomLogicController.swift; sourceTree = "<group>"; };
-		DE3EC2C8245C742500E30536 /* ClassroomNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomNetworkController.swift; sourceTree = "<group>"; };
 		DE3EC2CA245C743500E30536 /* ClassroomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomViewController.swift; sourceTree = "<group>"; };
 		DE40FBA5238D4700001DA3DE /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		DE4AA07021A5DF0500E06FEA /* ClassroomDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomDataSource.swift; sourceTree = "<group>"; };
@@ -247,7 +243,6 @@
 		DE78478A240D9FBC002C2EDC /* UIStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboard.swift; sourceTree = "<group>"; };
 		DE78478C240DA16B002C2EDC /* LegalDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDocumentView.swift; sourceTree = "<group>"; };
 		DE78478F240DB406002C2EDC /* ContinueButtonContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueButtonContent.swift; sourceTree = "<group>"; };
-		DE79DC99246AA63D00C8C0EF /* TeacherNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherNetworkController.swift; sourceTree = "<group>"; };
 		DE79DC9B246AA7F800C8C0EF /* TeacherDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherDataController.swift; sourceTree = "<group>"; };
 		DE7AB8572466C4470031E279 /* CoreDataEntityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataEntityProtocol.swift; sourceTree = "<group>"; };
 		DE7AB85924671E6D0031E279 /* EntityRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityRepresentable.swift; sourceTree = "<group>"; };
@@ -273,12 +268,12 @@
 		DEA2B3F7246BFB6D00F96E28 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		DEA2B3F9246C011500F96E28 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		DEA2B3FC246C02BF00F96E28 /* Entity+Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entity+Manager.swift"; sourceTree = "<group>"; };
+		DEA495FD253C5CD70025174E /* Model+NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+NetworkController.swift"; sourceTree = "<group>"; };
 		DEAE5C47236A23B50086E734 /* MyUniversityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyUniversityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEAE5C49236A23B50086E734 /* UpdateHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateHelperTests.swift; sourceTree = "<group>"; };
 		DEAE5C4B236A23B50086E734 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEB031662459809D00A5D29D /* ErrorAlertRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlertRepresentable.swift; sourceTree = "<group>"; };
 		DEB0316B245988F600A5D29D /* GroupLogicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupLogicController.swift; sourceTree = "<group>"; };
-		DEB0316D2459895A00A5D29D /* GroupNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNetworkController.swift; sourceTree = "<group>"; };
 		DEB0633225136C7900DB50CE /* EntityMenuPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityMenuPresenter.swift; sourceTree = "<group>"; };
 		DEB0633C25136CC700DB50CE /* MetricKitSubscriber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetricKitSubscriber.swift; sourceTree = "<group>"; };
 		DEB0634325136D2200DB50CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Teacher.storyboard; sourceTree = "<group>"; };
@@ -286,7 +281,6 @@
 		DEB0635325136DDC00DB50CE /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DEB68196245DEBB7005FA2F0 /* EntityDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDataController.swift; sourceTree = "<group>"; };
 		DEB68198245DEF68005FA2F0 /* EntityDataControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDataControllerProtocol.swift; sourceTree = "<group>"; };
-		DEB6819C245DF874005FA2F0 /* EntityNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityNetworkController.swift; sourceTree = "<group>"; };
 		DEB9BC6625387D1C008F41A2 /* Record+RecordsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record+RecordsList.swift"; sourceTree = "<group>"; };
 		DEB9BD222538AB72008F41A2 /* University+CodingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "University+CodingData.swift"; sourceTree = "<group>"; };
 		DEB9BD282538B233008F41A2 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
@@ -298,7 +292,7 @@
 		DEB9BD6E2538CC54008F41A2 /* CoreDataFetchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFetchable.swift; sourceTree = "<group>"; };
 		DEB9BD742538CD0E008F41A2 /* NSManagedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObject.swift; sourceTree = "<group>"; };
 		DEB9BD86253975D4008F41A2 /* Model+ImportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+ImportController.swift"; sourceTree = "<group>"; };
-		DEB9BD8D25397735008F41A2 /* Model+NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+NetworkController.swift"; sourceTree = "<group>"; };
+		DEB9BD8D25397735008F41A2 /* Model+DownloadsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+DownloadsController.swift"; sourceTree = "<group>"; };
 		DEB9BD9B25397B1C008F41A2 /* Model+RecordsSyncController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+RecordsSyncController.swift"; sourceTree = "<group>"; };
 		DEBB74A9235CE1AC00226C7E /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		DEBB74BA235CF4C300226C7E /* UniversitiesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversitiesTableViewController.swift; sourceTree = "<group>"; };
@@ -364,6 +358,12 @@
 		C29FF4CE2002382500B50299 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				DEB9BD8D25397735008F41A2 /* Model+DownloadsController.swift */,
+				DEB9BD4C2538C1D8008F41A2 /* Model+Endpoints.swift */,
+				DEB9BD86253975D4008F41A2 /* Model+ImportController.swift */,
+				DEA495FD253C5CD70025174E /* Model+NetworkController.swift */,
+				DEB9BD9B25397B1C008F41A2 /* Model+RecordsSyncController.swift */,
+				DEB9BD5A2538C3F6008F41A2 /* Model+SyncController.swift */,
 				DEB9BD282538B233008F41A2 /* NetworkClient.swift */,
 				DE36592C252F8CA2002A1A11 /* Endpoint */,
 				DE36597D2530553C002A1A11 /* Website */,
@@ -608,7 +608,6 @@
 			children = (
 				DE3EC2C4245C740400E30536 /* ClassroomDataController.swift */,
 				DE3EC2C6245C741400E30536 /* ClassroomLogicController.swift */,
-				DE3EC2C8245C742500E30536 /* ClassroomNetworkController.swift */,
 				DE3EC2CA245C743500E30536 /* ClassroomViewController.swift */,
 				DEA2B3F4246BF8A100F96E28 /* Classroom.storyboard */,
 				DE7AB85B24671FF50031E279 /* Table */,
@@ -713,7 +712,6 @@
 				DEB0634225136D2200DB50CE /* Teacher.storyboard */,
 				DE79DC9B246AA7F800C8C0EF /* TeacherDataController.swift */,
 				DEA2B3E3246AE3C200F96E28 /* TeacherLogicController.swift */,
-				DE79DC99246AA63D00C8C0EF /* TeacherNetworkController.swift */,
 				DEA2B3E7246AE75500F96E28 /* TeacherViewController.swift */,
 				DEA2B3E9246AE7B600F96E28 /* Table */,
 			);
@@ -843,7 +841,6 @@
 			children = (
 				DEE6740F2459B15200B8F9F1 /* GroupDataController.swift */,
 				DEB0316B245988F600A5D29D /* GroupLogicController.swift */,
-				DEB0316D2459895A00A5D29D /* GroupNetworkController.swift */,
 				DEE674132459EF8900B8F9F1 /* GroupViewController.swift */,
 				DEA2B3EF246BCEC600F96E28 /* Group.storyboard */,
 				DEE674152459F53500B8F9F1 /* Table */,
@@ -877,7 +874,6 @@
 		DEB6819B245DF82E005FA2F0 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				DEB6819C245DF874005FA2F0 /* EntityNetworkController.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -888,11 +884,6 @@
 				DEB9BD382538BCB4008F41A2 /* Model.swift */,
 				DEB9BD402538BD64008F41A2 /* Model+CodingData.swift */,
 				DEB9BD5E2538C5EF008F41A2 /* Model+CoreData.swift */,
-				DEB9BD4C2538C1D8008F41A2 /* Model+Endpoints.swift */,
-				DEB9BD86253975D4008F41A2 /* Model+ImportController.swift */,
-				DEB9BD8D25397735008F41A2 /* Model+NetworkController.swift */,
-				DEB9BD9B25397B1C008F41A2 /* Model+RecordsSyncController.swift */,
-				DEB9BD5A2538C3F6008F41A2 /* Model+SyncController.swift */,
 				DEBCBDC02530E9F60087F216 /* ModelKind.swift */,
 			);
 			name = Model;
@@ -1172,14 +1163,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE365932252F8FCF002A1A11 /* InvalidEndpointError.swift in Sources */,
-				DEB9BD8E25397735008F41A2 /* Model+NetworkController.swift in Sources */,
+				DEB9BD8E25397735008F41A2 /* Model+DownloadsController.swift in Sources */,
 				DE017F9723622BC70046D3ED /* PreferencesTableViewController.swift in Sources */,
 				DE131FE22456CAAB009D09EA /* RecordsDataSource.swift in Sources */,
 				DE3EC2C5245C740400E30536 /* ClassroomDataController.swift in Sources */,
 				DE784790240DB406002C2EDC /* ContinueButtonContent.swift in Sources */,
 				DE945AD22264D71B00143303 /* UniversitiesDataSource.swift in Sources */,
 				DE7AB8582466C4470031E279 /* CoreDataEntityProtocol.swift in Sources */,
-				DE79DC9A246AA63D00C8C0EF /* TeacherNetworkController.swift in Sources */,
 				DE13EEB22466B7E50011F307 /* EntityLogicControllerProtocol.swift in Sources */,
 				DEBCBD962530B2660087F216 /* EntityEndpoint.swift in Sources */,
 				DE3628D52524EE4C003A7939 /* UniversityLogicController.swift in Sources */,
@@ -1214,7 +1204,6 @@
 				DEBB74BB235CF4C300226C7E /* UniversitiesTableViewController.swift in Sources */,
 				DE78478D240DA16B002C2EDC /* LegalDocumentView.swift in Sources */,
 				DEA2B3E8246AE75500F96E28 /* TeacherViewController.swift in Sources */,
-				DE3EC2C9245C742500E30536 /* ClassroomNetworkController.swift in Sources */,
 				DE3628CB2524ADD0003A7939 /* UserDefaultsKeys.swift in Sources */,
 				DEB9BD9C25397B1C008F41A2 /* Model+RecordsSyncController.swift in Sources */,
 				DEDA8CF52534930D00B54E41 /* ClassroomEntity+CoreDataClass.swift in Sources */,
@@ -1247,7 +1236,6 @@
 				DEB9BD292538B233008F41A2 /* NetworkClient.swift in Sources */,
 				DEDA8CF72534930D00B54E41 /* RecordEntity+CoreDataProperties.swift in Sources */,
 				DE2863782455F75B0036A01F /* UniversitiesViewController.swift in Sources */,
-				DEB0316E2459895A00A5D29D /* GroupNetworkController.swift in Sources */,
 				DE5A7E932219CCBF00CA9A79 /* RecordDetailedTableViewController.swift in Sources */,
 				DE4FCBFD23EF5CF9000B53F4 /* LegalDocumentViewController.swift in Sources */,
 				DEE576E4226B7B9E008F9EB6 /* SearchableTableViewController.swift in Sources */,
@@ -1260,6 +1248,7 @@
 				DE13AF7F226A30D4009DF581 /* TeachersTableViewController.swift in Sources */,
 				DE4AA07321A5E31900E06FEA /* GroupsDataSource.swift in Sources */,
 				DE78478B240D9FBC002C2EDC /* UIStoryboard.swift in Sources */,
+				DEA495FE253C5CD70025174E /* Model+NetworkController.swift in Sources */,
 				DE7AB85F246720880031E279 /* EntityTableDataController.swift in Sources */,
 				C2B5CDF31EEF0E750066DB30 /* AppDelegate.swift in Sources */,
 				DE04D1F72370B79F00A18649 /* UpdateHelper.swift in Sources */,
@@ -1284,7 +1273,6 @@
 				DEE674102459B15200B8F9F1 /* GroupDataController.swift in Sources */,
 				C22A2E581FC7664000587463 /* RecordEntity+CoreDataClass.swift in Sources */,
 				DE18941C21BC3A3900C7F9DB /* GroupTableViewController.swift in Sources */,
-				DEB6819D245DF874005FA2F0 /* EntityNetworkController.swift in Sources */,
 				DE266D60240C4AAA00C30A4A /* WhatsNewView.swift in Sources */,
 				DEA2B3FD246C02BF00F96E28 /* Entity+Manager.swift in Sources */,
 			);

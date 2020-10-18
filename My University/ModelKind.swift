@@ -20,10 +20,6 @@ protocol ModelKind {
     
     static func allEntities(university: String) -> URL
     static func recordsEndpoint(params: Record.RequestParameters) -> URL
-    
-    // MARK: Core Data
-    
-    static func fetchRequestPredicate(for entity: CoreDataFetchable & CoreDataEntityProtocol) -> NSPredicate
 }
 
 enum ModelKinds {
@@ -45,10 +41,6 @@ enum ModelKinds {
         static func recordsEndpoint(params: Record.RequestParameters) -> URL {
             Classroom.Endpoints.records(params: params).url
         }
-        
-        static func fetchRequestPredicate(for entity: CoreDataEntityProtocol & CoreDataFetchable) -> NSPredicate {
-            NSPredicate(format: "classroom == %@", entity)
-        }
     }
     
     enum GroupModel: ModelKind {
@@ -68,10 +60,6 @@ enum ModelKinds {
         static func recordsEndpoint(params: Record.RequestParameters) -> URL {
             Group.Endpoints.records(params: params).url
         }
-        
-        static func fetchRequestPredicate(for entity: CoreDataEntityProtocol & CoreDataFetchable) -> NSPredicate {
-            NSPredicate(format: "ANY groups == %@", entity)
-        }
     }
     
     enum TeacherModel: ModelKind {
@@ -90,12 +78,6 @@ enum ModelKinds {
         
         static func recordsEndpoint(params: Record.RequestParameters) -> URL {
             Teacher.Endpoints.records(params: params).url
-        }
-        
-        #warning("Move this to Model+CoreData")
-        
-        static func fetchRequestPredicate(for entity: CoreDataEntityProtocol & CoreDataFetchable) -> NSPredicate {
-            NSPredicate(format: "teacher == %@", entity)
         }
     }
 }

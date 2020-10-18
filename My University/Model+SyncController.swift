@@ -137,7 +137,7 @@ extension Model {
                             // Because NSManagedObject's can be changed to another one.
                             let fetchRequest: NSFetchRequest<NSFetchRequestResult> = RecordEntity.fetchRequest()
                             
-                            fetchRequest.predicate = Kind.fetchRequestPredicate(for: entity)
+                            fetchRequest.predicate = Model.fetchRequestPredicate(for: entity)
                             let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
                             deleteRequest.resultType = .resultTypeObjectIDs
                             

@@ -10,12 +10,14 @@ import Foundation
 
 final class ClassroomDataController: EntityDataController {
     
+    typealias NetworkController = Model<ModelKinds.ClassroomModel, ClassroomEntity>.NetworkController
+    
     // MARK: - Init
     
-    let network: ClassroomNetworkController
+    let network: NetworkController
     
     override init() {
-        network = ClassroomNetworkController()
+        network = NetworkController()
         
         super.init()
         network.delegate = self

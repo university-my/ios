@@ -10,12 +10,14 @@ import Foundation
 
 final class GroupDataController: EntityDataController {
     
+    typealias NetworkController = Model<ModelKinds.GroupModel, GroupEntity>.NetworkController
+    
     // MARK: - Init
     
-    let network: GroupNetworkController
+    let network: NetworkController
     
     override init() {
-        network = GroupNetworkController()
+        network = NetworkController()
         
         super.init()
         network.delegate = self

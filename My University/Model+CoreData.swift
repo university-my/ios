@@ -50,4 +50,17 @@ extension Model {
             return []
         }
     }
+    
+    static func fetchRequestPredicate(for entity: Entity) -> NSPredicate {
+        switch entity {
+        case is ClassroomEntity:
+            return NSPredicate(format: "classroom == %@", entity)
+        case is GroupEntity:
+            return NSPredicate(format: "ANY groups == %@", entity)
+        case is TeacherEntity:
+            return NSPredicate(format: "teacher == %@", entity)
+        default:
+            preconditionFailure()
+        }
+    }
 }
