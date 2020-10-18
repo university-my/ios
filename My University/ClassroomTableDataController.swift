@@ -8,4 +8,4 @@
 
 import Foundation
 
-final class ClassroomTableDataController: EntityTableDataController {}
+final class ClassroomTableDataController: Classroom.TableDataController {}

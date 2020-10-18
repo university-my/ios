@@ -8,12 +8,12 @@
 
 import UIKit
 
-class NewClassroomTableViewController: EntityTableViewController {
+class NewClassroomTableViewController: EntityTableViewController<ModelKinds.ClassroomModel, ClassroomEntity> {
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
-        dataController = ClassroomTableDataController()
+        dataController = Classroom.TableDataController()
         
         super.viewDidLoad()
     }
@@ -25,7 +25,7 @@ class NewClassroomTableViewController: EntityTableViewController {
     // MARK: - Pull to refresh
     
     @IBAction func refresh(_ sender: Any) {
-        delegate?.didBeginRefresh(in: self)
+        delegate?.didBeginRefresh()
     }
     
     // MARK: - Navigation
