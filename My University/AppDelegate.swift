@@ -21,9 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Merge policy for the main view context
         let mergePolicy = NSMergePolicy(merge: NSMergePolicyType.mergeByPropertyObjectTrumpMergePolicyType)
         persistentContainer.viewContext.mergePolicy = mergePolicy
-
-        // Default settings for user
-        UserData.registerDefaultValues()
         
         metric = MetricKitSubscriber()
 

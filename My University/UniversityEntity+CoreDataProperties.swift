@@ -2,8 +2,8 @@
 //  UniversityEntity+CoreDataProperties.swift
 //  My University
 //
-//  Created by Yura Voevodin on 4/18/19.
-//  Copyright © 2019 Yura Voevodin. All rights reserved.
+//  Created by Yura Voevodin on 12.10.2020.
+//  Copyright © 2020 Yura Voevodin. All rights reserved.
 //
 //
 
@@ -18,29 +18,29 @@ extension UniversityEntity {
     }
 
     @NSManaged public var fullName: String?
+    @NSManaged public var id: Int64
     @NSManaged public var shortName: String?
     @NSManaged public var url: String?
-    @NSManaged public var id: Int64
-    @NSManaged public var auditoriums: NSSet?
+    @NSManaged public var classrooms: NSSet?
     @NSManaged public var groups: NSSet?
     @NSManaged public var teachers: NSSet?
 
 }
 
-// MARK: Generated accessors for auditoriums
+// MARK: Generated accessors for classrooms
 extension UniversityEntity {
 
-    @objc(addAuditoriumsObject:)
-    @NSManaged public func addToAuditoriums(_ value: AuditoriumEntity)
+    @objc(addClassroomsObject:)
+    @NSManaged public func addToClassrooms(_ value: ClassroomEntity)
 
-    @objc(removeAuditoriumsObject:)
-    @NSManaged public func removeFromAuditoriums(_ value: AuditoriumEntity)
+    @objc(removeClassroomsObject:)
+    @NSManaged public func removeFromClassrooms(_ value: ClassroomEntity)
 
-    @objc(addAuditoriums:)
-    @NSManaged public func addToAuditoriums(_ values: NSSet)
+    @objc(addClassrooms:)
+    @NSManaged public func addToClassrooms(_ values: NSSet)
 
-    @objc(removeAuditoriums:)
-    @NSManaged public func removeFromAuditoriums(_ values: NSSet)
+    @objc(removeClassrooms:)
+    @NSManaged public func removeFromClassrooms(_ values: NSSet)
 
 }
 
@@ -75,5 +75,9 @@ extension UniversityEntity {
 
     @objc(removeTeachers:)
     @NSManaged public func removeFromTeachers(_ values: NSSet)
+
+}
+
+extension UniversityEntity : Identifiable {
 
 }

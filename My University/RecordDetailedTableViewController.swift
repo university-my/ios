@@ -10,6 +10,10 @@ import CoreData
 import UIKit
 import StoreKit
 
+protocol RecordDetailedTableViewControllerDelegate: class {
+    func didDismissDetails(in viewController: RecordDetailedTableViewController)
+}
+
 class RecordDetailedTableViewController: GenericTableViewController {
     
     // MARK: - Types
@@ -22,21 +26,21 @@ class RecordDetailedTableViewController: GenericTableViewController {
     enum RowType {
         case pairName(name: String?, type: String?)
         case reason(reason: String)
-        case auditorium(auditorium: AuditoriumEntity)
+        case classroom(classroom: ClassroomEntity)
         case teacher(teacher: TeacherEntity)
         case group(group: GroupEntity)
     }
     
     enum SectionType {
         case pair
-        case auditorium
+        case classroom
         case teacher
         case groups
         
         var name: String {
             switch self {
-            case .auditorium:
-                return NSLocalizedString("AUDITORIUM", comment: "")
+            case .classroom:
+                return NSLocalizedString("CLASSROOM", comment: "")
             case .groups:
                 return NSLocalizedString("GROUPS", comment: "")
             case .pair:
@@ -49,12 +53,14 @@ class RecordDetailedTableViewController: GenericTableViewController {
     
     // MARK: - Properties
     
-    var auditoriumID: Int64?
+    var classroomID: Int64?
     var groupID: Int64?
     var teacherID: Int64?
     
     var recordID: Int64?
     private weak var record: RecordEntity?
+    
+    weak var delegate: RecordDetailedTableViewControllerDelegate?
     
     private var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -74,14 +80,19 @@ class RecordDetailedTableViewController: GenericTableViewController {
     }
     
     func setup() {
-        if let id = recordID, let context = viewContext {
-            record = RecordEntity.fetch(id: id, context: context)
-            title = nameAndTime()
-            updateWithPairDate()
-            sections = generateSections()
+        guard let id = recordID, let context = viewContext else {
+            preconditionFailure()
         }
+        record = RecordEntity.fetch(id: id, context: context)
+        title = nameAndTime()
+        updateWithPairDate()
+        sections = generateSections()
         
-        showRateApp()
+        // For the Review Request
+        // If the count has not yet been stored, this will return 0
+        var count = UserDefaults.standard.integer(forKey: UserDefaultsKeys.recordDetailsOpenedCountKey)
+        count += 1
+        UserDefaults.standard.set(count, forKey: UserDefaultsKeys.recordDetailsOpenedCountKey)
     }
     
     // MARK: - Date
@@ -95,39 +106,6 @@ class RecordDetailedTableViewController: GenericTableViewController {
         } else {
             dateLabel.text = nil
         }
-    }
-    
-    // MARK: - Rate App
-    
-    // Check whether it is ready to show Rate alert
-    private func shouldRatingApp(for date: Date?) -> Bool {
-        guard let date = date else { return false }
-        
-        var dateComponent = DateComponents()
-        dateComponent.day = 14
-        
-        let futureDate = Calendar.current.date(byAdding: dateComponent, to: date)
-        
-        // Show only after passing two weeks since launching the app
-        if futureDate != nil, futureDate! <= Date() {
-            UserData.firstUsage = nil
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    private func showRateApp() {
-        #warning("Update logic to request user review")
-//        guard shouldRatingApp(for: UserData.firstUsage) else {
-//            return
-//        }
-//        guard let windowScene = UIApplication.shared.currentWindow?.windowScene else {
-//            return
-//        }
-//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0, execute: {
-//            SKStoreReviewController.requestReview(in: windowScene)
-//        })
     }
     
     /// Name and time
@@ -168,9 +146,9 @@ class RecordDetailedTableViewController: GenericTableViewController {
         }
         sections.append(pairSection)
         
-        // Auditorium
-        if let auditorium = record.auditorium {
-            let section = Section(type: .auditorium, rows: [.auditorium(auditorium: auditorium)])
+        // Classroom
+        if let classroom = record.classroom {
+            let section = Section(type: .classroom, rows: [.classroom(classroom: classroom)])
             sections.append(section)
         }
         
@@ -228,8 +206,8 @@ class RecordDetailedTableViewController: GenericTableViewController {
             cell.textLabel?.numberOfLines = 0
             cell.detailTextLabel?.text = nil
             
-        case .auditorium(let auditorium):
-            cell.textLabel?.text = auditorium.name
+        case .classroom(let classroom):
+            cell.textLabel?.text = classroom.name
             cell.detailTextLabel?.text = nil
             
         case .teacher(let teacher):
@@ -251,6 +229,8 @@ class RecordDetailedTableViewController: GenericTableViewController {
     // MARK: - Done
     
     @IBAction func done(_ sender: Any) {
-        dismiss(animated: true)
+        dismiss(animated: true) {
+            self.delegate?.didDismissDetails(in: self)
+        }
     }
 }

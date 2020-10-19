@@ -8,4 +8,4 @@
 
 import Foundation
 
-class GroupTableDataController: EntityTableDataController {}
+class GroupTableDataController: Group.TableDataController {}

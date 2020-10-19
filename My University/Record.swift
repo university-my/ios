@@ -10,7 +10,7 @@ import Foundation
 
 struct Record {
     
-    let auditorium: Auditorium?
+    let classroom: Classroom?
     let date: Date?
     let groups: [Group]
     let id: Int64

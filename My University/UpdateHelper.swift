@@ -11,7 +11,7 @@ import Foundation
 struct UpdateHelper {
     
     enum EntityType: String {
-        case auditorium = "auditorium"
+        case classroom = "classroom"
         case group = "group"
         case teacher = "teacher"
     }
@@ -42,7 +42,7 @@ struct UpdateHelper {
     // MARK: - Last updated
     
     static func lastUpdated(for universityID: Int64, type: EntityType) -> Date {
-        let key = UserDefaultsKey.entity(with: type.rawValue, universityID: universityID)
+        let key = UserDefaultsKeys.entityKey(with: type.rawValue, universityID: universityID)
         if let date = UserDefaults.standard.value(forKey: key) as? Date {
             return date
         } else {
@@ -51,7 +51,8 @@ struct UpdateHelper {
     }
     
     static func updated(at date: Date, universityID: Int64, type: EntityType) {
-        let key = UserDefaultsKey.entity(with: type.rawValue, universityID: universityID)
+        let key = UserDefaultsKeys.entityKey(with: type.rawValue, universityID: universityID)
         UserDefaults.standard.set(date, forKey: key)
     }
+    
 }

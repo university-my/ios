@@ -8,12 +8,12 @@
 
 import UIKit
 
-class GroupTableViewController: EntityTableViewController {
+class GroupTableViewController: EntityTableViewController<ModelKinds.GroupModel, GroupEntity> {
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
-        dataController = GroupTableDataController()
+        dataController = Group.TableDataController()
         
         super.viewDidLoad()
     }
@@ -25,7 +25,7 @@ class GroupTableViewController: EntityTableViewController {
     // MARK: - Pull to refresh
     
     @IBAction func refresh(_ sender: Any) {
-        delegate?.didBeginRefresh(in: self)
+        delegate?.didBeginRefresh()
     }
     
     // MARK: - Navigation
@@ -40,7 +40,8 @@ class GroupTableViewController: EntityTableViewController {
                     destination.recordID = (sender as? Record)?.id
                     destination.groupID = entityID
                     destination.teacherID = nil
-                    destination.auditoriumID = nil
+                    destination.classroomID = nil
+                    destination.delegate = self
                 }
             }
             

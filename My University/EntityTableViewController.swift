@@ -9,16 +9,18 @@
 import UIKit
 
 protocol EntityTableViewControllerDelegate: class {
-    func didBeginRefresh(in viewController: EntityTableViewController)
+    func didBeginRefresh()
+    func didDismissDetails()
 }
 
-class EntityTableViewController: GenericTableViewController {
+class EntityTableViewController<Kind: ModelKind, Entity: CoreDataFetchable & CoreDataEntityProtocol>: GenericTableViewController {
+    typealias ModelType = Model<Kind, Entity>
     
     var entityID: Int64!
     
     weak var delegate: EntityTableViewControllerDelegate?
     
-    var dataController: EntityTableDataController!
+    var dataController: ModelType.TableDataController!
     
     // MARK: - Lifecycle
     
@@ -31,7 +33,7 @@ class EntityTableViewController: GenericTableViewController {
     
     // MARK: - Data
     
-    func update(with sections: [EntityTableDataController.Section]) {
+    func update(with sections: [ModelType.TableDataController.Section]) {
         dataController.update(with: sections)
         refreshControl?.endRefreshing()
         tableView.reloadData()
@@ -75,5 +77,14 @@ class EntityTableViewController: GenericTableViewController {
             performSegue(withIdentifier: "recordDetails", sender: record)
             tableView.deselectRow(at: indexPath, animated: true)
         }
+    }
+}
+
+// MARK: - RecordDetailedTableViewControllerDelegate
+
+extension EntityTableViewController: RecordDetailedTableViewControllerDelegate {
+    
+    func didDismissDetails(in viewController: RecordDetailedTableViewController) {
+        delegate?.didDismissDetails()
     }
 }

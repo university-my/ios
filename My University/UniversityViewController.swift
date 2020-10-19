@@ -12,7 +12,7 @@ import SwiftUI
 
 // MARK: - Cells
 
-private let auditoriumsCell = "auditoriumsCell"
+private let classroomsCell = "classroomsCell"
 private let groupsCell = "groupsCell"
 private let teachersCell = "teachersCell"
 private let favoritesCell = "favoritesCell"
@@ -21,12 +21,22 @@ class UniversityViewController: GenericTableViewController {
     
     // MARK: - Properties
     
+    private let logic: UniversityLogicController
+    
     var universityID: Int64?
     private var dataSource: UniversityDataSource!
     
-    private var auditoriumsDataSource: AuditoriumDataSource?
+    private var classroomsDataSource: ClassroomDataSource?
     private var groupsDataSource: GroupsDataSource?
     private var teachersDataSource: TeacherDataSource?
+    
+    // MARK: - Init
+    
+    required init?(coder: NSCoder) {
+        logic = UniversityLogicController()
+        
+        super.init(coder: coder)
+    }
     
     // MARK: - Lifecycle
     
@@ -50,7 +60,7 @@ class UniversityViewController: GenericTableViewController {
         super.viewDidAppear(animated)
 
         // What's new
-        checkWhatsNew()
+        presentWhatsNewIfNeeded()
     }
     
     private func setup() {
@@ -69,12 +79,12 @@ class UniversityViewController: GenericTableViewController {
             title = university.shortName
             
             // Init all data sources
-            auditoriumsDataSource = AuditoriumDataSource(universityID: university.id)
+            classroomsDataSource = ClassroomDataSource(universityID: university.id)
             groupsDataSource = GroupsDataSource(universityID: university.id)
             teachersDataSource = TeacherDataSource(universityID: university.id)
             
             // Start from groups,
-            // And import auditoriums and teachers
+            // And import classrooms and teachers
             loadGroups()
         }
     }
@@ -90,10 +100,10 @@ class UniversityViewController: GenericTableViewController {
         
         switch section.kind {
             
-        case .auditoriums:
-            if let auditorium = dataSource.auditoriums?.fetchedObjects?[safe: indexPath.row] {
-                selectedEntityID = auditorium.id
-                performSegue(withIdentifier: .auditoriumDetails)
+        case .classrooms:
+            if let classroom = dataSource.classrooms?.fetchedObjects?[safe: indexPath.row] {
+                selectedEntityID = classroom.id
+                performSegue(withIdentifier: .classroomDetails)
             }
             
         case .groups:
@@ -110,8 +120,8 @@ class UniversityViewController: GenericTableViewController {
             
         case .university:
             let row = dataSource.universityRows[indexPath.row]
-            if case .auditoriums = row.kind {
-                performSegue(withIdentifier: .showAuditoriums)
+            if case .classrooms = row.kind {
+                performSegue(withIdentifier: .showClassrooms)
             } else if case .groups = row.kind {
                 performSegue(withIdentifier: .showGroups)
             } else if case .teachers = row.kind {
@@ -133,8 +143,8 @@ class UniversityViewController: GenericTableViewController {
             return 0
         }
         switch section.kind {
-        case .auditoriums:
-            return dataSource.auditoriums?.fetchedObjects?.count ?? 0
+        case .classrooms:
+            return dataSource.classrooms?.fetchedObjects?.count ?? 0
         case .groups:
             return dataSource.groups?.fetchedObjects?.count ?? 0
         case .teachers:
@@ -149,10 +159,10 @@ class UniversityViewController: GenericTableViewController {
         
         switch section.kind {
             
-        case .auditoriums:
-            let auditorium = dataSource?.auditoriums?.fetchedObjects?[safe: indexPath.row]
+        case .classrooms:
+            let classroom = dataSource?.classrooms?.fetchedObjects?[safe: indexPath.row]
             let cell = tableView.dequeueReusableCell(withIdentifier: favoritesCell, for: indexPath)
-            cell.textLabel?.text = auditorium?.name
+            cell.textLabel?.text = classroom?.name
             return cell
             
         case .groups:
@@ -170,8 +180,8 @@ class UniversityViewController: GenericTableViewController {
         case .university:
             let row = dataSource.universityRows[indexPath.row]
             
-            if case .auditoriums = row.kind {
-                let cell = tableView.dequeueReusableCell(withIdentifier: auditoriumsCell, for: indexPath)
+            if case .classrooms = row.kind {
+                let cell = tableView.dequeueReusableCell(withIdentifier: classroomsCell, for: indexPath)
                 return cell
                 
             } else if case .groups = row.kind {
@@ -197,9 +207,9 @@ class UniversityViewController: GenericTableViewController {
         
         switch identifier {
             
-        case .auditoriumDetails:
+        case .classroomDetails:
             let navigationVC = segue.destination as? UINavigationController
-            let vc = navigationVC?.viewControllers.first as? AuditoriumViewController
+            let vc = navigationVC?.viewControllers.first as? ClassroomViewController
             vc?.entityID = selectedEntityID
             
         case .groupDetails:
@@ -212,8 +222,8 @@ class UniversityViewController: GenericTableViewController {
             let vc = navigationVC?.viewControllers.first as? TeacherViewController
             vc?.entityID = selectedEntityID
             
-        case .showAuditoriums:
-            let vc = segue.destination as? AuditoriumsTableViewController
+        case .showClassrooms:
+            let vc = segue.destination as? ClassroomsTableViewController
             vc?.universityID = dataSource.university?.id
             
         case .showGroups:
@@ -237,8 +247,8 @@ class UniversityViewController: GenericTableViewController {
         selectedEntityID = entity.id
         
         switch entity.kind {
-        case .auditorium:
-            performSegue(withIdentifier: .auditoriumDetails)
+        case .classroom:
+            performSegue(withIdentifier: .classroomDetails)
         case .group:
             performSegue(withIdentifier: .groupDetails)
         case .teacher:
@@ -282,21 +292,21 @@ class UniversityViewController: GenericTableViewController {
                 if let _ = error {
                     
                 } else {
-                    if self.shouldImportAuditoriums() {
-                        self.loadAuditoriums()
+                    if self.shouldImportClassrooms() {
+                        self.loadClassrooms()
                     }
                 }
             }
         } else {
-            if shouldImportAuditoriums() {
-                loadAuditoriums()
+            if shouldImportClassrooms() {
+                loadClassrooms()
             }
         }
     }
     
-    // MARK: - Auditoriums
+    // MARK: - Classrooms
     
-    private func shouldImportAuditoriums() -> Bool {
+    private func shouldImportClassrooms() -> Bool {
         guard let university = dataSource.university else { return false }
         if university.isKPI {
             return false
@@ -305,14 +315,14 @@ class UniversityViewController: GenericTableViewController {
         }
     }
     
-    private func loadAuditoriums() {
-        guard let dataSource = auditoriumsDataSource else { return }
+    private func loadClassrooms() {
+        guard let dataSource = classroomsDataSource else { return }
         dataSource.performFetch()
         
-        let auditoriums = dataSource.fetchedResultsController?.fetchedObjects ?? []
-        if auditoriums.isEmpty {
+        let classrooms = dataSource.fetchedResultsController?.fetchedObjects ?? []
+        if classrooms.isEmpty {
             
-            dataSource.importAuditoriums { (error) in
+            dataSource.importClassrooms { (error) in
                 
                 if let _ = error {
                     
@@ -322,22 +332,22 @@ class UniversityViewController: GenericTableViewController {
     }
 
     // MARK: - What's new
-
-    private func checkWhatsNew() {
-        if UserData.whatsNew1_7_2 {
+    
+    private func presentWhatsNewIfNeeded() {
+        if logic.needToPresentWhatsNew() {
             // What's new
             var whatsNewView = WhatsNewView()
-
+            
             // Continue
             whatsNewView.continueAction = {
                 self.dismiss(animated: true)
             }
-
+            
             let hostingController = UIHostingController(rootView: whatsNewView)
             present(hostingController, animated: true)
-
+            
             // Present only once
-            UserData.whatsNew1_7_2 = false
+            logic.updateLastVersionForNewFeatures()
         }
     }
     
@@ -358,7 +368,7 @@ class UniversityViewController: GenericTableViewController {
             title: NSLocalizedString("Report a problem", comment: "Action title"),
             image: UIImage(systemName: "exclamationmark.bubble.fill")
         ) { _ in
-            UIApplication.shared.open(BaseEndpoint.contacts.url)
+            UIApplication.shared.open(.contacts)
         }
         
         preferencesBarButtonItem.menu = UIMenu(title: "", children: [changeUniversity, reportProblem])
@@ -368,10 +378,10 @@ class UniversityViewController: GenericTableViewController {
 // MARK: - SegueIdentifier
 
 private extension UniversityViewController.SegueIdentifier {
-    static let auditoriumDetails = "auditoriumDetails"
+    static let classroomDetails = "classroomDetails"
     static let changeUniversity = "changeUniversity"
     static let groupDetails = "groupDetails"
-    static let showAuditoriums = "showAuditoriums"
+    static let showClassrooms = "showClassrooms"
     static let showGroups = "showGroups"
     static let showTeachers = "showTeachers"
     static let teacherDetails = "teacherDetails"

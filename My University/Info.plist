@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>API_PREFIX</key>
-	<string>$(API_PREFIX)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -30,6 +28,14 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MY_UNIVERSITY_API_PREFIX_V1</key>
+	<string>$(MY_UNIVERSITY_API_PREFIX_V1)</string>
+	<key>MY_UNIVERSITY_SERVER_HOST</key>
+	<string>$(MY_UNIVERSITY_SERVER_HOST)</string>
+	<key>MY_UNIVERSITY_SERVER_PORT</key>
+	<string>$(MY_UNIVERSITY_SERVER_PORT)</string>
+	<key>MY_UNIVERSITY_SERVER_SCHEME</key>
+	<string>$(MY_UNIVERSITY_SERVER_SCHEME)</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -45,8 +51,6 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>SERVER_BASE_URL</key>
-	<string>$(SERVER_BASE_URL)</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
