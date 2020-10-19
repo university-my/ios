@@ -21,7 +21,7 @@ class UniversityDataSource: NSObject {
         let kind: Kind
         
         enum Kind {
-            case auditoriums
+            case classrooms
             case groups
             case teachers
             case university
@@ -31,8 +31,8 @@ class UniversityDataSource: NSObject {
             switch kind {
             case .university:
                 return nil
-            case .auditoriums:
-                return NSLocalizedString("Auditoriums", comment: "Favorites section name")
+            case .classrooms:
+                return NSLocalizedString("Classrooms", comment: "Favorites section name")
             case .groups:
                 return NSLocalizedString("Groups", comment: "Favorites section name")
             case .teachers:
@@ -46,7 +46,7 @@ class UniversityDataSource: NSObject {
         let kind: Kind
         
         enum Kind {
-            case auditoriums
+            case classrooms
             case groups
             case teachers
         }
@@ -87,23 +87,23 @@ class UniversityDataSource: NSObject {
             newSections.append(Section(kind: .teachers))
         }
         
-        // Auditoriums
-        if auditoriums?.fetchedObjects?.isEmpty == false {
-            newSections.append(Section(kind: .auditoriums))
+        // Classrooms
+        if classrooms?.fetchedObjects?.isEmpty == false {
+            newSections.append(Section(kind: .classrooms))
         }
         
         // University
         var rows: [UniversityRow] = []
         
         if university.isKPI {
-            let grops = UniversityRow(kind: .groups)
+            let groups = UniversityRow(kind: .groups)
             let teachers = UniversityRow(kind: .teachers)
-            rows = [grops, teachers]
+            rows = [groups, teachers]
         } else {
-            let grops = UniversityRow(kind: .groups)
+            let groups = UniversityRow(kind: .groups)
             let teachers = UniversityRow(kind: .teachers)
-            let auditoriums = UniversityRow(kind: .auditoriums)
-            rows = [grops, teachers, auditoriums]
+            let classrooms = UniversityRow(kind: .classrooms)
+            rows = [groups, teachers, classrooms]
         }
         universityRows = rows
         newSections.append(Section(kind: .university))
@@ -114,7 +114,7 @@ class UniversityDataSource: NSObject {
     func titleForFooter(in section: Int) -> String? {
         guard let section = sections[safe: section] else { return nil }
         switch section.kind {
-        case .auditoriums, .groups, .teachers:
+        case .classrooms, .groups, .teachers:
             return nil
         case .university:
             return university?.fullName
@@ -125,11 +125,11 @@ class UniversityDataSource: NSObject {
         guard let section = sections[safe: section] else { return nil }
         switch section.kind {
         
-        case .auditoriums:
-            if let auditoriums = auditoriums?.fetchedObjects, auditoriums.count > 1 {
+        case .classrooms:
+            if let classrooms = classrooms?.fetchedObjects, classrooms.count > 1 {
                 return section.name
             } else {
-                return NSLocalizedString("Auditorium", comment: "Favorites section name")
+                return NSLocalizedString("Classroom", comment: "Favorites section name")
             }
             
         case .groups:
@@ -156,18 +156,18 @@ class UniversityDataSource: NSObject {
     func fetchFavorites(delegate: NSFetchedResultsControllerDelegate) {
         fetchGroups(delegate: delegate)
         fetchTeachers(delegate: delegate)
-        fetchAuditoriums(delegate: delegate)
+        fetchClassrooms(delegate: delegate)
     }
     
-    // MARK: - Auditoriums
+    // MARK: - Classrooms
     
-    lazy var auditoriums: NSFetchedResultsController<AuditoriumEntity>? = {
+    lazy var classrooms: NSFetchedResultsController<ClassroomEntity>? = {
         guard let university = university else { return nil }
         
-        let request: NSFetchRequest<AuditoriumEntity> = AuditoriumEntity.fetchRequest()
+        let request: NSFetchRequest<ClassroomEntity> = ClassroomEntity.fetchRequest()
         request.predicate = NSPredicate(format: "university == %@ AND isFavorite == YES", university)
         
-        let name = NSSortDescriptor(key: #keyPath(AuditoriumEntity.name), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
+        let name = NSSortDescriptor(key: #keyPath(ClassroomEntity.name), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
         
         request.sortDescriptors = [name]
         request.fetchBatchSize = 20
@@ -180,10 +180,10 @@ class UniversityDataSource: NSObject {
         }
     }()
     
-    private func fetchAuditoriums(delegate: NSFetchedResultsControllerDelegate) {
+    private func fetchClassrooms(delegate: NSFetchedResultsControllerDelegate) {
         do {
-            auditoriums?.delegate = delegate
-            try auditoriums?.performFetch()
+            classrooms?.delegate = delegate
+            try classrooms?.performFetch()
         } catch {
             logger.error("Error in the fetched results controller: \(error.localizedDescription).")
         }

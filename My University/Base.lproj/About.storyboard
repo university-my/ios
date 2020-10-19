@@ -221,10 +221,14 @@
             <point key="canvasLocation" x="1625" y="913"/>
         </scene>
     </scenes>
+    <color key="tintColor" systemColor="systemIndigoColor"/>
     <resources>
         <image name="doc.text" catalog="system" width="115" height="128"/>
         <image name="gift" catalog="system" width="128" height="124"/>
         <image name="lock.shield" catalog="system" width="128" height="118"/>
         <image name="safari" catalog="system" width="128" height="121"/>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

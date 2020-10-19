@@ -12,7 +12,7 @@ class GroupViewController: EntityViewController {
     
     // MARK: - Properties
     
-    private let logic: GroupLogicController
+    private let logic: Group.LogicController
     
     /// `UITableView`
     var tableViewController: GroupTableViewController!
@@ -23,7 +23,7 @@ class GroupViewController: EntityViewController {
     // MARK: - Init
     
     required init?(coder: NSCoder) {
-        logic = GroupLogicController(activity: activityController)
+        logic = Group.LogicController(activity: activityController)
         
         super.init(coder: coder)
         
@@ -48,7 +48,7 @@ class GroupViewController: EntityViewController {
     // MARK: - Group
     
     var group: GroupEntity? {
-        return logic.group
+        return logic.entity
     }
     
     // MARK: - State
@@ -163,20 +163,20 @@ class GroupViewController: EntityViewController {
 
 extension GroupViewController: EntityTableViewControllerDelegate {
     
-    func didBeginRefresh(in viewController: EntityTableViewController) {
+    func didBeginRefresh() {
         // Import records on "pull to refresh"
         // Don't show activity indicator in the center of the screen
         logic.importRecords(showActivity: false)
     }
     
-    func didDismissDetails(in viewController: EntityTableViewController) {
+    func didDismissDetails() {
         logic.makeReviewRequestIfNeeded()
     }
 }
 
 // MARK: - GroupLogicControllerDelegate
 
-extension GroupViewController: EntityLogicControllerDelegate {
+extension GroupViewController: ModelLogicControllerDelegate {
     
     func didChangeState(to newState: EntityViewController.State) {
         render(newState)

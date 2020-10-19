@@ -10,7 +10,7 @@ import UIKit
 
 class EntityViewController: UIViewController {
     
-    /// ID of the Auditorium, Group or Teacher
+    /// ID of the Classroom, Group or Teacher
     var entityID: Int64!
     
     // MARK: - Init

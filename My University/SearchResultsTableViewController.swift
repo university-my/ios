@@ -9,17 +9,17 @@
 import UIKit
 
 enum DataSourceType: Int {
-    case groups = 0, auditoriums, teachers
+    case groups = 0, classrooms, teachers
 }
 
 class SearchResultsTableViewController: UITableViewController {
     
     // MARK: - Properties
     
-    var dataSourceType: DataSourceType = .auditoriums
+    var dataSourceType: DataSourceType = .classrooms
     
     var filteredGroups: [GroupEntity] = []
-    var filteredAuditoriums: [AuditoriumEntity] = []
+    var filteredClassrooms: [ClassroomEntity] = []
     var filteredTeachers: [TeacherEntity] = []
     
     // MARK: - Lifecycle
@@ -36,8 +36,8 @@ class SearchResultsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch dataSourceType {
-        case .auditoriums:
-            return filteredAuditoriums.count
+        case .classrooms:
+            return filteredClassrooms.count
         case .groups:
             return filteredGroups.count
         case .teachers:
@@ -50,17 +50,17 @@ class SearchResultsTableViewController: UITableViewController {
         
         switch dataSourceType {
             
-        case .auditoriums:
-            let auditoriun = filteredAuditoriums[indexPath.row]
-            cell.textLabel?.text = auditoriun.name
+        case .classrooms:
+            let classroom = filteredClassrooms[indexPath.row]
+            cell.textLabel?.text = classroom.name
             
         case .groups:
             let group = filteredGroups[indexPath.row]
             cell.textLabel?.text = group.name
             
         case .teachers:
-            let group = filteredTeachers[indexPath.row]
-            cell.textLabel?.text = group.name
+            let teacher = filteredTeachers[indexPath.row]
+            cell.textLabel?.text = teacher.name
         }
         
         return cell

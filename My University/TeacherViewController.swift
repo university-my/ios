@@ -12,7 +12,7 @@ class TeacherViewController: EntityViewController {
     
     // MARK: - Properties
     
-    private let logic: TeacherLogicController
+    private let logic: Teacher.LogicController
     
     /// `UITableView`
     var tableViewController: NewTeacherTableViewController!
@@ -23,7 +23,7 @@ class TeacherViewController: EntityViewController {
     // MARK: - Init
     
     required init?(coder: NSCoder) {
-        logic = TeacherLogicController(activity: activityController)
+        logic = Teacher.LogicController(activity: activityController)
         
         super.init(coder: coder)
 
@@ -48,7 +48,7 @@ class TeacherViewController: EntityViewController {
     // MARK: - Teacher
     
     var teacher: TeacherEntity? {
-        return logic.teacher
+        return logic.entity
     }
     
     // MARK: - State
@@ -163,20 +163,20 @@ class TeacherViewController: EntityViewController {
 
 extension TeacherViewController: EntityTableViewControllerDelegate {
     
-    func didBeginRefresh(in viewController: EntityTableViewController) {
+    func didBeginRefresh() {
         // Import records on "pull to refresh"
         // Don't show activity indicator in the center of the screen
         logic.importRecords(showActivity: false)
     }
     
-    func didDismissDetails(in viewController: EntityTableViewController) {
+    func didDismissDetails() {
         logic.makeReviewRequestIfNeeded()
     }
 }
 
 // MARK: - EntityLogicControllerDelegate
 
-extension TeacherViewController: EntityLogicControllerDelegate {
+extension TeacherViewController: ModelLogicControllerDelegate {
     
     func didChangeState(to newState: EntityViewController.State) {
         render(newState)

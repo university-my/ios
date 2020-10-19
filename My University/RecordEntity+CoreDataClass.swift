@@ -43,16 +43,16 @@ public class RecordEntity: NSManagedObject {
         }
     }
     
-    static func fetch(_ records: [Record.CodingData], auditorium: AuditoriumEntity?, context: NSManagedObjectContext) -> [RecordEntity] {
-        guard let auditorium = auditorium else { return [] }
+    static func fetch(_ records: [Record.CodingData], classroom: ClassroomEntity?, context: NSManagedObjectContext) -> [RecordEntity] {
+        guard let classroom = classroom else { return [] }
         
         let ids = records.map { record in
             return record.id
         }
         let fetchRequest: NSFetchRequest<RecordEntity> = RecordEntity.fetchRequest()
-        let isdPredicate = NSPredicate(format: "id IN %@", ids)
-        let auditoriumPredicate = NSPredicate(format: "auditorium == %@", auditorium)
-        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [auditoriumPredicate, isdPredicate])
+        let idsPredicate = NSPredicate(format: "id IN %@", ids)
+        let classroomPredicate = NSPredicate(format: "classroom == %@", classroom)
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [classroomPredicate, idsPredicate])
         fetchRequest.predicate = predicate
         do {
             let result = try context.fetch(fetchRequest)
@@ -100,9 +100,9 @@ public class RecordEntity: NSManagedObject {
         }
     }
     
-    static func fetchAll(auditorium: AuditoriumEntity, context: NSManagedObjectContext) -> [RecordEntity] {
+    static func fetchAll(classroom: ClassroomEntity, context: NSManagedObjectContext) -> [RecordEntity] {
         let request: NSFetchRequest<RecordEntity> = RecordEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "auditorium == %@", auditorium)
+        request.predicate = NSPredicate(format: "classroom == %@", classroom)
         do {
             let result = try context.fetch(request)
             return result
@@ -135,7 +135,7 @@ public class RecordEntity: NSManagedObject {
     
     func asStruct() -> Record {
         Record(
-            auditorium: nil,
+            classroom: nil,
             date: date,
             groups: [],
             id: id,

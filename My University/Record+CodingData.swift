@@ -10,15 +10,13 @@ import Foundation
 
 extension Record {
     
-    struct CodingData {
-        // TODO: Use `Codable`
+    struct CodingData: Codable {
         
         // MARK: - Properties
         
         let id: Int64
         let time: String
         let dateString: String
-        let date: Date?
         
         /// Type of the pair (lecture or practical work)
         let type: String?
@@ -29,67 +27,30 @@ extension Record {
         
         /// Description or comment
         let reason: String?
-        let auditorium: Auditorium.CodingData?
+        let classroom: Classroom.CodingData?
         let groups: [Group.CodingData]
         let teacher: Teacher.CodingData?
         
-        // MARK: - Initialization
-        
-        init?(_ json: [String: Any], dateFormatter: ISO8601DateFormatter) {
-            guard let id = json["id"] as? Int64 else {
-                return nil
-            }
-            guard let time = json["time"] as? String else {
-                return nil
-            }
-            guard let dateString = json["pair_start_date"] as? String else {
-                return nil
-            }
-            let type = json["kind"] as? String
-            let name = json["name"] as? String
-            
-            guard let pairName = json["pair_name"] as? String else {
-                return nil
-            }
-            let reason = json["reason"] as? String
-            
-            self.id = id
-            self.time = time
-            self.dateString = dateString
-            self.type = type
-            self.name = name
-            self.pairName = pairName
-            self.reason = reason
-            
-            // Auditorium
-            if let auditoriumObject = json["auditorium"] as? [String: Any] {
-                self.auditorium = Auditorium.CodingData(auditoriumObject)
-            } else {
-                self.auditorium = nil
-            }
-            
-            // Groups
-            var groups: [Group.CodingData] = []
-            if let groupsObject = json["groups"] as? [Any] {
-                for item in groupsObject {
-                    if let groupObject = item as? [String: Any] {
-                        if let group = Group.CodingData(groupObject) {
-                            groups.append(group)
-                        }
-                    }
-                }
-            }
-            self.groups = groups
-            
-            // Teacher
-            if let teacherObject = json["teacher"] as? [String: Any] {
-                self.teacher = Teacher.CodingData(teacherObject)
-            } else {
-                self.teacher = nil
-            }
-            
-            // Date
-            self.date = dateFormatter.date(from: dateString)
+        enum CodingKeys: String, CodingKey {
+            case id
+            case time
+            case dateString = "pair_start_date"
+            case `type` = "kind"
+            case name
+            case pairName = "pair_name"
+            case reason
+            case classroom = "auditorium"
+            case groups
+            case teacher
         }
+    }
+}
+
+extension Record.CodingData {
+    
+    var date: Date? {
+        let dateFormatter = ISO8601DateFormatter()
+        dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        return dateFormatter.date(from: dateString)
     }
 }

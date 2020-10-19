@@ -1,5 +1,5 @@
 //
-//  AuditoriumDataController.swift
+//  ClassroomDataController.swift
 //  My University
 //
 //  Created by Yura Voevodin on 01.05.2020.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class AuditoriumDataController: EntityDataController {
+final class ClassroomDataController: EntityDataController {
     
     // MARK: - Init
     
@@ -21,17 +21,17 @@ final class AuditoriumDataController: EntityDataController {
         network.delegate = self
     }
     
-    // MARK: - Auditorium
+    // MARK: - Classroom
     
-    var auditorium: AuditoriumEntity? {
-        return entity as? AuditoriumEntity
+    var classroom: ClassroomEntity? {
+        return entity as? ClassroomEntity
     }
     
     // MARK: - Import
     
     override func importRecords() {
-        guard let entity = auditorium else {
-            preconditionFailure("Auditorium not found")
+        guard let entity = classroom else {
+            preconditionFailure("Classroom not found")
         }
         // Start import
         isImporting = true
@@ -41,15 +41,15 @@ final class AuditoriumDataController: EntityDataController {
     // MARK: - NSPredicate
     
     override func generatePredicate() -> NSPredicate? {
-        guard let auditorium = auditorium else { return nil }
+        guard let classroom = classroom else { return nil }
         
         let selectedDate = pairDate
         let startOfDay = selectedDate.startOfDay as NSDate
         let endOfDay = selectedDate.endOfDay as NSDate
         
         let datePredicate = NSPredicate(format: "(date >= %@) AND (date <= %@)", startOfDay, endOfDay)
-        let auditoriumPredicate = NSPredicate(format: "auditorium == %@", auditorium)
-        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [auditoriumPredicate, datePredicate])
+        let classroomPredicate = NSPredicate(format: "classroom == %@", classroom)
+        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [classroomPredicate, datePredicate])
         return compoundPredicate
     }
 }

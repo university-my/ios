@@ -2,8 +2,8 @@
 //  RecordEntity+CoreDataProperties.swift
 //  My University
 //
-//  Created by Yura Voevodin on 2/14/19.
-//  Copyright © 2019 Yura Voevodin. All rights reserved.
+//  Created by Yura Voevodin on 12.10.2020.
+//  Copyright © 2020 Yura Voevodin. All rights reserved.
 //
 //
 
@@ -25,7 +25,7 @@ extension RecordEntity {
     @NSManaged public var reason: String?
     @NSManaged public var time: String?
     @NSManaged public var type: String?
-    @NSManaged public var auditorium: AuditoriumEntity?
+    @NSManaged public var classroom: ClassroomEntity?
     @NSManaged public var groups: NSSet?
     @NSManaged public var teacher: TeacherEntity?
 
@@ -45,5 +45,9 @@ extension RecordEntity {
 
     @objc(removeGroups:)
     @NSManaged public func removeFromGroups(_ values: NSSet)
+
+}
+
+extension RecordEntity : Identifiable {
 
 }

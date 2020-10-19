@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19B88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="AuditoriumEntity" representedClassName="AuditoriumEntity" syncable="YES">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ClassroomEntity" representedClassName="ClassroomEntity" syncable="YES">
         <attribute name="firstSymbol" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" usesScalarValueType="YES"/>
         <attribute name="isFavorite" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="slug" optional="YES" attributeType="String"/>
-        <relationship name="records" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RecordEntity" inverseName="auditorium" inverseEntity="RecordEntity"/>
-        <relationship name="university" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UniversityEntity" inverseName="auditoriums" inverseEntity="UniversityEntity"/>
+        <relationship name="records" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RecordEntity" inverseName="classroom" inverseEntity="RecordEntity"/>
+        <relationship name="university" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UniversityEntity" inverseName="classrooms" inverseEntity="UniversityEntity"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
@@ -40,7 +40,7 @@
         <attribute name="reason" optional="YES" attributeType="String"/>
         <attribute name="time" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
-        <relationship name="auditorium" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AuditoriumEntity" inverseName="records" inverseEntity="AuditoriumEntity"/>
+        <relationship name="classroom" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ClassroomEntity" inverseName="records" inverseEntity="ClassroomEntity"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GroupEntity" inverseName="records" inverseEntity="GroupEntity"/>
         <relationship name="teacher" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TeacherEntity" inverseName="records" inverseEntity="TeacherEntity"/>
         <uniquenessConstraints>
@@ -68,7 +68,7 @@
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="shortName" optional="YES" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="String"/>
-        <relationship name="auditoriums" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AuditoriumEntity" inverseName="university" inverseEntity="AuditoriumEntity"/>
+        <relationship name="classrooms" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ClassroomEntity" inverseName="university" inverseEntity="ClassroomEntity"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GroupEntity" inverseName="university" inverseEntity="GroupEntity"/>
         <relationship name="teachers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TeacherEntity" inverseName="university" inverseEntity="TeacherEntity"/>
         <uniquenessConstraints>
@@ -78,10 +78,10 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="AuditoriumEntity" positionX="31.9921875" positionY="107.68359375" width="128" height="148"/>
+        <element name="ClassroomEntity" positionX="31.9921875" positionY="107.68359375" width="128" height="148"/>
         <element name="GroupEntity" positionX="35.59375" positionY="398.10546875" width="128" height="148"/>
-        <element name="RecordEntity" positionX="-387.71484375" positionY="184.6875" width="128" height="210"/>
+        <element name="RecordEntity" positionX="-387.71484375" positionY="184.6875" width="128" height="208"/>
         <element name="TeacherEntity" positionX="-180" positionY="261" width="128" height="148"/>
-        <element name="UniversityEntity" positionX="-180" positionY="261" width="128" height="150"/>
+        <element name="UniversityEntity" positionX="-180" positionY="261" width="128" height="148"/>
     </elements>
 </model>

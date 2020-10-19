@@ -14,7 +14,7 @@ struct Entity: Codable {
     let id: Int64
     
     enum Kind: String, Codable {
-        case auditorium
+        case classroom
         case group
         case teacher
     }
