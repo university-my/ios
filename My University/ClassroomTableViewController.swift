@@ -1,5 +1,5 @@
 //
-//  NewClassroomTableViewController.swift
+//  ClassroomTableViewController.swift
 //  My University
 //
 //  Created by Yura Voevodin on 09.05.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewClassroomTableViewController: EntityTableViewController<ModelKinds.ClassroomModel, ClassroomEntity> {
+class ClassroomTableViewController: EntityTableViewController<ModelKinds.ClassroomModel, ClassroomEntity> {
     
     // MARK: - Lifecycle
     
@@ -54,6 +54,6 @@ class NewClassroomTableViewController: EntityTableViewController<ModelKinds.Clas
 
 // MARK: - SegueIdentifier
 
-private extension NewClassroomTableViewController.SegueIdentifier {
+private extension ClassroomTableViewController.SegueIdentifier {
     static let recordDetails = "recordDetails"
 }

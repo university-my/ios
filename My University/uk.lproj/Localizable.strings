@@ -4,15 +4,6 @@
 /* Alert title */
 "An error occurred" = "Сталася помилка";
 
-/* Favorites section name */
-"Classroom" = "Аудиторія";
-
-/* No comment provided by engineer. */
-"CLASSROOM" = "АУДИТОРІЯ";
-
-/* Favorites section name */
-"Classrooms" = "Аудиторії";
-
 /* Alert action */
 "Cancel" = "Скасувати";
 
@@ -21,6 +12,15 @@
 
 /* No comment provided by engineer. */
 "Check out what's new in this version:" = "Що нового в цій версії:";
+
+/* Favorites section name */
+"Classroom" = "Аудиторія";
+
+/* No comment provided by engineer. */
+"CLASSROOM" = "АУДИТОРІЯ";
+
+/* Favorites section name */
+"Classrooms" = "Аудиторії";
 
 /* No comment provided by engineer. */
 "Continue" = "Продовжити";

@@ -15,7 +15,7 @@ class ClassroomViewController: EntityViewController {
     private let logic: Classroom.LogicController
     
     /// `UITableView`
-    var tableViewController: NewClassroomTableViewController!
+    var tableViewController: ClassroomTableViewController!
     
     /// Show an activity indicator over current `UIViewController`
     let activityController = ActivityController()
@@ -141,7 +141,7 @@ class ClassroomViewController: EntityViewController {
         switch identifier {
             
         case .records:
-            let vc = segue.destination as! NewClassroomTableViewController
+            let vc = segue.destination as! ClassroomTableViewController
             tableViewController = vc
             tableViewController.delegate = self
             

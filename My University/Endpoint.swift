@@ -35,24 +35,3 @@ extension Endpoint {
         return newURL
     }
 }
-
-extension Endpoint {
-    
-    func makeRequest(with data: Kind.RequestData) -> URLRequest? {
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = "my-university.com.ua"
-        components.path = "/" + path
-        components.queryItems = queryItems.isEmpty ? nil : queryItems
-        
-        // If either the path or the query items passed contained
-        // invalid characters, we'll get a nil URL back:
-        guard let url = components.url else {
-            return nil
-        }
-        
-        var request = URLRequest(url: url)
-        Kind.prepare(&request, with: data)
-        return request
-    }
-}
