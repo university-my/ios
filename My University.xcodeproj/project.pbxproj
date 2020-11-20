@@ -48,6 +48,7 @@
 		DE3EB6C0231B2280007EA63C /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3EB6BF231B2280007EA63C /* ActivityViewController.swift */; };
 		DE3EC2CB245C743500E30536 /* ClassroomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3EC2CA245C743500E30536 /* ClassroomViewController.swift */; };
 		DE40FBA6238D4700001DA3DE /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE40FBA5238D4700001DA3DE /* UIColor.swift */; };
+		DE468AF02568739D008CB00E /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE468AEF2568739D008CB00E /* UIImage.swift */; };
 		DE4AA07121A5DF0500E06FEA /* ClassroomDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AA07021A5DF0500E06FEA /* ClassroomDataSource.swift */; };
 		DE4AA07321A5E31900E06FEA /* GroupsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AA07221A5E31900E06FEA /* GroupsDataSource.swift */; };
 		DE4CD2DB252216BA00745055 /* Legal Document.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE4CD2D9252216BA00745055 /* Legal Document.storyboard */; };
@@ -215,6 +216,7 @@
 		DE426D83253DB5A100150DC7 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Teacher.strings; sourceTree = "<group>"; };
 		DE426D84253DB5A100150DC7 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = "uk.lproj/Record Details.strings"; sourceTree = "<group>"; };
 		DE426D85253DB5A100150DC7 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Initial.strings; sourceTree = "<group>"; };
+		DE468AEF2568739D008CB00E /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		DE4AA07021A5DF0500E06FEA /* ClassroomDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomDataSource.swift; sourceTree = "<group>"; };
 		DE4AA07221A5E31900E06FEA /* GroupsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsDataSource.swift; sourceTree = "<group>"; };
 		DE4CD2D12522168F00745055 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -569,6 +571,7 @@
 				DEA2B3F7246BFB6D00F96E28 /* UIViewController.swift */,
 				DE365935252F9649002A1A11 /* URL.swift */,
 				DED71BD2253847AF00776F24 /* URLSession.swift */,
+				DE468AEF2568739D008CB00E /* UIImage.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1131,6 +1134,7 @@
 				DE3EB6C0231B2280007EA63C /* ActivityViewController.swift in Sources */,
 				DE0D64082264E1330001FCCF /* UniversityViewController.swift in Sources */,
 				DE131FE82456D773009D09EA /* Record+CodingData.swift in Sources */,
+				DE468AF02568739D008CB00E /* UIImage.swift in Sources */,
 				DE999ABE227C54160018F725 /* UniversityDataSource.swift in Sources */,
 				DEB9BD412538BD64008F41A2 /* Model+CodingData.swift in Sources */,
 				DEF63C61245AC543007E82F9 /* ActivityController.swift in Sources */,

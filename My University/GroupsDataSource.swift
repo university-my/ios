@@ -17,9 +17,7 @@ class GroupsDataSource: NSObject {
     // MARK: - Is Favorites
     
     private var favoritesImageView: UIImageView {
-        let image = UIImage(systemName: "star.fill")
-        let imageView = UIImageView(image: image)
-        return imageView
+        UIImageView(image: UIImage.starFill)
     }
     
     // MARK: - Init
