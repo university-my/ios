@@ -308,7 +308,7 @@ class UniversityViewController: GenericTableViewController {
     
     private func shouldImportClassrooms() -> Bool {
         guard let university = dataSource.university else { return false }
-        if university.isKPI {
+        if university.hideClassrooms {
             return false
         } else {
             return true

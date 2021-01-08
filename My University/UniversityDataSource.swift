@@ -95,7 +95,7 @@ class UniversityDataSource: NSObject {
         // University
         var rows: [UniversityRow] = []
         
-        if university.isKPI {
+        if university.hideClassrooms {
             let groups = UniversityRow(kind: .groups)
             let teachers = UniversityRow(kind: .teachers)
             rows = [groups, teachers]

@@ -15,12 +15,11 @@ public class UniversityEntity: NSManagedObject {
     
     // MARK: - Properties
     
-    var isKPI: Bool {
-        if url == "kpi" {
+    var hideClassrooms: Bool {
+        if url == "kpi" || url == "pnu" {
             return true
-        } else {
-            return false
         }
+        return false
     }
     
     // MARK: - Methods
