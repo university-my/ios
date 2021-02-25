@@ -258,7 +258,15 @@ class UniversityViewController: GenericTableViewController {
     
     // MARK: - Groups
     
+    var shouldImportGroups: Bool {
+        dataSource.university?.showGroups ?? false
+    }
+    
     private func loadGroups() {
+        guard shouldImportGroups else {
+            loadTeachers()
+            return
+        }
         guard let dataSource = groupsDataSource else { return }
         dataSource.performFetch()
         let groups = dataSource.fetchedResultsController?.fetchedObjects ?? []
@@ -280,7 +288,15 @@ class UniversityViewController: GenericTableViewController {
     
     // MARK: - Teachers
     
+    var shouldImportTeachers: Bool {
+        dataSource.university?.showTeachers ?? false
+    }
+    
     private func loadTeachers() {
+        guard shouldImportTeachers else {
+            loadClassrooms()
+            return
+        }
         guard let dataSource = teachersDataSource else { return }
         dataSource.performFetch()
         
@@ -292,30 +308,24 @@ class UniversityViewController: GenericTableViewController {
                 if let _ = error {
                     
                 } else {
-                    if self.shouldImportClassrooms() {
-                        self.loadClassrooms()
-                    }
+                    self.loadClassrooms()
                 }
             }
         } else {
-            if shouldImportClassrooms() {
-                loadClassrooms()
-            }
+            loadClassrooms()
         }
     }
     
     // MARK: - Classrooms
     
-    private func shouldImportClassrooms() -> Bool {
-        guard let university = dataSource.university else { return false }
-        if university.hideClassrooms {
-            return false
-        } else {
-            return true
-        }
+    var shouldImportClassrooms: Bool {
+        dataSource.university?.showClassrooms ?? false
     }
     
     private func loadClassrooms() {
+        guard shouldImportClassrooms else {
+            return
+        }
         guard let dataSource = classroomsDataSource else { return }
         dataSource.performFetch()
         
@@ -360,6 +370,7 @@ class UniversityViewController: GenericTableViewController {
             title: NSLocalizedString("Change University", comment: "Action title"),
             image: UIImage(systemName: "list.dash")
         ) { _ in
+            University.selectedUniversityID = nil
             Entity.Manager.shared.deleteLastOpened()
             self.performSegue(withIdentifier: .changeUniversity)
         }

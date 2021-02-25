@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ClassroomEntity" representedClassName="ClassroomEntity" syncable="YES">
         <attribute name="firstSymbol" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" usesScalarValueType="YES"/>
@@ -66,7 +66,14 @@
     <entity name="UniversityEntity" representedClassName="UniversityEntity" syncable="YES">
         <attribute name="fullName" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isBeta" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isHidden" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="pictureDark" optional="YES" attributeType="String"/>
+        <attribute name="pictureWhite" optional="YES" attributeType="String"/>
         <attribute name="shortName" optional="YES" attributeType="String"/>
+        <attribute name="showClassrooms" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="showGroups" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="showTeachers" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="url" optional="YES" attributeType="String"/>
         <relationship name="classrooms" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ClassroomEntity" inverseName="university" inverseEntity="ClassroomEntity"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GroupEntity" inverseName="university" inverseEntity="GroupEntity"/>
@@ -82,6 +89,6 @@
         <element name="GroupEntity" positionX="35.59375" positionY="398.10546875" width="128" height="148"/>
         <element name="RecordEntity" positionX="-387.71484375" positionY="184.6875" width="128" height="208"/>
         <element name="TeacherEntity" positionX="-180" positionY="261" width="128" height="148"/>
-        <element name="UniversityEntity" positionX="-180" positionY="261" width="128" height="148"/>
+        <element name="UniversityEntity" positionX="-180" positionY="261" width="128" height="239"/>
     </elements>
 </model>

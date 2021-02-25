@@ -16,10 +16,11 @@ class NetworkClient<Model: Decodable> {
     
     private var cancellable: Cancellable!
     
-    func load(url: URL, _ completion: @escaping Completion) {
+    func load(url: URL, decoder: JSONDecoder = .init(), _ completion: @escaping Completion) {
         let publisher = URLSession.shared.publisher(
             for: url,
-            responseType: Model.self
+            responseType: Model.self,
+            decoder: decoder
         )
         .print("➡️")
         

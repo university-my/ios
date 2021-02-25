@@ -26,6 +26,13 @@ class UniversitiesTableViewController: GenericTableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
         
+        // Sear Bar and Search Results Controller
+        configureSearchControllers()
+        searchController.searchResultsUpdater = self
+        
+        // Always visible search bar
+        navigationItem.hidesSearchBarWhenScrolling = false
+        
         // Loading...
         tableView.dataSource = dataSource
         dataSource.fetchUniversities(delegate: self)
@@ -67,6 +74,41 @@ class UniversitiesTableViewController: GenericTableViewController {
         University.selectedUniversityID = university?.id
         performSegue(withIdentifier: .presentUniversity)
     }
+    
+    // MARK: - Search
+    
+    /// Search controller to help us with filtering.
+    var searchController: UISearchController!
+
+    /// Secondary search results table view.
+    var resultsTableController: UniversitiesSearchResultsTableViewController!
+
+    func configureSearchControllers() {
+
+        resultsTableController = storyboard!.instantiateViewController(withIdentifier: "UniversitiesSearchResultsTableViewController") as? UniversitiesSearchResultsTableViewController
+
+        // We want ourselves to be the delegate for this filtered table so didSelectRowAtIndexPath(_:) is called for both tables.
+        resultsTableController.tableView.delegate = self
+
+        // Setup the Search Controller.
+        searchController = UISearchController(searchResultsController: resultsTableController)
+
+        // Add Search Controller to the navigation item (iOS 11).
+        navigationItem.searchController = searchController
+
+        // Setup the Search Bar
+        searchController.searchBar.placeholder = NSLocalizedString("Search", comment: "Placeholder in search controller")
+
+        /*
+         Search is now just presenting a view controller. As such, normal view controller
+         presentation semantics apply. Namely that presentation will walk up the view controller
+         hierarchy until it finds the root view controller or one that defines a presentation context.
+         */
+        definesPresentationContext = true
+
+        searchController.isActive = true
+        searchController.searchBar.becomeFirstResponder()
+    }
 }
 
 // MARK: - NSFetchedResultsControllerDelegate
@@ -86,4 +128,23 @@ extension UniversitiesTableViewController: ErrorAlertRepresentable {}
 
 private extension UniversitiesTableViewController.SegueIdentifier {
     static let presentUniversity = "presentUniversity"
+}
+
+// MARK: - UISearchResultsUpdating
+
+extension UniversitiesTableViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        // Strip out all the leading and trailing spaces.
+        guard let text = searchController.searchBar.text else { return }
+        let searchString = text.trimmingCharacters(in: .whitespaces)
+        
+        let filteredResults = UniversityEntity.search(with: searchString, context: CoreData.default.viewContext)
+        
+        // Hand over the filtered results to our search results table.
+        if let resultsController = searchController.searchResultsController as? UniversitiesSearchResultsTableViewController {
+            resultsController.filtered = filteredResults
+            resultsController.tableView.reloadData()
+        }
+    }
 }
