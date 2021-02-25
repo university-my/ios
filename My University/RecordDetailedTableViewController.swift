@@ -141,7 +141,7 @@ class RecordDetailedTableViewController: GenericTableViewController {
         }
         
         // Description
-        if let description = record.reason, description.isEmpty == false {
+        if let description = Record.Formatter.reason(from: record.asStruct()), description.isEmpty == false {
             pairSection.rows.append(.reason(reason: description))
         }
         sections.append(pairSection)
