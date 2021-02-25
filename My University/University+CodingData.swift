@@ -12,16 +12,20 @@ extension University {
     
     struct CodingData: Codable {
         
-        let serverID: Int64
+        let id: Int64
         let fullName: String
         let shortName: String
         let url: String
+        let isHidden: Bool
+        let isBeta: Bool
+        let pictureWhite: String?
+        let pictureDark: String?
+        let showClassrooms: Bool
+        let showGroups: Bool
+        let showTeachers: Bool
         
-        enum CodingKeys: String, CodingKey {
-            case serverID = "id"
-            case fullName = "full_name"
-            case shortName = "short_name"
-            case url
+        var serverID: Int64 {
+            id
         }
     }
 }

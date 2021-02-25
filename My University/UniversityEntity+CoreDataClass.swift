@@ -13,15 +13,6 @@ import CoreData
 @objc(UniversityEntity)
 public class UniversityEntity: NSManagedObject {
     
-    // MARK: - Properties
-    
-    var hideClassrooms: Bool {
-        if url == "kpi" || url == "pnu" {
-            return true
-        }
-        return false
-    }
-    
     // MARK: - Methods
 
     static func fetch(_ ids: [Int64], context: NSManagedObjectContext) -> [UniversityEntity] {

@@ -2,8 +2,8 @@
 //  UniversityEntity+CoreDataProperties.swift
 //  My University
 //
-//  Created by Yura Voevodin on 12.10.2020.
-//  Copyright © 2020 Yura Voevodin. All rights reserved.
+//  Created by Yura Voevodin on 25.02.2021.
+//  Copyright © 2021 Yura Voevodin. All rights reserved.
 //
 //
 
@@ -21,6 +21,13 @@ extension UniversityEntity {
     @NSManaged public var id: Int64
     @NSManaged public var shortName: String?
     @NSManaged public var url: String?
+    @NSManaged public var isHidden: Bool
+    @NSManaged public var isBeta: Bool
+    @NSManaged public var pictureWhite: String?
+    @NSManaged public var pictureDark: String?
+    @NSManaged public var showClassrooms: Bool
+    @NSManaged public var showGroups: Bool
+    @NSManaged public var showTeachers: Bool
     @NSManaged public var classrooms: NSSet?
     @NSManaged public var groups: NSSet?
     @NSManaged public var teachers: NSSet?

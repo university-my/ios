@@ -95,16 +95,16 @@ class UniversityDataSource: NSObject {
         // University
         var rows: [UniversityRow] = []
         
-        if university.hideClassrooms {
-            let groups = UniversityRow(kind: .groups)
-            let teachers = UniversityRow(kind: .teachers)
-            rows = [groups, teachers]
-        } else {
-            let groups = UniversityRow(kind: .groups)
-            let teachers = UniversityRow(kind: .teachers)
-            let classrooms = UniversityRow(kind: .classrooms)
-            rows = [groups, teachers, classrooms]
+        if university.showGroups {
+            rows.append(UniversityRow(kind: .groups))
         }
+        if university.showTeachers {
+            rows.append(UniversityRow(kind: .teachers))
+        }
+        if university.showClassrooms {
+            rows.append(UniversityRow(kind: .classrooms))
+        }
+        
         universityRows = rows
         newSections.append(Section(kind: .university))
         
