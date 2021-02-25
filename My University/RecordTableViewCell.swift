@@ -30,12 +30,12 @@ class RecordTableViewCell: UITableViewCell, ReusableView {
         let detail = record.detail
         
         if title.isEmpty && detail.isEmpty {
-            textLabel?.text = record.reason
+            textLabel?.text = Record.Formatter.reason(from: record)
             detailTextLabel?.text = nil
             
         } else if title.isEmpty && !detail.isEmpty {
             textLabel?.text = detail
-            detailTextLabel?.text = record.reason
+            detailTextLabel?.text = Record.Formatter.reason(from: record)
             
         } else {
             textLabel?.text = title

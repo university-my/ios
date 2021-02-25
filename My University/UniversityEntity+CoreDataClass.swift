@@ -13,16 +13,6 @@ import CoreData
 @objc(UniversityEntity)
 public class UniversityEntity: NSManagedObject {
     
-    // MARK: - Properties
-    
-    var isKPI: Bool {
-        if url == "kpi" {
-            return true
-        } else {
-            return false
-        }
-    }
-    
     // MARK: - Methods
 
     static func fetch(_ ids: [Int64], context: NSManagedObjectContext) -> [UniversityEntity] {
@@ -55,6 +45,30 @@ public class UniversityEntity: NSManagedObject {
             return entity
         } catch  {
             return nil
+        }
+    }
+    
+    static func search(with query: String, context: NSManagedObjectContext) -> [UniversityEntity] {
+        let fetchRequest: NSFetchRequest<UniversityEntity> = UniversityEntity.fetchRequest()
+        
+        let name = NSSortDescriptor(key: #keyPath(UniversityEntity.shortName), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
+        
+        fetchRequest.sortDescriptors = [name]
+        fetchRequest.fetchBatchSize = 20
+        
+        let predicate = NSCompoundPredicate(
+            type: .or,
+            subpredicates: [
+                NSPredicate(format: "fullName CONTAINS[cd] %@", query),
+                NSPredicate(format: "shortName CONTAINS[cd] %@", query)
+            ]
+        )
+        fetchRequest.predicate = predicate
+        do {
+            let result = try context.fetch(fetchRequest)
+            return result
+        } catch  {
+            return []
         }
     }
 }

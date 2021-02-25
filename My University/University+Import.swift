@@ -30,7 +30,10 @@ extension University {
         func importUniversities(_ completion: @escaping ((_ error: Error?) -> ())) {
             completionHandler = completion
             
-            networkClient.load(url: University.Endpoints.allUniversities.url) { (result) in
+            let decoder: JSONDecoder = .init()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            
+            networkClient.load(url: University.Endpoints.allUniversities.url, decoder: decoder) { (result) in
                 switch result {
                 
                 case .failure(let error):
@@ -85,9 +88,7 @@ extension University {
                     if let universityFromServer = universities.first(where: { (parsedUniversity) -> Bool in
                         return university.id == parsedUniversity.serverID
                     }) {
-                        university.fullName = universityFromServer.fullName
-                        university.shortName = universityFromServer.shortName
-                        university.url = universityFromServer.url
+                        map(universityFromServer, to: university)
                     }
                 }
                 
@@ -113,12 +114,24 @@ extension University {
             }
         }
         
-        private func insert(_ parsedUniversity: University.CodingData, context: NSManagedObjectContext) {
-            let universityEntity = UniversityEntity(context: context)
-            universityEntity.id = parsedUniversity.serverID
-            universityEntity.fullName = parsedUniversity.fullName
-            universityEntity.shortName = parsedUniversity.shortName
-            universityEntity.url = parsedUniversity.url
+        private func insert(_ codingData: University.CodingData, context: NSManagedObjectContext) {
+            let entity = UniversityEntity(context: context)
+            entity.id = codingData.serverID
+            
+            map(codingData, to: entity)
+        }
+        
+        private func map(_ codingData: University.CodingData, to entity: UniversityEntity) {
+            entity.fullName = codingData.fullName
+            entity.shortName = codingData.shortName
+            entity.url = codingData.url
+            entity.isHidden = codingData.isHidden
+            entity.isBeta = codingData.isBeta
+            entity.pictureDark = codingData.pictureDark
+            entity.pictureWhite = codingData.pictureWhite
+            entity.showClassrooms = codingData.showClassrooms
+            entity.showGroups = codingData.showGroups
+            entity.showTeachers = codingData.showTeachers
         }
     }
 }
