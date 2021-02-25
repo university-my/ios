@@ -69,9 +69,9 @@ public class RecordEntity: NSManagedObject {
             return record.id
         }
         let fetchRequest: NSFetchRequest<RecordEntity> = RecordEntity.fetchRequest()
-        let isdPredicate = NSPredicate(format: "id IN %@", ids)
+        let idsPredicate = NSPredicate(format: "id IN %@", ids)
         let groupPredicate = NSPredicate(format: "ANY groups == %@", group)
-        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [groupPredicate, isdPredicate])
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [groupPredicate, idsPredicate])
         fetchRequest.predicate = predicate
         do {
             let result = try context.fetch(fetchRequest)
@@ -88,9 +88,9 @@ public class RecordEntity: NSManagedObject {
             return record.id
         }
         let fetchRequest: NSFetchRequest<RecordEntity> = RecordEntity.fetchRequest()
-        let isdPredicate = NSPredicate(format: "id IN %@", ids)
+        let idsPredicate = NSPredicate(format: "id IN %@", ids)
         let teacherPredicate = NSPredicate(format: "teacher == %@", teacher)
-        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [teacherPredicate, isdPredicate])
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [teacherPredicate, idsPredicate])
         fetchRequest.predicate = predicate
         do {
             let result = try context.fetch(fetchRequest)

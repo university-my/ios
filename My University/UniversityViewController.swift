@@ -360,6 +360,7 @@ class UniversityViewController: GenericTableViewController {
             title: NSLocalizedString("Change University", comment: "Action title"),
             image: UIImage(systemName: "list.dash")
         ) { _ in
+            University.selectedUniversityID = nil
             Entity.Manager.shared.deleteLastOpened()
             self.performSegue(withIdentifier: .changeUniversity)
         }

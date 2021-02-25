@@ -22,16 +22,10 @@ class SearchResultsTableViewController: UITableViewController {
     var filteredClassrooms: [ClassroomEntity] = []
     var filteredTeachers: [TeacherEntity] = []
     
-    // MARK: - Lifecycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

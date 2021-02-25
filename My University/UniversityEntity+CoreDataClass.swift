@@ -56,4 +56,28 @@ public class UniversityEntity: NSManagedObject {
             return nil
         }
     }
+    
+    static func search(with query: String, context: NSManagedObjectContext) -> [UniversityEntity] {
+        let fetchRequest: NSFetchRequest<UniversityEntity> = UniversityEntity.fetchRequest()
+        
+        let name = NSSortDescriptor(key: #keyPath(UniversityEntity.shortName), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
+        
+        fetchRequest.sortDescriptors = [name]
+        fetchRequest.fetchBatchSize = 20
+        
+        let predicate = NSCompoundPredicate(
+            type: .or,
+            subpredicates: [
+                NSPredicate(format: "fullName CONTAINS[cd] %@", query),
+                NSPredicate(format: "shortName CONTAINS[cd] %@", query)
+            ]
+        )
+        fetchRequest.predicate = predicate
+        do {
+            let result = try context.fetch(fetchRequest)
+            return result
+        } catch  {
+            return []
+        }
+    }
 }
