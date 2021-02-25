@@ -23,8 +23,11 @@ class UniversityEndpointsTests: XCTestCase {
     func testUniversitiesLoading() {
         let expectations = expectation(description: "Universities")
         
+        let decoder: JSONDecoder = .init()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        
         let client = NetworkClient<[University.CodingData]>()
-        client.load(url: University.Endpoints.allUniversities.url) { (result) in
+        client.load(url: University.Endpoints.allUniversities.url, decoder: decoder) { (result) in
             switch result {
             
             case .failure(let error):
