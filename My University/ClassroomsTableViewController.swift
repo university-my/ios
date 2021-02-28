@@ -15,18 +15,10 @@ class ClassroomsTableViewController: SearchableTableViewController {
     var universityID: Int64?
     private var dataSource: ClassroomDataSource?
     
-    // MARK: - Notification
-    
-    @IBOutlet weak var statusButton: UIBarButtonItem!
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // For notifications
-        configureNotificationLabel()
-        statusButton.customView = notificationLabel
         
         // Configure table
         tableView.rowHeight = UITableView.automaticDimension
@@ -75,7 +67,6 @@ class ClassroomsTableViewController: SearchableTableViewController {
         } else {
             tableView.reloadData()
             refreshControl?.endRefreshing()
-            hideNotification()
         }
     }
     
@@ -83,22 +74,17 @@ class ClassroomsTableViewController: SearchableTableViewController {
         guard let dataSource = dataSource else { return }
         
         dataSource.importClassrooms { (error) in
-
-            if let error = error {
-                self.showNotification(text: error.localizedDescription)
-            } else {
-                self.hideNotification()
-                
-                // Save date of last update
-                if let id = self.universityID {
-                    UpdateHelper.updated(at: Date(), universityID: id, type: .classroom)
-                }
+            
+            #warning("Show alert with error message, like on the Universities screen")
+            
+            // Save date of last update
+            if let id = self.universityID {
+                UpdateHelper.updated(at: Date(), universityID: id, type: .classroom)
             }
             
             dataSource.performFetch()
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
-            self.hideNotification()
         }
     }
     

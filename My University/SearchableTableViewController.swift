@@ -44,4 +44,14 @@ class SearchableTableViewController: GenericTableViewController {
         searchController.isActive = true
         searchController.searchBar.becomeFirstResponder()
     }
+    
+    // MARK: - UITableViewDelegate
+    
+    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        /* It's a common anti-pattern to leave a cell labels populated with their text content when these cells enter the reuse queue. */
+        cell.textLabel?.text = nil
+        cell.detailTextLabel?.text = nil
+    }
+    
+    
 }

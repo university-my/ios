@@ -11,36 +11,14 @@ import CoreData
 
 class GenericTableViewController: UITableViewController {
     
-    // MARK: - Notification (toolbar)
-    
-    var notificationLabel = UILabel(frame: CGRect.zero)
-    
-    func configureNotificationLabel() {
-        notificationLabel.sizeToFit()
-        notificationLabel.backgroundColor = .clear
-        notificationLabel.textAlignment = .center
-      notificationLabel.textColor = .systemBlue
-        notificationLabel.adjustsFontSizeToFitWidth = true
-        notificationLabel.minimumScaleFactor = 0.5
-    }
-    
-    func showNotification(text: String?) {
-        notificationLabel.text = text
-        notificationLabel.sizeToFit()
-    }
-    
-    func hideNotification() {
-        notificationLabel.text = nil
-    }
-    
     // MARK: - Message (background view)
     
     let noRecordsMessage = NSLocalizedString("No records", comment: "Message")
     
     func show(message: String) {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "TableMessageViewController") as? TableMessageViewController {
-            tableView.backgroundView = vc.view
-            vc.messageLabel.text = message
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "TableMessageViewController") as? TableMessageViewController {
+            tableView.backgroundView = controller.view
+            controller.messageLabel.text = message
         }
     }
     
@@ -59,4 +37,14 @@ class GenericTableViewController: UITableViewController {
     func hideActivity() {
         tableView.backgroundView = nil
     }
+    
+    // MARK: - UITableViewDelegate
+    
+    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        /* It's a common anti-pattern to leave a cell labels populated with their text content when these cells enter the reuse queue. */
+        cell.textLabel?.text = nil
+        cell.detailTextLabel?.text = nil
+    }
+    
+    
 }
