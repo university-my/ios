@@ -28,6 +28,7 @@
 		DE13AF7F226A30D4009DF581 /* TeachersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE13AF7E226A30D4009DF581 /* TeachersTableViewController.swift */; };
 		DE13EEAC2466B4390011F307 /* EntityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE13EEAB2466B4390011F307 /* EntityViewController.swift */; };
 		DE13EEB42466B9BA0011F307 /* StructRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE13EEB32466B9BA0011F307 /* StructRepresentable.swift */; };
+		DE16BC1125F8EC040007AAE5 /* TeachersLogicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16BC1025F8EC040007AAE5 /* TeachersLogicController.swift */; };
 		DE18941C21BC3A3900C7F9DB /* GroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941B21BC3A3900C7F9DB /* GroupTableViewController.swift */; };
 		DE266D60240C4AAA00C30A4A /* WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE266D5F240C4AAA00C30A4A /* WhatsNewView.swift */; };
 		DE2863782455F75B0036A01F /* UniversitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2863772455F75B0036A01F /* UniversitiesViewController.swift */; };
@@ -192,6 +193,7 @@
 		DE13AF7E226A30D4009DF581 /* TeachersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersTableViewController.swift; sourceTree = "<group>"; };
 		DE13EEAB2466B4390011F307 /* EntityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityViewController.swift; sourceTree = "<group>"; };
 		DE13EEB32466B9BA0011F307 /* StructRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructRepresentable.swift; sourceTree = "<group>"; };
+		DE16BC1025F8EC040007AAE5 /* TeachersLogicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersLogicController.swift; sourceTree = "<group>"; };
 		DE18941B21BC3A3900C7F9DB /* GroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTableViewController.swift; sourceTree = "<group>"; };
 		DE266D5F240C4AAA00C30A4A /* WhatsNewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewView.swift; sourceTree = "<group>"; };
 		DE2863772455F75B0036A01F /* UniversitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversitiesViewController.swift; sourceTree = "<group>"; };
@@ -504,6 +506,7 @@
 			isa = PBXGroup;
 			children = (
 				DE540EC32215CF9F0092FC81 /* TeacherDataSource.swift */,
+				DE16BC1025F8EC040007AAE5 /* TeachersLogicController.swift */,
 				DE13AF7E226A30D4009DF581 /* TeachersTableViewController.swift */,
 			);
 			name = Teachers;
@@ -1168,6 +1171,7 @@
 				DEB9BD9C25397B1C008F41A2 /* Model+RecordsSyncController.swift in Sources */,
 				DEDA8CF52534930D00B54E41 /* ClassroomEntity+CoreDataClass.swift in Sources */,
 				DE540EBD2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift in Sources */,
+				DE16BC1125F8EC040007AAE5 /* TeachersLogicController.swift in Sources */,
 				DEE576E7226B8B98008F9EB6 /* ClassroomsTableViewController.swift in Sources */,
 				DEB9BD6F2538CC54008F41A2 /* CoreDataFetchable.swift in Sources */,
 				DE945AC72264D11700143303 /* UniversityEntity+CoreDataClass.swift in Sources */,
@@ -1542,7 +1546,7 @@
 			buildSettings = {
 				API_PREFIX = /api/v1;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = M2BF9ZE9NW;
 				INFOPLIST_FILE = "$(SRCROOT)/My University/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1563,7 +1567,7 @@
 			buildSettings = {
 				API_PREFIX = /api/v1;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = M2BF9ZE9NW;
 				INFOPLIST_FILE = "$(SRCROOT)/My University/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1728,7 +1732,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/yura-voevodin/MyLibrary";
 			requirement = {
-				branch = master;
+				branch = main;
 				kind = branch;
 			};
 		};

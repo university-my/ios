@@ -15,18 +15,10 @@ class GroupsTableViewController: SearchableTableViewController {
     var universityID: Int64?
     private var dataSource: GroupsDataSource?
     
-    // MARK: - Notification
-    
-    @IBOutlet weak var statusButton: UIBarButtonItem!
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // For notifications
-        configureNotificationLabel()
-        statusButton.customView = notificationLabel
         
         // Configure table
         tableView.rowHeight = UITableView.automaticDimension
@@ -76,37 +68,35 @@ class GroupsTableViewController: SearchableTableViewController {
         } else {
             tableView.reloadData()
             refreshControl?.endRefreshing()
-            hideNotification()
         }
     }
     
     func importGroups() {
-        guard let dataSource = dataSource else { return }
-        
-        dataSource.importGroups { (error) in
-
-            if let error = error {
-                self.showNotification(text: error.localizedDescription)
-            } else {
-                self.hideNotification()
-                
-                // Save date of last update
-                if let id = self.universityID {
-                    UpdateHelper.updated(at: Date(), universityID: id, type: .group)
-                }
-            }
-            
-            dataSource.performFetch()
-            self.tableView.reloadData()
-            self.refreshControl?.endRefreshing()
+        dataSource?.importGroups { [weak self] (error) in
+            self?.finishGroupsImport(with: error)
         }
+    }
+    
+    func finishGroupsImport(with error: Error?) {
+        if let error = error {
+            present(error) {
+                self.importGroups()
+            }
+        } else if let id = self.universityID {
+            // Save date of last update
+            UpdateHelper.updated(at: Date(), universityID: id, type: .group)
+        }
+        
+        dataSource?.performFetch()
+        tableView.reloadData()
+        refreshControl?.endRefreshing()
     }
     
     /// Check last updated date of groups
     private func needToUpdateGroups() -> Bool {
         guard let id = universityID else { return false }
-        let lastSynchronization = UpdateHelper.lastUpdated(for: id, type: .group)
-        return UpdateHelper.needToUpdate(from: lastSynchronization)
+        let lastSynchronisation = UpdateHelper.lastUpdated(for: id, type: .group)
+        return UpdateHelper.needToUpdate(from: lastSynchronisation)
     }
     
     // MARK: - Pull to refresh
@@ -119,7 +109,7 @@ class GroupsTableViewController: SearchableTableViewController {
         importGroups()
     }
     
-    // MARK - Table delegate
+    // MARK: - Navigation
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "groupDetails", sender: nil)
@@ -132,16 +122,16 @@ class GroupsTableViewController: SearchableTableViewController {
             
         case "groupDetails":
             let navigationVC = segue.destination as? UINavigationController
-            let vc = navigationVC?.viewControllers.first as? GroupViewController
+            let controller = navigationVC?.viewControllers.first as? GroupViewController
             if searchController.isActive {
                 if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
                     let selectedGroup = resultsTableController.filteredGroups[safe: indexPath.row]
-                    vc?.entityID = selectedGroup?.id
+                    controller?.entityID = selectedGroup?.id
                 }
             } else {
                 if let indexPath = tableView.indexPathForSelectedRow {
                     let selectedGroup = dataSource?.fetchedResultsController?.object(at: indexPath)
-                    vc?.entityID = selectedGroup?.id
+                    controller?.entityID = selectedGroup?.id
                 }
             }
             
@@ -149,6 +139,16 @@ class GroupsTableViewController: SearchableTableViewController {
             break
         }
     }
+    
+    // MARK: - UITableViewDelegate
+    
+    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        /* It's a common anti-pattern to leave a cell labels populated with their text content when these cells enter the reuse queue. */
+        cell.textLabel?.text = nil
+        cell.detailTextLabel?.text = nil
+    }
+    
+    
 }
 
 // MARK: - UISearchResultsUpdating
@@ -179,3 +179,7 @@ extension GroupsTableViewController: UISearchResultsUpdating {
         }
     }
 }
+
+// MARK: - ErrorAlertProtocol
+
+extension GroupsTableViewController: ErrorAlertRepresentable {}

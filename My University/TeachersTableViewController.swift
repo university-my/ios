@@ -14,19 +14,20 @@ class TeachersTableViewController: SearchableTableViewController {
     
     var universityID: Int64?
     private var dataSource: TeacherDataSource?
+    private let logic: TeachersLogicController
     
-    // MARK: - Notification
+    // MARK: - Init
     
-    @IBOutlet weak var statusButton: UIBarButtonItem!
+    required init?(coder: NSCoder) {
+        logic = TeachersLogicController()
+        
+        super.init(coder: coder)
+    }
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // For notifications
-        configureNotificationLabel()
-        statusButton.customView = notificationLabel
 
         // Configure table
         tableView.rowHeight = UITableView.automaticDimension
@@ -42,7 +43,7 @@ class TeachersTableViewController: SearchableTableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        // This is for reloading data when the favorites are changed
+        // This is for reloading data when the favourites are changed
         if let datasource = dataSource {
             datasource.performFetch()
             tableView.reloadData()
@@ -56,6 +57,7 @@ class TeachersTableViewController: SearchableTableViewController {
         if let id = universityID {
             // Loading teachers
             dataSource = TeacherDataSource(universityID: id)
+            logic.update(with: id, dataSource: dataSource)
             tableView.dataSource = dataSource
             loadTeachers()
         }
@@ -64,50 +66,29 @@ class TeachersTableViewController: SearchableTableViewController {
     // MARK: - Groups
     
     func loadTeachers() {
-        guard let dataSource = dataSource else { return }
-        dataSource.performFetch()
-        
-        let teachers = dataSource.fetchedResultsController?.fetchedObjects ?? []
-        if teachers.isEmpty {
-            importTeachers()
-        } else if needToUpdateTeachers() {
-            // Update teachers once in a day
-            importTeachers()
+        if logic.needToImportTeachers() {
+            self.importTeachers()
         } else {
             tableView.reloadData()
             refreshControl?.endRefreshing()
-            hideNotification()
         }
     }
     
     func importTeachers() {
-        guard let dataSource = dataSource else { return }
-        
-        dataSource.importTeachers { (error) in
-
-            if let error = error {
-                self.showNotification(text: error.localizedDescription)
-            } else {
-                self.hideNotification()
-                
-                // Save date of last update
-                if let id = self.universityID {
-                    UpdateHelper.updated(at: Date(), universityID: id, type: .teacher)
-                }
-            }
-            
-            dataSource.performFetch()
-            self.tableView.reloadData()
-            self.refreshControl?.endRefreshing()
-            self.hideNotification()
+        logic.importTeachers { (error) in
+            self.finishTeachersImport(with: error)
         }
     }
     
-    /// Check last updated date of teachers
-    private func needToUpdateTeachers() -> Bool {
-        guard let id = universityID else { return false }
-        let lastSynchronization = UpdateHelper.lastUpdated(for: id, type: .teacher)
-        return UpdateHelper.needToUpdate(from: lastSynchronization)
+    func finishTeachersImport(with error: Error?) {
+        if let error = error {
+            present(error) {
+                self.importTeachers()
+            }
+        }
+        dataSource?.performFetch()
+        tableView.reloadData()
+        refreshControl?.endRefreshing()
     }
     
     // MARK: - Pull to refresh
@@ -120,7 +101,7 @@ class TeachersTableViewController: SearchableTableViewController {
         importTeachers()
     }
     
-    // MARK - Navigation
+    // MARK: - Navigation
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "teacherDetails", sender: nil)
@@ -133,16 +114,16 @@ class TeachersTableViewController: SearchableTableViewController {
             
         case "teacherDetails":
             let navigationVC = segue.destination as? UINavigationController
-            let vc = navigationVC?.viewControllers.first as? TeacherViewController
+            let controller = navigationVC?.viewControllers.first as? TeacherViewController
             if searchController.isActive {
                 if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
                     let selectedTeacher = resultsTableController.filteredTeachers[safe: indexPath.row]
-                    vc?.entityID = selectedTeacher?.id
+                    controller?.entityID = selectedTeacher?.id
                 }
             } else {
                 if let indexPath = tableView.indexPathForSelectedRow {
                     let selectedTeacher = dataSource?.fetchedResultsController?.object(at: indexPath)
-                    vc?.entityID = selectedTeacher?.id
+                    controller?.entityID = selectedTeacher?.id
                 }
             }
             
@@ -150,6 +131,17 @@ class TeachersTableViewController: SearchableTableViewController {
             break
         }
     }
+    
+    // MARK: - UITableViewDelegate
+    
+    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        /* It's a common anti-pattern to leave a cell labels populated with their text content when these cells enter the reuse queue.
+         */
+        cell.textLabel?.text = nil
+        cell.detailTextLabel?.text = nil
+    }
+    
+    
 }
 
 // MARK: - UISearchResultsUpdating
@@ -180,3 +172,7 @@ extension TeachersTableViewController: UISearchResultsUpdating {
         }
     }
 }
+
+// MARK: - ErrorAlertProtocol
+
+extension TeachersTableViewController: ErrorAlertRepresentable {}

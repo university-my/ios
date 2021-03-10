@@ -15,18 +15,10 @@ class ClassroomsTableViewController: SearchableTableViewController {
     var universityID: Int64?
     private var dataSource: ClassroomDataSource?
     
-    // MARK: - Notification
-    
-    @IBOutlet weak var statusButton: UIBarButtonItem!
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // For notifications
-        configureNotificationLabel()
-        statusButton.customView = notificationLabel
         
         // Configure table
         tableView.rowHeight = UITableView.automaticDimension
@@ -75,38 +67,35 @@ class ClassroomsTableViewController: SearchableTableViewController {
         } else {
             tableView.reloadData()
             refreshControl?.endRefreshing()
-            hideNotification()
         }
     }
     
     func importClassrooms() {
-        guard let dataSource = dataSource else { return }
-        
-        dataSource.importClassrooms { (error) in
-
-            if let error = error {
-                self.showNotification(text: error.localizedDescription)
-            } else {
-                self.hideNotification()
-                
-                // Save date of last update
-                if let id = self.universityID {
-                    UpdateHelper.updated(at: Date(), universityID: id, type: .classroom)
-                }
-            }
-            
-            dataSource.performFetch()
-            self.tableView.reloadData()
-            self.refreshControl?.endRefreshing()
-            self.hideNotification()
+        dataSource?.importClassrooms { [weak self] (error) in
+            self?.finishClassroomsImport(with: error)
         }
+    }
+    
+    func finishClassroomsImport(with error: Error?) {
+        if let error = error {
+            present(error) {
+                self.importClassrooms()
+            }
+        } else if let id = self.universityID {
+            // Save date of last update
+            UpdateHelper.updated(at: Date(), universityID: id, type: .classroom)
+        }
+        
+        dataSource?.performFetch()
+        tableView.reloadData()
+        refreshControl?.endRefreshing()
     }
     
     /// Check last updated date of classrooms
     private func needToUpdateClassrooms() -> Bool {
         guard let id = universityID else { return false }
-        let lastSynchronization = UpdateHelper.lastUpdated(for: id, type: .classroom)
-        return UpdateHelper.needToUpdate(from: lastSynchronization)
+        let lastSynchronisation = UpdateHelper.lastUpdated(for: id, type: .classroom)
+        return UpdateHelper.needToUpdate(from: lastSynchronisation)
     }
     
     // MARK: - Pull to refresh
@@ -185,3 +174,7 @@ extension ClassroomsTableViewController: UISearchResultsUpdating {
 private extension ClassroomsTableViewController.SegueIdentifier {
     static let classroomDetails = "classroomDetails"
 }
+
+// MARK: - ErrorAlertProtocol
+
+extension ClassroomsTableViewController: ErrorAlertRepresentable {}
