@@ -72,21 +72,24 @@ class GroupsTableViewController: SearchableTableViewController {
     }
     
     func importGroups() {
-        guard let dataSource = dataSource else { return }
-        
-        dataSource.importGroups { (error) in
-            
-            #warning("Show alert with error message, like on the Universities screen")
-            
-            // Save date of last update
-            if let id = self.universityID {
-                UpdateHelper.updated(at: Date(), universityID: id, type: .group)
-            }
-            
-            dataSource.performFetch()
-            self.tableView.reloadData()
-            self.refreshControl?.endRefreshing()
+        dataSource?.importGroups { [weak self] (error) in
+            self?.finishGroupsImport(with: error)
         }
+    }
+    
+    func finishGroupsImport(with error: Error?) {
+        if let error = error {
+            present(error) {
+                self.importGroups()
+            }
+        } else if let id = self.universityID {
+            // Save date of last update
+            UpdateHelper.updated(at: Date(), universityID: id, type: .group)
+        }
+        
+        dataSource?.performFetch()
+        tableView.reloadData()
+        refreshControl?.endRefreshing()
     }
     
     /// Check last updated date of groups
@@ -176,3 +179,7 @@ extension GroupsTableViewController: UISearchResultsUpdating {
         }
     }
 }
+
+// MARK: - ErrorAlertProtocol
+
+extension GroupsTableViewController: ErrorAlertRepresentable {}
