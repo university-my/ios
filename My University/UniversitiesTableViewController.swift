@@ -70,9 +70,16 @@ class UniversitiesTableViewController: GenericTableViewController {
     // MARK: - Navigation
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let university = dataSource.fetchedResultsController?.fetchedObjects?[safe: indexPath.row]
-        University.selectedUniversityID = university?.id
-        performSegue(withIdentifier: .presentUniversity)
+        let universityID: Int64?
+        if searchController.isActive {
+            universityID = resultsTableController.filtered[safe: indexPath.row]?.id
+        } else {
+            universityID = dataSource.fetchedResultsController?.fetchedObjects?[safe: indexPath.row]?.id
+        }
+        if let id = universityID {
+            University.selectedUniversityID = id
+            performSegue(withIdentifier: .presentUniversity)
+        }
     }
     
     // MARK: - Search
@@ -137,14 +144,10 @@ extension UniversitiesTableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         // Strip out all the leading and trailing spaces.
         guard let text = searchController.searchBar.text else { return }
-        let searchString = text.trimmingCharacters(in: .whitespaces)
-        
-        let filteredResults = UniversityEntity.search(with: searchString, context: CoreData.default.viewContext)
+        let searchString = text.trimmingCharacters(in: .whitespacesAndNewlines)
         
         // Hand over the filtered results to our search results table.
-        if let resultsController = searchController.searchResultsController as? UniversitiesSearchResultsTableViewController {
-            resultsController.filtered = filteredResults
-            resultsController.tableView.reloadData()
-        }
+        resultsTableController.filtered = UniversityEntity.search(with: searchString, context: CoreData.default.viewContext)
+        resultsTableController.tableView.reloadData()
     }
 }
