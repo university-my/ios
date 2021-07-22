@@ -10,7 +10,7 @@ import CoreData
 import UIKit
 import StoreKit
 
-protocol RecordDetailedTableViewControllerDelegate: class {
+protocol RecordDetailedTableViewControllerDelegate: AnyObject {
     func didDismissDetails(in viewController: RecordDetailedTableViewController)
 }
 

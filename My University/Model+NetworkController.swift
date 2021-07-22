@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol ModelNetworkControllerDelegate: class {
+protocol ModelNetworkControllerDelegate: AnyObject {
     func didImportRecords(for entity: CoreDataFetchable & CoreDataEntityProtocol, _ error: Error?)
 }
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol EntityTableViewControllerDelegate: class {
+protocol EntityTableViewControllerDelegate: AnyObject {
     func didBeginRefresh()
     func didDismissDetails()
 }
