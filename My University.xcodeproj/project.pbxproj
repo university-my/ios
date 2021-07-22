@@ -1546,14 +1546,14 @@
 			buildSettings = {
 				API_PREFIX = /api/v1;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = M2BF9ZE9NW;
 				INFOPLIST_FILE = "$(SRCROOT)/My University/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.3;
+				MARKETING_VERSION = 1.7.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.voevodin-yura.Schedule";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SERVER_BASE_URL = "http://localhost:3000";
@@ -1567,14 +1567,14 @@
 			buildSettings = {
 				API_PREFIX = /api/v1;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = M2BF9ZE9NW;
 				INFOPLIST_FILE = "$(SRCROOT)/My University/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.3;
+				MARKETING_VERSION = 1.7.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.voevodin-yura.Schedule";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SERVER_BASE_URL = "https://my-university.com.ua";

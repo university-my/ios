@@ -10,7 +10,7 @@ import Foundation
 import os
 import StoreKit
 
-protocol ModelLogicControllerDelegate: class {
+protocol ModelLogicControllerDelegate: AnyObject {
     func didChangeState(to newState: EntityViewController.State)
 }
 

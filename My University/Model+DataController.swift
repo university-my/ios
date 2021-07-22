@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import os
 
-protocol ModelDataControllerDelegate: class {
+protocol ModelDataControllerDelegate: AnyObject {
     
     func entityDataController(didImportRecordsFor structure: EntityRepresentable, _ error: Error?)
     func entityDataController(didBuildSectionsFor structure: EntityRepresentable)

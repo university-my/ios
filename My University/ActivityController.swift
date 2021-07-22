@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ActivityControllerDelegate: class {
+protocol ActivityControllerDelegate: AnyObject {
     func didPresentActivity(from controller: ActivityController)
 }
 
