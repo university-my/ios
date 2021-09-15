@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MyLibrary
 
 class NoRecordsTableViewCell: UITableViewCell, NibLoadableView, ReusableView {
     

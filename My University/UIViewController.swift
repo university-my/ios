@@ -16,3 +16,7 @@ extension UIViewController {
         performSegue(withIdentifier: withIdentifier, sender: nil)
     }
 }
+
+// MARK: - StoryboardIdentifiable
+
+extension UIViewController: StoryboardIdentifiable { }

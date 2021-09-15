@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import MyLibrary
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
