@@ -100,7 +100,7 @@ class ClassroomViewController: EntityViewController {
     
     func configureMenu() {
         let config = EntityMenuPresenter.Config(item: menuBarButtonItem) {
-            if let url = self.logic.shareURL() {
+            if let url = self.logic.shareURL {
                 self.share(url)
             }
             

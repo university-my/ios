@@ -27,7 +27,7 @@ class UniversityEndpointsTests: XCTestCase {
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         
         let client = NetworkClient<[University.CodingData]>()
-        client.load(url: University.Endpoints.allUniversities.url, decoder: decoder) { (result) in
+        client.loadWithPublisher(url: University.Endpoints.allUniversities.url, decoder: decoder) { (result) in
             switch result {
             
             case .failure(let error):

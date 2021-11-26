@@ -33,14 +33,14 @@ extension Model {
         
         // MARK: - Import
         
-        func importRecords(for date: Date, _ completion: @escaping Completion) {
+        func importRecords(for date: Date, decoder: JSONDecoder, _ completion: @escaping Completion) {
             completionHandler = completion
             
             let dateString = DateFormatter.short.string(from: date)
             let params = Record.RequestParameters(id: modelID, university: university.url ?? "", date: dateString)
             let url = Kind.recordsEndpoint(params: params)
             
-            networkClient.load(url: url) { (result) in
+            networkClient.load(url, decoder: decoder) { (result) in
                 switch result {
                 
                 case .failure(let error):

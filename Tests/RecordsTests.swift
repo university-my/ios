@@ -15,9 +15,9 @@ class RecordsTests: XCTestCase {
         let expectations = expectation(description: "Records")
         
         let client = NetworkClient<Record.RecordsList>()
-        client.load(url: Record.Endpoints.testRecords.url) { (result) in
+        client.loadWithPublisher(url: Record.Endpoints.testRecords.url) { (result) in
             switch result {
-            
+                
             case .failure(let error):
                 XCTFail("\(error)")
                 
@@ -28,7 +28,7 @@ class RecordsTests: XCTestCase {
             }
         }
         
-        wait(for: [expectations], timeout: 5)
+        wait(for: [expectations], timeout: 2)
     }
     
     func testRecordsLoadingWithPublisher() {
@@ -38,9 +38,9 @@ class RecordsTests: XCTestCase {
         let params = Record.RequestParameters(id: 1, university: "sumdu", date: "2020-10-10")
         let url = ModelKinds.ClassroomModel.recordsEndpoint(params: params)
         
-        client.load(url: url) { (result) in
+        client.loadWithPublisher(url: url) { (result) in
             switch result {
-            
+                
             case .failure(let error):
                 XCTFail("\(error)")
                 
@@ -49,6 +49,57 @@ class RecordsTests: XCTestCase {
             }
         }
         
-        wait(for: [expectations], timeout: 5)
+        wait(for: [expectations], timeout: 2)
+    }
+    
+    /// Send request to the test API endpoint ant try to serialise response
+    func testRecordsParsingError() {
+        let expectations = expectation(description: "Error")
+        
+        let decoder = JSONDecoder()
+        
+        
+        let task = URLSession.shared.dataTask(with: Record.Endpoints.testRecordsParsingError.url) { data, response, error in
+            
+            guard let data = data else {
+                return
+            }
+            
+            do {
+                let status = try decoder.decode(NetworkStatus.CodingData.self, from: data)
+                
+                if status.code == NetworkStatus.Code.scheduleParsingError {
+                    expectations.fulfill()
+                }
+            } catch {
+                XCTFail("\(error)")
+            }
+        }
+        task.resume()
+        
+        wait(for: [expectations], timeout: 2)
+    }
+    
+    func testScheduleParsingNetworkError() {
+        let expectations = expectation(description: "Error")
+        
+        let decoder = JSONDecoder()
+        let client = NetworkClient<Record.RecordsList>()
+        client.load(Record.Endpoints.testRecordsParsingError.url, decoder: decoder) { (result) in
+            switch result {
+                
+            case .failure(let error):
+                if let networkError = error as? NetworkError {
+                    if networkError.kind == .scheduleParsingError {
+                        expectations.fulfill()
+                    }
+                }
+                
+            case .success(_):
+                break
+            }
+        }
+        
+        wait(for: [expectations], timeout: 2)
     }
 }

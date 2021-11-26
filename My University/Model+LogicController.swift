@@ -69,7 +69,7 @@ extension Model {
             return dataController.sections
         }
         
-        func shareURL() -> URL? {
+        var shareURL: URL? {
             dataController.shareURL(for: dataController.entity)
         }
         

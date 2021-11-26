@@ -33,7 +33,7 @@ extension University {
             let decoder: JSONDecoder = .init()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
             
-            networkClient.load(url: University.Endpoints.allUniversities.url, decoder: decoder) { (result) in
+            networkClient.loadWithPublisher(url: University.Endpoints.allUniversities.url, decoder: decoder) { (result) in
                 switch result {
                 
                 case .failure(let error):

@@ -83,11 +83,18 @@ class GroupViewController: EntityViewController {
         case .failed(let error):
             activityController.hideActivity()
             
-            // Show an error view
-            present(error) {
-                // Try again
-                self.logic.importRecords()
+            if let networkError = error as? NetworkError, networkError.kind == .scheduleParsingError {
+                
+                let alert = configureParsingErrorAlert(with: networkError, website: logic.shareURL)
+                present(alert, animated: true)
+                
+            } else {
+                present(error) {
+                    // Try again
+                    self.logic.importRecords()
+                }
             }
+            
             tableViewController.refreshControl?.endRefreshing()
         }
     }
@@ -100,7 +107,7 @@ class GroupViewController: EntityViewController {
     
     func configureMenu() {
         let config = EntityMenuPresenter.Config(item: menuBarButtonItem) {
-            if let url = self.logic.shareURL() {
+            if let url = self.logic.shareURL {
                 self.share(url)
             }
             
@@ -141,15 +148,15 @@ class GroupViewController: EntityViewController {
         switch identifier {
             
         case "records":
-            let vc = segue.destination as! GroupTableViewController
-            tableViewController = vc
+            let controller = segue.destination as! GroupTableViewController
+            tableViewController = controller
             tableViewController.delegate = self
             
         case "presentDatePicker":
             let navigationVC = segue.destination as? UINavigationController
-            let vc = navigationVC?.viewControllers.first as? DatePickerViewController
-            vc?.pairDate = pairDate
-            vc?.didSelectDate = { selectedDate in
+            let controller = navigationVC?.viewControllers.first as? DatePickerViewController
+            controller?.pairDate = pairDate
+            controller?.didSelectDate = { selectedDate in
                 self.logic.changePairDate(to: selectedDate)
             }
             

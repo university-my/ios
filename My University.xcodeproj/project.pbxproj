@@ -132,6 +132,8 @@
 		DEBCBDAE2530E3BC0087F216 /* UniversityEndpointsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCBDAD2530E3BC0087F216 /* UniversityEndpointsTests.swift */; };
 		DEBCBDB52530E4CC0087F216 /* MockHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCBDB12530E4160087F216 /* MockHost.swift */; };
 		DEBCBDC12530E9F60087F216 /* ModelKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCBDC02530E9F60087F216 /* ModelKind.swift */; };
+		DECEC8B52750131F00149185 /* NetworkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECEC8B42750131F00149185 /* NetworkStatus.swift */; };
+		DECEC8B72750DA2400149185 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECEC8B62750DA2400149185 /* NetworkError.swift */; };
 		DED71BD3253847AF00776F24 /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED71BD2253847AF00776F24 /* URLSession.swift */; };
 		DEDA50EA21862091006C7B27 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50E821862090006C7B27 /* InfoPlist.strings */; };
 		DEDA50ED218620E0006C7B27 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50EB218620E0006C7B27 /* Localizable.strings */; };
@@ -312,6 +314,8 @@
 		DEBCBDAD2530E3BC0087F216 /* UniversityEndpointsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityEndpointsTests.swift; sourceTree = "<group>"; };
 		DEBCBDB12530E4160087F216 /* MockHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHost.swift; sourceTree = "<group>"; };
 		DEBCBDC02530E9F60087F216 /* ModelKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelKind.swift; sourceTree = "<group>"; };
+		DECEC8B42750131F00149185 /* NetworkStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatus.swift; sourceTree = "<group>"; };
+		DECEC8B62750DA2400149185 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		DECF64EC251C75BE00F1AA33 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DED71BD2253847AF00776F24 /* URLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
 		DEDA50E921862090006C7B27 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -364,14 +368,11 @@
 		C29FF4CE2002382500B50299 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				DEB9BD8D25397735008F41A2 /* Model+DownloadsController.swift */,
-				DEB9BD4C2538C1D8008F41A2 /* Model+Endpoints.swift */,
-				DEB9BD86253975D4008F41A2 /* Model+ImportController.swift */,
-				DEA495FD253C5CD70025174E /* Model+NetworkController.swift */,
-				DEB9BD9B25397B1C008F41A2 /* Model+RecordsSyncController.swift */,
-				DEB9BD5A2538C3F6008F41A2 /* Model+SyncController.swift */,
 				DEB9BD282538B233008F41A2 /* NetworkClient.swift */,
+				DECEC8B62750DA2400149185 /* NetworkError.swift */,
+				DECEC8B42750131F00149185 /* NetworkStatus.swift */,
 				DE36592C252F8CA2002A1A11 /* Endpoint */,
+				DECEC8B32750127700149185 /* Model */,
 				DE36597D2530553C002A1A11 /* Website */,
 			);
 			name = Networking;
@@ -921,6 +922,19 @@
 			name = "Test Data";
 			sourceTree = "<group>";
 		};
+		DECEC8B32750127700149185 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DEB9BD8D25397735008F41A2 /* Model+DownloadsController.swift */,
+				DEB9BD4C2538C1D8008F41A2 /* Model+Endpoints.swift */,
+				DEB9BD86253975D4008F41A2 /* Model+ImportController.swift */,
+				DEA495FD253C5CD70025174E /* Model+NetworkController.swift */,
+				DEB9BD9B25397B1C008F41A2 /* Model+RecordsSyncController.swift */,
+				DEB9BD5A2538C3F6008F41A2 /* Model+SyncController.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		DEE576DF226B7861008F9EB6 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1153,6 +1167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE365932252F8FCF002A1A11 /* InvalidEndpointError.swift in Sources */,
+				DECEC8B52750131F00149185 /* NetworkStatus.swift in Sources */,
 				DEB9BD8E25397735008F41A2 /* Model+DownloadsController.swift in Sources */,
 				DE017F9723622BC70046D3ED /* PreferencesTableViewController.swift in Sources */,
 				DE131FE22456CAAB009D09EA /* RecordsDataSource.swift in Sources */,
@@ -1265,6 +1280,7 @@
 				C280894B1FB8D54A002B5676 /* GroupEntity+CoreDataClass.swift in Sources */,
 				C22A2E581FC7664000587463 /* RecordEntity+CoreDataClass.swift in Sources */,
 				DE18941C21BC3A3900C7F9DB /* GroupTableViewController.swift in Sources */,
+				DECEC8B72750DA2400149185 /* NetworkError.swift in Sources */,
 				DE266D60240C4AAA00C30A4A /* WhatsNewView.swift in Sources */,
 				DEA2B3FD246C02BF00F96E28 /* Entity+Manager.swift in Sources */,
 			);
@@ -1504,11 +1520,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -1559,10 +1576,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1622,7 +1640,7 @@
 				DEVELOPMENT_TEAM = M2BF9ZE9NW;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1650,7 +1668,7 @@
 				DEVELOPMENT_TEAM = M2BF9ZE9NW;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
