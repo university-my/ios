@@ -10,6 +10,9 @@
 /* Action title */
 "Change University" = "Змінити університет";
 
+/* Alert action */
+"Check on website" = "Перевірити на сайті";
+
 /* No comment provided by engineer. */
 "Check out what's new in this version:" = "Що нового в цій версії:";
 

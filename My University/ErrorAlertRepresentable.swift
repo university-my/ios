@@ -56,7 +56,7 @@ extension ErrorAlertRepresentable {
         alert.view.tintColor = .systemIndigo
         
         if let website = website {
-            let checkOnWebsite = String(localized: "Check on website")
+            let checkOnWebsite = NSLocalizedString("Check on website", comment: "Alert action")
             let action = UIAlertAction(title: checkOnWebsite, style: .default) { _ in
                 UIApplication.shared.open(website)
             }

@@ -22,7 +22,6 @@ class NetworkClient<Model: Decodable> {
             responseType: Model.self,
             decoder: decoder
         )
-        .print("➡️")
         
         cancellable = publisher.sink { (result) in
             
@@ -54,7 +53,7 @@ class NetworkClient<Model: Decodable> {
             if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == 404 {
                     // Check parsing error
-                    let error = self.decodeNetworkStatus(from: data, with: decoder)
+                    let error = URLSession.decodeNetworkStatus(from: data, with: decoder)
                     completion(.failure(error))
                 }
             }
@@ -63,20 +62,6 @@ class NetworkClient<Model: Decodable> {
             completion(result)
         }
         task.resume()
-    }
-    
-    private func decodeNetworkStatus(from data: Data, with decoder: JSONDecoder) -> Error {
-        do {
-            let status = try decoder.decode(NetworkStatus.CodingData.self, from: data)
-            
-            switch status.code {
-            case .scheduleParsingError:
-                return NetworkError(kind: .scheduleParsingError)
-            }
-            
-        } catch {
-            return error
-        }
     }
     
     private func decodeModel(from data: Data, with decoder: JSONDecoder) -> Result<Model, Error> {
