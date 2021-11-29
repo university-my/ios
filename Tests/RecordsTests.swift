@@ -14,8 +14,9 @@ class RecordsTests: XCTestCase {
     func testRecordsLoading() {
         let expectations = expectation(description: "Records")
         
+        let decoder = JSONDecoder()
         let client = NetworkClient<Record.RecordsList>()
-        client.loadWithPublisher(url: Record.Endpoints.testRecords.url) { (result) in
+        client.load(Record.Endpoints.testRecords.url, decoder: decoder) { (result) in
             switch result {
                 
             case .failure(let error):
@@ -25,27 +26,6 @@ class RecordsTests: XCTestCase {
                 if !list.records.isEmpty {
                     expectations.fulfill()
                 }
-            }
-        }
-        
-        wait(for: [expectations], timeout: 2)
-    }
-    
-    func testRecordsLoadingWithPublisher() {
-        let expectations = expectation(description: "Records")
-        
-        let client = NetworkClient<Record.RecordsList>()
-        let params = Record.RequestParameters(id: 1, university: "sumdu", date: "2020-10-10")
-        let url = ModelKinds.ClassroomModel.recordsEndpoint(params: params)
-        
-        client.loadWithPublisher(url: url) { (result) in
-            switch result {
-                
-            case .failure(let error):
-                XCTFail("\(error)")
-                
-            case .success:
-                expectations.fulfill()
             }
         }
         
@@ -110,7 +90,7 @@ class RecordsTests: XCTestCase {
         
         let decoder = JSONDecoder()
         let client = NetworkClient<Record.RecordsList>()
-        client.loadWithPublisher(url: Record.Endpoints.testRecordsParsingError.url, decoder: decoder) { (result) in
+        client.load(Record.Endpoints.testRecordsParsingError.url, decoder: decoder) { (result) in
             switch result {
                 
             case .failure(let error):

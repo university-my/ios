@@ -16,7 +16,7 @@ extension Record {
             Endpoint<EndpointKinds.API>(path: "/records/test")
         }
         
-        /// Testing 404 response with custom code
+        /// Testing 500 response with custom code
         static var testRecordsParsingError: Endpoint<EndpointKinds.API> {
             Endpoint<EndpointKinds.API>(path: "/records/parsing_error")
         }

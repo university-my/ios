@@ -11,7 +11,7 @@ import os
 import StoreKit
 
 protocol ModelLogicControllerDelegate: AnyObject {
-    func didChangeState(to newState: EntityViewController.State)
+    func didChangeState(to newState: EntityViewControllerState)
 }
 
 extension Model {
