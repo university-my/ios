@@ -27,11 +27,7 @@ extension ErrorAlertRepresentable {
         alert.addAction(tryAgainAction)
         
         // Report an error
-        let reportAnError = NSLocalizedString("Report an error", comment: "Alert action")
-        let reportAction = UIAlertAction(title: reportAnError, style: .default) { (_) in
-            UIApplication.shared.open(.contacts)
-        }
-        alert.addAction(reportAction)
+         alert.addAction(reportErrorAction())
         
         // Cancel
         let canсel = NSLocalizedString("Cancel", comment: "Alert action")
@@ -65,11 +61,7 @@ extension ErrorAlertRepresentable {
         }
         
         // Report an error
-        let reportAnError = NSLocalizedString("Report an error", comment: "Alert action")
-        let reportAction = UIAlertAction(title: reportAnError, style: .default) { (_) in
-            UIApplication.shared.open(.contacts)
-        }
-        alert.addAction(reportAction)
+        alert.addAction(reportErrorAction())
         
         // Cancel
         let canсel = NSLocalizedString("Cancel", comment: "Alert action")
@@ -77,6 +69,31 @@ extension ErrorAlertRepresentable {
         alert.addAction(cancelAction)
         
         return alert
+    }
+    
+    func configureNotFoundAlert() -> UIAlertController {
+        let title = NSLocalizedString("Sorry", comment: "Alert title")
+        let message = NSLocalizedString("We cannot found this schedule anymore. We know this is a bad case. To fix this try to reinstall an app.", comment: "Alert message")
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.view.tintColor = .systemIndigo
+        
+        // Report an error
+        alert.addAction(reportErrorAction())
+        
+        let okActionTitle = NSLocalizedString("OK", comment: "Alert action")
+        let okAction = UIAlertAction(title: okActionTitle, style: .default, handler: nil)
+        alert.addAction(okAction)
+        
+        return alert
+    }
+    
+    func reportErrorAction() -> UIAlertAction {
+        let reportAnError = NSLocalizedString("Report an error", comment: "Alert action")
+        let reportAction = UIAlertAction(title: reportAnError, style: .default) { (_) in
+            UIApplication.shared.open(.contacts)
+        }
+        return reportAction
     }
 }
 

@@ -28,22 +28,12 @@ final class GroupViewController: EntityViewController<ModelKinds.GroupModel, Gro
         configureMenu()
     }
     
-    // MARK: - Group
-    
-    var group: GroupEntity? {
-        logic.entity
-    }
-    
     // MARK: - Menu
     
     @IBOutlet weak var menuBarButtonItem: UIBarButtonItem!
     
     override var menuItem: UIBarButtonItem? {
         menuBarButtonItem
-    }
-    
-    override var isFavorite: Bool {
-        group?.isFavorite ?? false
     }
     
     // MARK: - Date

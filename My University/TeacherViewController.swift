@@ -28,22 +28,12 @@ final class TeacherViewController: EntityViewController<ModelKinds.TeacherModel,
         configureMenu()
     }
     
-    // MARK: - Teacher
-    
-    var teacher: TeacherEntity? {
-        logic.entity
-    }
-    
     // MARK: - Menu
     
     @IBOutlet weak var menuBarButtonItem: UIBarButtonItem!
     
     override var menuItem: UIBarButtonItem? {
         menuBarButtonItem
-    }
-    
-    override var isFavorite: Bool {
-        teacher?.isFavorite ?? false
     }
     
     // MARK: - Date

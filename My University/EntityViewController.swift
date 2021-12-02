@@ -54,7 +54,7 @@ class EntityViewController<Kind: ModelKind, Entity: CoreDataFetchable & CoreData
     }
     
     var isFavorite: Bool {
-        false
+        logic.entity?.isFavorite ?? false
     }
     
     private var menuPresenter: EntityMenuPresenter!
@@ -111,7 +111,7 @@ class EntityViewController<Kind: ModelKind, Entity: CoreDataFetchable & CoreData
         case .failed(let error):
             activityController.hideActivity()
             
-            presentAnError(error)
+            presentAlert(with: error)
             
             tableViewController.refreshControl?.endRefreshing()
         }
@@ -119,11 +119,20 @@ class EntityViewController<Kind: ModelKind, Entity: CoreDataFetchable & CoreData
     
     // MARK: - Error
     
-    func presentAnError(_ error: Error) {
+    func presentAlert(with error: Error) {
         if let error = error as? URLError, error.code == .badServerResponse {
-            // TODO: Notify user
+            /*
+             This error occurs when a user tries to download records for an object that no longer exists.
+             This can happen when the database on the server has been reset.
+             */
+            let alert = configureNotFoundAlert()
+            present(alert, animated: true)
             
         } else if let networkError = error as? NetworkError, networkError.kind == .scheduleParsingError {
+            /*
+             This error occurs when a server can't parse a schedule.
+             For example, due to an unexpected structure or special characters.
+             */
             let alert = configureParsingErrorAlert(with: networkError, website: logic.shareURL)
             present(alert, animated: true)
             
