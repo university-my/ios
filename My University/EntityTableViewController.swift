@@ -31,6 +31,10 @@ class EntityTableViewController<Kind: ModelKind, Entity: CoreDataFetchable & Cor
         tableView.register(NoRecordsTableViewCell.self)
     }
     
+    // MARK: - Title
+    
+    var titleText: String?
+    
     // MARK: - Data
     
     func update(with sections: [ModelType.TableDataController.Section]) {

@@ -10,31 +10,68 @@ import Foundation
 import Combine
 
 class NetworkClient<Model: Decodable> {
-    var urlSession = URLSession.shared
     
     typealias Completion = ((Result<Model, Error>) -> Void)
     
-    private var cancellable: Cancellable!
-    
-    func load(url: URL, decoder: JSONDecoder = .init(), _ completion: @escaping Completion) {
-        let publisher = URLSession.shared.publisher(
-            for: url,
-            responseType: Model.self,
-            decoder: decoder
-        )
-        .print("➡️")
-        
-        cancellable = publisher.sink { (result) in
+    func load(_ url: URL, decoder: JSONDecoder, _ completion: @escaping Completion) {
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
             
-            switch result {
-            case .failure(let error):
+            if let error = error {
                 completion(.failure(error))
-            case .finished:
+                return
+            }
+
+            guard let data = data else {
+                completion(.failure(URLError(.badServerResponse)))
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                completion(.failure(URLError(.badServerResponse)))
+                return
+            }
+#if DEBUG
+            print(httpResponse)
+#endif
+            switch httpResponse.statusCode {
+                
+            case 404:
+                completion(.failure(URLError(.badServerResponse)))
+                return
+                
+            case 500:
+                // Check parsing error
+                let error = self.decodeNetworkStatus(from: data, with: decoder)
+                completion(.failure(error))
+                return
+                
+            default:
                 break
             }
             
-        } receiveValue: { data in
-            completion(.success(data))
+            let result = self.decodeModel(from: data, with: decoder)
+            completion(result)
+        }
+        task.resume()
+    }
+    
+    private func decodeModel(from data: Data, with decoder: JSONDecoder) -> Result<Model, Error> {
+        do {
+            let decodedData = try decoder.decode(Model.self, from: data)
+            return .success(decodedData)
+        } catch {
+            return .failure(error)
+        }
+    }
+    
+    private func decodeNetworkStatus(from data: Data, with decoder: JSONDecoder) -> Error {
+        guard let status = try? decoder.decode(NetworkStatus.CodingData.self, from: data) else {
+            return URLError(.badServerResponse)
+        }
+        
+        switch status.code {
+        case .scheduleParsingError:
+            return NetworkError(kind: .scheduleParsingError)
         }
     }
 }

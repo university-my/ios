@@ -10,6 +10,9 @@
 /* Action title */
 "Change University" = "Змінити університет";
 
+/* Alert action */
+"Check on website" = "Перевірити на сайті";
+
 /* No comment provided by engineer. */
 "Check out what's new in this version:" = "Що нового в цій версії:";
 
@@ -24,6 +27,9 @@
 
 /* No comment provided by engineer. */
 "Continue" = "Продовжити";
+
+/* No comment provided by engineer. */
+"Data not found" = "Даних не знайдено";
 
 /* Action title */
 "Go to University" = "Перейти до університету";
@@ -78,6 +84,9 @@
 
 /* Alert action */
 "Try again" = "Спробувати ще раз";
+
+/* No comment provided by engineer. */
+"We were unable to read the schedule from the university website" = "Не вдалося прочитати розклад на сайті університету";
 
 /* No comment provided by engineer. */
 "Welcome" = "Вітаємо";

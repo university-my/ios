@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ClassroomTableViewController: EntityTableViewController<ModelKinds.ClassroomModel, ClassroomEntity> {
+final class ClassroomTableViewController: EntityTableViewController<ModelKinds.ClassroomModel, ClassroomEntity> {
     
     // MARK: - Lifecycle
     
@@ -21,6 +21,12 @@ class ClassroomTableViewController: EntityTableViewController<ModelKinds.Classro
     // MARK: - Title
     
     @IBOutlet weak var tableTitleLabel: UILabel!
+    
+    override var titleText: String? {
+        didSet {
+            tableTitleLabel.text = titleText
+        }
+    }
     
     // MARK: - Pull to refresh
     

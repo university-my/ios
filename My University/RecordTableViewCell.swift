@@ -6,7 +6,6 @@
 //  Copyright © 2019 Yura Voevodin. All rights reserved.
 //
 
-import MyLibrary
 import UIKit
 
 class RecordTableViewCell: UITableViewCell, ReusableView {

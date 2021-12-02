@@ -1,5 +1,5 @@
 //
-//  NewTeacherTableViewController.swift
+//  TeacherTableViewController.swift
 //  My University
 //
 //  Created by Yura Voevodin on 12.05.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class NewTeacherTableViewController: EntityTableViewController<ModelKinds.TeacherModel, TeacherEntity> {
+final class TeacherTableViewController: EntityTableViewController<ModelKinds.TeacherModel, TeacherEntity> {
     
     // MARK: - Lifecycle
     
@@ -21,6 +21,12 @@ final class NewTeacherTableViewController: EntityTableViewController<ModelKinds.
     // MARK: - Title
     
     @IBOutlet weak var tableTitleLabel: UILabel!
+    
+    override var titleText: String? {
+        didSet {
+            tableTitleLabel.text = titleText
+        }
+    }
     
     // MARK: - Pull to refresh
     

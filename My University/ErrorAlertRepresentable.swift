@@ -27,11 +27,7 @@ extension ErrorAlertRepresentable {
         alert.addAction(tryAgainAction)
         
         // Report an error
-        let reportAnError = NSLocalizedString("Report an error", comment: "Alert action")
-        let reportAction = UIAlertAction(title: reportAnError, style: .default) { (_) in
-            UIApplication.shared.open(.contacts)
-        }
-        alert.addAction(reportAction)
+         alert.addAction(reportErrorAction())
         
         // Cancel
         let canсel = NSLocalizedString("Cancel", comment: "Alert action")
@@ -39,6 +35,65 @@ extension ErrorAlertRepresentable {
         alert.addAction(cancelAction)
         
         viewController.present(alert, animated: true)
+    }
+    
+    // MARK: - Parsing Error
+    
+    
+    /// Show this alert when the schedule parsing error coming from API
+    /// - Parameters:
+    ///   - error: Custom network error
+    ///   - website: URL to the page on the My University website (exact URL to the entity with selected date)
+    func configureParsingErrorAlert(with error: NetworkError, website: URL?) -> UIAlertController {
+        let title = NSLocalizedString("An error occurred", comment: "Alert title")
+        let message = error.localizedDescription
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.view.tintColor = .systemIndigo
+        
+        if let website = website {
+            let checkOnWebsite = NSLocalizedString("Check on website", comment: "Alert action")
+            let action = UIAlertAction(title: checkOnWebsite, style: .default) { _ in
+                UIApplication.shared.open(website)
+            }
+            action.setValue(UIColor.systemGreen, forKey: "titleTextColor")
+            alert.addAction(action)
+        }
+        
+        // Report an error
+        alert.addAction(reportErrorAction())
+        
+        // Cancel
+        let canсel = NSLocalizedString("Cancel", comment: "Alert action")
+        let cancelAction = UIAlertAction(title: canсel, style: .cancel)
+        alert.addAction(cancelAction)
+        
+        return alert
+    }
+    
+    func configureNotFoundAlert() -> UIAlertController {
+        let title = NSLocalizedString("Sorry", comment: "Alert title")
+        let message = NSLocalizedString("We cannot found this schedule anymore. We know this is a bad case. To fix this try to reinstall an app.", comment: "Alert message")
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.view.tintColor = .systemIndigo
+        
+        // Report an error
+        alert.addAction(reportErrorAction())
+        
+        let okActionTitle = NSLocalizedString("OK", comment: "Alert action")
+        let okAction = UIAlertAction(title: okActionTitle, style: .default, handler: nil)
+        alert.addAction(okAction)
+        
+        return alert
+    }
+    
+    func reportErrorAction() -> UIAlertAction {
+        let reportAnError = NSLocalizedString("Report an error", comment: "Alert action")
+        let reportAction = UIAlertAction(title: reportAnError, style: .default) { (_) in
+            UIApplication.shared.open(.contacts)
+        }
+        return reportAction
     }
 }
 

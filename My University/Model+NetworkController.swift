@@ -17,6 +17,7 @@ extension Model {
     class NetworkController {
         
         weak var delegate: ModelNetworkControllerDelegate?
+        lazy var decoder = JSONDecoder()
         
         func syncRecords(for entity: CoreDataEntity, by date: Date) {
             guard let university = entity.university else {
@@ -30,7 +31,7 @@ extension Model {
             )
             
             // Download records for entity from backend and save to database
-            syncController.importRecords(for: date, { [weak self] (result) in
+            syncController.importRecords(for: date, decoder: decoder, { [weak self] (result) in
                 
                 DispatchQueue.main.async {
                     

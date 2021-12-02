@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -48,6 +48,12 @@
 		DE3EB6BA231B11F8007EA63C /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3EB6B9231B11F8007EA63C /* DateFormatter.swift */; };
 		DE3EB6C0231B2280007EA63C /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3EB6BF231B2280007EA63C /* ActivityViewController.swift */; };
 		DE3EC2CB245C743500E30536 /* ClassroomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3EC2CA245C743500E30536 /* ClassroomViewController.swift */; };
+		DE40B33726F1E2E800631C55 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE40B33626F1E2E800631C55 /* Collection.swift */; };
+		DE40B33926F1E30B00631C55 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE40B33826F1E30B00631C55 /* UICollectionView.swift */; };
+		DE40B33B26F1E32700631C55 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE40B33A26F1E32700631C55 /* UITableView.swift */; };
+		DE40B33D26F1E36D00631C55 /* StoryboardIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE40B33C26F1E36D00631C55 /* StoryboardIdentifiable.swift */; };
+		DE40B34026F1E39600631C55 /* NibLoadableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE40B33F26F1E39600631C55 /* NibLoadableView.swift */; };
+		DE40B34226F1E3A800631C55 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE40B34126F1E3A800631C55 /* ReusableView.swift */; };
 		DE40FBA6238D4700001DA3DE /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE40FBA5238D4700001DA3DE /* UIColor.swift */; };
 		DE468AF02568739D008CB00E /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE468AEF2568739D008CB00E /* UIImage.swift */; };
 		DE4AA07121A5DF0500E06FEA /* ClassroomDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AA07021A5DF0500E06FEA /* ClassroomDataSource.swift */; };
@@ -76,7 +82,6 @@
 		DE7AB861246721F70031E279 /* ClassroomTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB860246721F70031E279 /* ClassroomTableViewController.swift */; };
 		DE7AB863246722AA0031E279 /* EntityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB862246722AA0031E279 /* EntityTableViewController.swift */; };
 		DE7B1D9F2269BCA5003E3028 /* GenericTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7B1D9E2269BCA5003E3028 /* GenericTableViewController.swift */; };
-		DE8417A923EA19810084E24F /* MyLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = DE8417A823EA19810084E24F /* MyLibrary */; };
 		DE87B78E235B9E450090B63E /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE87B78D235B9E450090B63E /* InitialViewController.swift */; };
 		DE94500422C1345800550A1C /* TableMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE94500322C1345800550A1C /* TableMessageViewController.swift */; };
 		DE945AC72264D11700143303 /* UniversityEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE945AC52264D11700143303 /* UniversityEntity+CoreDataClass.swift */; };
@@ -87,7 +92,7 @@
 		DE9E3F84235F8FB90067DDFE /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9E3F83235F8FB90067DDFE /* RecordTableViewCell.swift */; };
 		DEA2B3E8246AE75500F96E28 /* TeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2B3E7246AE75500F96E28 /* TeacherViewController.swift */; };
 		DEA2B3EB246AE7D000F96E28 /* TeacherTableDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2B3EA246AE7D000F96E28 /* TeacherTableDataController.swift */; };
-		DEA2B3ED246AE81000F96E28 /* NewTeacherTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2B3EC246AE81000F96E28 /* NewTeacherTableViewController.swift */; };
+		DEA2B3ED246AE81000F96E28 /* TeacherTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2B3EC246AE81000F96E28 /* TeacherTableViewController.swift */; };
 		DEA2B3F1246BCEC600F96E28 /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEA2B3EF246BCEC600F96E28 /* Group.storyboard */; };
 		DEA2B3F6246BF8A100F96E28 /* Classroom.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEA2B3F4246BF8A100F96E28 /* Classroom.storyboard */; };
 		DEA2B3F8246BFB6D00F96E28 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2B3F7246BFB6D00F96E28 /* UIViewController.swift */; };
@@ -127,7 +132,8 @@
 		DEBCBDAE2530E3BC0087F216 /* UniversityEndpointsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCBDAD2530E3BC0087F216 /* UniversityEndpointsTests.swift */; };
 		DEBCBDB52530E4CC0087F216 /* MockHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCBDB12530E4160087F216 /* MockHost.swift */; };
 		DEBCBDC12530E9F60087F216 /* ModelKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCBDC02530E9F60087F216 /* ModelKind.swift */; };
-		DED71BD3253847AF00776F24 /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED71BD2253847AF00776F24 /* URLSession.swift */; };
+		DECEC8B52750131F00149185 /* NetworkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECEC8B42750131F00149185 /* NetworkStatus.swift */; };
+		DECEC8B72750DA2400149185 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECEC8B62750DA2400149185 /* NetworkError.swift */; };
 		DEDA50EA21862091006C7B27 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50E821862090006C7B27 /* InfoPlist.strings */; };
 		DEDA50ED218620E0006C7B27 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50EB218620E0006C7B27 /* Localizable.strings */; };
 		DEDA8CF42534930D00B54E41 /* UniversityEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8CF02534930D00B54E41 /* UniversityEntity+CoreDataProperties.swift */; };
@@ -215,6 +221,12 @@
 		DE3EB6B9231B11F8007EA63C /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		DE3EB6BF231B2280007EA63C /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		DE3EC2CA245C743500E30536 /* ClassroomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomViewController.swift; sourceTree = "<group>"; };
+		DE40B33626F1E2E800631C55 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		DE40B33826F1E30B00631C55 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
+		DE40B33A26F1E32700631C55 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
+		DE40B33C26F1E36D00631C55 /* StoryboardIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardIdentifiable.swift; sourceTree = "<group>"; };
+		DE40B33F26F1E39600631C55 /* NibLoadableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadableView.swift; sourceTree = "<group>"; };
+		DE40B34126F1E3A800631C55 /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		DE40FBA5238D4700001DA3DE /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		DE426D82253DB5A100150DC7 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = "uk.lproj/Launch Screen.strings"; sourceTree = "<group>"; };
 		DE426D83253DB5A100150DC7 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Teacher.strings; sourceTree = "<group>"; };
@@ -259,7 +271,7 @@
 		DE9E3F83235F8FB90067DDFE /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 		DEA2B3E7246AE75500F96E28 /* TeacherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherViewController.swift; sourceTree = "<group>"; };
 		DEA2B3EA246AE7D000F96E28 /* TeacherTableDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherTableDataController.swift; sourceTree = "<group>"; };
-		DEA2B3EC246AE81000F96E28 /* NewTeacherTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTeacherTableViewController.swift; sourceTree = "<group>"; };
+		DEA2B3EC246AE81000F96E28 /* TeacherTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherTableViewController.swift; sourceTree = "<group>"; };
 		DEA2B3F0246BCEC600F96E28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Group.storyboard; sourceTree = "<group>"; };
 		DEA2B3F5246BF8A100F96E28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Classroom.storyboard; sourceTree = "<group>"; };
 		DEA2B3F7246BFB6D00F96E28 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
@@ -301,8 +313,9 @@
 		DEBCBDAD2530E3BC0087F216 /* UniversityEndpointsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityEndpointsTests.swift; sourceTree = "<group>"; };
 		DEBCBDB12530E4160087F216 /* MockHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHost.swift; sourceTree = "<group>"; };
 		DEBCBDC02530E9F60087F216 /* ModelKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelKind.swift; sourceTree = "<group>"; };
+		DECEC8B42750131F00149185 /* NetworkStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatus.swift; sourceTree = "<group>"; };
+		DECEC8B62750DA2400149185 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		DECF64EC251C75BE00F1AA33 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		DED71BD2253847AF00776F24 /* URLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
 		DEDA50E921862090006C7B27 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DEDA50EC218620E0006C7B27 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DEDA8CF02534930D00B54E41 /* UniversityEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UniversityEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -330,7 +343,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE8417A923EA19810084E24F /* MyLibrary in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,14 +366,11 @@
 		C29FF4CE2002382500B50299 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				DEB9BD8D25397735008F41A2 /* Model+DownloadsController.swift */,
-				DEB9BD4C2538C1D8008F41A2 /* Model+Endpoints.swift */,
-				DEB9BD86253975D4008F41A2 /* Model+ImportController.swift */,
-				DEA495FD253C5CD70025174E /* Model+NetworkController.swift */,
-				DEB9BD9B25397B1C008F41A2 /* Model+RecordsSyncController.swift */,
-				DEB9BD5A2538C3F6008F41A2 /* Model+SyncController.swift */,
 				DEB9BD282538B233008F41A2 /* NetworkClient.swift */,
+				DECEC8B62750DA2400149185 /* NetworkError.swift */,
+				DECEC8B42750131F00149185 /* NetworkStatus.swift */,
 				DE36592C252F8CA2002A1A11 /* Endpoint */,
+				DECEC8B32750127700149185 /* Model */,
 				DE36597D2530553C002A1A11 /* Website */,
 			);
 			name = Networking;
@@ -578,8 +587,10 @@
 				DE78478A240D9FBC002C2EDC /* UIStoryboard.swift */,
 				DEA2B3F7246BFB6D00F96E28 /* UIViewController.swift */,
 				DE365935252F9649002A1A11 /* URL.swift */,
-				DED71BD2253847AF00776F24 /* URLSession.swift */,
 				DE468AEF2568739D008CB00E /* UIImage.swift */,
+				DE40B33626F1E2E800631C55 /* Collection.swift */,
+				DE40B33826F1E30B00631C55 /* UICollectionView.swift */,
+				DE40B33A26F1E32700631C55 /* UITableView.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -601,6 +612,15 @@
 				DE7AB85B24671FF50031E279 /* Table */,
 			);
 			name = Classroom;
+			sourceTree = "<group>";
+		};
+		DE40B33E26F1E38A00631C55 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DE40B33F26F1E39600631C55 /* NibLoadableView.swift */,
+				DE40B34126F1E3A800631C55 /* ReusableView.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		DE472C7321B84313003AE86D /* About */ = {
@@ -760,7 +780,7 @@
 		DEA2B3E9246AE7B600F96E28 /* Table */ = {
 			isa = PBXGroup;
 			children = (
-				DEA2B3EC246AE81000F96E28 /* NewTeacherTableViewController.swift */,
+				DEA2B3EC246AE81000F96E28 /* TeacherTableViewController.swift */,
 				DEA2B3EA246AE7D000F96E28 /* TeacherTableDataController.swift */,
 			);
 			name = Table;
@@ -899,6 +919,19 @@
 			name = "Test Data";
 			sourceTree = "<group>";
 		};
+		DECEC8B32750127700149185 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DEB9BD8D25397735008F41A2 /* Model+DownloadsController.swift */,
+				DEB9BD4C2538C1D8008F41A2 /* Model+Endpoints.swift */,
+				DEB9BD86253975D4008F41A2 /* Model+ImportController.swift */,
+				DEA495FD253C5CD70025174E /* Model+NetworkController.swift */,
+				DEB9BD9B25397B1C008F41A2 /* Model+RecordsSyncController.swift */,
+				DEB9BD5A2538C3F6008F41A2 /* Model+SyncController.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		DEE576DF226B7861008F9EB6 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -920,6 +953,7 @@
 		DEE576E1226B7AD1008F9EB6 /* UI Subclasses */ = {
 			isa = PBXGroup;
 			children = (
+				DE40B33E26F1E38A00631C55 /* Views */,
 				DE78478E240DB3EA002C2EDC /* Buttons */,
 				DEAB1D3E230D5405008FBFE3 /* Table Cells */,
 				DEE576E2226B7AE3008F9EB6 /* View Controllers */,
@@ -932,6 +966,7 @@
 			children = (
 				DE7B1D9E2269BCA5003E3028 /* GenericTableViewController.swift */,
 				DEE576E3226B7B9E008F9EB6 /* SearchableTableViewController.swift */,
+				DE40B33C26F1E36D00631C55 /* StoryboardIdentifiable.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -990,7 +1025,6 @@
 			);
 			name = "My University";
 			packageProductDependencies = (
-				DE8417A823EA19810084E24F /* MyLibrary */,
 			);
 			productName = Schedule;
 			productReference = C2B5CDEF1EEF0E750066DB30 /* My University.app */;
@@ -1069,7 +1103,6 @@
 			);
 			mainGroup = C2B5CDE61EEF0E750066DB30;
 			packageReferences = (
-				DE8417A723EA19810084E24F /* XCRemoteSwiftPackageReference "MyLibrary" */,
 			);
 			productRefGroup = C2B5CDF01EEF0E750066DB30 /* Products */;
 			projectDirPath = "";
@@ -1131,6 +1164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE365932252F8FCF002A1A11 /* InvalidEndpointError.swift in Sources */,
+				DECEC8B52750131F00149185 /* NetworkStatus.swift in Sources */,
 				DEB9BD8E25397735008F41A2 /* Model+DownloadsController.swift in Sources */,
 				DE017F9723622BC70046D3ED /* PreferencesTableViewController.swift in Sources */,
 				DE131FE22456CAAB009D09EA /* RecordsDataSource.swift in Sources */,
@@ -1143,6 +1177,7 @@
 				DE3EB6C0231B2280007EA63C /* ActivityViewController.swift in Sources */,
 				DE0D64082264E1330001FCCF /* UniversityViewController.swift in Sources */,
 				DE131FE82456D773009D09EA /* Record+CodingData.swift in Sources */,
+				DE40B33B26F1E32700631C55 /* UITableView.swift in Sources */,
 				DE468AF02568739D008CB00E /* UIImage.swift in Sources */,
 				DE999ABE227C54160018F725 /* UniversityDataSource.swift in Sources */,
 				DEB9BD412538BD64008F41A2 /* Model+CodingData.swift in Sources */,
@@ -1181,13 +1216,14 @@
 				DE6794352268976E0068087A /* GroupsTableViewController.swift in Sources */,
 				DEBCBDC12530E9F60087F216 /* ModelKind.swift in Sources */,
 				DEBCBDA22530E06A0087F216 /* Record+RequestParameters.swift in Sources */,
-				DEA2B3ED246AE81000F96E28 /* NewTeacherTableViewController.swift in Sources */,
+				DE40B33726F1E2E800631C55 /* Collection.swift in Sources */,
+				DEA2B3ED246AE81000F96E28 /* TeacherTableViewController.swift in Sources */,
+				DE40B33D26F1E36D00631C55 /* StoryboardIdentifiable.swift in Sources */,
 				DEA2B3F8246BFB6D00F96E28 /* UIViewController.swift in Sources */,
 				DE7AB85A24671E6D0031E279 /* EntityRepresentable.swift in Sources */,
 				DEBCBDAA2530E3060087F216 /* University+Endpoints.swift in Sources */,
 				DEE674122459B7BC00B8F9F1 /* CoreData.swift in Sources */,
 				DE3EC2CB245C743500E30536 /* ClassroomViewController.swift in Sources */,
-				DED71BD3253847AF00776F24 /* URLSession.swift in Sources */,
 				DE540EC42215CF9F0092FC81 /* TeacherDataSource.swift in Sources */,
 				DE7AB85D246720250031E279 /* ClassroomTableDataController.swift in Sources */,
 				DEBB74AA235CE1AC00226C7E /* Bundle.swift in Sources */,
@@ -1217,6 +1253,7 @@
 				DE04D1F72370B79F00A18649 /* UpdateHelper.swift in Sources */,
 				DEDA8CF42534930D00B54E41 /* UniversityEntity+CoreDataProperties.swift in Sources */,
 				DEB0633D25136CC700DB50CE /* MetricKitSubscriber.swift in Sources */,
+				DE40B34026F1E39600631C55 /* NibLoadableView.swift in Sources */,
 				DE9E3F84235F8FB90067DDFE /* RecordTableViewCell.swift in Sources */,
 				DE365976253053D8002A1A11 /* WebsitePageParameters.swift in Sources */,
 				DE40FBA6238D4700001DA3DE /* UIColor.swift in Sources */,
@@ -1227,6 +1264,7 @@
 				DE54273325E78736000B3600 /* UniversitiesSearchResultsTableViewController.swift in Sources */,
 				DE3EB6BA231B11F8007EA63C /* DateFormatter.swift in Sources */,
 				DE87B78E235B9E450090B63E /* InitialViewController.swift in Sources */,
+				DE40B34226F1E3A800631C55 /* ReusableView.swift in Sources */,
 				DE365923252F8B88002A1A11 /* Endpoint.swift in Sources */,
 				DEDA8CF62534930D00B54E41 /* ClassroomEntity+CoreDataProperties.swift in Sources */,
 				DEE674142459EF8900B8F9F1 /* GroupViewController.swift in Sources */,
@@ -1234,9 +1272,11 @@
 				DE945ACC2264D27B00143303 /* University+Import.swift in Sources */,
 				DE36597F25305547002A1A11 /* PublicWebsitePage.swift in Sources */,
 				DEA2B3FA246C011500F96E28 /* Entity.swift in Sources */,
+				DE40B33926F1E30B00631C55 /* UICollectionView.swift in Sources */,
 				C280894B1FB8D54A002B5676 /* GroupEntity+CoreDataClass.swift in Sources */,
 				C22A2E581FC7664000587463 /* RecordEntity+CoreDataClass.swift in Sources */,
 				DE18941C21BC3A3900C7F9DB /* GroupTableViewController.swift in Sources */,
+				DECEC8B72750DA2400149185 /* NetworkError.swift in Sources */,
 				DE266D60240C4AAA00C30A4A /* WhatsNewView.swift in Sources */,
 				DEA2B3FD246C02BF00F96E28 /* Entity+Manager.swift in Sources */,
 			);
@@ -1476,11 +1516,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -1531,10 +1572,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1553,7 +1595,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.4;
+				MARKETING_VERSION = 1.7.5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.voevodin-yura.Schedule";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SERVER_BASE_URL = "http://localhost:3000";
@@ -1574,7 +1616,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.4;
+				MARKETING_VERSION = 1.7.5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.voevodin-yura.Schedule";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SERVER_BASE_URL = "https://my-university.com.ua";
@@ -1594,7 +1636,7 @@
 				DEVELOPMENT_TEAM = M2BF9ZE9NW;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1622,7 +1664,7 @@
 				DEVELOPMENT_TEAM = M2BF9ZE9NW;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1726,25 +1768,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		DE8417A723EA19810084E24F /* XCRemoteSwiftPackageReference "MyLibrary" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/yura-voevodin/MyLibrary";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		DE8417A823EA19810084E24F /* MyLibrary */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DE8417A723EA19810084E24F /* XCRemoteSwiftPackageReference "MyLibrary" */;
-			productName = MyLibrary;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		C2B5CDF91EEF0E750066DB30 /* Schedule.xcdatamodeld */ = {

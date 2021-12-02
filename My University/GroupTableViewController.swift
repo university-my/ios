@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GroupTableViewController: EntityTableViewController<ModelKinds.GroupModel, GroupEntity> {
+final class GroupTableViewController: EntityTableViewController<ModelKinds.GroupModel, GroupEntity> {
     
     // MARK: - Lifecycle
     
@@ -21,6 +21,12 @@ class GroupTableViewController: EntityTableViewController<ModelKinds.GroupModel,
     // MARK: - Title
     
     @IBOutlet weak var tableTitleLabel: UILabel!
+    
+    override var titleText: String? {
+        didSet {
+            tableTitleLabel.text = titleText
+        }
+    }
     
     // MARK: - Pull to refresh
     

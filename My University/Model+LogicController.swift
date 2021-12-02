@@ -11,7 +11,7 @@ import os
 import StoreKit
 
 protocol ModelLogicControllerDelegate: AnyObject {
-    func didChangeState(to newState: EntityViewController.State)
+    func didChangeState(to newState: EntityViewControllerState)
 }
 
 extension Model {
@@ -69,7 +69,7 @@ extension Model {
             return dataController.sections
         }
         
-        func shareURL() -> URL? {
+        var shareURL: URL? {
             dataController.shareURL(for: dataController.entity)
         }
         
