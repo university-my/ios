@@ -2,8 +2,8 @@
 //  GroupEntity+CoreDataProperties.swift
 //  My University
 //
-//  Created by Yura Voevodin on 30.10.2019.
-//  Copyright © 2019 Yura Voevodin. All rights reserved.
+//  Created by Yura Voevodin on 16.12.2021.
+//  Copyright © 2021 Yura Voevodin. All rights reserved.
 //
 //
 
@@ -22,6 +22,7 @@ extension GroupEntity {
     @NSManaged public var isFavorite: Bool
     @NSManaged public var name: String?
     @NSManaged public var slug: String?
+    @NSManaged public var uuid: UUID?
     @NSManaged public var records: NSSet?
     @NSManaged public var university: UniversityEntity?
 
@@ -41,5 +42,9 @@ extension GroupEntity {
 
     @objc(removeRecords:)
     @NSManaged public func removeFromRecords(_ values: NSSet)
+
+}
+
+extension GroupEntity : Identifiable {
 
 }

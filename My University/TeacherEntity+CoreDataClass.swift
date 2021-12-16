@@ -41,12 +41,9 @@ extension TeacherEntity: CoreDataEntityProtocol {
 extension TeacherEntity: StructRepresentable {
     
     func asStruct() -> EntityRepresentable? {
-        Teacher(
-            id: id,
-            isFavorite: isFavorite,
-            name: name ?? "",
-            slug: slug ?? ""
-        )
+        guard let name = name else { return nil }
+        guard let slug = slug else { return nil }
+        return Teacher(id: id, isFavorite: isFavorite, name: name, slug: slug, uuid: uuid?.uuidString)
     }
 }
 

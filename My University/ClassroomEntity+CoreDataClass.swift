@@ -34,7 +34,7 @@ extension ClassroomEntity: StructRepresentable {
     func asStruct() -> EntityRepresentable? {
         guard let name = name else { return nil }
         guard let slug = slug else { return nil }
-        return Classroom(id: id, isFavorite: isFavorite, name: name, slug: slug)
+        return Classroom(id: id, isFavorite: isFavorite, name: name, slug: slug, uuid: uuid?.uuidString)
     }
 }
 

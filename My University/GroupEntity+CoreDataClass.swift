@@ -43,7 +43,7 @@ extension GroupEntity: StructRepresentable {
     func asStruct() -> EntityRepresentable? {
         guard let name = name else { return nil }
         guard let slug = slug else { return nil }
-        return Group(id: id, isFavorite: isFavorite, name: name, slug: slug)
+        return Group(id: id, isFavorite: isFavorite, name: name, slug: slug, uuid: uuid?.uuidString)
     }
 }
 

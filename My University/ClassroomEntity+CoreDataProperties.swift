@@ -2,8 +2,8 @@
 //  ClassroomEntity+CoreDataProperties.swift
 //  My University
 //
-//  Created by Yura Voevodin on 12.10.2020.
-//  Copyright © 2020 Yura Voevodin. All rights reserved.
+//  Created by Yura Voevodin on 16.12.2021.
+//  Copyright © 2021 Yura Voevodin. All rights reserved.
 //
 //
 
@@ -22,6 +22,7 @@ extension ClassroomEntity {
     @NSManaged public var isFavorite: Bool
     @NSManaged public var name: String?
     @NSManaged public var slug: String?
+    @NSManaged public var uuid: UUID?
     @NSManaged public var records: NSSet?
     @NSManaged public var university: UniversityEntity?
 

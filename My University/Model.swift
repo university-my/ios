@@ -17,6 +17,7 @@ protocol ModelProtocol {
     var isFavorite: Bool { get }
     var name: String { get }
     var slug: String { get }
+    var uuid: String? { get }
 }
 
 struct Model<Kind: ModelKind, Entity: CoreDataFetchable & CoreDataEntityProtocol>: ModelProtocol {
@@ -26,6 +27,7 @@ struct Model<Kind: ModelKind, Entity: CoreDataFetchable & CoreDataEntityProtocol
     var isFavorite: Bool
     var name: String
     var slug: String
+    var uuid: String?
 }
 
 extension Model: EntityRepresentable {}
