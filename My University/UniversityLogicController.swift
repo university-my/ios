@@ -14,25 +14,38 @@ extension UniversityViewController {
         
         // MARK: - What's New
         
+        private var latestVersionKey: String {
+            UserDefaultsKeys.latestVersionForNewFeaturesKey
+        }
+        
         func needToPresentWhatsNew() -> Bool {
-            let currentVersion = Bundle.appVersion
+            guard let currentVersion = Bundle.main.shortVersion else { return false }
+            return needToPresentWhatsNew(for: currentVersion)
+        }
+        
+        func needToPresentWhatsNew(for requestedVersion: String) -> Bool {
+            let latestSavedVersion = UserDefaults.standard.string(forKey: latestVersionKey)
             
-            let lastVersionForNewFeatures = UserDefaults.standard.string(forKey: UserDefaultsKeys.lastVersionForNewFeaturesKey)
-            
-            if currentVersion != lastVersionForNewFeatures {
-                return true
-            } else {
+            // Don't show again for the same version
+            if requestedVersion == latestSavedVersion {
                 return false
             }
+            
+            // Show only for selected version
+            return requestedVersion == "1.7.6"
         }
         
-        func updateLastVersionForNewFeatures()  {
-            let currentVersion = Bundle.appVersion
-            UserDefaults.standard.set(currentVersion, forKey: UserDefaultsKeys.lastVersionForNewFeaturesKey)
+        func updateLastVersionForNewFeatures() {
+            guard let currentVersion = Bundle.main.shortVersion else { return }
+            updateLatestVersionForNewFeatures(to: currentVersion)
         }
         
-        func resetLastVersionForNewFeatures() {
-            UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.lastVersionForNewFeaturesKey)
+        func updateLatestVersionForNewFeatures(to version: String)  {
+            UserDefaults.standard.set(version, forKey: latestVersionKey)
+        }
+        
+        func resetLatestVersionForNewFeatures() {
+            UserDefaults.standard.removeObject(forKey: latestVersionKey)
         }
         
     }

@@ -128,16 +128,16 @@ extension Model {
         // MARK: - Review Request
         
         func makeReviewRequestIfNeeded() {
-            // Get the current bundle version for the app
-            let currentVersion = Bundle.appVersion
+            // Get the current version for the app
+            let currentVersion = Bundle.main.shortVersion
             
-            let lastVersionPromptedForReview = UserDefaults.standard.string(forKey: UserDefaultsKeys.lastVersionPromptedForReviewKey)
+            let latestVersionPromptedForReview = UserDefaults.standard.string(forKey: UserDefaultsKeys.latestVersionPromptedForReviewKey)
             
             // If the count has not yet been stored, this will return 0
             let count = UserDefaults.standard.integer(forKey: UserDefaultsKeys.recordDetailsOpenedCountKey)
             
             // Has the process been completed several times and the user has not already been prompted for this version?
-            if count >= 4 && currentVersion != lastVersionPromptedForReview {
+            if count >= 4 && currentVersion != latestVersionPromptedForReview {
                 let twoSecondsFromNow = DispatchTime.now() + 2.0
                 
                 guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
@@ -145,10 +145,10 @@ extension Model {
                 }
                 DispatchQueue.main.asyncAfter(deadline: twoSecondsFromNow) { [weak self] in
                     
-                    self?.logger.info("Make a request for review an app version \(currentVersion)")
+                    self?.logger.info("Make a request for review an app version \(currentVersion ?? "")")
                     
                     SKStoreReviewController.requestReview(in: windowScene)
-                    UserDefaults.standard.set(currentVersion, forKey: UserDefaultsKeys.lastVersionPromptedForReviewKey)
+                    UserDefaults.standard.set(currentVersion, forKey: UserDefaultsKeys.latestVersionPromptedForReviewKey)
                 }
             }
         }

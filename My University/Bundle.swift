@@ -19,12 +19,8 @@ extension Bundle {
         }
     }
     
-    /// Get the current bundle version for the app
-    static var appVersion: String {
-        let infoDictionaryKey = kCFBundleVersionKey as String
-        guard let currentVersion = Bundle.main.object(forInfoDictionaryKey: infoDictionaryKey) as? String else { fatalError("Expected to find a bundle version in the info dictionary")
-        }
-        return currentVersion
+    /// App "version" string (1.0.0 etc.)
+    var shortVersion: String? {
+        object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
     }
-    
 }
