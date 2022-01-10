@@ -11,7 +11,7 @@ import CoreData
 
 extension Model {
     
-    static func fetch(id: Int64, context: NSManagedObjectContext) -> CoreDataEntity? {
+    static func fetchEntity(with id: Int64, in context: NSManagedObjectContext) -> CoreDataEntity? {
         let fetchRequest: NSFetchRequest<CoreDataEntity> = CoreDataEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == %d", id)
         do {

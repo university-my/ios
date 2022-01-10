@@ -67,7 +67,7 @@ extension Model {
             
             context.performAndWait {
                 
-                guard let entityInContext = Model.fetch(id: modelID, context: context) else {
+                guard let entityInContext = Model.fetchEntity(with: modelID, in: context) else {
                     self.completionHandler?(.success(false))
                     return
                 }
@@ -150,7 +150,7 @@ extension Model {
             
             // Fetch classroom entity for set relation with record
             if let object = record.classroom {
-                newRecord.classroom = Classroom.fetch(id: object.id, context: context)
+                newRecord.classroom = Classroom.fetchEntity(with: object.id, in: context)
             }
             
             // Groups
@@ -160,7 +160,7 @@ extension Model {
             
             // Fetch teacher entity for set relation with record
             if let object = record.teacher {
-                newRecord.teacher = Teacher.fetch(id: object.id, context: context)
+                newRecord.teacher = Teacher.fetchEntity(with: object.id, in: context)
             }
         }
     }

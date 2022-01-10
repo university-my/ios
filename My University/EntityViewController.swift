@@ -73,10 +73,14 @@ class EntityViewController<Kind: ModelKind, Entity: CoreDataFetchable & CoreData
             self.menuPresenter.updateMenu(isFavorite: self.isFavorite)
             
         } universityAction: {
-            self.performSegue(withIdentifier: "setUniversity", sender: nil)
+            self.returnToUniversity()
         }
         menuPresenter = EntityMenuPresenter(config: config)
         menuPresenter.updateMenu(isFavorite: isFavorite)
+    }
+    
+    func returnToUniversity() {
+        performSegue(withIdentifier: "setUniversity", sender: nil)
     }
     
     // MARK: - State
@@ -134,6 +138,17 @@ class EntityViewController<Kind: ModelKind, Entity: CoreDataFetchable & CoreData
              For example, due to an unexpected structure or special characters.
              */
             let alert = configureParsingErrorAlert(with: networkError, website: logic.shareURL)
+            present(alert, animated: true)
+            
+        } else if let logicError = error as? LogicError, logicError.kind == .UUIDNotFound {
+            /*
+             Update list of entities to get UUID
+             */
+            let alert = configureUUIDNotFoundAlert(with: logicError) {
+                // Reload list
+                UniversityDataController.shared.requestToImportEntities()
+                self.returnToUniversity()
+            }
             present(alert, animated: true)
             
         } else {

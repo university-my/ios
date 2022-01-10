@@ -12,7 +12,7 @@ import UIKit
 class CoreData {
     
     /// Singleton instance
-    public static let `default` = CoreData()
+    public static let shared = CoreData()
     
     // MARK: - Init
     

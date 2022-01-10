@@ -41,8 +41,15 @@ extension Model {
             dataController.entity
         }
         
-        func fetchData(for entityID: Int64)  {
-            dataController.entity = Model.fetch(id: entityID, context: CoreData.default.viewContext)
+        func fetchData(for entityID: Int64) {
+            dataController.entity = Model.fetchEntity(with: entityID, in: CoreData.shared.viewContext)
+            
+            guard let _ = entity?.uuid else {
+                // 🧙‍♂️ You shall not pass
+                delegate?.didChangeState(to: .failed(LogicError(kind: .UUIDNotFound)))
+                return
+            }
+            
             fetchData(controller: dataController)
         }
         

@@ -147,7 +147,7 @@ extension UniversitiesTableViewController: UISearchResultsUpdating {
         let searchString = text.trimmingCharacters(in: .whitespacesAndNewlines)
         
         // Hand over the filtered results to our search results table.
-        resultsTableController.filtered = UniversityEntity.search(with: searchString, context: CoreData.default.viewContext)
+        resultsTableController.filtered = UniversityEntity.search(with: searchString, context: CoreData.shared.viewContext)
         resultsTableController.tableView.reloadData()
     }
 }

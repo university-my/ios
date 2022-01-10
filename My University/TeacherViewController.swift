@@ -18,10 +18,6 @@ final class TeacherViewController: EntityViewController<ModelKinds.TeacherModel,
         logic = Teacher.LogicController(activity: activityController)
         logic.delegate = self
         
-        // Save last opened entity to UserDefaults
-        let entity = Entity(kind: .teacher, id: entityID)
-        Entity.Manager.shared.update(with: entity)
-        
         // Data
         logic.fetchData(for: entityID)
         

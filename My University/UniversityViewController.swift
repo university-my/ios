@@ -26,10 +26,6 @@ class UniversityViewController: GenericTableViewController {
     var universityID: Int64?
     private var dataSource: UniversityDataSource!
     
-    private var classroomsDataSource: ClassroomDataSource?
-    private var groupsDataSource: GroupsDataSource?
-    private var teachersDataSource: TeacherDataSource?
-    
     // MARK: - Init
     
     required init?(coder: NSCoder) {
@@ -61,6 +57,14 @@ class UniversityViewController: GenericTableViewController {
 
         // What's new
         presentWhatsNewIfNeeded()
+        
+        // Import is required
+        if UniversityDataController.shared.needImportEntities {
+            startUpdate()
+            
+            // To prevent multiple imports
+            UniversityDataController.shared.finishEntitiesImport()
+        }
     }
     
     private func setup() {
@@ -72,20 +76,17 @@ class UniversityViewController: GenericTableViewController {
             dataSource.fetch(id: id)
             dataSource.fetchFavorites(delegate: self)
             dataSource.configureSections()
+            
+            logic.configure(delegate: self, dataSource: dataSource, universityID: id)
         }
         
         if let university = dataSource.university {
             // Title
             title = university.shortName
             
-            // Init all data sources
-            classroomsDataSource = ClassroomDataSource(universityID: university.id)
-            groupsDataSource = GroupsDataSource(universityID: university.id)
-            teachersDataSource = TeacherDataSource(universityID: university.id)
-            
             // Start from groups,
             // And import classrooms and teachers
-            loadGroups()
+            logic.importAllEntities()
         }
     }
     
@@ -209,30 +210,30 @@ class UniversityViewController: GenericTableViewController {
             
         case .classroomDetails:
             let navigationVC = segue.destination as? UINavigationController
-            let vc = navigationVC?.viewControllers.first as? ClassroomViewController
-            vc?.entityID = selectedEntityID
+            let controller = navigationVC?.viewControllers.first as? ClassroomViewController
+            controller?.entityID = selectedEntityID
             
         case .groupDetails:
             let navigationVC = segue.destination as? UINavigationController
-            let vc = navigationVC?.viewControllers.first as? GroupViewController
-            vc?.entityID = selectedEntityID
+            let controller = navigationVC?.viewControllers.first as? GroupViewController
+            controller?.entityID = selectedEntityID
             
         case .teacherDetails:
             let navigationVC = segue.destination as? UINavigationController
-            let vc = navigationVC?.viewControllers.first as? TeacherViewController
-            vc?.entityID = selectedEntityID
+            let controller = navigationVC?.viewControllers.first as? TeacherViewController
+            controller?.entityID = selectedEntityID
             
         case .showClassrooms:
-            let vc = segue.destination as? ClassroomsTableViewController
-            vc?.universityID = dataSource.university?.id
+            let controller = segue.destination as? ClassroomsTableViewController
+            controller?.universityID = dataSource.university?.id
             
         case .showGroups:
-            let vc = segue.destination as? GroupsTableViewController
-            vc?.universityID = dataSource.university?.id
+            let controller = segue.destination as? GroupsTableViewController
+            controller?.universityID = dataSource.university?.id
             
         case .showTeachers:
-            let vc = segue.destination as? TeachersTableViewController
-            vc?.universityID = dataSource.university?.id
+            let controller = segue.destination as? TeachersTableViewController
+            controller?.universityID = dataSource.university?.id
             
         default:
             break
@@ -240,106 +241,8 @@ class UniversityViewController: GenericTableViewController {
     }
     
     // MARK: - Show
-    
+
     var selectedEntityID: Int64?
-    
-    func show(_ entity: Entity) {
-        selectedEntityID = entity.id
-        
-        switch entity.kind {
-        case .classroom:
-            performSegue(withIdentifier: .classroomDetails)
-        case .group:
-            performSegue(withIdentifier: .groupDetails)
-        case .teacher:
-            performSegue(withIdentifier: .teacherDetails)
-        }
-    }
-    
-    // MARK: - Groups
-    
-    var shouldImportGroups: Bool {
-        dataSource.university?.showGroups ?? false
-    }
-    
-    private func loadGroups() {
-        guard shouldImportGroups else {
-            loadTeachers()
-            return
-        }
-        guard let dataSource = groupsDataSource else { return }
-        dataSource.performFetch()
-        let groups = dataSource.fetchedResultsController?.fetchedObjects ?? []
-        
-        if groups.isEmpty {
-            
-            dataSource.importGroups { (error) in
-                
-                if let _ = error {
-                    
-                } else {
-                    self.loadTeachers()
-                }
-            }
-        } else {
-            loadTeachers()
-        }
-    }
-    
-    // MARK: - Teachers
-    
-    var shouldImportTeachers: Bool {
-        dataSource.university?.showTeachers ?? false
-    }
-    
-    private func loadTeachers() {
-        guard shouldImportTeachers else {
-            loadClassrooms()
-            return
-        }
-        guard let dataSource = teachersDataSource else { return }
-        dataSource.performFetch()
-        
-        let teachers = dataSource.fetchedResultsController?.fetchedObjects ?? []
-        if teachers.isEmpty {
-            
-            dataSource.importTeachers { (error) in
-                
-                if let _ = error {
-                    
-                } else {
-                    self.loadClassrooms()
-                }
-            }
-        } else {
-            loadClassrooms()
-        }
-    }
-    
-    // MARK: - Classrooms
-    
-    var shouldImportClassrooms: Bool {
-        dataSource.university?.showClassrooms ?? false
-    }
-    
-    private func loadClassrooms() {
-        guard shouldImportClassrooms else {
-            return
-        }
-        guard let dataSource = classroomsDataSource else { return }
-        dataSource.performFetch()
-        
-        let classrooms = dataSource.fetchedResultsController?.fetchedObjects ?? []
-        if classrooms.isEmpty {
-            
-            dataSource.importClassrooms { (error) in
-                
-                if let _ = error {
-                    
-                }
-            }
-        }
-    }
 
     // MARK: - What's new
     
@@ -371,7 +274,6 @@ class UniversityViewController: GenericTableViewController {
             image: UIImage(systemName: "list.dash")
         ) { _ in
             University.selectedUniversityID = nil
-            Entity.Manager.shared.deleteLastOpened()
             self.performSegue(withIdentifier: .changeUniversity)
         }
         
@@ -383,6 +285,37 @@ class UniversityViewController: GenericTableViewController {
         }
         
         preferencesBarButtonItem.menu = UIMenu(title: "", children: [changeUniversity, reportProblem])
+    }
+    
+    // MARK: - Import (for UUID feature)
+    
+    private weak var importActivityAlert: ActivityAlertViewController?
+    
+    func startUpdate() {
+        let controller = configureImportActivityAlert()
+        present(controller, animated: true) { [weak self] in
+            // Start from groups,
+            // And import classrooms and teachers
+            self?.logic.importAllEntities()
+        }
+    }
+    
+    func configureImportActivityAlert() -> ActivityAlertViewController {
+        let title = NSLocalizedString("Updating data", comment: "Alert title")
+        let message = NSLocalizedString("Please wait for completion", comment: "Alert message")
+        
+        let controller = UIStoryboard.newActivity.instantiateInitialViewController() as! ActivityAlertViewController
+        controller.modalPresentationStyle = .overFullScreen
+        controller.update(title: title, message: message)
+
+        return controller
+    }
+    
+    func hideImportActivityAlertIfNeeded() {
+        guard let controller = importActivityAlert else { return }
+        controller.dismiss(animated: true) {
+            self.importActivityAlert = nil
+        }
     }
 }
 
@@ -406,5 +339,17 @@ extension UniversityViewController: NSFetchedResultsControllerDelegate {
         // Re-configure sections
         dataSource.configureSections()
         tableView.reloadData()
+    }
+}
+
+// MARK: - UniversityLogicControllerDelegate
+
+extension UniversityViewController: UniversityLogicControllerDelegate {
+    func logicDidUpdateAllEntities() {
+        hideImportActivityAlertIfNeeded()
+    }
+    
+    func logicDidLoadAllEntities() {
+        hideImportActivityAlertIfNeeded()
     }
 }

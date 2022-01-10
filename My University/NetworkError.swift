@@ -22,9 +22,9 @@ extension NetworkError: LocalizedError {
     var errorDescription: String? {
         switch kind {
         case .scheduleParsingError:
-            return String(localized: "We were unable to read the schedule from the university website")
+            return NSLocalizedString("We were unable to read the schedule from the university website", comment: "Error description")
         case .dataNotFound:
-            return String(localized: "Data not found")
+            return NSLocalizedString("Data not found", comment: "Error description")
         }
     }
 }

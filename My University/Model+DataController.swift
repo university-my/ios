@@ -181,7 +181,7 @@ extension Model {
             request.predicate = generatePredicate()
             request.fetchBatchSize = 20
             
-            let context = CoreData.default.viewContext
+            let context = CoreData.shared.viewContext
             let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: #keyPath(RecordEntity.pairName), cacheName: nil)
             return controller
         }()
@@ -207,7 +207,7 @@ extension Model {
         
         func toggleFavorites() {
             entity?.isFavorite.toggle()
-            CoreData.default.saveContext()
+            CoreData.shared.saveContext()
         }
         
         // MARK: - Share URL

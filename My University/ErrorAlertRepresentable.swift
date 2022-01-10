@@ -53,10 +53,9 @@ extension ErrorAlertRepresentable {
         
         if let website = website {
             let checkOnWebsite = NSLocalizedString("Check on website", comment: "Alert action")
-            let action = UIAlertAction(title: checkOnWebsite, style: .default) { _ in
+            let action = UIAlertAction(title: checkOnWebsite, style: .cancel) { _ in
                 UIApplication.shared.open(website)
             }
-            action.setValue(UIColor.systemGreen, forKey: "titleTextColor")
             alert.addAction(action)
         }
         
@@ -65,7 +64,7 @@ extension ErrorAlertRepresentable {
         
         // Cancel
         let canсel = NSLocalizedString("Cancel", comment: "Alert action")
-        let cancelAction = UIAlertAction(title: canсel, style: .cancel)
+        let cancelAction = UIAlertAction(title: canсel, style: .destructive)
         alert.addAction(cancelAction)
         
         return alert
@@ -94,6 +93,30 @@ extension ErrorAlertRepresentable {
             UIApplication.shared.open(.contacts)
         }
         return reportAction
+    }
+    
+    // MARK: - UUID not found
+    
+    func configureUUIDNotFoundAlert(with error: LogicError, reload: @escaping (() -> Void)) -> UIAlertController {
+        let title = NSLocalizedString("An error occurred", comment: "Alert title")
+        let message = error.localizedDescription
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.view.tintColor = .systemIndigo
+        
+        // Reload
+        let reloadTitle = NSLocalizedString("Reload list", comment: "Alert action")
+        let reloadAction = UIAlertAction(title: reloadTitle, style: .cancel) { (_) in
+            reload()
+        }
+        alert.addAction(reloadAction)
+        
+        // Cancel
+        let canсel = NSLocalizedString("Cancel", comment: "Alert action")
+        let cancelAction = UIAlertAction(title: canсel, style: .destructive)
+        alert.addAction(cancelAction)
+        
+        return alert
     }
 }
 
