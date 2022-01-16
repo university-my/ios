@@ -210,6 +210,11 @@ extension Model {
             CoreData.shared.saveContext()
         }
         
+        func removeFromFavorites() {
+            entity?.isFavorite = false
+            CoreData.shared.saveContext()
+        }
+        
         // MARK: - Share URL
         
         func shareURL(for entity: CoreDataEntityProtocol?) -> URL? {

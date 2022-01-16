@@ -15,6 +15,6 @@ extension Model {
         let id: Int64
         let name: String
         let slug: String
-        let uuid: String
+        let uuid: UUID
     }
 }

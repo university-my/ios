@@ -145,8 +145,11 @@ class EntityViewController<Kind: ModelKind, Entity: CoreDataFetchable & CoreData
              Update list of entities to get UUID
              */
             let alert = configureUUIDNotFoundAlert(with: logicError) {
-                // Reload list
-                UniversityDataController.shared.requestToImportEntities()
+                
+                self.logic.dataController.removeFromFavorites()
+                
+                UniversityDataController.shared.requestEntitiesUpdate()
+                
                 self.returnToUniversity()
             }
             present(alert, animated: true)

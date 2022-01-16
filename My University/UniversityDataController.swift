@@ -18,16 +18,16 @@ final class UniversityDataController {
     // Can't init is singleton
     private init() {}
     
-    // MARK: - Import
+    // MARK: - Update
     
     /// For initiate import of Classrooms, Groups, and Teachers
-    private(set) var needImportEntities: Bool = false
+    private(set) var entitiesUpdateNeeded: Bool = false
     
-    func requestToImportEntities() {
-        needImportEntities = true
+    func requestEntitiesUpdate() {
+        entitiesUpdateNeeded = true
     }
     
-    func finishEntitiesImport() {
-        needImportEntities = false
+    func entitiesUpdateCompleted() {
+        entitiesUpdateNeeded = false
     }
 }

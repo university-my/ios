@@ -89,24 +89,24 @@ extension Model {
                 
                 // IDs to update
                 let idsToUpdate = toUpdate.compactMap({ object in
-                    return object.slug
+                    object.uuid
                 })
                 
                 // Find objects to insert
                 let toInsert = objects.filter({ object in
-                    return (idsToUpdate.contains(object.slug) == false)
+                    (idsToUpdate.contains(object.uuid) == false)
                 })
                 
                 // IDs
-                let slugs = objects.map({ classroom in
-                    return classroom.slug
+                let UUIDs = objects.map({ object in
+                    object.uuid
                 })
                 
                 // Now find objects to delete
                 let allEntities = Model.fetchAll(for: universityInContext, in: taskContext)
-                let toDelete = allEntities.filter({ classroom in
-                    if let slug = classroom.slug {
-                        return (slugs.contains(slug) == false)
+                let toDelete = allEntities.filter({ entity in
+                    if let uuid = entity.uuid {
+                        return (UUIDs.contains(uuid) == false)
                     } else {
                         return true
                     }
@@ -120,7 +120,7 @@ extension Model {
                 // 2. Update
                 for entity in toUpdate {
                     if let objectFromServer = objects.first(where: { (parsedObject) -> Bool in
-                        return parsedObject.slug == entity.slug
+                        parsedObject.uuid == entity.uuid
                     }) {
                         // Update name if changed
                         if objectFromServer.name != entity.name {
@@ -187,6 +187,7 @@ extension Model {
             }
             entity.university = university
             entity.slug = object.slug
+            entity.uuid = object.uuid
         }
     }
 }

@@ -19,15 +19,6 @@ public class GroupEntity: NSManagedObject {
 
 extension GroupEntity: CoreDataEntityProtocol {
     
-    var favorite: Bool {
-        get {
-            return isFavorite
-        }
-        set {
-            isFavorite = newValue
-        }
-    }
-    
     func shareURL(for date: Date) -> URL? {
         guard let parameters = pageParameters(with: date) else {
             return nil

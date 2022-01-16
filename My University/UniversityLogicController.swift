@@ -10,7 +10,7 @@ import Foundation
 
 protocol UniversityLogicControllerDelegate: AnyObject {
     func logicDidUpdateAllEntities()
-    func logicDidLoadAllEntities()
+    func logicDidImportAllEntities()
 }
 
 extension UniversityViewController {
@@ -24,6 +24,7 @@ extension UniversityViewController {
         private(set) weak var dataSource: UniversityDataSource?
         
         func configure(delegate: UniversityLogicControllerDelegate, dataSource: UniversityDataSource, universityID: Int64) {
+            self.delegate = delegate
             self.dataSource = dataSource
             
             // Init all data sources
@@ -42,7 +43,7 @@ extension UniversityViewController {
         func importAllEntities() {
             // Start from groups,
             // And import classrooms and teachers
-            loadGroups()
+            importGroups()
         }
         
         // MARK: - Groups
@@ -67,9 +68,9 @@ extension UniversityViewController {
             }
         }
         
-        private func loadGroups() {
+        private func importGroups() {
             guard shouldImportGroups else {
-                loadTeachers()
+                importTeachers()
                 return
             }
             
@@ -80,10 +81,10 @@ extension UniversityViewController {
             if groups.isEmpty {
                 
                 dataSource.importGroups { _ in
-                    self.loadTeachers()
+                    self.importTeachers()
                 }
             } else {
-                loadTeachers()
+                importTeachers()
             }
         }
         
@@ -109,9 +110,9 @@ extension UniversityViewController {
             }
         }
         
-        private func loadTeachers() {
+        private func importTeachers() {
             guard shouldImportTeachers else {
-                loadClassrooms()
+                importClassrooms()
                 return
             }
             guard let dataSource = teachers else { return }
@@ -121,10 +122,10 @@ extension UniversityViewController {
             if teachers.isEmpty {
                 
                 dataSource.importTeachers { _ in
-                    self.loadClassrooms()
+                    self.importClassrooms()
                 }
             } else {
-                loadClassrooms()
+                importClassrooms()
             }
         }
         
@@ -148,9 +149,9 @@ extension UniversityViewController {
             }
         }
         
-        private func loadClassrooms() {
+        private func importClassrooms() {
             guard shouldImportClassrooms else {
-                delegate?.logicDidLoadAllEntities()
+                delegate?.logicDidImportAllEntities()
                 return
             }
             guard let dataSource = classrooms else { return }
@@ -160,10 +161,10 @@ extension UniversityViewController {
             if classrooms.isEmpty {
                 
                 dataSource.importClassrooms { _ in
-                    self.delegate?.logicDidLoadAllEntities()
+                    self.delegate?.logicDidImportAllEntities()
                 }
             } else {
-                delegate?.logicDidLoadAllEntities()
+                delegate?.logicDidImportAllEntities()
             }
         }
         

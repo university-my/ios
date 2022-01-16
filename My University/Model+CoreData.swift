@@ -24,11 +24,11 @@ extension Model {
     }
     
     static func fetch(_ objects: [CodingData], for university: UniversityEntity, in context: NSManagedObjectContext) -> [CoreDataEntity] {
-        let slugs = objects.map { $0.slug }
+        let ids = objects.map { $0.uuid }
         
         let fetchRequest: NSFetchRequest<CoreDataEntity> = CoreDataEntity.fetchRequest()
         
-        let idsPredicate = NSPredicate(format: "slug IN %@", slugs)
+        let idsPredicate = NSPredicate(format: "uuid IN %@", ids)
         let universityPredicate = NSPredicate(format: "university == %@", university)
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [universityPredicate, idsPredicate])
         fetchRequest.predicate = predicate

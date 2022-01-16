@@ -58,12 +58,18 @@ class UniversityViewController: GenericTableViewController {
         // What's new
         presentWhatsNewIfNeeded()
         
-        // Import is required
-        if UniversityDataController.shared.needImportEntities {
-            startUpdate()
+        // Update entities if needed
+        if UniversityDataController.shared.entitiesUpdateNeeded {
+            let controller = configureImportActivityAlert()
+            importActivityAlert = controller
+            present(controller, animated: true) { [weak self] in
+                // Start from groups,
+                // And import classrooms and teachers
+                self?.logic.updateAllEntities()
+            }
             
-            // To prevent multiple imports
-            UniversityDataController.shared.finishEntitiesImport()
+            // To prevent multiple update
+            UniversityDataController.shared.entitiesUpdateCompleted()
         }
     }
     
@@ -291,15 +297,6 @@ class UniversityViewController: GenericTableViewController {
     
     private weak var importActivityAlert: ActivityAlertViewController?
     
-    func startUpdate() {
-        let controller = configureImportActivityAlert()
-        present(controller, animated: true) { [weak self] in
-            // Start from groups,
-            // And import classrooms and teachers
-            self?.logic.importAllEntities()
-        }
-    }
-    
     func configureImportActivityAlert() -> ActivityAlertViewController {
         let title = NSLocalizedString("Updating data", comment: "Alert title")
         let message = NSLocalizedString("Please wait for completion", comment: "Alert message")
@@ -349,7 +346,6 @@ extension UniversityViewController: UniversityLogicControllerDelegate {
         hideImportActivityAlertIfNeeded()
     }
     
-    func logicDidLoadAllEntities() {
-        hideImportActivityAlertIfNeeded()
+    func logicDidImportAllEntities() {
     }
 }
