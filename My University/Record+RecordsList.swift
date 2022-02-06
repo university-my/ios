@@ -12,5 +12,6 @@ extension Record {
 
     struct RecordsList: Codable {
         let records: [Record.CodingData]
+        let model: ModelCodingData
     }
 }

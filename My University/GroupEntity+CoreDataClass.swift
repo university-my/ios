@@ -38,4 +38,4 @@ extension GroupEntity: StructRepresentable {
     }
 }
 
-extension GroupEntity: CoreDataFetchable {}
+extension GroupEntity: CoreDataFetchProtocol {}

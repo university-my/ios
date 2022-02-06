@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class GroupViewController: EntityViewController<ModelKinds.GroupModel, GroupEntity> {
+final class GroupViewController: EntityViewController<GroupModel, GroupEntity> {
     
     // MARK: - Lifecycle
     

@@ -38,4 +38,4 @@ extension TeacherEntity: StructRepresentable {
     }
 }
 
-extension TeacherEntity: CoreDataFetchable {}
+extension TeacherEntity: CoreDataFetchProtocol {}

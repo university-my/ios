@@ -70,10 +70,8 @@ class RecordsTests: XCTestCase {
             switch result {
                 
             case .failure(let error):
-                if let networkError = error as? NetworkError {
-                    if networkError.kind == .scheduleParsingError {
-                        expectations.fulfill()
-                    }
+                if case NetworkError.scheduleParsingError = error {
+                    expectations.fulfill()
                 }
                 
             case .success(_):
@@ -94,10 +92,8 @@ class RecordsTests: XCTestCase {
             switch result {
                 
             case .failure(let error):
-                if let networkError = error as? NetworkError {
-                    if networkError.kind == .scheduleParsingError {
-                        expectations.fulfill()
-                    }
+                if case NetworkError.scheduleParsingError = error {
+                    expectations.fulfill()
                 }
                 
             case .success(_):

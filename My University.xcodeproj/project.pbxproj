@@ -119,7 +119,7 @@
 		DEB9BD4D2538C1D8008F41A2 /* Model+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BD4C2538C1D8008F41A2 /* Model+Endpoints.swift */; };
 		DEB9BD5B2538C3F6008F41A2 /* Model+SyncController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BD5A2538C3F6008F41A2 /* Model+SyncController.swift */; };
 		DEB9BD5F2538C5EF008F41A2 /* Model+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BD5E2538C5EF008F41A2 /* Model+CoreData.swift */; };
-		DEB9BD6F2538CC54008F41A2 /* CoreDataFetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BD6E2538CC54008F41A2 /* CoreDataFetchable.swift */; };
+		DEB9BD6F2538CC54008F41A2 /* CoreDataFetchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BD6E2538CC54008F41A2 /* CoreDataFetchProtocol.swift */; };
 		DEB9BD752538CD0E008F41A2 /* NSManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BD742538CD0E008F41A2 /* NSManagedObject.swift */; };
 		DEB9BD87253975D4008F41A2 /* Model+ImportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BD86253975D4008F41A2 /* Model+ImportController.swift */; };
 		DEB9BD8E25397735008F41A2 /* Model+DownloadsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BD8D25397735008F41A2 /* Model+DownloadsController.swift */; };
@@ -302,7 +302,7 @@
 		DEB9BD4C2538C1D8008F41A2 /* Model+Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+Endpoints.swift"; sourceTree = "<group>"; };
 		DEB9BD5A2538C3F6008F41A2 /* Model+SyncController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+SyncController.swift"; sourceTree = "<group>"; };
 		DEB9BD5E2538C5EF008F41A2 /* Model+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+CoreData.swift"; sourceTree = "<group>"; };
-		DEB9BD6E2538CC54008F41A2 /* CoreDataFetchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFetchable.swift; sourceTree = "<group>"; };
+		DEB9BD6E2538CC54008F41A2 /* CoreDataFetchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFetchProtocol.swift; sourceTree = "<group>"; };
 		DEB9BD742538CD0E008F41A2 /* NSManagedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObject.swift; sourceTree = "<group>"; };
 		DEB9BD86253975D4008F41A2 /* Model+ImportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+ImportController.swift"; sourceTree = "<group>"; };
 		DEB9BD8D25397735008F41A2 /* Model+DownloadsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+DownloadsController.swift"; sourceTree = "<group>"; };
@@ -435,7 +435,7 @@
 				DEE674112459B7BC00B8F9F1 /* CoreData.swift */,
 				DE7BEA5625337FAE0006F421 /* Models */,
 				C2B5CDF91EEF0E750066DB30 /* Schedule.xcdatamodeld */,
-				DEB9BD6E2538CC54008F41A2 /* CoreDataFetchable.swift */,
+				DEB9BD6E2538CC54008F41A2 /* CoreDataFetchProtocol.swift */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -1225,7 +1225,7 @@
 				DE540EBD2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift in Sources */,
 				DE16BC1125F8EC040007AAE5 /* TeachersLogicController.swift in Sources */,
 				DEE576E7226B8B98008F9EB6 /* ClassroomsTableViewController.swift in Sources */,
-				DEB9BD6F2538CC54008F41A2 /* CoreDataFetchable.swift in Sources */,
+				DEB9BD6F2538CC54008F41A2 /* CoreDataFetchProtocol.swift in Sources */,
 				DE945AC72264D11700143303 /* UniversityEntity+CoreDataClass.swift in Sources */,
 				DEB9BD392538BCB4008F41A2 /* Model.swift in Sources */,
 				DEB0635425136DDC00DB50CE /* SceneDelegate.swift in Sources */,

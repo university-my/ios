@@ -1,5 +1,5 @@
 //
-//  CoreDataFetchable.swift
+//  CoreDataFetchProtocol.swift
 //  My University
 //
 //  Created by Yura Voevodin on 15.10.2020.
@@ -9,11 +9,11 @@
 import Foundation
 import CoreData
 
-protocol CoreDataFetchable: NSManagedObject {
+protocol CoreDataFetchProtocol: NSManagedObject {
     typealias CoreDataType = Self
 }
 
-extension CoreDataFetchable {
+extension CoreDataFetchProtocol {
     
     public static func fetchRequest() -> NSFetchRequest<CoreDataType> {
         return NSFetchRequest<CoreDataType>(entityName: CoreDataType.entityName)

@@ -46,7 +46,7 @@ extension Model {
             
             guard let _ = entity?.uuid else {
                 // 🧙‍♂️ You shall not pass
-                delegate?.didChangeState(to: .failed(LogicError(kind: .UUIDNotFound)))
+                delegate?.didChangeState(to: .failed(LogicError.UUIDNotFound))
                 return
             }
             

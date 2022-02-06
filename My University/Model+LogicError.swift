@@ -8,20 +8,16 @@
 
 import Foundation
 
-struct LogicError: Error {
-    
-    let kind: ErrorKind
-    
-    enum ErrorKind {
-        case UUIDNotFound
-    }
+enum LogicError: Error {
+    case UUIDNotEqual
+    case UUIDNotFound
 }
 
 extension LogicError: LocalizedError {
     var errorDescription: String? {
-        switch kind {
-        case .UUIDNotFound:
-            return NSLocalizedString("You need to update the university data, you will return to the main screen of the university", comment: "Error description")
+        switch self {
+        case .UUIDNotEqual, .UUIDNotFound:
+            return NSLocalizedString("University data needs to be updated. You will return to the main screen of the university", comment: "Error description")
         }
     }
 }

@@ -9,7 +9,7 @@
 import Foundation
 
 protocol ModelNetworkControllerDelegate: AnyObject {
-    func didImportRecords(for entity: CoreDataFetchable & CoreDataEntityProtocol, _ error: Error?)
+    func didImportRecords(for entity: CoreDataFetchProtocol & CoreDataEntityProtocol, _ error: Error?)
 }
 
 extension Model {

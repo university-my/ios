@@ -228,7 +228,7 @@ extension Model {
 
 extension Model.DataController: ModelNetworkControllerDelegate {
     
-    func didImportRecords(for entity: CoreDataEntityProtocol & CoreDataFetchable, _ error: Error?) {
+    func didImportRecords(for entity: CoreDataEntityProtocol & CoreDataFetchProtocol, _ error: Error?) {
         guard let model = entity as? StructRepresentable else {
             preconditionFailure()
         }

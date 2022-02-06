@@ -8,19 +8,14 @@
 
 import Foundation
 
-struct NetworkError: Error {
-    
-    let kind: ErrorKind
-    
-    enum ErrorKind {
-        case dataNotFound
-        case scheduleParsingError
-    }
+enum NetworkError: Error {
+    case dataNotFound
+    case scheduleParsingError
 }
 
 extension NetworkError: LocalizedError {
     var errorDescription: String? {
-        switch kind {
+        switch self {
         case .scheduleParsingError:
             return NSLocalizedString("We were unable to read the schedule from the university website", comment: "Error description")
         case .dataNotFound:

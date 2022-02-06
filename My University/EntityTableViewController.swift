@@ -13,7 +13,7 @@ protocol EntityTableViewControllerDelegate: AnyObject {
     func didDismissDetails()
 }
 
-class EntityTableViewController<Kind: ModelKind, Entity: CoreDataFetchable & CoreDataEntityProtocol>: GenericTableViewController {
+class EntityTableViewController<Kind: ModelKind, Entity: CoreDataFetchProtocol & CoreDataEntityProtocol>: GenericTableViewController {
     typealias ModelType = Model<Kind, Entity>
     
     var entityID: Int64!

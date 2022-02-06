@@ -56,14 +56,14 @@ extension Model {
                     taskContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
                     taskContext.undoManager = nil
                     
-                    self.sync(list.records, in: taskContext)
+                    self.sync(list, in: taskContext)
                 }
             }
         }
         
         // MARK: - Sync
         
-        func sync(_ records: [Record.CodingData], in context: NSManagedObjectContext) {
+        func sync(_ recordsList: Record.RecordsList, in context: NSManagedObjectContext) {
             
             context.performAndWait {
                 
@@ -72,7 +72,14 @@ extension Model {
                     return
                 }
                 
+                // Compare UUID from device database and from the remote server API
+                if entityInContext.uuid != recordsList.model.uuid {
+                    self.completionHandler?(.failure(LogicError.UUIDNotEqual))
+                    return
+                }
+                
                 // Records to update
+                let records = recordsList.records
                 let toUpdate = fetch(records, for: entityInContext, in: context)
                 
                 // IDs to update

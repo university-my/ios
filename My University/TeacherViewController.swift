@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class TeacherViewController: EntityViewController<ModelKinds.TeacherModel, TeacherEntity> {
+final class TeacherViewController: EntityViewController<TeacherModel, TeacherEntity> {
     
     // MARK: - Lifecycle
     

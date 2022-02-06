@@ -44,9 +44,8 @@ extension ErrorAlertRepresentable {
     /// - Parameters:
     ///   - error: Custom network error
     ///   - website: URL to the page on the My University website (exact URL to the entity with selected date)
-    func configureParsingErrorAlert(with error: NetworkError, website: URL?) -> UIAlertController {
+    func configureParsingErrorAlert(with message: String, website: URL?) -> UIAlertController {
         let title = NSLocalizedString("An error occurred", comment: "Alert title")
-        let message = error.localizedDescription
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.view.tintColor = .systemIndigo
@@ -97,9 +96,8 @@ extension ErrorAlertRepresentable {
     
     // MARK: - UUID not found
     
-    func configureUUIDNotFoundAlert(with error: LogicError, reload: @escaping (() -> Void)) -> UIAlertController {
+    func configureUUIDNotFoundAlert(with message: String, reload: @escaping (() -> Void)) -> UIAlertController {
         let title = NSLocalizedString("An error occurred", comment: "Alert title")
-        let message = error.localizedDescription
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.view.tintColor = .systemIndigo

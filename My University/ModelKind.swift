@@ -22,62 +22,59 @@ protocol ModelKind {
     static func recordsEndpoint(params: Record.RequestParameters) -> URL
 }
 
-enum ModelKinds {
+struct ClassroomModel: ModelKind {
     
-    enum ClassroomModel: ModelKind {
-        
-        static var entityPath: String {
-            "auditoriums"
-        }
-        
-        static var cashFileName: String {
-            "classrooms"
-        }
-        
-        static func allEntities(university: String) -> URL {
-            Classroom.Endpoints.all(university: university).url
-        }
-        
-        static func recordsEndpoint(params: Record.RequestParameters) -> URL {
-            Classroom.Endpoints.records(params: params).url
-        }
+    static var cashFileName: String {
+        "classrooms"
     }
     
-    enum GroupModel: ModelKind {
-        
-        static var entityPath: String {
-            "groups"
-        }
-        
-        static var cashFileName: String {
-            "groups"
-        }
-        
-        static func allEntities(university: String) -> URL {
-            Group.Endpoints.all(university: university).url
-        }
-        
-        static func recordsEndpoint(params: Record.RequestParameters) -> URL {
-            Group.Endpoints.records(params: params).url
-        }
+    static var entityPath: String {
+        "auditoriums"
     }
     
-    enum TeacherModel: ModelKind {
-        
-        static var entityPath: String {
-            "teachers"
-        }
-        
-        static var cashFileName: String {
-            "teachers"
-        }
-        
-        static func allEntities(university: String) -> URL {
-            Teacher.Endpoints.all(university: university).url
-        }
-        
-        static func recordsEndpoint(params: Record.RequestParameters) -> URL {
-            Teacher.Endpoints.records(params: params).url
-        }
+    static func allEntities(university: String) -> URL {
+        Classroom.Endpoints.all(university: university).url
+    }
+    
+    static func recordsEndpoint(params: Record.RequestParameters) -> URL {
+        Classroom.Endpoints.records(params: params).url
+    }
+}
+
+struct GroupModel: ModelKind {
+    
+    static var entityPath: String {
+        "groups"
+    }
+    
+    static var cashFileName: String {
+        "groups"
+    }
+    
+    static func allEntities(university: String) -> URL {
+        Group.Endpoints.all(university: university).url
+    }
+    
+    static func recordsEndpoint(params: Record.RequestParameters) -> URL {
+        Group.Endpoints.records(params: params).url
+    }
+}
+
+struct TeacherModel: ModelKind {
+    
+    static var entityPath: String {
+        "teachers"
+    }
+    
+    static var cashFileName: String {
+        "teachers"
+    }
+    
+    static func allEntities(university: String) -> URL {
+        Teacher.Endpoints.all(university: university).url
+    }
+    
+    static func recordsEndpoint(params: Record.RequestParameters) -> URL {
+        Teacher.Endpoints.records(params: params).url
     }
 }

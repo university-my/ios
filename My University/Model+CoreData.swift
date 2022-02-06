@@ -23,7 +23,7 @@ extension Model {
         }
     }
     
-    static func fetch(_ objects: [CodingData], for university: UniversityEntity, in context: NSManagedObjectContext) -> [CoreDataEntity] {
+    static func fetch(_ objects: [ModelCodingData], for university: UniversityEntity, in context: NSManagedObjectContext) -> [CoreDataEntity] {
         let ids = objects.map { $0.uuid }
         
         let fetchRequest: NSFetchRequest<CoreDataEntity> = CoreDataEntity.fetchRequest()

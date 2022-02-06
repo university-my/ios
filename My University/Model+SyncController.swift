@@ -64,10 +64,10 @@ extension Model {
         
         private func sync(from data: Data, in taskContext: NSManagedObjectContext) {
             
-            var objects: [CodingData] = []
+            var objects: [ModelCodingData] = []
             do {
                 let decoder = JSONDecoder()
-                objects = try decoder.decode([CodingData].self, from: data)
+                objects = try decoder.decode([ModelCodingData].self, from: data)
             } catch {
                 completionHandler?(.failure(error))
             }
@@ -176,7 +176,7 @@ extension Model {
             }
         }
         
-        private func insert(_ object: CodingData, for university: UniversityEntity, in context: NSManagedObjectContext) {
+        private func insert(_ object: ModelCodingData, for university: UniversityEntity, in context: NSManagedObjectContext) {
             let entity = CoreDataEntity(context: context)
             entity.id = object.id
             entity.name = object.name
