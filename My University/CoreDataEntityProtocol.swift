@@ -16,6 +16,7 @@ protocol CoreDataEntityProtocol: NSManagedObject {
     var name: String? { get set }
     var isFavorite: Bool { get set }
     var slug: String? { get set }
+    var uuid: UUID? { get set }
     var firstSymbol: String? { get set }
     var university: UniversityEntity? { get set }
     var records: NSSet? { get set }

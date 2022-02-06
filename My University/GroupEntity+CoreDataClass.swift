@@ -19,15 +19,6 @@ public class GroupEntity: NSManagedObject {
 
 extension GroupEntity: CoreDataEntityProtocol {
     
-    var favorite: Bool {
-        get {
-            return isFavorite
-        }
-        set {
-            isFavorite = newValue
-        }
-    }
-    
     func shareURL(for date: Date) -> URL? {
         guard let parameters = pageParameters(with: date) else {
             return nil
@@ -43,8 +34,8 @@ extension GroupEntity: StructRepresentable {
     func asStruct() -> EntityRepresentable? {
         guard let name = name else { return nil }
         guard let slug = slug else { return nil }
-        return Group(id: id, isFavorite: isFavorite, name: name, slug: slug)
+        return Group(id: id, isFavorite: isFavorite, name: name, slug: slug, uuid: uuid?.uuidString)
     }
 }
 
-extension GroupEntity: CoreDataFetchable {}
+extension GroupEntity: CoreDataFetchProtocol {}

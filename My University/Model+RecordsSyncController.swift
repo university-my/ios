@@ -56,23 +56,30 @@ extension Model {
                     taskContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
                     taskContext.undoManager = nil
                     
-                    self.sync(list.records, in: taskContext)
+                    self.sync(list, in: taskContext)
                 }
             }
         }
         
         // MARK: - Sync
         
-        func sync(_ records: [Record.CodingData], in context: NSManagedObjectContext) {
+        func sync(_ recordsList: Record.RecordsList, in context: NSManagedObjectContext) {
             
             context.performAndWait {
                 
-                guard let entityInContext = Model.fetch(id: modelID, context: context) else {
+                guard let entityInContext = Model.fetchEntity(with: modelID, in: context) else {
                     self.completionHandler?(.success(false))
                     return
                 }
                 
+                // Compare UUID from device database and from the remote server API
+                if entityInContext.uuid != recordsList.model.uuid {
+                    self.completionHandler?(.failure(LogicError.UUIDNotEqual))
+                    return
+                }
+                
                 // Records to update
+                let records = recordsList.records
                 let toUpdate = fetch(records, for: entityInContext, in: context)
                 
                 // IDs to update
@@ -150,7 +157,7 @@ extension Model {
             
             // Fetch classroom entity for set relation with record
             if let object = record.classroom {
-                newRecord.classroom = Classroom.fetch(id: object.id, context: context)
+                newRecord.classroom = Classroom.fetchEntity(with: object.id, in: context)
             }
             
             // Groups
@@ -160,7 +167,7 @@ extension Model {
             
             // Fetch teacher entity for set relation with record
             if let object = record.teacher {
-                newRecord.teacher = Teacher.fetch(id: object.id, context: context)
+                newRecord.teacher = Teacher.fetchEntity(with: object.id, in: context)
             }
         }
     }

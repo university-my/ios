@@ -8,31 +8,200 @@
 
 import Foundation
 
+protocol UniversityLogicControllerDelegate: AnyObject {
+    func logicDidUpdateAllEntities()
+    func logicDidImportAllEntities()
+}
+
 extension UniversityViewController {
     
     final class UniversityLogicController {
         
-        // MARK: - What's New
+        weak var delegate: UniversityLogicControllerDelegate?
         
-        func needToPresentWhatsNew() -> Bool {
-            let currentVersion = Bundle.appVersion
+        // MARK: - Configure
+        
+        private(set) weak var dataSource: UniversityDataSource?
+        
+        func configure(delegate: UniversityLogicControllerDelegate, dataSource: UniversityDataSource, universityID: Int64) {
+            self.delegate = delegate
+            self.dataSource = dataSource
             
-            let lastVersionForNewFeatures = UserDefaults.standard.string(forKey: UserDefaultsKeys.lastVersionForNewFeaturesKey)
+            // Init all data sources
+            groups = GroupsDataSource(universityID: universityID)
+            teachers = TeacherDataSource(universityID: universityID)
+            classrooms = ClassroomDataSource(universityID: universityID)
+        }
+        
+        func updateAllEntities() {
+            // Start from groups,
+            // And update classrooms and teachers
+            updateGroups()
+        }
+        
+        
+        func importAllEntities() {
+            // Start from groups,
+            // And import classrooms and teachers
+            importGroups()
+        }
+        
+        // MARK: - Groups
+        
+        private var groups: GroupsDataSource?
+        
+        var shouldImportGroups: Bool {
+            dataSource?.university?.showGroups ?? false
+        }
+        
+        private func updateGroups() {
+            // Check, if groups is present in this university
+            guard shouldImportGroups else {
+                // Continue to teachers
+                updateTeachers()
+                return
+            }
             
-            if currentVersion != lastVersionForNewFeatures {
-                return true
-            } else {
-                return false
+            guard let dataSource = groups else { return }
+            dataSource.importGroups { _ in
+                self.updateTeachers()
             }
         }
         
-        func updateLastVersionForNewFeatures()  {
-            let currentVersion = Bundle.appVersion
-            UserDefaults.standard.set(currentVersion, forKey: UserDefaultsKeys.lastVersionForNewFeaturesKey)
+        private func importGroups() {
+            guard shouldImportGroups else {
+                importTeachers()
+                return
+            }
+            
+            guard let dataSource = groups else { return }
+            dataSource.performFetch()
+            let groups = dataSource.fetchedResultsController?.fetchedObjects ?? []
+            
+            if groups.isEmpty {
+                
+                dataSource.importGroups { _ in
+                    self.importTeachers()
+                }
+            } else {
+                importTeachers()
+            }
         }
         
-        func resetLastVersionForNewFeatures() {
-            UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.lastVersionForNewFeaturesKey)
+        // MARK: - Teachers
+        
+        private var teachers: TeacherDataSource?
+        
+        var shouldImportTeachers: Bool {
+            dataSource?.university?.showTeachers ?? false
+        }
+        
+        private func updateTeachers() {
+            // Check, if teacher is present in this university
+            guard shouldImportTeachers else {
+                // Continue to classrooms
+                updateClassrooms()
+                return
+            }
+            
+            guard let dataSource = teachers else { return }
+            dataSource.importTeachers { _ in
+                self.updateClassrooms()
+            }
+        }
+        
+        private func importTeachers() {
+            guard shouldImportTeachers else {
+                importClassrooms()
+                return
+            }
+            guard let dataSource = teachers else { return }
+            dataSource.performFetch()
+            
+            let teachers = dataSource.fetchedResultsController?.fetchedObjects ?? []
+            if teachers.isEmpty {
+                
+                dataSource.importTeachers { _ in
+                    self.importClassrooms()
+                }
+            } else {
+                importClassrooms()
+            }
+        }
+        
+        // MARK: - Classrooms
+        
+        private var classrooms: ClassroomDataSource?
+        
+        var shouldImportClassrooms: Bool {
+            dataSource?.university?.showClassrooms ?? false
+        }
+        
+        private func updateClassrooms() {
+            guard shouldImportClassrooms else {
+                delegate?.logicDidUpdateAllEntities()
+                return
+            }
+            
+            guard let dataSource = classrooms else { return }
+            dataSource.importClassrooms { _ in
+                self.delegate?.logicDidUpdateAllEntities()
+            }
+        }
+        
+        private func importClassrooms() {
+            guard shouldImportClassrooms else {
+                delegate?.logicDidImportAllEntities()
+                return
+            }
+            guard let dataSource = classrooms else { return }
+            dataSource.performFetch()
+            
+            let classrooms = dataSource.fetchedResultsController?.fetchedObjects ?? []
+            if classrooms.isEmpty {
+                
+                dataSource.importClassrooms { _ in
+                    self.delegate?.logicDidImportAllEntities()
+                }
+            } else {
+                delegate?.logicDidImportAllEntities()
+            }
+        }
+        
+        // MARK: - What's New
+        
+        private var latestVersionKey: String {
+            UserDefaultsKeys.latestVersionForNewFeaturesKey
+        }
+        
+        func needToPresentWhatsNew() -> Bool {
+            guard let currentVersion = Bundle.main.shortVersion else { return false }
+            return needToPresentWhatsNew(for: currentVersion)
+        }
+        
+        func needToPresentWhatsNew(for requestedVersion: String) -> Bool {
+            let latestSavedVersion = UserDefaults.standard.string(forKey: latestVersionKey)
+            
+            // Don't show again for the same version
+            if requestedVersion == latestSavedVersion {
+                return false
+            }
+            
+            // Show only for selected version
+            return requestedVersion == "1.7.6"
+        }
+        
+        func updateLastVersionForNewFeatures() {
+            guard let currentVersion = Bundle.main.shortVersion else { return }
+            updateLatestVersionForNewFeatures(to: currentVersion)
+        }
+        
+        func updateLatestVersionForNewFeatures(to version: String)  {
+            UserDefaults.standard.set(version, forKey: latestVersionKey)
+        }
+        
+        func resetLatestVersionForNewFeatures() {
+            UserDefaults.standard.removeObject(forKey: latestVersionKey)
         }
         
     }

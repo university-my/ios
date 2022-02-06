@@ -71,7 +71,7 @@ class NetworkClient<Model: Decodable> {
         
         switch status.code {
         case .scheduleParsingError:
-            return NetworkError(kind: .scheduleParsingError)
+            return NetworkError.scheduleParsingError
         }
     }
 }

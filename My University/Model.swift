@@ -17,21 +17,23 @@ protocol ModelProtocol {
     var isFavorite: Bool { get }
     var name: String { get }
     var slug: String { get }
+    var uuid: String? { get }
 }
 
-struct Model<Kind: ModelKind, Entity: CoreDataFetchable & CoreDataEntityProtocol>: ModelProtocol {
+struct Model<Kind: ModelKind, Entity: CoreDataFetchProtocol & CoreDataEntityProtocol>: ModelProtocol {
     typealias CoreDataEntity = Entity
     
     var id: Int64
     var isFavorite: Bool
     var name: String
     var slug: String
+    var uuid: String?
 }
 
 extension Model: EntityRepresentable {}
 
-typealias Classroom = Model<ModelKinds.ClassroomModel, ClassroomEntity>
+typealias Classroom = Model<ClassroomModel, ClassroomEntity>
 
-typealias Group = Model<ModelKinds.GroupModel, GroupEntity>
+typealias Group = Model<GroupModel, GroupEntity>
 
-typealias Teacher = Model<ModelKinds.TeacherModel, TeacherEntity>
+typealias Teacher = Model<TeacherModel, TeacherEntity>

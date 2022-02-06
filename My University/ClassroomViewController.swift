@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ClassroomViewController: EntityViewController<ModelKinds.ClassroomModel, ClassroomEntity> {
+final class ClassroomViewController: EntityViewController<ClassroomModel, ClassroomEntity> {
     
     // MARK: - Lifecycle
     
@@ -17,10 +17,6 @@ final class ClassroomViewController: EntityViewController<ModelKinds.ClassroomMo
         
         logic = Classroom.LogicController(activity: activityController)
         logic.delegate = self
-        
-        // Save last opened entity to UserDefaults
-        let entity = Entity(kind: .classroom, id: entityID)
-        Entity.Manager.shared.update(with: entity)
         
         // Data
         logic.fetchData(for: entityID)

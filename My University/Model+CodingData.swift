@@ -8,12 +8,10 @@
 
 import Foundation
 
-extension Model {
+struct ModelCodingData: Codable {
     
-    struct CodingData: Codable {
-        
-        let id: Int64
-        let name: String
-        let slug: String
-    }
+    let id: Int64
+    let name: String
+    let slug: String
+    let uuid: UUID
 }

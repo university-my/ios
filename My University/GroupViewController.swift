@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class GroupViewController: EntityViewController<ModelKinds.GroupModel, GroupEntity> {
+final class GroupViewController: EntityViewController<GroupModel, GroupEntity> {
     
     // MARK: - Lifecycle
     
@@ -17,10 +17,6 @@ final class GroupViewController: EntityViewController<ModelKinds.GroupModel, Gro
         
         logic = Group.LogicController(activity: activityController)
         logic.delegate = self
-        
-        // Save last opened entity to UserDefaults
-        let entity = Entity(kind: .group, id: entityID)
-        Entity.Manager.shared.update(with: entity)
         
         // Data
         logic.fetchData(for: entityID)

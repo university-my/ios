@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EntityViewController<Kind: ModelKind, Entity: CoreDataFetchable & CoreDataEntityProtocol>: UIViewController {
+class EntityViewController<Kind: ModelKind, Entity: CoreDataFetchProtocol & CoreDataEntityProtocol>: UIViewController {
     typealias ModelType = Model<Kind, Entity>
     
     // MARK: - Properties
@@ -73,10 +73,14 @@ class EntityViewController<Kind: ModelKind, Entity: CoreDataFetchable & CoreData
             self.menuPresenter.updateMenu(isFavorite: self.isFavorite)
             
         } universityAction: {
-            self.performSegue(withIdentifier: "setUniversity", sender: nil)
+            self.returnToUniversity()
         }
         menuPresenter = EntityMenuPresenter(config: config)
         menuPresenter.updateMenu(isFavorite: isFavorite)
+    }
+    
+    func returnToUniversity() {
+        performSegue(withIdentifier: "setUniversity", sender: nil)
     }
     
     // MARK: - State
@@ -120,7 +124,10 @@ class EntityViewController<Kind: ModelKind, Entity: CoreDataFetchable & CoreData
     // MARK: - Error
     
     func presentAlert(with error: Error) {
-        if let error = error as? URLError, error.code == .badServerResponse {
+        
+        switch error {
+            
+        case URLError.badServerResponse:
             /*
              This error occurs when a user tries to download records for an object that no longer exists.
              This can happen when the database on the server has been reset.
@@ -128,15 +135,29 @@ class EntityViewController<Kind: ModelKind, Entity: CoreDataFetchable & CoreData
             let alert = configureNotFoundAlert()
             present(alert, animated: true)
             
-        } else if let networkError = error as? NetworkError, networkError.kind == .scheduleParsingError {
+        case NetworkError.scheduleParsingError:
             /*
              This error occurs when a server can't parse a schedule.
              For example, due to an unexpected structure or special characters.
              */
-            let alert = configureParsingErrorAlert(with: networkError, website: logic.shareURL)
+            let alert = configureParsingErrorAlert(with: error.localizedDescription, website: logic.shareURL)
             present(alert, animated: true)
             
-        } else {
+        case LogicError.UUIDNotEqual, LogicError.UUIDNotFound:
+            /*
+             Update list of entities to get UUID
+             */
+            let alert = configureUUIDNotFoundAlert(with: error.localizedDescription) {
+                
+                self.logic.dataController.removeFromFavorites()
+                
+                UniversityDataController.shared.requestEntitiesUpdate()
+                
+                self.returnToUniversity()
+            }
+            present(alert, animated: true)
+            
+        default:
             present(error) {
                 // Try again
                 self.logic.importRecords()

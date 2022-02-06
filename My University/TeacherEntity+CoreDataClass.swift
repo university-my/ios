@@ -19,15 +19,6 @@ public class TeacherEntity: NSManagedObject {
 
 extension TeacherEntity: CoreDataEntityProtocol {
     
-    var favorite: Bool {
-        get {
-            return isFavorite
-        }
-        set {
-            isFavorite = newValue
-        }
-    }
-    
     func shareURL(for date: Date) -> URL? {
         guard let parameters = pageParameters(with: date) else {
             return nil
@@ -41,13 +32,10 @@ extension TeacherEntity: CoreDataEntityProtocol {
 extension TeacherEntity: StructRepresentable {
     
     func asStruct() -> EntityRepresentable? {
-        Teacher(
-            id: id,
-            isFavorite: isFavorite,
-            name: name ?? "",
-            slug: slug ?? ""
-        )
+        guard let name = name else { return nil }
+        guard let slug = slug else { return nil }
+        return Teacher(id: id, isFavorite: isFavorite, name: name, slug: slug, uuid: uuid?.uuidString)
     }
 }
 
-extension TeacherEntity: CoreDataFetchable {}
+extension TeacherEntity: CoreDataFetchProtocol {}

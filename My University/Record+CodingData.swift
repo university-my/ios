@@ -27,9 +27,9 @@ extension Record {
         
         /// Description or comment
         let reason: String?
-        let classroom: Classroom.CodingData?
-        let groups: [Group.CodingData]
-        let teacher: Teacher.CodingData?
+        let classroom: ModelCodingData?
+        let groups: [ModelCodingData]
+        let teacher: ModelCodingData?
         
         enum CodingKeys: String, CodingKey {
             case id

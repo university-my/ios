@@ -9,7 +9,7 @@
 import Foundation
 
 protocol ModelNetworkControllerDelegate: AnyObject {
-    func didImportRecords(for entity: CoreDataFetchable & CoreDataEntityProtocol, _ error: Error?)
+    func didImportRecords(for entity: CoreDataFetchProtocol & CoreDataEntityProtocol, _ error: Error?)
 }
 
 extension Model {
@@ -23,7 +23,7 @@ extension Model {
             guard let university = entity.university else {
                 preconditionFailure("Invalid university")
             }
-            let container = CoreData.default.persistentContainer
+            let container = CoreData.shared.persistentContainer
             let syncController = Model.RecordsSyncController(
                 persistentContainer: container,
                 modelID: entity.id,

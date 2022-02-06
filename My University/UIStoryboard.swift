@@ -18,6 +18,10 @@ extension UIStoryboard {
         UIStoryboard(name: "Legal Document", bundle: nil)
     }
     
+    static var newActivity: UIStoryboard {
+        UIStoryboard(name: "NewActivity", bundle: nil)
+    }
+    
     static var university: UIStoryboard {
         UIStoryboard(name: "University", bundle: nil)
     }

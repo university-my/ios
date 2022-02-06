@@ -181,7 +181,7 @@ extension Model {
             request.predicate = generatePredicate()
             request.fetchBatchSize = 20
             
-            let context = CoreData.default.viewContext
+            let context = CoreData.shared.viewContext
             let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: #keyPath(RecordEntity.pairName), cacheName: nil)
             return controller
         }()
@@ -207,7 +207,12 @@ extension Model {
         
         func toggleFavorites() {
             entity?.isFavorite.toggle()
-            CoreData.default.saveContext()
+            CoreData.shared.saveContext()
+        }
+        
+        func removeFromFavorites() {
+            entity?.isFavorite = false
+            CoreData.shared.saveContext()
         }
         
         // MARK: - Share URL
@@ -223,7 +228,7 @@ extension Model {
 
 extension Model.DataController: ModelNetworkControllerDelegate {
     
-    func didImportRecords(for entity: CoreDataEntityProtocol & CoreDataFetchable, _ error: Error?) {
+    func didImportRecords(for entity: CoreDataEntityProtocol & CoreDataFetchProtocol, _ error: Error?) {
         guard let model = entity as? StructRepresentable else {
             preconditionFailure()
         }

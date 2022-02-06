@@ -7,31 +7,35 @@
 //
 
 /*
-Abstract:
-A class used to provide keys for UserDefaults.
-*/
+ Abstract:
+ A class used to provide keys for UserDefaults.
+ */
 
 import Foundation
 
 struct UserDefaultsKeys {
     
+    private static var identifier: String {
+        Bundle.identifier
+    }
+    
     static var recordDetailsOpenedCountKey: String {
-        return Bundle.identifier + ".recordDetailsOpenedCount"
+        "\(identifier).recordDetailsOpenedCount"
     }
     
     static var selectedUniversityKey: String {
-        return Bundle.identifier + ".selectedUniversity"
+        "\(identifier).selectedUniversity"
     }
     
-    static var lastVersionPromptedForReviewKey: String {
-        return Bundle.identifier + ".lastVersionPromptedForReview"
+    static var latestVersionPromptedForReviewKey: String {
+        "\(identifier).latestVersionPromptedForReview"
     }
     
-    static var lastVersionForNewFeaturesKey: String {
-        return Bundle.identifier + ".lastVersionForNewFeatures"
+    static var latestVersionForNewFeaturesKey: String {
+        "\(identifier).latestVersionForNewFeatures"
     }
     
     static func entityKey(with type: String, universityID: Int64) -> String {
-        return "\(Bundle.identifier).\(universityID).\(type)"
+        "\(identifier).\(universityID).\(type)"
     }
 }
