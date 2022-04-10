@@ -9,12 +9,12 @@
 import CoreData
 import UIKit
 
-class UniversitiesTableViewController: GenericTableViewController {
+class UniversitiesTableViewController: UITableViewController {
     
     // MARK: - Properties
     
     lazy var dataSource: UniversitiesDataSource = {
-        return UniversitiesDataSource()
+        UniversitiesDataSource()
     }()
     
     // MARK: - Lifecycle

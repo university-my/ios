@@ -17,7 +17,7 @@ private let groupsCell = "groupsCell"
 private let teachersCell = "teachersCell"
 private let favoritesCell = "favoritesCell"
 
-class UniversityViewController: GenericTableViewController {
+class UniversityViewController: UITableViewController {
     
     // MARK: - Properties
     
@@ -99,7 +99,7 @@ class UniversityViewController: GenericTableViewController {
     // MARK: - Table
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return dataSource.sections.count
+        dataSource.sections.count
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -138,11 +138,11 @@ class UniversityViewController: GenericTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return dataSource.titleForHeader(in: section)
+        dataSource.titleForHeader(in: section)
     }
     
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return dataSource.titleForFooter(in: section)
+        dataSource.titleForFooter(in: section)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

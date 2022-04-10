@@ -12,6 +12,6 @@ public extension NSManagedObject {
     
     /// NSManagedObject's subclass name
     static var entityName: String {
-        return String(describing: self)
+        String(describing: self)
     }
 }

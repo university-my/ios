@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchableTableViewController: GenericTableViewController {
+class SearchableTableViewController: UITableViewController {
 
     // MARK: - Search
     
