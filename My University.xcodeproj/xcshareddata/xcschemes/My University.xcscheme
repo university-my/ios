@@ -37,6 +37,20 @@
                BlueprintName = "MyUniversityTests"
                ReferencedContainer = "container:My University.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "RecordsTests">
+               </Test>
+               <Test
+                  Identifier = "TeacherEndpointsTests">
+               </Test>
+               <Test
+                  Identifier = "URLTests">
+               </Test>
+               <Test
+                  Identifier = "UniversityEndpointsTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
          <TestableReference
             skipped = "NO">
@@ -45,6 +59,16 @@
                BlueprintIdentifier = "DEE643BA253B7BB7007A815B"
                BuildableName = "UITests.xctest"
                BlueprintName = "UITests"
+               ReferencedContainer = "container:My University.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DEEAEC0C2808017300DB31FE"
+               BuildableName = "My UniversityTests.xctest"
+               BlueprintName = "My UniversityTests"
                ReferencedContainer = "container:My University.xcodeproj">
             </BuildableReference>
          </TestableReference>

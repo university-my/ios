@@ -1080,7 +1080,7 @@
 		C2B5CDE71EEF0E750066DB30 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1200;
+				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1240;
 				ORGANIZATIONNAME = "Yura Voevodin";
 				TargetAttributes = {
