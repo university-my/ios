@@ -37,7 +37,7 @@ class RecordsDataSource {
     // MARK: - Core Data
     
     var viewContext: NSManagedObjectContext {
-        return persistentContainer.viewContext
+        persistentContainer.viewContext
     }
     
     var persistentContainer: NSPersistentContainer {

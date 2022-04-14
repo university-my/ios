@@ -73,7 +73,7 @@ extension Model {
         
         
         var sections: [DataController.Section] {
-            return dataController.sections
+            dataController.sections
         }
         
         var shareURL: URL? {
@@ -83,7 +83,7 @@ extension Model {
         // MARK: - Date
         
         var pairDate: Date {
-            return dataController.pairDate
+            dataController.pairDate
         }
         
         /// -1 day

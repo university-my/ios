@@ -188,7 +188,7 @@ extension UniversityViewController {
             }
             
             // Show only for selected version
-            return requestedVersion == "1.7.6"
+            return requestedVersion == "1.7.5"
         }
         
         func updateLastVersionForNewFeatures() {

@@ -11,10 +11,10 @@ import Foundation
 extension Date {
     
     var startOfDay: Date {
-        return Calendar.current.startOfDay(for: self)
+        Calendar.current.startOfDay(for: self)
     }
     
     var endOfDay: Date {
-        return Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: startOfDay)!
+        Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: startOfDay)!
     }
 }

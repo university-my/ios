@@ -14,7 +14,7 @@ protocol RecordDetailedTableViewControllerDelegate: AnyObject {
     func didDismissDetails(in viewController: RecordDetailedTableViewController)
 }
 
-class RecordDetailedTableViewController: GenericTableViewController {
+class RecordDetailedTableViewController: UITableViewController {
     
     // MARK: - Types
     
@@ -176,7 +176,7 @@ class RecordDetailedTableViewController: GenericTableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
+        sections.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -223,7 +223,7 @@ class RecordDetailedTableViewController: GenericTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section].type.name
+        sections[section].type.name
     }
     
     // MARK: - Done

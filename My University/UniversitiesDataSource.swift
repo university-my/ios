@@ -22,7 +22,7 @@ class UniversitiesDataSource: NSObject {
     }()
     
     private lazy var viewContext: NSManagedObjectContext? = {
-        return persistentContainer?.viewContext
+        persistentContainer?.viewContext
     }()
     
     // MARK: - NSFetchedResultsController
@@ -78,7 +78,7 @@ class UniversitiesDataSource: NSObject {
 extension UniversitiesDataSource: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return fetchedResultsController?.sections?.count ?? 0
+        fetchedResultsController?.sections?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

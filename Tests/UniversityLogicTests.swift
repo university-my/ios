@@ -40,8 +40,8 @@ class UniversityLogicTests: XCTestCase {
         let logic = UniversityViewController.UniversityLogicController()
         
         // Should fails when app version is changed
-        XCTAssertFalse(logic.needToPresentWhatsNew(for: "1.7.5"))
-        XCTAssertTrue(logic.needToPresentWhatsNew(for: "1.7.6"))
+        XCTAssertTrue(logic.needToPresentWhatsNew(for: "1.7.5"))
+        XCTAssertFalse(logic.needToPresentWhatsNew(for: "1.7.6"))
         XCTAssertFalse(logic.needToPresentWhatsNew(for: "1.7.7"))
     }
 }

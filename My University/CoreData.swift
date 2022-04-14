@@ -22,7 +22,7 @@ class CoreData {
     // MARK: - Properties
     
     var viewContext: NSManagedObjectContext {
-        return persistentContainer.viewContext
+        persistentContainer.viewContext
     }
     
     var persistentContainer: NSPersistentContainer {

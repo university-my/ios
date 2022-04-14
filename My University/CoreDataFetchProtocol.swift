@@ -16,6 +16,6 @@ protocol CoreDataFetchProtocol: NSManagedObject {
 extension CoreDataFetchProtocol {
     
     public static func fetchRequest() -> NSFetchRequest<CoreDataType> {
-        return NSFetchRequest<CoreDataType>(entityName: CoreDataType.entityName)
+        NSFetchRequest<CoreDataType>(entityName: CoreDataType.entityName)
     }
 }

@@ -84,7 +84,6 @@
 		DE7AB85D246720250031E279 /* ClassroomTableDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB85C246720250031E279 /* ClassroomTableDataController.swift */; };
 		DE7AB861246721F70031E279 /* ClassroomTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB860246721F70031E279 /* ClassroomTableViewController.swift */; };
 		DE7AB863246722AA0031E279 /* EntityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB862246722AA0031E279 /* EntityTableViewController.swift */; };
-		DE7B1D9F2269BCA5003E3028 /* GenericTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7B1D9E2269BCA5003E3028 /* GenericTableViewController.swift */; };
 		DE87B78E235B9E450090B63E /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE87B78D235B9E450090B63E /* InitialViewController.swift */; };
 		DE94500422C1345800550A1C /* TableMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE94500322C1345800550A1C /* TableMessageViewController.swift */; };
 		DE945AC72264D11700143303 /* UniversityEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE945AC52264D11700143303 /* UniversityEntity+CoreDataClass.swift */; };
@@ -264,7 +263,6 @@
 		DE7AB85C246720250031E279 /* ClassroomTableDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomTableDataController.swift; sourceTree = "<group>"; };
 		DE7AB860246721F70031E279 /* ClassroomTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomTableViewController.swift; sourceTree = "<group>"; };
 		DE7AB862246722AA0031E279 /* EntityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityTableViewController.swift; sourceTree = "<group>"; };
-		DE7B1D9E2269BCA5003E3028 /* GenericTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableViewController.swift; sourceTree = "<group>"; };
 		DE87B78D235B9E450090B63E /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		DE94500322C1345800550A1C /* TableMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableMessageViewController.swift; sourceTree = "<group>"; };
 		DE945AC52264D11700143303 /* UniversityEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -975,7 +973,6 @@
 		DEE576E2226B7AE3008F9EB6 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				DE7B1D9E2269BCA5003E3028 /* GenericTableViewController.swift */,
 				DEE576E3226B7B9E008F9EB6 /* SearchableTableViewController.swift */,
 				DE40B33C26F1E36D00631C55 /* StoryboardIdentifiable.swift */,
 			);
@@ -1250,7 +1247,6 @@
 				DE5A7E932219CCBF00CA9A79 /* RecordDetailedTableViewController.swift in Sources */,
 				DE4FCBFD23EF5CF9000B53F4 /* LegalDocumentViewController.swift in Sources */,
 				DEE576E4226B7B9E008F9EB6 /* SearchableTableViewController.swift in Sources */,
-				DE7B1D9F2269BCA5003E3028 /* GenericTableViewController.swift in Sources */,
 				DE4FCBFF23EF5D50000B53F4 /* LegalDocument.swift in Sources */,
 				DE4AA07121A5DF0500E06FEA /* ClassroomDataSource.swift in Sources */,
 				DEB9BD5B2538C3F6008F41A2 /* Model+SyncController.swift in Sources */,

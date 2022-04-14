@@ -14,7 +14,7 @@ struct University {
     
     static var selectedUniversityID: Int64? {
         get {
-            return UserDefaults.standard.value(forKey: UserDefaultsKeys.selectedUniversityKey) as? Int64
+            UserDefaults.standard.value(forKey: UserDefaultsKeys.selectedUniversityKey) as? Int64
         }
         set {
             UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.selectedUniversityKey)

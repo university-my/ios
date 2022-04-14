@@ -15,6 +15,6 @@ public protocol StoryboardIdentifiable {
 public extension StoryboardIdentifiable where Self: UIViewController {
 
     static var storyboardIdentifier: String {
-        return String(describing: self)
+        String(describing: self)
     }
 }
