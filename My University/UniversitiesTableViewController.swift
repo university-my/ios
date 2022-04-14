@@ -30,9 +30,6 @@ class UniversitiesTableViewController: GenericTableViewController {
         configureSearchControllers()
         searchController.searchResultsUpdater = self
         
-        // Always visible search bar
-        navigationItem.hidesSearchBarWhenScrolling = false
-        
         // Loading...
         tableView.dataSource = dataSource
         dataSource.fetchUniversities(delegate: self)

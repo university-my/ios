@@ -35,7 +35,6 @@
 		DE16BC1125F8EC040007AAE5 /* TeachersLogicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16BC1025F8EC040007AAE5 /* TeachersLogicController.swift */; };
 		DE18941C21BC3A3900C7F9DB /* GroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941B21BC3A3900C7F9DB /* GroupTableViewController.swift */; };
 		DE266D60240C4AAA00C30A4A /* WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE266D5F240C4AAA00C30A4A /* WhatsNewView.swift */; };
-		DE2863782455F75B0036A01F /* UniversitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2863772455F75B0036A01F /* UniversitiesViewController.swift */; };
 		DE28637C245600330036A01F /* NoRecordsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE28637A245600330036A01F /* NoRecordsTableViewCell.swift */; };
 		DE3628CB2524ADD0003A7939 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3628CA2524ADD0003A7939 /* UserDefaultsKeys.swift */; };
 		DE3628D52524EE4C003A7939 /* UniversityLogicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3628D42524EE4C003A7939 /* UniversityLogicController.swift */; };
@@ -208,7 +207,6 @@
 		DE16BC1025F8EC040007AAE5 /* TeachersLogicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersLogicController.swift; sourceTree = "<group>"; };
 		DE18941B21BC3A3900C7F9DB /* GroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTableViewController.swift; sourceTree = "<group>"; };
 		DE266D5F240C4AAA00C30A4A /* WhatsNewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewView.swift; sourceTree = "<group>"; };
-		DE2863772455F75B0036A01F /* UniversitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversitiesViewController.swift; sourceTree = "<group>"; };
 		DE28637A245600330036A01F /* NoRecordsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoRecordsTableViewCell.swift; sourceTree = "<group>"; };
 		DE3628CA2524ADD0003A7939 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		DE3628D42524EE4C003A7939 /* UniversityLogicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityLogicController.swift; sourceTree = "<group>"; };
@@ -951,7 +949,6 @@
 			children = (
 				DE54273225E78736000B3600 /* UniversitiesSearchResultsTableViewController.swift */,
 				DEBB74BA235CF4C300226C7E /* UniversitiesTableViewController.swift */,
-				DE2863772455F75B0036A01F /* UniversitiesViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -1250,7 +1247,6 @@
 				DE13EEB42466B9BA0011F307 /* StructRepresentable.swift in Sources */,
 				DEB9BD292538B233008F41A2 /* NetworkClient.swift in Sources */,
 				DEDA8CF72534930D00B54E41 /* RecordEntity+CoreDataProperties.swift in Sources */,
-				DE2863782455F75B0036A01F /* UniversitiesViewController.swift in Sources */,
 				DE5A7E932219CCBF00CA9A79 /* RecordDetailedTableViewController.swift in Sources */,
 				DE4FCBFD23EF5CF9000B53F4 /* LegalDocumentViewController.swift in Sources */,
 				DEE576E4226B7B9E008F9EB6 /* SearchableTableViewController.swift in Sources */,
