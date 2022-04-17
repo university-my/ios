@@ -8,15 +8,12 @@
 
 import UIKit
 
-// MARK: - Cells
-
-private let searchResultsTableCell = "searchResultsTableCell"
-
 class UniversitiesSearchResultsTableViewController: UITableViewController {
     
     // MARK: - Properties
     
     var filtered: [UniversityEntity] = []
+    private let searchResultsTableCell = "searchResultsTableCell"
     
     // MARK: - Table view data source
     
@@ -37,5 +34,25 @@ class UniversitiesSearchResultsTableViewController: UITableViewController {
         cell.detailTextLabel?.text = university.fullName
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        University.selectedUniversityID = filtered[indexPath.row].id
+        performSegue(withIdentifier: "presentUniversity")
+    }
+}
+
+// MARK: - UISearchResultsUpdating
+
+extension UniversitiesSearchResultsTableViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        // Strip out all the leading and trailing spaces.
+        guard let text = searchController.searchBar.text else { return }
+        let searchQuery = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        // Hand over the filtered results to our search results table.
+        filtered = UniversityEntity.search(with: searchQuery, context: CoreData.shared.viewContext)
+        tableView.reloadData()
     }
 }

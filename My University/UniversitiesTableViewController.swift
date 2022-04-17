@@ -13,9 +13,7 @@ class UniversitiesTableViewController: UITableViewController {
     
     // MARK: - Properties
     
-    lazy var dataSource: UniversitiesDataSource = {
-        UniversitiesDataSource()
-    }()
+    private let dataSource = UniversitiesDataSource()
     
     // MARK: - Lifecycle
     
@@ -24,11 +22,9 @@ class UniversitiesTableViewController: UITableViewController {
         
         // Configure table
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.tableFooterView = UIView()
         
         // Sear Bar and Search Results Controller
         configureSearchControllers()
-        searchController.searchResultsUpdater = self
         
         // Loading...
         tableView.dataSource = dataSource
@@ -67,12 +63,7 @@ class UniversitiesTableViewController: UITableViewController {
     // MARK: - Navigation
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let universityID: Int64?
-        if searchController.isActive {
-            universityID = resultsTableController.filtered[safe: indexPath.row]?.id
-        } else {
-            universityID = dataSource.fetchedResultsController?.fetchedObjects?[safe: indexPath.row]?.id
-        }
+        let universityID = dataSource.fetchedResultsController?.fetchedObjects?[indexPath.row].id
         if let id = universityID {
             University.selectedUniversityID = id
             performSegue(withIdentifier: .presentUniversity)
@@ -80,38 +71,20 @@ class UniversitiesTableViewController: UITableViewController {
     }
     
     // MARK: - Search
-    
-    /// Search controller to help us with filtering.
-    var searchController: UISearchController!
-
-    /// Secondary search results table view.
-    var resultsTableController: UniversitiesSearchResultsTableViewController!
 
     func configureSearchControllers() {
+        let results = storyboard!.instantiateViewController(withIdentifier: "UniversitiesSearchResultsTableViewController") as? UniversitiesSearchResultsTableViewController
 
-        resultsTableController = storyboard!.instantiateViewController(withIdentifier: "UniversitiesSearchResultsTableViewController") as? UniversitiesSearchResultsTableViewController
-
-        // We want ourselves to be the delegate for this filtered table so didSelectRowAtIndexPath(_:) is called for both tables.
-        resultsTableController.tableView.delegate = self
-
-        // Setup the Search Controller.
-        searchController = UISearchController(searchResultsController: resultsTableController)
-
-        // Add Search Controller to the navigation item (iOS 11).
-        navigationItem.searchController = searchController
+        // Add Search Controller to the navigation item
+        let controller = UISearchController(searchResultsController: results)
+        controller.searchResultsUpdater = results
+        navigationItem.searchController = controller
 
         // Setup the Search Bar
-        searchController.searchBar.placeholder = NSLocalizedString("Search", comment: "Placeholder in search controller")
+        controller.searchBar.placeholder = NSLocalizedString("Search", comment: "Placeholder in search controller")
 
-        /*
-         Search is now just presenting a view controller. As such, normal view controller
-         presentation semantics apply. Namely that presentation will walk up the view controller
-         hierarchy until it finds the root view controller or one that defines a presentation context.
-         */
-        definesPresentationContext = true
-
-        searchController.isActive = true
-        searchController.searchBar.becomeFirstResponder()
+        controller.isActive = true
+        controller.searchBar.becomeFirstResponder()
     }
 }
 
@@ -132,19 +105,4 @@ extension UniversitiesTableViewController: ErrorAlertRepresentable {}
 
 private extension UniversitiesTableViewController.SegueIdentifier {
     static let presentUniversity = "presentUniversity"
-}
-
-// MARK: - UISearchResultsUpdating
-
-extension UniversitiesTableViewController: UISearchResultsUpdating {
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        // Strip out all the leading and trailing spaces.
-        guard let text = searchController.searchBar.text else { return }
-        let searchString = text.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        // Hand over the filtered results to our search results table.
-        resultsTableController.filtered = UniversityEntity.search(with: searchString, context: CoreData.shared.viewContext)
-        resultsTableController.tableView.reloadData()
-    }
 }
