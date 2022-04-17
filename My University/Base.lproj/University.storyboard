@@ -197,6 +197,7 @@
                     </refreshControl>
                     <connections>
                         <segue destination="FBa-ki-ZHQ" kind="presentation" identifier="groupDetails" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="mOc-P4-gkQ"/>
+                        <segue destination="FBa-ki-ZHQ" kind="presentation" identifier="groupDetailsFromSearch" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="kw8-0l-tv1"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xIU-zu-olT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -416,7 +417,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Mg6-1X-yCk"/>
         <segue reference="JMw-YC-lGa"/>
-        <segue reference="mOc-P4-gkQ"/>
+        <segue reference="kw8-0l-tv1"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="systemIndigoColor"/>
     <resources>

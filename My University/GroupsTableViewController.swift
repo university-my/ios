@@ -25,6 +25,8 @@ class GroupsTableViewController: SearchableTableViewController {
         
         // Sear Bar and Search Results Controller
         configureSearchControllers()
+        resultsTableController.searchResultsDelegate = self
+        
         searchController.searchResultsUpdater = self
         
         // Always visible search bar
@@ -112,7 +114,7 @@ class GroupsTableViewController: SearchableTableViewController {
     // MARK: - Navigation
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "groupDetails", sender: nil)
+        performSegue(withIdentifier: .groupDetails)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -120,19 +122,20 @@ class GroupsTableViewController: SearchableTableViewController {
         
         switch identifier {
             
-        case "groupDetails":
+        case .groupDetails:
             let navigationVC = segue.destination as? UINavigationController
             let controller = navigationVC?.viewControllers.first as? GroupViewController
-            if searchController.isActive {
-                if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
-                    let selectedGroup = resultsTableController.filteredGroups[safe: indexPath.row]
-                    controller?.entityID = selectedGroup?.id
-                }
-            } else {
-                if let indexPath = tableView.indexPathForSelectedRow {
-                    let selectedGroup = dataSource?.fetchedResultsController?.object(at: indexPath)
-                    controller?.entityID = selectedGroup?.id
-                }
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let selectedGroup = dataSource?.fetchedResultsController?.object(at: indexPath)
+                controller?.entityID = selectedGroup?.id
+            }
+            
+        case .groupDetailsFromSearch:
+            let navigationVC = segue.destination as? UINavigationController
+            let controller = navigationVC?.viewControllers.first as? GroupViewController
+            if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
+                let selectedGroup = resultsTableController.filteredGroups[indexPath.row]
+                controller?.entityID = selectedGroup.id
             }
             
         default:
@@ -168,6 +171,21 @@ extension GroupsTableViewController: UISearchResultsUpdating {
             resultsController.tableView.reloadData()
         }
     }
+}
+
+// MARK: - SearchResultsTableViewControllerDelegate
+
+extension GroupsTableViewController: SearchResultsTableViewControllerDelegate {
+    func searchResultsTableViewController(_ controller: SearchResultsTableViewController, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: .groupDetailsFromSearch)
+    }
+}
+
+// MARK: - SegueIdentifier
+
+private extension GroupsTableViewController.SegueIdentifier {
+    static let groupDetails = "groupDetails"
+    static let groupDetailsFromSearch = "groupDetailsFromSearch"
 }
 
 // MARK: - ErrorAlertProtocol
