@@ -34,6 +34,8 @@ class TeachersTableViewController: SearchableTableViewController {
 
         // Sear Bar and Search Results Controller
         configureSearchControllers()
+        resultsTableController.searchResultsDelegate = self
+        
         searchController.searchResultsUpdater = self
         
         // Always visible search bar
@@ -44,8 +46,8 @@ class TeachersTableViewController: SearchableTableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         // This is for reloading data when the favourites are changed
-        if let datasource = dataSource {
-            datasource.performFetch()
+        if let dataSource = dataSource {
+            dataSource.performFetch()
             tableView.reloadData()
         }
         
@@ -63,11 +65,11 @@ class TeachersTableViewController: SearchableTableViewController {
         }
     }
     
-    // MARK: - Groups
+    // MARK: - Load
     
     func loadTeachers() {
         if logic.needToImportTeachers() {
-            self.importTeachers()
+            importTeachers()
         } else {
             tableView.reloadData()
             refreshControl?.endRefreshing()
@@ -104,7 +106,7 @@ class TeachersTableViewController: SearchableTableViewController {
     // MARK: - Navigation
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "teacherDetails", sender: nil)
+        performSegue(withIdentifier: .teacherDetails)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -112,36 +114,27 @@ class TeachersTableViewController: SearchableTableViewController {
         
         switch identifier {
             
-        case "teacherDetails":
-            let navigationVC = segue.destination as? UINavigationController
-            let controller = navigationVC?.viewControllers.first as? TeacherViewController
-            if searchController.isActive {
-                if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
-                    let selectedTeacher = resultsTableController.filteredTeachers[safe: indexPath.row]
-                    controller?.entityID = selectedTeacher?.id
-                }
-            } else {
-                if let indexPath = tableView.indexPathForSelectedRow {
-                    let selectedTeacher = dataSource?.fetchedResultsController?.object(at: indexPath)
-                    controller?.entityID = selectedTeacher?.id
-                }
+        case .teacherDetails:
+            let navigation = segue.destination as? UINavigationController
+            let controller = navigation?.viewControllers.first as? TeacherViewController
+            
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let selectedTeacher = dataSource?.fetchedResultsController?.object(at: indexPath)
+                controller?.entityID = selectedTeacher?.id
+            }
+            
+        case .teacherDetailsFromSearch:
+            let navigation = segue.destination as? UINavigationController
+            let controller = navigation?.viewControllers.first as? TeacherViewController
+            if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
+                let teacher = resultsTableController.filteredTeachers[indexPath.row]
+                controller?.entityID = teacher.id
             }
             
         default:
             break
         }
     }
-    
-    // MARK: - UITableViewDelegate
-    
-    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        /* It's a common anti-pattern to leave a cell labels populated with their text content when these cells enter the reuse queue.
-         */
-        cell.textLabel?.text = nil
-        cell.detailTextLabel?.text = nil
-    }
-    
-    
 }
 
 // MARK: - UISearchResultsUpdating
@@ -173,6 +166,21 @@ extension TeachersTableViewController: UISearchResultsUpdating {
     }
 }
 
+// MARK: - SearchResultsTableViewControllerDelegate
+
+extension TeachersTableViewController: SearchResultsTableViewControllerDelegate {
+    func searchResultsTableViewController(_ controller: SearchResultsTableViewController, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: .teacherDetailsFromSearch)
+    }
+}
+
 // MARK: - ErrorAlertProtocol
 
 extension TeachersTableViewController: ErrorAlertRepresentable {}
+
+// MARK: - SegueIdentifier
+
+private extension TeachersTableViewController.SegueIdentifier {
+    static let teacherDetails = "teacherDetails"
+    static let teacherDetailsFromSearch = "teacherDetailsFromSearch"
+}

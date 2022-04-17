@@ -22,9 +22,6 @@ class SearchableTableViewController: UITableViewController {
 
         resultsTableController = storyboard!.instantiateViewController(withIdentifier: "SearchResultsTableViewController") as? SearchResultsTableViewController
 
-        // We want ourselves to be the delegate for this filtered table so didSelectRowAtIndexPath(_:) is called for both tables.
-        resultsTableController.tableView.delegate = self
-
         // Setup the Search Controller.
         searchController = UISearchController(searchResultsController: resultsTableController)
 
@@ -34,24 +31,7 @@ class SearchableTableViewController: UITableViewController {
         // Setup the Search Bar
         searchController.searchBar.placeholder = NSLocalizedString("Search", comment: "Placeholder in search controller")
 
-        /*
-         Search is now just presenting a view controller. As such, normal view controller
-         presentation semantics apply. Namely that presentation will walk up the view controller
-         hierarchy until it finds the root view controller or one that defines a presentation context.
-         */
-        definesPresentationContext = true
-
         searchController.isActive = true
         searchController.searchBar.becomeFirstResponder()
     }
-    
-    // MARK: - UITableViewDelegate
-    
-    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        /* It's a common anti-pattern to leave a cell labels populated with their text content when these cells enter the reuse queue. */
-        cell.textLabel?.text = nil
-        cell.detailTextLabel?.text = nil
-    }
-    
-    
 }
