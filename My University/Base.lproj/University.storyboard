@@ -247,6 +247,7 @@
                     </refreshControl>
                     <connections>
                         <segue destination="UaB-WI-CTA" kind="presentation" identifier="classroomDetails" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="1gW-8I-Z99"/>
+                        <segue destination="UaB-WI-CTA" kind="presentation" identifier="classroomDetailsFromSearch" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="Mg6-1X-yCk"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C3D-s7-HAL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -413,7 +414,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="1gW-8I-Z99"/>
+        <segue reference="Mg6-1X-yCk"/>
         <segue reference="JMw-YC-lGa"/>
         <segue reference="mOc-P4-gkQ"/>
     </inferredMetricsTieBreakers>
