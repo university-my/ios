@@ -9,29 +9,29 @@
 import UIKit
 
 class SearchableTableViewController: UITableViewController {
-
-    // MARK: - Search
     
     /// Search controller to help us with filtering.
-    var searchController: UISearchController!
+    var searchController: UISearchController? {
+        navigationItem.searchController
+    }
 
     /// Secondary search results table view.
-    var resultsTableController: SearchResultsTableViewController!
+    var resultsTableController: SearchResultsTableViewController? {
+        navigationItem.searchController?.searchResultsController as? SearchResultsTableViewController
+    }
 
-    func configureSearchControllers() {
+    func configureSearchControllers(delegate: SearchResultsTableViewControllerDelegate) {
+        let results = storyboard!.instantiateViewController(withIdentifier: "SearchResultsTableViewController") as? SearchResultsTableViewController
+        results?.searchResultsDelegate = delegate
 
-        resultsTableController = storyboard!.instantiateViewController(withIdentifier: "SearchResultsTableViewController") as? SearchResultsTableViewController
-
-        // Setup the Search Controller.
-        searchController = UISearchController(searchResultsController: resultsTableController)
-
-        // Add Search Controller to the navigation item (iOS 11).
-        navigationItem.searchController = searchController
+        // Add Search Controller to the navigation item
+        let controller = UISearchController(searchResultsController: results)
+        navigationItem.searchController = controller
 
         // Setup the Search Bar
-        searchController.searchBar.placeholder = NSLocalizedString("Search", comment: "Placeholder in search controller")
+        controller.searchBar.placeholder = NSLocalizedString("Search", comment: "Placeholder in search controller")
 
-        searchController.isActive = true
-        searchController.searchBar.becomeFirstResponder()
+        controller.isActive = true
+        controller.searchBar.becomeFirstResponder()
     }
 }

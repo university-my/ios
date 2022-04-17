@@ -33,10 +33,8 @@ class TeachersTableViewController: SearchableTableViewController {
         tableView.rowHeight = UITableView.automaticDimension
 
         // Sear Bar and Search Results Controller
-        configureSearchControllers()
-        resultsTableController.searchResultsDelegate = self
-        
-        searchController.searchResultsUpdater = self
+        configureSearchControllers(delegate: self)
+        searchController?.searchResultsUpdater = self
         
         // Always visible search bar
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -96,7 +94,7 @@ class TeachersTableViewController: SearchableTableViewController {
     // MARK: - Pull to refresh
     
     @IBAction func refresh(_ sender: Any) {
-        guard !searchController.isActive else {
+        guard !(searchController?.isActive ?? false) else {
             refreshControl?.endRefreshing()
             return
         }
@@ -112,24 +110,20 @@ class TeachersTableViewController: SearchableTableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier else { return }
         
+        let navigation = segue.destination as? UINavigationController
+        let controller = navigation?.viewControllers.first as? TeacherViewController
+        
         switch identifier {
             
         case .teacherDetails:
-            let navigation = segue.destination as? UINavigationController
-            let controller = navigation?.viewControllers.first as? TeacherViewController
-            
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let selectedTeacher = dataSource?.fetchedResultsController?.object(at: indexPath)
-                controller?.entityID = selectedTeacher?.id
-            }
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            let entity = dataSource?.fetchedResultsController?.object(at: indexPath)
+            controller?.entityID = entity?.id
             
         case .teacherDetailsFromSearch:
-            let navigation = segue.destination as? UINavigationController
-            let controller = navigation?.viewControllers.first as? TeacherViewController
-            if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
-                let teacher = resultsTableController.filteredTeachers[indexPath.row]
-                controller?.entityID = teacher.id
-            }
+            guard let indexPath = resultsTableController?.tableView.indexPathForSelectedRow else { return }
+            let entity = resultsTableController?.filteredTeachers[indexPath.row]
+            controller?.entityID = entity?.id
             
         default:
             break
