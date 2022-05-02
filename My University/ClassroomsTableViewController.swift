@@ -24,8 +24,8 @@ class ClassroomsTableViewController: SearchableTableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         
         // Sear Bar and Search Results Controller
-        configureSearchControllers()
-        searchController.searchResultsUpdater = self
+        configureSearchControllers(delegate: self)
+        searchController?.searchResultsUpdater = self
         
         // Always visible search bar
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -35,8 +35,8 @@ class ClassroomsTableViewController: SearchableTableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         // This is for reloading data when the favorites are changed
-        if let datasource = dataSource {
-            datasource.performFetch()
+        if let dataSource = dataSource {
+            dataSource.performFetch()
             tableView.reloadData()
         }
         
@@ -101,7 +101,7 @@ class ClassroomsTableViewController: SearchableTableViewController {
     // MARK: - Pull to refresh
     
     @IBAction func refresh(_ sender: Any) {
-        guard !searchController.isActive else {
+        guard !(searchController?.isActive ?? false) else {
             refreshControl?.endRefreshing()
             return
         }
@@ -117,22 +117,20 @@ class ClassroomsTableViewController: SearchableTableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier else { return }
         
+        let navigation = segue.destination as? UINavigationController
+        let controller = navigation?.viewControllers.first as? ClassroomViewController
+        
         switch identifier {
             
         case .classroomDetails:
-            let navigationVC = segue.destination as? UINavigationController
-            let vc = navigationVC?.viewControllers.first as? ClassroomViewController
-            if searchController.isActive {
-                if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
-                    let selectedClassroom = resultsTableController.filteredClassrooms[safe: indexPath.row]
-                    vc?.entityID = selectedClassroom?.id
-                }
-            } else {
-                if let indexPath = tableView.indexPathForSelectedRow {
-                    let selectedClassroom = dataSource?.fetchedResultsController?.object(at: indexPath)
-                    vc?.entityID = selectedClassroom?.id
-                }
-            }
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            let entity = dataSource?.fetchedResultsController?.object(at: indexPath)
+            controller?.entityID = entity?.id
+            
+        case .classroomDetailsFromSearch:
+            guard let indexPath = resultsTableController?.tableView.indexPathForSelectedRow else { return }
+            let entity = resultsTableController?.filteredClassrooms[indexPath.row]
+            controller?.entityID = entity?.id
             
         default:
             break
@@ -169,10 +167,19 @@ extension ClassroomsTableViewController: UISearchResultsUpdating {
     }
 }
 
+// MARK: - SearchResultsTableViewControllerDelegate
+
+extension ClassroomsTableViewController: SearchResultsTableViewControllerDelegate {
+    func searchResultsTableViewController(_ controller: SearchResultsTableViewController, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: .classroomDetailsFromSearch)
+    }
+}
+
 // MARK: - SegueIdentifier
 
 private extension ClassroomsTableViewController.SegueIdentifier {
     static let classroomDetails = "classroomDetails"
+    static let classroomDetailsFromSearch = "classroomDetailsFromSearch"
 }
 
 // MARK: - ErrorAlertProtocol

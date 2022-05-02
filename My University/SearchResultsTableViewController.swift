@@ -12,9 +12,15 @@ enum DataSourceType: Int {
     case groups = 0, classrooms, teachers
 }
 
+protocol SearchResultsTableViewControllerDelegate: AnyObject {
+    func searchResultsTableViewController(_ controller: SearchResultsTableViewController, didSelectRowAt indexPath: IndexPath)
+}
+
 class SearchResultsTableViewController: UITableViewController {
     
     // MARK: - Properties
+    
+    weak var searchResultsDelegate: SearchResultsTableViewControllerDelegate?
     
     var dataSourceType: DataSourceType = .classrooms
     
@@ -58,5 +64,9 @@ class SearchResultsTableViewController: UITableViewController {
         }
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        searchResultsDelegate?.searchResultsTableViewController(self, didSelectRowAt: indexPath)
     }
 }

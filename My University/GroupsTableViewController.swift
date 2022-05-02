@@ -24,8 +24,8 @@ class GroupsTableViewController: SearchableTableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         
         // Sear Bar and Search Results Controller
-        configureSearchControllers()
-        searchController.searchResultsUpdater = self
+        configureSearchControllers(delegate: self)
+        searchController?.searchResultsUpdater = self
         
         // Always visible search bar
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -102,7 +102,7 @@ class GroupsTableViewController: SearchableTableViewController {
     // MARK: - Pull to refresh
     
     @IBAction func refresh(_ sender: Any) {
-        guard !searchController.isActive else {
+        guard !(searchController?.isActive ?? false) else {
             refreshControl?.endRefreshing()
             return
         }
@@ -112,43 +112,31 @@ class GroupsTableViewController: SearchableTableViewController {
     // MARK: - Navigation
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "groupDetails", sender: nil)
+        performSegue(withIdentifier: .groupDetails)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier else { return }
         
+        let navigation = segue.destination as? UINavigationController
+        let controller = navigation?.viewControllers.first as? GroupViewController
+        
         switch identifier {
             
-        case "groupDetails":
-            let navigationVC = segue.destination as? UINavigationController
-            let controller = navigationVC?.viewControllers.first as? GroupViewController
-            if searchController.isActive {
-                if let indexPath = resultsTableController.tableView.indexPathForSelectedRow {
-                    let selectedGroup = resultsTableController.filteredGroups[safe: indexPath.row]
-                    controller?.entityID = selectedGroup?.id
-                }
-            } else {
-                if let indexPath = tableView.indexPathForSelectedRow {
-                    let selectedGroup = dataSource?.fetchedResultsController?.object(at: indexPath)
-                    controller?.entityID = selectedGroup?.id
-                }
-            }
+        case .groupDetails:
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            let entity = dataSource?.fetchedResultsController?.object(at: indexPath)
+            controller?.entityID = entity?.id
+            
+        case .groupDetailsFromSearch:
+            guard let indexPath = resultsTableController?.tableView.indexPathForSelectedRow else { return }
+            let entity = resultsTableController?.filteredGroups[indexPath.row]
+            controller?.entityID = entity?.id
             
         default:
             break
         }
     }
-    
-    // MARK: - UITableViewDelegate
-    
-    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        /* It's a common anti-pattern to leave a cell labels populated with their text content when these cells enter the reuse queue. */
-        cell.textLabel?.text = nil
-        cell.detailTextLabel?.text = nil
-    }
-    
-    
 }
 
 // MARK: - UISearchResultsUpdating
@@ -178,6 +166,21 @@ extension GroupsTableViewController: UISearchResultsUpdating {
             resultsController.tableView.reloadData()
         }
     }
+}
+
+// MARK: - SearchResultsTableViewControllerDelegate
+
+extension GroupsTableViewController: SearchResultsTableViewControllerDelegate {
+    func searchResultsTableViewController(_ controller: SearchResultsTableViewController, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: .groupDetailsFromSearch)
+    }
+}
+
+// MARK: - SegueIdentifier
+
+private extension GroupsTableViewController.SegueIdentifier {
+    static let groupDetails = "groupDetails"
+    static let groupDetailsFromSearch = "groupDetailsFromSearch"
 }
 
 // MARK: - ErrorAlertProtocol

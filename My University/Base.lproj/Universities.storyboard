@@ -100,7 +100,7 @@
                 <viewControllerPlaceholder storyboardName="University" id="Lcu-rN-3Zj" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8xd-pt-mKO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1551" y="181"/>
+            <point key="canvasLocation" x="1551" y="598"/>
         </scene>
         <!--About-->
         <scene sceneID="x7o-i3-4do">
@@ -148,12 +148,18 @@
                             <outlet property="delegate" destination="O1n-gt-f5w" id="Hck-mT-Lhf"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="Lcu-rN-3Zj" kind="presentation" identifier="presentUniversity" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="h0r-PT-xSh"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cjb-e9-Leo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2083" y="163"/>
+            <point key="canvasLocation" x="2325" y="163"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="h0r-PT-xSh"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="systemIndigoColor"/>
     <resources>
         <systemColor name="systemIndigoColor">
