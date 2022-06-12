@@ -30,9 +30,7 @@ class NetworkClient<Model: Decodable> {
                 completion(.failure(URLError(.badServerResponse)))
                 return
             }
-#if DEBUG
-            print(httpResponse)
-#endif
+
             switch httpResponse.statusCode {
                 
             case 404:

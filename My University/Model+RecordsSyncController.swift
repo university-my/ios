@@ -40,10 +40,6 @@ extension Model {
             let params = Record.RequestParameters(id: modelID, university: university.url ?? "", date: dateString)
             let url = Kind.recordsEndpoint(params: params)
             
-#if DEBUG
-            print(url.absoluteString)
-#endif
-            
             networkClient.load(url, decoder: decoder) { (result) in
                 switch result {
                 
