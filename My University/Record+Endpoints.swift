@@ -12,13 +12,13 @@ extension Record {
     
     struct Endpoints {
         
-        static var testRecords: Endpoint<EndpointKinds.API> {
-            Endpoint<EndpointKinds.API>(path: "/records/test")
+        static var testLessons: Endpoint<EndpointKinds.API> {
+            Endpoint<EndpointKinds.API>(path: "/lessons/test")
         }
         
         /// Testing 500 response with custom code
-        static var testRecordsParsingError: Endpoint<EndpointKinds.API> {
-            Endpoint<EndpointKinds.API>(path: "/records/parsing_error")
+        static var testLessonsParsingError: Endpoint<EndpointKinds.API> {
+            Endpoint<EndpointKinds.API>(path: "/lessons/parsing_error")
         }
     }
 }

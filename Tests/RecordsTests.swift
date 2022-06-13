@@ -16,7 +16,7 @@ class RecordsTests: XCTestCase {
         
         let decoder = JSONDecoder()
         let client = NetworkClient<Record.RecordsList>()
-        client.load(Record.Endpoints.testRecords.url, decoder: decoder) { (result) in
+        client.load(Record.Endpoints.testLessons.url, decoder: decoder) { (result) in
             switch result {
                 
             case .failure(let error):
@@ -39,7 +39,7 @@ class RecordsTests: XCTestCase {
         let decoder = JSONDecoder()
         
         
-        let task = URLSession.shared.dataTask(with: Record.Endpoints.testRecordsParsingError.url) { data, response, error in
+        let task = URLSession.shared.dataTask(with: Record.Endpoints.testLessonsParsingError.url) { data, response, error in
             
             guard let data = data else {
                 return
@@ -66,7 +66,7 @@ class RecordsTests: XCTestCase {
         
         let decoder = JSONDecoder()
         let client = NetworkClient<Record.RecordsList>()
-        client.load(Record.Endpoints.testRecordsParsingError.url, decoder: decoder) { (result) in
+        client.load(Record.Endpoints.testLessonsParsingError.url, decoder: decoder) { (result) in
             switch result {
                 
             case .failure(let error):
@@ -88,7 +88,7 @@ class RecordsTests: XCTestCase {
         
         let decoder = JSONDecoder()
         let client = NetworkClient<Record.RecordsList>()
-        client.load(Record.Endpoints.testRecordsParsingError.url, decoder: decoder) { (result) in
+        client.load(Record.Endpoints.testLessonsParsingError.url, decoder: decoder) { (result) in
             switch result {
                 
             case .failure(let error):
