@@ -22,6 +22,7 @@
 		DE05ADB32370C83F0005B0E7 /* Universities.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE05ADB12370C83F0005B0E7 /* Universities.storyboard */; };
 		DE06999E246D707100F49AF0 /* NoRecordsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE0699A0246D707100F49AF0 /* NoRecordsTableViewCell.xib */; };
 		DE0A3856285B3FE60058183E /* UniversityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0A3855285B3FE60058183E /* UniversityView.swift */; };
+		DE0A3859285B9AA20058183E /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0A3858285B9AA20058183E /* GradientButton.swift */; };
 		DE0D64082264E1330001FCCF /* UniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0D64072264E1330001FCCF /* UniversityViewController.swift */; };
 		DE0DC967276C902700AF1513 /* Model+LogicError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0DC966276C902700AF1513 /* Model+LogicError.swift */; };
 		DE0DC969276C986000AF1513 /* UniversityDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0DC968276C986000AF1513 /* UniversityDataController.swift */; };
@@ -78,8 +79,6 @@
 		DE6794352268976E0068087A /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6794342268976E0068087A /* GroupsTableViewController.swift */; };
 		DE7190AD25E7B74000A1F216 /* Record+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7190AC25E7B74000A1F216 /* Record+Formatter.swift */; };
 		DE78478B240D9FBC002C2EDC /* UIStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78478A240D9FBC002C2EDC /* UIStoryboard.swift */; };
-		DE78478D240DA16B002C2EDC /* LegalDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78478C240DA16B002C2EDC /* LegalDocumentView.swift */; };
-		DE784790240DB406002C2EDC /* ContinueButtonContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78478F240DB406002C2EDC /* ContinueButtonContent.swift */; };
 		DE7AB8582466C4470031E279 /* CoreDataEntityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB8572466C4470031E279 /* CoreDataEntityProtocol.swift */; };
 		DE7AB85A24671E6D0031E279 /* EntityRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB85924671E6D0031E279 /* EntityRepresentable.swift */; };
 		DE7AB85D246720250031E279 /* ClassroomTableDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB85C246720250031E279 /* ClassroomTableDataController.swift */; };
@@ -194,6 +193,7 @@
 		DE06999F246D707100F49AF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NoRecordsTableViewCell.xib; sourceTree = "<group>"; };
 		DE0699A1246D70A400F49AF0 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/NoRecordsTableViewCell.strings; sourceTree = "<group>"; };
 		DE0A3855285B3FE60058183E /* UniversityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityView.swift; sourceTree = "<group>"; };
+		DE0A3858285B9AA20058183E /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		DE0D64072264E1330001FCCF /* UniversityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityViewController.swift; sourceTree = "<group>"; };
 		DE0DC966276C902700AF1513 /* Model+LogicError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+LogicError.swift"; sourceTree = "<group>"; };
 		DE0DC968276C986000AF1513 /* UniversityDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityDataController.swift; sourceTree = "<group>"; };
@@ -258,8 +258,6 @@
 		DE6794342268976E0068087A /* GroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
 		DE7190AC25E7B74000A1F216 /* Record+Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record+Formatter.swift"; sourceTree = "<group>"; };
 		DE78478A240D9FBC002C2EDC /* UIStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboard.swift; sourceTree = "<group>"; };
-		DE78478C240DA16B002C2EDC /* LegalDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDocumentView.swift; sourceTree = "<group>"; };
-		DE78478F240DB406002C2EDC /* ContinueButtonContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueButtonContent.swift; sourceTree = "<group>"; };
 		DE7AB8572466C4470031E279 /* CoreDataEntityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataEntityProtocol.swift; sourceTree = "<group>"; };
 		DE7AB85924671E6D0031E279 /* EntityRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityRepresentable.swift; sourceTree = "<group>"; };
 		DE7AB85C246720250031E279 /* ClassroomTableDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomTableDataController.swift; sourceTree = "<group>"; };
@@ -473,6 +471,14 @@
 				DE0A3855285B3FE60058183E /* UniversityView.swift */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		DE0A3857285B9A910058183E /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				DE0A3858285B9AA20058183E /* GradientButton.swift */,
+			);
+			name = Buttons;
 			sourceTree = "<group>";
 		};
 		DE0DC96A276C9FCD00AF1513 /* New Activity */ = {
@@ -719,20 +725,11 @@
 			isa = PBXGroup;
 			children = (
 				DE4FCBFE23EF5D50000B53F4 /* LegalDocument.swift */,
-				DE78478C240DA16B002C2EDC /* LegalDocumentView.swift */,
 				DE4FCBFC23EF5CF9000B53F4 /* LegalDocumentViewController.swift */,
 				DE4FCC0023EF5DB4000B53F4 /* Legal Documents */,
 				DE4CD2D9252216BA00745055 /* Legal Document.storyboard */,
 			);
 			name = "Legal Documents";
-			sourceTree = "<group>";
-		};
-		DE78478E240DB3EA002C2EDC /* Buttons */ = {
-			isa = PBXGroup;
-			children = (
-				DE78478F240DB406002C2EDC /* ContinueButtonContent.swift */,
-			);
-			name = Buttons;
 			sourceTree = "<group>";
 		};
 		DE79DC98246AA61F00C8C0EF /* Teacher */ = {
@@ -973,8 +970,8 @@
 		DEE576E1226B7AD1008F9EB6 /* UI Subclasses */ = {
 			isa = PBXGroup;
 			children = (
+				DE0A3857285B9A910058183E /* Buttons */,
 				DE40B33E26F1E38A00631C55 /* Views */,
-				DE78478E240DB3EA002C2EDC /* Buttons */,
 				DEAB1D3E230D5405008FBFE3 /* Table Cells */,
 				DEE576E2226B7AE3008F9EB6 /* View Controllers */,
 			);
@@ -1188,7 +1185,6 @@
 				DEB9BD8E25397735008F41A2 /* Model+DownloadsController.swift in Sources */,
 				DE017F9723622BC70046D3ED /* PreferencesTableViewController.swift in Sources */,
 				DE131FE22456CAAB009D09EA /* RecordsDataSource.swift in Sources */,
-				DE784790240DB406002C2EDC /* ContinueButtonContent.swift in Sources */,
 				DE945AD22264D71B00143303 /* UniversitiesDataSource.swift in Sources */,
 				DE7AB8582466C4470031E279 /* CoreDataEntityProtocol.swift in Sources */,
 				DEBCBD962530B2660087F216 /* EntityEndpoint.swift in Sources */,
@@ -1222,7 +1218,6 @@
 				DEB9BD232538AB72008F41A2 /* University+CodingData.swift in Sources */,
 				C250C1831FBCD1CA00C90B53 /* AboutUsTableViewController.swift in Sources */,
 				DEBB74BB235CF4C300226C7E /* UniversitiesTableViewController.swift in Sources */,
-				DE78478D240DA16B002C2EDC /* LegalDocumentView.swift in Sources */,
 				DEA2B3E8246AE75500F96E28 /* TeacherViewController.swift in Sources */,
 				DE3628CB2524ADD0003A7939 /* UserDefaultsKeys.swift in Sources */,
 				DEB9BD9C25397B1C008F41A2 /* Model+RecordsSyncController.swift in Sources */,
@@ -1261,6 +1256,7 @@
 				DE4FCBFF23EF5D50000B53F4 /* LegalDocument.swift in Sources */,
 				DE4AA07121A5DF0500E06FEA /* ClassroomDataSource.swift in Sources */,
 				DEB9BD5B2538C3F6008F41A2 /* Model+SyncController.swift in Sources */,
+				DE0A3859285B9AA20058183E /* GradientButton.swift in Sources */,
 				DEE674172459F55100B8F9F1 /* GroupTableDataController.swift in Sources */,
 				DE7190AD25E7B74000A1F216 /* Record+Formatter.swift in Sources */,
 				DEA49620253CAAB60025174E /* Model+TableDataController.swift in Sources */,
