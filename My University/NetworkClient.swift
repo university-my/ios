@@ -14,7 +14,12 @@ class NetworkClient<Model: Decodable> {
     typealias Completion = ((Result<Model, Error>) -> Void)
     
     func load(_ url: URL, decoder: JSONDecoder, _ completion: @escaping Completion) {
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+        var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData)
+        if let appVersion = Bundle.main.shortVersion {
+            request.addValue("My University \(appVersion)", forHTTPHeaderField: "User-Agent")
+        }
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
             
             if let error = error {
                 completion(.failure(error))
@@ -30,9 +35,7 @@ class NetworkClient<Model: Decodable> {
                 completion(.failure(URLError(.badServerResponse)))
                 return
             }
-#if DEBUG
-            print(httpResponse)
-#endif
+
             switch httpResponse.statusCode {
                 
             case 404:
