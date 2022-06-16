@@ -71,4 +71,20 @@ public class UniversityEntity: NSManagedObject {
             return []
         }
     }
+    
+    var codingData: University.CodingData {
+        University.CodingData(
+            id: id,
+            fullName: fullName ?? "",
+            shortName: shortName ?? "",
+            url: url ?? "",
+            isHidden: isHidden,
+            isBeta: isBeta,
+            logoLight: pictureWhite,
+            logoDark: pictureDark,
+            showClassrooms: showClassrooms,
+            showGroups: showGroups,
+            showTeachers: showTeachers
+        )
+    }
 }

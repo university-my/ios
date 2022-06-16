@@ -21,6 +21,7 @@
 		DE05ADB02370C8260005B0E7 /* University.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE05ADAE2370C8260005B0E7 /* University.storyboard */; };
 		DE05ADB32370C83F0005B0E7 /* Universities.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE05ADB12370C83F0005B0E7 /* Universities.storyboard */; };
 		DE06999E246D707100F49AF0 /* NoRecordsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE0699A0246D707100F49AF0 /* NoRecordsTableViewCell.xib */; };
+		DE0A3856285B3FE60058183E /* UniversityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0A3855285B3FE60058183E /* UniversityView.swift */; };
 		DE0D64082264E1330001FCCF /* UniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0D64072264E1330001FCCF /* UniversityViewController.swift */; };
 		DE0DC967276C902700AF1513 /* Model+LogicError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0DC966276C902700AF1513 /* Model+LogicError.swift */; };
 		DE0DC969276C986000AF1513 /* UniversityDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0DC968276C986000AF1513 /* UniversityDataController.swift */; };
@@ -192,6 +193,7 @@
 		DE06999D246D6F4C00F49AF0 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Group.strings; sourceTree = "<group>"; };
 		DE06999F246D707100F49AF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NoRecordsTableViewCell.xib; sourceTree = "<group>"; };
 		DE0699A1246D70A400F49AF0 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/NoRecordsTableViewCell.strings; sourceTree = "<group>"; };
+		DE0A3855285B3FE60058183E /* UniversityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityView.swift; sourceTree = "<group>"; };
 		DE0D64072264E1330001FCCF /* UniversityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityViewController.swift; sourceTree = "<group>"; };
 		DE0DC966276C902700AF1513 /* Model+LogicError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+LogicError.swift"; sourceTree = "<group>"; };
 		DE0DC968276C986000AF1513 /* UniversityDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityDataController.swift; sourceTree = "<group>"; };
@@ -465,6 +467,14 @@
 			name = Preferences;
 			sourceTree = "<group>";
 		};
+		DE0A3854285B3FD00058183E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DE0A3855285B3FE60058183E /* UniversityView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		DE0DC96A276C9FCD00AF1513 /* New Activity */ = {
 			isa = PBXGroup;
 			children = (
@@ -688,6 +698,7 @@
 		DE5FAE072263B36A00333121 /* Universities */ = {
 			isa = PBXGroup;
 			children = (
+				DE0A3854285B3FD00058183E /* View */,
 				DEE576E0226B7875008F9EB6 /* Data Source */,
 				DEBB74AE235CE62600226C7E /* Storyboard */,
 				DEE576DF226B7861008F9EB6 /* View Controllers */,
@@ -1260,6 +1271,7 @@
 				DEA495FE253C5CD70025174E /* Model+NetworkController.swift in Sources */,
 				C2B5CDF31EEF0E750066DB30 /* AppDelegate.swift in Sources */,
 				DE04D1F72370B79F00A18649 /* UpdateHelper.swift in Sources */,
+				DE0A3856285B3FE60058183E /* UniversityView.swift in Sources */,
 				DEDA8CF42534930D00B54E41 /* UniversityEntity+CoreDataProperties.swift in Sources */,
 				DEB0633D25136CC700DB50CE /* MetricKitSubscriber.swift in Sources */,
 				DE40B34026F1E39600631C55 /* NibLoadableView.swift in Sources */,
