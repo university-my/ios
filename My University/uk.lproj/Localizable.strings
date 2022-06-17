@@ -43,17 +43,11 @@
 /* No comment provided by engineer. */
 "GROUPS" = "ГРУПИ";
 
-/* Message */
-"No records" = "Пар немає";
-
 /* No comment provided by engineer. */
 "PAIR" = "ПАРА";
 
 /* Alert message */
 "Please wait for completion" = "Будь ласка, зачекайте завершення";
-
-/* No comment provided by engineer. */
-"Privacy Policy" = "Політика конфіденційності";
 
 /* Alert action */
 "Reload list" = "Оновити";
@@ -86,9 +80,6 @@
 "Teachers" = "Викладачі";
 
 /* No comment provided by engineer. */
-"Terms Of Service" = "Умови надання послуг";
-
-/* No comment provided by engineer. */
 "Thank you for using this app! ❤️" = "Дякуємо, що користуєтеся цим додатком! ❤️";
 
 /* Alert action */
@@ -117,4 +108,7 @@
 
 /* No comment provided by engineer. */
 "whats_new.support_iOS_14" = "Підтримка iOS 14";
+
+/* No comment provided by engineer. */
+"whats_new.universities_new_design" = "Новий дизайн екрана всіх університетів";
 
