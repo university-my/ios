@@ -18,7 +18,7 @@ struct HomeView: View {
             Button {
                 model.selectUniversity()
             } label: {
-                Label("home_view.select_university", systemImage: "magnifyingglass")
+                Label("Select University", systemImage: "magnifyingglass")
             }
             .buttonStyle(GradientButton())
         }

@@ -494,13 +494,13 @@
 			name = Preferences;
 			sourceTree = "<group>";
 		};
-		DE0A3854285B3FD00058183E /* View */ = {
+		DE0A3854285B3FD00058183E /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				DE0A3855285B3FE60058183E /* UniversityView.swift */,
 				DEB186C9285CE101003E2553 /* UniversitiesListView.swift */,
 			);
-			name = View;
+			name = Views;
 			sourceTree = "<group>";
 		};
 		DE0A3857285B9A910058183E /* Buttons */ = {
@@ -518,14 +518,6 @@
 				DE0DC973276CA3D500AF1513 /* ActivityAlertViewController.swift */,
 			);
 			name = "New Activity";
-			sourceTree = "<group>";
-		};
-		DE0E1E9A285DFD400070F1E2 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				DE0E1E9B285DFD4C0070F1E2 /* HomeViewModel.swift */,
-			);
-			name = Model;
 			sourceTree = "<group>";
 		};
 		DE0E1E9D285E06610070F1E2 /* Information */ = {
@@ -717,7 +709,6 @@
 		DE4CD2E52522170C00745055 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				DE0E1E9D285E06610070F1E2 /* Information */,
 				DE472C7321B84313003AE86D /* About */,
 				DEF63C5D245AC477007E82F9 /* Activity */,
 				DE3EC2C3245C73E600E30536 /* Classroom */,
@@ -727,6 +718,7 @@
 				DEB031682459880800A5D29D /* Group */,
 				DE6794332268975F0068087A /* Groups */,
 				DEB186CB285CEFC7003E2553 /* Home */,
+				DE0E1E9D285E06610070F1E2 /* Information */,
 				DE6B249723EF5C47008ED1F1 /* Legal Documents */,
 				DE0DC96A276C9FCD00AF1513 /* New Activity */,
 				DE017F9323622AF80046D3ED /* Preferences */,
@@ -755,13 +747,14 @@
 		DE5FAE072263B36A00333121 /* Universities */ = {
 			isa = PBXGroup;
 			children = (
-				DEB186C4285CDAF1003E2553 /* Data Provider */,
-				DEE576E0226B7875008F9EB6 /* Data Source */,
-				DEB186BC285CD48C003E2553 /* Model */,
-				DEB186BF285CD55C003E2553 /* Networking */,
+				DE945AD12264D71B00143303 /* UniversitiesDataSource.swift */,
+				DEB186C5285CDB02003E2553 /* UniversitiesListDataProvider.swift */,
+				DEDB39EB285DBF8900D8434E /* UniversitiesListHostingController.swift */,
+				DEB186C0285CD577003E2553 /* UniversitiesListNetworkClient.swift */,
+				DEB186BD285CD4C9003E2553 /* UniversitiesListViewModel.swift */,
 				DEBB74AE235CE62600226C7E /* Storyboard */,
-				DE0A3854285B3FD00058183E /* View */,
 				DEE576DF226B7861008F9EB6 /* View Controllers */,
+				DE0A3854285B3FD00058183E /* Views */,
 			);
 			name = Universities;
 			sourceTree = "<group>";
@@ -886,14 +879,6 @@
 			name = "Table Cells";
 			sourceTree = "<group>";
 		};
-		DEAC46B4285DF63B00490197 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				DEAC46B5285DF64600490197 /* HomeView.swift */,
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
 		DEAE5C48236A23B50086E734 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -930,37 +915,13 @@
 			name = Group;
 			sourceTree = "<group>";
 		};
-		DEB186BC285CD48C003E2553 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				DEB186BD285CD4C9003E2553 /* UniversitiesListViewModel.swift */,
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
-		DEB186BF285CD55C003E2553 /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				DEB186C0285CD577003E2553 /* UniversitiesListNetworkClient.swift */,
-			);
-			name = Networking;
-			sourceTree = "<group>";
-		};
-		DEB186C4285CDAF1003E2553 /* Data Provider */ = {
-			isa = PBXGroup;
-			children = (
-				DEB186C5285CDB02003E2553 /* UniversitiesListDataProvider.swift */,
-			);
-			name = "Data Provider";
-			sourceTree = "<group>";
-		};
 		DEB186CB285CEFC7003E2553 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				DE0E1E9A285DFD400070F1E2 /* Model */,
-				DEAC46B4285DF63B00490197 /* View */,
 				DEDB39E7285CF04800D8434E /* Home.storyboard */,
 				DEDB39E9285CF16E00D8434E /* HomeHostingController.swift */,
+				DEAC46B5285DF64600490197 /* HomeView.swift */,
+				DE0E1E9B285DFD4C0070F1E2 /* HomeViewModel.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -1052,17 +1013,8 @@
 			children = (
 				DE54273225E78736000B3600 /* UniversitiesSearchResultsTableViewController.swift */,
 				DEBB74BA235CF4C300226C7E /* UniversitiesTableViewController.swift */,
-				DEDB39EB285DBF8900D8434E /* UniversitiesListHostingController.swift */,
 			);
 			name = "View Controllers";
-			sourceTree = "<group>";
-		};
-		DEE576E0226B7875008F9EB6 /* Data Source */ = {
-			isa = PBXGroup;
-			children = (
-				DE945AD12264D71B00143303 /* UniversitiesDataSource.swift */,
-			);
-			name = "Data Source";
 			sourceTree = "<group>";
 		};
 		DEE576E1226B7AD1008F9EB6 /* UI Subclasses */ = {

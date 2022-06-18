@@ -30,21 +30,29 @@ struct WhatsNewView: View {
                 Divider()
                     .padding(.all)
                 
-                VStack() {
-                    Text("Check out what's new in this version:")
-                        .font(.headline)
-                        .padding(.vertical)
-                    
-                    Text("whats_new.universities_new_design")
-                        .font(.body)
-                        .fontWeight(.light)
-                }
-                .padding(.horizontal)
+                Text("Check out what's new in this version:")
+                    .font(.headline)
+                    .padding(.vertical)
+            }
+            
+            VStack(alignment: .leading, spacing: 8) {
+                
+                Text("New design of all universities screen")
+                    .font(.body)
+                    .fontWeight(.light)
+                
+                Text("New navigation throughout the app")
+                    .font(.body)
+                    .fontWeight(.light)
             }
         }
-        Button("Continue") { self.continueAction?() }
+        if let continueAction {
+            Button("Continue") {
+                continueAction()
+            }
             .padding(.vertical)
             .buttonStyle(GradientButton())
+        }
     }
 }
 

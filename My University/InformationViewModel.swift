@@ -16,6 +16,10 @@ protocol InformationViewModelDelegate: AnyObject {
 class InformationViewModel: ObservableObject {
     typealias Model = University.CodingData
     @Published private(set) var university: Model?
+    
+    init(university: Model? = nil) {
+        self.university = university
+    }
  
     weak var delegate: InformationViewModelDelegate?
     
