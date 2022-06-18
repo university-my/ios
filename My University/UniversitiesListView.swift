@@ -12,13 +12,11 @@ struct UniversitiesListView: View {
     
     @StateObject var model: UniversitiesListViewModel
     
-    @State private var searchText = ""
-    
     var body: some View {
         VStack {
             switch model.state {
                 
-            case .success(let data):
+            case let .presenting(data):
                 List {
                     ForEach(data, id: \.id) { item in
                         UniversityView(university: item)
@@ -31,9 +29,16 @@ struct UniversitiesListView: View {
             default:
                 EmptyView()
             }
-            
-        }.task {
+        }
+        .task {
             await model.fetchUniversities()
+        }
+        .searchable(text: $model.searchText)
+        .navigationTitle("Test 2")
+        .toolbar {
+            Button("Hello") {
+                print("111")
+            }
         }
     }
 }

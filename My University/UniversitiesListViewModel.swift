@@ -10,17 +10,19 @@ import Foundation
 
 @MainActor
 class UniversitiesListViewModel: ObservableObject {
+    typealias Model = University.CodingData
     
     enum State {
         case noData
         case loading
-        case success(data: [University.CodingData])
+        case presenting(_ data: [Model])
         case failsed(error: Error)
     }
     
     @Published private(set) var state: State = .noData
     
     let dataProvider: UniversitiesListDataProvider
+    private var universities: [Model] = []
     
     internal init(dataProvider: UniversitiesListDataProvider) {
         self.dataProvider = dataProvider
@@ -29,11 +31,31 @@ class UniversitiesListViewModel: ObservableObject {
     func fetchUniversities() async {
         state = .loading
         do {
-            var universities = try await dataProvider.load()
-            universities.sort { $0.id < $1.id }
-            state = .success(data: universities)
+            let data = try await dataProvider.load()
+            update(with: data)
+            state = .presenting(universities)
         } catch {
             state = .failsed(error: error)
+        }
+    }
+    
+    func update(with data: [Model]) {
+        self.universities = data.sorted { $0.id < $1.id }
+    }
+    
+    // MARK: - Search
+    
+    @Published var searchText = "" {
+        didSet {
+            if searchText.isEmpty {
+                state = .presenting(universities)
+            } else {
+                let searchResults = universities.filter { university in
+                    university.shortName.localizedCaseInsensitiveContains(searchText) ||
+                    university.fullName.localizedCaseInsensitiveContains(searchText)
+                }
+                state = .presenting(searchResults)
+            }
         }
     }
 }
