@@ -145,6 +145,7 @@
 		DEBCBDC12530E9F60087F216 /* ModelKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCBDC02530E9F60087F216 /* ModelKind.swift */; };
 		DECEC8B52750131F00149185 /* NetworkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECEC8B42750131F00149185 /* NetworkStatus.swift */; };
 		DECEC8B72750DA2400149185 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECEC8B62750DA2400149185 /* NetworkError.swift */; };
+		DED45F63285E245B00863775 /* LegalDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED45F62285E245B00863775 /* LegalDocumentView.swift */; };
 		DEDA50EA21862091006C7B27 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50E821862090006C7B27 /* InfoPlist.strings */; };
 		DEDA50ED218620E0006C7B27 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50EB218620E0006C7B27 /* Localizable.strings */; };
 		DEDA8CF42534930D00B54E41 /* UniversityEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8CF02534930D00B54E41 /* UniversityEntity+CoreDataProperties.swift */; };
@@ -341,6 +342,7 @@
 		DECEC8B42750131F00149185 /* NetworkStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatus.swift; sourceTree = "<group>"; };
 		DECEC8B62750DA2400149185 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		DECF64EC251C75BE00F1AA33 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DED45F62285E245B00863775 /* LegalDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDocumentView.swift; sourceTree = "<group>"; };
 		DEDA50E921862090006C7B27 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DEDA50EC218620E0006C7B27 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DEDA8CF02534930D00B54E41 /* UniversityEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UniversityEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -772,9 +774,10 @@
 			isa = PBXGroup;
 			children = (
 				DE4FCBFE23EF5D50000B53F4 /* LegalDocument.swift */,
+				DED45F62285E245B00863775 /* LegalDocumentView.swift */,
 				DE4FCBFC23EF5CF9000B53F4 /* LegalDocumentViewController.swift */,
-				DE4FCC0023EF5DB4000B53F4 /* Legal Documents */,
 				DE4CD2D9252216BA00745055 /* Legal Document.storyboard */,
+				DE4FCC0023EF5DB4000B53F4 /* Legal Documents */,
 			);
 			name = "Legal Documents";
 			sourceTree = "<group>";
@@ -1342,6 +1345,7 @@
 				DE945ACA2264D17C00143303 /* University.swift in Sources */,
 				DE54273325E78736000B3600 /* UniversitiesSearchResultsTableViewController.swift in Sources */,
 				DE3EB6BA231B11F8007EA63C /* DateFormatter.swift in Sources */,
+				DED45F63285E245B00863775 /* LegalDocumentView.swift in Sources */,
 				DE87B78E235B9E450090B63E /* InitialViewController.swift in Sources */,
 				DEAC46B6285DF64600490197 /* HomeView.swift in Sources */,
 				DE40B34226F1E3A800631C55 /* ReusableView.swift in Sources */,

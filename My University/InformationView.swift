@@ -21,12 +21,12 @@ struct InformationView: View {
             
             Section(header: Text("Documents")) {
                 NavigationLink {
-                    EmptyView()
+                    LegalDocumentView(documentName: LegalDocument.privacyPolicy)
                 } label: {
                     Label("Privacy Policy", systemImage: "lock.shield")
                 }
                 NavigationLink {
-                    EmptyView()
+                    LegalDocumentView(documentName: LegalDocument.termsOfService)
                 } label: {
                     Label("Terms of Service", systemImage: "doc.text")
                 }
