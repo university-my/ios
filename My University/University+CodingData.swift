@@ -11,7 +11,7 @@ import SwiftUI
 
 extension University {
     
-    struct CodingData: Codable {
+    struct CodingData: Codable, Hashable {
         
         internal init(id: Int64, fullName: String, shortName: String, url: String = "", isHidden: Bool = false, isBeta: Bool = false, logoLight: String?, logoDark: String?, showClassrooms: Bool = true, showGroups: Bool  = true, showTeachers: Bool = true) {
             self.id = id

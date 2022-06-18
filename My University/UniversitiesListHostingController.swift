@@ -11,16 +11,32 @@ import SwiftUI
 
 class UniversitiesListHostingController: UIHostingController<UniversitiesListView> {
     
+    private let model = UniversitiesListViewModel()
+    
     @MainActor required dynamic init?(coder aDecoder: NSCoder) {
-        let model = UniversitiesListViewModel(
-            dataProvider: UniversitiesListDataProvider(
-                networkClient: UniversitiesListNetworkClient()
-            )
-        )
-        super.init(coder: aDecoder, rootView: UniversitiesListView(model: model))
+        let view = UniversitiesListView(model: self.model)
+        super.init(coder: aDecoder, rootView: view)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        model.delegate = self
     }
     
     @IBAction func done(_ sender: Any) {
         dismiss(animated: true)
+    }
+}
+
+// MARK: - UniversitiesListViewModelDelegate
+
+extension UniversitiesListHostingController: UniversitiesListViewModelDelegate {
+    func universitiesListViewModel(didSelectUniversity withID: Int64) {
+        dismiss(animated: true)
+    }
+    
+    func universitiesListViewModelDidPressSupportButton() {
+        
     }
 }

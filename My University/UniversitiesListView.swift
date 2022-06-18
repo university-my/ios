@@ -14,19 +14,17 @@ struct UniversitiesListView: View {
     var body: some View {
         VStack {
             switch model.state {
-
+                
             case let .presenting(data):
-                List {
-                    ForEach(data, id: \.id) { item in
-                        UniversityView(university: item)
-                    }
+                List(data, id: \.id, selection: $model.selectedID) { item in
+                    UniversityView(university: item)
                 }
                 .searchable(text: $model.searchText)
-
+                
             case .loading:
                 ProgressView()
                     .tint(.indigo)
-
+                
             case let .failsed(error):
                 ErrorView(
                     error: error,
@@ -36,9 +34,9 @@ struct UniversitiesListView: View {
                         }
                     },
                     supportAction: {
-                        
+                        model.showSupport()
                     })
-
+                
             default:
                 EmptyView()
             }
@@ -51,6 +49,6 @@ struct UniversitiesListView: View {
 
 struct UniversitiesListView_Previews: PreviewProvider {
     static var previews: some View {
-        UniversitiesListView(model: UniversitiesListViewModel(dataProvider: UniversitiesListDataProvider(networkClient: UniversitiesListNetworkClient())))
+        UniversitiesListView(model: UniversitiesListViewModel())
     }
 }

@@ -12,7 +12,7 @@ struct UniversitiesListDataProvider {
     
     let networkClient: UniversitiesListNetworkClient
     
-    internal init(networkClient: UniversitiesListNetworkClient) {
+    internal init(networkClient: UniversitiesListNetworkClient = UniversitiesListNetworkClient()) {
         self.networkClient = networkClient
     }
     

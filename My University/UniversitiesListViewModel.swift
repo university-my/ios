@@ -8,8 +8,17 @@
 
 import Foundation
 
+protocol UniversitiesListViewModelDelegate: AnyObject {
+    func universitiesListViewModel(didSelectUniversity withID: Int64)
+    func universitiesListViewModelDidPressSupportButton()
+}
+
 @MainActor
 class UniversitiesListViewModel: ObservableObject {
+    internal init(dataProvider: UniversitiesListDataProvider = UniversitiesListDataProvider()) {
+        self.dataProvider = dataProvider
+    }
+    
     typealias Model = University.CodingData
     
     enum State {
@@ -20,13 +29,17 @@ class UniversitiesListViewModel: ObservableObject {
     }
     
     @Published private(set) var state: State = .noData
-    
-    let dataProvider: UniversitiesListDataProvider
-    private var universities: [Model] = []
-    
-    internal init(dataProvider: UniversitiesListDataProvider) {
-        self.dataProvider = dataProvider
+    @Published var selectedID: Int64? = nil {
+        didSet {
+            if let selectedID {
+                delegate?.universitiesListViewModel(didSelectUniversity: selectedID)
+            }
+        }
     }
+    
+    weak var delegate: UniversitiesListViewModelDelegate?
+    private let dataProvider: UniversitiesListDataProvider
+    private var universities: [Model] = []
     
     func fetchUniversities() async {
         state = .loading
@@ -57,5 +70,11 @@ class UniversitiesListViewModel: ObservableObject {
                 state = .presenting(searchResults)
             }
         }
+    }
+    
+    // MARK: - Support
+    
+    func showSupport() {
+        delegate?.universitiesListViewModelDidPressSupportButton()
     }
 }
