@@ -16,13 +16,46 @@
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OIS-KL-Wx2">
+                                <rect key="frame" x="164" y="397" width="62" height="50.333333333333314"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Go" buttonSize="large"/>
+                                <connections>
+                                    <action selector="presentUniversitiesList:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="3N2-Ih-EY4"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="OIS-KL-Wx2" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="8CR-UZ-lr2"/>
+                            <constraint firstItem="OIS-KL-Wx2" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="tmJ-Lc-lka"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xzv-cY-fnv"/>
+                    <connections>
+                        <segue destination="W2N-fw-le5" kind="presentation" identifier="presentUniversitiesList" id="eOH-fq-fXk"/>
+                    </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="970.76923076923072" y="3.5545023696682461"/>
+        </scene>
+        <!--Universities-->
+        <scene sceneID="tQE-Wj-rSa">
+            <objects>
+                <hostingController id="e5c-43-1P8" customClass="UniversitiesListHostingController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="Universities" id="8Mv-1k-ctq">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="L08-Xv-jIq">
+                            <connections>
+                                <action selector="done:" destination="e5c-43-1P8" id="JGG-h5-AUh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </hostingController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wEO-EW-ZDu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3165" y="4"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="c4z-6j-shz">
@@ -41,6 +74,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nHk-RR-axq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="41.53846153846154" y="3.5545023696682461"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Fwd-u2-tcx">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="W2N-fw-le5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ShQ-rt-tQE">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="e5c-43-1P8" kind="relationship" relationship="rootViewController" id="foe-Zy-paS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e1B-Ey-cWo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2186" y="4"/>
         </scene>
     </scenes>
     <resources>

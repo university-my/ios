@@ -19,19 +19,8 @@ class HomeViewController: UIViewController {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        let universitiesList = UniversitiesListView(
-            model: UniversitiesListViewModel(
-                dataProvider: UniversitiesListDataProvider(
-                    networkClient: UniversitiesListNetworkClient()
-                )
-            )
-        )
-        let viewController = UIHostingController(rootView: universitiesList)
-        
-        present(viewController, animated: true)
+    @IBAction func presentUniversitiesList(_ sender: Any) {
+        performSegue(withIdentifier: .presentUniversitiesList, sender: nil)
     }
 
     /*
@@ -44,4 +33,10 @@ class HomeViewController: UIViewController {
     }
     */
 
+}
+
+// MARK: - SegueIdentifier
+
+private extension HomeViewController.SegueIdentifier {
+    static let presentUniversitiesList = "presentUniversitiesList"
 }
