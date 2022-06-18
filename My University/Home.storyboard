@@ -11,7 +11,6 @@
         <!--Home View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="Y6W-OH-hqX" customClass="HomeViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
@@ -38,6 +37,7 @@
                         <segue destination="W2N-fw-le5" kind="presentation" identifier="presentUniversitiesList" id="eOH-fq-fXk"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="970.76923076923072" y="3.5545023696682461"/>
         </scene>
@@ -47,6 +47,7 @@
                 <hostingController id="e5c-43-1P8" customClass="UniversitiesListHostingController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Universities" id="8Mv-1k-ctq">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="L08-Xv-jIq">
+                            <color key="tintColor" systemColor="systemIndigoColor"/>
                             <connections>
                                 <action selector="done:" destination="e5c-43-1P8" id="JGG-h5-AUh"/>
                             </connections>
@@ -97,6 +98,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

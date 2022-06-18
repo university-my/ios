@@ -102,6 +102,7 @@
 		DEA49612253CA3F00025174E /* Model+DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA49611253CA3F00025174E /* Model+DataController.swift */; };
 		DEA49620253CAAB60025174E /* Model+TableDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA4961F253CAAB60025174E /* Model+TableDataController.swift */; };
 		DEA49628253CAB7E0025174E /* Model+LogicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA49627253CAB7E0025174E /* Model+LogicController.swift */; };
+		DEAC46B0285DDD2300490197 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAC46AF285DDD2300490197 /* ErrorView.swift */; };
 		DEAE5C4A236A23B50086E734 /* UpdateHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAE5C49236A23B50086E734 /* UpdateHelperTests.swift */; };
 		DEB031672459809D00A5D29D /* ErrorAlertRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB031662459809D00A5D29D /* ErrorAlertRepresentable.swift */; };
 		DEB0633325136C7A00DB50CE /* EntityMenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0633225136C7900DB50CE /* EntityMenuPresenter.swift */; };
@@ -289,6 +290,7 @@
 		DEA49611253CA3F00025174E /* Model+DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+DataController.swift"; sourceTree = "<group>"; };
 		DEA4961F253CAAB60025174E /* Model+TableDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+TableDataController.swift"; sourceTree = "<group>"; };
 		DEA49627253CAB7E0025174E /* Model+LogicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+LogicController.swift"; sourceTree = "<group>"; };
+		DEAC46AF285DDD2300490197 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		DEAE5C47236A23B50086E734 /* MyUniversityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyUniversityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEAE5C49236A23B50086E734 /* UpdateHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateHelperTests.swift; sourceTree = "<group>"; };
 		DEAE5C4B236A23B50086E734 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -662,6 +664,7 @@
 			children = (
 				DE40B33F26F1E39600631C55 /* NibLoadableView.swift */,
 				DE40B34126F1E3A800631C55 /* ReusableView.swift */,
+				DEAC46AF285DDD2300490197 /* ErrorView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1259,6 +1262,7 @@
 				DEF63C61245AC543007E82F9 /* ActivityController.swift in Sources */,
 				DE540EBE2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift in Sources */,
 				DE365936252F9649002A1A11 /* URL.swift in Sources */,
+				DEAC46B0285DDD2300490197 /* ErrorView.swift in Sources */,
 				DEB9BC6725387D1C008F41A2 /* Record+RecordsList.swift in Sources */,
 				DE36592E252F8CBA002A1A11 /* EndpointKind.swift in Sources */,
 				DE13EEAC2466B4390011F307 /* EntityViewController.swift in Sources */,
