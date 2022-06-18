@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  HomeHostingController.swift
 //  My University
 //
 //  Created by Yura Voevodin on 17.06.2022.
@@ -9,18 +9,27 @@
 import UIKit
 import SwiftUI
 
-class HomeViewController: UIViewController {
+class HomeHostingController: UIHostingController<HomeView> {
+    
+    @MainActor required dynamic init?(coder aDecoder: NSCoder) {
+        let view = HomeView()
+        super.init(coder: aDecoder, rootView: view)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-        
     }
     
-    @IBAction func presentUniversitiesList(_ sender: Any) {
-        performSegue(withIdentifier: .presentUniversitiesList, sender: nil)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if University.selectedUniversityID == nil {
+            performSegue(withIdentifier: .presentUniversitiesList, sender: nil)
+        } else {
+            
+        }
     }
 
     /*
@@ -37,6 +46,6 @@ class HomeViewController: UIViewController {
 
 // MARK: - SegueIdentifier
 
-private extension HomeViewController.SegueIdentifier {
+private extension HomeHostingController.SegueIdentifier {
     static let presentUniversitiesList = "presentUniversitiesList"
 }

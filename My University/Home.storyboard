@@ -1,45 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21179.7" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NGH-vJ-9Dr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21179.7" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ypW-kx-gD2">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21169.4"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home View Controller-->
-        <scene sceneID="s0d-6b-0kx">
+        <!--Root View Controller-->
+        <scene sceneID="fgZ-VY-KOA">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="HomeViewController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                <tableViewController id="EHE-OC-ULi" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="NXf-Hi-pgx">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OIS-KL-Wx2">
-                                <rect key="frame" x="164" y="397" width="62" height="50.333333333333314"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="Go" buttonSize="large"/>
-                                <connections>
-                                    <action selector="presentUniversitiesList:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="3N2-Ih-EY4"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="OIS-KL-Wx2" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="8CR-UZ-lr2"/>
-                            <constraint firstItem="OIS-KL-Wx2" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="tmJ-Lc-lka"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="xzv-cY-fnv"/>
-                    <connections>
-                        <segue destination="W2N-fw-le5" kind="presentation" identifier="presentUniversitiesList" id="eOH-fq-fXk"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="GoV-dU-s8T">
+                                <rect key="frame" x="0.0" y="50" width="390" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GoV-dU-s8T" id="ZrH-3e-6S6">
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="EHE-OC-ULi" id="3Iu-BX-vLH"/>
+                            <outlet property="delegate" destination="EHE-OC-ULi" id="wTA-bF-lQz"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="9oi-yf-ges"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OVK-bt-WjV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="970.76923076923072" y="3.5545023696682461"/>
+            <point key="canvasLocation" x="802" y="1170"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="idP-Hy-hG5">
+            <objects>
+                <navigationController id="TVx-Pq-Llx" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="GlT-Rb-gXG"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Yyf-4E-DYf">
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="EHE-OC-ULi" kind="relationship" relationship="rootViewController" id="8fX-Sc-R9x"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gh9-dG-8ot" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-112" y="1170"/>
         </scene>
         <!--Universities-->
         <scene sceneID="tQE-Wj-rSa">
@@ -56,12 +68,13 @@
                 </hostingController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wEO-EW-ZDu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3165" y="4"/>
+            <point key="canvasLocation" x="4093.8461538461538" y="3.5545023696682461"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Favorites-->
         <scene sceneID="c4z-6j-shz">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NGH-vJ-9Dr" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Favorites" image="star" catalog="system" selectedImage="star.fill" id="fNU-0d-PgK"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mxP-WC-6un">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
@@ -69,12 +82,25 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="fOm-TG-ijv"/>
+                        <segue destination="0K7-Oa-xeM" kind="relationship" relationship="rootViewController" id="8Wd-K3-V3P"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nHk-RR-axq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="41.53846153846154" y="3.5545023696682461"/>
+            <point key="canvasLocation" x="970.76923076923072" y="3.5545023696682461"/>
+        </scene>
+        <!--Home Hosting Controller-->
+        <scene sceneID="yQb-XG-EHe">
+            <objects>
+                <hostingController id="0K7-Oa-xeM" customClass="HomeHostingController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="7aG-9e-GwT"/>
+                    <connections>
+                        <segue destination="W2N-fw-le5" kind="presentation" identifier="presentUniversitiesList" id="ge4-vM-IjM"/>
+                    </connections>
+                </hostingController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="goi-Lc-CrM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2009" y="18"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Fwd-u2-tcx">
@@ -92,10 +118,31 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e1B-Ey-cWo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2186" y="4"/>
+            <point key="canvasLocation" x="3113.8461538461538" y="3.5545023696682461"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="rAz-pC-tlC">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="ypW-kx-gD2" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mJL-Ag-NLO">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="NGH-vJ-9Dr" kind="relationship" relationship="viewControllers" id="1ya-BV-Hln"/>
+                        <segue destination="TVx-Pq-Llx" kind="relationship" relationship="viewControllers" id="IRi-yB-boY"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pUH-kK-cR9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-111" y="4"/>
         </scene>
     </scenes>
     <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <image name="star" catalog="system" width="128" height="116"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

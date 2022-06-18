@@ -103,6 +103,7 @@
 		DEA49620253CAAB60025174E /* Model+TableDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA4961F253CAAB60025174E /* Model+TableDataController.swift */; };
 		DEA49628253CAB7E0025174E /* Model+LogicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA49627253CAB7E0025174E /* Model+LogicController.swift */; };
 		DEAC46B0285DDD2300490197 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAC46AF285DDD2300490197 /* ErrorView.swift */; };
+		DEAC46B6285DF64600490197 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAC46B5285DF64600490197 /* HomeView.swift */; };
 		DEAE5C4A236A23B50086E734 /* UpdateHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAE5C49236A23B50086E734 /* UpdateHelperTests.swift */; };
 		DEB031672459809D00A5D29D /* ErrorAlertRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB031662459809D00A5D29D /* ErrorAlertRepresentable.swift */; };
 		DEB0633325136C7A00DB50CE /* EntityMenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0633225136C7900DB50CE /* EntityMenuPresenter.swift */; };
@@ -147,7 +148,7 @@
 		DEDA8CF62534930D00B54E41 /* ClassroomEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8CF22534930D00B54E41 /* ClassroomEntity+CoreDataProperties.swift */; };
 		DEDA8CF72534930D00B54E41 /* RecordEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8CF32534930D00B54E41 /* RecordEntity+CoreDataProperties.swift */; };
 		DEDB39E8285CF04800D8434E /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEDB39E7285CF04800D8434E /* Home.storyboard */; };
-		DEDB39EA285CF16E00D8434E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDB39E9285CF16E00D8434E /* HomeViewController.swift */; };
+		DEDB39EA285CF16E00D8434E /* HomeHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDB39E9285CF16E00D8434E /* HomeHostingController.swift */; };
 		DEDB39EC285DBF8900D8434E /* UniversitiesListHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDB39EB285DBF8900D8434E /* UniversitiesListHostingController.swift */; };
 		DEE2E9AA25221D8800A18810 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE4CD2D02522168F00745055 /* Launch Screen.storyboard */; };
 		DEE576E4226B7B9E008F9EB6 /* SearchableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE576E3226B7B9E008F9EB6 /* SearchableTableViewController.swift */; };
@@ -291,6 +292,7 @@
 		DEA4961F253CAAB60025174E /* Model+TableDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+TableDataController.swift"; sourceTree = "<group>"; };
 		DEA49627253CAB7E0025174E /* Model+LogicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+LogicController.swift"; sourceTree = "<group>"; };
 		DEAC46AF285DDD2300490197 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		DEAC46B5285DF64600490197 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		DEAE5C47236A23B50086E734 /* MyUniversityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyUniversityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEAE5C49236A23B50086E734 /* UpdateHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateHelperTests.swift; sourceTree = "<group>"; };
 		DEAE5C4B236A23B50086E734 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -338,7 +340,7 @@
 		DEDA8CF22534930D00B54E41 /* ClassroomEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ClassroomEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DEDA8CF32534930D00B54E41 /* RecordEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RecordEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DEDB39E7285CF04800D8434E /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
-		DEDB39E9285CF16E00D8434E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		DEDB39E9285CF16E00D8434E /* HomeHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHostingController.swift; sourceTree = "<group>"; };
 		DEDB39EB285DBF8900D8434E /* UniversitiesListHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversitiesListHostingController.swift; sourceTree = "<group>"; };
 		DEE576E3226B7B9E008F9EB6 /* SearchableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableTableViewController.swift; sourceTree = "<group>"; };
 		DEE576E6226B8B98008F9EB6 /* ClassroomsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomsTableViewController.swift; sourceTree = "<group>"; };
@@ -857,6 +859,14 @@
 			name = "Table Cells";
 			sourceTree = "<group>";
 		};
+		DEAC46B4285DF63B00490197 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DEAC46B5285DF64600490197 /* HomeView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		DEAE5C48236A23B50086E734 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -920,8 +930,9 @@
 		DEB186CB285CEFC7003E2553 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				DEAC46B4285DF63B00490197 /* View */,
 				DEDB39E7285CF04800D8434E /* Home.storyboard */,
-				DEDB39E9285CF16E00D8434E /* HomeViewController.swift */,
+				DEDB39E9285CF16E00D8434E /* HomeHostingController.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -1258,7 +1269,7 @@
 				DE468AF02568739D008CB00E /* UIImage.swift in Sources */,
 				DE999ABE227C54160018F725 /* UniversityDataSource.swift in Sources */,
 				DEB9BD412538BD64008F41A2 /* Model+CodingData.swift in Sources */,
-				DEDB39EA285CF16E00D8434E /* HomeViewController.swift in Sources */,
+				DEDB39EA285CF16E00D8434E /* HomeHostingController.swift in Sources */,
 				DEF63C61245AC543007E82F9 /* ActivityController.swift in Sources */,
 				DE540EBE2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift in Sources */,
 				DE365936252F9649002A1A11 /* URL.swift in Sources */,
@@ -1349,6 +1360,7 @@
 				DE54273325E78736000B3600 /* UniversitiesSearchResultsTableViewController.swift in Sources */,
 				DE3EB6BA231B11F8007EA63C /* DateFormatter.swift in Sources */,
 				DE87B78E235B9E450090B63E /* InitialViewController.swift in Sources */,
+				DEAC46B6285DF64600490197 /* HomeView.swift in Sources */,
 				DE40B34226F1E3A800631C55 /* ReusableView.swift in Sources */,
 				DE365923252F8B88002A1A11 /* Endpoint.swift in Sources */,
 				DEDA8CF62534930D00B54E41 /* ClassroomEntity+CoreDataProperties.swift in Sources */,
