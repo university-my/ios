@@ -9,13 +9,24 @@
 import SwiftUI
 
 struct HomeView: View {
+    @StateObject var model: HomeViewModel
+    
     var body: some View {
-        Text("Hello, World!")
+        if let university = model.university {
+            Text(university.fullName)
+        } else {
+            Button {
+                model.selectUniversity()
+            } label: {
+                Label("home_view.select_university", systemImage: "magnifyingglass")
+            }
+            .buttonStyle(GradientButton())
+        }
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(model: HomeViewModel())
     }
 }

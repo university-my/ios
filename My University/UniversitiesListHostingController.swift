@@ -9,7 +9,13 @@
 import UIKit
 import SwiftUI
 
+protocol UniversitiesListHostingControllerDlegate: AnyObject {
+    func universitiesListHostingController(didSelectUniversity university: University.CodingData)
+}
+
 class UniversitiesListHostingController: UIHostingController<UniversitiesListView> {
+    
+    weak var delegate: UniversitiesListHostingControllerDlegate?
     
     private let model = UniversitiesListViewModel()
     
@@ -24,7 +30,7 @@ class UniversitiesListHostingController: UIHostingController<UniversitiesListVie
         model.delegate = self
     }
     
-    @IBAction func done(_ sender: Any) {
+    @IBAction func cancel(_ sender: Any) {
         dismiss(animated: true)
     }
 }
@@ -32,7 +38,8 @@ class UniversitiesListHostingController: UIHostingController<UniversitiesListVie
 // MARK: - UniversitiesListViewModelDelegate
 
 extension UniversitiesListHostingController: UniversitiesListViewModelDelegate {
-    func universitiesListViewModel(didSelectUniversity withID: Int64) {
+    func universitiesListViewModel(didSelectUniversity university: University.CodingData) {
+        delegate?.universitiesListHostingController(didSelectUniversity: university)
         dismiss(animated: true)
     }
     

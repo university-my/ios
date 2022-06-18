@@ -9,8 +9,7 @@
 import Foundation
 
 protocol UniversitiesListViewModelDelegate: AnyObject {
-    func universitiesListViewModel(didSelectUniversity withID: Int64)
-    func universitiesListViewModelDidPressSupportButton()
+    func universitiesListViewModel(didSelectUniversity university: University.CodingData)
 }
 
 @MainActor
@@ -25,14 +24,14 @@ class UniversitiesListViewModel: ObservableObject {
         case noData
         case loading
         case presenting(_ data: [Model])
-        case failsed(error: Error)
+        case failed(error: Error)
     }
     
     @Published private(set) var state: State = .noData
     @Published var selectedID: Int64? = nil {
         didSet {
-            if let selectedID {
-                delegate?.universitiesListViewModel(didSelectUniversity: selectedID)
+            if let selectedID, let university = universities.first(where: { $0.id == selectedID }) {
+                delegate?.universitiesListViewModel(didSelectUniversity: university)
             }
         }
     }
@@ -48,7 +47,7 @@ class UniversitiesListViewModel: ObservableObject {
             update(with: data)
             state = .presenting(universities)
         } catch {
-            state = .failsed(error: error)
+            state = .failed(error: error)
         }
     }
     
@@ -70,11 +69,5 @@ class UniversitiesListViewModel: ObservableObject {
                 state = .presenting(searchResults)
             }
         }
-    }
-    
-    // MARK: - Support
-    
-    func showSupport() {
-        delegate?.universitiesListViewModelDidPressSupportButton()
     }
 }

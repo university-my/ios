@@ -11,41 +11,80 @@ import SwiftUI
 
 class HomeHostingController: UIHostingController<HomeView> {
     
+    let model = HomeViewModel()
+    
     @MainActor required dynamic init?(coder aDecoder: NSCoder) {
-        let view = HomeView()
+        let view = HomeView(model: self.model)
         super.init(coder: aDecoder, rootView: view)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        model.delegate = self
+        
+        if let university = University.current {
+            model.update(with: university)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if University.selectedUniversityID == nil {
-            performSegue(withIdentifier: .presentUniversitiesList, sender: nil)
-        } else {
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier else { return }
+        
+        switch identifier {
+        case .presentUniversitiesList:
+            let navigation = segue.destination as? UINavigationController
+            let controller = navigation?.viewControllers.first as? UniversitiesListHostingController
+            controller?.delegate = self
             
+        case .presentInformation:
+            let navigation = segue.destination as? UINavigationController
+            let controller = navigation?.viewControllers.first as? InformationHostingController
+            controller?.delegate = self
+            
+        default:
+            break
         }
     }
+}
 
-    /*
-    // MARK: - Navigation
+// MARK: - HomeViewModelDelegate
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension HomeHostingController: HomeViewModelDelegate {
+    func homeViewModelSelectUniversityPressed() {
+        performSegue(withIdentifier: .presentUniversitiesList, sender: nil)
     }
-    */
+}
 
+// MARK: - UniversitiesListHostingControllerDlegate
+
+extension HomeHostingController: UniversitiesListHostingControllerDlegate {
+    func universitiesListHostingController(didSelectUniversity university: University.CodingData) {
+        University.current = university
+        model.update(with: university)
+    }
+}
+
+// MARK: - InformationHostingControllerDelegate
+
+extension HomeHostingController: InformationHostingControllerDelegate {
+    func informationHostingControllerChangeUniversityPressed(in controller: InformationHostingController) {
+        controller.dismiss(animated: true) {
+            self.performSegue(withIdentifier: .presentUniversitiesList, sender: nil)
+        }
+    }
 }
 
 // MARK: - SegueIdentifier
 
 private extension HomeHostingController.SegueIdentifier {
     static let presentUniversitiesList = "presentUniversitiesList"
+    static let presentInformation = "presentInformation"
 }

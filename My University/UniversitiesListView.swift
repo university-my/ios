@@ -25,16 +25,13 @@ struct UniversitiesListView: View {
                 ProgressView()
                     .tint(.indigo)
                 
-            case let .failsed(error):
+            case let .failed(error):
                 ErrorView(
                     error: error,
                     retryAction: {
                         Task {
                             await model.fetchUniversities()
                         }
-                    },
-                    supportAction: {
-                        model.showSupport()
                     })
                 
             default:

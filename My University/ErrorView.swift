@@ -11,7 +11,6 @@ import SwiftUI
 struct ErrorView: View {
     let error: Error
     let retryAction: () -> Void
-    let supportAction: () -> Void
     
     var body: some View {
         VStack {
@@ -21,17 +20,16 @@ struct ErrorView: View {
                 .padding()
             
             VStack {
-                Button("error_view.contact_support") {
-                    supportAction()
-                }
-                .buttonStyle(.bordered)
-                .tint(.indigo)
-                
                 Button("error_view.retry") {
                     retryAction()
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(.indigo)
+                
+                Link("error_view.contact_support",
+                     destination: URL.contacts)
+                .tint(.indigo)
+                .padding(.vertical)
             }
             .padding(.vertical)
         }
@@ -40,10 +38,6 @@ struct ErrorView: View {
 
 struct ErrorView_Previews: PreviewProvider {
     static var previews: some View {
-        ErrorView(
-            error: URLError(.badServerResponse),
-            retryAction: {},
-            supportAction: {}
-        )
+        ErrorView(error: URLError(.badServerResponse), retryAction: {})
     }
 }
