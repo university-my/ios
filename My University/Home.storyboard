@@ -111,6 +111,7 @@
                 <hostingController id="0K7-Oa-xeM" customClass="HomeHostingController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="7aG-9e-GwT">
                         <barButtonItem key="rightBarButtonItem" image="info.circle" catalog="system" id="moT-Ti-vj8">
+                            <color key="tintColor" systemColor="systemIndigoColor"/>
                             <connections>
                                 <segue destination="Enn-wm-dZo" kind="presentation" identifier="presentInformation" id="d00-0K-xlf"/>
                             </connections>

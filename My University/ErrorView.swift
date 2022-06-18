@@ -18,18 +18,18 @@ struct ErrorView: View {
                 .fontWeight(.light)
                 .multilineTextAlignment(.center)
                 .padding()
+                .foregroundColor(.red)
             
-            VStack {
-                Button("error_view.retry") {
+            VStack(spacing: 30) {
+                Link("Report a problem",
+                     destination: URL.contacts)
+                .tint(.indigo)
+                
+                Button("Retry") {
                     retryAction()
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(.indigo)
-                
-                Link("error_view.contact_support",
-                     destination: URL.contacts)
-                .tint(.indigo)
-                .padding(.vertical)
             }
             .padding(.vertical)
         }

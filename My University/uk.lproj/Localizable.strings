@@ -79,6 +79,9 @@
 /* Alert action */
 "Report an error" = "Повідомити про помилку";
 
+/* No comment provided by engineer. */
+"Retry" = "Спробувати знову";
+
 /* Placeholder in search controller */
 "Search" = "Пошук";
 
