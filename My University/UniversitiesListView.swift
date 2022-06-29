@@ -10,16 +10,25 @@ import SwiftUI
 
 struct UniversitiesListView: View {
     @StateObject var model: UniversitiesListViewModel
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         VStack {
             switch model.state {
                 
             case let .presenting(data):
-                List(data, id: \.id, selection: $model.selectedID) { item in
-                    UniversityView(university: item)
+                NavigationStack {
+                    List(data, id: \.id, selection: $model.selectedID) { item in
+                        UniversityView(university: item)
+                    }
+                    .navigationTitle("Universities")
+                    .searchable(text: $model.searchText)
+                    .navigationBarItems(
+                        leading: Button("Cancel") {
+                            dismiss()
+                        }
+                    )
                 }
-                .searchable(text: $model.searchText)
                 
             case .loading:
                 ProgressView()

@@ -53,22 +53,13 @@
             </objects>
             <point key="canvasLocation" x="-112" y="1170"/>
         </scene>
-        <!--Universities-->
+        <!--Universities List Hosting Controller-->
         <scene sceneID="tQE-Wj-rSa">
             <objects>
-                <hostingController id="e5c-43-1P8" customClass="UniversitiesListHostingController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="Universities" id="8Mv-1k-ctq">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="XKN-id-vhU">
-                            <color key="tintColor" systemColor="systemIndigoColor"/>
-                            <connections>
-                                <action selector="cancel:" destination="e5c-43-1P8" id="iYB-wz-ctM"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </hostingController>
+                <hostingController id="e5c-43-1P8" customClass="UniversitiesListHostingController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wEO-EW-ZDu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4093.8461538461538" y="3.5545023696682461"/>
+            <point key="canvasLocation" x="3162" y="18"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="c4z-6j-shz">
@@ -118,30 +109,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="W2N-fw-le5" kind="presentation" identifier="presentUniversitiesList" id="ge4-vM-IjM"/>
+                        <segue destination="e5c-43-1P8" kind="presentation" identifier="presentUniversitiesList" id="taR-Gc-kNC"/>
                     </connections>
                 </hostingController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="goi-Lc-CrM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2009" y="18"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Fwd-u2-tcx">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="W2N-fw-le5" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ShQ-rt-tQE">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="e5c-43-1P8" kind="relationship" relationship="rootViewController" id="foe-Zy-paS"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e1B-Ey-cWo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3113.8461538461538" y="3.5545023696682461"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="rAz-pC-tlC">
