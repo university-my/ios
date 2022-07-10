@@ -35,8 +35,7 @@ class HomeHostingController: UIHostingController<HomeView> {
         
         switch identifier {
         case .presentUniversitiesList:
-            let navigation = segue.destination as? UINavigationController
-            let controller = navigation?.viewControllers.first as? UniversitiesListHostingController
+            let controller = segue.destination as? UniversitiesListHostingController
             controller?.delegate = self
             
         case .presentInformation:
@@ -58,9 +57,9 @@ extension HomeHostingController: HomeViewModelDelegate {
     }
 }
 
-// MARK: - UniversitiesListHostingControllerDlegate
+// MARK: - UniversitiesListHostingControllerDelegate
 
-extension HomeHostingController: UniversitiesListHostingControllerDlegate {
+extension HomeHostingController: UniversitiesListHostingControllerDelegate {
     func universitiesListHostingController(didSelectUniversity university: University.CodingData) {
         University.current = university
         model.update(with: university)

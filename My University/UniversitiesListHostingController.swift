@@ -9,13 +9,13 @@
 import UIKit
 import SwiftUI
 
-protocol UniversitiesListHostingControllerDlegate: AnyObject {
+protocol UniversitiesListHostingControllerDelegate: AnyObject {
     func universitiesListHostingController(didSelectUniversity university: University.CodingData)
 }
 
 class UniversitiesListHostingController: UIHostingController<UniversitiesListView> {
     
-    weak var delegate: UniversitiesListHostingControllerDlegate?
+    weak var delegate: UniversitiesListHostingControllerDelegate?
     
     private let model = UniversitiesListViewModel()
     
@@ -28,10 +28,6 @@ class UniversitiesListHostingController: UIHostingController<UniversitiesListVie
         super.viewDidLoad()
         
         model.delegate = self
-    }
-    
-    @IBAction func cancel(_ sender: Any) {
-        dismiss(animated: true)
     }
 }
 
