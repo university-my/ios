@@ -12,15 +12,59 @@ struct SearchView: View {
     @StateObject var model: SearchViewModel
     
     var body: some View {
-        Text("Hello, World!")
-            .task {
-                await model.fetchAll()
+        VStack {
+            switch model.state {
+                
+            case let .failed(error):
+                ErrorView(
+                    error: error,
+                    retryAction: {
+                        Task {
+                            await model.fetchAll()
+                        }
+                    })
+                
+            case .loading:
+                ProgressView()
+                    .tint(.indigo)
+                
+            case .presenting:
+                NavigationStack {
+                    List(model.data, id: \.id, selection: $model.selectedID) { item in
+                        Text(item.name)
+                    }
+                    .listStyle(.plain)
+                    .navigationTitle("Search")
+                    .searchable(text: $model.searchText)
+                }
+                
+            default:
+                EmptyView()
             }
+        }
+        .task {
+            await model.fetchAll()
+        }
     }
 }
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(model: SearchViewModel())
+        let model = SearchViewModel()
+        model.update(with: University.CodingData.first)
+        return SearchView(model: model)
+    }
+}
+
+private extension University.CodingData {
+    static var first: Self {
+        University.CodingData(
+            id: 1,
+            fullName: "First University Full Very Long Name Name",
+            shortName: "First Short Name",
+            url: "sumdu",
+            logoLight: "1_light.png",
+            logoDark: "1_dark.png"
+        )
     }
 }
