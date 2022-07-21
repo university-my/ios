@@ -11,7 +11,7 @@ import SwiftUI
 
 class SearchHostingController: UIHostingController<SearchView> {
     
-    let model = SearchViewModel(universityURL: "")
+    let model = SearchViewModel()
     
     @MainActor required dynamic init?(coder aDecoder: NSCoder) {
         let view = SearchView(model: self.model)
@@ -22,5 +22,11 @@ class SearchHostingController: UIHostingController<SearchView> {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        model.update(with: University.current)
     }
 }

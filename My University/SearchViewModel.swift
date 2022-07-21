@@ -6,27 +6,27 @@
 //  Copyright © 2022 Yura Voevodin. All rights reserved.
 //
 
-import Foundation
 import SwiftUI
 
 @MainActor
-class SearchViewModel: ObservableObject {
-    internal init(universityURL: String) {
-        self.universityURL = universityURL
-    }
+final class SearchViewModel: ObservableObject {
     
-    let universityURL: String
+    private let dataProvider = SearchDataProvider()
     
-    let dataProvider = SearchDataProvider()
-    
+    private(set) var university: University.CodingData? = nil
     private var groups: [ModelCodingData] = []
     
     func fetchAll() async {
+        guard let url = university?.url else { return }
         do {
-            let groups = try await dataProvider.groupsDataProvider.load(universityURL: universityURL)
+            let groups = try await dataProvider.groupsDataProvider.load(universityURL: url)
             print(groups)
         } catch {
             print(error)
         }
+    }
+    
+    func update(with university: University.CodingData?) {
+        self.university = university
     }
 }
