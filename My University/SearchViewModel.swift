@@ -8,6 +8,10 @@
 
 import Foundation
 
+enum SearchScope: String, CaseIterable {
+    case groups, classrooms, teachers
+}
+
 @MainActor
 final class SearchViewModel: ObservableObject {
     
@@ -52,6 +56,7 @@ final class SearchViewModel: ObservableObject {
     
     // MARK: - Search
     
+    @Published var searchScope: SearchScope = .groups
     @Published var searchText = "" {
         didSet {
             if !searchText.isEmpty {
