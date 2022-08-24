@@ -16,13 +16,7 @@ struct SearchView: View {
             switch model.state {
                 
             case let .failed(error):
-                ErrorView(
-                    error: error,
-                    retryAction: {
-                        Task {
-                            await model.fetchAll()
-                        }
-                    })
+                ErrorView(error: error, retryAction: { runSearch() })
                 
             case .loading:
                 ProgressView()
@@ -47,8 +41,14 @@ struct SearchView: View {
                 EmptyView()
             }
         }
-        .task {
-            await model.fetchAll()
+        .onSubmit(of: .search, runSearch)
+//        .onAppear(perform: runSearch)
+//        .onChange(of: $scope) { _ in runSearch() }
+    }
+    
+    func runSearch() {
+        Task {
+            await model.fetchData()
         }
     }
 }
