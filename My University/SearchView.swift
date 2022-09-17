@@ -24,31 +24,48 @@ struct SearchView: View {
                 
             case .presenting:
                 NavigationStack {
-                    List(model.data, id: \.id, selection: $model.selectedID) { item in
-                        Text(item.name)
-                    }
-                    .listStyle(.plain)
-                    .navigationTitle("Search")
-                    .searchable(text: $model.searchText, prompt: "Group, Teachers, Classrooms")
-                    .searchScopes($model.searchScope) {
-                        Text("Groups").tag(SearchScope.groups)
-                        Text("Teachers").tag(SearchScope.teachers)
-                        Text("Classrooms").tag(SearchScope.classrooms)
-                    }
+                    SearchedView(model: model)
+                        .listStyle(.plain)
+                        .navigationTitle("Search")
+                        .searchable(text: $model.searchText, prompt: "Group, Teachers, Classrooms")
+                        .searchScopes($model.searchScope) {
+                            Text("Groups").tag(SearchScope.groups)
+                            Text("Teachers").tag(SearchScope.teachers)
+                            Text("Classrooms").tag(SearchScope.classrooms)
+                        }
                 }
                 
             default:
                 EmptyView()
             }
         }
-        .onSubmit(of: .search, runSearch)
-//        .onAppear(perform: runSearch)
-//        .onChange(of: $scope) { _ in runSearch() }
     }
+        
+//
+////        .onSubmit(of: .search, runSearch)
+////        .onAppear(perform: runSearch)
+////        .onChange(of: $scope) { _ in runSearch() }
+//    }
     
     func runSearch() {
         Task {
             await model.fetchData()
+        }
+    }
+}
+
+struct SearchedView: View {
+    @StateObject var model: SearchViewModel
+    @Environment(\.isSearching) private var isSearching
+    
+    var body: some View {
+        List(model.data, id: \.id, selection: $model.selectedID) { item in
+            Text(item.name)
+        }
+        .onChange(of: isSearching) { newValue in
+//            if !newValue {
+//                model.resetSearch()
+//            }
         }
     }
 }
