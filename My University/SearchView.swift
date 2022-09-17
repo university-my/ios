@@ -10,6 +10,7 @@ import SwiftUI
 
 struct SearchView: View {
     @StateObject var model: SearchViewModel
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         VStack {
@@ -33,6 +34,11 @@ struct SearchView: View {
                             Text("Teachers").tag(SearchScope.teachers)
                             Text("Classrooms").tag(SearchScope.classrooms)
                         }
+                        .navigationBarItems(
+                            leading: Button("Cancel") {
+                                dismiss()
+                            }
+                        )
                 }
                 
             default:

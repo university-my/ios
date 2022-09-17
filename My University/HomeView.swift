@@ -13,7 +13,16 @@ struct HomeView: View {
     
     var body: some View {
         if let university = model.university {
-            Text(university.fullName)
+            VStack(spacing: 10) {
+                Text(university.fullName)
+                Button() {
+                    model.beginSearch()
+                } label: {
+                    Label("Search", systemImage: "magnifyingglass")
+                }
+                .controlSize(.regular)
+                .buttonStyle(.borderedProminent)
+            }
         } else {
             Button {
                 model.selectUniversity()

@@ -52,6 +52,10 @@ class HomeHostingController: UIHostingController<HomeView> {
 // MARK: - HomeViewModelDelegate
 
 extension HomeHostingController: HomeViewModelDelegate {
+    func homeViewModelBeginSearchPressed() {
+        performSegue(withIdentifier: .presentSearch, sender: nil)
+    }
+    
     func homeViewModelSelectUniversityPressed() {
         performSegue(withIdentifier: .presentUniversitiesList, sender: nil)
     }
@@ -81,4 +85,5 @@ extension HomeHostingController: InformationHostingControllerDelegate {
 private extension HomeHostingController.SegueIdentifier {
     static let presentUniversitiesList = "presentUniversitiesList"
     static let presentInformation = "presentInformation"
+    static let presentSearch = "presentSearch"
 }
