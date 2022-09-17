@@ -25,7 +25,7 @@ final class SearchViewModel: ObservableObject {
         didSet {}
     }
     
-    // MARK: - Fetch data
+    // MARK: - Data
     
     var data: [ModelCodingData] {
         switch searchScope {
@@ -35,22 +35,6 @@ final class SearchViewModel: ObservableObject {
             return searchText.isEmpty ? teachers : filteredTeachers
         case .classrooms:
             return searchText.isEmpty ? classrooms : filteredClassrooms
-        }
-    }
-    
-    func fetchDataIfNeeded() async {
-        var needToFetchData = false
-        
-        switch searchScope {
-        case .groups:
-            needToFetchData = groups.isEmpty
-        case .teachers:
-            needToFetchData = teachers.isEmpty
-        case .classrooms:
-            needToFetchData = classrooms.isEmpty
-        }
-        if needToFetchData {
-            await fetchData()
         }
     }
     
@@ -73,16 +57,13 @@ final class SearchViewModel: ObservableObject {
         
         switch searchScope {
         case .classrooms:
-            let classrooms = try await classroomsDataProvider.load(universityURL: url)
-            self.classrooms = classrooms
+            classrooms = try await classroomsDataProvider.load(universityURL: url)
             
         case .groups:
-            let groups = try await groupsDataProvider.load(universityURL: url)
-            self.groups = groups
+            groups = try await groupsDataProvider.load(universityURL: url)
             
         case .teachers:
-            let teachers = try await teachersDataProvider.load(universityURL: url)
-            self.teachers = teachers
+            teachers = try await teachersDataProvider.load(universityURL: url)
         }
     }
     
@@ -119,23 +100,33 @@ final class SearchViewModel: ObservableObject {
     
     @Published var searchScope: SearchScope = .groups {
         didSet {
-            Task {
-                await fetchDataIfNeeded()
-                filterData()
-                state = .presenting
-            }
+            performSearch()
         }
     }
     
     @Published var searchText = "" {
         didSet {
             if !searchText.isEmpty {
-                Task {
-                    await fetchDataIfNeeded()
+                performSearch()
+            }
+        }
+    }
+    
+    private func performSearch() {
+        if needToFetchData() {
+            state = .loading
+            Task {
+                do {
+                    try await fetchDataForScope()
                     filterData()
                     state = .presenting
+                } catch {
+                    state = .failed(error: error)
                 }
             }
+        } else {
+            filterData()
+            state = .presenting
         }
     }
     
@@ -157,5 +148,20 @@ final class SearchViewModel: ObservableObject {
                 item.name.localizedCaseInsensitiveContains(searchText)
             }
         }
+    }
+    
+    private func needToFetchData() -> Bool {
+        var fetchData = false
+        
+        switch searchScope {
+        case .groups:
+            fetchData = groups.isEmpty
+        case .teachers:
+            fetchData = teachers.isEmpty
+        case .classrooms:
+            fetchData = classrooms.isEmpty
+        }
+        
+        return fetchData
     }
 }

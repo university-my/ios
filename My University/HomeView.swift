@@ -13,15 +13,22 @@ struct HomeView: View {
     
     var body: some View {
         if let university = model.university {
-            VStack(spacing: 10) {
-                Text(university.fullName)
-                Button() {
-                    model.beginSearch()
-                } label: {
-                    Label("Search", systemImage: "magnifyingglass")
+            NavigationStack {
+                VStack(spacing: 10) {
+                    Text(university.fullName)
+                    Button() {
+                        model.beginSearch()
+                    } label: {
+                        Label("Search", systemImage: "magnifyingglass")
+                    }
+                    .controlSize(.regular)
+                    .buttonStyle(.borderedProminent)
                 }
-                .controlSize(.regular)
-                .buttonStyle(.borderedProminent)
+                .toolbar(content: {
+                    ToolbarItem(placement: .bottomBar) {
+                        Button("Test") {  }
+                    }
+                })
             }
         } else {
             Button {
