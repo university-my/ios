@@ -17,11 +17,16 @@ protocol HomeViewModelDelegate: AnyObject {
 class HomeViewModel: ObservableObject {
     typealias Model = University.CodingData
     @Published private(set) var university: Model?
+    @Published private(set) var object: ObjectType?
     
     weak var delegate: HomeViewModelDelegate?
     
     func update(with university: Model) {
         self.university = university
+    }
+    
+    func update(with object: ObjectType) {
+        self.object = object
     }
     
     func selectUniversity() {

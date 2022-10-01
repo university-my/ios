@@ -9,8 +9,13 @@
 import UIKit
 import SwiftUI
 
-class SearchHostingController: UIHostingController<SearchView> {
+protocol SearchHostingControllerDelegate: AnyObject {
+    func searchHostingController(didSelectObject object: ObjectType)
+}
+
+final class SearchHostingController: UIHostingController<SearchView> {
     
+    weak var delegate: SearchHostingControllerDelegate?
     let model = SearchViewModel()
     
     @MainActor required dynamic init?(coder aDecoder: NSCoder) {
@@ -21,12 +26,19 @@ class SearchHostingController: UIHostingController<SearchView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        model.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         model.update(with: University.current)
+    }
+}
+
+extension SearchHostingController: SearchViewModelDelegate {
+    func searchViewModel(didSelectObject object: ObjectType) {
+        delegate?.searchHostingController(didSelectObject: object)
+        dismiss(animated: true)
     }
 }

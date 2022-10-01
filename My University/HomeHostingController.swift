@@ -43,6 +43,10 @@ class HomeHostingController: UIHostingController<HomeView> {
             let controller = navigation?.viewControllers.first as? InformationHostingController
             controller?.delegate = self
             
+        case .presentSearch:
+            let controller = segue.destination as? SearchHostingController
+            controller?.delegate = self
+            
         default:
             break
         }
@@ -77,6 +81,14 @@ extension HomeHostingController: InformationHostingControllerDelegate {
         controller.dismiss(animated: true) {
             self.performSegue(withIdentifier: .presentUniversitiesList, sender: nil)
         }
+    }
+}
+
+// MARK: - SearchHostingControllerDelegate
+
+extension HomeHostingController: SearchHostingControllerDelegate {
+    func searchHostingController(didSelectObject object: ObjectType) {
+        model.update(with: object)
     }
 }
 
