@@ -9,6 +9,7 @@
 import CoreData
 import UIKit
 import os
+import SwiftUI
 
 class UniversitiesDataSource: NSObject {
     
@@ -30,9 +31,7 @@ class UniversitiesDataSource: NSObject {
     lazy var fetchedResultsController: NSFetchedResultsController<UniversityEntity>? = {
         let request: NSFetchRequest<UniversityEntity> = UniversityEntity.fetchRequest()
         
-        let name = NSSortDescriptor(key: #keyPath(UniversityEntity.shortName), ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
-        
-        request.sortDescriptors = [name]
+        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
         request.fetchBatchSize = 20
         
         if let context = viewContext {
@@ -89,10 +88,16 @@ extension UniversitiesDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "universityCell", for: indexPath)
         
-        // Configure cell
         if let university = fetchedResultsController?.object(at: indexPath) {
-            cell.textLabel?.text = university.shortName
-            cell.detailTextLabel?.text = university.fullName
+            if #available(iOS 16.0, *) {
+                cell.contentConfiguration = UIHostingConfiguration {
+                    UniversityView(university: university.codingData)
+                }
+            } else {
+                // Fallback on earlier versions
+                cell.textLabel?.text = university.shortName
+                cell.detailTextLabel?.text = university.fullName
+            }
         }
         
         return cell

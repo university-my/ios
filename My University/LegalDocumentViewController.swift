@@ -54,18 +54,20 @@ final class LegalDocumentViewController: UIViewController {
 
 // MARK: - UIViewControllerRepresentable
 
-extension LegalDocumentViewController: UIViewControllerRepresentable {
-
-    func makeUIViewController(context: UIViewControllerRepresentableContext<LegalDocumentViewController>) -> LegalDocumentViewController {
+struct LegalDocumentController: UIViewControllerRepresentable {
+    
+    let documentName: String
+    
+    func makeUIViewController(context: Context) -> LegalDocumentViewController {
         let storyboard = UIStoryboard.legalDocument
         let controller = storyboard.instantiateInitialViewController() as! LegalDocumentViewController
         controller.documentName = documentName
         return controller
     }
-
-    func updateUIViewController(_ uiViewController: LegalDocumentViewController, context: UIViewControllerRepresentableContext<LegalDocumentViewController>) {
-
+    
+    func updateUIViewController(_ uiViewController: LegalDocumentViewController, context: Context) {
+        
     }
-
+    
     typealias UIViewControllerType = LegalDocumentViewController
 }

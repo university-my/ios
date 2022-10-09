@@ -7,11 +7,17 @@
 /* Alert action */
 "Cancel" = "Скасувати";
 
+/* No comment provided by engineer. */
+"Change university" = "Змінити університет";
+
 /* Action title */
 "Change University" = "Змінити університет";
 
 /* Alert action */
 "Check on website" = "Перевірити на сайті";
+
+/* No comment provided by engineer. */
+"Check out what's new" = "Що нового";
 
 /* No comment provided by engineer. */
 "Check out what's new in this version:" = "Що нового в цій версії:";
@@ -31,6 +37,9 @@
 /* Error description */
 "Data not found" = "Даних не знайдено";
 
+/* No comment provided by engineer. */
+"Documents" = "Документи";
+
 /* Action title */
 "Go to University" = "Перейти до університету";
 
@@ -43,8 +52,11 @@
 /* No comment provided by engineer. */
 "GROUPS" = "ГРУПИ";
 
-/* Message */
-"No records" = "Пар немає";
+/* No comment provided by engineer. */
+"New design of all universities screen" = "Новий дизайн екрана всіх університетів";
+
+/* No comment provided by engineer. */
+"New navigation throughout the app" = "Нова навігація по всьому додатку";
 
 /* No comment provided by engineer. */
 "PAIR" = "ПАРА";
@@ -67,11 +79,20 @@
 /* Alert action */
 "Report an error" = "Повідомити про помилку";
 
+/* No comment provided by engineer. */
+"Retry" = "Спробувати знову";
+
 /* Placeholder in search controller */
 "Search" = "Пошук";
 
+/* No comment provided by engineer. */
+"Select University" = "Виберіть університет";
+
 /* Action title */
 "Share" = "Поділитися";
+
+/* No comment provided by engineer. */
+"Social Networks" = "Соціальні мережі";
 
 /* Alert title */
 "Sorry" = "Вибачте";
@@ -86,13 +107,16 @@
 "Teachers" = "Викладачі";
 
 /* No comment provided by engineer. */
-"Terms Of Service" = "Умови надання послуг";
+"Terms of Service" = "Умови обслуговування";
 
 /* No comment provided by engineer. */
 "Thank you for using this app! ❤️" = "Дякуємо, що користуєтеся цим додатком! ❤️";
 
 /* Alert action */
 "Try again" = "Спробувати ще раз";
+
+/* No comment provided by engineer. */
+"University" = "Університет";
 
 /* Error description */
 "University data needs to be updated. You will return to the main screen of the university" = "Дані університету необхідно оновити. Ви повернетеся на головний екран університету.";
@@ -107,7 +131,13 @@
 "We were unable to read the schedule from the university website" = "Не вдалося прочитати розклад на сайті університету";
 
 /* No comment provided by engineer. */
+"Website" = "Веб-сайт";
+
+/* No comment provided by engineer. */
 "Welcome" = "Вітаємо";
+
+/* No comment provided by engineer. */
+"What's new" = "Що нового";
 
 /* No comment provided by engineer. */
 "whats_new.new_calendar" = "Новий календар (iOS 14)";
@@ -117,4 +147,7 @@
 
 /* No comment provided by engineer. */
 "whats_new.support_iOS_14" = "Підтримка iOS 14";
+
+/* No comment provided by engineer. */
+"whats_new.universities_new_design" = "Новий дизайн екрана всіх університетів";
 

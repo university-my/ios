@@ -21,4 +21,20 @@ struct University {
         }
     }
     
+    static var current: University.CodingData? {
+        get {
+            guard let data = UserDefaults.standard.object(forKey: UserDefaultsKeys.currentUniversityKey) as? Data else {
+                return nil
+            }
+            let decoder = JSONDecoder()
+            let university = try? decoder.decode(University.CodingData.self, from: data)
+            return university
+        }
+        set {
+            let jsonEncoder = JSONEncoder()
+            if let jsonData = try? jsonEncoder.encode(newValue) {
+                UserDefaults.standard.set(jsonData, forKey: UserDefaultsKeys.currentUniversityKey)
+            }
+        }
+    }
 }

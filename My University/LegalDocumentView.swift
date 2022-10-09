@@ -2,33 +2,18 @@
 //  LegalDocumentView.swift
 //  My University
 //
-//  Created by Yura Voevodin on 02.03.2020.
-//  Copyright © 2020 Yura Voevodin. All rights reserved.
+//  Created by Yura Voevodin on 18.06.2022.
+//  Copyright © 2022 Yura Voevodin. All rights reserved.
 //
 
 import SwiftUI
 
 struct LegalDocumentView: View {
-
-    var documentName: String
-    var continueAction: (() -> ())?
-
-    fileprivate func legalDocumentController() -> some View {
-        let controller = LegalDocumentViewController()
-        controller.documentName = documentName
-        return controller
-    }
-
+    
+    let documentName: String
+    
     var body: some View {
-        VStack {
-            // Document
-            legalDocumentController()
-
-            // Continue
-            Button(action: { self.continueAction?() }) {
-                ContinueButtonContent()
-            }.padding()
-        }
+        LegalDocumentController(documentName: documentName)
     }
 }
 

@@ -15,5 +15,9 @@ extension University {
         static var allUniversities: Endpoint<EndpointKinds.API> {
             Endpoint<EndpointKinds.API>(path: "/universities")
         }
+        
+        static func logo(name: String) -> Endpoint<EndpointKinds.Public> {
+            Endpoint<EndpointKinds.Public>(path: "/\(name)")
+        }
     }
 }

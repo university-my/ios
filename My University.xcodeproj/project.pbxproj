@@ -21,11 +21,22 @@
 		DE05ADB02370C8260005B0E7 /* University.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE05ADAE2370C8260005B0E7 /* University.storyboard */; };
 		DE05ADB32370C83F0005B0E7 /* Universities.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE05ADB12370C83F0005B0E7 /* Universities.storyboard */; };
 		DE06999E246D707100F49AF0 /* NoRecordsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE0699A0246D707100F49AF0 /* NoRecordsTableViewCell.xib */; };
+		DE072B0328897FBE005E3185 /* Model+AsyncNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE072B0228897FBE005E3185 /* Model+AsyncNetworkController.swift */; };
+		DE072B0528898149005E3185 /* Model+DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE072B0428898149005E3185 /* Model+DataProvider.swift */; };
+		DE072B07288982C4005E3185 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE072B06288982C4005E3185 /* SearchViewModel.swift */; };
+		DE072B0928898566005E3185 /* SearchHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE072B0828898566005E3185 /* SearchHostingController.swift */; };
+		DE072B0B2889857E005E3185 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE072B0A2889857E005E3185 /* SearchView.swift */; };
+		DE0A3856285B3FE60058183E /* UniversityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0A3855285B3FE60058183E /* UniversityView.swift */; };
+		DE0A3859285B9AA20058183E /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0A3858285B9AA20058183E /* GradientButton.swift */; };
 		DE0D64082264E1330001FCCF /* UniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0D64072264E1330001FCCF /* UniversityViewController.swift */; };
 		DE0DC967276C902700AF1513 /* Model+LogicError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0DC966276C902700AF1513 /* Model+LogicError.swift */; };
 		DE0DC969276C986000AF1513 /* UniversityDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0DC968276C986000AF1513 /* UniversityDataController.swift */; };
 		DE0DC972276CA37D00AF1513 /* NewActivity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE0DC971276CA37D00AF1513 /* NewActivity.storyboard */; };
 		DE0DC974276CA3D500AF1513 /* ActivityAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0DC973276CA3D500AF1513 /* ActivityAlertViewController.swift */; };
+		DE0E1E9C285DFD4C0070F1E2 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0E1E9B285DFD4C0070F1E2 /* HomeViewModel.swift */; };
+		DE0E1E9F285E06760070F1E2 /* InformationHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0E1E9E285E06760070F1E2 /* InformationHostingController.swift */; };
+		DE0E1EA1285E06830070F1E2 /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0E1EA0285E06830070F1E2 /* InformationView.swift */; };
+		DE0E1EA3285E07ED0070F1E2 /* InformationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0E1EA2285E07ED0070F1E2 /* InformationViewModel.swift */; };
 		DE11A3B0230EA98B005131E8 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE11A3AF230EA98B005131E8 /* DatePickerViewController.swift */; };
 		DE131FE22456CAAB009D09EA /* RecordsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE131FE12456CAAB009D09EA /* RecordsDataSource.swift */; };
 		DE131FE82456D773009D09EA /* Record+CodingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE131FE72456D773009D09EA /* Record+CodingData.swift */; };
@@ -75,15 +86,15 @@
 		DE65DA902370C5BD00022B21 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE65DA8E2370C5BD00022B21 /* Preferences.storyboard */; };
 		DE65DA992370C6BA00022B21 /* Initial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE65DA972370C6BA00022B21 /* Initial.storyboard */; };
 		DE6794352268976E0068087A /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6794342268976E0068087A /* GroupsTableViewController.swift */; };
+		DE6DE06928E876EF005247BA /* ObjectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6DE06828E876EF005247BA /* ObjectType.swift */; };
 		DE7190AD25E7B74000A1F216 /* Record+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7190AC25E7B74000A1F216 /* Record+Formatter.swift */; };
 		DE78478B240D9FBC002C2EDC /* UIStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78478A240D9FBC002C2EDC /* UIStoryboard.swift */; };
-		DE78478D240DA16B002C2EDC /* LegalDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78478C240DA16B002C2EDC /* LegalDocumentView.swift */; };
-		DE784790240DB406002C2EDC /* ContinueButtonContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78478F240DB406002C2EDC /* ContinueButtonContent.swift */; };
 		DE7AB8582466C4470031E279 /* CoreDataEntityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB8572466C4470031E279 /* CoreDataEntityProtocol.swift */; };
 		DE7AB85A24671E6D0031E279 /* EntityRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB85924671E6D0031E279 /* EntityRepresentable.swift */; };
 		DE7AB85D246720250031E279 /* ClassroomTableDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB85C246720250031E279 /* ClassroomTableDataController.swift */; };
 		DE7AB861246721F70031E279 /* ClassroomTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB860246721F70031E279 /* ClassroomTableViewController.swift */; };
 		DE7AB863246722AA0031E279 /* EntityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7AB862246722AA0031E279 /* EntityTableViewController.swift */; };
+		DE84961C287B43AF00B76BC8 /* Model+AsyncDownloadsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE84961B287B43AF00B76BC8 /* Model+AsyncDownloadsController.swift */; };
 		DE87B78E235B9E450090B63E /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE87B78D235B9E450090B63E /* InitialViewController.swift */; };
 		DE94500422C1345800550A1C /* TableMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE94500322C1345800550A1C /* TableMessageViewController.swift */; };
 		DE945AC72264D11700143303 /* UniversityEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE945AC52264D11700143303 /* UniversityEntity+CoreDataClass.swift */; };
@@ -102,6 +113,8 @@
 		DEA49612253CA3F00025174E /* Model+DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA49611253CA3F00025174E /* Model+DataController.swift */; };
 		DEA49620253CAAB60025174E /* Model+TableDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA4961F253CAAB60025174E /* Model+TableDataController.swift */; };
 		DEA49628253CAB7E0025174E /* Model+LogicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA49627253CAB7E0025174E /* Model+LogicController.swift */; };
+		DEAC46B0285DDD2300490197 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAC46AF285DDD2300490197 /* ErrorView.swift */; };
+		DEAC46B6285DF64600490197 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAC46B5285DF64600490197 /* HomeView.swift */; };
 		DEAE5C4A236A23B50086E734 /* UpdateHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAE5C49236A23B50086E734 /* UpdateHelperTests.swift */; };
 		DEB031672459809D00A5D29D /* ErrorAlertRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB031662459809D00A5D29D /* ErrorAlertRepresentable.swift */; };
 		DEB0633325136C7A00DB50CE /* EntityMenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0633225136C7900DB50CE /* EntityMenuPresenter.swift */; };
@@ -109,6 +122,11 @@
 		DEB0634425136D2200DB50CE /* Teacher.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEB0634225136D2200DB50CE /* Teacher.storyboard */; };
 		DEB0635025136D5500DB50CE /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEB0634E25136D5500DB50CE /* Activity.storyboard */; };
 		DEB0635425136DDC00DB50CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0635325136DDC00DB50CE /* SceneDelegate.swift */; };
+		DEB186BE285CD4C9003E2553 /* UniversitiesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB186BD285CD4C9003E2553 /* UniversitiesListViewModel.swift */; };
+		DEB186C1285CD577003E2553 /* UniversitiesListNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB186C0285CD577003E2553 /* UniversitiesListNetworkClient.swift */; };
+		DEB186C3285CD7AC003E2553 /* AsyncNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB186C2285CD7AC003E2553 /* AsyncNetworkClient.swift */; };
+		DEB186C6285CDB02003E2553 /* UniversitiesListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB186C5285CDB02003E2553 /* UniversitiesListDataProvider.swift */; };
+		DEB186CA285CE101003E2553 /* UniversitiesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB186C9285CE101003E2553 /* UniversitiesListView.swift */; };
 		DEB9BC6725387D1C008F41A2 /* Record+RecordsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BC6625387D1C008F41A2 /* Record+RecordsList.swift */; };
 		DEB9BD232538AB72008F41A2 /* University+CodingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BD222538AB72008F41A2 /* University+CodingData.swift */; };
 		DEB9BD292538B233008F41A2 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9BD282538B233008F41A2 /* NetworkClient.swift */; };
@@ -134,12 +152,16 @@
 		DEBCBDC12530E9F60087F216 /* ModelKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCBDC02530E9F60087F216 /* ModelKind.swift */; };
 		DECEC8B52750131F00149185 /* NetworkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECEC8B42750131F00149185 /* NetworkStatus.swift */; };
 		DECEC8B72750DA2400149185 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECEC8B62750DA2400149185 /* NetworkError.swift */; };
+		DED45F63285E245B00863775 /* LegalDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED45F62285E245B00863775 /* LegalDocumentView.swift */; };
 		DEDA50EA21862091006C7B27 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50E821862090006C7B27 /* InfoPlist.strings */; };
 		DEDA50ED218620E0006C7B27 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEDA50EB218620E0006C7B27 /* Localizable.strings */; };
 		DEDA8CF42534930D00B54E41 /* UniversityEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8CF02534930D00B54E41 /* UniversityEntity+CoreDataProperties.swift */; };
 		DEDA8CF52534930D00B54E41 /* ClassroomEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8CF12534930D00B54E41 /* ClassroomEntity+CoreDataClass.swift */; };
 		DEDA8CF62534930D00B54E41 /* ClassroomEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8CF22534930D00B54E41 /* ClassroomEntity+CoreDataProperties.swift */; };
 		DEDA8CF72534930D00B54E41 /* RecordEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8CF32534930D00B54E41 /* RecordEntity+CoreDataProperties.swift */; };
+		DEDB39E8285CF04800D8434E /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEDB39E7285CF04800D8434E /* Home.storyboard */; };
+		DEDB39EA285CF16E00D8434E /* HomeHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDB39E9285CF16E00D8434E /* HomeHostingController.swift */; };
+		DEDB39EC285DBF8900D8434E /* UniversitiesListHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDB39EB285DBF8900D8434E /* UniversitiesListHostingController.swift */; };
 		DEE2E9AA25221D8800A18810 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE4CD2D02522168F00745055 /* Launch Screen.storyboard */; };
 		DEE576E4226B7B9E008F9EB6 /* SearchableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE576E3226B7B9E008F9EB6 /* SearchableTableViewController.swift */; };
 		DEE576E7226B8B98008F9EB6 /* ClassroomsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE576E6226B8B98008F9EB6 /* ClassroomsTableViewController.swift */; };
@@ -192,11 +214,22 @@
 		DE06999D246D6F4C00F49AF0 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Group.strings; sourceTree = "<group>"; };
 		DE06999F246D707100F49AF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NoRecordsTableViewCell.xib; sourceTree = "<group>"; };
 		DE0699A1246D70A400F49AF0 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/NoRecordsTableViewCell.strings; sourceTree = "<group>"; };
+		DE072B0228897FBE005E3185 /* Model+AsyncNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+AsyncNetworkController.swift"; sourceTree = "<group>"; };
+		DE072B0428898149005E3185 /* Model+DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+DataProvider.swift"; sourceTree = "<group>"; };
+		DE072B06288982C4005E3185 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		DE072B0828898566005E3185 /* SearchHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHostingController.swift; sourceTree = "<group>"; };
+		DE072B0A2889857E005E3185 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		DE0A3855285B3FE60058183E /* UniversityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityView.swift; sourceTree = "<group>"; };
+		DE0A3858285B9AA20058183E /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		DE0D64072264E1330001FCCF /* UniversityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityViewController.swift; sourceTree = "<group>"; };
 		DE0DC966276C902700AF1513 /* Model+LogicError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+LogicError.swift"; sourceTree = "<group>"; };
 		DE0DC968276C986000AF1513 /* UniversityDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityDataController.swift; sourceTree = "<group>"; };
 		DE0DC971276CA37D00AF1513 /* NewActivity.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewActivity.storyboard; sourceTree = "<group>"; };
 		DE0DC973276CA3D500AF1513 /* ActivityAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityAlertViewController.swift; sourceTree = "<group>"; };
+		DE0E1E9B285DFD4C0070F1E2 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		DE0E1E9E285E06760070F1E2 /* InformationHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationHostingController.swift; sourceTree = "<group>"; };
+		DE0E1EA0285E06830070F1E2 /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
+		DE0E1EA2285E07ED0070F1E2 /* InformationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewModel.swift; sourceTree = "<group>"; };
 		DE11A3AF230EA98B005131E8 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		DE131FE12456CAAB009D09EA /* RecordsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsDataSource.swift; sourceTree = "<group>"; };
 		DE131FE72456D773009D09EA /* Record+CodingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record+CodingData.swift"; sourceTree = "<group>"; };
@@ -254,15 +287,15 @@
 		DE65DA8F2370C5BD00022B21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Preferences.storyboard; sourceTree = "<group>"; };
 		DE65DA982370C6BA00022B21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Initial.storyboard; sourceTree = "<group>"; };
 		DE6794342268976E0068087A /* GroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
+		DE6DE06828E876EF005247BA /* ObjectType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectType.swift; sourceTree = "<group>"; };
 		DE7190AC25E7B74000A1F216 /* Record+Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record+Formatter.swift"; sourceTree = "<group>"; };
 		DE78478A240D9FBC002C2EDC /* UIStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboard.swift; sourceTree = "<group>"; };
-		DE78478C240DA16B002C2EDC /* LegalDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDocumentView.swift; sourceTree = "<group>"; };
-		DE78478F240DB406002C2EDC /* ContinueButtonContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueButtonContent.swift; sourceTree = "<group>"; };
 		DE7AB8572466C4470031E279 /* CoreDataEntityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataEntityProtocol.swift; sourceTree = "<group>"; };
 		DE7AB85924671E6D0031E279 /* EntityRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityRepresentable.swift; sourceTree = "<group>"; };
 		DE7AB85C246720250031E279 /* ClassroomTableDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomTableDataController.swift; sourceTree = "<group>"; };
 		DE7AB860246721F70031E279 /* ClassroomTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomTableViewController.swift; sourceTree = "<group>"; };
 		DE7AB862246722AA0031E279 /* EntityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityTableViewController.swift; sourceTree = "<group>"; };
+		DE84961B287B43AF00B76BC8 /* Model+AsyncDownloadsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+AsyncDownloadsController.swift"; sourceTree = "<group>"; };
 		DE87B78D235B9E450090B63E /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		DE94500322C1345800550A1C /* TableMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableMessageViewController.swift; sourceTree = "<group>"; };
 		DE945AC52264D11700143303 /* UniversityEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -281,6 +314,8 @@
 		DEA49611253CA3F00025174E /* Model+DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+DataController.swift"; sourceTree = "<group>"; };
 		DEA4961F253CAAB60025174E /* Model+TableDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+TableDataController.swift"; sourceTree = "<group>"; };
 		DEA49627253CAB7E0025174E /* Model+LogicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+LogicController.swift"; sourceTree = "<group>"; };
+		DEAC46AF285DDD2300490197 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		DEAC46B5285DF64600490197 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		DEAE5C47236A23B50086E734 /* MyUniversityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyUniversityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEAE5C49236A23B50086E734 /* UpdateHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateHelperTests.swift; sourceTree = "<group>"; };
 		DEAE5C4B236A23B50086E734 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -290,6 +325,11 @@
 		DEB0634325136D2200DB50CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Teacher.storyboard; sourceTree = "<group>"; };
 		DEB0634F25136D5500DB50CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Activity.storyboard; sourceTree = "<group>"; };
 		DEB0635325136DDC00DB50CE /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		DEB186BD285CD4C9003E2553 /* UniversitiesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversitiesListViewModel.swift; sourceTree = "<group>"; };
+		DEB186C0285CD577003E2553 /* UniversitiesListNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversitiesListNetworkClient.swift; sourceTree = "<group>"; };
+		DEB186C2285CD7AC003E2553 /* AsyncNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncNetworkClient.swift; sourceTree = "<group>"; };
+		DEB186C5285CDB02003E2553 /* UniversitiesListDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversitiesListDataProvider.swift; sourceTree = "<group>"; };
+		DEB186C9285CE101003E2553 /* UniversitiesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversitiesListView.swift; sourceTree = "<group>"; };
 		DEB9BC6625387D1C008F41A2 /* Record+RecordsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record+RecordsList.swift"; sourceTree = "<group>"; };
 		DEB9BD222538AB72008F41A2 /* University+CodingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "University+CodingData.swift"; sourceTree = "<group>"; };
 		DEB9BD282538B233008F41A2 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
@@ -316,12 +356,16 @@
 		DECEC8B42750131F00149185 /* NetworkStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatus.swift; sourceTree = "<group>"; };
 		DECEC8B62750DA2400149185 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		DECF64EC251C75BE00F1AA33 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DED45F62285E245B00863775 /* LegalDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDocumentView.swift; sourceTree = "<group>"; };
 		DEDA50E921862090006C7B27 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DEDA50EC218620E0006C7B27 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DEDA8CF02534930D00B54E41 /* UniversityEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UniversityEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DEDA8CF12534930D00B54E41 /* ClassroomEntity+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ClassroomEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		DEDA8CF22534930D00B54E41 /* ClassroomEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ClassroomEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DEDA8CF32534930D00B54E41 /* RecordEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RecordEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		DEDB39E7285CF04800D8434E /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		DEDB39E9285CF16E00D8434E /* HomeHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHostingController.swift; sourceTree = "<group>"; };
+		DEDB39EB285DBF8900D8434E /* UniversitiesListHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversitiesListHostingController.swift; sourceTree = "<group>"; };
 		DEE576E3226B7B9E008F9EB6 /* SearchableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableTableViewController.swift; sourceTree = "<group>"; };
 		DEE576E6226B8B98008F9EB6 /* ClassroomsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomsTableViewController.swift; sourceTree = "<group>"; };
 		DEE643BB253B7BB7007A815B /* UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -366,6 +410,7 @@
 		C29FF4CE2002382500B50299 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				DEB186C2285CD7AC003E2553 /* AsyncNetworkClient.swift */,
 				DEB9BD282538B233008F41A2 /* NetworkClient.swift */,
 				DECEC8B62750DA2400149185 /* NetworkError.swift */,
 				DECEC8B42750131F00149185 /* NetworkStatus.swift */,
@@ -439,6 +484,7 @@
 		C2C0E9AE1FB8CD870012FA9C /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
+				DE6DE06828E876EF005247BA /* ObjectType.swift */,
 				DE3628CA2524ADD0003A7939 /* UserDefaultsKeys.swift */,
 				DEB9BD8C253976D2008F41A2 /* Model */,
 				DE131FE62456D74E009D09EA /* Record */,
@@ -465,6 +511,23 @@
 			name = Preferences;
 			sourceTree = "<group>";
 		};
+		DE0A3854285B3FD00058183E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DE0A3855285B3FE60058183E /* UniversityView.swift */,
+				DEB186C9285CE101003E2553 /* UniversitiesListView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		DE0A3857285B9A910058183E /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				DE0A3858285B9AA20058183E /* GradientButton.swift */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
 		DE0DC96A276C9FCD00AF1513 /* New Activity */ = {
 			isa = PBXGroup;
 			children = (
@@ -472,6 +535,16 @@
 				DE0DC973276CA3D500AF1513 /* ActivityAlertViewController.swift */,
 			);
 			name = "New Activity";
+			sourceTree = "<group>";
+		};
+		DE0E1E9D285E06610070F1E2 /* Information */ = {
+			isa = PBXGroup;
+			children = (
+				DE0E1E9E285E06760070F1E2 /* InformationHostingController.swift */,
+				DE0E1EA0285E06830070F1E2 /* InformationView.swift */,
+				DE0E1EA2285E07ED0070F1E2 /* InformationViewModel.swift */,
+			);
+			name = Information;
 			sourceTree = "<group>";
 		};
 		DE0E4930238F0EFD00F739F5 /* Data Source */ = {
@@ -628,6 +701,7 @@
 			children = (
 				DE40B33F26F1E39600631C55 /* NibLoadableView.swift */,
 				DE40B34126F1E3A800631C55 /* ReusableView.swift */,
+				DEAC46AF285DDD2300490197 /* ErrorView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -645,6 +719,9 @@
 			isa = PBXGroup;
 			children = (
 				C293559D1FBE246000071719 /* SearchResultsTableViewController.swift */,
+				DE072B06288982C4005E3185 /* SearchViewModel.swift */,
+				DE072B0828898566005E3185 /* SearchHostingController.swift */,
+				DE072B0A2889857E005E3185 /* SearchView.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -652,7 +729,6 @@
 		DE4CD2E52522170C00745055 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				DE0DC96A276C9FCD00AF1513 /* New Activity */,
 				DE472C7321B84313003AE86D /* About */,
 				DEF63C5D245AC477007E82F9 /* Activity */,
 				DE3EC2C3245C73E600E30536 /* Classroom */,
@@ -661,7 +737,10 @@
 				DEB68195245DEBA2005FA2F0 /* Entity */,
 				DEB031682459880800A5D29D /* Group */,
 				DE6794332268975F0068087A /* Groups */,
+				DEB186CB285CEFC7003E2553 /* Home */,
+				DE0E1E9D285E06610070F1E2 /* Information */,
 				DE6B249723EF5C47008ED1F1 /* Legal Documents */,
+				DE0DC96A276C9FCD00AF1513 /* New Activity */,
 				DE017F9323622AF80046D3ED /* Preferences */,
 				DE3DC046235E468F007805DA /* Record Details */,
 				DE131FE02456CA8B009D09EA /* Records Data Source */,
@@ -688,9 +767,14 @@
 		DE5FAE072263B36A00333121 /* Universities */ = {
 			isa = PBXGroup;
 			children = (
-				DEE576E0226B7875008F9EB6 /* Data Source */,
+				DE945AD12264D71B00143303 /* UniversitiesDataSource.swift */,
+				DEB186C5285CDB02003E2553 /* UniversitiesListDataProvider.swift */,
+				DEDB39EB285DBF8900D8434E /* UniversitiesListHostingController.swift */,
+				DEB186C0285CD577003E2553 /* UniversitiesListNetworkClient.swift */,
+				DEB186BD285CD4C9003E2553 /* UniversitiesListViewModel.swift */,
 				DEBB74AE235CE62600226C7E /* Storyboard */,
 				DEE576DF226B7861008F9EB6 /* View Controllers */,
+				DE0A3854285B3FD00058183E /* Views */,
 			);
 			name = Universities;
 			sourceTree = "<group>";
@@ -708,20 +792,12 @@
 			isa = PBXGroup;
 			children = (
 				DE4FCBFE23EF5D50000B53F4 /* LegalDocument.swift */,
-				DE78478C240DA16B002C2EDC /* LegalDocumentView.swift */,
+				DED45F62285E245B00863775 /* LegalDocumentView.swift */,
 				DE4FCBFC23EF5CF9000B53F4 /* LegalDocumentViewController.swift */,
-				DE4FCC0023EF5DB4000B53F4 /* Legal Documents */,
 				DE4CD2D9252216BA00745055 /* Legal Document.storyboard */,
+				DE4FCC0023EF5DB4000B53F4 /* Legal Documents */,
 			);
 			name = "Legal Documents";
-			sourceTree = "<group>";
-		};
-		DE78478E240DB3EA002C2EDC /* Buttons */ = {
-			isa = PBXGroup;
-			children = (
-				DE78478F240DB406002C2EDC /* ContinueButtonContent.swift */,
-			);
-			name = Buttons;
 			sourceTree = "<group>";
 		};
 		DE79DC98246AA61F00C8C0EF /* Teacher */ = {
@@ -860,6 +936,17 @@
 			name = Group;
 			sourceTree = "<group>";
 		};
+		DEB186CB285CEFC7003E2553 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				DEDB39E7285CF04800D8434E /* Home.storyboard */,
+				DEDB39E9285CF16E00D8434E /* HomeHostingController.swift */,
+				DEAC46B5285DF64600490197 /* HomeView.swift */,
+				DE0E1E9B285DFD4C0070F1E2 /* HomeViewModel.swift */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
 		DEB68195245DEBA2005FA2F0 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
@@ -932,12 +1019,15 @@
 		DECEC8B32750127700149185 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DE84961B287B43AF00B76BC8 /* Model+AsyncDownloadsController.swift */,
 				DEB9BD8D25397735008F41A2 /* Model+DownloadsController.swift */,
 				DEB9BD4C2538C1D8008F41A2 /* Model+Endpoints.swift */,
 				DEB9BD86253975D4008F41A2 /* Model+ImportController.swift */,
 				DEA495FD253C5CD70025174E /* Model+NetworkController.swift */,
 				DEB9BD9B25397B1C008F41A2 /* Model+RecordsSyncController.swift */,
 				DEB9BD5A2538C3F6008F41A2 /* Model+SyncController.swift */,
+				DE072B0228897FBE005E3185 /* Model+AsyncNetworkController.swift */,
+				DE072B0428898149005E3185 /* Model+DataProvider.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -951,19 +1041,11 @@
 			name = "View Controllers";
 			sourceTree = "<group>";
 		};
-		DEE576E0226B7875008F9EB6 /* Data Source */ = {
-			isa = PBXGroup;
-			children = (
-				DE945AD12264D71B00143303 /* UniversitiesDataSource.swift */,
-			);
-			name = "Data Source";
-			sourceTree = "<group>";
-		};
 		DEE576E1226B7AD1008F9EB6 /* UI Subclasses */ = {
 			isa = PBXGroup;
 			children = (
+				DE0A3857285B9A910058183E /* Buttons */,
 				DE40B33E26F1E38A00631C55 /* Views */,
-				DE78478E240DB3EA002C2EDC /* Buttons */,
 				DEAB1D3E230D5405008FBFE3 /* Table Cells */,
 				DEE576E2226B7AE3008F9EB6 /* View Controllers */,
 			);
@@ -1128,6 +1210,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEDB39E8285CF04800D8434E /* Home.storyboard in Resources */,
 				DEE2E9AA25221D8800A18810 /* Launch Screen.storyboard in Resources */,
 				DEDA50ED218620E0006C7B27 /* Localizable.strings in Resources */,
 				DEB0635025136D5500DB50CE /* Activity.storyboard in Resources */,
@@ -1174,25 +1257,30 @@
 			files = (
 				DE365932252F8FCF002A1A11 /* InvalidEndpointError.swift in Sources */,
 				DECEC8B52750131F00149185 /* NetworkStatus.swift in Sources */,
+				DEB186C1285CD577003E2553 /* UniversitiesListNetworkClient.swift in Sources */,
 				DEB9BD8E25397735008F41A2 /* Model+DownloadsController.swift in Sources */,
 				DE017F9723622BC70046D3ED /* PreferencesTableViewController.swift in Sources */,
 				DE131FE22456CAAB009D09EA /* RecordsDataSource.swift in Sources */,
-				DE784790240DB406002C2EDC /* ContinueButtonContent.swift in Sources */,
 				DE945AD22264D71B00143303 /* UniversitiesDataSource.swift in Sources */,
+				DE0E1EA3285E07ED0070F1E2 /* InformationViewModel.swift in Sources */,
 				DE7AB8582466C4470031E279 /* CoreDataEntityProtocol.swift in Sources */,
 				DEBCBD962530B2660087F216 /* EntityEndpoint.swift in Sources */,
 				DE3628D52524EE4C003A7939 /* UniversityLogicController.swift in Sources */,
 				DEB9BD4D2538C1D8008F41A2 /* Model+Endpoints.swift in Sources */,
 				DE3EB6C0231B2280007EA63C /* ActivityViewController.swift in Sources */,
 				DE0D64082264E1330001FCCF /* UniversityViewController.swift in Sources */,
+				DE072B0928898566005E3185 /* SearchHostingController.swift in Sources */,
+				DE072B0528898149005E3185 /* Model+DataProvider.swift in Sources */,
 				DE131FE82456D773009D09EA /* Record+CodingData.swift in Sources */,
 				DE40B33B26F1E32700631C55 /* UITableView.swift in Sources */,
 				DE468AF02568739D008CB00E /* UIImage.swift in Sources */,
 				DE999ABE227C54160018F725 /* UniversityDataSource.swift in Sources */,
 				DEB9BD412538BD64008F41A2 /* Model+CodingData.swift in Sources */,
+				DEDB39EA285CF16E00D8434E /* HomeHostingController.swift in Sources */,
 				DEF63C61245AC543007E82F9 /* ActivityController.swift in Sources */,
 				DE540EBE2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift in Sources */,
 				DE365936252F9649002A1A11 /* URL.swift in Sources */,
+				DEAC46B0285DDD2300490197 /* ErrorView.swift in Sources */,
 				DEB9BC6725387D1C008F41A2 /* Record+RecordsList.swift in Sources */,
 				DE36592E252F8CBA002A1A11 /* EndpointKind.swift in Sources */,
 				DE13EEAC2466B4390011F307 /* EntityViewController.swift in Sources */,
@@ -1211,31 +1299,37 @@
 				DEB9BD232538AB72008F41A2 /* University+CodingData.swift in Sources */,
 				C250C1831FBCD1CA00C90B53 /* AboutUsTableViewController.swift in Sources */,
 				DEBB74BB235CF4C300226C7E /* UniversitiesTableViewController.swift in Sources */,
-				DE78478D240DA16B002C2EDC /* LegalDocumentView.swift in Sources */,
 				DEA2B3E8246AE75500F96E28 /* TeacherViewController.swift in Sources */,
 				DE3628CB2524ADD0003A7939 /* UserDefaultsKeys.swift in Sources */,
 				DEB9BD9C25397B1C008F41A2 /* Model+RecordsSyncController.swift in Sources */,
+				DEB186C3285CD7AC003E2553 /* AsyncNetworkClient.swift in Sources */,
 				DEDA8CF52534930D00B54E41 /* ClassroomEntity+CoreDataClass.swift in Sources */,
 				DE540EBD2215CC5B0092FC81 /* TeacherEntity+CoreDataClass.swift in Sources */,
 				DE16BC1125F8EC040007AAE5 /* TeachersLogicController.swift in Sources */,
 				DEE576E7226B8B98008F9EB6 /* ClassroomsTableViewController.swift in Sources */,
+				DEDB39EC285DBF8900D8434E /* UniversitiesListHostingController.swift in Sources */,
 				DEB9BD6F2538CC54008F41A2 /* CoreDataFetchProtocol.swift in Sources */,
 				DE945AC72264D11700143303 /* UniversityEntity+CoreDataClass.swift in Sources */,
 				DEB9BD392538BCB4008F41A2 /* Model.swift in Sources */,
 				DEB0635425136DDC00DB50CE /* SceneDelegate.swift in Sources */,
+				DEB186C6285CDB02003E2553 /* UniversitiesListDataProvider.swift in Sources */,
 				C280894C1FB8D54A002B5676 /* GroupEntity+CoreDataProperties.swift in Sources */,
 				DE6794352268976E0068087A /* GroupsTableViewController.swift in Sources */,
 				DEBCBDC12530E9F60087F216 /* ModelKind.swift in Sources */,
 				DEBCBDA22530E06A0087F216 /* Record+RequestParameters.swift in Sources */,
 				DE40B33726F1E2E800631C55 /* Collection.swift in Sources */,
+				DE84961C287B43AF00B76BC8 /* Model+AsyncDownloadsController.swift in Sources */,
 				DEA2B3ED246AE81000F96E28 /* TeacherTableViewController.swift in Sources */,
+				DE0E1E9F285E06760070F1E2 /* InformationHostingController.swift in Sources */,
 				DE40B33D26F1E36D00631C55 /* StoryboardIdentifiable.swift in Sources */,
 				DEA2B3F8246BFB6D00F96E28 /* UIViewController.swift in Sources */,
 				DE7AB85A24671E6D0031E279 /* EntityRepresentable.swift in Sources */,
 				DEBCBDAA2530E3060087F216 /* University+Endpoints.swift in Sources */,
+				DEB186CA285CE101003E2553 /* UniversitiesListView.swift in Sources */,
 				DEE674122459B7BC00B8F9F1 /* CoreData.swift in Sources */,
 				DE3EC2CB245C743500E30536 /* ClassroomViewController.swift in Sources */,
 				DE540EC42215CF9F0092FC81 /* TeacherDataSource.swift in Sources */,
+				DE072B07288982C4005E3185 /* SearchViewModel.swift in Sources */,
 				DE7AB85D246720250031E279 /* ClassroomTableDataController.swift in Sources */,
 				DEBB74AA235CE1AC00226C7E /* Bundle.swift in Sources */,
 				DEA49612253CA3F00025174E /* Model+DataController.swift in Sources */,
@@ -1245,11 +1339,13 @@
 				DEB9BD292538B233008F41A2 /* NetworkClient.swift in Sources */,
 				DEDA8CF72534930D00B54E41 /* RecordEntity+CoreDataProperties.swift in Sources */,
 				DE5A7E932219CCBF00CA9A79 /* RecordDetailedTableViewController.swift in Sources */,
+				DE0E1E9C285DFD4C0070F1E2 /* HomeViewModel.swift in Sources */,
 				DE4FCBFD23EF5CF9000B53F4 /* LegalDocumentViewController.swift in Sources */,
 				DEE576E4226B7B9E008F9EB6 /* SearchableTableViewController.swift in Sources */,
 				DE4FCBFF23EF5D50000B53F4 /* LegalDocument.swift in Sources */,
 				DE4AA07121A5DF0500E06FEA /* ClassroomDataSource.swift in Sources */,
 				DEB9BD5B2538C3F6008F41A2 /* Model+SyncController.swift in Sources */,
+				DE0A3859285B9AA20058183E /* GradientButton.swift in Sources */,
 				DEE674172459F55100B8F9F1 /* GroupTableDataController.swift in Sources */,
 				DE7190AD25E7B74000A1F216 /* Record+Formatter.swift in Sources */,
 				DEA49620253CAAB60025174E /* Model+TableDataController.swift in Sources */,
@@ -1257,12 +1353,17 @@
 				DE13AF7F226A30D4009DF581 /* TeachersTableViewController.swift in Sources */,
 				DE4AA07321A5E31900E06FEA /* GroupsDataSource.swift in Sources */,
 				DE78478B240D9FBC002C2EDC /* UIStoryboard.swift in Sources */,
+				DE072B0328897FBE005E3185 /* Model+AsyncNetworkController.swift in Sources */,
 				DEA495FE253C5CD70025174E /* Model+NetworkController.swift in Sources */,
+				DE6DE06928E876EF005247BA /* ObjectType.swift in Sources */,
 				C2B5CDF31EEF0E750066DB30 /* AppDelegate.swift in Sources */,
 				DE04D1F72370B79F00A18649 /* UpdateHelper.swift in Sources */,
+				DE0A3856285B3FE60058183E /* UniversityView.swift in Sources */,
+				DEB186BE285CD4C9003E2553 /* UniversitiesListViewModel.swift in Sources */,
 				DEDA8CF42534930D00B54E41 /* UniversityEntity+CoreDataProperties.swift in Sources */,
 				DEB0633D25136CC700DB50CE /* MetricKitSubscriber.swift in Sources */,
 				DE40B34026F1E39600631C55 /* NibLoadableView.swift in Sources */,
+				DE072B0B2889857E005E3185 /* SearchView.swift in Sources */,
 				DE9E3F84235F8FB90067DDFE /* RecordTableViewCell.swift in Sources */,
 				DE365976253053D8002A1A11 /* WebsitePageParameters.swift in Sources */,
 				DE40FBA6238D4700001DA3DE /* UIColor.swift in Sources */,
@@ -1272,7 +1373,9 @@
 				DE945ACA2264D17C00143303 /* University.swift in Sources */,
 				DE54273325E78736000B3600 /* UniversitiesSearchResultsTableViewController.swift in Sources */,
 				DE3EB6BA231B11F8007EA63C /* DateFormatter.swift in Sources */,
+				DED45F63285E245B00863775 /* LegalDocumentView.swift in Sources */,
 				DE87B78E235B9E450090B63E /* InitialViewController.swift in Sources */,
+				DEAC46B6285DF64600490197 /* HomeView.swift in Sources */,
 				DE40B34226F1E3A800631C55 /* ReusableView.swift in Sources */,
 				DE365923252F8B88002A1A11 /* Endpoint.swift in Sources */,
 				DEDA8CF62534930D00B54E41 /* ClassroomEntity+CoreDataProperties.swift in Sources */,
@@ -1283,6 +1386,7 @@
 				DE36597F25305547002A1A11 /* PublicWebsitePage.swift in Sources */,
 				DE40B33926F1E30B00631C55 /* UICollectionView.swift in Sources */,
 				C280894B1FB8D54A002B5676 /* GroupEntity+CoreDataClass.swift in Sources */,
+				DE0E1EA1285E06830070F1E2 /* InformationView.swift in Sources */,
 				C22A2E581FC7664000587463 /* RecordEntity+CoreDataClass.swift in Sources */,
 				DE18941C21BC3A3900C7F9DB /* GroupTableViewController.swift in Sources */,
 				DECEC8B72750DA2400149185 /* NetworkError.swift in Sources */,
@@ -1524,7 +1628,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1580,7 +1684,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;

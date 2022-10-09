@@ -127,8 +127,8 @@ extension University {
             entity.url = codingData.url
             entity.isHidden = codingData.isHidden
             entity.isBeta = codingData.isBeta
-            entity.pictureDark = codingData.pictureDark
-            entity.pictureWhite = codingData.pictureWhite
+            entity.pictureDark = codingData.logoDark
+            entity.pictureWhite = codingData.logoLight
             entity.showClassrooms = codingData.showClassrooms
             entity.showGroups = codingData.showGroups
             entity.showTeachers = codingData.showTeachers
