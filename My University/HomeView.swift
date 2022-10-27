@@ -14,21 +14,26 @@ struct HomeView: View {
     var body: some View {
         if let university = model.university {
             NavigationStack {
-                VStack(spacing: 10) {
-                    Text(university.fullName)
-                    Button() {
-                        model.beginSearch()
-                    } label: {
-                        Label("Search", systemImage: "magnifyingglass")
+                
+                if let object = model.object {
+                    GroupTeacherClassroomView(object: object)
+                } else {
+                    VStack(spacing: 10) {
+                        Text(university.fullName)
+                        Button() {
+                            model.beginSearch()
+                        } label: {
+                            Label("Search", systemImage: "magnifyingglass")
+                        }
+                        .controlSize(.regular)
+                        .buttonStyle(.borderedProminent)
                     }
-                    .controlSize(.regular)
-                    .buttonStyle(.borderedProminent)
+                    .toolbar(content: {
+                        ToolbarItem(placement: .bottomBar) {
+                            Button("Test") {  }
+                        }
+                    })
                 }
-                .toolbar(content: {
-                    ToolbarItem(placement: .bottomBar) {
-                        Button("Test") {  }
-                    }
-                })
             }
         } else {
             Button {

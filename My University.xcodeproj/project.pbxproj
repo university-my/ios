@@ -150,6 +150,8 @@
 		DEBCBDAE2530E3BC0087F216 /* UniversityEndpointsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCBDAD2530E3BC0087F216 /* UniversityEndpointsTests.swift */; };
 		DEBCBDB52530E4CC0087F216 /* MockHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCBDB12530E4160087F216 /* MockHost.swift */; };
 		DEBCBDC12530E9F60087F216 /* ModelKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCBDC02530E9F60087F216 /* ModelKind.swift */; };
+		DEBDBD4A290B056B0050A81C /* GroupTeacherClassroomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBDBD49290B056B0050A81C /* GroupTeacherClassroomView.swift */; };
+		DEBDBD4C290BA9D10050A81C /* GroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBDBD4B290BA9D10050A81C /* GroupView.swift */; };
 		DECEC8B52750131F00149185 /* NetworkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECEC8B42750131F00149185 /* NetworkStatus.swift */; };
 		DECEC8B72750DA2400149185 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECEC8B62750DA2400149185 /* NetworkError.swift */; };
 		DED45F63285E245B00863775 /* LegalDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED45F62285E245B00863775 /* LegalDocumentView.swift */; };
@@ -353,6 +355,8 @@
 		DEBCBDAD2530E3BC0087F216 /* UniversityEndpointsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityEndpointsTests.swift; sourceTree = "<group>"; };
 		DEBCBDB12530E4160087F216 /* MockHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHost.swift; sourceTree = "<group>"; };
 		DEBCBDC02530E9F60087F216 /* ModelKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelKind.swift; sourceTree = "<group>"; };
+		DEBDBD49290B056B0050A81C /* GroupTeacherClassroomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTeacherClassroomView.swift; sourceTree = "<group>"; };
+		DEBDBD4B290BA9D10050A81C /* GroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupView.swift; sourceTree = "<group>"; };
 		DECEC8B42750131F00149185 /* NetworkStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatus.swift; sourceTree = "<group>"; };
 		DECEC8B62750DA2400149185 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		DECF64EC251C75BE00F1AA33 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -932,6 +936,7 @@
 				DEE674132459EF8900B8F9F1 /* GroupViewController.swift */,
 				DEA2B3EF246BCEC600F96E28 /* Group.storyboard */,
 				DEE674152459F53500B8F9F1 /* Table */,
+				DEBDBD4B290BA9D10050A81C /* GroupView.swift */,
 			);
 			name = Group;
 			sourceTree = "<group>";
@@ -939,6 +944,7 @@
 		DEB186CB285CEFC7003E2553 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				DEBDBD49290B056B0050A81C /* GroupTeacherClassroomView.swift */,
 				DEDB39E7285CF04800D8434E /* Home.storyboard */,
 				DEDB39E9285CF16E00D8434E /* HomeHostingController.swift */,
 				DEAC46B5285DF64600490197 /* HomeView.swift */,
@@ -1276,6 +1282,7 @@
 				DE468AF02568739D008CB00E /* UIImage.swift in Sources */,
 				DE999ABE227C54160018F725 /* UniversityDataSource.swift in Sources */,
 				DEB9BD412538BD64008F41A2 /* Model+CodingData.swift in Sources */,
+				DEBDBD4A290B056B0050A81C /* GroupTeacherClassroomView.swift in Sources */,
 				DEDB39EA285CF16E00D8434E /* HomeHostingController.swift in Sources */,
 				DEF63C61245AC543007E82F9 /* ActivityController.swift in Sources */,
 				DE540EBE2215CC5B0092FC81 /* TeacherEntity+CoreDataProperties.swift in Sources */,
@@ -1376,6 +1383,7 @@
 				DED45F63285E245B00863775 /* LegalDocumentView.swift in Sources */,
 				DE87B78E235B9E450090B63E /* InitialViewController.swift in Sources */,
 				DEAC46B6285DF64600490197 /* HomeView.swift in Sources */,
+				DEBDBD4C290BA9D10050A81C /* GroupView.swift in Sources */,
 				DE40B34226F1E3A800631C55 /* ReusableView.swift in Sources */,
 				DE365923252F8B88002A1A11 /* Endpoint.swift in Sources */,
 				DEDA8CF62534930D00B54E41 /* ClassroomEntity+CoreDataProperties.swift in Sources */,
