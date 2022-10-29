@@ -31,6 +31,10 @@ struct UserDefaultsKeys {
         "\(identifier).currentUniversity"
     }
     
+    static var currentModelKey: String {
+        "\(identifier).currentModel"
+    }
+    
     static var latestVersionPromptedForReviewKey: String {
         "\(identifier).latestVersionPromptedForReview"
     }
