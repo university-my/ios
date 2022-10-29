@@ -8,10 +8,6 @@
 
 import Foundation
 
-enum SearchScope: String, CaseIterable {
-    case groups, classrooms, teachers
-}
-
 protocol SearchViewModelDelegate: AnyObject {
     func searchViewModel(didSelectModel data: ModelData)
 }
@@ -32,15 +28,15 @@ final class SearchViewModel: ObservableObject {
             guard let selectedID else { return }
             let data: ModelCodingData?
             switch searchScope {
-            case .groups:
+            case .group:
                 data = groups.first { $0.id == selectedID }
-            case .classrooms:
+            case .classroom:
                 data = classrooms.first { $0.id == selectedID }
-            case .teachers:
+            case .teacher:
                 data = teachers.first { $0.id == selectedID }
             }
             guard let data = data else { return }
-            delegate?.searchViewModel(didSelectModel: ModelData(data: data, type: .group))
+            delegate?.searchViewModel(didSelectModel: ModelData(data: data, type: searchScope))
         }
     }
     
@@ -48,11 +44,11 @@ final class SearchViewModel: ObservableObject {
     
     var data: [ModelCodingData] {
         switch searchScope {
-        case .groups:
+        case .group:
             return searchText.isEmpty ? groups : filteredGroups
-        case .teachers:
+        case .teacher:
             return searchText.isEmpty ? teachers : filteredTeachers
-        case .classrooms:
+        case .classroom:
             return searchText.isEmpty ? classrooms : filteredClassrooms
         }
     }
@@ -75,13 +71,13 @@ final class SearchViewModel: ObservableObject {
         guard let url = university?.url else { return }
         
         switch searchScope {
-        case .classrooms:
+        case .classroom:
             classrooms = try await classroomsDataProvider.load(universityURL: url)
             
-        case .groups:
+        case .group:
             groups = try await groupsDataProvider.load(universityURL: url)
             
-        case .teachers:
+        case .teacher:
             teachers = try await teachersDataProvider.load(universityURL: url)
         }
     }
@@ -117,7 +113,7 @@ final class SearchViewModel: ObservableObject {
     
     // MARK: - Search
     
-    @Published var searchScope: SearchScope = .groups {
+    @Published var searchScope: ModelType = .group {
         didSet {
             performSearch()
         }
@@ -152,17 +148,17 @@ final class SearchViewModel: ObservableObject {
     private func filterData() {
         switch searchScope {
             
-        case .classrooms:
+        case .classroom:
             filteredClassrooms = classrooms.filter { item in
                 item.name.localizedCaseInsensitiveContains(searchText)
             }
             
-        case .teachers:
+        case .teacher:
             filteredTeachers = teachers.filter { item in
                 item.name.localizedCaseInsensitiveContains(searchText)
             }
             
-        case .groups:
+        case .group:
             filteredGroups = groups.filter { item in
                 item.name.localizedCaseInsensitiveContains(searchText)
             }
@@ -173,11 +169,11 @@ final class SearchViewModel: ObservableObject {
         var fetchData = false
         
         switch searchScope {
-        case .groups:
+        case .group:
             fetchData = groups.isEmpty
-        case .teachers:
+        case .teacher:
             fetchData = teachers.isEmpty
-        case .classrooms:
+        case .classroom:
             fetchData = classrooms.isEmpty
         }
         

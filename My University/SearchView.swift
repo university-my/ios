@@ -19,9 +19,9 @@ struct SearchView: View {
                 .navigationTitle("Search")
                 .searchable(text: $model.searchText, prompt: "Group, Teachers, Classrooms")
                 .searchScopes($model.searchScope) {
-                    Text("Groups").tag(SearchScope.groups)
-                    Text("Teachers").tag(SearchScope.teachers)
-                    Text("Classrooms").tag(SearchScope.classrooms)
+                    Text("Groups").tag(ModelType.group)
+                    Text("Teachers").tag(ModelType.teacher)
+                    Text("Classrooms").tag(ModelType.classroom)
                 }
                 .toolbar(content: {
                     ToolbarItem(placement: .cancellationAction) {
