@@ -26,6 +26,9 @@ class HomeHostingController: UIHostingController<HomeView> {
         if let university = University.current {
             model.update(with: university)
         }
+        if let data = ModelData.current {
+            model.update(with: data)
+        }
     }
     
     // MARK: - Navigation
@@ -88,6 +91,7 @@ extension HomeHostingController: InformationHostingControllerDelegate {
 
 extension HomeHostingController: SearchHostingControllerDelegate {
     func searchHostingController(didSelectModel data: ModelData) {
+        ModelData.current = data
         model.update(with: data)
     }
 }
