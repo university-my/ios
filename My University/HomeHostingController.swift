@@ -87,8 +87,8 @@ extension HomeHostingController: InformationHostingControllerDelegate {
 // MARK: - SearchHostingControllerDelegate
 
 extension HomeHostingController: SearchHostingControllerDelegate {
-    func searchHostingController(didSelectObject object: ObjectType) {
-        model.update(with: object)
+    func searchHostingController(didSelectModel data: ModelData) {
+        model.update(with: data)
     }
 }
 

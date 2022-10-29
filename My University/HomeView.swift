@@ -15,8 +15,8 @@ struct HomeView: View {
         if let university = model.university {
             NavigationStack {
                 
-                if let object = model.object {
-                    GroupTeacherClassroomView(object: object)
+                if let data = model.data {
+                    GroupTeacherClassroomView(data: data)
                 } else {
                     VStack(spacing: 10) {
                         Text(university.fullName)

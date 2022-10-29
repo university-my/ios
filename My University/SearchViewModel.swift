@@ -13,7 +13,7 @@ enum SearchScope: String, CaseIterable {
 }
 
 protocol SearchViewModelDelegate: AnyObject {
-    func searchViewModel(didSelectObject object: ObjectType)
+    func searchViewModel(didSelectModel data: ModelData)
 }
 
 @MainActor
@@ -29,9 +29,18 @@ final class SearchViewModel: ObservableObject {
     
     @Published var selectedID: Int64? = nil {
         didSet {
-            if let selectedID {
-                delegate?.searchViewModel(didSelectObject: ObjectType(id: selectedID, scope: searchScope))
+            guard let selectedID else { return }
+            let data: ModelCodingData?
+            switch searchScope {
+            case .groups:
+                data = groups.first { $0.id == selectedID }
+            case .classrooms:
+                data = classrooms.first { $0.id == selectedID }
+            case .teachers:
+                data = teachers.first { $0.id == selectedID }
             }
+            guard let data = data else { return }
+            delegate?.searchViewModel(didSelectModel: ModelData(data: data, type: .group))
         }
     }
     

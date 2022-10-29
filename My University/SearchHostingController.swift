@@ -10,7 +10,7 @@ import UIKit
 import SwiftUI
 
 protocol SearchHostingControllerDelegate: AnyObject {
-    func searchHostingController(didSelectObject object: ObjectType)
+    func searchHostingController(didSelectModel data: ModelData)
 }
 
 final class SearchHostingController: UIHostingController<SearchView> {
@@ -37,8 +37,8 @@ final class SearchHostingController: UIHostingController<SearchView> {
 }
 
 extension SearchHostingController: SearchViewModelDelegate {
-    func searchViewModel(didSelectObject object: ObjectType) {
-        delegate?.searchHostingController(didSelectObject: object)
+    func searchViewModel(didSelectModel data: ModelData) {
+        delegate?.searchHostingController(didSelectModel: data)
         dismiss(animated: true)
     }
 }

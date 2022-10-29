@@ -1,5 +1,5 @@
 //
-//  ObjectType.swift
+//  ModelData.swift
 //  My University
 //
 //  Created by Yura Voevodin on 01.10.2022.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ObjectType {
-    let id: Int64
-    let scope: SearchScope
+struct ModelData: Codable {
+    let data: ModelCodingData
+    let type: ModelType
 }

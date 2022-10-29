@@ -9,11 +9,11 @@
 import SwiftUI
 
 struct GroupTeacherClassroomView: View {
-    var object: ObjectType
+    var data: ModelData
     
     var body: some View {
-        switch object.scope {
-        case .groups:
+        switch data.type {
+        case .group:
             GroupView()
         default:
             EmptyView()
@@ -23,6 +23,6 @@ struct GroupTeacherClassroomView: View {
 
 struct GroupTeacherClassroomView_Previews: PreviewProvider {
     static var previews: some View {
-        GroupTeacherClassroomView(object: ObjectType(id: 1, scope: .groups))
+        GroupTeacherClassroomView(data: ModelData(data: ModelCodingData(id: 1, name: "Test", slug: "test", uuid: UUID()), type: .group))
     }
 }
