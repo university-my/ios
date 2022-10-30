@@ -11,6 +11,7 @@ import Foundation
 protocol HomeViewModelDelegate: AnyObject {
     func homeViewModelSelectUniversityPressed()
     func homeViewModelBeginSearchPressed()
+    func homeViewModelPresentInformationPressed()
 }
 
 @MainActor
@@ -35,5 +36,9 @@ class HomeViewModel: ObservableObject {
     
     func beginSearch() {
         delegate?.homeViewModelBeginSearchPressed()
+    }
+    
+    func presentInformation() {
+        delegate?.homeViewModelPresentInformationPressed()
     }
 }

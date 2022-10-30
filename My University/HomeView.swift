@@ -17,6 +17,45 @@ struct HomeView: View {
                 
                 if let data = model.data {
                     GroupTeacherClassroomView(data: data)
+                        .toolbar(content: {
+                            ToolbarItem(placement: .bottomBar) {
+                                Button {
+                                    
+                                } label: {
+                                    Image(systemName: "chevron.left")
+                                }
+                            }
+                            ToolbarItem(placement: .navigationBarLeading) {
+                                Button {
+                                    
+                                } label: {
+                                    Image(systemName: "square.and.arrow.up")
+                                }
+                            }
+                            ToolbarItem(placement: .navigationBarTrailing) {
+                                Button {
+                                    model.presentInformation()
+                                } label: {
+                                    Image(systemName: "ellipsis.circle")
+                                }
+                            }
+                            ToolbarItem(placement: .bottomBar) {
+                                Button {
+                                    
+                                } label: {
+                                    Image(systemName: "chevron.right")
+                                }
+                            }
+                            ToolbarItem(placement: .status) {
+                                Button {
+                                    
+                                } label: {
+                                    Text("вівторок, 1 листопада")
+                                }
+                            }
+                        })
+                        .navigationBarTitleDisplayMode(.inline)
+                        .navigationTitle("ІН-81/1")
                 } else {
                     VStack(spacing: 10) {
                         Text(university.fullName)
@@ -28,11 +67,6 @@ struct HomeView: View {
                         .controlSize(.regular)
                         .buttonStyle(.borderedProminent)
                     }
-                    .toolbar(content: {
-                        ToolbarItem(placement: .bottomBar) {
-                            Button("Test") {  }
-                        }
-                    })
                 }
             }
         } else {

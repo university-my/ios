@@ -59,6 +59,10 @@ class HomeHostingController: UIHostingController<HomeView> {
 // MARK: - HomeViewModelDelegate
 
 extension HomeHostingController: HomeViewModelDelegate {
+    func homeViewModelPresentInformationPressed() {
+        performSegue(withIdentifier: .presentInformation, sender: nil)
+    }
+    
     func homeViewModelBeginSearchPressed() {
         performSegue(withIdentifier: .presentSearch, sender: nil)
     }
