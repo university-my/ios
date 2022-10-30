@@ -13,6 +13,18 @@ struct InformationView: View {
     
     var body: some View {
         Form {
+            Section(header: Text("Social Networks")) {
+                Link(destination: URL(string: "https://www.facebook.com/myuniversityservice")!) {
+                    Text("Facebook")
+                }
+                Link(destination: URL(string: "https://www.instagram.com/university.my")!) {
+                    Text("Instagram")
+                }
+                Link(destination: URL(string: "https://t.me/university_my")!) {
+                    Text("Telegram")
+                }
+            }
+            
             Section(header: Text("Website")) {
                 Link(destination: URL.myUniversity) {
                     Label("my-university.com.ua", systemImage: "safari")
@@ -38,18 +50,6 @@ struct InformationView: View {
                 } label: {
                     Label("Check out what's new", systemImage: "gift")
                         .symbolRenderingMode(.multicolor)
-                }
-            }
-            
-            Section(header: Text("Social Networks")) {
-                Link(destination: URL(string: "https://www.facebook.com/myuniversityservice")!) {
-                    Text("Facebook")
-                }
-                Link(destination: URL(string: "https://www.instagram.com/university.my")!) {
-                    Text("Instagram")
-                }
-                Link(destination: URL(string: "https://t.me/university_my")!) {
-                    Text("Telegram")
                 }
             }
             
