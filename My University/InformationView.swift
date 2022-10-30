@@ -10,57 +10,66 @@ import SwiftUI
 
 struct InformationView: View {
     @StateObject var model: InformationViewModel
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        Form {
-            Section(header: Text("Social Networks")) {
-                Link(destination: URL(string: "https://www.facebook.com/myuniversityservice")!) {
-                    Text("Facebook")
+        NavigationStack {
+            Form {
+                Section(header: Text("Social Networks")) {
+                    Link(destination: URL(string: "https://www.facebook.com/myuniversityservice")!) {
+                        Text("Facebook")
+                    }
+                    Link(destination: URL(string: "https://www.instagram.com/university.my")!) {
+                        Text("Instagram")
+                    }
+                    Link(destination: URL(string: "https://t.me/university_my")!) {
+                        Text("Telegram")
+                    }
                 }
-                Link(destination: URL(string: "https://www.instagram.com/university.my")!) {
-                    Text("Instagram")
+                
+                Section(header: Text("Website")) {
+                    Link(destination: URL.myUniversity) {
+                        Label("my-university.com.ua", systemImage: "safari")
+                    }
                 }
-                Link(destination: URL(string: "https://t.me/university_my")!) {
-                    Text("Telegram")
+                
+                Section(header: Text("Documents")) {
+                    NavigationLink {
+                        LegalDocumentView(documentName: LegalDocument.privacyPolicy)
+                    } label: {
+                        Label("Privacy Policy", systemImage: "lock.shield")
+                    }
+                    NavigationLink {
+                        LegalDocumentView(documentName: LegalDocument.termsOfService)
+                    } label: {
+                        Label("Terms of Service", systemImage: "doc.text")
+                    }
                 }
-            }
-            
-            Section(header: Text("Website")) {
-                Link(destination: URL.myUniversity) {
-                    Label("my-university.com.ua", systemImage: "safari")
+                
+                Section(header: Text("What's new")) {
+                    NavigationLink {
+                        WhatsNewView()
+                    } label: {
+                        Label("Check out what's new", systemImage: "gift")
+                            .symbolRenderingMode(.multicolor)
+                    }
                 }
-            }
-            
-            Section(header: Text("Documents")) {
-                NavigationLink {
-                    LegalDocumentView(documentName: LegalDocument.privacyPolicy)
-                } label: {
-                    Label("Privacy Policy", systemImage: "lock.shield")
-                }
-                NavigationLink {
-                    LegalDocumentView(documentName: LegalDocument.termsOfService)
-                } label: {
-                    Label("Terms of Service", systemImage: "doc.text")
-                }
-            }
-            
-            Section(header: Text("What's new")) {
-                NavigationLink {
-                    WhatsNewView()
-                } label: {
-                    Label("Check out what's new", systemImage: "gift")
-                        .symbolRenderingMode(.multicolor)
-                }
-            }
-            
-            if let university = model.university {
-                Section(header: Text("University")) {
-                    UniversityView(university: university)
-                    Button("Change university") {
-                        model.changeUniversity()
+                
+                if let university = model.university {
+                    Section(header: Text("University")) {
+                        UniversityView(university: university)
+                        Button("Change university") {
+                            model.changeUniversity()
+                        }
                     }
                 }
             }
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button("Done") { dismiss() }
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

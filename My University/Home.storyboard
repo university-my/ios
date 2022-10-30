@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Universities List Hosting Controller-->
@@ -29,7 +28,7 @@
                 </hostingController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYg-9C-8zZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2873.8461538461538" y="-912.08530805687201"/>
+            <point key="canvasLocation" x="2008" y="-834"/>
         </scene>
         <!--Home Hosting Controller-->
         <scene sceneID="yQb-XG-EHe">
@@ -38,14 +37,12 @@
                     <navigationItem key="navigationItem" id="7aG-9e-GwT">
                         <barButtonItem key="rightBarButtonItem" image="ellipsis.circle" catalog="system" id="moT-Ti-vj8">
                             <color key="tintColor" systemColor="systemIndigoColor"/>
-                            <connections>
-                                <segue destination="Enn-wm-dZo" kind="presentation" identifier="presentInformation" id="d00-0K-xlf"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="e5c-43-1P8" kind="presentation" identifier="presentUniversitiesList" id="taR-Gc-kNC"/>
                         <segue destination="xW6-Cj-efB" kind="presentation" identifier="presentSearch" id="rDW-yd-1fc"/>
+                        <segue destination="0xU-Nv-LJO" kind="presentation" identifier="presentInformation" id="5Tq-r9-Ifj"/>
                     </connections>
                 </hostingController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="goi-Lc-CrM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -61,24 +58,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3cy-n8-3Jf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2008" y="738"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="gn1-tL-kch">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Enn-wm-dZo" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zcm-GD-Zf5">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="0xU-Nv-LJO" kind="relationship" relationship="rootViewController" id="JVk-XY-PXF"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="a5h-fs-3ue" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1944.6153846153845" y="-912.08530805687201"/>
         </scene>
     </scenes>
     <resources>

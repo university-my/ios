@@ -42,8 +42,7 @@ class HomeHostingController: UIHostingController<HomeView> {
             controller?.delegate = self
             
         case .presentInformation:
-            let navigation = segue.destination as? UINavigationController
-            let controller = navigation?.viewControllers.first as? InformationHostingController
+            let controller = segue.destination as? InformationHostingController
             controller?.delegate = self
             
         case .presentSearch:
