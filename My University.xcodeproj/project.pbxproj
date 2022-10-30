@@ -153,6 +153,7 @@
 		DEBDBD4A290B056B0050A81C /* GroupTeacherClassroomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBDBD49290B056B0050A81C /* GroupTeacherClassroomView.swift */; };
 		DEBDBD4C290BA9D10050A81C /* GroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBDBD4B290BA9D10050A81C /* GroupView.swift */; };
 		DEBDBD4E290D7C2A0050A81C /* ModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBDBD4D290D7C2A0050A81C /* ModelType.swift */; };
+		DEBDBD52290E81020050A81C /* GroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBDBD51290E81020050A81C /* GroupViewModel.swift */; };
 		DECEC8B52750131F00149185 /* NetworkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECEC8B42750131F00149185 /* NetworkStatus.swift */; };
 		DECEC8B72750DA2400149185 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECEC8B62750DA2400149185 /* NetworkError.swift */; };
 		DED45F63285E245B00863775 /* LegalDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED45F62285E245B00863775 /* LegalDocumentView.swift */; };
@@ -359,6 +360,7 @@
 		DEBDBD49290B056B0050A81C /* GroupTeacherClassroomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTeacherClassroomView.swift; sourceTree = "<group>"; };
 		DEBDBD4B290BA9D10050A81C /* GroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupView.swift; sourceTree = "<group>"; };
 		DEBDBD4D290D7C2A0050A81C /* ModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelType.swift; sourceTree = "<group>"; };
+		DEBDBD51290E81020050A81C /* GroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewModel.swift; sourceTree = "<group>"; };
 		DECEC8B42750131F00149185 /* NetworkStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatus.swift; sourceTree = "<group>"; };
 		DECEC8B62750DA2400149185 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		DECF64EC251C75BE00F1AA33 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -938,6 +940,7 @@
 				DEA2B3EF246BCEC600F96E28 /* Group.storyboard */,
 				DEE674152459F53500B8F9F1 /* Table */,
 				DEBDBD4B290BA9D10050A81C /* GroupView.swift */,
+				DEBDBD51290E81020050A81C /* GroupViewModel.swift */,
 			);
 			name = Group;
 			sourceTree = "<group>";
@@ -1328,6 +1331,7 @@
 				DE6794352268976E0068087A /* GroupsTableViewController.swift in Sources */,
 				DEBCBDC12530E9F60087F216 /* ModelKind.swift in Sources */,
 				DEBCBDA22530E06A0087F216 /* Record+RequestParameters.swift in Sources */,
+				DEBDBD52290E81020050A81C /* GroupViewModel.swift in Sources */,
 				DE40B33726F1E2E800631C55 /* Collection.swift in Sources */,
 				DE84961C287B43AF00B76BC8 /* Model+AsyncDownloadsController.swift in Sources */,
 				DEA2B3ED246AE81000F96E28 /* TeacherTableViewController.swift in Sources */,

@@ -14,7 +14,7 @@ struct GroupTeacherClassroomView: View {
     var body: some View {
         switch data.type {
         case .group:
-            GroupView()
+            GroupView(model: GroupViewModel(data: data))
         default:
             EmptyView()
         }

@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct GroupView: View {
+    @StateObject var model: GroupViewModel
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             List {
@@ -75,6 +77,6 @@ struct GroupView: View {
 
 struct GroupView_Previews: PreviewProvider {
     static var previews: some View {
-        GroupView()
+        GroupView(model: GroupViewModel(data: ModelData(data: ModelCodingData(id: 1, name: "Test", slug: "test", uuid: UUID()), type: .group)))
     }
 }
