@@ -12,9 +12,8 @@ struct HomeView: View {
     @StateObject var model: HomeViewModel
     
     var body: some View {
-        if let university = model.university {
-            NavigationStack {
-                
+        NavigationStack {
+            if let university = model.university {
                 if let data = model.data {
                     GroupTeacherClassroomView(data: data)
                         .toolbar(content: {
@@ -67,15 +66,34 @@ struct HomeView: View {
                         .controlSize(.regular)
                         .buttonStyle(.borderedProminent)
                     }
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button {
+                                model.presentInformation()
+                            } label: {
+                                Image(systemName: "ellipsis.circle")
+                            }
+                        }
+                    }
+                }
+            } else {
+                VStack {
+                    Button {
+                        model.selectUniversity()
+                    } label: {
+                        Label("Select University", systemImage: "magnifyingglass")
+                    }
+                    .buttonStyle(GradientButton())
+                }.toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            model.presentInformation()
+                        } label: {
+                            Image(systemName: "ellipsis.circle")
+                        }
+                    }
                 }
             }
-        } else {
-            Button {
-                model.selectUniversity()
-            } label: {
-                Label("Select University", systemImage: "magnifyingglass")
-            }
-            .buttonStyle(GradientButton())
         }
     }
 }
