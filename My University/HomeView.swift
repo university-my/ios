@@ -10,6 +10,7 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var model: HomeViewModel
+    @State private var date = Date()
     
     var body: some View {
         NavigationStack {
@@ -46,11 +47,12 @@ struct HomeView: View {
                                 }
                             }
                             ToolbarItem(placement: .status) {
-                                Button {
-                                    
-                                } label: {
-                                    Text("вівторок, 1 листопада")
-                                }
+                                DatePicker(
+                                    "",
+                                    selection: $date,
+                                    in: Date()...,
+                                    displayedComponents: [.date]
+                                )
                             }
                         })
                         .navigationBarTitleDisplayMode(.inline)
