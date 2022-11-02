@@ -18,5 +18,11 @@ extension Model {
             let data = try await loadData(from: url)
             return data
         }
+        
+        func fetchRecords(for parameters: Record.RequestParameters) async throws -> Data {
+            let url = Kind.recordsEndpoint(params: parameters)
+            let data = try await loadData(from: url)
+            return data
+        }
     }
 }

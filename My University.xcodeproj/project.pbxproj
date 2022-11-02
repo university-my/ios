@@ -1032,14 +1032,14 @@
 			isa = PBXGroup;
 			children = (
 				DE84961B287B43AF00B76BC8 /* Model+AsyncDownloadsController.swift */,
+				DE072B0228897FBE005E3185 /* Model+AsyncNetworkController.swift */,
+				DE072B0428898149005E3185 /* Model+DataProvider.swift */,
 				DEB9BD8D25397735008F41A2 /* Model+DownloadsController.swift */,
 				DEB9BD4C2538C1D8008F41A2 /* Model+Endpoints.swift */,
 				DEB9BD86253975D4008F41A2 /* Model+ImportController.swift */,
 				DEA495FD253C5CD70025174E /* Model+NetworkController.swift */,
 				DEB9BD9B25397B1C008F41A2 /* Model+RecordsSyncController.swift */,
 				DEB9BD5A2538C3F6008F41A2 /* Model+SyncController.swift */,
-				DE072B0228897FBE005E3185 /* Model+AsyncNetworkController.swift */,
-				DE072B0428898149005E3185 /* Model+DataProvider.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
