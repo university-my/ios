@@ -12,7 +12,28 @@ struct GroupView: View {
     @StateObject var model: GroupViewModel
     
     var body: some View {
-        GroupContentView(model: model)
+        VStack {
+            switch model.state {
+                
+            case .presenting:
+                GroupContentView(model: model)
+                
+            case .loading:
+                ProgressView().tint(.indigo)
+                
+            case let .failed(error):
+                ErrorView(error: error, retryAction: {
+                    Task {
+                        await model.fetchData()
+                    }
+                })
+            default:
+                EmptyView()
+            }
+        }
+        .task {
+            await model.fetchData()
+        }
     }
 }
 

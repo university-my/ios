@@ -20,7 +20,7 @@ final class GroupViewModel: ObservableObject {
         self.university = university
     }
     
-    func fetchData() async throws {
+    func fetchData() async {
         state = .loading
         do {
             let result = try await dataProvider.records(
