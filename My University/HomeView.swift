@@ -16,7 +16,7 @@ struct HomeView: View {
         NavigationStack {
             if let university = model.university {
                 if let data = model.data {
-                    GroupTeacherClassroomView(data: data)
+                    GroupTeacherClassroomView(data: data, university: university)
                         .toolbar(content: {
                             ToolbarItem(placement: .bottomBar) {
                                 Button {

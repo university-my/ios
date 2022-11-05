@@ -12,6 +12,14 @@ struct GroupView: View {
     @StateObject var model: GroupViewModel
     
     var body: some View {
+        GroupContentView(model: model)
+    }
+}
+
+struct GroupContentView: View {
+    @StateObject var model: GroupViewModel
+    
+    var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             List {
                 Section {
@@ -77,6 +85,25 @@ struct GroupView: View {
 
 struct GroupView_Previews: PreviewProvider {
     static var previews: some View {
-        GroupView(model: GroupViewModel(data: ModelData(data: ModelCodingData(id: 1, name: "Test", slug: "test", uuid: UUID()), type: .group)))
+        let model = ModelData(
+            data: ModelCodingData(id: 1, name: "Test", slug: "test", uuid: UUID()),
+            type: .group
+        )
+        return GroupView(model: GroupViewModel(
+            model: model,
+            university: University.CodingData.first
+        ))
+    }
+}
+
+private extension University.CodingData {
+    static var first: Self {
+        University.CodingData(
+            id: 1,
+            fullName: "First University Full Very Long Name Name",
+            shortName: "First Short Name",
+            logoLight: "1_light.png",
+            logoDark: "1_dark.png"
+        )
     }
 }
