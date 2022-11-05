@@ -10,7 +10,7 @@ import Foundation
 
 extension Record {
     
-    struct CodingData: Codable {
+    struct CodingData: Codable, Identifiable {
         
         // MARK: - Properties
         
@@ -52,5 +52,19 @@ extension Record.CodingData {
         let dateFormatter = ISO8601DateFormatter()
         dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
         return dateFormatter.date(from: dateString)
+    }
+}
+
+extension Record.CodingData {
+    var sectionName: String {
+        var sectionName = ""
+        
+        if !pairName.isEmpty {
+            sectionName = pairName
+        }
+        if !time.isEmpty {
+            sectionName += " (\(time))"
+        }
+        return sectionName
     }
 }

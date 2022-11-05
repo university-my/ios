@@ -43,61 +43,22 @@ struct GroupContentView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             List {
-                Section {
-                    VStack(alignment: .leading) {
-                        Text("Управління науковими проектами")
-                            .font(.body)
-                        Text("Лекція")
-                            .font(.footnote)
-                            .fontWeight(.light)
+                ForEach(records) { record in
+                    Section {
+                        VStack(alignment: .leading) {
+                            if let name = record.name {
+                                Text(name)
+                                    .font(.body)
+                            }
+                            if let type = record.type {
+                                Text(type)
+                                    .font(.footnote)
+                                    .fontWeight(.light)
+                            }
+                        }
+                    } header: {
+                        Text(record.sectionName)
                     }
-                } header: {
-                    Text("1 ПАРА (08:00-09:20)")
-                }
-                
-                Section {
-                    VStack(alignment: .leading) {
-                        Text("Управління науковими проектами")
-                            .font(.body)
-                        Text("Лекція")
-                            .font(.footnote)
-                            .fontWeight(.light)
-                    }
-                } header: {
-                    Text("2 ПАРА (09:40-11:00)")
-                }
-                
-                Section {
-                    VStack(alignment: .leading) {
-                        Text("Управління науковими проектами")
-                            .font(.body)
-                        Text("Лекція")
-                            .font(.footnote)
-                            .fontWeight(.light)
-                    }
-                } header: {
-                    Text("3 ПАРА (11:20-12:40)")
-                }
-                
-                Section {
-                    VStack(alignment: .leading) {
-                        Text("Управління науковими проектами")
-                            .font(.body)
-                        Text("Лекція")
-                            .font(.footnote)
-                            .fontWeight(.light)
-                    }
-                } header: {
-                    Text("5 ПАРА (14:00-15:20)")
-                }
-                
-                Section {
-                    VStack(alignment: .leading) {
-                        Text("Тест")
-                            .font(.body)
-                    }
-                } header: {
-                    Text("6 ПАРА")
                 }
             }
         }
@@ -107,7 +68,12 @@ struct GroupContentView: View {
 struct GroupView_Previews: PreviewProvider {
     static var previews: some View {
         let model = ModelData(
-            data: ModelCodingData(id: 1, name: "Test", slug: "test", uuid: UUID()),
+            data: ModelCodingData(
+                id: 15861,
+                name: "А101-21",
+                slug: "a101-21",
+                uuid: UUID(uuidString: "e8b20247-b0a5-4dfc-bf27-da3747038ef5")!
+            ),
             type: .group
         )
         return GroupView(model: GroupViewModel(

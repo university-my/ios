@@ -64,11 +64,15 @@ extension University.CodingData {
 extension University.CodingData {
     static var testData: Self {
         University.CodingData(
-            id: 1,
-            fullName: "First University Full Very Long Name Name",
-            shortName: "First Short Name",
-            logoLight: "1_light.png",
-            logoDark: "1_dark.png"
+            id: 14,
+            fullName: "Івано-Франківський національний технічний університет нафти і газу",
+            shortName: "ІФНТУНГ",
+            url: "nung",
+            logoLight: "14_light.png",
+            logoDark: "14_dark.png",
+            showClassrooms: false,
+            showGroups: true,
+            showTeachers: true
         )
     }
 }
