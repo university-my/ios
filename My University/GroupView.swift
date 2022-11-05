@@ -91,19 +91,7 @@ struct GroupView_Previews: PreviewProvider {
         )
         return GroupView(model: GroupViewModel(
             model: model,
-            university: University.CodingData.first
+            university: University.CodingData.testData
         ))
-    }
-}
-
-private extension University.CodingData {
-    static var first: Self {
-        University.CodingData(
-            id: 1,
-            fullName: "First University Full Very Long Name Name",
-            shortName: "First Short Name",
-            logoLight: "1_light.png",
-            logoDark: "1_dark.png"
-        )
     }
 }
