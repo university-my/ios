@@ -16,7 +16,7 @@ struct GroupView: View {
             switch model.state {
                 
             case .presenting:
-                GroupContentView(model: model)
+                GroupContentView(records: model.recordsList.records)
                 
             case .loading:
                 ProgressView().tint(.indigo)
@@ -38,7 +38,7 @@ struct GroupView: View {
 }
 
 struct GroupContentView: View {
-    @StateObject var model: GroupViewModel
+    var records: [Record.CodingData]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {

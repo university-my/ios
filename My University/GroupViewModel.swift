@@ -18,12 +18,17 @@ final class GroupViewModel: ObservableObject {
     init(model: ModelData, university: University.CodingData) {
         self.model = model
         self.university = university
+        self.recordsList = Record.RecordsList(records: [], model: model.data)
     }
+    
+    // MARK: - Records
+    
+    private(set) var recordsList: Record.RecordsList
     
     func fetchData() async {
         state = .loading
         do {
-            let result = try await dataProvider.records(
+            recordsList = try await dataProvider.records(
                 modelID: model.data.id,
                 universityURL: university.url,
                 date: Date()
