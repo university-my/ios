@@ -67,18 +67,6 @@ struct GroupContentView: View {
 
 struct GroupView_Previews: PreviewProvider {
     static var previews: some View {
-        let model = ModelData(
-            data: ModelCodingData(
-                id: 15861,
-                name: "А101-21",
-                slug: "a101-21",
-                uuid: UUID(uuidString: "e8b20247-b0a5-4dfc-bf27-da3747038ef5")!
-            ),
-            type: .group
-        )
-        return GroupView(model: GroupViewModel(
-            model: model,
-            university: University.CodingData.testData
-        ))
+        GroupView(model: GroupViewModel(model: ModelData.testGroup, university: University.CodingData.testData))
     }
 }

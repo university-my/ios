@@ -24,10 +24,6 @@ struct GroupTeacherClassroomView: View {
 
 struct GroupTeacherClassroomView_Previews: PreviewProvider {
     static var previews: some View {
-        let model = ModelData(
-            data: ModelCodingData(id: 1, name: "Test", slug: "test", uuid: UUID()),
-            type: .group
-        )
-        return GroupTeacherClassroomView(data: model, university: University.CodingData.testData)
+        GroupTeacherClassroomView(data: ModelData.testGroup, university: University.CodingData.testData)
     }
 }

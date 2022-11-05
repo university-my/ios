@@ -31,3 +31,17 @@ extension ModelData {
         }
     }
 }
+
+extension ModelData {
+    static var testGroup: Self {
+        ModelData(
+            data: ModelCodingData(
+                id: 15861,
+                name: "А101-21",
+                slug: "a101-21",
+                uuid: UUID(uuidString: "e8b20247-b0a5-4dfc-bf27-da3747038ef5")!
+            ),
+            type: .group
+        )
+    }
+}
