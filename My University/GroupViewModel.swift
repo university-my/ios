@@ -10,13 +10,38 @@ import Foundation
 
 @MainActor
 final class GroupViewModel: ObservableObject {
-    @Published private(set) var data: ModelData
+    @Published private(set) var model: ModelData
     
-    init(data: ModelData) {
-        self.data = data
+    private(set) var university: University.CodingData
+    private let dataProvider = Group.DataProvider()
+    
+    init(model: ModelData, university: University.CodingData) {
+        self.model = model
+        self.university = university
     }
     
-    func fetchData() {
-        
+    func fetchData() async throws {
+        state = .loading
+        do {
+            let result = try await dataProvider.records(
+                modelID: model.data.id,
+                universityURL: university.url,
+                date: Date()
+            )
+            state = .presenting
+        } catch {
+            state = .failed(error: error)
+        }
     }
+    
+    // MARK: - State
+    
+    enum State {
+        case noData
+        case loading
+        case presenting
+        case failed(error: Error)
+    }
+    
+    @Published private(set) var state: State = .presenting
 }
