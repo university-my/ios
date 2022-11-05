@@ -34,7 +34,6 @@ extension Model {
             let data = try await networkClient.fetchRecords(for: params)
             
             let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
             let decodedData = try decoder.decode(Record.RecordsList.self, from: data)
             
             return decodedData

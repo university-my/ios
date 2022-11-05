@@ -24,6 +24,7 @@ class HomeViewModel: ObservableObject {
     
     func update(with university: Model) {
         self.university = university
+        data = nil
     }
     
     func update(with data: ModelData) {
