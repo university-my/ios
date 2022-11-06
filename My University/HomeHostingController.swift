@@ -24,10 +24,10 @@ class HomeHostingController: UIHostingController<HomeView> {
         model.delegate = self
         
         if let university = University.current {
-            model.update(with: university)
+            model.university = university
         }
         if let data = ModelData.current {
-            model.update(with: data)
+            model.data = data
         }
     }
     
@@ -76,7 +76,7 @@ extension HomeHostingController: HomeViewModelDelegate {
 extension HomeHostingController: UniversitiesListHostingControllerDelegate {
     func universitiesListHostingController(didSelectUniversity university: University.CodingData) {
         University.current = university
-        model.update(with: university)
+        model.university = university
     }
 }
 
@@ -95,7 +95,7 @@ extension HomeHostingController: InformationHostingControllerDelegate {
 extension HomeHostingController: SearchHostingControllerDelegate {
     func searchHostingController(didSelectModel data: ModelData) {
         ModelData.current = data
-        model.update(with: data)
+        model.data = data
     }
 }
 

@@ -16,20 +16,14 @@ protocol HomeViewModelDelegate: AnyObject {
 
 @MainActor
 class HomeViewModel: ObservableObject {
-    typealias Model = University.CodingData
-    @Published private(set) var university: Model?
-    @Published private(set) var data: ModelData?
+    @Published var data: ModelData?
+    @Published var university: University.CodingData? {
+        didSet {
+            data = nil
+        }
+    }
     
     weak var delegate: HomeViewModelDelegate?
-    
-    func update(with university: Model) {
-        self.university = university
-        data = nil
-    }
-    
-    func update(with data: ModelData) {
-        self.data = data
-    }
     
     func selectUniversity() {
         delegate?.homeViewModelSelectUniversityPressed()
