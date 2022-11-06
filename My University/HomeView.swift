@@ -56,7 +56,7 @@ struct HomeView: View {
                             }
                         })
                         .navigationBarTitleDisplayMode(.inline)
-                        .navigationTitle("ІН-81/1")
+                        .navigationTitle(model.data?.data.name ?? "")
                 } else {
                     VStack(spacing: 10) {
                         Text(university.fullName)
