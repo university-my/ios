@@ -16,7 +16,7 @@ struct HomeView: View {
         NavigationStack {
             if let university = model.university {
                 if let data = model.data {
-                    GroupTeacherClassroomView(data: data, university: university)
+                    GroupTeacherClassroomView(data: data, university: university, date: date)
                         .toolbar(content: {
                             ToolbarItem(placement: .bottomBar) {
                                 Button {
@@ -50,7 +50,7 @@ struct HomeView: View {
                                 DatePicker(
                                     "",
                                     selection: $date,
-                                    in: Date()...,
+                                    in: Date.dateRange(for: date),
                                     displayedComponents: [.date]
                                 )
                             }

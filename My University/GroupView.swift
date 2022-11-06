@@ -67,6 +67,6 @@ struct GroupContentView: View {
 
 struct GroupView_Previews: PreviewProvider {
     static var previews: some View {
-        GroupView(model: GroupViewModel(model: ModelData.testGroup, university: University.CodingData.testData))
+        GroupView(model: GroupViewModel(model: ModelData.testGroup, date: Date(), university: University.CodingData.testData))
     }
 }

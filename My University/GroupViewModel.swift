@@ -13,10 +13,13 @@ final class GroupViewModel: ObservableObject {
     @Published private(set) var model: ModelData
     
     private(set) var university: University.CodingData
+    private(set) var date: Date
+    
     private let dataProvider = Group.DataProvider()
     
-    init(model: ModelData, university: University.CodingData) {
+    init(model: ModelData, date: Date, university: University.CodingData) {
         self.model = model
+        self.date = date
         self.university = university
         self.recordsList = Record.RecordsList(records: [], model: model.data)
     }
@@ -31,7 +34,7 @@ final class GroupViewModel: ObservableObject {
             recordsList = try await dataProvider.records(
                 modelID: model.data.id,
                 universityURL: university.url,
-                date: Date()
+                date: date
             )
             state = .presenting
         } catch {

@@ -11,11 +11,12 @@ import SwiftUI
 struct GroupTeacherClassroomView: View {
     var data: ModelData
     private(set) var university: University.CodingData
+    private(set) var date: Date
     
     var body: some View {
         switch data.type {
         case .group:
-            GroupView(model: GroupViewModel(model: data, university: university))
+            GroupView(model: GroupViewModel(model: data, date: date, university: university))
         default:
             EmptyView()
         }
@@ -24,6 +25,6 @@ struct GroupTeacherClassroomView: View {
 
 struct GroupTeacherClassroomView_Previews: PreviewProvider {
     static var previews: some View {
-        GroupTeacherClassroomView(data: ModelData.testGroup, university: University.CodingData.testData)
+        GroupTeacherClassroomView(data: ModelData.testGroup, university: University.CodingData.testData, date: Date())
     }
 }
