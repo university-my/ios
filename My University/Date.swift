@@ -17,4 +17,11 @@ extension Date {
     var endOfDay: Date {
         Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: startOfDay)!
     }
+    
+    static func dateRange(for date: Date) -> ClosedRange<Date> {
+        let calendar = Calendar.current
+        let startData = calendar.date(byAdding: .weekOfMonth, value: -1, to: date)!
+        let endDate = calendar.date(byAdding: .weekOfMonth, value: 1, to: date)!
+        return startData ... endDate
+    }
 }
