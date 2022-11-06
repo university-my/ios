@@ -10,53 +10,12 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var model: HomeViewModel
-    @State private var date = Date()
     
     var body: some View {
         NavigationStack {
             if let university = model.university {
                 if let data = model.data {
-                    GroupTeacherClassroomView(data: data, university: university, date: date)
-                        .toolbar(content: {
-                            ToolbarItem(placement: .bottomBar) {
-                                Button {
-                                    
-                                } label: {
-                                    Image(systemName: "chevron.left")
-                                }
-                            }
-                            ToolbarItem(placement: .navigationBarLeading) {
-                                Button {
-                                    
-                                } label: {
-                                    Image(systemName: "square.and.arrow.up")
-                                }
-                            }
-                            ToolbarItem(placement: .navigationBarTrailing) {
-                                Button {
-                                    model.presentInformation()
-                                } label: {
-                                    Image(systemName: "ellipsis.circle")
-                                }
-                            }
-                            ToolbarItem(placement: .bottomBar) {
-                                Button {
-                                    
-                                } label: {
-                                    Image(systemName: "chevron.right")
-                                }
-                            }
-                            ToolbarItem(placement: .status) {
-                                DatePicker(
-                                    "",
-                                    selection: $date,
-                                    in: Date.dateRange(for: date),
-                                    displayedComponents: [.date]
-                                )
-                            }
-                        })
-                        .navigationBarTitleDisplayMode(.inline)
-                        .navigationTitle(model.data?.data.name ?? "")
+                    GroupTeacherClassroomView(model: GroupTeacherClassroomViewModel(data: data, university: university))
                 } else {
                     VStack(spacing: 10) {
                         Text(university.fullName)

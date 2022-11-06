@@ -45,6 +45,7 @@
 		DE13EEB42466B9BA0011F307 /* StructRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE13EEB32466B9BA0011F307 /* StructRepresentable.swift */; };
 		DE16BC1125F8EC040007AAE5 /* TeachersLogicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16BC1025F8EC040007AAE5 /* TeachersLogicController.swift */; };
 		DE18941C21BC3A3900C7F9DB /* GroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18941B21BC3A3900C7F9DB /* GroupTableViewController.swift */; };
+		DE2181E32917DFC700FE39F0 /* GroupTeacherClassroomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2181E22917DFC700FE39F0 /* GroupTeacherClassroomViewModel.swift */; };
 		DE266D60240C4AAA00C30A4A /* WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE266D5F240C4AAA00C30A4A /* WhatsNewView.swift */; };
 		DE28637C245600330036A01F /* NoRecordsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE28637A245600330036A01F /* NoRecordsTableViewCell.swift */; };
 		DE3628CB2524ADD0003A7939 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3628CA2524ADD0003A7939 /* UserDefaultsKeys.swift */; };
@@ -242,6 +243,7 @@
 		DE13EEB32466B9BA0011F307 /* StructRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructRepresentable.swift; sourceTree = "<group>"; };
 		DE16BC1025F8EC040007AAE5 /* TeachersLogicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersLogicController.swift; sourceTree = "<group>"; };
 		DE18941B21BC3A3900C7F9DB /* GroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTableViewController.swift; sourceTree = "<group>"; };
+		DE2181E22917DFC700FE39F0 /* GroupTeacherClassroomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTeacherClassroomViewModel.swift; sourceTree = "<group>"; };
 		DE266D5F240C4AAA00C30A4A /* WhatsNewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewView.swift; sourceTree = "<group>"; };
 		DE28637A245600330036A01F /* NoRecordsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoRecordsTableViewCell.swift; sourceTree = "<group>"; };
 		DE3628CA2524ADD0003A7939 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
@@ -948,8 +950,9 @@
 		DEB186CB285CEFC7003E2553 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				DEBDBD49290B056B0050A81C /* GroupTeacherClassroomView.swift */,
 				DEDB39E7285CF04800D8434E /* Home.storyboard */,
+				DEBDBD49290B056B0050A81C /* GroupTeacherClassroomView.swift */,
+				DE2181E22917DFC700FE39F0 /* GroupTeacherClassroomViewModel.swift */,
 				DEDB39E9285CF16E00D8434E /* HomeHostingController.swift */,
 				DEAC46B5285DF64600490197 /* HomeView.swift */,
 				DE0E1E9B285DFD4C0070F1E2 /* HomeViewModel.swift */,
@@ -1286,6 +1289,7 @@
 				DE072B0528898149005E3185 /* Model+DataProvider.swift in Sources */,
 				DE131FE82456D773009D09EA /* Record+CodingData.swift in Sources */,
 				DE40B33B26F1E32700631C55 /* UITableView.swift in Sources */,
+				DE2181E32917DFC700FE39F0 /* GroupTeacherClassroomViewModel.swift in Sources */,
 				DE468AF02568739D008CB00E /* UIImage.swift in Sources */,
 				DE999ABE227C54160018F725 /* UniversityDataSource.swift in Sources */,
 				DEB9BD412538BD64008F41A2 /* Model+CodingData.swift in Sources */,
