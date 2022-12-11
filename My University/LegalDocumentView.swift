@@ -9,26 +9,11 @@
 import SwiftUI
 
 struct LegalDocumentView: View {
-
-    var documentName: String
-    var continueAction: (() -> ())?
-
-    fileprivate func legalDocumentController() -> some View {
-        let controller = LegalDocumentViewController()
-        controller.documentName = documentName
-        return controller
-    }
-
+    
+    let documentName: String
+    
     var body: some View {
-        VStack {
-            // Document
-            legalDocumentController()
-
-            // Continue
-            Button(action: { self.continueAction?() }) {
-                ContinueButtonContent()
-            }.padding()
-        }
+        LegalDocumentController(documentName: documentName)
     }
 }
 
