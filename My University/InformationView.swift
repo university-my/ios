@@ -45,14 +45,14 @@ struct InformationView: View {
                     }
                 }
                 
-                Section(header: Text("What's new")) {
-                    NavigationLink {
-                        WhatsNewView()
-                    } label: {
-                        Label("Check out what's new", systemImage: "gift")
-                            .symbolRenderingMode(.multicolor)
-                    }
-                }
+//                Section(header: Text("What's new")) {
+//                    NavigationLink {
+//                        WhatsNewView()
+//                    } label: {
+//                        Label("Check out what's new", systemImage: "gift")
+//                            .symbolRenderingMode(.multicolor)
+//                    }
+//                }
             }
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
