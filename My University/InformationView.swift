@@ -59,6 +59,7 @@ struct InformationView: View {
                     Button("Done") { dismiss() }
                 }
             }
+            .navigationTitle("Information")
             .navigationBarTitleDisplayMode(.inline)
         }
     }
