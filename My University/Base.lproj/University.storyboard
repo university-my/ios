@@ -138,6 +138,7 @@
                         <segue destination="FBa-ki-ZHQ" kind="presentation" identifier="groupDetails" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="gYO-XM-ELK"/>
                         <segue destination="vS9-3j-7La" kind="presentation" identifier="teacherDetails" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="u8g-7O-vIp"/>
                         <segue destination="UaB-WI-CTA" kind="presentation" identifier="classroomDetails" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="8fl-xx-wzX"/>
+                        <segue destination="V16-6S-JpJ" kind="presentation" identifier="information" id="vZo-cj-D2A"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NeF-49-RUJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -151,6 +152,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gmy-QN-Qnp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="757" y="517"/>
+        </scene>
+        <!--Information Hosting Controller-->
+        <scene sceneID="QOA-yg-YI1">
+            <objects>
+                <hostingController id="V16-6S-JpJ" customClass="InformationHostingController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m3j-te-2qw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="623" y="-750"/>
         </scene>
         <!--Groups-->
         <scene sceneID="SgN-71-MvY">
@@ -387,9 +396,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Mg6-1X-yCk"/>
+        <segue reference="8fl-xx-wzX"/>
         <segue reference="u8g-7O-vIp"/>
-        <segue reference="kw8-0l-tv1"/>
+        <segue reference="gYO-XM-ELK"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="systemIndigoColor"/>
     <resources>
