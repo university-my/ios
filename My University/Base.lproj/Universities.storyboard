@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Dh3-Wn-yWN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Dh3-Wn-yWN">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -12,7 +12,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Dh3-Wn-yWN" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="hFo-Uh-bmv">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -36,7 +36,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="universityCell" textLabel="Hnt-60-noc" detailTextLabel="wQT-mX-Gwz" style="IBUITableViewCellStyleSubtitle" id="XCQ-S9-qn2">
-                                <rect key="frame" x="20" y="32" width="374" height="55.5"/>
+                                <rect key="frame" x="20" y="38" width="374" height="55.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XCQ-S9-qn2" id="k0J-Xp-W3p">
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="55.5"/>
@@ -72,7 +72,7 @@
                                 <rect key="frame" x="368" y="9" width="26" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <segue destination="zUH-h9-IVS" kind="presentation" id="m7Z-LS-rMN"/>
+                                    <segue destination="j6L-5C-MSz" kind="presentation" id="xnE-pN-822"/>
                                 </connections>
                             </button>
                             <color key="tintColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
@@ -94,6 +94,14 @@
             </objects>
             <point key="canvasLocation" x="942" y="163"/>
         </scene>
+        <!--Information Hosting Controller-->
+        <scene sceneID="aUV-NN-CtX">
+            <objects>
+                <hostingController id="j6L-5C-MSz" customClass="InformationHostingController" customModule="My_University" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ouR-y1-wg0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="941" y="-599"/>
+        </scene>
         <!--University-->
         <scene sceneID="RfX-0N-zzt">
             <objects>
@@ -101,14 +109,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8xd-pt-mKO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1551" y="598"/>
-        </scene>
-        <!--About-->
-        <scene sceneID="x7o-i3-4do">
-            <objects>
-                <viewControllerPlaceholder storyboardName="About" id="zUH-h9-IVS" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7dB-YK-GQc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1533" y="130"/>
         </scene>
         <!--Universities Search Results Table View Controller-->
         <scene sceneID="rea-Wr-JDy">
@@ -119,7 +119,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResultsTableCell" textLabel="r0h-LC-LyU" detailTextLabel="f9h-ZM-fNy" style="IBUITableViewCellStyleSubtitle" id="uew-Qk-uCe">
-                                <rect key="frame" x="20" y="49.5" width="374" height="55.5"/>
+                                <rect key="frame" x="20" y="55.5" width="374" height="55.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uew-Qk-uCe" id="U9c-JN-Vg1">
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="55.5"/>
@@ -158,7 +158,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="h0r-PT-xSh"/>
+        <segue reference="D1m-jk-5D9"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="systemIndigoColor"/>
     <resources>

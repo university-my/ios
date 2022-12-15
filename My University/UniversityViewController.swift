@@ -283,6 +283,12 @@ class UniversityViewController: UITableViewController {
             self.performSegue(withIdentifier: .changeUniversity)
         }
         
+        let information = UIAction(
+            title: NSLocalizedString("Information", comment: "Action title"),
+            image: UIImage(systemName: "info.circle")) { _ in
+                self.performSegue(withIdentifier: .information)
+            }
+        
         let reportProblem = UIAction(
             title: NSLocalizedString("Report a problem", comment: "Action title"),
             image: UIImage(systemName: "exclamationmark.bubble.fill")
@@ -290,7 +296,7 @@ class UniversityViewController: UITableViewController {
             UIApplication.shared.open(.contacts)
         }
         
-        preferencesBarButtonItem.menu = UIMenu(title: "", children: [changeUniversity, reportProblem])
+        preferencesBarButtonItem.menu = UIMenu(title: "", children: [changeUniversity, information, reportProblem])
     }
     
     // MARK: - Import (for UUID feature)
@@ -319,9 +325,10 @@ class UniversityViewController: UITableViewController {
 // MARK: - SegueIdentifier
 
 private extension UniversityViewController.SegueIdentifier {
-    static let classroomDetails = "classroomDetails"
     static let changeUniversity = "changeUniversity"
+    static let classroomDetails = "classroomDetails"
     static let groupDetails = "groupDetails"
+    static let information = "information"
     static let showClassrooms = "showClassrooms"
     static let showGroups = "showGroups"
     static let showTeachers = "showTeachers"

@@ -31,6 +31,9 @@
 /* Error description */
 "Data not found" = "Даних не знайдено";
 
+/* No comment provided by engineer. */
+"Documents" = "Документи";
+
 /* Action title */
 "Go to University" = "Перейти до університету";
 
@@ -43,8 +46,8 @@
 /* No comment provided by engineer. */
 "GROUPS" = "ГРУПИ";
 
-/* Message */
-"No records" = "Пар немає";
+/* Action title */
+"Information" = "Інформація";
 
 /* No comment provided by engineer. */
 "PAIR" = "ПАРА";
@@ -73,6 +76,9 @@
 /* Action title */
 "Share" = "Поділитися";
 
+/* No comment provided by engineer. */
+"Social Networks" = "Соціальні мережі";
+
 /* Alert title */
 "Sorry" = "Вибачте";
 
@@ -86,7 +92,7 @@
 "Teachers" = "Викладачі";
 
 /* No comment provided by engineer. */
-"Terms Of Service" = "Умови надання послуг";
+"Terms of Service" = "Умови обслуговування";
 
 /* No comment provided by engineer. */
 "Thank you for using this app! ❤️" = "Дякуємо, що користуєтеся цим додатком! ❤️";
@@ -105,6 +111,9 @@
 
 /* Error description */
 "We were unable to read the schedule from the university website" = "Не вдалося прочитати розклад на сайті університету";
+
+/* No comment provided by engineer. */
+"Website" = "Веб-сайт";
 
 /* No comment provided by engineer. */
 "Welcome" = "Вітаємо";

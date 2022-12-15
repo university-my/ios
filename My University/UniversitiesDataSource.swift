@@ -89,14 +89,8 @@ extension UniversitiesDataSource: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "universityCell", for: indexPath)
         
         if let university = fetchedResultsController?.object(at: indexPath) {
-            if #available(iOS 16.0, *) {
-                cell.contentConfiguration = UIHostingConfiguration {
-                    UniversityView(university: university.codingData)
-                }
-            } else {
-                // Fallback on earlier versions
-                cell.textLabel?.text = university.shortName
-                cell.detailTextLabel?.text = university.fullName
+            cell.contentConfiguration = UIHostingConfiguration {
+                UniversityView(university: university.codingData)
             }
         }
         

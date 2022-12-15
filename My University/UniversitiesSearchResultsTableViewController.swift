@@ -31,14 +31,8 @@ class UniversitiesSearchResultsTableViewController: UITableViewController {
         
         let university = filtered[indexPath.row]
         
-        if #available(iOS 16.0, *) {
-            cell.contentConfiguration = UIHostingConfiguration {
-                UniversityView(university: university.codingData)
-            }
-        } else {
-            // Fallback on earlier versions
-            cell.textLabel?.text = university.shortName
-            cell.detailTextLabel?.text = university.fullName
+        cell.contentConfiguration = UIHostingConfiguration {
+            UniversityView(university: university.codingData)
         }
         
         return cell
