@@ -15,8 +15,4 @@ class InformationHostingController: UIHostingController<InformationView> {
         let view = InformationView()
         super.init(coder: aDecoder, rootView: view)
     }
-    
-    @IBAction func done(_ sender: Any) {
-        dismiss(animated: true)
-    }
 }
