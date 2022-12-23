@@ -40,7 +40,7 @@ class UniversityViewController: UITableViewController {
         super.viewDidLoad()
         
         // Current university is selected one
-        universityID = University.selectedUniversityID
+        universityID = University.current?.id
         
         setup()
     }
@@ -335,8 +335,7 @@ extension UniversityViewController: UniversityLogicControllerDelegate {
 extension UniversityViewController: InformationHostingControllerDelegate {
     func informationHostingControllerChangeUniversityPressed(in controller: InformationHostingController) {
         controller.dismiss(animated: true)
-        University.selectedUniversityID = nil
-        University.current = nil
+        University.removeCurrent()
         performSegue(withIdentifier: .changeUniversity)
     }
 }

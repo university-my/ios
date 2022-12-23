@@ -13,20 +13,14 @@ struct University {
     // MARK: - Selected University
     
     static func select(_ university: University.CodingData) {
-        selectedUniversityID = university.id
         current = university
     }
     
-    static var selectedUniversityID: Int64? {
-        get {
-            UserDefaults.standard.value(forKey: UserDefaultsKeys.selectedUniversityKey) as? Int64
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.selectedUniversityKey)
-        }
+    static func removeCurrent() {
+        UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.currentUniversityKey)
     }
     
-    static var current: University.CodingData? {
+    private(set) static var current: University.CodingData? {
         get {
             guard let data = UserDefaults.standard.object(forKey: UserDefaultsKeys.currentUniversityKey) as? Data else {
                 return nil
