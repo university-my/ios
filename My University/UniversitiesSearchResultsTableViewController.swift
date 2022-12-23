@@ -39,7 +39,7 @@ class UniversitiesSearchResultsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        University.selectedUniversityID = filtered[indexPath.row].id
+        University.select(filtered[indexPath.row].codingData)
         performSegue(withIdentifier: "presentUniversity")
     }
 }
