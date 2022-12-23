@@ -55,6 +55,18 @@ struct InformationView: View {
 //                    }
 //                }
                 
+                Section(header: Text("Feedback")) {
+                    Button {
+                        UIApplication.shared.open(.contacts)
+                    } label: {
+                        Label {
+                            Text("Report a problem")
+                        } icon: {
+                            Image(systemName: "ladybug").foregroundColor(.red)
+                        }
+                    }
+                }
+                
                 if let university = model.university {
                     Section(header: Text("University")) {
                         UniversityView(university: university)
