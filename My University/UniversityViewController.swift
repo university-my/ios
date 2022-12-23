@@ -272,8 +272,6 @@ class UniversityViewController: UITableViewController {
     
     // MARK: - Preferences
     
-    @IBOutlet weak var preferencesBarButtonItem: UIBarButtonItem!
-    
     private func configurePreferencesMenu() {
         let changeUniversity = UIAction(
             title: NSLocalizedString("Change University", comment: "Action title"),
@@ -295,8 +293,6 @@ class UniversityViewController: UITableViewController {
         ) { _ in
             UIApplication.shared.open(.contacts)
         }
-        
-        preferencesBarButtonItem.menu = UIMenu(title: "", children: [changeUniversity, information, reportProblem])
     }
     
     // MARK: - Import (for UUID feature)
