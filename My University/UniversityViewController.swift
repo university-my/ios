@@ -74,8 +74,6 @@ class UniversityViewController: UITableViewController {
     }
     
     private func setup() {
-        configurePreferencesMenu()
-        
         // Fetch university
         if let id = universityID {
             dataSource = UniversityDataSource()
@@ -271,32 +269,6 @@ class UniversityViewController: UITableViewController {
             
             // Present only once
             logic.updateLastVersionForNewFeatures()
-        }
-    }
-    
-    // MARK: - Preferences
-    
-    private func configurePreferencesMenu() {
-        let changeUniversity = UIAction(
-            title: NSLocalizedString("Change University", comment: "Action title"),
-            image: UIImage(systemName: "list.dash")
-        ) { _ in
-            University.selectedUniversityID = nil
-            University.current = nil
-            self.performSegue(withIdentifier: .changeUniversity)
-        }
-        
-        let information = UIAction(
-            title: NSLocalizedString("Information", comment: "Action title"),
-            image: UIImage(systemName: "info.circle")) { _ in
-                self.performSegue(withIdentifier: .information)
-            }
-        
-        let reportProblem = UIAction(
-            title: NSLocalizedString("Report a problem", comment: "Action title"),
-            image: UIImage(systemName: "exclamationmark.bubble.fill")
-        ) { _ in
-            UIApplication.shared.open(.contacts)
         }
     }
     
