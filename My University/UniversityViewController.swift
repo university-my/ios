@@ -241,6 +241,10 @@ class UniversityViewController: UITableViewController {
             let controller = segue.destination as? TeachersTableViewController
             controller?.universityID = dataSource.university?.id
             
+        case .information:
+            let controller = segue.destination as? InformationHostingController
+            controller?.delegate = self
+            
         default:
             break
         }
@@ -351,5 +355,16 @@ extension UniversityViewController: UniversityLogicControllerDelegate {
     }
     
     func logicDidImportAllEntities() {
+    }
+}
+
+// MARK: - InformationHostingControllerDelegate
+
+extension UniversityViewController: InformationHostingControllerDelegate {
+    func informationHostingControllerChangeUniversityPressed(in controller: InformationHostingController) {
+        controller.dismiss(animated: true)
+        University.selectedUniversityID = nil
+        University.current = nil
+        performSegue(withIdentifier: .changeUniversity)
     }
 }
