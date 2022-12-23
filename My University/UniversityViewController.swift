@@ -278,6 +278,7 @@ class UniversityViewController: UITableViewController {
             image: UIImage(systemName: "list.dash")
         ) { _ in
             University.selectedUniversityID = nil
+            University.current = nil
             self.performSegue(withIdentifier: .changeUniversity)
         }
         

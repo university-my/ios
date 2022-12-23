@@ -27,6 +27,10 @@ struct UserDefaultsKeys {
         "\(identifier).selectedUniversity"
     }
     
+    static var currentUniversityKey: String {
+        "\(identifier).currentUniversity"
+    }
+    
     static var latestVersionPromptedForReviewKey: String {
         "\(identifier).latestVersionPromptedForReview"
     }
