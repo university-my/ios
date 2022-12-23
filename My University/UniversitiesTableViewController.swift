@@ -63,11 +63,11 @@ class UniversitiesTableViewController: UITableViewController {
     // MARK: - Navigation
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let universityID = dataSource.fetchedResultsController?.fetchedObjects?[indexPath.row].id
-        if let id = universityID {
-            University.selectedUniversityID = id
-            performSegue(withIdentifier: .presentUniversity)
+        guard let entity = dataSource.fetchedResultsController?.fetchedObjects?[indexPath.row] else {
+            return
         }
+        University.select(entity.codingData)
+        performSegue(withIdentifier: .presentUniversity)
     }
     
     // MARK: - Search

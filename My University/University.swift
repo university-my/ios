@@ -12,13 +12,29 @@ struct University {
     
     // MARK: - Selected University
     
-    static var selectedUniversityID: Int64? {
-        get {
-            UserDefaults.standard.value(forKey: UserDefaultsKeys.selectedUniversityKey) as? Int64
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.selectedUniversityKey)
-        }
+    static func select(_ university: University.CodingData) {
+        current = university
     }
     
+    static func removeCurrent() {
+        UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.currentUniversityKey)
+    }
+    
+    private(set) static var current: University.CodingData? {
+        get {
+            guard let data = UserDefaults.standard.object(forKey: UserDefaultsKeys.currentUniversityKey) as? Data else {
+                return nil
+            }
+            let decoder = JSONDecoder()
+            let university = try? decoder.decode(University.CodingData.self, from: data)
+            return university
+        }
+        set {
+            let jsonEncoder = JSONEncoder()
+            if let jsonData = try? jsonEncoder.encode(newValue) {
+                UserDefaults.standard.set(jsonData, forKey: UserDefaultsKeys.currentUniversityKey)
+                UserDefaults.standard.synchronize()
+            }
+        }
+    }
 }

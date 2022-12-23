@@ -40,7 +40,7 @@ class UniversityViewController: UITableViewController {
         super.viewDidLoad()
         
         // Current university is selected one
-        universityID = University.selectedUniversityID
+        universityID = University.current?.id
         
         setup()
     }
@@ -74,8 +74,6 @@ class UniversityViewController: UITableViewController {
     }
     
     private func setup() {
-        configurePreferencesMenu()
-        
         // Fetch university
         if let id = universityID {
             dataSource = UniversityDataSource()
@@ -241,6 +239,10 @@ class UniversityViewController: UITableViewController {
             let controller = segue.destination as? TeachersTableViewController
             controller?.universityID = dataSource.university?.id
             
+        case .information:
+            let controller = segue.destination as? InformationHostingController
+            controller?.delegate = self
+            
         default:
             break
         }
@@ -270,29 +272,6 @@ class UniversityViewController: UITableViewController {
         }
     }
     
-    // MARK: - Preferences
-    
-    @IBOutlet weak var preferencesBarButtonItem: UIBarButtonItem!
-    
-    private func configurePreferencesMenu() {
-        let changeUniversity = UIAction(
-            title: NSLocalizedString("Change University", comment: "Action title"),
-            image: UIImage(systemName: "list.dash")
-        ) { _ in
-            University.selectedUniversityID = nil
-            self.performSegue(withIdentifier: .changeUniversity)
-        }
-        
-        let reportProblem = UIAction(
-            title: NSLocalizedString("Report a problem", comment: "Action title"),
-            image: UIImage(systemName: "exclamationmark.bubble.fill")
-        ) { _ in
-            UIApplication.shared.open(.contacts)
-        }
-        
-        preferencesBarButtonItem.menu = UIMenu(title: "", children: [changeUniversity, reportProblem])
-    }
-    
     // MARK: - Import (for UUID feature)
     
     private weak var importActivityAlert: ActivityAlertViewController?
@@ -319,9 +298,10 @@ class UniversityViewController: UITableViewController {
 // MARK: - SegueIdentifier
 
 private extension UniversityViewController.SegueIdentifier {
-    static let classroomDetails = "classroomDetails"
     static let changeUniversity = "changeUniversity"
+    static let classroomDetails = "classroomDetails"
     static let groupDetails = "groupDetails"
+    static let information = "information"
     static let showClassrooms = "showClassrooms"
     static let showGroups = "showGroups"
     static let showTeachers = "showTeachers"
@@ -347,5 +327,15 @@ extension UniversityViewController: UniversityLogicControllerDelegate {
     }
     
     func logicDidImportAllEntities() {
+    }
+}
+
+// MARK: - InformationHostingControllerDelegate
+
+extension UniversityViewController: InformationHostingControllerDelegate {
+    func informationHostingControllerChangeUniversityPressed(in controller: InformationHostingController) {
+        controller.dismiss(animated: true)
+        University.removeCurrent()
+        performSegue(withIdentifier: .changeUniversity)
     }
 }

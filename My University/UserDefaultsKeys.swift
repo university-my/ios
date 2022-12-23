@@ -23,8 +23,8 @@ struct UserDefaultsKeys {
         "\(identifier).recordDetailsOpenedCount"
     }
     
-    static var selectedUniversityKey: String {
-        "\(identifier).selectedUniversity"
+    static var currentUniversityKey: String {
+        "\(identifier).currentUniversity"
     }
     
     static var latestVersionPromptedForReviewKey: String {

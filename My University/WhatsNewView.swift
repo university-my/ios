@@ -73,50 +73,6 @@ struct WhatsNewView: View {
         }
         .frame(height: 50)
     }
-
-    // MARK: - Privacy Policy
-
-    @State var privacyPolicyModal: Bool = false
-
-    fileprivate func privacyPolicy() -> some View {
-        HStack(alignment: .center, spacing: 10) {
-            Text("Privacy Policy").bold()
-            Spacer()
-            Image(systemName: "info.circle").foregroundColor(.blue)
-        }
-        .frame(height: 50)
-        .sheet(isPresented: $privacyPolicyModal) {
-            LegalDocumentView(documentName: LegalDocument.privacyPolicy) {
-                // Continue
-                self.privacyPolicyModal = false
-            }
-        }
-        .gesture(TapGesture().onEnded { _ in
-            self.privacyPolicyModal = true
-        })
-    }
-
-    // MARK: - Terms of Service
-
-    @State var termsOfServiceModal: Bool = false
-
-    fileprivate func termsOfService() -> some View {
-        HStack(alignment: .center, spacing: 10) {
-            Text("Terms Of Service").bold()
-            Spacer()
-            Image(systemName: "info.circle").foregroundColor(.blue)
-        }
-        .frame(height: 50)
-        .sheet(isPresented: $termsOfServiceModal) {
-            LegalDocumentView(documentName: LegalDocument.termsOfService) {
-                // Continue
-                self.termsOfServiceModal = false
-            }
-        }
-        .gesture(TapGesture().onEnded { _ in
-            self.termsOfServiceModal = true
-        })
-    }
 }
 
 struct WhatsNewOneSixThree_Previews: PreviewProvider {

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftUI
 
 final class LegalDocumentViewController: UIViewController {
 
@@ -50,22 +49,4 @@ final class LegalDocumentViewController: UIViewController {
 
         } catch {}
     }
-}
-
-// MARK: - UIViewControllerRepresentable
-
-extension LegalDocumentViewController: UIViewControllerRepresentable {
-
-    func makeUIViewController(context: UIViewControllerRepresentableContext<LegalDocumentViewController>) -> LegalDocumentViewController {
-        let storyboard = UIStoryboard.legalDocument
-        let controller = storyboard.instantiateInitialViewController() as! LegalDocumentViewController
-        controller.documentName = documentName
-        return controller
-    }
-
-    func updateUIViewController(_ uiViewController: LegalDocumentViewController, context: UIViewControllerRepresentableContext<LegalDocumentViewController>) {
-
-    }
-
-    typealias UIViewControllerType = LegalDocumentViewController
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class UniversitiesSearchResultsTableViewController: UITableViewController {
     
@@ -28,16 +29,17 @@ class UniversitiesSearchResultsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: searchResultsTableCell, for: indexPath)
         
-        // Configure the cell...
         let university = filtered[indexPath.row]
-        cell.textLabel?.text = university.shortName
-        cell.detailTextLabel?.text = university.fullName
+        
+        cell.contentConfiguration = UIHostingConfiguration {
+            UniversityView(university: university.codingData)
+        }
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        University.selectedUniversityID = filtered[indexPath.row].id
+        University.select(filtered[indexPath.row].codingData)
         performSegue(withIdentifier: "presentUniversity")
     }
 }
