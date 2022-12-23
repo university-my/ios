@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct InformationView: View {
+    @StateObject var model: InformationViewModel
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -53,6 +54,27 @@ struct InformationView: View {
 //                            .symbolRenderingMode(.multicolor)
 //                    }
 //                }
+                
+                Section(header: Text("Feedback")) {
+                    Button {
+                        UIApplication.shared.open(.contacts)
+                    } label: {
+                        Label {
+                            Text("Report a problem")
+                        } icon: {
+                            Image(systemName: "ladybug").foregroundColor(.red)
+                        }
+                    }
+                }
+                
+                if let university = model.university {
+                    Section(header: Text("University")) {
+                        UniversityView(university: university)
+                        Button("Change university") {
+                            model.changeUniversity()
+                        }
+                    }
+                }
             }
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
@@ -67,6 +89,18 @@ struct InformationView: View {
 
 struct InformationView_Previews: PreviewProvider {
     static var previews: some View {
-        InformationView()
+        InformationView(model: InformationViewModel(university: University.CodingData.sumdu))
+    }
+}
+
+private extension University.CodingData {
+    static var sumdu: Self {
+        University.CodingData(
+            id: 1,
+            fullName: "Сумський державний університет",
+            shortName: "СумДУ",
+            logoLight: "1_light.png",
+            logoDark: "1_dark.png"
+        )
     }
 }

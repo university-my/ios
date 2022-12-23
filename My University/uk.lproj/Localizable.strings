@@ -7,8 +7,8 @@
 /* Alert action */
 "Cancel" = "Скасувати";
 
-/* Action title */
-"Change University" = "Змінити університет";
+/* No comment provided by engineer. */
+"Change university" = "Змінити університет";
 
 /* Alert action */
 "Check on website" = "Перевірити на сайті";
@@ -34,6 +34,12 @@
 /* No comment provided by engineer. */
 "Documents" = "Документи";
 
+/* No comment provided by engineer. */
+"Done" = "Готово";
+
+/* No comment provided by engineer. */
+"Feedback" = "Зворотній Зв'язок";
+
 /* Action title */
 "Go to University" = "Перейти до університету";
 
@@ -46,7 +52,7 @@
 /* No comment provided by engineer. */
 "GROUPS" = "ГРУПИ";
 
-/* Action title */
+/* No comment provided by engineer. */
 "Information" = "Інформація";
 
 /* No comment provided by engineer. */
@@ -64,7 +70,7 @@
 /* Action title */
 "Remove from favorites" = "Видалити з обраних";
 
-/* Action title */
+/* No comment provided by engineer. */
 "Report a problem" = "Повідомити про помилку";
 
 /* Alert action */
@@ -99,6 +105,9 @@
 
 /* Alert action */
 "Try again" = "Спробувати ще раз";
+
+/* No comment provided by engineer. */
+"University" = "Університет";
 
 /* Error description */
 "University data needs to be updated. You will return to the main screen of the university" = "Дані університету необхідно оновити. Ви повернетеся на головний екран університету.";

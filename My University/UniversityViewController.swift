@@ -40,7 +40,7 @@ class UniversityViewController: UITableViewController {
         super.viewDidLoad()
         
         // Current university is selected one
-        universityID = University.selectedUniversityID
+        universityID = University.current?.id
         
         setup()
     }
@@ -74,8 +74,6 @@ class UniversityViewController: UITableViewController {
     }
     
     private func setup() {
-        configurePreferencesMenu()
-        
         // Fetch university
         if let id = universityID {
             dataSource = UniversityDataSource()
@@ -241,6 +239,10 @@ class UniversityViewController: UITableViewController {
             let controller = segue.destination as? TeachersTableViewController
             controller?.universityID = dataSource.university?.id
             
+        case .information:
+            let controller = segue.destination as? InformationHostingController
+            controller?.delegate = self
+            
         default:
             break
         }
@@ -268,35 +270,6 @@ class UniversityViewController: UITableViewController {
             // Present only once
             logic.updateLastVersionForNewFeatures()
         }
-    }
-    
-    // MARK: - Preferences
-    
-    @IBOutlet weak var preferencesBarButtonItem: UIBarButtonItem!
-    
-    private func configurePreferencesMenu() {
-        let changeUniversity = UIAction(
-            title: NSLocalizedString("Change University", comment: "Action title"),
-            image: UIImage(systemName: "list.dash")
-        ) { _ in
-            University.selectedUniversityID = nil
-            self.performSegue(withIdentifier: .changeUniversity)
-        }
-        
-        let information = UIAction(
-            title: NSLocalizedString("Information", comment: "Action title"),
-            image: UIImage(systemName: "info.circle")) { _ in
-                self.performSegue(withIdentifier: .information)
-            }
-        
-        let reportProblem = UIAction(
-            title: NSLocalizedString("Report a problem", comment: "Action title"),
-            image: UIImage(systemName: "exclamationmark.bubble.fill")
-        ) { _ in
-            UIApplication.shared.open(.contacts)
-        }
-        
-        preferencesBarButtonItem.menu = UIMenu(title: "", children: [changeUniversity, information, reportProblem])
     }
     
     // MARK: - Import (for UUID feature)
@@ -354,5 +327,15 @@ extension UniversityViewController: UniversityLogicControllerDelegate {
     }
     
     func logicDidImportAllEntities() {
+    }
+}
+
+// MARK: - InformationHostingControllerDelegate
+
+extension UniversityViewController: InformationHostingControllerDelegate {
+    func informationHostingControllerChangeUniversityPressed(in controller: InformationHostingController) {
+        controller.dismiss(animated: true)
+        University.removeCurrent()
+        performSegue(withIdentifier: .changeUniversity)
     }
 }

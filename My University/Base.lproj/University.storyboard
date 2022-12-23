@@ -127,10 +127,13 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="AL9-1Q-JpS">
-                        <barButtonItem key="rightBarButtonItem" image="ellipsis.circle" catalog="system" id="U58-VY-iNv"/>
+                        <barButtonItem key="rightBarButtonItem" image="info.circle" catalog="system" id="f4y-td-G4a">
+                            <connections>
+                                <segue destination="V16-6S-JpJ" kind="presentation" identifier="information" id="WYA-O3-5mZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="preferencesBarButtonItem" destination="U58-VY-iNv" id="lSI-tq-ZAC"/>
                         <segue destination="eav-eo-NTI" kind="show" identifier="showGroups" id="BvS-GR-DzH"/>
                         <segue destination="P1W-Vf-SQ3" kind="show" identifier="showTeachers" id="TzT-2s-pyY"/>
                         <segue destination="W7b-zz-Rsa" kind="show" identifier="showClassrooms" id="7in-AW-ArM"/>
@@ -138,7 +141,6 @@
                         <segue destination="FBa-ki-ZHQ" kind="presentation" identifier="groupDetails" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="gYO-XM-ELK"/>
                         <segue destination="vS9-3j-7La" kind="presentation" identifier="teacherDetails" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="u8g-7O-vIp"/>
                         <segue destination="UaB-WI-CTA" kind="presentation" identifier="classroomDetails" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="8fl-xx-wzX"/>
-                        <segue destination="V16-6S-JpJ" kind="presentation" identifier="information" id="vZo-cj-D2A"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NeF-49-RUJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -403,8 +405,8 @@
     <color key="tintColor" systemColor="systemIndigoColor"/>
     <resources>
         <image name="briefcase" catalog="system" width="128" height="100"/>
-        <image name="ellipsis.circle" catalog="system" width="128" height="123"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
+        <image name="info.circle" catalog="system" width="128" height="123"/>
         <image name="person.2" catalog="system" width="128" height="82"/>
         <image name="tablecells" catalog="system" width="128" height="93"/>
         <systemColor name="groupTableViewBackgroundColor">

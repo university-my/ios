@@ -9,10 +9,31 @@
 import UIKit
 import SwiftUI
 
+protocol InformationHostingControllerDelegate: AnyObject {
+    func informationHostingControllerChangeUniversityPressed(in controller: InformationHostingController)
+}
+
 class InformationHostingController: UIHostingController<InformationView> {
     
+    let model = InformationViewModel(university: University.current)
+    weak var delegate: InformationHostingControllerDelegate?
+    
     @MainActor required dynamic init?(coder aDecoder: NSCoder) {
-        let view = InformationView()
+        let view = InformationView(model: self.model)
         super.init(coder: aDecoder, rootView: view)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        model.delegate = self
+    }
+}
+
+// MARK: - InformationViewModelDelegate
+
+extension InformationHostingController: InformationViewModelDelegate {
+    func informationViewModelChangeUniversityPressed() {
+        delegate?.informationHostingControllerChangeUniversityPressed(in: self)
     }
 }
