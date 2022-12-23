@@ -73,6 +73,7 @@
 		DE65DA992370C6BA00022B21 /* Initial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE65DA972370C6BA00022B21 /* Initial.storyboard */; };
 		DE6794352268976E0068087A /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6794342268976E0068087A /* GroupsTableViewController.swift */; };
 		DE7190AD25E7B74000A1F216 /* Record+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7190AC25E7B74000A1F216 /* Record+Formatter.swift */; };
+		DE74B0812955CFD200FC695D /* InformationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE74B0802955CFD200FC695D /* InformationViewModel.swift */; };
 		DE78478B240D9FBC002C2EDC /* UIStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78478A240D9FBC002C2EDC /* UIStoryboard.swift */; };
 		DE78478D240DA16B002C2EDC /* LegalDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78478C240DA16B002C2EDC /* LegalDocumentView.swift */; };
 		DE784790240DB406002C2EDC /* ContinueButtonContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78478F240DB406002C2EDC /* ContinueButtonContent.swift */; };
@@ -251,6 +252,7 @@
 		DE65DA982370C6BA00022B21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Initial.storyboard; sourceTree = "<group>"; };
 		DE6794342268976E0068087A /* GroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
 		DE7190AC25E7B74000A1F216 /* Record+Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record+Formatter.swift"; sourceTree = "<group>"; };
+		DE74B0802955CFD200FC695D /* InformationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationViewModel.swift; sourceTree = "<group>"; };
 		DE78478A240D9FBC002C2EDC /* UIStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboard.swift; sourceTree = "<group>"; };
 		DE78478C240DA16B002C2EDC /* LegalDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDocumentView.swift; sourceTree = "<group>"; };
 		DE78478F240DB406002C2EDC /* ContinueButtonContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueButtonContent.swift; sourceTree = "<group>"; };
@@ -923,6 +925,7 @@
 			children = (
 				DECAE8262946352000CC9BA1 /* InformationHostingController.swift */,
 				DECAE8272946352000CC9BA1 /* InformationView.swift */,
+				DE74B0802955CFD200FC695D /* InformationViewModel.swift */,
 			);
 			name = Information;
 			sourceTree = "<group>";
@@ -1175,6 +1178,7 @@
 				DE784790240DB406002C2EDC /* ContinueButtonContent.swift in Sources */,
 				DE945AD22264D71B00143303 /* UniversitiesDataSource.swift in Sources */,
 				DE7AB8582466C4470031E279 /* CoreDataEntityProtocol.swift in Sources */,
+				DE74B0812955CFD200FC695D /* InformationViewModel.swift in Sources */,
 				DEBCBD962530B2660087F216 /* EntityEndpoint.swift in Sources */,
 				DE3628D52524EE4C003A7939 /* UniversityLogicController.swift in Sources */,
 				DEB9BD4D2538C1D8008F41A2 /* Model+Endpoints.swift in Sources */,
@@ -1583,7 +1587,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.9;
+				MARKETING_VERSION = 1.8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.voevodin-yura.Schedule";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SERVER_BASE_URL = "http://localhost:3000";
@@ -1608,7 +1612,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.9;
+				MARKETING_VERSION = 1.8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.voevodin-yura.Schedule";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SERVER_BASE_URL = "https://my-university.com.ua";

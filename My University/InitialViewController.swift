@@ -13,7 +13,7 @@ class InitialViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if University.selectedUniversityID == nil {
+        if University.current == nil {
             // Show all universities
             performSegue(withIdentifier: .allUniversities)
         } else {
